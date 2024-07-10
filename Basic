@@ -31,7 +31,13 @@ MUST have a Java Project than....
 ->select desire Java Version
 
 
+================== 02. How to create: ===============================
+    ->Form window  ->Form title  ->Set width, height, ->Show it into the center of the window.    
 
+        setTitle("Automated Teller Machine");
+        setSize(800, 450); // Form size
+        setLocationRelativeTo(null); // Center the form
+        setVisible(true); // show form
 
 
 
