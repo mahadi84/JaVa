@@ -79,7 +79,115 @@ MUST have a Java Project than....
             add(login);
 
 
+========================================== Basic FORM and RECEIVE EVENT ===============================
 
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Login extends JFrame implements ActionListener {
+
+    JLabel l1, card, pin;
+    JTextField cardText, pinText;
+    JButton clear, login, signup;
+
+    Login(){
+
+        setLayout(null); //to get label.setBounts work 
+        
+        //Login From (Library: import javax.swing.JFrame)
+        setTitle("Automated Teller Machine");
+
+        
+        //Logo
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
+        Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
+        ImageIcon i3= new ImageIcon(i2);
+        
+        JLabel label = new JLabel(i3);
+            label.setBounds(90, 40, 70, 75);
+            add(label);
+        
+
+        //Heading
+        this.l1 = new JLabel("WELCOME TO ATM");
+            this.l1.setFont(new Font("Osward", 1, 38));
+            this.l1.setBounds(200, 60, 450, 40);
+            add(this.l1);
+        
+// ----------------Card-------------------
+        //Card-Lebel
+        this.card = new JLabel("CARD No.:");
+            this.card.setBounds(200, 150, 100, 25);
+            add(this.card);
+
+        //Card-Text field
+        this.cardText = new JTextField();
+            this.cardText.setBounds(280, 150, 200, 25);
+            add(this.cardText);
+
+// ----------------PIN-------------------
+
+        //PIN-lebel
+        this.pin = new JLabel("PIN:");
+            this.pin.setBounds(200, 200, 100, 25);
+            add(this.pin);
+
+         //PIN-Text field
+        this.pinText = new JTextField();
+            this.pinText.setBounds(280, 200, 200, 25);
+            add(this.pinText);
+
+
+        //Clear
+        this.clear = new JButton("Clear");
+            this.clear.setBounds(280, 250, 90, 25);
+            this.clear.addActionListener(this); //fn to send data
+            add(this.clear);
+        
+        //Submit
+        this.login = new JButton("Login");
+            this.login.setBounds(390, 250, 90, 25);
+            this.login.addActionListener(this); //fn to send data
+            add(this.login);
+        
+        //Sign Up
+        this.signup = new JButton("Signup");
+            this.signup.setBounds(280, 290, 200, 25);
+            this.signup.addActionListener(this); //fn to send data
+            add(this.signup);
+
+
+        //Login From 
+        setSize(800, 450); // Form size
+        setLocationRelativeTo(null); // Center the form
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource() == this.clear){
+            this.cardText.setText("");
+        }else if(ae.getSource() == this.login){
+            this.cardText.setText("");
+        }else if(ae.getSource() == this.signup){
+            this.cardText.setText("");
+        }
+    }
+
+
+    public static void main(String[] args) {
+        new Login(); 
+    }
+
+}
 
 
 
