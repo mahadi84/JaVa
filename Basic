@@ -1,15 +1,39 @@
 Date: 09 June 2024
 
-00. How to change java version into VS_CODE to latest One?
+0. How do I create a java project in VS_Code?
+00. How do I change the Java version into VS_CODE to the latest One?
 
 01. How to create:
-    ->Form window   ->set location to show it
+    ->Form window   ->Set location to show it
     ->Form title    ->Close Button
     ->Heading of the form
     ->Label         -> Text Field
     ->Button
 
-02. How to receive an action when button is pressed?
+02. How do I get an action when the button is pressed?
+
+
+====================== 0. How do I create a java project in VS_Code? ================================
+->Click on "Explorer" Or (Ctrl_Shift+E)
+->Click on "CREATE JAVA PROJECT"
+->Select "No build tools"
+->Select a folder OR Create new one and Select it.
+->Type My project Name.
+->Pop-up "Do you want to save your workspace configuration as file?"
+->Click on "Don't Save"
+->Go to "src" folder where all class have write
+                 That's it.
+
+================== 00. How do I change the Java version into VS_CODE to the latest One? ========================
+
+->Open command Plate of VS_Cde (Alt+Shift_P)
+->Type ">Configure Java Runtime"
+->select desire Java Version
+
+
+
+
+
 
 
 
