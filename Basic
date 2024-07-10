@@ -4,9 +4,9 @@ Date: 09 June 2024
 01. How do I change the Java version into VS_CODE to the latest One?
 
 02. How to create:
-    ->Form window   ->Set location to show it
+    ->Form window   ->Set width, height, and location to show it.
     ->Form title    ->Close Button
-    ->Heading of the form
+    ->Heading and Logo of the form eg: Logo and Online Banking
     ->Label         -> Text Field
     ->Button
 
