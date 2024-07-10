@@ -39,6 +39,45 @@ MUST have a Java Project than....
         setLocationRelativeTo(null); // Center the form
         setVisible(true); // show form
 
+//LOGO as lebel and Heading
+
+ setLayout(null); //to get label.setBounts work 
+        //Login From (Library: import javax.swing.JFrame)
+        setTitle("Automated Teller Machine");
+
+        
+//Logo
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
+        Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
+        ImageIcon i3= new ImageIcon(i2);
+        
+        JLabel label = new JLabel(i3);
+            label.setBounds(90, 40, 70, 75);
+            add(label);
+        
+//Heading
+        JLabel l1 = new JLabel("WELCOME TO ATM");
+            l1.setFont(new Font("Osward", 1, 38));
+            l1.setBounds(200, 60, 450, 40);
+            add(l1);
+        
+
+//PIN-lebel
+        JLabel pin = new JLabel("PIN:");
+            pin.setBounds(200, 200, 100, 25);
+            add(pin);
+
+//PIN-Text field
+        JTextField pinText = new JTextField();
+            pinText.setBounds(280, 200, 200, 25);
+            add(pinText);
+
+//Button
+        JButton login = new JButton("Login");
+            login.setBounds(390, 250, 90, 25);
+            login.addActionListener("login"); //fn to send data
+            add(login);
+
 
 
 
