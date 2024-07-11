@@ -58,28 +58,30 @@ public class Signup extends JFrame implements ActionListener {
       ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("ASimulatorSystem/icons/logo.jpg"));
       Image i2 = i1.getImage().getScaledInstance(100, 100, 1);
       ImageIcon i3 = new ImageIcon(i2);
-      JLabel l11 = new JLabel(i3);
+      
+JLabel l11 = new JLabel(i3);
       l11.setBounds(20, 0, 100, 100);
       this.add(l11);
-      this.l1 = new JLabel("APPLICATION FORM NO. " + this.first);
+      
+this.l1 = new JLabel("APPLICATION FORM NO. " + this.first);
       this.l1.setFont(new Font("Raleway", 1, 38));
-      this.l2 = new JLabel("Page 1: Personal Details");
+this.l2 = new JLabel("Page 1: Personal Details");
       this.l2.setFont(new Font("Raleway", 1, 22));
-      this.l3 = new JLabel("Name:");
+this.l3 = new JLabel("Name:");
       this.l3.setFont(new Font("Raleway", 1, 20));
-      this.l4 = new JLabel("Father's Name:");
+this.l4 = new JLabel("Father's Name:");
       this.l4.setFont(new Font("Raleway", 1, 20));
-      this.l5 = new JLabel("Date of Birth:");
+this.l5 = new JLabel("Date of Birth:");
       this.l5.setFont(new Font("Raleway", 1, 20));
-      this.l6 = new JLabel("Gender:");
+this.l6 = new JLabel("Gender:");
       this.l6.setFont(new Font("Raleway", 1, 20));
-      this.l7 = new JLabel("Email Address:");
+this.l7 = new JLabel("Email Address:");
       this.l7.setFont(new Font("Raleway", 1, 20));
-      this.l8 = new JLabel("Marital Status:");
+this.l8 = new JLabel("Marital Status:");
       this.l8.setFont(new Font("Raleway", 1, 20));
-      this.l9 = new JLabel("Address:");
+this.l9 = new JLabel("Address:");
       this.l9.setFont(new Font("Raleway", 1, 20));
-      this.l10 = new JLabel("City:");
+this.l10 = new JLabel("City:");
       this.l10.setFont(new Font("Raleway", 1, 20));
       l11 = new JLabel("Pin Code:");
       l11.setFont(new Font("Raleway", 1, 20));
@@ -91,6 +93,7 @@ public class Signup extends JFrame implements ActionListener {
       this.l14.setFont(new Font("Raleway", 1, 14));
       this.l15 = new JLabel("Year");
       this.l15.setFont(new Font("Raleway", 1, 14));
+      
       this.t1 = new JTextField();
       this.t1.setFont(new Font("Raleway", 1, 14));
       this.t2 = new JTextField();
@@ -115,9 +118,11 @@ public class Signup extends JFrame implements ActionListener {
       this.r2 = new JRadioButton("Female");
       this.r2.setFont(new Font("Raleway", 1, 14));
       this.r2.setBackground(Color.WHITE);
+
       ButtonGroup groupgender = new ButtonGroup();
       groupgender.add(this.r1);
       groupgender.add(this.r2);
+
       this.r3 = new JRadioButton("Married");
       this.r3.setFont(new Font("Raleway", 1, 14));
       this.r3.setBackground(Color.WHITE);
@@ -127,6 +132,7 @@ public class Signup extends JFrame implements ActionListener {
       this.r5 = new JRadioButton("Other");
       this.r5.setFont(new Font("Raleway", 1, 14));
       this.r5.setBackground(Color.WHITE);
+      
       ButtonGroup groupstatus = new ButtonGroup();
       groupstatus.add(this.r3);
       groupstatus.add(this.r4);
