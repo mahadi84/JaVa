@@ -1046,3 +1046,304 @@ Sure, I can provide a selection of multiple-choice questions section-wise for th
     D. `Library.loadLibrary()`
 
     **Answer:** A
+
+
+
+##################### Section 26: Java Memory Management  ##################
+
+76. **Which of the following is true about garbage collection in Java?**
+    A. Garbage collection is automatic in Java  
+    B. The programmer can explicitly delete objects  
+    C. Garbage collection can be triggered using `System.gc()`  
+    D. Both A and C
+
+    **Answer:** D
+
+77. **What is the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            String str1 = new String("Hello");
+            String str2 = new String("Hello");
+            System.out.println(str1 == str2);
+        }
+    }
+    ```
+    A. true  
+    B. false  
+    C. Compilation Error  
+    D. Runtime Error
+
+    **Answer:** B
+
+78. **Which of the following memory areas is not managed by the Java garbage collector?**
+    A. Heap  
+    B. Stack  
+    C. Method Area  
+    D. None of the above
+
+    **Answer:** B
+
+
+
+################## ## Section 27: Java Modules ##################
+
+79. **What is the purpose of the module-info.java file in Java?**
+    A. To define a module and its dependencies  
+    B. To compile Java code  
+    C. To create a JAR file  
+    D. None of the above
+
+    **Answer:** A
+
+80. **What is the output of the following code?**
+    ```java
+    module mymodule {
+        exports com.example;
+    }
+    ```
+    A. Creates a module named mymodule and exports the com.example package  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+81. **Which of the following statements is true about Java modules?**
+    A. Modules can have circular dependencies  
+    B. Modules are loaded at runtime  
+    C. Modules can be packaged into JAR files  
+    D. All of the above
+
+    **Answer:** C
+
+##################### Section 28: Java Security ##################
+
+82. **Which of the following classes is used for encryption in Java?**
+    A. `Cipher`  
+    B. `MessageDigest`  
+    C. `KeyPairGenerator`  
+    D. All of the above
+
+    **Answer:** D
+
+83. **What is the output of the following code?**
+    ```java
+    import java.security.MessageDigest;
+    public class Test {
+        public static void main(String[] args) throws Exception {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update("Hello".getBytes());
+            byte[] digest = md.digest();
+            System.out.println(digest.length);
+        }
+    }
+    ```
+    A. 16  
+    B. 32  
+    C. 64  
+    D. Compilation Error
+
+    **Answer:** B
+
+84. **Which of the following statements is true about Java security?**
+    A. Java provides a default security manager  
+    B. The security manager can be customized  
+    C. The security manager controls access to system resources  
+    D. All of the above
+
+    **Answer:** D
+
+
+
+##################### Section 29: Java Servlets  ##################
+
+85. **Which of the following is true about Java servlets?**
+    A. Servlets are server-side Java programs  
+    B. Servlets can handle HTTP requests  
+    C. Servlets are part of the Java EE platform  
+    D. All of the above
+
+    **Answer:** D
+
+86. **What is the output of the following code?**
+    ```java
+    import javax.servlet.*;
+    import javax.servlet.http.*;
+    import java.io.*;
+    
+    public class HelloServlet extends HttpServlet {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            PrintWriter out = response.getWriter();
+            out.println("Hello, Servlet!");
+        }
+    }
+    ```
+    A. Hello, Servlet!  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+87. **Which of the following methods is used to handle POST requests in a servlet?**
+    A. `doGet`  
+    B. `doPost`  
+    C. `service`  
+    D. `init`
+
+    **Answer:** B
+
+
+
+##################### Section 30: JavaServer Pages (JSP)  ##################
+
+88. **Which of the following is true about JavaServer Pages (JSP)?**
+    A. JSP is a technology used to create dynamic web pages  
+    B. JSP is compiled into servlets  
+    C. JSP uses special tags to embed Java code in HTML  
+    D. All of the above
+
+    **Answer:** D
+
+89. **What is the output of the following code?**
+    ```jsp
+    <% out.println("Hello, JSP!"); %>
+    ```
+    A. Hello, JSP!  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+90. **Which of the following is a correct JSP directive?**
+    A. `<%@ page %>`  
+    B. `<%@ include %>`  
+    C. `<%@ taglib %>`  
+    D. All of the above
+
+    **Answer:** D
+
+
+
+##################### Section 31: JavaServer Faces (JSF)  ##################
+
+91. **Which of the following is true about JavaServer Faces (JSF)?**
+    A. JSF is a framework for building web applications  
+    B. JSF uses XML to describe the user interface  
+    C. JSF supports event handling  
+    D. All of the above
+
+    **Answer:** D
+
+92. **What is the output of the following code?**
+    ```xml
+    <h:outputText value="Hello, JSF!" />
+    ```
+    A. Hello, JSF!  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+93. **Which of the following tags is used to create a form in JSF?**
+    A. `<h:form>`  
+    B. `<form>`  
+    C. `<jsf:form>`  
+    D. `<f:form>`
+
+    **Answer:** A
+
+
+
+##################### Section 32: Enterprise JavaBeans (EJB)  ##################
+
+94. **Which of the following is true about Enterprise JavaBeans (EJB)?**
+    A. EJB is a server-side component architecture  
+    B. EJB supports transaction management  
+    C. EJB can be used to build scalable applications  
+    D. All of the above
+
+    **Answer:** D
+
+95. **What is the output of the following code?**
+    ```java
+    @Stateless
+    public class HelloBean {
+        public String sayHello() {
+            return "Hello, EJB!";
+        }
+    }
+    ```
+    A. Hello, EJB!  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+96. **Which of the following annotations is used to define a stateless session bean?**
+    A. `@Stateless`  
+    B. `@Stateful`  
+    C. `@Singleton`  
+    D. `@MessageDriven`
+
+    **Answer:** A
+
+
+
+##################### Section 33: Java Message Service (JMS)  ##################
+
+97. **Which of the following is true about Java Message Service (JMS)?**
+    A. JMS is an API for messaging between applications  
+    B. JMS supports both point-to-point and publish-subscribe messaging models  
+    C. JMS provides reliable communication  
+    D. All of the above
+
+    **Answer:** D
+
+98. **What is the output of the following code?**
+    ```java
+    import javax.jms.*;
+    public class Test {
+        public static void main(String[] args) throws JMSException {
+            ConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+            Connection connection = factory.createConnection();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Queue queue = session.createQueue("testQueue");
+            MessageProducer producer = session.createProducer(queue);
+            TextMessage message = session.createTextMessage("Hello, JMS!");
+            producer.send(message);
+            System.out.println("Message sent");
+        }
+    }
+    ```
+    A. Message sent  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+99. **Which of the following interfaces is used to send messages in JMS?**
+    A. `MessageProducer`  
+    B. `MessageConsumer`  
+    C. `Queue`  
+    D. `Topic`
+
+    **Answer:** A
+
+
+
+##################### Section 34: Java Naming and Directory Interface (JNDI) ##################
+
+100. **Which of the following is true about Java Naming and Directory Interface (JNDI)?**
+    A. JNDI is an API for directory services  
+    B. JNDI can be used to look up objects in a directory  
+    C. JNDI supports LDAP  
+    D. All of the above
+
+    **Answer:** D
