@@ -1,0 +1,1048 @@
+Date: 13 July-2024
+
+Sure, I can provide a selection of multiple-choice questions section-wise for the Oracle Certified Professional (OCP) Java SE 8 Programmer certification.
+
+
+###################### Section 1: Java Basics  ###################
+
+1. **What is the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int x = 5;
+            System.out.println(x++);
+            System.out.println(x);
+        }
+    }
+    ```
+    A. 5 6  
+    B. 6 6  
+    C. 5 5  
+    D. Compilation Error
+
+    **Answer:** A
+
+2. **Which of the following are valid declarations of a `float` variable?**
+    A. `float f1 = 4;`  
+    B. `float f2 = 4.0;`  
+    C. `float f3 = 4.0f;`  
+    D. `float f4 = 4d;`  
+
+    **Answer:** C
+
+3. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            System.out.println("Result: " + 2 + 3);
+        }
+    }
+    ```
+    A. Result: 5  
+    B. Result: 23  
+    C. Result: 5.0  
+    D. Compilation Error
+
+    **Answer:** B
+
+
+
+###################### Section 2: Working with Java Data Types  ###################
+
+4. **Which of the following is a correct statement?**
+    A. `int x = 10.5;`  
+    B. `double y = 10;`  
+    C. `boolean z = 0;`  
+    D. `char c = "a";`  
+
+    **Answer:** B
+
+5. **What is the range of a `byte` in Java?**
+    A. -128 to 127  
+    B. 0 to 255  
+    C. -32768 to 32767  
+    D. 0 to 65535  
+
+    **Answer:** A
+
+6. **What will be the result of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int i = 1;
+            int j = i++;
+            System.out.println(i + " " + j);
+        }
+    }
+    ```
+    A. 1 1  
+    B. 2 1  
+    C. 1 2  
+    D. 2 2
+
+    **Answer:** B
+
+
+
+###################### Section 3: Operators and Decision Constructs  ###################
+
+7. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            boolean a = true;
+            boolean b = false;
+            boolean c = a && b;
+            boolean d = a || b;
+            System.out.println(c + " " + d);
+        }
+    }
+    ```
+    A. false false  
+    B. true true  
+    C. false true  
+    D. true false
+
+    **Answer:** C
+
+8. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int x = 10;
+            if (x > 5) {
+                x++;
+            } else {
+                x--;
+            }
+            System.out.println(x);
+        }
+    }
+    ```
+    A. 9  
+    B. 10  
+    C. 11  
+    D. 5
+
+    **Answer:** C
+
+9. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int x = 5;
+            System.out.println(x > 2 ? x < 4 ? 10 : 8 : 7);
+        }
+    }
+    ```
+    A. 10  
+    B. 8  
+    C. 7  
+    D. Compilation Error
+
+    **Answer:** B
+
+
+
+###################### Section 4: Arrays and ArrayLists  ###################
+
+10. **Which of the following is the correct way to declare and initialize an array in Java?**
+    A. `int[] arr = new int[5];`  
+    B. `int arr = new int[5];`  
+    C. `int[] arr = new int(5);`  
+    D. `int arr[] = new int[5];`  
+
+    **Answer:** A, D
+
+11. **What is the output of the following code?**
+    ```java
+    import java.util.ArrayList;
+    public class Test {
+        public static void main(String[] args) {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.remove(1);
+            System.out.println(list);
+        }
+    }
+    ```
+    A. [1, 2]  
+    B. [1, 3]  
+    C. [1, 2, 3]  
+    D. [2, 3]
+
+    **Answer:** B
+
+12. **What is the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 5};
+            System.out.println(arr[2]);
+        }
+    }
+    ```
+    A. 1  
+    B. 2  
+    C. 3  
+    D. 4
+
+    **Answer:** C
+
+
+
+###################### Section 5: Loop Constructs  ###################
+
+13. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            for (int i = 0; i < 5; i++) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+    ```
+    A. 0 1 2 3 4  
+    B. 1 2 3 4 5  
+    C. 0 1 2 3 4 5  
+    D. Compilation Error
+
+    **Answer:** A
+
+14. **Which of the following loops will execute at least once?**
+    A. `for` loop  
+    B. `while` loop  
+    C. `do-while` loop  
+    D. None of the above
+
+    **Answer:** C
+
+15. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            int i = 0;
+            while (i < 5) {
+                System.out.print(i + " ");
+                i++;
+            }
+        }
+    }
+    ```
+    A. 0 1 2 3 4  
+    B. 1 2 3 4 5  
+    C. 0 1 2 3 4 5  
+    D. Compilation Error
+
+    **Answer:** A
+
+
+
+###################### Section 6: Methods and Encapsulation  ###################
+
+16. **Which of the following is the correct way to define a method in Java?**
+    A. `void myMethod()`  
+    B. `public void myMethod()`  
+    C. `private void myMethod()`  
+    D. All of the above
+
+    **Answer:** D
+
+17. **What is method overloading?**
+    A. Methods in a class with the same name but different return types  
+    B. Methods in a class with the same name but different parameters  
+    C. Methods in a class with different names but the same parameters  
+    D. None of the above
+
+    **Answer:** B
+
+18. **What will be the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            System.out.println(sum(5, 10));
+        }
+        
+        public static int sum(int a, int b) {
+            return a + b;
+        }
+    }
+    ```
+    A. 5  
+    B. 10  
+    C. 15  
+    D. Compilation Error
+
+    **Answer:** C
+
+
+###################### Section 7: Inheritance  ###################
+
+19. **Which of the following is true about inheritance in Java?**
+    A. A subclass inherits all the members (fields, methods) of its superclass  
+    B. A subclass cannot override the methods of its superclass  
+    C. A subclass can only inherit from one superclass  
+    D. All of the above
+
+    **Answer:** C
+
+20. **What will be the output of the following code?**
+    ```java
+    class Parent {
+        void show() {
+            System.out.println("Parent's show()");
+        }
+    }
+    
+    class Child extends Parent {
+        void show() {
+            System.out.println("Child's show()");
+        }
+    }
+    
+    public class Test {
+        public static void main(String[] args) {
+            Parent obj = new Child();
+            obj.show();
+        }
+    }
+    ```
+    A. Parent's show()  
+    B. Child's show()  
+    C. Compilation Error  
+    D. Runtime Error
+
+    **Answer:** B
+
+21. **Which keyword is used to inherit a class in Java?**
+    A. `extends`  
+    B. `implements`  
+    C. `inherits`  
+    D. `super`
+
+    **Answer:** A
+
+
+
+###################### Section 8: Interfaces and Abstract Classes  ###################
+
+22. **What is the difference between an interface and an abstract
+
+ class?**
+    A. An interface can have implemented methods, an abstract class cannot  
+    B. An abstract class can have implemented methods, an interface cannot  
+    C. An interface can extend multiple classes, an abstract class cannot  
+    D. An abstract class can extend multiple interfaces, an interface cannot
+
+    **Answer:** B
+
+23. **What will be the output of the following code?**
+    ```java
+    interface A {
+        void display();
+    }
+    
+    class B implements A {
+        public void display() {
+            System.out.println("B's display()");
+        }
+    }
+    
+    public class Test {
+        public static void main(String[] args) {
+            A obj = new B();
+            obj.display();
+        }
+    }
+    ```
+    A. B's display()  
+    B. A's display()  
+    C. Compilation Error  
+    D. Runtime Error
+
+    **Answer:** A
+
+24. **Can an abstract class have a constructor in Java?**
+    A. Yes  
+    B. No
+
+    **Answer:** A
+
+
+
+###################### Section 9: Exceptions and Assertions  ###################
+
+25. **Which of the following is a checked exception?**
+    A. `ArrayIndexOutOfBoundsException`  
+    B. `NullPointerException`  
+    C. `FileNotFoundException`  
+    D. `ArithmeticException`
+
+    **Answer:** C
+
+26. **What is the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            try {
+                int data = 5 / 0;
+            } catch (ArithmeticException e) {
+                System.out.println("Exception caught");
+            }
+        }
+    }
+    ```
+    A. Exception caught  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. 5 / 0
+
+    **Answer:** A
+
+27. **Which of the following statements is true about assertions in Java?**
+    A. Assertions are used to enforce conditions at runtime  
+    B. Assertions are enabled by default  
+    C. Assertions should be used to handle runtime exceptions  
+    D. Assertions can replace exception handling
+
+    **Answer:** A
+
+
+
+###################### Section 10: Java API  ###################
+
+28. **Which of the following classes is part of the Java Collections Framework?**
+    A. `ArrayList`  
+    B. `HashMap`  
+    C. `HashSet`  
+    D. All of the above
+
+    **Answer:** D
+
+29. **What is the output of the following code?**
+    ```java
+    import java.util.ArrayList;
+    public class Test {
+        public static void main(String[] args) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add("A");
+            list.add("B");
+            list.add("C");
+            System.out.println(list.get(1));
+        }
+    }
+    ```
+    A. A  
+    B. B  
+    C. C  
+    D. Compilation Error
+
+    **Answer:** B
+
+30. **Which method is used to sort an `ArrayList` in Java?**
+    A. `Collections.sort()`  
+    B. `ArrayList.sort()`  
+    C. `Arrays.sort()`  
+    D. `List.sort()`
+
+    **Answer:** A
+
+
+
+###################### Section 11: Lambda Expressions and Functional Interfaces  ###################
+
+31. **Which of the following is a functional interface?**
+    A. `Runnable`  
+    B. `Comparator`  
+    C. `Callable`  
+    D. All of the above
+
+    **Answer:** D
+
+32. **What is the output of the following code?**
+    ```java
+    import java.util.function.Function;
+    public class Test {
+        public static void main(String[] args) {
+            Function<Integer, Integer> square = x -> x * x;
+            System.out.println(square.apply(5));
+        }
+    }
+    ```
+    A. 10  
+    B. 15  
+    C. 25  
+    D. Compilation Error
+
+    **Answer:** C
+
+33. **Which of the following statements is true about lambda expressions?**
+    A. Lambda expressions can only be used with functional interfaces  
+    B. Lambda expressions can have multiple methods  
+    C. Lambda expressions can be used to instantiate abstract classes  
+    D. None of the above
+
+    **Answer:** A
+
+
+
+###################### Section 12: Java Streams API  ###################
+
+34. **Which of the following is a terminal operation in Java Streams?**
+    A. `filter`  
+    B. `map`  
+    C. `forEach`  
+    D. `sorted`
+
+    **Answer:** C
+
+35. **What is the output of the following code?**
+    ```java
+    import java.util.Arrays;
+    import java.util.List;
+    public class Test {
+        public static void main(String[] args) {
+            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+            numbers.stream().filter(n -> n % 2 == 0).forEach(System.out::println);
+        }
+    }
+    ```
+    A. 1 2 3 4 5  
+    B. 2 4  
+    C. 1 3 5  
+    D. Compilation Error
+
+    **Answer:** B
+
+36. **Which of the following methods can be used to convert a Stream to a List?**
+    A. `Stream.toList()`  
+    B. `Stream.collect(Collectors.toList())`  
+    C. `Stream.asList()`  
+    D. `Stream.list()`
+
+    **Answer:** B
+
+
+###################### Section 13: Date/Time API  ###################
+
+37. **Which class is used to represent a date without time in Java 8?**
+    A. `Date`  
+    B. `LocalDate`  
+    C. `Calendar`  
+    D. `DateTime`
+
+    **Answer:** B
+
+38. **What is the output of the following code?**
+    ```java
+    import java.time.LocalDate;
+    public class Test {
+        public static void main(String[] args) {
+            LocalDate date = LocalDate.of(2020, 1, 1);
+            System.out.println(date.plusDays(1));
+        }
+    }
+    ```
+    A. 2020-01-01  
+    B. 2020-01-02  
+    C. 2020-02-01  
+    D. Compilation Error
+
+    **Answer:** B
+
+39. **Which of the following classes is used to represent time with nanosecond precision?**
+    A. `LocalDate`  
+    B. `LocalTime`  
+    C. `LocalDateTime`  
+    D. `Instant`
+
+    **Answer:** D
+
+
+
+###################### Section 14: Java I/O  ###################
+
+40. **Which of the following is a byte stream class?**
+    A. `FileReader`  
+    B. `FileWriter`  
+    C. `FileInputStream`  
+    D. `BufferedReader`
+
+    **Answer:** C
+
+41. **What is the output of the following code?**
+    ```java
+    import java.io.FileInputStream;
+    import java.io.IOException;
+    public class Test {
+        public static void main(String[] args) {
+            try (FileInputStream fis = new FileInputStream("test.txt")) {
+                int data;
+                while ((data = fis.read()) != -1) {
+                    System.out.print((char) data);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    A. Contents of test.txt  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+42. **Which of the following classes can be used for buffered input in Java?**
+    A. `BufferedInputStream`  
+    B. `BufferedReader`  
+    C. `FileInputStream`  
+    D. `FileReader`
+
+    **Answer:** A, B
+
+
+
+###################### Section 15: Concurrency  ###################
+
+43. **Which of the following is a correct statement about the `synchronized` keyword in Java?**
+    A. It can be used to synchronize a method  
+    B. It can be used to synchronize a block of code  
+    C. It can be used to synchronize a constructor  
+    D. Both A and B
+
+    **Answer:** D
+
+44. **What is the output of the following code?**
+    ```java
+    public class Test {
+        public static void main(String[] args) {
+            Thread t = new Thread(() -> System.out.println("Hello"));
+            t.start();
+        }
+    }
+    ```
+    A. Hello  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+45. **Which of the following classes is used to represent a thread in Java?**
+    A. `Thread`  
+    B. `Runnable`  
+    C. `Executor`  
+    D. `Future`
+
+    **Answer:** A
+
+
+
+###################### Section 16: Java Annotations  ###################
+
+46. **Which of the following is a built-in annotation in Java?**
+    A. `@Override`  
+    B. `@Deprecated`  
+    C. `@SuppressWarnings`  
+    D. All of the above
+
+    **Answer:** D
+
+47. **What is the purpose of the `@Override` annotation?**
+    A. To indicate that a method is overriding a method in its superclass  
+    B. To indicate that a method is deprecated  
+    C. To suppress compiler warnings  
+    D. To indicate that a class is immutable
+
+    **Answer:** A
+
+48. **Which of the following is a meta-annotation in Java?**
+    A. `@Retention
+
+`  
+    B. `@Target`  
+    C. `@Inherited`  
+    D. All of the above
+
+    **Answer:** D
+
+###################### Section 17: Localization  ###################
+
+49. **Which class is used to represent a locale in Java?**
+    A. `Locale`  
+    B. `Currency`  
+    C. `TimeZone`  
+    D. `ResourceBundle`
+
+    **Answer:** A
+
+50. **What is the output of the following code?**
+    ```java
+    import java.util.Locale;
+    public class Test {
+        public static void main(String[] args) {
+            Locale locale = new Locale("en", "US");
+            System.out.println(locale.getDisplayCountry());
+        }
+    }
+    ```
+    A. en  
+    B. US  
+    C. United States  
+    D. Compilation Error
+
+    **Answer:** C
+
+51. **Which of the following classes is used for internationalization in Java?**
+    A. `Locale`  
+    B. `ResourceBundle`  
+    C. `Currency`  
+    D. All of the above
+
+    **Answer:** D
+
+
+
+###################### Section 18: Java Collections  ###################
+
+52. **Which of the following classes implements the `List` interface?**
+    A. `ArrayList`  
+    B. `LinkedList`  
+    C. `Vector`  
+    D. All of the above
+
+    **Answer:** D
+
+53. **What is the output of the following code?**
+    ```java
+    import java.util.ArrayList;
+    import java.util.Collections;
+    public class Test {
+        public static void main(String[] args) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add("B");
+            list.add("A");
+            list.add("C");
+            Collections.sort(list);
+            System.out.println(list);
+        }
+    }
+    ```
+    A. [B, A, C]  
+    B. [A, B, C]  
+    C. [C, B, A]  
+    D. Compilation Error
+
+    **Answer:** B
+
+54. **Which of the following methods is used to get the size of a collection in Java?**
+    A. `size()`  
+    B. `length()`  
+    C. `count()`  
+    D. `getSize()`
+
+    **Answer:** A
+
+
+
+###################### Section 19: Java Generics  ###################
+
+55. **What is the purpose of Java Generics?**
+    A. To provide type safety at runtime  
+    B. To provide type safety at compile-time  
+    C. To reduce the need for casting  
+    D. Both B and C
+
+    **Answer:** D
+
+56. **What is the output of the following code?**
+    ```java
+    import java.util.ArrayList;
+    public class Test {
+        public static void main(String[] args) {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            System.out.println(list.get(1));
+        }
+    }
+    ```
+    A. 1  
+    B. 2  
+    C. 3  
+    D. Compilation Error
+
+    **Answer:** B
+
+57. **Which of the following is a correct way to declare a generic class in Java?**
+    A. `class MyClass<T>`  
+    B. `class MyClass<>`  
+    C. `class MyClass<T, U>`  
+    D. Both A and C
+
+    **Answer:** D
+
+
+
+###################### Section 20: Java Input/Output (NIO.2)  ###################
+
+58. **Which class is used to read all lines from a file in Java NIO.2?**
+    A. `Files`  
+    B. `FileReader`  
+    C. `BufferedReader`  
+    D. `Scanner`
+
+    **Answer:** A
+
+59. **What is the output of the following code?**
+    ```java
+    import java.nio.file.Files;
+    import java.nio.file.Paths;
+    import java.io.IOException;
+    public class Test {
+        public static void main(String[] args) {
+            try {
+                Files.lines(Paths.get("test.txt")).forEach(System.out::println);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    A. Contents of test.txt  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+60. **Which of the following methods is used to create a directory in Java NIO.2?**
+    A. `Files.createDirectory()`  
+    B. `Paths.createDirectory()`  
+    C. `File.createDirectory()`  
+    D. `File.mkdirs()`
+
+    **Answer:** A
+
+
+###################### Section 21: Java Web Services  ###################
+
+61. **Which of the following is true about RESTful web services?**
+    A. They use HTTP as a communication protocol  
+    B. They are stateless  
+    C. They can return data in various formats (JSON, XML, etc.)  
+    D. All of the above
+
+    **Answer:** D
+
+62. **Which annotation is used to define a RESTful web service in Java?**
+    A. `@WebService`  
+    B. `@Path`  
+    C. `@RestController`  
+    D. `@Service`
+
+    **Answer:** B
+
+63. **What is the output of the following code?**
+    ```java
+    import javax.ws.rs.GET;
+    import javax.ws.rs.Path;
+    import javax.ws.rs.core.Response;
+    
+    @Path("/hello")
+    public class HelloWorldService {
+        @GET
+        public Response getMessage() {
+            return Response.status(200).entity("Hello, World!").build();
+        }
+    }
+    ```
+    A. Hello, World!  
+    B. 200  
+    C. Response object  
+    D. Compilation Error
+
+    **Answer:** A
+
+
+
+###################### Section 22: Java Database Connectivity (JDBC) ###################
+
+64. **Which of the following is a correct statement about JDBC?**
+    A. JDBC stands for Java Database Connectivity  
+    B. JDBC is an API for connecting and executing queries on a database  
+    C. JDBC provides methods to query and update data in a database  
+    D. All of the above
+
+    **Answer:** D
+
+65. **What is the output of the following code?**
+    ```java
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.Statement;
+    
+    public class Test {
+        public static void main(String[] args) {
+            try {
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "user", "password");
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM mytable");
+                while (rs.next()) {
+                    System.out.println(rs.getString(1));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    A. Contents of mytable  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+66. **Which of the following interfaces is used to execute a query in JDBC?**
+    A. `Connection`  
+    B. `Statement`  
+    C. `ResultSet`  
+    D. `PreparedStatement`
+
+    **Answer:** B
+
+
+
+###################### Section 23: Java Networking  ###################
+
+67. **Which of the following classes is used to create a server socket in Java?**
+    A. `Socket`  
+    B. `ServerSocket`  
+    C. `DatagramSocket`  
+    D. `MulticastSocket`
+
+    **Answer:** B
+
+68. **What is the output of the following code?**
+    ```java
+    import java.net.InetAddress;
+    public class Test {
+        public static void main(String[] args) {
+            try {
+                InetAddress address = InetAddress.getLocalHost();
+                System.out.println(address.getHostName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    A. Localhost  
+    B. Hostname of the local machine  
+    C. IP address of the local machine  
+    D. Compilation Error
+
+    **Answer:** B
+
+69. **Which of the following methods is used to send data through a socket in Java?**
+    A. `send()`  
+    B. `write()`  
+    C. `sendData()`  
+    D. `sendPacket()`
+
+    **Answer:** B
+
+
+###################### Section 24: Java Reflection ###################
+
+70. **What is Java Reflection?**
+    A. A mechanism to inspect and manipulate classes, interfaces, fields, and methods at runtime  
+    B. A way to create new classes at runtime  
+    C. A method to optimize Java code  
+    D. None of the above
+
+    **Answer:** A
+
+71. **What is the output of the following code?**
+    ```java
+    import java.lang.reflect.Method;
+    public class Test {
+        public static void main(String[] args) {
+            try {
+                Method method = Test.class.getMethod("display");
+                method.invoke(new Test());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        public void display() {
+            System.out.println("Hello, Reflection!");
+        }
+    }
+    ```
+    A. Hello, Reflection!  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+72. **Which of the following classes is part of Java Reflection?**
+    A. `Class`  
+    B. `Method`  
+    C.
+
+ `Field`  
+    D. All of the above
+
+    **Answer:** D
+
+
+
+###################### Section 25: Java Native Interface (JNI)  ###################
+
+73. **What is Java Native Interface (JNI)?**
+    A. An API that allows Java code to interact with native applications and libraries written in other languages like C or C++  
+    B. A method to write native applications in Java  
+    C. A way to compile Java code to native machine code  
+    D. None of the above
+
+    **Answer:** A
+
+74. **What is the output of the following code?**
+    ```java
+    public class Test {
+        static {
+            System.loadLibrary("nativeLib");
+        }
+        
+        public native void nativeMethod();
+        
+        public static void main(String[] args) {
+            new Test().nativeMethod();
+        }
+    }
+    ```
+    A. Output from native method  
+    B. Compilation Error  
+    C. Runtime Error  
+    D. None of the above
+
+    **Answer:** A
+
+75. **Which of the following methods is used to load a native library in Java?**
+    A. `System.loadLibrary()`  
+    B. `Runtime.loadLibrary()`  
+    C. `Native.loadLibrary()`  
+    D. `Library.loadLibrary()`
+
+    **Answer:** A
