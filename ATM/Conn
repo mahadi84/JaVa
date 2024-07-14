@@ -1,4 +1,3 @@
-
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,12 +7,17 @@ public class Conn {
     Statement s;
 
     public Conn(){
+
+        String jdbcURL = "jdbc:mysql:///bms";
+        String username = "root";
+        String password = "";
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            // Class.forName("com.mysql.jdbc.Driver");
-            this.c = DriverManager.getConnection("jdbc:mysql://localhost:90/bms", "root", "Mahadi@123");
+            this.c = DriverManager.getConnection(jdbcURL, username, password);
             this.s = this.c.createStatement();
-        }catch(Exception var2){
+        
+        } catch(Exception var2){
             System.out.println(var2);
         }
     }
