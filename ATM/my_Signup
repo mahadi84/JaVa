@@ -1,0 +1,124 @@
+
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class Signup extends JFrame implements ActionListener {
+
+    JLabel l1, name, card;
+    JTextField nameText, cardText;
+    JButton clear, register, signup;
+
+    Signup(){
+
+        setLayout(null); //to get label.setBounts work 
+        
+        //Register From (Library: import javax.swing.JFrame)
+        setTitle("Signup Form");
+
+        
+        //Logo
+        // ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
+        // Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
+        // ImageIcon i3= new ImageIcon(i2);
+        
+        // JLabel label = new JLabel(i3);
+        //     label.setBounds(90, 40, 70, 75);
+        //     add(label);
+        
+
+        //Heading
+        this.l1 = new JLabel("Sign Up Form");
+            this.l1.setFont(new Font("Osward", 1, 25));
+            this.l1.setBounds(300, 60, 450, 40);
+            add(this.l1);
+
+        
+// ----------------Name-------------------
+        //Name-Lebel
+        this.name = new JLabel("Name:");
+            this.name.setBounds(200, 150, 100, 25);
+            add(this.name);
+
+        //Name-Text field
+        this.nameText = new JTextField();
+            this.nameText.setBounds(280, 150, 200, 25);
+            add(this.nameText);
+
+// ----------------Card-------------------
+
+        //Card-lebel
+        this.card = new JLabel("Card No.:");
+            this.card.setBounds(200, 200, 100, 25);
+            add(this.card);
+
+         //Card-Text field
+        this.cardText = new JTextField();
+            this.cardText.setBounds(280, 200, 200, 25);
+            add(this.cardText);
+
+// --------------- Button -----------------
+        //Clear
+        this.clear = new JButton("Clear");
+            this.clear.setBounds(280, 250, 90, 25);
+            this.clear.addActionListener(this); //fn to send data
+            add(this.clear);
+        
+        //Regtister
+        this.register = new JButton("Register");
+            this.register.setBounds(390, 250, 90, 25);
+            this.register.addActionListener(this); //fn to send data
+            add(this.register);
+        
+       
+
+        
+        setSize(800, 450); // Form size
+        setLocationRelativeTo(null); // Center the form
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource() == this.clear){
+            this.nameText.setText("");
+            this.cardText.setText("");
+        }else if(ae.getSource() == this.register){
+            // this.nameText.setText("");
+            String name = this.nameText.getText();
+            String card_no = this.cardText.getText();
+            // System.out.println(card_no);
+            try{
+                if (name.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Name field is empty");
+                }else if (card_no.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Card field is empty");
+                }else{
+                    Conn c1  = new Conn();
+                    String q = "insert into signup values('"+name+"','"+card_no+"')";
+                    // System.out.println(q);
+                    c1.s.executeUpdate(q);
+                }
+
+            } catch (Exception var15){
+                    var15.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        new Signup(); 
+    }
+
+}
