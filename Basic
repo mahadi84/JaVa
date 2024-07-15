@@ -78,19 +78,25 @@ MUST have a Java Project than....
             login.addActionListener("login"); //fn to send data
             add(login);
 
+//DatePicker
+JDateChooser dateChooser;
+	 dateChooser = new JDateChooser();
+	//dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+	dateChooser.setForeground(new Color(105, 105, 105));
+	dateChooser.setBounds(137, 337, 200, 29);
+	add(dateChooser);
+
 //Radio Button
+JRadioButton r3, r4;
  	r3 = new JRadioButton("Married");
-        r3.setFont(new Font("Raleway", Font.BOLD, 14));
-        r3.setBackground(Color.WHITE);
-        
+        r3.setBackground(Color.WHITE);        
         r4 = new JRadioButton("Unmarried");
-        r4.setFont(new Font("Raleway", Font.BOLD, 14));
         r4.setBackground(Color.WHITE);
 
         ButtonGroup groupstatus = new ButtonGroup();
         groupstatus.add(r3);
         groupstatus.add(r4);
-        groupstatus.add(r5);
+
 
 //Receive data form FORM
 	String fname = t2.getText();
