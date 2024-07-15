@@ -37,6 +37,8 @@ MUST have a Java Project than....
     ->Form window  ->Form title  ->Set width, height, ->Show it into the center of the window.    
 
         setTitle("Automated Teller Machine");
+		---form content---
+	getContentPane().setBackground(Color.WHITE);
         setSize(800, 450); // Form size
         setLocationRelativeTo(null); // Center the form
         setVisible(true); // show form
