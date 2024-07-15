@@ -36,22 +36,44 @@ MUST have a Java Project than....
 ================== 02. How to create: ===============================
     ->Form window  ->Form title  ->Set width, height, ->Show it into the center of the window.    
 
-        setTitle("Automated Teller Machine");
-		---form content---
-	getContentPane().setBackground(Color.WHITE);
-        setSize(800, 450); // Form size
-        setLocationRelativeTo(null); // Center the form
-        setVisible(true); // show form
+     
 
-//LOGO as lebel and Heading
+//PIN-Text field
+        JTextField pinText = new JTextField();
+            pinText.setBounds(280, 200, 200, 25);
+            add(pinText);
 
- setLayout(null); //to get label.setBounts work 
-        //Login From (Library: import javax.swing.JFrame)
-        setTitle("Automated Teller Machine");
+---------------------------------------
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-        
-//Logo
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/logo.png"));
+import javax.swing.JFrame;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import com.toedter.calendar.JDateChooser;
+
+public class test extends JFrame implements ActionListener {
+    JLabel l1, card, pin;
+    JTextField cardText, pinText;
+    JButton signup;
+    JDateChooser dateChooser;
+    JRadioButton radioMarried, radioUnmarried;
+
+    test(){
+        setLayout(null);      //to get label.setBounts work properly
+        setTitle("TEST FORM");   //Form title 
+
+//----------------  Logo  ------------------------------
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
         Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
         ImageIcon i3= new ImageIcon(i2);
         
@@ -59,55 +81,97 @@ MUST have a Java Project than....
             label.setBounds(90, 40, 70, 75);
             add(label);
         
-//Lebel-Heading
-        JLabel headingText = new JLabel("WELCOME TO ATM");
-            headingText.setFont(new Font("Raleway", Font.BOLD, 22));
-            headingText.setForeground(new Color(105, 105, 105));
-            headingText.setBackground(Color.WHITE);
-            headingText.setBounds(200, 60, 450, 40);
-            add(l1);
 
-//PIN-Text field
-        JTextField pinText = new JTextField();
-            pinText.setBounds(280, 200, 200, 25);
-            add(pinText);
+//---------------- Level Heading  --------------------
+        this.l1 = new JLabel("WELCOME TO..");
+        this.l1.setFont(new Font("Osward", 1, 38));
+        this.l1.setBounds(200, 60, 450, 40);
+        add(this.l1);
 
-//Button
-        JButton login = new JButton("Login");
-            login.setBounds(390, 250, 90, 25);
-            login.addActionListener("login"); //fn to send data
-            add(login);
+// -------------- Radio Button ---------------------
+            radioMarried = new JRadioButton("Married");
+            radioMarried.setBackground(Color.WHITE);
+            radioMarried.setBounds(280, 140, 100, 29);
+            add(radioMarried);     
 
-//DatePicker
-JDateChooser dateChooser;
-	 dateChooser = new JDateChooser();
-	//dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-	dateChooser.setForeground(new Color(105, 105, 105));
-	dateChooser.setBounds(137, 337, 200, 29);
-	add(dateChooser);
+            radioUnmarried = new JRadioButton("Unmarried");
+            radioUnmarried.setBackground(Color.WHITE);
+            radioUnmarried.setBounds(400, 140, 100, 29);
+            add(radioUnmarried);
 
-//Radio Button
-JRadioButton r3, r4;
- 	r3 = new JRadioButton("Married");
-        r3.setBackground(Color.WHITE);        
-        r4 = new JRadioButton("Unmarried");
-        r4.setBackground(Color.WHITE);
-
-        ButtonGroup groupstatus = new ButtonGroup();
-        groupstatus.add(r3);
-        groupstatus.add(r4);
+            ButtonGroup groupstatus = new ButtonGroup();
+            groupstatus.add(radioMarried);
+            groupstatus.add(radioUnmarried);
+        
+// -------------- Date ------------------------------------
+            dateChooser = new JDateChooser();
+            //dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+            dateChooser.setForeground(new Color(105, 105, 105));
+            dateChooser.setBounds(280, 180, 200, 29);
+            add(dateChooser);
 
 
-//Receive data form FORM
-	String fname = t2.getText();
-        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+// ---------------- Lebel ------------------------------------
+        this.card = new JLabel("CARD No.:");
+        this.card.setFont(new Font("Raleway", Font.ITALIC, 15));
+        this.card.setBounds(200, 220, 100, 29);
+        add(this.card);
 
-        String marital = null;
-        if(r3.isSelected()){ 
-            marital = "Married";
-        }else if(r4.isSelected()){ 
-            marital = "Unmarried";
+
+//---------------- Text field  -------------------------------
+        this.cardText = new JTextField();
+        this.cardText.setBounds(280, 220, 200, 29);
+        add(this.cardText);
+
+//----------------- Button --------------------------------             
+        //Sign Up
+        this.signup = new JButton("Signup");
+            this.signup.setBounds(280, 290, 200, 25);
+            this.signup.addActionListener(this); //fn to send data
+            add(this.signup);
+
+
+//-----------------Form attributes --------------------------    
+
+        setSize(800, 450); // Form size
+        getContentPane().setBackground(Color.lightGray);
+        setLocationRelativeTo(null); // Center the form
+        setVisible(true);
+    }
+
+
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource() == this.signup){
+            String card = cardText.getText();
+            String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+
+            String marital = null;
+            if(radioMarried.isSelected()){ 
+                marital = "Married";
+            }else if(radioUnmarried.isSelected()){ 
+                marital = "Unmarried";
+            }
+
+            if(dob.equals("")){
+                JOptionPane.showMessageDialog(null, "Select Date of Birth");
+            }else{
+                System.out.println(dob);
+            }
+            
+            if(marital.equals("")){
+                JOptionPane.showMessageDialog(null, "Select Marital status");
+            }else{
+                System.out.println(marital);
+            }
         }
+    }
+
+
+    public static void main(String[] args) {
+        new test(); 
+    }
+
+}
 
 
 
