@@ -78,6 +78,36 @@ MUST have a Java Project than....
             login.addActionListener("login"); //fn to send data
             add(login);
 
+//Radio Button
+ 	r3 = new JRadioButton("Married");
+        r3.setFont(new Font("Raleway", Font.BOLD, 14));
+        r3.setBackground(Color.WHITE);
+        
+        r4 = new JRadioButton("Unmarried");
+        r4.setFont(new Font("Raleway", Font.BOLD, 14));
+        r4.setBackground(Color.WHITE);
+
+        ButtonGroup groupstatus = new ButtonGroup();
+        groupstatus.add(r3);
+        groupstatus.add(r4);
+        groupstatus.add(r5);
+
+//Receive data form FORM
+	String fname = t2.getText();
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+
+        String marital = null;
+        if(r3.isSelected()){ 
+            marital = "Married";
+        }else if(r4.isSelected()){ 
+            marital = "Unmarried";
+        }
+
+
+
+
+
+
 
 ========================================== Basic FORM and RECEIVE EVENT ===============================
 
