@@ -16,7 +16,7 @@ Date: 09 June 2024
 
 
 ====================== 00. How do I create a java project in VS_Code? ================================
-->Click on "Explorer" Or (Ctrl_Shift+E)
+->Click on "Explorer" Or (Ctrl+Shift+E)
 ->Click on "CREATE JAVA PROJECT"
 ->Select "No build tools"
 ->Select a folder OR Create new one and Select it.
