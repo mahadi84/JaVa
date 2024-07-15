@@ -57,17 +57,13 @@ MUST have a Java Project than....
             label.setBounds(90, 40, 70, 75);
             add(label);
         
-//Heading
-        JLabel l1 = new JLabel("WELCOME TO ATM");
-            l1.setFont(new Font("Osward", 1, 38));
-            l1.setBounds(200, 60, 450, 40);
+//Lebel-Heading
+        JLabel headingText = new JLabel("WELCOME TO ATM");
+            headingText.setFont(new Font("Raleway", Font.BOLD, 22));
+            headingText.setForeground(new Color(105, 105, 105));
+            headingText.setBackground(Color.WHITE);
+            headingText.setBounds(200, 60, 450, 40);
             add(l1);
-        
-
-//PIN-lebel
-        JLabel pin = new JLabel("PIN:");
-            pin.setBounds(200, 200, 100, 25);
-            add(pin);
 
 //PIN-Text field
         JTextField pinText = new JTextField();
