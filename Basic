@@ -50,7 +50,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -59,30 +58,27 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
 import com.toedter.calendar.JDateChooser;
 
 public class test extends JFrame implements ActionListener {
-
     JDateChooser dateChooser;
     JRadioButton radioMarried, radioUnmarried;
     JComboBox selectReligion;
     JCheckBox checkAtm, checkIntBank;
-
-   JPasswordField passwordField;
+    JPasswordField passwordField;
     
     JLabel l1, card, pin;
     JTextField cardText, pinText;
-
     JButton signup;
 
 
     // @SuppressWarnings({ "rawtypes", "unchecked" })
+//----Construct function
     test(){
-
         setLayout(null);      //to get label.setBounts work properly
         setTitle("TEST FORM");   //Form title 
 
@@ -145,14 +141,13 @@ public class test extends JFrame implements ActionListener {
 
 //--------------Check Box --------------------------------------
         checkAtm = new JCheckBox("ATM CARD");
-        checkAtm.setFont(new Font("Raleway", Font.BOLD, 16));
-        checkAtm.setBackground(Color.lightGray);
+        checkAtm.setFont(new Font("Raleway", Font.BOLD, 16));        
         checkAtm.setBounds(280, 300, 120, 29);
         add(checkAtm);
 
         checkIntBank = new JCheckBox("Internet Banking");
-        checkIntBank.setFont(new Font("Raleway", Font.BOLD, 16));
-        checkIntBank.setBackground(Color.lightGray);
+        checkIntBank.setBackground(Color.white);
+        checkIntBank.setFont(new Font("Raleway", Font.BOLD, 16));        
         checkIntBank.setBounds(420, 300, 200, 29);
         add(checkIntBank);
 
@@ -164,14 +159,16 @@ public class test extends JFrame implements ActionListener {
 
 //---------------Button --------------------------------             
 	    signup = new JButton("Signup");
-	    signup.setBounds(280, 380, 200, 29);
+        signup.setBackground(Color.black);
+        signup.setForeground(Color.white);
+	    signup.setBounds(280, 420, 200, 35); 
 	    signup.addActionListener(this); //fn to send data
 	    add(signup);
 
 
 //--------------Form attributes -------------------------- 
-        setSize(800, 450); // Form size
-        getContentPane().setBackground(Color.lightGray);
+        setSize(800, 600); // Form size
+        getContentPane().setBackground(Color.white);
         setLocationRelativeTo(null); // Center the form
         setVisible(true);
     }
@@ -220,6 +217,7 @@ public class test extends JFrame implements ActionListener {
     }
 
 }
+
 
 
 
