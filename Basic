@@ -44,6 +44,7 @@ MUST have a Java Project than....
             add(pinText);
 
 ---------------------------------------
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -54,25 +55,37 @@ import javax.swing.JFrame;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 import com.toedter.calendar.JDateChooser;
 
 public class test extends JFrame implements ActionListener {
-    JLabel l1, card, pin;
-    JTextField cardText, pinText;
-    JButton signup;
+
     JDateChooser dateChooser;
     JRadioButton radioMarried, radioUnmarried;
+    JComboBox selectReligion;
+    JCheckBox checkAtm, checkIntBank;
+    
+    JLabel l1, card, pin;
+    JTextField cardText, pinText;
 
+    JButton signup;
+
+
+    // @SuppressWarnings({ "rawtypes", "unchecked" })
     test(){
+
         setLayout(null);      //to get label.setBounts work properly
         setTitle("TEST FORM");   //Form title 
 
-//----------------  Logo  ------------------------------
+        
+//---------------Logo----------------
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
         Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
         ImageIcon i3= new ImageIcon(i2);
@@ -82,13 +95,14 @@ public class test extends JFrame implements ActionListener {
             add(label);
         
 
-//---------------- Level Heading  --------------------
-        this.l1 = new JLabel("WELCOME TO..");
-        this.l1.setFont(new Font("Osward", 1, 38));
-        this.l1.setBounds(200, 60, 450, 40);
-        add(this.l1);
+//-------------Level Heading  --------------------
+        l1 = new JLabel("WELCOME TO..");
+        l1.setFont(new Font("Osward", 1, 38));
+        l1.setBounds(200, 60, 450, 40);
+        add(l1);
 
-// -------------- Radio Button ---------------------
+
+//------------Radio Button ---------------------
             radioMarried = new JRadioButton("Married");
             radioMarried.setBackground(Color.WHITE);
             radioMarried.setBounds(280, 140, 100, 29);
@@ -103,36 +117,51 @@ public class test extends JFrame implements ActionListener {
             groupstatus.add(radioMarried);
             groupstatus.add(radioUnmarried);
         
-// -------------- Date ------------------------------------
+//---------------Date ------------------------------------
             dateChooser = new JDateChooser();
-            //dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+            // dateChooser.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
             dateChooser.setForeground(new Color(105, 105, 105));
             dateChooser.setBounds(280, 180, 200, 29);
             add(dateChooser);
 
+//---------------Lebel ------------------------------------
+        card = new JLabel("CARD No.:");
+        card.setFont(new Font("Raleway", Font.ITALIC, 15));
+        card.setBounds(200, 220, 100, 29);
+        add(card);
 
-// ---------------- Lebel ------------------------------------
-        this.card = new JLabel("CARD No.:");
-        this.card.setFont(new Font("Raleway", Font.ITALIC, 15));
-        this.card.setBounds(200, 220, 100, 29);
-        add(this.card);
+//-------------Text field  -------------------------------
+        cardText = new JTextField();
+        cardText.setBounds(280, 220, 200, 29);
+        add(cardText);
 
+//-------------Select-Option ---------------------------------
+        String religion[] = {"Muslim","Sikh","Christian","Hindu","Other"};
+            selectReligion = new JComboBox(religion);
+            selectReligion.setBounds(280, 260, 200,29);
+            add(selectReligion);
 
-//---------------- Text field  -------------------------------
-        this.cardText = new JTextField();
-        this.cardText.setBounds(280, 220, 200, 29);
-        add(this.cardText);
+//--------------Check Box --------------------------------------
+        checkAtm = new JCheckBox("ATM CARD");
+        checkAtm.setFont(new Font("Raleway", Font.BOLD, 16));
+        checkAtm.setBackground(Color.lightGray);
+        checkAtm.setBounds(280, 300, 120, 29);
+        add(checkAtm);
 
-//----------------- Button --------------------------------             
+        checkIntBank = new JCheckBox("Internet Banking");
+        checkIntBank.setFont(new Font("Raleway", Font.BOLD, 16));
+        checkIntBank.setBackground(Color.lightGray);
+        checkIntBank.setBounds(420, 300, 200, 29);
+        add(checkIntBank);
+
+//---------------Button --------------------------------             
         //Sign Up
-        this.signup = new JButton("Signup");
-            this.signup.setBounds(280, 290, 200, 25);
-            this.signup.addActionListener(this); //fn to send data
-            add(this.signup);
+            signup = new JButton("Signup");
+            signup.setBounds(280, 340, 200, 25);
+            signup.addActionListener(this); //fn to send data
+            add(signup);
 
-
-//-----------------Form attributes --------------------------    
-
+//--------------Form attributes -------------------------- 
         setSize(800, 450); // Form size
         getContentPane().setBackground(Color.lightGray);
         setLocationRelativeTo(null); // Center the form
@@ -140,11 +169,22 @@ public class test extends JFrame implements ActionListener {
     }
 
 
+//--------------Fn Getting the submitted data-------------------------
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == this.signup){
             String card = cardText.getText();
             String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+            String religion = (String)selectReligion.getSelectedItem();
 
+                String facility = "";
+                if(checkAtm.isSelected()){ 
+                facility = facility + " ATM Card,";
+                }
+                if(checkIntBank.isSelected()){ 
+                facility = facility + " Internet Banking";
+                }
+                System.out.println(facility);
+            
             String marital = null;
             if(radioMarried.isSelected()){ 
                 marital = "Married";
@@ -166,15 +206,12 @@ public class test extends JFrame implements ActionListener {
         }
     }
 
-
+//-------------------main Fn --------------------------------
     public static void main(String[] args) {
         new test(); 
     }
 
 }
-
-
-
 
 
 
