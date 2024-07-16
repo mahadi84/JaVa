@@ -71,6 +71,8 @@ public class test extends JFrame implements ActionListener {
     JRadioButton radioMarried, radioUnmarried;
     JComboBox selectReligion;
     JCheckBox checkAtm, checkIntBank;
+
+   JPasswordField passwordField;
     
     JLabel l1, card, pin;
     JTextField cardText, pinText;
@@ -154,12 +156,18 @@ public class test extends JFrame implements ActionListener {
         checkIntBank.setBounds(420, 300, 200, 29);
         add(checkIntBank);
 
+//---------------Password Field ----------------------------------
+  	passwordField = new JPasswordField(15);
+        passwordField.setBounds(280,340,200,29);
+        add(passwordField);
+
+
 //---------------Button --------------------------------             
-        //Sign Up
-            signup = new JButton("Signup");
-            signup.setBounds(280, 340, 200, 25);
-            signup.addActionListener(this); //fn to send data
-            add(signup);
+	    signup = new JButton("Signup");
+	    signup.setBounds(280, 380, 200, 29);
+	    signup.addActionListener(this); //fn to send data
+	    add(signup);
+
 
 //--------------Form attributes -------------------------- 
         setSize(800, 450); // Form size
