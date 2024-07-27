@@ -1,7 +1,245 @@
 
 
-=================================== ADVANCE ==============================================
-=================================== 20 BASIC ================================================
+=================================== ADVANCE =================================================
+
+
+Question 1: Which of the following statements about the `final` keyword is true?
+A) A final variable cannot be initialized more than once.  
+B) A final variable must be initialized at the time of declaration.  
+C) A final variable can be initialized in a constructor.  
+D) A final variable can be modified after initialization.  
+
+
+Question 2: Which of the following will cause a compilation error?
+public class Test {
+    public static void main(String[] args) {
+        byte a = 127;
+        byte b = 127;
+        byte c = a + b;
+        System.out.println(c);
+    }
+}
+```
+A) The program will print -2.  
+B) The program will print 254.  
+C) The program will print 255.  
+D) The program will cause a compilation error.  
+
+
+Question 3: Given the following code, what is the value of `result`?
+double a = 295.04;
+int b = 300;
+byte c = (byte) a;
+byte d = (byte) b;
+int result = c + d;
+```
+A) -62  
+B) 55  
+C) -1  
+D) 250  
+
+
+Question 4: What is the result of the following code?
+int i = 0;
+int j = 5;
+int k = j++ + ++i + j;
+System.out.println(k);
+```
+A) 10  
+B) 11  
+C) 12  
+D) 13  
+
+
+Question 5: Which of the following statements is true about the `char` data type in Java?
+A) A `char` in Java can store any Unicode character.  
+B) A `char` in Java is a 16-bit unsigned integer.  
+C) A `char` in Java can be used to store ASCII characters only.  
+D) A `char` in Java is equivalent to an `int`.  
+
+
+Question 6: Which of the following statements is true about widening conversions?
+A) Widening conversions always lead to loss of precision.  
+B) Widening conversions are implicit and do not require explicit casting.  
+C) Widening conversions require explicit casting.  
+D) Widening conversions are not allowed in Java.  
+
+
+Question 7: What will be the output of the following code?
+
+short s = 10;
+s = (short) (s + 10);
+System.out.println(s);
+```
+A) 10  
+B) 20  
+C) 30  
+D) Compilation error  
+
+
+Question 8: What will be the output of the following code?
+public class Test {
+    public static void main(String[] args) {
+        double d = 10.0 / -0;
+        System.out.println(d);
+    }
+}
+```
+A) Infinity  
+B) -Infinity  
+C) NaN  
+D) Compilation error  
+
+
+Question 9: What will be the output of the following code?
+int i = 5;
+int j = 2;
+double d = i / j;
+System.out.println(d);
+```
+A) 2.5  
+B) 2.0  
+C) 2  
+D) 2.50  
+
+
+Question 10: Which of the following is true about the `float` data type in Java?
+A) `float` is a 32-bit signed IEEE 754 floating point.  
+B) `float` is a 64-bit signed IEEE 754 floating point.  
+C) `float` can represent exact values.  
+D) `float` cannot store large range values.  
+
+
+Question 11: What will be the output of the following code?
+public class Test {
+    public static void main(String[] args) {
+        double x = 0.0;
+        double y = -0.0;
+        System.out.println(x == y);
+    }
+}
+```
+A) true  
+B) false  
+C) Compilation error  
+D) Runtime error  
+
+
+Question 12: Which of the following is a valid hexadecimal literal?
+A) 0x10  
+B) 0X10  
+C) 0x1G  
+D) 10x  
+
+
+Question 13: Which of the following is a correct statement about the `==` operator?
+A) It compares the values of objects.  
+B) It compares the references of objects.  
+C) It compares the types of objects.  
+D) It compares the methods of objects.  
+
+
+Question 14: What will be the output of the following code?
+public class Test {
+    public static void main(String[] args) {
+        double d = 1.0;
+        System.out.println(d / 0);
+    }
+}
+```
+A) NaN  
+B) Infinity  
+C) 0.0  
+D) Compilation error  
+
+
+Question 15: Which of the following is a valid `long` literal?
+A) 10L  
+B) 10l  
+C) 10L  
+D) All of the above  
+
+
+Question 16: What will be the result of the following code?
+public class Test {
+    public static void main(String[] args) {
+        int a = 1000;
+        byte b = (byte) a;
+        System.out.println(b);
+    }
+}
+```
+A) 1000  
+B) 127  
+C) -128  
+D) -24  
+
+
+Question 17: Which of the following types of variables are initialized to a default value if not explicitly initialized?
+A) Local variables  
+B) Instance variables  
+C) Method parameters  
+D) None of the above  
+
+
+Question 18: What is the range of the `byte` data type in Java?
+A) -256 to 255  
+B) -128 to 127  
+C) 0 to 255  
+D) 0 to 127  
+
+
+Question 19: What is the result of the following code?
+public class Test {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        boolean b = (x > y) && (x++ > 0);
+        System.out.println(x);
+    }
+}
+```
+A) 5  
+B) 6  
+C) 10  
+D) 11  
+
+
+Question 20: Which of the following statements is true about the `double` data type in Java?
+A) `double` is a 32-bit signed IEEE 754 floating point.  
+B) `double` is a 64-bit signed IEEE 754 floating point.  
+C) `double` can represent exact values.  
+D) `double` cannot store large range values.  
+
+
+
+============================ ADVANCE ANSWER ==================================
+
+Question 1 C) A final variable can be initialized in a constructor.
+Question 2 D) The program will cause a compilation error.
+Question 3 A) -62
+Question 4 B) 11
+Question 5 A) A `char` in Java can store any Unicode character.
+Question 6 B) Widening conversions are implicit and do not require explicit casting.
+Question 7 B) 20
+Question 8 B) -Infinity
+Question 9 B) 2.0
+Question 10 A) `float` is a 32-bit signed IEEE 754 floating point.
+Question 11 A) true
+Question 12 A) 0x10
+Question 13 B) It compares the references of objects.
+Question 14 B) Infinity
+Question 15 D) All of the above
+Question 16 D) -24
+Question 17 B) Instance variables
+Question 18 B) -128 to 127
+Question 1 A) 5
+Question 20 B) `double` is a 64-bit signed IEEE 754 floating point.
+
+
+============================================================================= 
+--------------------------   20 BASIC ---------------------------------------
+=============================================================================
 
 Question 1: Which of the following is not a primitive data type in Java?
 A) int  
@@ -182,7 +420,8 @@ C) 6 5
 D) 6 6  
 
 
-==========ANSWER BASIC ===============
+=================================ANSWER BASIC =======================
+
 Question 1:  D) String
 Question 2:  C) 32 bits
 Question 3:  A) 10L
