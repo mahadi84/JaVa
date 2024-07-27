@@ -8,7 +8,7 @@ Date: 09 June 2024
     ->Form title    ->Close Button
     ->Heading and Logo of the form eg: Logo and Online Banking
     ->Label         -> Text Field
-    ->Button
+    ->Button	    -> TIME
 
 03. How do I get an action when the button is pressed?
 
@@ -158,12 +158,17 @@ public class test extends JFrame implements ActionListener {
 
 
 //---------------Button --------------------------------             
-	    signup = new JButton("Signup");
+	signup = new JButton("Signup");
         signup.setBackground(Color.black);
         signup.setForeground(Color.white);
-	    signup.setBounds(280, 420, 200, 35); 
-	    signup.addActionListener(this); //fn to send data
-	    add(signup);
+	signup.setBounds(280, 420, 200, 35); 
+	signup.addActionListener(this); //fn to send data
+	add(signup);
+
+//-------------- Date and Time (("dd-MM-yyyy HH:mm:ss")) --------------------------------- 		
+	    LocalDateTime date = LocalDateTime.now(); // Get the current date and time           
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");   // Define a formatter             
+	    String currentDataAndTime = date.format(formatter);  // Format the current date and time
 
 
 //--------------Form attributes -------------------------- 
