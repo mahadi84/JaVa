@@ -28,7 +28,7 @@ Date: 09 June 2024
 
 ================== 01. How do I change the Java version into VS_CODE to the latest One? ========================
 MUST have a Java Project than....
-->Open command Plate of VS_Cde (Alt+Shift_P)
+->Open command Plate of VS_Cde (Ctrl+Shift+P)
 ->Type ">Configure Java Runtime"
 ->select desire Java Version
 
