@@ -213,6 +213,9 @@ public class test extends JFrame implements ActionListener {
             }else{
                 System.out.println(marital);
             }
+
+	   char[] password = pinPasswordField.getPassword();                
+           String pin = new String(password); // Convert to String
         }
     }
 
