@@ -14,7 +14,9 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 
 Define the scope of variables 
 Define the structure of a Java class
-Create executable Java applications with a main method; run a Java program from the command line; produce console output
+Create executable Java applications with a main method; 
+run a Java program from the command line; 
+produce console output
 Import other Java packages to make them accessible in your code
 Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
 
@@ -55,7 +57,8 @@ Use break and continue
 
 Create methods with arguments and return values; including overloaded methods
 Apply the static keyword to methods and fields  
-Create and overload constructors; differentiate between default and user defined constructors
+Create and overload constructors; 
+differentiate between default and user defined constructors
 Apply access modifiers
 Apply encapsulation principles to a class
 Determine the effect upon object references and primitive values when they are passed  into methods that change the values
@@ -64,7 +67,8 @@ Determine the effect upon object references and primitive values when they are p
 =======================Working with Inheritance ===============================
 
 Describe inheritance and its benefits
-Develop code that makes use of polymorphism; develop code that overrides methods;  differentiate between the type of a reference and the type of an object
+Develop code that makes use of polymorphism; develop code that overrides methods;  
+differentiate between the type of a reference and the type of an object
 Determine when casting is necessary
 Use super and this to access objects and constructors
 Use abstract classes and interfaces
