@@ -8,104 +8,114 @@ Exam Topics:
 
 Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-questions/
 
-01. Java Basics 
-02. Working With Java Data Types 
-03. Using Operators and Decision Constructs 
-04. Creating and Using Arrays 
-05. Using Loop Constructs 
-06. Working with Methods and Encapsulation 
-07. Handling Exceptions 
-08. Working with Selected classes from the Java API 
-09. Assume the following
+01. Java Basics (07) 
+02. Working With Java Data Types (05) 
+03. Using Operators and Decision Constructs (04)
+04. Creating and Using Arrays (02)
+05. Using Loop Constructs (05)
+06. Working with Methods and Encapsulation (07)
+07. Working with Inheritance (06)
+08. Handling Exceptions (05)
+09. Working with Selected classes from the Java API (06)
+10. Assume the following (05)
 
-=======================Java Basics ===============================
+=======================01. Java Basics(07): ===============================
 
-Define the scope of variables 
-Define the structure of a Java class
-Create executable Java applications with a main method; 
-run a Java program from the command line; 
-produce console output
-Import other Java packages to make them accessible in your code
-Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
-
-
-=======================Working With Java Data Types ===============================
-
-Declare and initialize variables (including casting of primitive data types)
-Differentiate between object reference variables and primitive variables
-Know how to read or write to object fields
-Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
-Develop code that uses wrapper classes such as Boolean, Double, and Integer  
+01. Define the scope of variables 
+02. Define the structure of a Java class
+03. Create executable Java applications with a main method; 
+04. run a Java program from the command line; 
+05. produce console output
+06. Import other Java packages to make them accessible in your code
+07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
 
 
-=======================Using Operators and Decision Constructs ===============================
+=======================02. Working With Java Data Types(05): ===============================
 
-Use Java operators; use parentheses to override operator precedence
-Test equality between Strings and other objects using == and equals ()
-Create if and if/else and ternary constructs 
-Use a switch statement 
-
-
-=======================Creating and Using Arrays ===============================
-
-Declare, instantiate, initialize and use a one-dimensional array
-Declare, instantiate, initialize and use multi-dimensional arrays
+01. Declare and initialize variables (including casting of primitive data types)
+02. Differentiate between object reference variables and primitive variables
+03. Know how to read or write to object fields
+04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
+05. Develop code that uses wrapper classes such as Boolean, Double, and Integer  
 
 
-=======================Using Loop Constructs ===============================
+=======================03. Using Operators and Decision Constructs(04): ===============================
 
-Create and use while loops
-Create and use for loops including the enhanced for loop
-Create and use do/while loops
-Compare loop constructs
-Use break and continue  
-
-
-=======================Working with Methods and Encapsulation ===============================
-
-Create methods with arguments and return values; including overloaded methods
-Apply the static keyword to methods and fields  
-Create and overload constructors; 
-differentiate between default and user defined constructors
-Apply access modifiers
-Apply encapsulation principles to a class
-Determine the effect upon object references and primitive values when they are passed  into methods that change the values
+01. Use Java operators; use parentheses to override operator precedence
+02. Test equality between Strings and other objects using == and equals ()
+03. Create if and if/else and ternary constructs 
+04. Use a switch statement 
 
 
-=======================Working with Inheritance ===============================
+=======================04. Creating and Using Arrays(02): ===============================
 
-Describe inheritance and its benefits
-Develop code that makes use of polymorphism; develop code that overrides methods;  
-differentiate between the type of a reference and the type of an object
-Determine when casting is necessary
-Use super and this to access objects and constructors
-Use abstract classes and interfaces
+01. Declare, instantiate, initialize and use a one-dimensional array
+02. Declare, instantiate, initialize and use multi-dimensional arrays
 
 
-=======================Handling Exceptions ===============================
+=======================05. Using Loop Constructs(05): ===============================
 
-Differentiate among checked exceptions, unchecked exceptions, and Errors
-Create a try-catch block and determine how exceptions alter normal program flow
-Describe the advantages of Exception handling 
-Create and invoke a method that throws an exception
-Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
-
-
-=======================Working with Selected classes from the Java API ===============================
-
-Manipulate data using the StringBuilder class and its methods
-Create and manipulate Strings
-Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
-Declare and use an ArrayList of a given type 
-Write a simple Lambda expression that consumes a Lambda Predicate expression
+01. Create and use while loops
+02. Create and use for loops including the enhanced for loop
+03. Create and use do/while loops
+04. Compare loop constructs
+05. Use break and continue  
 
 
-=======================Assume the following:===============================
+=======================06. Working with Methods and Encapsulation(07): ===============================
 
-Missing package and import statements: If sample code do not include package or import statements, and the question does not explicitly refer to these missing statements, then assume that all sample code is in the same package, or import statements exist to support them.
-No file or directory path names for classes: If a question does not state the file names or directory locations of classes, then assume one of the following, whichever will enable the code to compile and run:
-All classes are in one file
-Each class is contained in a separate file, and all files are in one directory
-Unintended line breaks: Sample code might have unintended line breaks. If you see a line of code that looks like it has wrapped, and this creates a situation where the wrapping is significant (for example, a quoted String literal has wrapped), assume that the wrapping is an extension of the same line, and the line does not contain a hard carriage return that would cause a compilation failure.
-Code fragments: A code fragment is a small section of source code that is presented without its context. Assume that all necessary supporting code exists and that the supporting environment fully supports the correct compilation and execution of the code shown and its omitted environment.
-Descriptive comments: Take descriptive comments, such as "setter and getters go here," at face value. Assume that correct code exists, compiles, and runs successfully to create the described effect.
+01. Create methods with arguments and return values; including overloaded methods
+02. Apply the static keyword to methods and fields  
+03. Create and overload constructors; 
+04. differentiate between default and user defined constructors
+05. Apply access modifiers
+06. Apply encapsulation principles to a class
+07. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
+
+
+=======================07. Working with Inheritance(06): ===============================
+
+01. Describe inheritance and its benefits
+02. Develop code that makes use of polymorphism; develop code that overrides methods;  
+03. differentiate between the type of a reference and the type of an object
+04. Determine when casting is necessary
+05. Use super and this to access objects and constructors
+06. Use abstract classes and interfaces
+
+
+=======================08. Handling Exceptions(05): ===============================
+
+01. Differentiate among checked exceptions, unchecked exceptions, and Errors
+02. Create a try-catch block and determine how exceptions alter normal program flow
+03. Describe the advantages of Exception handling 
+04. Create and invoke a method that throws an exception
+05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
+
+
+=======================09. Working with Selected classes from the Java API(06): ===============================
+
+01. Manipulate data using the StringBuilder class and its methods
+02. Create and manipulate Strings
+03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
+05. Declare and use an ArrayList of a given type 
+06. Write a simple Lambda expression that consumes a Lambda Predicate expression
+
+
+=======================10. Assume the following(05):===============================
+
+01. Missing package and import statements: 
+    If sample code do not include package or import statements, and the question does not explicitly refer to these missing statements, then assume that all sample code is in the same package, or import statements exist to support them.
+02. No file or directory path names for classes: 
+    If a question does not state the file names or directory locations of classes, then assume one of the following, whichever will enable the code to compile and run:
+    All classes are in one file Each class is contained in a separate file, and all files are in one directory.
+03. Unintended line breaks: 
+    Sample code might have unintended line breaks. If you see a line of code that looks like it has wrapped, and this creates a situation where the wrapping is significant (for example, a quoted String literal has wrapped), assume that the wrapping is an extension of the same line, and the line does not contain a hard carriage return that would cause a compilation failure.
+04. Code fragments: 
+    A code fragment is a small section of source code that is presented without its context. Assume that all necessary supporting code exists and that the supporting environment fully supports the correct compilation and execution of the code shown and its omitted environment.
+05. Descriptive comments: 
+    Take descriptive comments, such as "setter and getters go here," at face value. Assume that correct code exists, compiles, and runs successfully to create the described effect.
+
+
+
+
+-
