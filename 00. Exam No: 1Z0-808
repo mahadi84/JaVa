@@ -10,11 +10,11 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 
 01. Java Basics (07) 
 02. Working With Java Data Types (05) 
-03. Using Operators and Decision Constructs (04)
+03. Using Operators and Decision Constructs (05)
 04. Creating and Using Arrays (02)
 05. Using Loop Constructs (05)
-06. Working with Methods and Encapsulation (07)
-07. Working with Inheritance (06)
+06. Working with Methods and Encapsulation (08)
+07. Working with Inheritance (07)
 08. Handling Exceptions (05)
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
@@ -29,7 +29,6 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 06. Import other Java packages to make them accessible in your code
 07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
 
-
 =======================02. Working With Java Data Types(05): ===============================
 
 01. Declare and initialize variables (including casting of primitive data types)
@@ -38,20 +37,18 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer  
 
+=======================03. Using Operators and Decision Constructs(05): ===============================
 
-=======================03. Using Operators and Decision Constructs(04): ===============================
-
-01. Use Java operators; use parentheses to override operator precedence
-02. Test equality between Strings and other objects using == and equals ()
-03. Create if and if/else and ternary constructs 
-04. Use a switch statement 
-
+01. Use Java operators; 
+02. use parentheses to override operator precedence
+03. Test equality between Strings and other objects using == and equals ()
+04. Create if and if/else and ternary constructs 
+05. Use a switch statement 
 
 =======================04. Creating and Using Arrays(02): ===============================
 
 01. Declare, instantiate, initialize and use a one-dimensional array
 02. Declare, instantiate, initialize and use multi-dimensional arrays
-
 
 =======================05. Using Loop Constructs(05): ===============================
 
@@ -61,27 +58,26 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 04. Compare loop constructs
 05. Use break and continue  
 
+=======================06. Working with Methods and Encapsulation(08): ===============================
 
-=======================06. Working with Methods and Encapsulation(07): ===============================
+01. Create methods with arguments and return values; 
+02. including overloaded methods
+03. Apply the static keyword to methods and fields  
+04. Create and overload constructors; 
+05. differentiate between default and user defined constructors
+06. Apply access modifiers
+07. Apply encapsulation principles to a class
+08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
 
-01. Create methods with arguments and return values; including overloaded methods
-02. Apply the static keyword to methods and fields  
-03. Create and overload constructors; 
-04. differentiate between default and user defined constructors
-05. Apply access modifiers
-06. Apply encapsulation principles to a class
-07. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
-
-
-=======================07. Working with Inheritance(06): ===============================
+=======================07. Working with Inheritance(07): ===============================
 
 01. Describe inheritance and its benefits
-02. Develop code that makes use of polymorphism; develop code that overrides methods;  
-03. differentiate between the type of a reference and the type of an object
-04. Determine when casting is necessary
-05. Use super and this to access objects and constructors
-06. Use abstract classes and interfaces
-
+02. Develop code that makes use of polymorphism; 
+03. develop code that overrides methods;  
+04. differentiate between the type of a reference and the type of an object
+05. Determine when casting is necessary
+06. Use super and this to access objects and constructors
+07. Use abstract classes and interfaces
 
 =======================08. Handling Exceptions(05): ===============================
 
@@ -91,7 +87,6 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 04. Create and invoke a method that throws an exception
 05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
 
-
 =======================09. Working with Selected classes from the Java API(06): ===============================
 
 01. Manipulate data using the StringBuilder class and its methods
@@ -99,7 +94,6 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
 05. Declare and use an ArrayList of a given type 
 06. Write a simple Lambda expression that consumes a Lambda Predicate expression
-
 
 =======================10. Assume the following(05):===============================
 
