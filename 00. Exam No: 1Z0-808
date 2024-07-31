@@ -1,12 +1,12 @@
 
-
+Date: 28-July-2024
 
 Certification Exam: Java SE 8 Programmer I 
 Exam Number: 1Z0-808
 Website: https://education.oracle.com/java-se-8-programmer-i/pexam_1Z0-808
+Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-questions/
 Exam Topics:
 
-Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-questions/
 
 01. Java Basics (07) 
 02. Working With Java Data Types (05) 
@@ -19,58 +19,51 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
 
-=======================01. Java Basics(07): ===============================
-
+=======================01. Java Basics(07): =====================31-07-24(Wednesday)
 01. Define the scope of variables 
 02. Define the structure of a Java class
 03. Create executable Java applications with a main method; 
-04. run a Java program from the command line; 
-05. produce console output
+04. Run a Java program from the command line; 
+05. Produce console output
 06. Import other Java packages to make them accessible in your code
 07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
 
-=======================02. Working With Java Data Types(05): ===============================
-
+=======================02. Working With Java Data Types(05): =========1-2Aug-24(Thur-Friday)
 01. Declare and initialize variables (including casting of primitive data types)
 02. Differentiate between object reference variables and primitive variables
 03. Know how to read or write to object fields
 04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer  
 
-=======================03. Using Operators and Decision Constructs(05): ===============================
-
+===================03. Using Operators and Decision Constructs(05): =========3-Aug-24(Saturday)
 01. Use Java operators; 
 02. use parentheses to override operator precedence
 03. Test equality between Strings and other objects using == and equals ()
 04. Create if and if/else and ternary constructs 
 05. Use a switch statement 
 
-=======================04. Creating and Using Arrays(02): ===============================
+=======================04. Creating and Using Arrays(02): =================4-Aug-24(Sunday)
+01. Declare, instantiate, initialize, and use a one-dimensional array
+02. Declare, instantiate, initialize, and use multi-dimensional arrays
 
-01. Declare, instantiate, initialize and use a one-dimensional array
-02. Declare, instantiate, initialize and use multi-dimensional arrays
-
-=======================05. Using Loop Constructs(05): ===============================
-
+=======================05. Using Loop Constructs(05): ===================5-Aug-24(Monday)
 01. Create and use while loops
 02. Create and use for loops including the enhanced for loop
 03. Create and use do/while loops
 04. Compare loop constructs
 05. Use break and continue  
 
-=======================06. Working with Methods and Encapsulation(08): ===============================
-
+===================06. Working with Methods and Encapsulation(08): ========6-Aug-24(Tuesday)
 01. Create methods with arguments and return values; 
 02. including overloaded methods
 03. Apply the static keyword to methods and fields  
 04. Create and overload constructors; 
-05. differentiate between default and user defined constructors
+05. differentiate between default and user-defined constructors
 06. Apply access modifiers
 07. Apply encapsulation principles to a class
 08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
 
-=======================07. Working with Inheritance(07): ===============================
-
+=======================07. Working with Inheritance(07): ==================7-Aug-24(Wednesday)
 01. Describe inheritance and its benefits
 02. Develop code that makes use of polymorphism; 
 03. develop code that overrides methods;  
@@ -79,35 +72,45 @@ Tutorial: https://skillcertpro.com/product/java-se-8-programmer-i-1z0-808-exam-q
 06. Use super and this to access objects and constructors
 07. Use abstract classes and interfaces
 
-=======================08. Handling Exceptions(05): ===============================
-
+===============08. Handling Exceptions(05): ====================8-9Aug-24(Thursday-Friddy)
 01. Differentiate among checked exceptions, unchecked exceptions, and Errors
 02. Create a try-catch block and determine how exceptions alter normal program flow
 03. Describe the advantages of Exception handling 
 04. Create and invoke a method that throws an exception
 05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
 
-=======================09. Working with Selected classes from the Java API(06): ===============================
-
+===========09. Working with Selected classes from the Java API(06): ======= 10-12Aug-24(Wednesday)
 01. Manipulate data using the StringBuilder class and its methods
 02. Create and manipulate Strings
 03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
 05. Declare and use an ArrayList of a given type 
 06. Write a simple Lambda expression that consumes a Lambda Predicate expression
 
-=======================10. Assume the following(05):===============================
-
+=======================10. Assume the following(05):=========== 13-14Aug-24(Wednesday)
 01. Missing package and import statements: 
-    If sample code do not include package or import statements, and the question does not explicitly refer to these missing statements, then assume that all sample code is in the same package, or import statements exist to support them.
+    If sample code do not include package or import statements, and the question does not explicitly refer to 
+    these missing statements, then assume that all sample code is in the same package, or import 
+    statements  exist to support them.
+
 02. No file or directory path names for classes: 
-    If a question does not state the file names or directory locations of classes, then assume one of the following, whichever will enable the code to compile and run:
+    If a question does not state the file names or directory locations of classes, then assume one of the 
+    following, whichever will enable the code to compile and run:
     All classes are in one file Each class is contained in a separate file, and all files are in one directory.
+
 03. Unintended line breaks: 
-    Sample code might have unintended line breaks. If you see a line of code that looks like it has wrapped, and this creates a situation where the wrapping is significant (for example, a quoted String literal has wrapped), assume that the wrapping is an extension of the same line, and the line does not contain a hard carriage return that would cause a compilation failure.
+    Sample code might have unintended line breaks. If you see a line of code that looks like it has wrapped, 
+    and this creates a situation where the wrapping is significant (for example, a quoted String literal has 
+    wrapped), assume that the wrapping is an extension of the same line, and the line does not contain a
+    hard carriage return that would cause a compilation failure.
+
 04. Code fragments: 
-    A code fragment is a small section of source code that is presented without its context. Assume that all necessary supporting code exists and that the supporting environment fully supports the correct compilation and execution of the code shown and its omitted environment.
+    A code fragment is a small section of source code that is presented without its context. Assume that all 
+    necessary supporting code exists and that the supporting environment fully supports the correct 
+    compilation and execution of the code shown and its omitted environment.
+
 05. Descriptive comments: 
-    Take descriptive comments, such as "setter and getters go here," at face value. Assume that correct code exists, compiles, and runs successfully to create the described effect.
+    Take descriptive comments, such as "setter and getters go here," at face value. Assume that the correct code
+     exists, compiles, and runs successfully to create the described effect.
 
 
 
