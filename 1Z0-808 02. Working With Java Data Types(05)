@@ -141,6 +141,89 @@ Java has eight primitive data types:
 
 
 -----------03. Know how to read or write to object fields-------------------------
+
+Understanding Object Fields: Before diving into reading and writing, it's essential to grasp the concept of object fields.
+
+Fields: are variables declared within a class. They represent the data associated with an object.
+Object: is an instance of a class. It holds the values of its fields.
+
+
+######### Accessing Object Fields ##########
+
+There are primarily two ways to access object fields:
+
+1. Direct Access (Using Dot Operator)
+    This method is straightforward but has limitations due to encapsulation.
+    It's suitable for public fields.
+        class Person {
+            public String name;
+            int age; // Default access (package-private)
+        }
+
+        public class Main {
+            public static void main(String[] args) {
+                Person person = new Person();
+                person.name = "Alice"; // Direct access to public field
+                // person.age = 30; // Error: age is not public
+            }
+        }
+
+
+2. Using Accessor Methods (Getters and Setters)
+    This is the preferred approach for encapsulating data and providing controlled access.
+    It allows you to validate input and perform additional logic.
+
+        class Person {
+            private String name;
+            private int age;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public int getAge() {
+                return age;
+            }
+
+            public   
+        void setAge(int age) {
+                if (age >= 0) {
+                    this.age    = age;
+                } else {
+                    // Handle invalid age
+                }
+            }
+        }
+
+        public class Main {
+            public static void main(String[] args) {
+                Person person = new Person();
+                person.setName("Bob");
+                person.setAge(25);
+                System.out.println(person.getName());
+                System.out.println(person.getAge());
+            }
+        }
+
+
+######## Key Points ##########
+    Encapsulation: Protect data integrity by using private fields and providing public getters and setters.
+    Readability: Well-named getters and setters improve code clarity.
+    Flexibility: Accessor methods can be used for complex logic or validation.
+    Direct Access: Use with caution, especially for public fields.
+
+### Additional Considerations
+    Static Fields: Fields declared as static belong to the class itself, not instances.
+    Transient Fields: Fields marked as transient are not serialized.
+    Volatile Fields: Fields marked as volatile ensure visibility across threads.
+
+
+
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
+
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
 
