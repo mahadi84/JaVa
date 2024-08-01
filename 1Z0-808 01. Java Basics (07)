@@ -55,7 +55,7 @@ Here's a detailed breakdown of the scope of variables:
 Basic Structure
 A Java class typically consists of the following components:
 
-### Class Declaration:
+###### Class Declaration: ######
    public class MyClass {
        // Class body
    }
@@ -64,14 +64,14 @@ A Java class typically consists of the following components:
    class: Keyword to define a class.
    MyClass: Name of the class.
 
-### Fields (Attributes):
+######  Fields (Attributes): ######
    private int age;
    public String name;
    
    Data members that store the state of an object.
    Access modifiers (e.g., private, public) determine visibility.
 
-### Methods (Behaviors):
+###### Methods (Behaviors): ######
    public void greet() {
        System.out.println("Hello, " + name + "!");
    }
@@ -80,7 +80,7 @@ A Java class typically consists of the following components:
    Access modifiers (e.g., public, private) control method accessibility.
    Return type specifies the data type of the value returned by the method.
 
-### Constructor:
+###### Constructor: ######
    - Special method used to initialize objects.
    - No return type, including void.
    - Constructor name matches the class name.
@@ -278,12 +278,14 @@ public class Example10 {
 
 --------------------04. Run a Java program from the command line;  ---------------------------
 
-Running a Java program from the command line involves a few steps, including writing the Java code, compiling it with the Java compiler, 
-and then executing the compiled bytecode with the Java Virtual Machine (JVM). Here's a step-by-step guide:
+Running a Java program from the command line involves a few steps, including 
+ -writing the Java code, 
+ -compiling it with the Java compiler, and then 
+ -executing the compiled bytecode with the Java Virtual Machine (JVM). 
+Here's a step-by-step guide:
 
-### Step 1: Write Your Java Code
+######## Step 1: Write Your Java Code ########
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
-
 1. Open a text editor and write the following code:
     ```java
     public class HelloWorld {
@@ -294,36 +296,33 @@ Create a Java file with your code. For example, let's write a simple "Hello, Wor
     ```
 
 2. Save the file as `HelloWorld.java`.
-### Step 2: Open the Command Line
-
+######## Step 2: Open the Command Line ########
 Open the command line (Command Prompt on Windows, Terminal on macOS or Linux).
-### Step 3: Navigate to the Directory
 
+######## Step 3: Navigate to the Directory ########
 Navigate to the directory where you saved the `HelloWorld.java` file. You can use the `cd` command to change directories. For example:
+
 cd path/to/your/java/file
 
-### Step 4: Compile the Java Code
+######## Step 4: Compile the Java Code ########
 Use the `javac` command to compile your Java file. This command will generate a `HelloWorld.class` file containing the bytecode.
 
 javac HelloWorld.java
 ```If there are no errors, the `HelloWorld.class` file will be created in the same directory.
 
-### Step 5: Run the Compiled Java Program
+######## Step 5: Run the Compiled Java Program ########
 Use the `java` command to run the compiled Java program. You should specify the class name without the `.class` extension.
-```sh
 java HelloWorld
-```
-You should see the output:
-```sh
-Hello, World!
-```
 
 
-### Additional Tips
+You should see the output: Hello, World!
+
+
+########  Additional Tips ########
 - **Setting Up the Environment**: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
 - **Handling Packages**: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
 
-### Example with Package
+######## Example with Package ########
 1. Create a file named `com/example/HelloWorld.java` with the following content:
     ```java
     package com.example;
@@ -336,20 +335,13 @@ Hello, World!
     ```
 
 2. Open the command line and navigate to the directory containing the `com` directory:
-    ```sh
     cd path/to/your/java/file
-    ```
 
 3. Compile the Java file:
-    ```sh
     javac com/example/HelloWorld.java
-    ```
 
 4. Run the compiled Java program using the fully qualified class name:
-    ```sh
     java com.example.HelloWorld
-    ```
-
 
 
 --------------------05. Produce console output  ----------------------------------------------
@@ -359,13 +351,13 @@ Producing console output in Java is typically done using the
 02. `System.out.print()`, and 
 03. `System.out.printf()` methods. 
 
-### Explanation
+######## Explanation ########
 - `System.out.println("...")`: Prints the string and moves to a new line.
 - `System.out.print("...")`: Prints the string without moving to a new line.
 - `System.out.printf("format string", args)`: Prints a formatted string. The `%n` format specifier in `printf` is used to insert a newline.
 
 
-### Example Program Using All Methods
+########  Example Program Using All Methods ########
 Here is a full example demonstrating all three methods:
 
 public class ConsoleOutputExample {
@@ -385,32 +377,29 @@ public class ConsoleOutputExample {
 ```
 
 **Output:**
-
-```
 This is an example of println.
 It moves to a new line after printing.
 This is an example of print. It continues on the same line.
 This is an example of printf. Name: Bob, Age: 25, Score: 88.75
-```
+
 
 
 
 --------------------06. Import other Java packages to make them accessible in your code  ---------------------------
 
-In Java, importing packages allows you to use classes and interfaces that are defined in other packages. This helps you organize and reuse code more efficiently. There are several ways to import packages in Java:
+Importing packages 
+   -allow  to use of classes and interfaces that are defined in other packages. 
+   -organize and reuse code more efficiently. 
+There are several ways to import packages in Java:
 
-### 1. Importing a Single Class
+########  1. Importing a Single Class ######## 
 To import a specific class from a package, you use the `import` statement followed by the fully qualified class name.
 
 **Syntax:**
-
-```java
 import packageName.ClassName;
-```
+
 
 **Example:**
-
-```java
 import java.util.ArrayList;
 
 public class ImportExample {
@@ -423,18 +412,13 @@ public class ImportExample {
 }
 ```
 
-### 2. Importing All Classes from a Package
+########  2. Importing All Classes from a Package ######## 
 To import all classes and interfaces from a package, you use the `import` statement followed by the package name and a `.*`.
 
 **Syntax:**
-
-```java
 import packageName.*;
-```
 
 **Example:**
-
-```java
 import java.util.*;
 
 public class ImportExample {
@@ -452,24 +436,18 @@ public class ImportExample {
 }
 ```
 
-### 3. Importing Static Members
+########  3. Importing Static Members ######## 
 If you want to import static members (fields and methods) of a class, you use the `import static` statement.
 
 **Syntax:**
-
-```java
 import static packageName.ClassName.staticMemberName;
-```
+
 
 or to import all static members:
-
-```java
 import static packageName.ClassName.*;
-```
+
 
 **Example:**
-
-```java
 import static java.lang.Math.*;
 
 public class StaticImportExample {
@@ -487,8 +465,6 @@ public class StaticImportExample {
 Here is a practical example that combines various types of imports:
 
 1. Create a package named `com.example.utils` and a class `StringUtils` inside it:
-
-    ```java
     // File: com/example/utils/StringUtils.java
     package com.example.utils;
 
@@ -500,8 +476,6 @@ Here is a practical example that combines various types of imports:
     ```
 
 2. Create a main class that uses `StringUtils` from the `com.example.utils` package:
-
-    ```java
     // File: Main.java
     import com.example.utils.StringUtils;
     import java.util.*;
@@ -522,32 +496,23 @@ Here is a practical example that combines various types of imports:
     }
     ```
 
-### Compiling and Running the Code
+######## Compiling and Running the Code ######## 
 1. Save the `StringUtils` class in the directory `com/example/utils/`.
 2. Save the `Main` class in the root directory where the `com` directory is located.
 3. Open the command line and navigate to the root directory.
 4. Compile the `StringUtils` class:
-    ```sh
     javac com/example/utils/StringUtils.java
-    ```
 
 5. Compile the `Main` class:
-    ```sh
     javac Main.java
-    ```
 
 6. Run the `Main` class:
-    ```sh
     java Main
-    ```
 
 **Output:**
-
-```
 Original: Hello World
 Reversed: dlroW olleH
 [One, Two]
-```
 
 --------------------07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.  ---------------------------
 
