@@ -223,7 +223,60 @@ There are primarily two ways to access object fields:
 
 
 
+
+
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
+
+
+######## Creation ########
+    An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
+    String name = new String("Alice");
+
+    * The `new String("Alice")` part creates a new `String` object in the heap memory.
+    * The `name` variable holds a reference to this object.
+
+######## Dereference by Reassignment ########
+    Dereferencing means breaking the link between a reference variable and the object it points to. This usually happens through reassignment.
+    name = "Bob";
+
+    * A new `String` object "Bob" is created.
+    * The `name` variable now points to this new object.
+    * The old "Alice" object is no longer referenced by any variable.
+
+######## Garbage Collection ########
+    Java employs automatic garbage collection to reclaim memory occupied by objects that are no longer in use.
+
+    * The garbage collector periodically scans the heap for objects that are unreachable. 
+    * An object becomes unreachable when there are no active references to it.
+    * Once an object is determined to be garbage, its memory is reclaimed for future use.
+
+######## Key Points: #######
+
+    * Objects live in the heap memory.
+    * Reference variables hold addresses of objects.
+    * Assigning a new value to a reference variable doesn't destroy the old object but breaks the link.
+    * Garbage collection is automatic, but its timing is unpredictable.
+
+    **Example:**
+
+    public class ObjectLifecycle {
+        public static void main(String[] args) {
+            String name1 = new String("Alice"); // Object creation
+            String name2 = name1; // Both references point to the same object
+
+            name1 = "Bob"; // Dereference of "Alice" object
+
+            // At this point, the "Alice" object is eligible for garbage collection
+        }
+    }
+
+
+######## Important Notes:**
+* While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
+* The `finalize()` method is called before garbage collection, but its use is generally discouraged.
+* Understanding object lifetimes is crucial for preventing memory leaks.
+
+
 
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
 
