@@ -1,0 +1,20 @@
+Date: 1-2Aug-2024
+
+
+=======================Topics =========
+
+01. Declare and initialize variables (including casting of primitive data types)
+02. Differentiate between object reference variables and primitive variables
+03. Know how to read or write to object fields
+04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
+05. Develop code that uses wrapper classes such as Boolean, Double, and Integer  
+
+=======================================
+
+-----------01. Declare and initialize variables (including casting of primitive data types)---------------------
+
+-----------02. Differentiate between object reference variables and primitive variables-------------------------
+-----------03. Know how to read or write to object fields-------------------------
+-----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
+-----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
+
