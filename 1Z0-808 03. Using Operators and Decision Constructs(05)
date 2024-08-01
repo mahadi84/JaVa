@@ -145,5 +145,67 @@ int result = (a + b) * (c - d);
 While the parentheses might not be strictly necessary in this case, they improve readability by explicitly showing the two separate calculations being multiplied.
 
 --------------------03. Test equality between Strings and other objects using == and equals ()---------------------
+
+
+### Understanding the Difference
+    In Java, there are two primary ways to test equality between objects:
+
+    1. **`==` operator:** Compares object references. It checks if two references point to the same object in memory.
+    2. **`equals()` method:** Compares the contents of two objects. It checks if the objects represent the same value.
+
+### Comparing Strings
+**Strings are special objects in Java.
+** While they are objects, the `String` class overrides the `equals()` method to compare the actual content of the strings.
+
+#### Example:
+    String s1 = "hello";
+    String s2 = "hello";
+    String s3 = new String("hello");
+
+    System.out.println(s1 == s2); // Output: true (due to String interning)
+    System.out.println(s1 == s3); // Output: false (different objects)
+    System.out.println(s1.equals(s2)); // Output: true (content is equal)
+    System.out.println(s1.equals(s3)); // Output: true (content is equal)
+
+**Explanation:**
+    * `s1 == s2`: Both `s1` and `s2` refer to the same String object in the String pool, so `==` returns `true`.
+    * `s1 == s3`: `s1` and `s3` refer to different String objects, even though they have the same content, so `==` returns `false`.
+    * `s1.equals(s2)` and `s1.equals(s3)`: Both comparisons check the content of the strings, which is the same, so `equals()` returns `true` in both cases.
+
+### Comparing Other Objects
+    For custom objects, the default implementation of `equals()` inherited from the `Object` class compares object references using `==`. To compare the contents of custom objects, you need to override the `equals()` method appropriately.
+
+    #### Example:
+    class Person {
+        String name;
+        int age;
+
+        // Overridden equals method
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null || getClass() != obj.getClass())
+                return false;
+            Person other = (Person) obj;
+            return Objects.equals(name, other.name) && age == other.age;
+        }
+    }
+    ```
+
+    In this example, the `equals()` method compares the `name` and `age` fields of two `Person` objects.
+
+############Important points: ############
+
+    * Always override `hashCode()` when overriding `equals()` to maintain consistency.
+    * Use `Objects.equals()` for null-safe comparisons.
+    * Consider using `@Override` annotation to prevent accidental overriding.
+
+    By understanding the difference between `==` and `equals()`, you can correctly compare objects in Java and avoid potential pitfalls.
+    
+
+
+
+
 --------------------04. Create if and if/else and ternary constructs ---------------------
 --------------------05. Use a switch statement---------------------
