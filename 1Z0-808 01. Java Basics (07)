@@ -142,6 +142,10 @@ public class Example2 {
 ```
 
 ######## Example 3: Constructor Overloading ########
+Can a Class have multiple constructors?
+If, Yes, How to call each other?
+Can a constructor Overload in a same class?
+
 public class Example3 {
     int value;
 
