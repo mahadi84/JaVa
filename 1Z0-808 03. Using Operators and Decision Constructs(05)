@@ -144,8 +144,9 @@ int result = (a + b) * (c - d);
 ```
 While the parentheses might not be strictly necessary in this case, they improve readability by explicitly showing the two separate calculations being multiplied.
 
---------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 
+
+--------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 
 ### Understanding the Difference
     In Java, there are two primary ways to test equality between objects:
@@ -204,8 +205,9 @@ While the parentheses might not be strictly necessary in this case, they improve
     By understanding the difference between `==` and `equals()`, you can correctly compare objects in Java and avoid potential pitfalls.
     
 
---------------------04. Create if and if/else and ternary constructs ---------------------
 
+
+--------------------04. Create if and if/else and ternary constructs ---------------------
 
 ### If Statement
     The `if` statement allows you to execute a block of code if a specified condition is true.
@@ -214,7 +216,6 @@ While the parentheses might not be strictly necessary in this case, they improve
     if (age >= 18) {
         System.out.println("You are an adult.");
     }
-
 
 ### If/Else Statement
     The `if/else` statement provides an alternative block of code to execute if the condition is false.
@@ -226,7 +227,6 @@ While the parentheses might not be strictly necessary in this case, they improve
         System.out.println("You are a minor.");
     }
  
-
 ### Ternary Operator
 The ternary operator is a shorthand way to write an `if/else` statement. It takes three operands:
     * A condition
@@ -270,4 +270,55 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     }
 
 
---------------------05. Use a switch statement---------------------
+
+--------------------------05. Use a switch statement---------------------
+- The `switch` statement in Java is used to execute one block of code among many alternatives based on the value of an expression. 
+- It's a cleaner and more readable alternative to using multiple `if-else-if` statements. 
+  Here's a basic overview of how to use it:
+
+### Syntax
+    switch (expression) {
+        case value1:
+            // code block
+            break;
+        case value2:
+            // code block
+            break;
+        // you can have any number of case statements
+        default:
+            // default code block
+    }
+
+
+### Example
+Here's a simple example to demonstrate the use of the `switch` statement:
+
+public class Main {
+    public static void main(String[] args) {
+        int day = 5;
+        String dayName;
+
+        switch (day) {
+            case 1:
+                dayName = "Monday";
+                break;
+            case 2:
+                dayName = "Tuesday";
+                break;
+            case 3:
+                dayName = "Wednesday";
+                break;
+            default:
+                dayName = "Invalid day";
+                break;
+        }
+        System.out.println("Day: " + dayName);
+    }
+}
+
+###### Key Points ######
+- Expression**: The expression inside the `switch` statement must be of type `byte`, `short`, `char`, `int`, `String`, or an enum.
+- Case Labels**: Each `case` label must be a constant or a literal. Duplicate case values are not allowed.
+- Break Statement**: The `break` statement is used to terminate a `case` block. If omitted, the execution will continue to the next `case` block (this is called "fall-through").
+- Default Case**: The `default` case is optional and can be used to execute a block of code if none of the `case` values match the expression.
+
