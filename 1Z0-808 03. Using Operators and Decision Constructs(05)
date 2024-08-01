@@ -204,8 +204,70 @@ While the parentheses might not be strictly necessary in this case, they improve
     By understanding the difference between `==` and `equals()`, you can correctly compare objects in Java and avoid potential pitfalls.
     
 
-
-
-
 --------------------04. Create if and if/else and ternary constructs ---------------------
+
+
+### If Statement
+    The `if` statement allows you to execute a block of code if a specified condition is true.
+
+    int age = 25;
+    if (age >= 18) {
+        System.out.println("You are an adult.");
+    }
+
+
+### If/Else Statement
+    The `if/else` statement provides an alternative block of code to execute if the condition is false.
+
+    int age = 15;
+    if (age >= 18) {
+        System.out.println("You are an adult.");
+    } else {
+        System.out.println("You are a minor.");
+    }
+ 
+
+### Ternary Operator
+The ternary operator is a shorthand way to write an `if/else` statement. It takes three operands:
+    * A condition
+    * The expression to evaluate if the condition is true
+    * The expression to evaluate if the condition is false
+
+    int age = 20;
+    String message = (age >= 18) ? "You are an adult." : "You are a minor.";
+    System.out.println(message);
+    ```
+
+######  Key points: ###### 
+
+    * The condition in an `if` or `if/else` statement must be a boolean expression.
+    * The code blocks within the `if` and `else` statements are executed only if the corresponding condition is true.
+    * The ternary operator is a concise way to assign a value to a variable based on a condition.
+    * Use the ternary operator for simple conditions, but prefer `if/else` for more complex logic.
+
+### Example with multiple conditions:**
+    int number = 5;
+    if (number > 0) {
+        System.out.println("Number is positive.");
+    } else if (number == 0) {
+        System.out.println("Number is zero.");
+    } else {
+        System.out.println("Number is negative.");
+    }
+
+
+### Nested if statements:**
+    int age = 16;
+    int weight = 60;
+    if (age >= 18) {
+        if (weight >= 50) {
+            System.out.println("Eligible for blood donation.");
+        } else {
+            System.out.println("Not eligible due to weight.");
+        }
+    } else {
+        System.out.println("Not eligible due to age.");
+    }
+
+
 --------------------05. Use a switch statement---------------------
