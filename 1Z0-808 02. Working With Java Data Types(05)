@@ -278,5 +278,80 @@ There are primarily two ways to access object fields:
 
 
 
+
+
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
+
+########  Using Wrapper Classes in Java ###### 
+Wrapper classes in Java provide a way to convert primitive data types into objects. 
+This is essential for using primitive data types in collections, as collections can only store objects.
+
+#########  Example: Using Boolean, Double, and Integer ############ 
+
+import java.util.ArrayList;
+
+public class WrapperClassExample {
+    public static void main(String[] args) {
+        // Creating wrapper class objects
+        Boolean boolValue = true;
+        Double doubleValue = 3.14;
+        Integer intValue = 10;
+
+        // Using wrapper class methods
+        System.out.println("Boolean value: " + boolValue);
+        System.out.println("Double value: " + doubleValue);
+        System.out.println("Integer value: " + intValue);
+
+        // Autoboxing and unboxing
+        int primitiveInt = intValue; // Unboxing
+        Double primitiveDouble = doubleValue; // Unboxing
+
+        // Using wrapper classes in collections
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(intValue);
+        numbers.add(20); // Autoboxing
+
+        System.out.println("Numbers: " + numbers);
+    }
+}
+```
+
+#########  Explanation: ###### 
+    1. **Creating wrapper class objects:** We create objects of `Boolean`, `Double`, and `Integer` wrapper classes to hold primitive values.
+    2. **Using wrapper class methods:** We can use methods provided by wrapper classes like `toString()` to convert values to strings.
+    3. **Autoboxing and unboxing:** Java automatically converts between primitive types and their corresponding wrapper classes. This is called autoboxing and unboxing.
+    4. **Using wrapper classes in collections:** We can store wrapper class objects in collections like `ArrayList`.
+
+### Additional Examples: ###### 
+    **Parsing strings to primitive types:**
+        String strInt = "123";
+        int parsedInt = Integer.parseInt(strInt);
+
+**Comparing wrapper objects:**
+  Integer num1 = 10;
+  Integer num2 = new Integer(10);
+  System.out.println(num1 == num2); // False (different objects)
+  System.out.println(num1.equals(num2)); // True (same value)
+
+**Using wrapper class constants:**
+  boolean isTrue = Boolean.TRUE;
+  double pi = Double.PI;
+
+
+###### Key Points: ###### 
+    * Wrapper classes provide object representations of primitive data types.
+    * Autoboxing and unboxing simplify the conversion between primitive types and wrapper objects.
+    * Wrapper classes offer additional methods and utilities for working with primitive values.
+    * Use wrapper classes when you need to store primitive values in collections or when you need to use object-oriented features with primitive values.
+
+
+######  Additional Considerations
+    Null values: Wrapper classes can hold null values, unlike primitive types.
+    Performance: While autoboxing and unboxing are convenient, they can have a slight performance impact compared to using primitive types directly.
+    Caching: Some wrapper classes (like Integer and Byte) have a cache for commonly used values to optimize performance.
+
+
+
+
+---
 
