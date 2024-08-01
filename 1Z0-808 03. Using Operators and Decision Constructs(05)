@@ -12,8 +12,106 @@ Date: 3-Aug-24(Saturday)
 
 --------------------01. Use Java operators; ---------------------
 
+## Java Operators 
+    ######### Arithmetic Operators ###### 
+    Used for performing mathematical operations.
+        +(Addition)
+        -(Subtraction)
+        \(Multiplication)
+        /(Division)
+        %(Modulo - remainder)
+        ++(Increment)
+        --(Decrement)
+
+    Example:
+        int a = 10, b = 5;
+        int sum = a + b;
+        int difference = a - b;
+        int product = a * b;
+        int quotient = a / b;
+        int remainder = a % b;
+        a++; // Increment a by 1
+        b--; // Decrement b by 1
+   
+
+###### Assignment Operators ###### 
+    Used to assign values to variables.
+
+    * **=** (Simple assignment)
+    * **+=** (Addition assignment)
+    * **-=** (Subtraction assignment)
+    * **\*==** (Multiplication assignment)
+    * **/=** (Division assignment)
+    * **%=** (Modulo assignment)
+
+    Example:
+    int x = 5;
+    x += 3; // Equivalent to x = x + 3
+    ```
+
+###### Comparison Operators ###### 
+    Used to compare values.
+
+    * **==** (Equal to)
+    * **!=** (Not equal to)
+    * **>** (Greater than)
+    * **<** (Less than)
+    * **>=** (Greater than or equal to)
+    * **<=** (Less than or equal to)
+
+    Example:
+    int a = 10, b = 5;
+    boolean isEqual = a == b; // false
+    boolean isGreaterThan = a > b; // true
+
+###### Logical Operators ###### 
+    Used to combine boolean expressions.
+
+    * **&&** (Logical AND)
+    * **||** (Logical OR)
+    * **!** (Logical NOT)
+
+    Example:
+    boolean isTrue = true;
+    boolean isFalse = false;
+    boolean result1 = isTrue && isFalse; // false
+    boolean result2 = isTrue || isFalse; // true
+    boolean result3 = !isTrue; // false
+    ```
+
+###### Bitwise Operators ###### 
+    Used to perform operations on individual bits of integer values.
+
+    * **&** (Bitwise AND)
+    * **|** (Bitwise OR)
+    * **^** (Bitwise XOR)
+    * **~** (Bitwise complement)
+    * **<<** (Left shift)
+    * **>>** (Right shift)
+    * **>>>** (Unsigned right shift)
+
+    Example:
+    int a = 5, b = 3;
+    int result = a & b; // Bitwise AND
+    ```
+
+###### Ternary Operator ###### 
+A shorthand for if-else statements.
+    Example:
+    int x = 10;
+    String result = (x > 5) ? "Greater than 5" : "Less than or equal to 5";
+    ```
+
+###### Operator Precedence ###### 
+The order in which operators are evaluated. Use parentheses to override the default precedence.
+
+    int result = 5 + 3 * 2; // Multiplication has higher precedence, so result is 11
+
+
+
 
 --------------------02. use parentheses to override operator precedence---------------------
+
 --------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 --------------------04. Create if and if/else and ternary constructs ---------------------
 --------------------05. Use a switch statement---------------------
