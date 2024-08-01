@@ -112,6 +112,38 @@ The order in which operators are evaluated. Use parentheses to override the defa
 
 --------------------02. use parentheses to override operator precedence---------------------
 
+Operator precedence: determines the order in which operations are performed in an expression.
+ However, you can explicitly control the order of evaluation by using parentheses.
+
+######### Example:
+Consider the expression:
+int result = 5 + 3 * 2;
+```
+Without parentheses, the multiplication (3 * 2) is performed first due to operator precedence, resulting in `result` being 11.
+
+####### To change the order of operations, you can use parentheses:
+int result = (5 + 3) * 2;
+Now, the addition (5 + 3) is performed first, resulting in `result` being 16.
+
+########### General Rule: ###########
+
+* Expressions within parentheses are evaluated first.
+* Nested parentheses are evaluated from the innermost to the outermost.
+
+########### Example with Nested Parentheses: ###########
+int result = (2 + (3 * 4)) - 5;
+```
+In this case, the multiplication (3 * 4) is performed first due to the innermost parentheses, followed by the addition (2 + 12), and finally the subtraction (14 - 5), resulting in `result` being 9.
+
+########### Key Points #############
+* Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
+* Excessive use of parentheses can make code harder to read, so use them judiciously.
+
+**Example demonstrating clarity:**
+int result = (a + b) * (c - d);
+```
+While the parentheses might not be strictly necessary in this case, they improve readability by explicitly showing the two separate calculations being multiplied.
+
 --------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 --------------------04. Create if and if/else and ternary constructs ---------------------
 --------------------05. Use a switch statement---------------------
