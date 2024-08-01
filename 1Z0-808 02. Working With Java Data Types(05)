@@ -88,7 +88,58 @@ Java has eight primitive data types:
 
 
 
+
+
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
+
+## Object Reference Variables vs Primitive in Java
+
+####### Object Reference Variables ##########
+    * Store references (memory addresses) to objects.
+    * Objects are instances of classes.
+    * Data types are class names (e.g., `String`, `Integer`, `ArrayList`).
+    * Occupy variable-size memory locations.
+    * References are copied when assigned, but the underlying object is not.
+    * Access object's properties and methods using the dot operator (.).
+
+####### Primitive Variables  #######
+    * Store simple values directly.
+    * Data types include: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, and `boolean`.
+    * Occupy fixed-size memory locations.
+    * Values are copied when assigned to another variable.
+    * No methods or properties associated with them.
+
+
+
+**Example:**
+    String name = "Alice"; // Object reference variable
+    String anotherName = name; // Both variables refer to the same object
+
+    int x = 10; // Primitive variable
+    int y = x; // Copies the value 10 to y
+
+    name = "Bob"; // Changes the reference to a new object, but anotherName still points to "Alice"
+    x = 20; // Changes the value of x, but y remains 10
+
+
+### Key Differences #######
+
+    Feature     | Primitive Variables           | Object Reference Variables 
+    ---------------------------------------------------------------------------
+    Storage     | Direct value storage          | Reference to object location 
+    Data Types  | Built-in types                | Class names 
+    Memory      | Fixed size                    | Variable size 
+    Assignment  | Value copying                 | Reference copying 
+    Operations  | Basic arithmetic, comparison  | Object methods and properties 
+
+### Additional Points for 1Z0-808 #######
+    > Null values:** Object reference variables can be assigned `null` to indicate that they don't refer to any object. Primitive variables cannot be null.
+    > Wrapper classes:** Primitive types have corresponding wrapper classes (e.g., `Integer`, `Double`) that allow them to be treated as objects.
+    > Autoboxing and unboxing:** Java automatically converts between primitive types and their wrapper classes.
+    > Memory management:** Primitive variables are managed by the JVM, while object memory is managed by the garbage collector.
+
+
+
 -----------03. Know how to read or write to object fields-------------------------
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
