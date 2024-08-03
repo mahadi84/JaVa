@@ -1,0 +1,248 @@
+
+
+
+=======================05. Using Loop Constructs(05): ===================5-Aug-24(Monday)
+
+01. Create and use while loops
+02. Create and use for loops including the enhanced for loop
+03. Create and use do/while loops
+04. Compare loop constructs
+05. Use break and continue 
+
+========================================================================
+
+
+----------------01. Create and use while loops ------------------
+
+1. Basic Syntax of `while` Loop 
+2. Components of `while` Loop 
+3. Example of `while` Loop 
+        Example 1: Basic `while` Loop ######
+4. Infinite `while` Loop 
+5. Using `break` and `continue` Statements in `while` Loop 
+        Example 2: Using `break` ######
+        Example 3: Using `continue` ######
+6. Common Pitfalls 
+
+
+
+
+###### 1. Basic Syntax of `while` Loop ######
+A `while` loop repeatedly executes a block of code as long as a specified condition is `true`. Here’s the basic syntax:
+
+while (condition) {
+    // Code to be executed
+}
+
+
+###### 2. Components of `while` Loop ######
+- Condition: This is a boolean expression. If it evaluates to `true`, the code inside the loop will execute. If it evaluates to `false`, the loop will terminate.
+- Code Block: The block of code inside the loop that gets executed repeatedly.
+
+###### 3. Example of `while` Loop ######
+Let’s walk through an example to demonstrate the use of a `while` loop.
+
+####### Example 1: Basic `while` Loop ######
+This example prints numbers from 1 to 5.
+
+public class WhileLoopExample {
+    public static void main(String[] args) {
+        int i = 1; // Initialization
+        
+        while (i <= 5) { // Condition
+            System.out.println(i); // Code to be executed
+            i++; // Increment
+        }
+    }
+}
+
+  Explanation:
+  - Initialization: `int i = 1;` initializes the loop variable.
+  - Condition: `while (i <= 5)` checks if `i` is less than or equal to 5.
+  - Code Block: `System.out.println(i);` prints the value of `i`, and `i++` increments `i` by 1 after each iteration.
+
+The loop will print the numbers 1 through 5. Once `i` becomes 6, the condition `i <= 5` evaluates to `false`, and the loop terminates.
+
+###### 4. Infinite `while` Loop ######
+An infinite `while` loop occurs when the condition always evaluates to `true`. Be cautious with this, as it will cause your program to run indefinitely unless interrupted.
+
+public class InfiniteWhileLoop {
+    public static void main(String[] args) {
+        while (true) {
+            // This code will run forever
+            System.out.println("This will print endlessly");
+        }
+    }
+}
+
+###### 5. Using `break` and `continue` Statements in `while` Loop ######
+- `break`: Exits the loop immediately, regardless of the condition.
+- `continue`: Skips the current iteration and proceeds to the next iteration.
+
+####### Example 2: Using `break` ######
+public class BreakExample {
+    public static void main(String[] args) {
+        int i = 1;
+        
+        while (i <= 10) {
+            if (i == 5) {
+                break; // Exit the loop when i is 5
+            }
+            System.out.println(i);
+            i++;
+        }
+    }
+}
+
+In this example, the loop will print numbers 1 through 4, then exit when `i` equals 5 due to the `break` statement.
+
+####### Example 3: Using `continue` ######
+public class ContinueExample {
+    public static void main(String[] args) {
+        int i = 0;
+        
+        while (i < 10) {
+            i++;
+            if (i % 2 == 0) {
+                continue; // Skip the current iteration for even numbers
+            }
+            System.out.println(i); // Print only odd numbers
+        }
+    }
+}
+
+In this example, the `continue` statement skips the printing of even numbers, so only odd numbers (1, 3, 5, 7, 9) are printed.
+
+###### 6. Common Pitfalls ######
+- Infinite Loops: Ensure that the condition will eventually become `false` to avoid creating an infinite loop.
+- Incorrect Updates: Make sure the loop control variable (e.g., `i`) is correctly updated to avoid logic errors.
+
+
+----------------02. Create and use for loops including the enhanced for loop ------------------
+
+ 1. Standard `for` Loop  
+        Example 1: Basic `for` Loop  
+ 2. Nested `for` Loops  
+        Example 2: Nested `for` Loops  
+ 3. Enhanced `for` Loop (for-each Loop)  
+        Example 3: Enhanced `for` Loop with Array  
+ 4. Enhanced `for` Loop with Collection  
+        Example 4: Enhanced `for` Loop with Collection 
+ 5. Key Points  
+
+
+######### 1. Standard `for` Loop   ##########
+The standard `for` loop is used when you know in advance how many times you want to iterate. Its syntax is as follows:
+
+for (initialization; condition; update) {
+    // Code to be executed
+}
+
+Components:
+- Initialization: Sets up the loop control variable. It runs once at the start.
+- Condition: A boolean expression that is checked before each iteration. If `true`, the loop continues; if `false`, the loop terminates.
+- Update: Modifies the loop control variable after each iteration.
+
+####### Example 1: Basic `for` Loop  ######
+This example prints numbers from 1 to 5.
+
+public class ForLoopExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+Explanation:
+- Initialization: `int i = 1` initializes the loop variable `i` to 1.
+- Condition: `i <= 5` ensures that the loop continues as long as `i` is less than or equal to 5.
+- Update: `i++` increments `i` by 1 after each iteration.
+
+The loop will print numbers 1 through 5.
+
+###### 2. Nested `for` Loops  ######
+You can use `for` loops inside other `for` loops to handle multi-dimensional structures.
+
+####### Example 2: Nested `for` Loops  ######
+
+This example prints a multiplication table.
+
+public class NestedForLoopExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
+                System.out.print(i  j + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+Explanation:
+- The outer loop iterates through rows.
+- The inner loop iterates through columns, printing the product of `i` and `j`.
+
+###### 3. Enhanced `for` Loop (for-each Loop)  ######
+The enhanced `for` loop is designed for iterating over arrays and collections. It simplifies code by eliminating the need for indexing.
+
+Syntax:
+for (type element : arrayOrCollection) {
+    // Code to be executed
+}
+
+Components:
+- type: The type of the elements in the array or collection.
+- element: A variable that holds the current element during each iteration.
+- arrayOrCollection: The array or collection you want to iterate over.
+
+####### Example 3: Enhanced `for` Loop with Array  ######
+
+This example prints each element of an array.
+
+public class EnhancedForLoopExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        
+        for (int number : numbers) {
+            System.out.println(number);
+        }
+    }
+}
+
+Explanation:
+- type: `int` is the type of the elements in the `numbers` array.
+- element: `number` is a variable that takes each value from the array in turn.
+- arrayOrCollection: `numbers` is the array being iterated over.
+
+###### 4. Enhanced `for` Loop with Collection  ######
+You can also use the enhanced `for` loop with collections such as `ArrayList`.
+
+####### Example 4: Enhanced `for` Loop with Collection  ######
+This example prints each element of an `ArrayList`.
+
+      import java.util.ArrayList;
+      
+      public class EnhancedForLoopWithList {
+          public static void main(String[] args) {
+              ArrayList<String> names = new ArrayList<>();
+              names.add("Alice");
+              names.add("Bob");
+              names.add("Charlie");
+              
+              for (String name : names) {
+                  System.out.println(name);
+              }
+          }
+      }
+
+        Explanation:
+        - type: `String` is the type of elements in the `names` list.
+        - element: `name` is a variable that holds each value from the list during iteration.
+        - arrayOrCollection: `names` is the collection being iterated over.
+
+###### 5. Key Points  ######
+- Standard `for` Loop: Ideal for when you need to control the loop variable and need to know how many times you need to loop.
+- Enhanced `for` Loop: Ideal for iterating over arrays and collections when you don’t need to know the index of the current element.
+
+
