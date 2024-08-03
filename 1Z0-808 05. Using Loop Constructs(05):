@@ -246,3 +246,323 @@ This example prints each element of an `ArrayList`.
 - Enhanced `for` Loop: Ideal for iterating over arrays and collections when you don’t need to know the index of the current element.
 
 
+
+
+
+----------------03. Create and use do/while loops ------------------
+#### Syntax of `do/while` Loop 
+#### Key Points: 
+#### Example of `do/while` Loop 
+#### Example 1: Basic `do/while` Loop 
+#### Example 2: Using `do/while` for Menu-Driven Programs 
+#### Common Pitfalls 
+
+####### Syntax of `do/while` Loop #######
+The syntax for a `do/while` loop is as follows:
+
+do {
+    // Code to be executed
+} while (condition);
+
+Components:
+- Code Block: The block of code inside the `do` clause that will be executed once for sure.
+- Condition: A boolean expression evaluated after the code block executes. If it evaluates to `true`, the loop repeats; if `false`, the loop terminates.
+
+####### Key Points: #######
+- Guaranteed Execution: The code block within the `do` section is executed at least once because the condition is checked after the execution.
+- Condition Checking: The condition is evaluated after the loop's body executes, which is different from the `while` loop where the condition is evaluated before execution.
+
+####### Example of `do/while` Loop #######
+Let’s look at a basic example of a `do/while` loop.
+
+######## Example 1: Basic `do/while` Loop #######
+This example prints numbers from 1 to 5.
+
+public class DoWhileExample {
+    public static void main(String[] args) {
+        int i = 1; // Initialization
+        
+        do {
+            System.out.println(i); // Code to be executed
+            i++; // Update
+        } while (i <= 5); // Condition
+    }
+}
+
+Explanation:
+- Initialization: `int i = 1;` sets up the loop variable `i`.
+- Code Block: `System.out.println(i);` prints the value of `i`, and `i++` increments `i` after each iteration.
+- Condition: `while (i <= 5);` checks if `i` is less than or equal to 5 after the code block executes.
+
+The loop will print numbers 1 through 5. After printing 5 and incrementing `i` to 6, the condition `i <= 5` becomes `false`, and the loop terminates.
+
+####### Example 2: Using `do/while` for Menu-Driven Programs #######
+`do/while` loops are particularly useful for scenarios where you want to ensure that a block of code (like a menu) is displayed at least once and repeated based on user input.
+
+import java.util.Scanner;
+
+public class MenuExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Option 1");
+            System.out.println("2. Option 2");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            
+            choice = scanner.nextInt(); // User input
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Option 1 selected.");
+                    break;
+                case 2:
+                    System.out.println("Option 2 selected.");
+                    break;
+                case 3:
+                    System.out.println("Exiting.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 3); // Loop until user chooses to exit
+
+        scanner.close();
+    }
+}
+
+Explanation:
+- Initialization: Not explicitly needed here; the `choice` variable is declared before the loop.
+- Code Block: Displays a menu, takes user input, and performs actions based on the input.
+- Condition: `while (choice != 3);` continues the loop as long as the user’s choice is not 3 (the exit option).
+
+####### Common Pitfalls #######
+- Infinite Loops: Be cautious to ensure that the condition eventually becomes `false`; otherwise, you might create an infinite loop.
+- Initialization and Updates: Ensure proper initialization of variables and correct updates within the loop to avoid unexpected behavior.
+
+
+----------------04. Compare loop constructs ------------------
+
+1. `for` Loop 
+        Syntax:
+2. `while` Loop 
+        Syntax: 
+3. `do/while` Loop 
+        Syntax: 
+        Comparison Table 
+        Summary 
+
+
+
+########## 1. `for` Loop ##########
+Syntax:
+for (initialization; condition; update) {
+    // Code to be executed
+}
+
+Components:
+- Initialization: Set up the loop variable.
+- Condition: Checked before each iteration; if `true`, the loop continues; if `false`, the loop terminates.
+- Update: Updates the loop variable after each iteration.
+
+Characteristics:
+- Best for scenarios where the number of iterations is known beforehand.
+- Compact and concise for iterating with a counter or index.
+
+Example:
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}
+
+Use Cases:
+- Iterating a fixed number of times.
+- When you need a counter or index.
+- Best for iterating over arrays or collections when you need the index.
+
+########## 2. `while` Loop ##########
+Syntax:
+while (condition) {
+    // Code to be executed
+}
+
+Components:
+- Condition: Evaluated before each iteration; if `true`, the loop continues; if `false`, the loop terminates.
+
+Characteristics:
+- Best for scenarios where the number of iterations is not known beforehand.
+- The loop might not execute at all if the condition is initially `false`.
+
+Example:
+int i = 0;
+while (i < 5) {
+    System.out.println(i);
+    i++;
+}
+
+Use Cases:
+- When the number of iterations is unknown or depends on dynamic conditions.
+- Useful when you need to loop until a specific condition is met.
+
+########## 3. `do/while` Loop ##########
+Syntax:
+do {
+    // Code to be executed
+} while (condition);
+
+Components:
+- Code Block: Executes at least once before the condition is evaluated.
+- Condition: Evaluated after each iteration; if `true`, the loop continues; if `false`, the loop terminates.
+
+Characteristics:
+- Guarantees that the loop body will execute at least once, even if the condition is `false` initially.
+- Useful when you need the loop body to execute regardless of the condition.
+
+Example:
+int i = 0;
+do {
+    System.out.println(i);
+    i++;
+} while (i < 5);
+
+Use Cases:
+- When you need the loop body to execute at least once, such as displaying a menu or prompting user input.
+
+########## Comparison Table ##########
+
+| Aspect                    | `for` Loop                              | `while` Loop                                              | `do/while` Loop                         |
+|---------------------------|-----------------------------------------|-----------------------------------------------------------|----------------------------------------|
+| Condition Check           | Before executing loop body              | Before executing loop body                                | After executing loop body               |
+| Execution Guarantee       | May not execute if condition is `false` | May not execute if condition is `false`                   | Executes at least once                  |
+| Initialization & Update   | Typically included in loop statement    | Initialization and update must be managed inside loop     | Initialization and update must be managed inside loop |
+| Use Case                  | Known number of iterations or indexed access | Unknown number of iterations or based on dynamic conditions | Guaranteed execution at least once |
+| Syntax Complexity         | Compact and concise                     | Simple but may require additional logic for initialization and update | Simple but condition checked after execution |
+
+########## Summary ##########
+- `for` Loop: Best for iterating a known number of times with a counter or index. Compact and ideal for loops where the number of iterations is known before the loop starts.
+- `while` Loop: Best for situations where the number of iterations is not predetermined. The loop may not run if the condition is `false` initially.
+- `do/while` Loop: Best when you need to ensure that the loop body runs at least once, regardless of the condition. Ideal for scenarios like prompting users until valid input is received.
+
+
+----------------05. Use break and continue  ------------------
+
+    `break` Statement 
+            Syntax: 
+            Example: Using `break` in a `for` Loop 
+            Example: Using `break` in a `while` Loop 
+    `continue` Statement 
+            Syntax: 
+            Example: Using `continue` in a `for` Loop 
+            Example: Using `continue` in a `while` Loop 
+
+
+
+######### `break` Statement #########
+The `break` statement is used to exit from a loop or a `switch` statement prematurely. When `break` is executed, the loop or `switch` statement is terminated, and control passes to the statement following the loop or `switch`.
+Syntax:  break;
+
+########## Example: Using `break` in a `for` Loop #########
+In this example, we use `break` to exit the loop when a certain condition is met.
+
+public class BreakExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            if (i == 5) {
+                break; // Exit the loop when i equals 5
+            }
+            System.out.println(i);
+        }
+    }
+}
+
+Explanation:
+- The loop will print numbers from 1 to 4.
+- When `i` equals 5, the `break` statement is executed, which exits the loop.
+
+########## Example: Using `break` in a `while` Loop #########
+This example demonstrates using `break` in a `while` loop to exit based on user input.
+
+import java.util.Scanner;
+
+public class BreakInWhileLoop {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        
+        while (true) {
+            System.out.print("Enter a command (type 'exit' to quit): ");
+            input = scanner.nextLine();
+            if ("exit".equalsIgnoreCase(input)) {
+                break; // Exit the loop if the user types 'exit'
+            }
+            System.out.println("You entered: " + input);
+        }
+        
+        scanner.close();
+    }
+}
+
+Explanation:
+- The `while (true)` loop runs indefinitely until the `break` statement is encountered.
+- If the user inputs "exit", the `break` statement is executed, terminating the loop.
+
+######### `continue` Statement #########
+The `continue` statement is used to skip the current iteration of a loop and proceed to the next iteration. It can be used in `for`, `while`, and `do/while` loops.
+Syntax:
+continue;
+
+########## Example: Using `continue` in a `for` Loop #########
+In this example, we use `continue` to skip printing even numbers.
+
+public class ContinueExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                continue; // Skip even numbers
+            }
+            System.out.println(i); // Print only odd numbers
+        }
+    }
+}
+
+Explanation:
+- The `continue` statement is executed when `i` is even, which skips the `System.out.println(i);` statement for even numbers.
+- Only odd numbers from 1 to 10 are printed.
+
+########## Example: Using `continue` in a `while` Loop #########
+This example demonstrates using `continue` to skip processing of specific values in a `while` loop.
+
+public class ContinueInWhileLoop {
+    public static void main(String[] args) {
+        int i = 1;
+        
+        while (i <= 10) {
+            if (i % 2 == 0) {
+                i++;
+                continue; // Skip the even number and continue with the next iteration
+            }
+            System.out.println(i); // Print odd numbers
+            i++;
+        }
+    }
+}
+
+Explanation:
+- The `continue` statement is executed when `i` is even, which skips the `System.out.println(i);` statement.
+- Only odd numbers from 1 to 10 are printed.
+
+######### Summary #########
+- `break` Statement:
+  - Purpose: Exits the current loop or `switch` statement.
+  - Usage: Use it to terminate a loop or `switch` early based on a condition.
+
+- `continue` Statement:
+  - Purpose: Skips the current iteration of the loop and proceeds to the next iteration.
+  - Usage: Use it to skip certain iterations based on a condition without terminating the loop.
+
+
+
+
+--
