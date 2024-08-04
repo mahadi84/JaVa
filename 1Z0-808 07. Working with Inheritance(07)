@@ -1,0 +1,975 @@
+
+
+=======================07. Working with Inheritance(07): ==================7-Aug-24(Wednesday)
+01. Describe inheritance and its benefits
+02. Develop code that makes use of polymorphism; 
+03. develop code that overrides methods;  
+04. differentiate between the type of a reference and the type of an object
+05. Determine when casting is necessary
+06. Use super and this to access objects and constructors
+07. Use abstract classes and interfaces
+
+###################################################################################################################################################### #####
+        ------01. Describe inheritance and its benefits--------
+###################################################################################################################################################### #####
+
+
+###### What is Inheritance? #####
+###### Basic Syntax #####
+###### Benefits of Inheritance #####
+            1. Code Reusability:
+            2. Method Overriding:
+            3. Hierarchical Classification:
+            4. Ease of Maintenance:
+            5. Polymorphism:
+###### Summary #####
+
+
+
+
+###### What is Inheritance? #####
+Inheritance is a mechanism in Java that allows one class (the subclass or child class) to inherit fields and methods from another class (the superclass or parent class). This relationship is expressed using the `extends` keyword.
+
+###### Basic Syntax #####
+To define a subclass, use the `extends` keyword to inherit from a superclass.
+
+public class Superclass {
+    public void display() {
+        System.out.println("This is the superclass.");
+    }
+}
+
+public class Subclass extends Superclass {
+    public void show() {
+        System.out.println("This is the subclass.");
+    }
+}
+
+In this example:
+- `Subclass` inherits the `display` method from `Superclass`.
+- `Subclass` can have its own methods, like `show`.
+
+###### Benefits of Inheritance #####
+1. Code Reusability:
+   - Inheritance promotes code reuse by allowing a subclass to use the methods and fields of its superclass. This reduces redundancy and improves maintainability.
+
+   Example:
+   public class Animal {
+       public void eat() {
+           System.out.println("This animal eats food.");
+       }
+   }
+
+   public class Dog extends Animal {
+       public void bark() {
+           System.out.println("The dog barks.");
+       }
+   }
+
+
+   Here, `Dog` inherits the `eat` method from `Animal` and also has its own `bark` method.
+
+2. Method Overriding:
+   - Subclasses can provide specific implementations for methods that are already defined in their superclass. This is known as method overriding.
+
+   Example:
+   public class Animal {
+       public void makeSound() {
+           System.out.println("Some sound");
+       }
+   }
+
+   public class Dog extends Animal {
+       @Override
+       public void makeSound() {
+           System.out.println("Bark");
+       }
+   }
+
+   public class Test {
+       public static void main(String[] args) {
+           Animal myDog = new Dog();
+           myDog.makeSound(); // Output: Bark
+       }
+   }
+
+
+   In this example, `Dog` overrides the `makeSound` method of `Animal` to provide a specific implementation.
+
+3. Hierarchical Classification:
+   - Inheritance supports a hierarchical class structure. A superclass can have multiple subclasses, creating a hierarchy where shared behavior is defined in the superclass, and specific behavior is added in subclasses.
+
+   Example:
+   public class Animal {
+       public void eat() {
+           System.out.println("Animal eats.");
+       }
+   }
+
+   public class Mammal extends Animal {
+       public void breathe() {
+           System.out.println("Mammal breathes.");
+       }
+   }
+
+   public class Bird extends Animal {
+       public void fly() {
+           System.out.println("Bird flies.");
+       }
+   }
+
+
+   Here, `Mammal` and `Bird` both inherit `eat` from `Animal` but add their own specific behaviors.
+
+4. Ease of Maintenance:
+   - Changes made in the superclass automatically propagate to subclasses, making maintenance easier. If a change needs to be made to common functionality, it can be done in the superclass, affecting all subclasses.
+
+   Example:
+   public class Vehicle {
+       public void start() {
+           System.out.println("Vehicle is starting.");
+       }
+   }
+
+   public class Car extends Vehicle {
+       // Inherits start method from Vehicle
+   }
+
+   public class Bike extends Vehicle {
+       // Inherits start method from Vehicle
+   }
+
+
+   If you modify the `start` method in `Vehicle`, the change is reflected in both `Car` and `Bike` without needing to change their individual implementations.
+
+5. Polymorphism:
+   - Inheritance supports polymorphism, where a superclass reference can be used to refer to a subclass object. This allows for dynamic method dispatch and enables code that can work with objects of different subclasses in a uniform way.
+
+   Example:
+   public class Animal {
+       public void makeSound() {
+           System.out.println("Animal sound");
+       }
+   }
+
+   public class Cat extends Animal {
+       @Override
+       public void makeSound() {
+           System.out.println("Meow");
+       }
+   }
+
+   public class Test {
+       public static void main(String[] args) {
+           Animal myAnimal = new Cat(); // Polymorphism
+           myAnimal.makeSound(); // Output: Meow
+       }
+   }
+
+
+   Here, `myAnimal` is of type `Animal` but refers to a `Cat` object. The overridden `makeSound` method in `Cat` is called.
+
+###### Summary #####
+- Inheritance allows a subclass to inherit fields and methods from a superclass, promoting code reuse and logical class hierarchies.
+- Code Reusability reduces redundancy and improves maintainability.
+- Method Overriding enables subclasses to provide specific implementations of methods.
+- Hierarchical Classification organizes classes in a hierarchy, promoting clear and logical class relationships.
+- Ease of Maintenance allows changes in the superclass to be automatically reflected in subclasses.
+- Polymorphism supports using superclass references for subclass objects, enabling flexible and dynamic method calls.
+
+
+###########################################################################
+       ------02. Develop code that makes use of polymorphism; --------
+###########################################################################
+
+###### What is Polymorphism? 
+###### 1. Compile-Time Polymorphism (Method Overloading) 
+###### 2. Runtime Polymorphism (Method Overriding) 
+###### Benefits of Polymorphism 
+###### Key Points for the 1Z0-808 Exam: 
+
+###### What is Polymorphism? ######
+Polymorphism allows objects of different classes to be treated through a common interface, typically via a common superclass or interface. It comes in two main forms:
+
+1. Compile-Time Polymorphism (Method Overloading): 
+   - Occurs when multiple methods have the same name but different parameter lists within the same class or subclass.
+
+2. Runtime Polymorphism (Method Overriding):
+   - Occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
+
+###### 1. Compile-Time Polymorphism (Method Overloading) ######
+
+Definition:
+Method overloading allows multiple methods in the same class to have the same name but different parameters (different type, number, or both).
+
+Example:
+public class OverloadExample {
+    // Method with one parameter
+    public void display(int a) {
+        System.out.println("Integer: " + a);
+    }
+
+    // Overloaded method with two parameters
+    public void display(String a, int b) {
+        System.out.println("String: " + a + ", Integer: " + b);
+    }
+
+    public static void main(String[] args) {
+        OverloadExample obj = new OverloadExample();
+        obj.display(10); // Calls method with one int parameter
+        obj.display("Hello", 20); // Calls method with String and int parameters
+    }
+}
+
+Explanation:
+- The `display` method is overloaded with different parameter lists.
+- The appropriate method is chosen based on the arguments passed during the method call.
+
+###### 2. Runtime Polymorphism (Method Overriding) ######
+Definition:
+Method overriding allows a subclass to provide a specific implementation of a method that is already defined in its superclass. The method in the subclass should have the same name, return type, and parameters as the method in the superclass.
+
+Example:
+// Superclass
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Subclass
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Subclass
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+
+// Test class
+public class TestPolymorphism {
+    public static void main(String[] args) {
+        Animal myAnimal;
+
+        // Reference of type Animal but object of type Dog
+        myAnimal = new Dog();
+        myAnimal.makeSound(); // Output: Dog barks
+
+        // Reference of type Animal but object of type Cat
+        myAnimal = new Cat();
+        myAnimal.makeSound(); // Output: Cat meows
+    }
+}
+
+Explanation:
+- `myAnimal` is a reference of type `Animal` but can point to an object of `Dog` or `Cat`.
+- At runtime, the `makeSound` method of the actual object type (`Dog` or `Cat`) is called, not the type of the reference.
+
+###### Benefits of Polymorphism ######
+1. Flexibility:
+   - Polymorphism allows you to write more flexible and reusable code. You can use a single interface or superclass reference to work with objects of different subclasses.
+
+2. Maintainability:
+   - Changes in method implementations in the subclass do not affect the code that uses the superclass reference. This improves maintainability and code organization.
+
+3. Code Reusability:
+   - Common operations can be defined in the superclass or interface, and subclasses can provide specific implementations, promoting reuse of common code.
+
+4. Dynamic Method Binding:
+   - At runtime, the Java Virtual Machine (JVM) determines which method implementation to invoke based on the actual object type. This dynamic method binding is a powerful feature of polymorphism.
+
+###### Key Points for the 1Z0-808 Exam: ######
+
+1. Method Overloading (Compile-Time Polymorphism):
+   - Methods in the same class with the same name but different parameters.
+   - Used for creating methods that perform similar functions but with different inputs.
+
+2. Method Overriding (Runtime Polymorphism):
+   - Subclasses provide specific implementations of methods defined in the superclass.
+   - Enables dynamic method calls based on the actual object type.
+
+3. Polymorphic Behavior:
+   - Allows you to treat objects of different subclasses through a common superclass or interface reference.
+
+4. Benefits:
+   - Enhances flexibility, maintainability, and reusability of code.
+
+#############################################################################
+       ------03. develop code that overrides methods;  --------
+#############################################################################
+
+
+###### What is Method Overriding? 
+###### Rules for Method Overriding 
+###### Example of Method Overriding 
+###### Key Points for the 1Z0-808 Exam: 
+
+
+###### What is Method Overriding? ######
+Method Overriding occurs when a subclass provides a specific implementation for a method that is already declared in its superclass. The overriding method must have the same name, return type, and parameters as the method in the superclass.
+
+###### Rules for Method Overriding ######
+1. Same Method Signature:
+   - The overriding method must have the same name, return type, and parameter list as the method in the superclass.
+
+2. Access Modifier:
+   - The overriding method in the subclass must have the same or less restrictive access modifier than the method in the superclass. For example, if the superclass method is `protected`, the subclass method can be `protected` or `public`.
+
+3. Return Type:
+   - The return type of the overriding method must be the same as or a subtype of the return type in the superclass method (covariant return type).
+
+4. Exceptions:
+   - The overriding method can only throw exceptions that are the same or subclasses of the exceptions thrown by the superclass method. It cannot throw new or broader exceptions.
+
+5. `final`, `static`, and `private` Methods:
+   - `final` methods cannot be overridden.
+   - `static` methods are not subject to overriding. They can be re-declared in subclasses, but this is known as method hiding, not overriding.
+   - `private` methods are not visible to subclasses and thus cannot be overridden.
+
+###### Example of Method Overriding ######
+
+Here’s a step-by-step example to illustrate method overriding:
+
+// Superclass
+public class Animal {
+    // Method that will be overridden
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Subclass
+public class Dog extends Animal {
+    // Overriding the makeSound method
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Another subclass
+public class Cat extends Animal {
+    // Overriding the makeSound method
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+
+// Test class
+public class TestOverriding {
+    public static void main(String[] args) {
+        Animal myAnimal;
+
+        // Reference of type Animal but object of type Dog
+        myAnimal = new Dog();
+        myAnimal.makeSound(); // Output: Dog barks
+
+        // Reference of type Animal but object of type Cat
+        myAnimal = new Cat();
+        myAnimal.makeSound(); // Output: Cat meows
+    }
+}
+
+Explanation:
+1. Superclass Method:
+   - The `Animal` class defines a method `makeSound()`.
+
+2. Subclass Methods:
+   - The `Dog` and `Cat` classes extend `Animal` and provide their own implementation of the `makeSound()` method.
+
+3. Overriding:
+   - In `Dog`, the `makeSound()` method is overridden to print "Dog barks".
+   - In `Cat`, the `makeSound()` method is overridden to print "Cat meows".
+
+4. Dynamic Method Dispatch:
+   - In the `TestOverriding` class, the `myAnimal` reference is of type `Animal` but points to instances of `Dog` and `Cat`. The method call `myAnimal.makeSound()` executes the overridden method in the actual object’s class (i.e., `Dog` or `Cat`), demonstrating runtime polymorphism.
+
+###### Key Points for the 1Z0-808 Exam: ######
+1. Signature Matching:
+   - Ensure that the method signature (name, parameters, and return type) in the subclass exactly matches the method in the superclass.
+
+2. Access Modifiers:
+   - Use the same or less restrictive access level for the overriding method.
+
+3. Return Type:
+   - The return type should be the same or a subtype (covariant return type).
+
+4. Exceptions:
+   - The overriding method can throw only the exceptions that the superclass method throws or its subclasses.
+
+5. Method Type Restrictions:
+   - Remember that `final`, `static`, and `private` methods cannot be overridden.
+
+
+
+#################################################################################################
+    ------04. differentiate between the type of a reference and the type of an object--------
+#################################################################################################
+
+
+
+
+###### Type of a Reference vs. Type of an Object 
+######## 1. Type of a Reference 
+######## 2. Type of an Object 
+###### Key Differences 
+###### Examples to Illustrate the Difference 
+###### Summary 
+
+
+
+
+
+###### Type of a Reference vs. Type of an Object ######
+
+######## 1. Type of a Reference ########
+- Definition: The type of a reference (or variable) is the data type that defines what kind of objects the reference can point to. This type determines the methods and properties available to the reference.
+- Declaration: When you declare a reference variable, you specify its type. This type determines the class of objects that the reference variable can refer to.
+
+Example:
+Animal myAnimal;
+
+Here, `myAnimal` is a reference of type `Animal`. It can point to any object of type `Animal` or any subclass of `Animal` (e.g., `Dog`, `Cat`).
+
+######## 2. Type of an Object ########
+- Definition: The type of an object is the actual class of the object instantiated at runtime. It represents the specific implementation and can include additional methods and properties beyond those defined by the reference type.
+- Instantiation: The type of an object is determined when you create the object using the `new` keyword.
+
+Example:
+myAnimal = new Dog();
+
+Here, `myAnimal` is assigned an instance of `Dog`. The actual type of the object `myAnimal` points to is `Dog`, even though its reference type is `Animal`.
+
+###### Key Differences ######
+1. Reference Type:
+   - Determines what methods and properties are available to the reference variable.
+   - Set at compile time based on the variable’s declaration.
+   - Example: If a reference is declared as `Animal`, it can only access methods defined in the `Animal` class (or its superclass) unless overridden.
+
+2. Object Type:
+   - Determines the actual class of the object created at runtime.
+   - Influences which implementation of methods is executed if method overriding is used.
+   - Example: An object of type `Dog` will have `Dog` class-specific methods and overridden methods, even if it’s referred to by an `Animal` reference.
+
+###### Examples to Illustrate the Difference ######
+Example 1: Reference Type vs. Object Type
+
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+
+    public void wagTail() {
+        System.out.println("Dog wags its tail");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal myAnimal; // Reference type is Animal
+        myAnimal = new Dog(); // Object type is Dog
+
+        myAnimal.makeSound(); // Output: Dog barks
+        // myAnimal.wagTail(); // Compile-time error: wagTail() is not a method of Animal
+
+        // You cannot call wagTail() on myAnimal because the reference type is Animal.
+    }
+}
+
+Explanation:
+- `myAnimal` is a reference of type `Animal`, so it can only call methods defined in `Animal` or overridden in `Dog`.
+- The actual object created is of type `Dog`. Thus, the `makeSound()` method of `Dog` is called, demonstrating runtime polymorphism.
+- The method `wagTail()` is specific to `Dog` and is not accessible through an `Animal` reference.
+
+Example 2: Upcasting and Downcasting
+
+public class Animal { }
+
+public class Cat extends Animal {
+    public void meow() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal myAnimal = new Cat(); // Upcasting: Cat object assigned to Animal reference
+
+        // myAnimal.meow(); // Compile-time error: meow() is not visible to Animal reference
+
+        Cat myCat = (Cat) myAnimal; // Downcasting: Animal reference to Cat object
+        myCat.meow(); // Output: Cat meows
+    }
+}
+
+Explanation:
+- `myAnimal` is a reference of type `Animal`, but it points to a `Cat` object.
+- To access `meow()` method, you must downcast `myAnimal` to `Cat`.
+- Downcasting is necessary because `meow()` is not a method of `Animal`.
+
+###### Summary ######
+1. Reference Type:
+   - Determines what methods can be called and what fields can be accessed.
+   - Set at compile time based on the variable declaration.
+   - Example: `Animal` reference type.
+
+2. Object Type:
+   - Determines the actual implementation and available methods at runtime.
+   - Influences method behavior due to inheritance and method overriding.
+   - Example: `Dog` or `Cat` object types.
+
+
+
+###########################################################################
+       ------05. Determine when casting is necessary--------
+###########################################################################
+
+
+###### Types of Casting
+###### When Casting is Necessary
+###### Important Considerations
+###### Summary
+
+
+###### Types of Casting ######
+
+1. Upcasting:
+   - Definition: Upcasting is the process of casting a subclass object to a superclass type. This is usually done implicitly by the Java compiler because a subclass is considered to be an instance of its superclass.
+   - When Necessary: Upcasting is not typically required to be explicitly written since it is automatically handled by the Java compiler. It is used to treat a subclass object as an instance of its superclass, which is useful for method arguments and polymorphism.
+
+   Example:
+   public class Animal {
+       public void makeSound() {
+           System.out.println("Animal makes a sound");
+       }
+   }
+
+   public class Dog extends Animal {
+       public void bark() {
+           System.out.println("Dog barks");
+       }
+   }
+
+   public class Test {
+       public static void main(String[] args) {
+           Dog myDog = new Dog();
+           Animal myAnimal = myDog; // Upcasting
+           myAnimal.makeSound(); // Output: Animal makes a sound
+       }
+   }
+
+2. Downcasting:
+   - Definition: Downcasting is the process of casting a superclass reference to a subclass type. This is necessary when you want to access subclass-specific methods or properties from a superclass reference.
+   - When Necessary: Downcasting is needed when you have a reference of a superclass type, but you know it actually points to an object of a subclass and you want to access subclass-specific methods.
+
+   Example:
+   public class Animal {
+       public void makeSound() {
+           System.out.println("Animal makes a sound");
+       }
+   }
+
+   public class Dog extends Animal {
+       public void bark() {
+           System.out.println("Dog barks");
+       }
+   }
+
+   public class Test {
+       public static void main(String[] args) {
+           Animal myAnimal = new Dog(); // Upcasting
+           if (myAnimal instanceof Dog) {
+               Dog myDog = (Dog) myAnimal; // Downcasting
+               myDog.bark(); // Output: Dog barks
+           }
+       }
+   }
+
+###### When Casting is Necessary ######
+
+1. To Access Subclass-Specific Methods or Fields:
+   - When you have a reference of a superclass type and you need to call methods or access fields that are specific to a subclass, you must use downcasting.
+
+   Example:
+   Animal myAnimal = new Dog();
+   if (myAnimal instanceof Dog) {
+       Dog myDog = (Dog) myAnimal; // Downcasting
+       myDog.bark(); // Output: Dog barks
+   }
+
+2. When Dealing with Collections:
+   - Collections such as `ArrayList` may hold objects of different types, and casting is often used when retrieving objects from such collections to ensure type safety.
+
+   Example:
+   ArrayList<Animal> animals = new ArrayList<>();
+   animals.add(new Dog());
+   animals.add(new Cat());
+
+   for (Animal animal : animals) {
+       if (animal instanceof Dog) {
+           Dog dog = (Dog) animal; // Downcasting
+           dog.bark();
+       }
+   }
+
+3. When Working with Polymorphism:
+   - When using polymorphism, you may need to downcast if you want to invoke methods specific to a subclass that are not defined in the superclass.
+
+   Example:
+   Animal animal = new Cat();
+   ((Cat) animal).meow(); // Direct downcasting to call Cat's specific method
+
+4. To Handle Type Errors:
+   - Casting can be used to handle type errors where the actual object type differs from the declared type. This is particularly useful in cases where you have mixed object types in a single reference or collection.
+
+   Example:
+   Object obj = "String example"; // obj is of type Object
+   String str = (String) obj; // Downcasting to String
+
+###### Important Considerations ######
+
+1. `instanceof` Operator:
+   - Use the `instanceof` operator to check if an object is an instance of a particular class or subclass before downcasting. This helps to avoid `ClassCastException`.
+
+   Example:
+   if (animal instanceof Dog) {
+       Dog dog = (Dog) animal; // Safe downcasting
+   }
+
+2. `ClassCastException`:
+   - Be cautious of `ClassCastException`, which occurs at runtime if the object being cast is not actually an instance of the target type. Always ensure type compatibility using `instanceof`.
+
+   Example:
+   try {
+       Animal animal = new Animal();
+       Dog dog = (Dog) animal; // Will throw ClassCastException
+   } catch (ClassCastException e) {
+       System.out.println("Cast failed: " + e.getMessage());
+   }
+
+###### Summary ######
+
+- Upcasting is implicitly handled and does not require explicit casting. It is used to treat a subclass object as an instance of its superclass.
+- Downcasting is required when you need to access methods or fields specific to a subclass from a superclass reference.
+- Always use the `instanceof` operator before downcasting to avoid runtime errors.
+- Understand the type of reference and the type of object to manage casting effectively and ensure type safety.
+
+       
+
+#####################################################################################
+       ------06. Use super and this to access objects and constructors--------
+#####################################################################################
+
+
+
+###### 1. Using `super`
+####### Accessing Superclass Methods
+####### Accessing Superclass Constructors
+###### 2. Using `this`
+####### Accessing Instance Variables and Methods
+####### Calling Other Constructors (Constructor Chaining)
+###### Summary
+
+
+###### 1. Using `super` ######
+The `super` keyword refers to the superclass of the current object. It is used to access superclass methods and constructors.
+
+####### Accessing Superclass Methods ######
+
+- Purpose: To call a method in the superclass that has been overridden in the subclass.
+- Syntax: `super.methodName()`
+
+Example:
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        super.makeSound(); // Calls the superclass method
+        System.out.println("Dog barks");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.makeSound();
+        // Output:
+        // Animal makes a sound
+        // Dog barks
+    }
+}
+
+Explanation:
+- `super.makeSound()` calls the `makeSound` method from the `Animal` class, which is the superclass of `Dog`.
+- This allows the `Dog` class to extend the functionality of the `Animal` class method.
+
+####### Accessing Superclass Constructors ######
+
+- Purpose: To call a constructor in the superclass from the subclass constructor.
+- Syntax: `super(arguments)`
+
+Example:
+public class Animal {
+    public Animal(String name) {
+        System.out.println("Animal name: " + name);
+    }
+}
+
+public class Dog extends Animal {
+    public Dog(String name) {
+        super(name); // Calls the superclass constructor
+        System.out.println("Dog created with name: " + name);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Buddy");
+        // Output:
+        // Animal name: Buddy
+        // Dog created with name: Buddy
+    }
+}
+
+Explanation:
+- `super(name)` calls the `Animal` class constructor that takes a `String` argument. This ensures the superclass is properly initialized before the subclass initialization continues.
+
+###### 2. Using `this` ######
+
+The `this` keyword refers to the current instance of the class. It is used to access instance variables and methods of the current object, and to call other constructors in the same class.
+
+####### Accessing Instance Variables and Methods ######
+
+- Purpose: To differentiate between instance variables and parameters when they have the same name, and to call other methods in the current class.
+- Syntax: `this.variableName` and `this.methodName()`
+
+Example:
+public class Person {
+    private String name;
+
+    public Person(String name) {
+        this.name = name; // Differentiates between instance variable and parameter
+    }
+
+    public void greet() {
+        System.out.println("Hello, my name is " + this.name);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person person = new Person("Alice");
+        person.greet();
+        // Output: Hello, my name is Alice
+    }
+}
+
+Explanation:
+- `this.name` refers to the instance variable `name` of the `Person` class, distinguishing it from the parameter `name`.
+
+####### Calling Other Constructors (Constructor Chaining) ######
+- Purpose: To call one constructor from another constructor in the same class, promoting code reuse.
+- Syntax: `this(arguments)`
+
+Example:
+public class Book {
+    private String title;
+    private String author;
+
+    public Book() {
+        this("Unknown Title", "Unknown Author"); // Calls another constructor
+    }
+
+    public Book(String title) {
+        this(title, "Unknown Author"); // Calls another constructor
+    }
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    public void display() {
+        System.out.println("Title: " + title + ", Author: " + author);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Book book1 = new Book();
+        Book book2 = new Book("1984");
+        Book book3 = new Book("Brave New World", "Aldous Huxley");
+
+        book1.display(); // Output: Title: Unknown Title, Author: Unknown Author
+        book2.display(); // Output: Title: 1984, Author: Unknown Author
+        book3.display(); // Output: Title: Brave New World, Author: Aldous Huxley
+    }
+}
+
+Explanation:
+- `this("Unknown Title", "Unknown Author")` in the no-argument constructor calls the two-argument constructor.
+- `this(title, "Unknown Author")` in the single-argument constructor calls the two-argument constructor, ensuring all initialization is centralized.
+
+###### Summary ######
+- `super`:
+  - Use `super.methodName()` to call a method from the superclass.
+  - Use `super(arguments)` to invoke a constructor from the superclass.
+  
+- `this`:
+  - Use `this.variableName` to refer to instance variables and distinguish them from method parameters.
+  - Use `this.methodName()` to call other methods within the same class.
+  - Use `this(arguments)` to call another constructor in the same class (constructor chaining).
+
+
+#####################################################################################
+       ------07. Use abstract classes and interfaces--------
+#####################################################################################
+
+###### Abstract Classes 
+####### Key Points 
+####### Example 
+###### Interfaces 
+####### Key Points 
+####### Example 
+###### Summary 
+
+
+
+###### Abstract Classes ######
+Abstract classes are classes that cannot be instantiated on their own and are meant to be extended by other classes. They can contain abstract methods (methods without a body) as well as concrete methods (methods with a body).
+
+####### Key Points ######
+1. Declaration:
+   - An abstract class is declared using the `abstract` keyword.
+   - Abstract methods within the class are declared without a body and must be implemented by subclasses.
+
+2. Abstract Methods:
+   - Abstract methods are methods that have no implementation in the abstract class and must be overridden by concrete subclasses.
+
+3. Concrete Methods:
+   - Abstract classes can also have methods with implementations that can be used or overridden by subclasses.
+
+4. Constructors:
+   - Abstract classes can have constructors, which can be called from constructors of concrete subclasses.
+
+5. Fields:
+   - Abstract classes can have fields, including constants, which can be used by subclasses.
+
+####### Example ######
+// Abstract class
+public abstract class Animal {
+    // Abstract method (does not have a body)
+    public abstract void makeSound();
+
+    // Concrete method
+    public void sleep() {
+        System.out.println("This animal sleeps");
+    }
+}
+
+// Concrete subclass
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Test class
+public class Test {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.makeSound(); // Output: Dog barks
+        myDog.sleep(); // Output: This animal sleeps
+    }
+}
+
+Explanation:
+- `Animal` is an abstract class with an abstract method `makeSound()` and a concrete method `sleep()`.
+- `Dog` extends `Animal` and provides an implementation for the `makeSound()` method.
+- `Dog` can be instantiated and used to call both the overridden method and the concrete method from the abstract class.
+
+###### Interfaces ######
+
+Interfaces are abstract types that allow you to define methods that must be implemented by classes that choose to implement the interface. Unlike abstract classes, interfaces cannot have instance fields or constructors. They are used to specify methods that must be implemented by classes, supporting multiple inheritance of behavior.
+
+####### Key Points ######
+1. Declaration:
+   - Interfaces are declared using the `interface` keyword.
+   - Methods in an interface are implicitly `public` and `abstract` (until Java 8, when default and static methods were introduced).
+
+2. Implementation:
+   - Classes implement interfaces using the `implements` keyword.
+   - A class must provide implementations for all methods declared in the interface.
+
+3. Default Methods:
+   - From Java 8 onwards, interfaces can have default methods with an implementation, allowing you to add new methods to interfaces without breaking existing implementations.
+
+4. Static Methods:
+   - Interfaces can also have static methods, which are called on the interface itself, not on instances of the class.
+
+5. Multiple Inheritance:
+   - A class can implement multiple interfaces, supporting a form of multiple inheritance.
+
+####### Example ######
+// Interface
+public interface Animal {
+    void makeSound();
+
+    // Default method
+    default void eat() {
+        System.out.println("This animal eats");
+    }
+}
+
+// Concrete class implementing the interface
+public class Dog implements Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Test class
+public class Test {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.makeSound(); // Output: Dog barks
+        myDog.eat(); // Output: This animal eats
+    }
+}
+
+Explanation:
+- `Animal` is an interface with an abstract method `makeSound()` and a default method `eat()`.
+- `Dog` implements the `Animal` interface and provides an implementation for the `makeSound()` method.
+- The `eat()` method, being a default method, is available to `Dog` without needing an implementation, but it can be overridden if needed.
+
+###### Summary ######
+- Abstract Classes:
+  - Use abstract classes when you want to define a common base class with some shared implementation, but you also want to enforce that subclasses implement certain methods.
+  - Abstract classes can contain both abstract methods and concrete methods and can be extended by other classes.
+
+- Interfaces:
+  - Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
+  - Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
+
