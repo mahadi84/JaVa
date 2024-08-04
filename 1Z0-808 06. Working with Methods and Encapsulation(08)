@@ -1,0 +1,366 @@
+
+===================06. Working with Methods and Encapsulation(08): ========6-Aug-24(Tuesday)
+
+01. Create methods with arguments and return values; 
+02. including overloaded methods
+03. Apply the static keyword to methods and fields  
+04. Create and overload constructors; 
+05. differentiate between default and user-defined constructors
+06. Apply access modifiers
+07. Apply encapsulation principles to a class
+08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
+
+=============================================================================================
+
+------------01. Create methods with arguments and return values; ------------------
+
+######## Methods in Java 
+######## Creating Methods with Arguments 
+######## Return Values 
+######## Calling Methods 
+
+
+######## Methods in Java ########
+
+1. Definition of Methods:
+Methods in Java are blocks of code designed to perform specific tasks. They can take input (arguments) and produce output (return values). 
+
+######## Creating Methods with Arguments ########
+
+1. Method Syntax:
+To define a method, you use the following syntax:
+returnType methodName(type1 param1, type2 param2, ...) {
+    // Method body
+    return value; // If returnType is not void
+}
+
+- `returnType`: The data type of the value the method returns. It could be any valid data type, including `int`, `double`, `String`, or even a custom object. If the method doesn’t return a value, use `void`.
+- `methodName`: The name of the method, which should be descriptive of what the method does.
+- `param1, param2, ...`: Parameters (or arguments) the method accepts. They are specified with their types and names.
+
+Example:
+public int add(int a, int b) {
+    return a + b;
+}
+In this example:
+- `public` is the access modifier.
+- `int` is the return type.
+- `add` is the method name.
+- `int a` and `int b` are parameters.
+
+######## Return Values ########
+
+1. Return Statement:
+The `return` statement is used to exit a method and optionally pass a value back to the caller. The return type of the method must match the type of the value returned.
+
+Example:
+public String greet(String name) {
+    return "Hello, " + name + "!";
+}
+In this example:
+- `String` is the return type.
+- `"Hello, " + name + "!"` is the value being returned by the method.
+
+2. Methods with No Return Value:
+If a method does not need to return a value, you use the `void` return type and omit the return value.
+
+Example:
+public void printGreeting(String name) {
+    System.out.println("Hello, " + name + "!");
+}
+Here:
+- `void` indicates that the method does not return a value.
+- The `System.out.println` statement prints a message to the console.
+
+######## Calling Methods ########
+
+To use (or "call") a method, you simply use its name and provide arguments if required. For example:
+
+Example:
+public class Main {
+    public static void main(String[] args) {
+        Main obj = new Main();
+        
+        int sum = obj.add(5, 10); // Calls the add method
+        System.out.println("Sum: " + sum);
+        
+        String greeting = obj.greet("Alice"); // Calls the greet method
+        System.out.println(greeting);
+        
+        obj.printGreeting("Bob"); // Calls the printGreeting method
+    }
+    
+    public int add(int a, int b) {
+        return a + b;
+    }
+    
+    public String greet(String name) {
+        return "Hello, " + name + "!";
+    }
+    
+    public void printGreeting(String name) {
+        System.out.println("Hello, " + name + "!");
+    }
+}
+
+
+------------02. including overloaded methods------------------
+
+####### Method Overloading #######
+
+1. Definition:
+2. Rules for Method Overloading:
+3. How It Works:
+4. Example of Method Overloading:
+
+
+
+
+1. Definition:
+Method overloading in Java allows a class to have more than one method with the same name, but with different parameter lists. This means you can define multiple methods with the same name as long as their parameter types or numbers are different.
+
+2. Rules for Method Overloading:
+- Different Parameter List: Overloaded methods must have different parameter lists. This can be achieved by varying the number of parameters or the types of parameters.
+- Same Method Name: The methods must have the same name.
+- Return Type Alone Is Not Enough: You cannot overload methods based solely on return type. The parameter list must be different.
+
+3. How It Works:
+When you call an overloaded method, Java determines which version of the method to execute based on the number and types of arguments you pass.
+
+4. Example of Method Overloading:
+
+public class OverloadExample {
+    // Method with no parameters
+    public void display() {
+        System.out.println("Display with no parameters");
+    }
+    
+    // Method with one integer parameter
+    public void display(int a) {
+        System.out.println("Display with one integer: " + a);
+    }
+    
+    // Method with two parameters of different types
+    public void display(int a, String b) {
+        System.out.println("Display with integer and string: " + a + ", " + b);
+    }
+    
+    // Method with two parameters of the same type
+    public void display(String a, String b) {
+        System.out.println("Display with two strings: " + a + ", " + b);
+    }
+    
+    public static void main(String[] args) {
+        OverloadExample obj = new OverloadExample();
+        
+        obj.display(); // Calls display() with no parameters
+        obj.display(10); // Calls display(int a)
+        obj.display(10, "Hello"); // Calls display(int a, String b)
+        obj.display("Hello", "World"); // Calls display(String a, String b)
+    }
+}
+
+In this example:
+- The `display` method is overloaded four times with different parameter lists.
+- The call to `obj.display()` matches the method with no parameters.
+- The call to `obj.display(10)` matches the method with one integer parameter.
+- The call to `obj.display(10, "Hello")` matches the method with an integer and a string parameter.
+- The call to `obj.display("Hello", "World")` matches the method with two string parameters.
+
+------------03. Apply the static keyword to methods and fields  ------------------
+
+###### The `static` Keyword
+###### Static Fields (Class Variables)
+            1. Definition:
+            2. Syntax:
+            3. Accessing Static Fields:
+###### Static Methods
+            1. Definition:
+            2. Syntax:
+###### Key Points for the 1Z0-808 Exam:
+
+
+
+
+###### The `static` Keyword ######
+The `static` keyword in Java is used to create class-level members, which means that the member belongs to the class itself rather than to any specific instance of the class. This has implications for both fields (variables) and methods.
+
+###### Static Fields (Class Variables) ######
+1. Definition:
+A `static` field is shared among all instances of a class. It is not tied to any particular object but rather to the class itself.
+
+2. Syntax:
+class MyClass {
+    static int staticField; // Static field declaration
+}
+
+3. Accessing Static Fields:
+Static fields can be accessed using the class name or through an instance of the class, but it is generally recommended to use the class name to highlight that it is a class-level member.
+
+Example:
+public class Example {
+    static int count = 0; // Static field
+
+    public void increment() {
+        count++; // Accessing static field
+    }
+    
+    public static void displayCount() {
+        System.out.println("Count: " + count); // Accessing static field
+    }
+    
+    public static void main(String[] args) {
+        Example obj1 = new Example();
+        Example obj2 = new Example();
+        
+        obj1.increment();
+        obj2.increment();
+        
+        Example.displayCount(); // Output: Count: 2
+    }
+}
+
+In this example:
+- `count` is a static field, so all instances of `Example` share the same `count` variable.
+- The `displayCount` method is a static method that accesses the static field `count`.
+
+###### Static Methods ######
+
+1. Definition:
+A `static` method belongs to the class rather than any specific instance of the class. It can be called without creating an instance of the class.
+
+2. Syntax:
+class MyClass {
+    static void staticMethod() {
+        // Method body
+    }
+}
+
+
+3. Restrictions:
+- Static methods cannot access instance variables or instance methods directly. They can only call other static methods or access static fields.
+- Static methods can be called using the class name or through an instance, but it is recommended to use the class name.
+
+Example:
+public class Counter {
+    private static int count = 0; // Static field
+
+    public static void increment() {
+        count++; // Accessing static field
+    }
+
+    public static void displayCount() {
+        System.out.println("Count: " + count); // Accessing static field
+    }
+
+    public static void main(String[] args) {
+        Counter.increment(); // Calling static method
+        Counter.displayCount(); // Calling static method
+    }
+}
+
+In this example:
+- `increment` and `displayCount` are static methods.
+- They modify and access the static field `count`.
+
+------------04. Create and overload constructors; ------------------
+
+
+####### Constructors in Java  #######
+1. Definition:
+A constructor in Java is a special method that is called when an instance (object) of a class is created. Its primary role is to initialize the newly created object.
+
+2. Syntax:
+A constructor has the same name as the class and does not have a return type, not even `void`.
+
+Basic Constructor Example:
+public class MyClass {
+    int value;
+
+    // Constructor
+    public MyClass() {
+        value = 10; // Initialize field
+    }
+}
+
+####### Overloading Constructors  #######
+1. Definition:
+Constructor overloading allows a class to have more than one constructor, each with a different parameter list. This provides flexibility in object creation.
+
+2. Rules:
+- Each constructor must have a different parameter list (different number or types of parameters).
+- Constructors do not have a return type.
+- You can define multiple constructors to initialize objects in different ways.
+
+3. Example of Overloaded Constructors:
+public class Person {
+    String name;
+    int age;
+
+    // Default constructor
+    public Person() {
+        this.name = "Unknown";
+        this.age = 0;
+    }
+
+    // Parameterized constructor with one parameter
+    public Person(String name) {
+        this.name = name;
+        this.age = 0;
+    }
+
+    // Parameterized constructor with two parameters
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    public static void main(String[] args) {
+        Person person1 = new Person(); // Calls default constructor
+        Person person2 = new Person("Alice"); // Calls constructor with one parameter
+        Person person3 = new Person("Bob", 30); // Calls constructor with two parameters
+        
+        person1.display(); // Output: Name: Unknown, Age: 0
+        person2.display(); // Output: Name: Alice, Age: 0
+        person3.display(); // Output: Name: Bob, Age: 30
+    }
+}
+
+####### Key Points to Remember:  #######
+1. Default Constructor:
+   - If no constructors are defined in a class, Java provides a default no-argument constructor automatically.
+   - If any constructor is defined, the default constructor is not provided unless explicitly defined.
+
+2. Parameterized Constructors:
+   - Allow for different ways to initialize objects. They accept parameters that are used to set field values when the object is created.
+
+3. Constructor Chaining:
+   - You can call one constructor from another within the same class using `this()`. This helps to avoid code duplication.
+
+   Example:
+   public class Example {
+       int x;
+       int y;
+
+       // Constructor with two parameters
+       public Example(int x, int y) {
+           this.x = x;
+           this.y = y;
+       }
+
+       // Constructor with one parameter
+       public Example(int x) {
+           this(x, 0); // Calls the two-parameter constructor
+       }
+   }
+
+
+4. No Return Type:
+   - Constructors do not have a return type. This distinguishes them from regular methods.
+
+5. Overloading vs. Overriding:
+   - Constructor overloading is different from method overriding. Overloading occurs within the same class and involves multiple constructors with different parameter lists. Overriding involves a subclass providing a specific implementation for a method defined in its superclass.
