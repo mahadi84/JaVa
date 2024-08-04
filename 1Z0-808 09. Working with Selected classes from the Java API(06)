@@ -700,3 +700,9 @@ Explanation:
 To write and use a lambda expression with a `Predicate`:
 1. Create a `Predicate` using a lambda expression.
 2. Apply the `Predicate` to data to filter, test, or perform operations based on the predicate’s condition.
+
+
+
+
+
+-
