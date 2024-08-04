@@ -472,3 +472,117 @@ public class ExceptionPropagationExample {
 2. Invoking a Method That Throws an Exception:
    - Handle the exception with a `try-catch` block.
    - Alternatively, propagate the exception further up the call stack by declaring it in the method signature with `throws`.
+
+
+
+============================================================================================================
+-----------05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)-----------
+============================================================================================================
+
+
+
+######## Common Causes
+######## Example
+######## Common Causes
+######## Example
+######## Common Causes
+######## Example
+######## Common Causes
+######## Example
+
+
+### 1. `NullPointerException`
+`NullPointerException` is thrown when your code attempts to use `null` in a situation where an object is required. This is one of the most common exceptions in Java.
+
+######## Common Causes: ########
+- Calling a method on a `null` object reference.
+- Accessing or modifying a field of a `null` object.
+- Taking the length of a `null` array.
+- Accessing or modifying the elements of a `null` array.
+
+######## Example: ########
+public class NullPointerExceptionExample {
+    public static void main(String[] args) {
+        String str = null;
+        try {
+            int length = str.length(); // This line throws NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException: " + e.getMessage());
+        }
+    }
+}
+
+Explanation:
+- The `str` variable is `null`, and calling `length()` on it results in a `NullPointerException`.
+
+### 2. `ArithmeticException`
+`ArithmeticException` is thrown when an exceptional arithmetic condition occurs, such as division by zero.
+
+######## Common Causes: ########
+- Dividing an integer by zero.
+- Performing other illegal arithmetic operations, such as overflow in integer calculations.
+
+######## Example: ########
+public class ArithmeticExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // This line throws ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: " + e.getMessage());
+        }
+    }
+}
+
+Explanation:
+- Dividing `10` by `0` is an illegal operation and results in an `ArithmeticException`.
+
+### 3. `ArrayIndexOutOfBoundsException`
+`ArrayIndexOutOfBoundsException` is thrown when an array is accessed with an illegal index, such as an index that is negative or greater than or equal to the array size.
+
+######## Common Causes: ########
+- Accessing an array element with an index less than `0` or greater than or equal to the array’s length.
+
+######## Example: ########
+public class ArrayIndexOutOfBoundsExceptionExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3};
+        try {
+            int value = numbers[5]; // This line throws ArrayIndexOutOfBoundsException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught ArrayIndexOutOfBoundsException: " + e.getMessage());
+        }
+    }
+}
+
+Explanation:
+- Accessing `numbers[5]` is out of bounds because the valid indices for the array are `0`, `1`, and `2`.
+
+### 4. `ClassCastException`
+`ClassCastException` is thrown when an attempt is made to cast an object to a class of which it is not an instance.
+
+######## Common Causes: ########
+- Attempting to cast an object to a subclass of which it is not an instance.
+- Casting between incompatible types, such as between unrelated classes.
+
+######## Example: ########
+public class ClassCastExceptionExample {
+    public static void main(String[] args) {
+        Object obj = "Hello";
+        try {
+            Integer num = (Integer) obj; // This line throws ClassCastException
+        } catch (ClassCastException e) {
+            System.out.println("Caught ClassCastException: " + e.getMessage());
+        }
+    }
+}
+
+Explanation:
+- The `obj` variable holds a `String`, but casting it to `Integer` results in a `ClassCastException`.
+
+### Summary
+- `NullPointerException`: Occurs when operations are performed on a `null` reference. Common when accessing methods or fields of `null` objects.
+- `ArithmeticException`: Raised for exceptional arithmetic conditions, such as division by zero.
+- `ArrayIndexOutOfBoundsException`: Thrown when attempting to access an array with an invalid index.
+- `ClassCastException`: Happens when an object is cast to a type it is not an instance of.
+
+
