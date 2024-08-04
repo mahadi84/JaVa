@@ -13,7 +13,8 @@ Date: 31-July-2024(Wednesday)
 ==============================================================
 
 --------------------01. Define the scope of variables----------------------------------
-Here's a detailed breakdown of the scope of variables:
+####### Scope of Variables
+###### Key Points to Remember ############
 
 ####### Scope of Variables
 
@@ -25,6 +26,7 @@ Here's a detailed breakdown of the scope of variables:
 
 2. -----Class Variables (Static Variables) ----
    - Declared with the `static` keyword inside a class but outside any method, constructor, or block.
+   - Belongs to the class itselt, not instances.
    - Created when the program starts and destroyed when the program stops.
    - Accessible from all static and instance methods, constructors, and blocks.
    - Default values are assigned if not explicitly initialized.
@@ -41,7 +43,6 @@ Here's a detailed breakdown of the scope of variables:
    - Must be initialized explicitly before use.
 
 ###### Key Points to Remember ############
-
 - Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
 - Access Modifiers: Visibility of instance and class variables can be controlled using access modifiers (`private`, `protected`, `public`, and default).
 - Final Variables: Variables declared with the `final` keyword cannot be reassigned once initialized.
@@ -52,8 +53,11 @@ Here's a detailed breakdown of the scope of variables:
 
 --------------------02. Define the structure of a Java class---------------------------
 
-Basic Structure
-A Java class typically consists of the following components:
+###### Class Declaration
+######  Fields (Attributes)
+###### Methods (Behaviors)
+###### Constructor
+
 
 ###### Class Declaration: ######
    public class MyClass {
@@ -106,7 +110,20 @@ A Java class typically consists of the following components:
 
 
 --------------------03. Create executable Java applications with a main method; --------------
-Static: method belongs to the class itself, rather than an instance of the class.
+
+######## Example 1: Basic Structure with Main Method
+######## Example 2: Using Static and Instance Methods
+######## Example 3: Constructor Overloading
+######## Example 4: Using Static Blocks
+######## Example 5: Final Variables and Initialization
+######## Example 6: Abstract Class and Method
+######## Example 7: Interface Implementation
+######## Example 8: Inheritance and Method Overriding
+######## Example 9: Try-With-Resources
+######## Example 10: Lambda Expressions (Java 8+) : Example with Functional Interfaces
+
+
+Static: member (method or fields) belongs to the class itself, rather than an instance of the class.
 Void: (return type)method does not return any value.
 
 What is the Main method, Why it is static and Void?
@@ -145,6 +162,8 @@ public class Example2 {
 Can a Class have multiple constructors?
 If, Yes, How to call each other?
 Can a constructor Overload in a same class?
+Can a constructor be private?
+What is singleton pattern?
 
 public class Example3 {
     int value;
@@ -215,6 +234,12 @@ public class Example6 extends Animal {
 ```
 
 ######## Example 7: Interface Implementation ########
+
+-Supoort Miltiple inheritance
+-No constructor or member variab le except statice final constant
+-Method is alwasy Abstract and public
+
+
 interface Printable {
     void print();
 }
@@ -305,7 +330,9 @@ public class Example10 {
 }
 
 --------------- Using Lambda Expressions with Functional Interfaces:----------------
-Lambda expressions can be used with functional interfaces, which are interfaces with a single abstract method.
+-can be used with functional interfaces, 
+-functional interface is interfaces with a single abstract method.
+example: Runnable, Callable, Comparator
 
 interface MathOperation {
     int operation(int a, int b);
@@ -349,11 +376,16 @@ Collections.sort(names, (s1, s2) -> s1.compareToIgnoreCase(s2));
 
 --------------------04. Run a Java program from the command line;  ---------------------------
 
-Running a Java program from the command line involves a few steps, including 
- -writing the Java code, 
- -compiling it with the Java compiler, and then 
- -executing the compiled bytecode with the Java Virtual Machine (JVM). 
-Here's a step-by-step guide:
+######## Step 1: Write Your Java Code
+######## Step 2: Open the Command Line
+######## Step 3: Navigate to the Directory
+######## Step 4: Compile the Java Code
+######## Step 5: Run the Compiled Java Program
+########  Additional Tips
+######## Example with Package
+
+
+
 
 ######## Step 1: Write Your Java Code ########
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
@@ -390,8 +422,8 @@ You should see the output: Hello, World!
 
 
 ########  Additional Tips ########
-- **Setting Up the Environment**: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
-- **Handling Packages**: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
+- Setting Up the Environment: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
+- Handling Packages: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
 
 ######## Example with Package ########
 1. Create a file named `com/example/HelloWorld.java` with the following content:
@@ -417,10 +449,10 @@ You should see the output: Hello, World!
 
 --------------------05. Produce console output  ----------------------------------------------
 
-Producing console output in Java is typically done using the 
-01. `System.out.println()`, 
-02. `System.out.print()`, and 
-03. `System.out.printf()` methods. 
+
+######## Explanation ########
+########  Example Program Using All Methods ########
+
 
 ######## Explanation ########
 - `System.out.println("...")`: Prints the string and moves to a new line.
@@ -447,7 +479,7 @@ public class ConsoleOutputExample {
 }
 ```
 
-**Output:**
+Output:
 This is an example of println.
 It moves to a new line after printing.
 This is an example of print. It continues on the same line.
@@ -458,6 +490,13 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 
 --------------------06. Import other Java packages to make them accessible in your code  ---------------------------
 
+########  1. Importing a Single Class 
+########  2. Importing All Classes from a Package 
+########  3. Importing Static Members 
+######## Practical Example
+
+
+
 Importing packages 
    -allow  to use of classes and interfaces that are defined in other packages. 
    -organize and reuse code more efficiently. 
@@ -466,11 +505,11 @@ There are several ways to import packages in Java:
 ########  1. Importing a Single Class ######## 
 To import a specific class from a package, you use the `import` statement followed by the fully qualified class name.
 
-**Syntax:**
+Syntax:
 import packageName.ClassName;
 
 
-**Example:**
+Example:
 import java.util.ArrayList;
 
 public class ImportExample {
@@ -486,10 +525,10 @@ public class ImportExample {
 ########  2. Importing All Classes from a Package ######## 
 To import all classes and interfaces from a package, you use the `import` statement followed by the package name and a `.*`.
 
-**Syntax:**
+Syntax:
 import packageName.*;
 
-**Example:**
+Example:
 import java.util.*;
 
 public class ImportExample {
@@ -510,7 +549,7 @@ public class ImportExample {
 ########  3. Importing Static Members ######## 
 If you want to import static members (fields and methods) of a class, you use the `import static` statement.
 
-**Syntax:**
+Syntax:
 import static packageName.ClassName.staticMemberName;
 
 
@@ -518,7 +557,7 @@ or to import all static members:
 import static packageName.ClassName.*;
 
 
-**Example:**
+Example:
 import static java.lang.Math.*;
 
 public class StaticImportExample {
@@ -566,105 +605,113 @@ Here is a practical example that combines various types of imports:
     }
 
 ######## Compiling and Running the Code ######## 
-1. Save the `StringUtils` class in the directory `com/example/utils/`.
-2. Save the `Main` class in the root directory where the `com` directory is located.
-3. Open the command line and navigate to the root directory.
-4. Compile the `StringUtils` class:
-    javac com/example/utils/StringUtils.java
+    1. Save the `StringUtils` class in the directory `com/example/utils/`.
+    2. Save the `Main` class in the root directory where the `com` directory is located.
+    3. Open the command line and navigate to the root directory.
+    4. Compile the `StringUtils` class:
+        javac com/example/utils/StringUtils.java
 
-5. Compile the `Main` class:
-    javac Main.java
+    5. Compile the `Main` class:
+        javac Main.java
 
-6. Run the `Main` class:
-    java Main
+    6. Run the `Main` class:
+        java Main
 
-**Output:**
-Original: Hello World
-Reversed: dlroW olleH
-[One, Two]
+    Output:
+    Original: Hello World
+    Reversed: dlroW olleH
+    [One, Two]
 
 --------------------07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.  ---------------------------
 
-Java is a widely-used programming language known for its powerful features and capabilities. 
-Here are comparisons and contrasts of some key features and components of Java: platform independence, object orientation, and encapsulation.
+
+######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
+########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
+########## Encapsulation        (-Definition, -Features, -Benefits, -Examples)
+########## Comparison and Contrast 
+                01. Platform Independence vs. Object Orientation:
+                02. Object Orientation vs. Encapsulation:
+                03. Platform Independence vs. Encapsulation:
+
 
 ######### Platform Independence ##########
+Java is a widely-used programming language known for its powerful features and capabilities. 
 
-----Definition:----
-- **Platform Independence** means that a program written in Java can run on any device that has the Java Virtual Machine (JVM) installed, regardless of the underlying hardware and operating system.
+Definition:----
+    Platform Independence means that a program written in Java can run on any device that has the Java Virtual Machine (JVM) installed, regardless of the underlying hardware and operating system.
 
-----Features:----
-- **Write Once, Run Anywhere (WORA):** Java programs are compiled into bytecode, which can be executed on any JVM. This allows the same Java program to run on different platforms without modification.
-- **Java Virtual Machine (JVM):** The JVM is the key to Java's platform independence. It abstracts the underlying hardware and operating system, allowing Java bytecode to run on any device with a compatible JVM.
+Features:----
+    -Write Once, Run Anywhere (WORA): Java programs are compiled into bytecode, which can be executed on any JVM. This allows the same Java program to run on different platforms without modification.
+    -Java Virtual Machine (JVM): The JVM is the key to Java's platform independence. It abstracts the underlying hardware and operating system, allowing Java bytecode to run on any device with a compatible JVM.
 
-----Benefits:----
-- **Cross-Platform Compatibility:** Developers can write a single version of their application and deploy it across multiple platforms, reducing development and maintenance costs.
-- **Portability:** Java programs can easily be moved from one platform to another without needing recompilation.
+Benefits:----
+    -Cross-Platform Compatibility: Developers can write a single version of their application and deploy it across multiple platforms, reducing development and maintenance costs.
+    -Portability: Java programs can easily be moved from one platform to another without needing recompilation.
 
-----Examples:----
-- A Java program developed on Windows can run on Linux or macOS without any changes to the code.
+Examples:----
+    -A Java program developed on Windows can run on Linux or macOS without any changes to the code.
 
 ########## Object Orientation ##########
 
-----Definition:----
-- **Object Orientation** is a programming paradigm based on the concept of "objects," which can contain data (fields) and code (methods). Java is inherently an object-oriented language.
+Definition:----
+    Object Orientation is a programming paradigm(model or approch or pattern) based on the concept of "objects," which can contain data (fields) and code (methods). Java is inherently an object-oriented language.
 
-----Features:----
-- **Classes and Objects:** Java uses classes to define blueprints for objects. An object is an instance of a class.
-- **Inheritance:** Java allows classes to inherit properties and methods from other classes, promoting code reuse and hierarchical classification.
-- **Polymorphism:** Java supports polymorphism, allowing objects to be treated as instances of their parent class, enabling flexible and reusable code.
-- **Abstraction:** Java allows the creation of abstract classes and interfaces to define abstract data types, which can be implemented by concrete classes.
+Features:----
+    -Classes and Objects: Java uses classes to define blueprints for objects. An object is an instance of a class.
+    -Inheritance: Java allows classes to inherit properties and methods from other classes, promoting code reuse and hierarchical classification.
+    -Polymorphism: Java supports polymorphism, allowing objects to be treated as instances of their parent class, enabling flexible and reusable code.
+    -Abstraction: Java allows the creation of abstract classes and interfaces to define abstract data types, which can be implemented by concrete classes.
 
-----Benefits:----
-- **Modularity:** Object-oriented design encourages modularity, making code easier to understand, maintain, and debug.
-- **Reusability:** Code can be reused through inheritance and composition, reducing redundancy and improving efficiency.
-- **Flexibility and Scalability:** Object-oriented design makes it easier to scale and extend applications by adding new classes and objects.
+Benefits:----
+    -Modularity: Object-oriented design encourages modularity, making code easier to understand, maintain, and debug.
+    -Reusability: Code can be reused through inheritance and composition, reducing redundancy and improving efficiency.
+    -Flexibility and Scalability: Object-oriented design makes it easier to scale and extend applications by adding new classes and objects.
 
-----Examples:----
-- Creating a `Vehicle` class and then extending it with `Car` and `Bike` subclasses, each having specific implementations of methods defined in `Vehicle`.
+Examples:----
+    -Creating a `Vehicle` class and then extending it with `Car` and `Bike` subclasses, each having specific implementations of methods defined in `Vehicle`.
 
 ########## Encapsulation ##########
 
-----Definition:----
-- **Encapsulation** is the practice of bundling data (fields) and methods that operate on that data into a single unit or class, and restricting access to some of the object's components.
+Definition:----
+   Encapsulation is the practice of bundling data (fields) and methods that operate on that data into a single unit or class, and restricting access to some of the object's components.
 
-----Features:----
-- **Access Modifiers:** Java uses access modifiers (private, protected, public, and default) to control the visibility and accessibility of classes, methods, and fields.
-- **Getters and Setters:** Java encourages the use of getter and setter methods to access and modify private fields, ensuring data integrity and encapsulation.
-- **Data Hiding:** Encapsulation hides the internal state of an object from the outside world and only exposes a controlled interface.
+Features:----
+    -Access Modifiers: Java uses access modifiers (private, protected, public, and default) to control the visibility and accessibility of classes, methods, and fields.
+    -Getters and Setters: Java encourages the use of getter and setter methods to access and modify private fields, ensuring data integrity and encapsulation.
+    -Data Hiding: Encapsulation hides the internal state of an object from the outside world and only exposes a controlled interface.
 
-----Benefits:----
-- **Data Protection:** By restricting direct access to an object's fields, encapsulation protects the data from unintended or harmful modifications.
-- **Maintainability:** Encapsulation makes it easier to change the internal implementation of a class without affecting other parts of the program.
-- **Improved Modularity:** Encapsulation helps in organizing code into distinct sections with well-defined interfaces, enhancing modularity and readability.
+Benefits:----
+    -Data Protection: By restricting direct access to an object's fields, encapsulation protects the data from unintended or harmful modifications.
+    -Maintainability: Encapsulation makes it easier to change the internal implementation of a class without affecting other parts of the program.
+    -Improved Modularity: Encapsulation helps in organizing code into distinct sections with well-defined interfaces, enhancing modularity and readability.
 
-----Examples:----
-- Defining private fields in a class and providing public getter and setter methods to access and modify those fields.
+Examples:----
+    -Defining private fields in a class and providing public getter and setter methods to access and modify those fields.
 
 ########## Comparison and Contrast ##########
 
-1. **Platform Independence vs. Object Orientation:**
-   - Platform Independence: focuses on the ability of Java programs to run on any platform with a JVM, while 
-   - Object Orientation: is a programming paradigm(Concept) that organizes code around objects and classes.
-   
-   - Platform independence is achieved through the JVM and bytecode,  
-   - whereas object orientation is achieved through language features like classes, inheritance, and polymorphism.
+1. Platform Independence vs. Object Orientation:
+    -Platform Independence: focuses on the ability of Java programs to run on any platform with a JVM, while 
+    -Object Orientation: is a programming paradigm(Concept) that organizes code around objects and classes.
+    
+    -Platform independence is achieved through the JVM and bytecode,  
+    -whereas object orientation is achieved through language features like classes, inheritance, and polymorphism.
 
-2. **Object Orientation vs. Encapsulation:**
-   - Object Orientation: encompasses broader principles, including encapsulation, inheritance, and polymorphism. 
-   - Encapsulation: is specifically about bundling data and methods and restricting access to the inner workings of objects.
+2. Object Orientation vs. Encapsulation:
+    -Object Orientation: encompasses broader principles, including encapsulation, inheritance, and polymorphism. 
+    -Encapsulation: is specifically about bundling data and methods and restricting access to the inner workings of objects.
 
-   - While encapsulation is a fundamental aspect of object-oriented programming, 
-     object orientation also includes other concepts like inheritance and polymorphism to promote code reuse and flexibility.
+    -While encapsulation is a fundamental aspect of object-oriented programming, 
+        object orientation also includes other concepts like inheritance and polymorphism to promote code reuse and flexibility.
 
-3. **Platform Independence vs. Encapsulation:**
-   - Platform Independence: is a feature that ensures Java programs can run on any platform, while 
-   - Encapsulation: is a programming principle that ensures internal data protection and controlled access.
+3. Platform Independence vs. Encapsulation:
+    -Platform Independence: is a feature that ensures Java programs can run on any platform, while 
+    -Encapsulation: is a programming principle that ensures internal data protection and controlled access.
 
-   - Platform independence relates to the deployment and execution environment of Java applications, 
-   - whereas encapsulation is about the design and organization of code within those applications.
-
+    -Platform independence relates to the deployment and execution environment of Java applications, 
+    -whereas encapsulation is about the design and organization of code within those applications.
 
 
 
 -
+  
