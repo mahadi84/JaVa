@@ -10,9 +10,9 @@
 07. Apply encapsulation principles to a class
 08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
 
-=============================================================================================
-
-------------01. Create methods with arguments and return values; ------------------
+==================================================================================
+------------01. Create methods with arguments and return values; -----------------
+##################################################################################
 
 ######## Methods in Java 
 ######## Creating Methods with Arguments 
@@ -103,8 +103,9 @@ public class Main {
     }
 }
 
-
+##################################################################################
 ------------02. including overloaded methods------------------
+##################################################################################
 
 ####### Method Overloading #######
 
@@ -167,7 +168,10 @@ In this example:
 - The call to `obj.display(10, "Hello")` matches the method with an integer and a string parameter.
 - The call to `obj.display("Hello", "World")` matches the method with two string parameters.
 
+
+##################################################################################
 ------------03. Apply the static keyword to methods and fields  ------------------
+##################################################################################
 
 ###### The `static` Keyword
 ###### Static Fields (Class Variables)
@@ -263,7 +267,10 @@ In this example:
 - `increment` and `displayCount` are static methods.
 - They modify and access the static field `count`.
 
+
+##################################################################################
 ------------04. Create and overload constructors; ------------------
+##################################################################################
 
 
 ####### Constructors in Java  #######
@@ -364,3 +371,424 @@ public class Person {
 
 5. Overloading vs. Overriding:
    - Constructor overloading is different from method overriding. Overloading occurs within the same class and involves multiple constructors with different parameter lists. Overriding involves a subclass providing a specific implementation for a method defined in its superclass.
+
+##################################################################################
+------------------05. differentiate between default and user-defined constructors-------------------
+##################################################################################
+
+###### Default Constructor
+            1. Definition:
+            2. Characteristics:
+            3. Example:
+###### User-Defined Constructor
+            1. Definition:
+            2. Characteristics:
+            3. Example:
+###### Key Differences: ######
+
+
+
+
+
+###### Default Constructor ######
+
+1. Definition:
+A default constructor is a no-argument constructor that Java provides automatically if no constructors are defined by the programmer. Its primary role is to initialize object fields with default values.
+
+2. Characteristics:
+- No Arguments: It takes no parameters.
+- Automatic Provision: Java compiler provides this constructor by default if no other constructors are explicitly defined.
+- Default Initialization: It initializes instance variables to their default values (e.g., `null` for objects, `0` for numeric types, `false` for booleans).
+
+3. Example:
+public class DefaultConstructorExample {
+    int number;
+    String text;
+
+    // No explicit constructor is defined, so Java provides a default constructor
+
+    public static void main(String[] args) {
+        DefaultConstructorExample obj = new DefaultConstructorExample();
+        System.out.println("Number: " + obj.number); // Output: Number: 0
+        System.out.println("Text: " + obj.text); // Output: Text: null
+    }
+}
+In this example, since no constructors are defined in the `DefaultConstructorExample` class, the Java compiler provides a default constructor that initializes `number` to `0` and `text` to `null`.
+
+###### User-Defined Constructor ######
+
+1. Definition:
+A user-defined constructor is explicitly defined by the programmer to initialize objects with specific values or perform specific initialization tasks.
+
+2. Characteristics:
+- Custom Parameters: Can have parameters to initialize object fields with specific values.
+- Multiple Definitions: Multiple user-defined constructors can be provided in the same class, allowing constructor overloading.
+- No Automatic Provision: When you define any constructor in the class, the Java compiler does not provide the default constructor. You must explicitly define a no-argument constructor if needed.
+
+3. Example:
+public class UserDefinedConstructorExample {
+    int number;
+    String text;
+
+    // No-argument constructor (user-defined)
+    public UserDefinedConstructorExample() {
+        this.number = 10;
+        this.text = "Default Text";
+    }
+
+    // Parameterized constructor
+    public UserDefinedConstructorExample(int number, String text) {
+        this.number = number;
+        this.text = text;
+    }
+
+    public static void main(String[] args) {
+        UserDefinedConstructorExample obj1 = new UserDefinedConstructorExample(); // Calls no-argument constructor
+        UserDefinedConstructorExample obj2 = new UserDefinedConstructorExample(42, "Custom Text"); // Calls parameterized constructor
+
+        System.out.println("obj1 - Number: " + obj1.number + ", Text: " + obj1.text); // Output: Number: 10, Text: Default Text
+        System.out.println("obj2 - Number: " + obj2.number + ", Text: " + obj2.text); // Output: Number: 42, Text: Custom Text
+    }
+}
+In this example:
+- The no-argument user-defined constructor initializes `number` to `10` and `text` to `"Default Text"`.
+- The parameterized constructor allows for initializing the fields with custom values.
+
+###### Key Differences: ######
+
+1. Automatic vs. Explicit:
+   - Default Constructor: Automatically provided by Java if no constructors are explicitly defined.
+   - User-Defined Constructor: Explicitly defined by the programmer to initialize objects in a specific way.
+
+2. Parameters:
+   - Default Constructor: Takes no arguments.
+   - User-Defined Constructor: Can take parameters to initialize object fields with specific values.
+
+3. Initialization:
+   - Default Constructor: Initializes fields with default values (e.g., `0`, `null`).
+   - User-Defined Constructor: Allows initialization with custom values provided by the parameters.
+
+4. Constructor Overloading:
+   - Default Constructor: Cannot be overloaded (it’s a specific type of constructor).
+   - User-Defined Constructor: Can be overloaded with different parameter lists.
+
+5. Availability:
+   - Default Constructor: Only available if no other constructors are defined in the class.
+   - User-Defined Constructor: Always available as defined by the programmer and can coexist with other user-defined constructors or a default constructor if explicitly provided.
+
+##################################################################################
+-------------06. Apply access modifiers------------------
+##################################################################################
+
+###### Access Modifiers in Java 
+###### 1. `public`      -Definition: -Usage: -Example:
+###### 2. `protected`   -Definition: -Usage: -Example:
+###### 3. Default (Package-Private) -Definition: -Usage: -Example:
+###### 4. `private`     -Definition: -Usage: -Example: 
+###### Summary of Access Levels: 
+###### Key Points for the 1Z0-808 Exam: 
+
+
+
+
+###### Access Modifiers in Java ######
+
+Java provides four main access modifiers:
+
+1. `public`
+2. `protected`
+3. `default` (no modifier)
+4. `private`
+
+Each modifier controls access at different levels, from most accessible to least accessible.
+
+###### 1. `public` ######
+Definition:
+- Visibility: The `public` modifier allows the class, method, or field to be accessible from any other class or package.
+
+Usage:
+- Class: A `public` class can be accessed from any other class in any package.
+- Methods and Fields: `public` methods and fields can be accessed from anywhere.
+
+Example:
+public class PublicExample {
+    public int value; // Public field
+
+    public void display() { // Public method
+        System.out.println("Value: " + value);
+    }
+}
+
+###### 2. `protected` ######
+Definition:
+- Visibility: The `protected` modifier allows access within the same package and also from subclasses (even if they are in different packages).
+
+Usage:
+- Class Members: `protected` fields and methods can be accessed by other classes in the same package or by subclasses in other packages.
+
+Example:
+public class ProtectedExample {
+    protected int value; // Protected field
+
+    protected void display() { // Protected method
+        System.out.println("Value: " + value);
+    }
+}
+
+class SubClass extends ProtectedExample {
+    void show() {
+        // Accessing protected field and method from subclass
+        value = 10;
+        display();
+    }
+}
+
+###### 3. Default (Package-Private) ######
+
+Definition:
+- Visibility: The default access modifier (when no modifier is specified) allows access only within the same package.
+
+Usage:
+- Class Members: Members (fields and methods) with default access can only be accessed by other classes in the same package.
+
+Example:
+class DefaultExample {
+    int value; // Default (package-private) field
+
+    void display() { // Default (package-private) method
+        System.out.println("Value: " + value);
+    }
+}
+
+###### 4. `private` ######
+
+Definition:
+- Visibility: The `private` modifier restricts access to the class in which it is declared. Members marked as `private` are not accessible from outside the class.
+
+Usage:
+- Class Members: `private` fields and methods can only be accessed within the same class. They cannot be accessed from outside the class or by subclasses.
+
+Example:
+public class PrivateExample {
+    private int value; // Private field
+
+    private void display() { // Private method
+        System.out.println("Value: " + value);
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void show() {
+        display(); // Accessing private method within the same class
+    }
+}
+
+###### Summary of Access Levels: ######
+
+1. `public`: Accessible from any other class or package.
+2. `protected`: Accessible within the same package and by subclasses in other packages.
+3. Default (Package-Private): Accessible only within the same package.
+4. `private`: Accessible only within the same class.
+
+###### Key Points for the 1Z0-808 Exam: ######
+
+- Use `public` for classes, methods, and fields that need to be accessed from other packages or classes.
+- Use `protected` for methods and fields that need to be accessed by subclasses or other classes in the same package.
+- Use default (no modifier) when you want to limit access to the same package, promoting encapsulation while keeping access within a specific group of classes.
+- Use `private` to restrict access to methods and fields that should not be exposed outside the class, ensuring encapsulation and protecting internal data.
+
+
+##################################################################################
+-------------07. Apply encapsulation principles to a class------------------
+##################################################################################
+
+###### What is Encapsulation? 
+###### Key Principles of Encapsulation 
+###### Example of Encapsulation 
+###### Key Points for the 1Z0-808 Exam:
+
+
+
+###### What is Encapsulation? ######
+Encapsulation is the concept of wrapping data (fields) and code (methods) together into a single unit, i.e., a class. It involves:
+- Hiding the internal state of an object from the outside world.
+- Providing controlled access to the internal state through public methods.
+
+###### Key Principles of Encapsulation ######
+1. Private Fields: 
+   - Fields (variables) in a class should be marked as `private` to restrict direct access from outside the class. This helps in protecting the integrity of the data.
+
+2. Public Methods (Getters and Setters):
+   - Provide `public` methods to get and set the values of private fields. These methods are known as getter and setter methods.
+   - Getters (accessors) are methods that return the value of a private field.
+   - Setters (mutators) are methods that set or update the value of a private field.
+
+3. Controlled Access:
+   - By using getters and setters, you can control how the data is accessed and modified. You can add validation or logic inside these methods to enforce rules.
+
+4. Data Hiding:
+   - Encapsulation hides the implementation details from the outside world and only exposes what is necessary through the public API.
+
+###### Example of Encapsulation ######
+Here's a practical example of encapsulation in a Java class:
+
+public class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Public constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name with validation
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        }
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
+    }
+    
+    // Method to display person details
+    public void displayPerson() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 30);
+        person.displayPerson(); // Output: Name: Alice, Age: 30
+        
+        person.setName("Bob"); // Updating name
+        person.setAge(25); // Updating age
+        person.displayPerson(); // Output: Name: Bob, Age: 25
+        
+        // Direct access to private fields is not possible
+        // System.out.println(person.name); // Compile-time error
+    }
+}
+
+###### Key Points for the 1Z0-808 Exam: ######
+1. Private Fields: 
+   - Declare class fields as `private` to prevent unauthorized access and modification.
+
+2. Public Accessors (Getters) and Mutators (Setters):
+   - Provide `public` getter and setter methods to allow controlled access to private fields.
+   - Implement validation or logic in setters to ensure that data remains valid and consistent.
+
+3. Encapsulation Benefits:
+   - Control: You have control over how the fields are accessed and modified.
+   - Flexibility: You can change the internal implementation of a class without affecting other classes that use it.
+   - Maintainability: Encapsulation makes the code more maintainable by hiding complexity and exposing only necessary parts.
+
+4. Encapsulation in Practice:
+   - Always aim to encapsulate fields by making them `private` and provide public getter and setter methods to interact with these fields. This practice enhances security and integrity of the data within objects.
+
+##################################################################################
+-------------08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values------------------
+##################################################################################
+
+Java uses "pass-by-value" for both primitive types and object references, but the way this mechanism affects the values can differ between the two. Here’s a detailed explanation:
+
+###### Primitive Types
+###### Object References
+###### Summary
+###### Key Points for the 1Z0-808 Exam:
+
+
+
+
+
+###### Primitive Types ######
+Primitive types in Java (e.g., `int`, `float`, `double`, `boolean`, etc.) are passed into methods by value. This means that a copy of the value is passed to the method, and changes to the parameter within the method do not affect the original value outside the method.
+
+Example:
+
+public class PrimitiveExample {
+    public static void modifyPrimitive(int num) {
+        num = 20; // This change is local to the method
+    }
+
+    public static void main(String[] args) {
+        int original = 10;
+        modifyPrimitive(original);
+        System.out.println("Original value: " + original); // Output: Original value: 10
+    }
+}
+
+Explanation:
+- The `modifyPrimitive` method receives a copy of the `original` value.
+- Modifications to `num` inside `modifyPrimitive` do not affect `original`.
+- The output will still be `10`, indicating that `original` remains unchanged.
+
+###### Object References ######
+
+Object references in Java are also passed by value. However, this means that a copy of the reference (pointer) to the object is passed to the method, not the actual object. Consequently, while you can modify the object's internal state through the reference, you cannot change the reference itself to point to a new object outside the method.
+
+Example:
+public class ObjectExample {
+    static class MyObject {
+        int value;
+    }
+
+    public static void modifyObject(MyObject obj) {
+        obj.value = 20; // This modifies the state of the object
+    }
+
+    public static void reassignObject(MyObject obj) {
+        obj = new MyObject(); // This only changes the local reference
+        obj.value = 30;
+    }
+
+    public static void main(String[] args) {
+        MyObject myObj = new MyObject();
+        myObj.value = 10;
+
+        modifyObject(myObj);
+        System.out.println("After modifyObject: " + myObj.value); // Output: After modifyObject: 20
+
+        reassignObject(myObj);
+        System.out.println("After reassignObject: " + myObj.value); // Output: After reassignObject: 20
+    }
+}
+
+Explanation:
+- In the `modifyObject` method, the `value` of `myObj` is changed to `20`. This change is reflected outside the method because the method operates on the same object.
+- In the `reassignObject` method, a new `MyObject` instance is created and assigned to the local reference `obj`. This does not affect the original reference `myObj`. Hence, the `value` of `myObj` remains `20` outside the method.
+
+###### Summary ######
+1. Primitive Types:
+   - Passed by value.
+   - Changes within the method do not affect the original value.
+   - Example: `int`, `float`, `boolean`.
+
+2. Object References:
+   - Passed by value (the reference is copied).
+   - Changes to the object’s state within the method affect the original object.
+   - Reassigning the reference does not affect the original reference outside the method.
+   - Example: Objects of classes.
+
+###### Key Points for the 1Z0-808 Exam: ######
+- Pass-by-Value: Java passes both primitives and object references by value, but with different effects.
+- Primitive Values: Changing a primitive type inside a method does not change the original variable.
+- Object References: Changing the internal state of an object affects the original object, but reassigning the reference inside a method does not affect the original reference.
+
