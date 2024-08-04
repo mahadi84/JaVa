@@ -12,8 +12,15 @@ Date: 3-Aug-24(Saturday)
 
 --------------------01. Use Java operators; ---------------------
 
-## Java Operators 
-    ######### Arithmetic Operators ###### 
+######### Arithmetic Operators
+###### Assignment Operators
+###### Comparison Operators
+###### Logical Operators
+###### Bitwise Operators
+###### Ternary Operator
+###### Operator Precedenc
+
+######### Arithmetic Operators ###### 
     Used for performing mathematical operations.
         +(Addition)
         -(Subtraction)
@@ -37,27 +44,27 @@ Date: 3-Aug-24(Saturday)
 ###### Assignment Operators ###### 
     Used to assign values to variables.
 
-    * **=** (Simple assignment)
-    * **+=** (Addition assignment)
-    * **-=** (Subtraction assignment)
-    * **\*==** (Multiplication assignment)
-    * **/=** (Division assignment)
-    * **%=** (Modulo assignment)
+    * = (Simple assignment)
+    * += (Addition assignment)
+    * -= (Subtraction assignment)
+    * \*== (Multiplication assignment)
+    * /= (Division assignment)
+    * %= (Modulo assignment)
 
     Example:
     int x = 5;
     x += 3; // Equivalent to x = x + 3
-    ```
+
 
 ###### Comparison Operators ###### 
     Used to compare values.
 
-    * **==** (Equal to)
-    * **!=** (Not equal to)
-    * **>** (Greater than)
-    * **<** (Less than)
-    * **>=** (Greater than or equal to)
-    * **<=** (Less than or equal to)
+    * == (Equal to)
+    * != (Not equal to)
+    * > (Greater than)
+    * < (Less than)
+    * >= (Greater than or equal to)
+    * <= (Less than or equal to)
 
     Example:
     int a = 10, b = 5;
@@ -67,9 +74,9 @@ Date: 3-Aug-24(Saturday)
 ###### Logical Operators ###### 
     Used to combine boolean expressions.
 
-    * **&&** (Logical AND)
-    * **||** (Logical OR)
-    * **!** (Logical NOT)
+    * && (Logical AND)
+    * || (Logical OR)
+    * ! (Logical NOT)
 
     Example:
     boolean isTrue = true;
@@ -77,30 +84,30 @@ Date: 3-Aug-24(Saturday)
     boolean result1 = isTrue && isFalse; // false
     boolean result2 = isTrue || isFalse; // true
     boolean result3 = !isTrue; // false
-    ```
+
 
 ###### Bitwise Operators ###### 
     Used to perform operations on individual bits of integer values.
 
-    * **&** (Bitwise AND)
-    * **|** (Bitwise OR)
-    * **^** (Bitwise XOR)
-    * **~** (Bitwise complement)
-    * **<<** (Left shift)
-    * **>>** (Right shift)
-    * **>>>** (Unsigned right shift)
+    * & (Bitwise AND)
+    * | (Bitwise OR)
+    * ^ (Bitwise XOR)
+    * ~ (Bitwise complement)
+    * << (Left shift)
+    * >> (Right shift)
+    * >>> (Unsigned right shift)
 
     Example:
     int a = 5, b = 3;
     int result = a & b; // Bitwise AND
-    ```
+
 
 ###### Ternary Operator ###### 
 A shorthand for if-else statements.
     Example:
     int x = 10;
     String result = (x > 5) ? "Greater than 5" : "Less than or equal to 5";
-    ```
+
 
 ###### Operator Precedence ###### 
 The order in which operators are evaluated. Use parentheses to override the default precedence.
@@ -112,13 +119,22 @@ The order in which operators are evaluated. Use parentheses to override the defa
 
 --------------------02. use parentheses to override operator precedence---------------------
 
-Operator precedence: determines the order in which operations are performed in an expression.
+######### Operator precedence
+######### Example:
+####### To change the order of operations, you can use parentheses
+########### General Rule
+########### Example with Nested Parentheses
+########### Key Points
+#############Example demonstrating clarity
+
+
+######### Operator precedence: ######### 
+determines the order in which operations are performed in an expression.
  However, you can explicitly control the order of evaluation by using parentheses.
 
 ######### Example:
 Consider the expression:
 int result = 5 + 3 * 2;
-```
 Without parentheses, the multiplication (3 * 2) is performed first due to operator precedence, resulting in `result` being 11.
 
 ####### To change the order of operations, you can use parentheses:
@@ -132,31 +148,41 @@ Now, the addition (5 + 3) is performed first, resulting in `result` being 16.
 
 ########### Example with Nested Parentheses: ###########
 int result = (2 + (3 * 4)) - 5;
-```
 In this case, the multiplication (3 * 4) is performed first due to the innermost parentheses, followed by the addition (2 + 12), and finally the subtraction (14 - 5), resulting in `result` being 9.
 
 ########### Key Points #############
 * Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
 * Excessive use of parentheses can make code harder to read, so use them judiciously.
 
-**Example demonstrating clarity:**
-int result = (a + b) * (c - d);
-```
+#############Example demonstrating clarity:
+    int result = (a + b) * (c - d);
 While the parentheses might not be strictly necessary in this case, they improve readability by explicitly showing the two separate calculations being multiplied.
 
 
 
 --------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 
-### Understanding the Difference
-    In Java, there are two primary ways to test equality between objects:
+***Same Object vs Two Objects vs Custome Objects
 
-    1. **`==` operator:** Compares object references. It checks if two references point to the same object in memory.
-    2. **`equals()` method:** Compares the contents of two objects. It checks if the objects represent the same value.
+######### Understanding the Difference
+######### Comparing Strings: Example:
+######### Comparing Other Objects
+########  Important points
+
+### Understanding the Difference
+    There are two primary ways to test equality between objects:
+
+    1. `==` -operator:   
+            -Compares object references. 
+            -It checks if two references point to the same object in memory.
+    2. `equals()` 
+            -method: 
+            -Compares the contents of two objects. 
+            -It checks if the objects represent the same value.
 
 ### Comparing Strings
-**Strings are special objects in Java.
-** While they are objects, the `String` class overrides the `equals()` method to compare the actual content of the strings.
+Strings are special objects in Java.
+ While they are objects, the `String` class overrides the `equals()` method to compare the actual content of the strings.
 
 #### Example:
     String s1 = "hello";
@@ -168,7 +194,7 @@ While the parentheses might not be strictly necessary in this case, they improve
     System.out.println(s1.equals(s2)); // Output: true (content is equal)
     System.out.println(s1.equals(s3)); // Output: true (content is equal)
 
-**Explanation:**
+Explanation:
     * `s1 == s2`: Both `s1` and `s2` refer to the same String object in the String pool, so `==` returns `true`.
     * `s1 == s3`: `s1` and `s3` refer to different String objects, even though they have the same content, so `==` returns `false`.
     * `s1.equals(s2)` and `s1.equals(s3)`: Both comparisons check the content of the strings, which is the same, so `equals()` returns `true` in both cases.
@@ -192,22 +218,24 @@ While the parentheses might not be strictly necessary in this case, they improve
             return Objects.equals(name, other.name) && age == other.age;
         }
     }
-    ```
+
 
     In this example, the `equals()` method compares the `name` and `age` fields of two `Person` objects.
 
 ############Important points: ############
-
     * Always override `hashCode()` when overriding `equals()` to maintain consistency.
     * Use `Objects.equals()` for null-safe comparisons.
     * Consider using `@Override` annotation to prevent accidental overriding.
 
-    By understanding the difference between `==` and `equals()`, you can correctly compare objects in Java and avoid potential pitfalls.
-    
-
-
 
 --------------------04. Create if and if/else and ternary constructs ---------------------
+
+### If Statement
+### If/Else Statement
+### Ternary Operator
+######  Key points: ###### 
+### Example with multiple conditions
+### Nested if statements
 
 ### If Statement
     The `if` statement allows you to execute a block of code if a specified condition is true.
@@ -236,16 +264,15 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     int age = 20;
     String message = (age >= 18) ? "You are an adult." : "You are a minor.";
     System.out.println(message);
-    ```
+
 
 ######  Key points: ###### 
-
     * The condition in an `if` or `if/else` statement must be a boolean expression.
     * The code blocks within the `if` and `else` statements are executed only if the corresponding condition is true.
     * The ternary operator is a concise way to assign a value to a variable based on a condition.
     * Use the ternary operator for simple conditions, but prefer `if/else` for more complex logic.
 
-### Example with multiple conditions:**
+### Example with multiple conditions:
     int number = 5;
     if (number > 0) {
         System.out.println("Number is positive.");
@@ -256,7 +283,7 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     }
 
 
-### Nested if statements:**
+### Nested if statements:
     int age = 16;
     int weight = 60;
     if (age >= 18) {
@@ -272,9 +299,14 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
 
 
 --------------------------05. Use a switch statement---------------------
+### Syntax
+### Example
+###### Key Points ######
+
+
 - The `switch` statement in Java is used to execute one block of code among many alternatives based on the value of an expression. 
 - It's a cleaner and more readable alternative to using multiple `if-else-if` statements. 
-  Here's a basic overview of how to use it:
+
 
 ### Syntax
     switch (expression) {
@@ -317,8 +349,11 @@ public class Main {
 }
 
 ###### Key Points ######
-- Expression**: The expression inside the `switch` statement must be of type `byte`, `short`, `char`, `int`, `String`, or an enum.
-- Case Labels**: Each `case` label must be a constant or a literal. Duplicate case values are not allowed.
-- Break Statement**: The `break` statement is used to terminate a `case` block. If omitted, the execution will continue to the next `case` block (this is called "fall-through").
-- Default Case**: The `default` case is optional and can be used to execute a block of code if none of the `case` values match the expression.
+-Expression: The expression inside the `switch` statement must be of type `byte`, `short`, `char`, `int`, `String`, or an enum.
+-Case Labels: Each `case` label must be a constant or a literal. Duplicate case values are not allowed.
+-Break Statement: The `break` statement is used to terminate a `case` block. If omitted, the execution will continue to the next `case` block (this is called "fall-through").
+-Default Case: The `default` case is optional and can be used to execute a block of code if none of the `case` values match the expression.
 
+
+
+-
