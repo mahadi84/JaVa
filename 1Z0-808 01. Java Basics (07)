@@ -18,36 +18,36 @@ Date: 31-July-2024(Wednesday)
 
 ####### Scope of Variables
 
-1. ----Instance Variables ----
-   - Declared inside a class but outside any method, constructor, or block.
-   - Created when an object of the class is created and destroyed when the object is destroyed.
-   - Accessible from all methods, constructors, and blocks in the class.
-   - Default values are assigned if not explicitly initialized.
+1. Instance Variables ----
+    -Declared inside a class but outside any method, constructor, or block.
+    -Created when an object of the class is created and destroyed when the object is destroyed.
+    -Accessible from all methods, constructors, and blocks in the class.
+    -Default values are assigned if not explicitly initialized.
 
-2. -----Class Variables (Static Variables) ----
-   - Declared with the `static` keyword inside a class but outside any method, constructor, or block.
-   - Belongs to the class itselt, not instances.
-   - Created when the program starts and destroyed when the program stops.
-   - Accessible from all static and instance methods, constructors, and blocks.
-   - Default values are assigned if not explicitly initialized.
+2. Class Variables (Static Variables) ----
+    -Declared with the `static` keyword inside a class but outside any method, constructor, or block.
+    -Belongs to the class itselt, not instances.
+    -Created when the program starts and destroyed when the program stops.
+    -Accessible from all static and instance methods, constructors, and blocks.
+    -Default values are assigned if not explicitly initialized.
 
-3. ----Local Variables----
-   - Declared inside a method, constructor, or block.
-   - Created when the method, constructor, or block is entered and destroyed when it is exited.
-   - Must be initialized explicitly before use as they do not have default values.
-   - Scope is limited to the method, constructor, or block in which they are declared.
+3. Local Variables----
+    -Declared inside a method, constructor, or block.
+    -Created when the method, constructor, or block is entered and destroyed when it is exited.
+    -Must be initialized explicitly before use as they do not have default values.
+    -Scope is limited to the method, constructor, or block in which they are declared.
 
-4. ----Parameters ----
-   - Variables passed to methods, constructors, or blocks.
-   - Treated as local variables within the scope of the method, constructor, or block.
-   - Must be initialized explicitly before use.
+4. Parameters ----
+    -Variables passed to methods, constructors, or blocks.
+    -Treated as local variables within the scope of the method, constructor, or block.
+    -Must be initialized explicitly before use.
 
 ###### Key Points to Remember ############
-- Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
-- Access Modifiers: Visibility of instance and class variables can be controlled using access modifiers (`private`, `protected`, `public`, and default).
-- Final Variables: Variables declared with the `final` keyword cannot be reassigned once initialized.
-- Static Context: In a static method, you cannot directly access instance variables or methods; you must use a reference to an instance of the class.
-- Initialization: Local variables must be initialized before use, while instance and class variables are automatically initialized with default values if not explicitly done.
+-Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
+-Access Modifiers: Visibility of instance and class variables can be controlled using access modifiers (`private`, `protected`, `public`, and default).
+-Final Variables: Variables declared with the `final` keyword cannot be reassigned once initialized.
+-Static Context: In a static method, you cannot directly access instance variables or methods; you must use a reference to an instance of the class.
+-Initialization: Local variables must be initialized before use, while instance and class variables are automatically initialized with default values if not explicitly done.
 
 
 
@@ -85,9 +85,9 @@ Date: 31-July-2024(Wednesday)
    Return type specifies the data type of the value returned by the method.
 
 ###### Constructor: ######
-   - Special method used to initialize objects.
-   - No return type, including void.
-   - Constructor name matches the class name.
+   -Special method used to initialize objects.
+   -No return type, including void.
+   -Constructor name matches the class name.
 
    Example:
    public class Person {
@@ -138,7 +138,6 @@ public class HelloWorld {
         System.out.println("Hello, World!");
     }
 }
-```
 
 ######## Example 2: Using Static and Instance Methods ########
 public class Example2 {
@@ -156,7 +155,6 @@ public class Example2 {
         System.out.println("This is a static method.");
     }
 }
-```
 
 ######## Example 3: Constructor Overloading ########
 Can a Class have multiple constructors?
@@ -181,7 +179,6 @@ public class Example3 {
         System.out.println("Value: " + obj.value);
     }
 }
-```
 
 ######## Example 4: Using Static Blocks ########
 public class Example4 {
@@ -193,7 +190,6 @@ public class Example4 {
         System.out.println("Main method executed.");
     }
 }
-```
 
 ######## Example 5: Final Variables and Initialization ########
 public class Example5 {
@@ -208,7 +204,6 @@ public class Example5 {
         System.out.println("Final value: " + obj.value);
     }
 }
-```
 
 ########  Example 6: Abstract Class and Method ########
 abstract class Animal {
@@ -231,10 +226,8 @@ public class Example6 extends Animal {
         lion.sleep();
     }
 }
-```
 
 ######## Example 7: Interface Implementation ########
-
 -Supoort Miltiple inheritance
 -No constructor or member variab le except statice final constant
 -Method is alwasy Abstract and public
@@ -254,7 +247,6 @@ public class Example7 implements Printable {
         obj.print();
     }
 }
-```
 
 ######## Example 8: Inheritance and Method Overriding ########
 class Parent {
@@ -274,7 +266,6 @@ public class Example8 extends Parent {
         obj.display();
     }
 }
-```
 
 ########  Example 9: Try-With-Resources ########
 import java.io.*;
@@ -291,7 +282,6 @@ public class Example9 {
         }
     }
 }
-```
 
 ########### Example 10: Lambda Expressions (Java 8+) ###########
 Lambda expressions are a concise way to represent anonymous functions.
@@ -309,25 +299,25 @@ Benefits of Using Lambda Expressions:
 -Increased productivity: By reducing boilerplate code, lambda expressions can improve developer productivity.
 
 Basic Structure:
-(parameters) -> { body }
-Parameters: A comma-separated list of parameters.
-->: The arrow token separates parameters from the body.
-Body: The code to be executed.
+    (parameters) -> { body }
+    Parameters: A comma-separated list of parameters.
+    ->: The arrow token separates parameters from the body.
+    Body: The code to be executed.
 
 Example:
-(x, y) -> x + y
-This lambda expression takes two integer parameters x and y and returns their sum.
+    (x, y) -> x + y
+    This lambda expression takes two integer parameters x and y and returns their sum.
 
-Simple Example:
-import java.util.Arrays;
-import java.util.List;
+    Simple Example:
+    import java.util.Arrays;
+    import java.util.List;
 
-public class Example10 {
-    public static void main(String[] args) {
-        List<String> list = Arrays.asList("one", "two", "three");
-        list.forEach(item -> System.out.println(item));
+    public class Example10 {
+        public static void main(String[] args) {
+            List<String> list = Arrays.asList("one", "two", "three");
+            list.forEach(item -> System.out.println(item));
+        }
     }
-}
 
 --------------- Using Lambda Expressions with Functional Interfaces:----------------
 -can be used with functional interfaces, 
@@ -363,13 +353,13 @@ Output:
 
 
 Additional Examples:
-Using a lambda expression with the "Runnable" interface:
-Runnable r = () -> System.out.println("Hello from lambda!");
-new Thread(r).start();
+    Using a lambda expression with the "Runnable" interface:
+    Runnable r = () -> System.out.println("Hello from lambda!");
+    new Thread(r).start();
 
 Using a lambda expression with the "Comparator" interface:
-List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-Collections.sort(names, (s1, s2) -> s1.compareToIgnoreCase(s2));
+    List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+    Collections.sort(names, (s1, s2) -> s1.compareToIgnoreCase(s2));
 
 
 
@@ -390,13 +380,13 @@ Collections.sort(names, (s1, s2) -> s1.compareToIgnoreCase(s2));
 ######## Step 1: Write Your Java Code ########
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
 1. Open a text editor and write the following code:
-    ```java
+java
     public class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello, World!");
         }
     }
-    ```
+
 
 2. Save the file as `HelloWorld.java`.
 ######## Step 2: Open the Command Line ########
@@ -410,8 +400,7 @@ cd path/to/your/java/file
 ######## Step 4: Compile the Java Code ########
 Use the `javac` command to compile your Java file. This command will generate a `HelloWorld.class` file containing the bytecode.
 
-javac HelloWorld.java
-```If there are no errors, the `HelloWorld.class` file will be created in the same directory.
+javac HelloWorld.javaIf there are no errors, the `HelloWorld.class` file will be created in the same directory.
 
 ######## Step 5: Run the Compiled Java Program ########
 Use the `java` command to run the compiled Java program. You should specify the class name without the `.class` extension.
@@ -422,12 +411,12 @@ You should see the output: Hello, World!
 
 
 ########  Additional Tips ########
-- Setting Up the Environment: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
-- Handling Packages: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
+-Setting Up the Environment: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
+-Handling Packages: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
 
 ######## Example with Package ########
 1. Create a file named `com/example/HelloWorld.java` with the following content:
-    ```java
+
     package com.example;
 
     public class HelloWorld {
@@ -435,7 +424,7 @@ You should see the output: Hello, World!
             System.out.println("Hello, World!");
         }
     }
-    ```
+
 
 2. Open the command line and navigate to the directory containing the `com` directory:
     cd path/to/your/java/file
@@ -455,9 +444,9 @@ You should see the output: Hello, World!
 
 
 ######## Explanation ########
-- `System.out.println("...")`: Prints the string and moves to a new line.
-- `System.out.print("...")`: Prints the string without moving to a new line.
-- `System.out.printf("format string", args)`: Prints a formatted string. The `%n` format specifier in `printf` is used to insert a newline.
+-System.out.println("..."): Prints the string and moves to a new line.
+-System.out.print("..."): Prints the string without moving to a new line.
+-System.out.printf("format string", args): Prints a formatted string. The `%n` format specifier in `printf` is used to insert a newline.
 
 
 ########  Example Program Using All Methods ########
@@ -477,7 +466,6 @@ public class ConsoleOutputExample {
         System.out.printf("%nThis is an example of printf. Name: %s, Age: %d, Score: %.2f%n", "Bob", 25, 88.75);
     }
 }
-```
 
 Output:
 This is an example of println.
@@ -486,15 +474,12 @@ This is an example of print. It continues on the same line.
 This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 
 
-
-
 --------------------06. Import other Java packages to make them accessible in your code  ---------------------------
 
 ########  1. Importing a Single Class 
 ########  2. Importing All Classes from a Package 
 ########  3. Importing Static Members 
 ######## Practical Example
-
 
 
 Importing packages 
@@ -520,7 +505,6 @@ public class ImportExample {
         System.out.println(list);
     }
 }
-```
 
 ########  2. Importing All Classes from a Package ######## 
 To import all classes and interfaces from a package, you use the `import` statement followed by the package name and a `.*`.
@@ -544,7 +528,6 @@ public class ImportExample {
         System.out.println(map);
     }
 }
-```
 
 ########  3. Importing Static Members ######## 
 If you want to import static members (fields and methods) of a class, you use the `import static` statement.
@@ -569,7 +552,6 @@ public class StaticImportExample {
         System.out.println("Value of PI is: " + piValue);
     }
 }
-```
 
 ######## Practical Example ########
 Here is a practical example that combines various types of imports:
@@ -713,5 +695,16 @@ Examples:----
 
 
 
+
 -
-  
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
