@@ -1,0 +1,702 @@
+
+===========09. Working with Selected classes from the Java API(06): ======= 10-12Aug-24(Wednesday)
+
+01. Manipulate data using the StringBuilder class and its methods
+02. Create and manipulate Strings
+03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
+04. Declare and use an ArrayList of a given type 
+05. Write a simple Lambda expression that consumes a Lambda Predicate expression
+
+================================================================================
+---------01. Manipulate data using the StringBuilder class and its methods -----
+================================================================================
+
+###### Key Features of `StringBuilder` 
+###### Common Methods of `StringBuilder` 
+###### Example of Using `StringBuilder` 
+###### Summary 
+
+
+###### Key Features of `StringBuilder` ######
+1. Mutability:
+   - Unlike `String`, which is immutable (cannot be changed once created), `StringBuilder` allows modifications to its content without creating new objects.
+
+2. Performance:
+   - `StringBuilder` is designed for scenarios where frequent modifications to strings are required, making it more performance-efficient than using `String` for such operations.
+
+###### Common Methods of `StringBuilder` ######
+Here’s a breakdown of some commonly used methods in the `StringBuilder` class:
+
+1. `append()`
+   - Appends the specified data (string, character, integer, etc.) to the end of the `StringBuilder` object.   
+   StringBuilder sb = new StringBuilder("Hello");
+   sb.append(" World");
+   System.out.println(sb); // Output: Hello World
+   
+
+2. `insert(int offset, String str)`
+   - Inserts the specified string at the specified position (`offset`).   
+   StringBuilder sb = new StringBuilder("Hello World");
+   sb.insert(6, "Java ");
+   System.out.println(sb); // Output: Hello Java World
+   
+
+3. `delete(int start, int end)`
+   - Deletes the characters between the specified `start` and `end` positions (end is exclusive).   
+   StringBuilder sb = new StringBuilder("Hello Java World");
+   sb.delete(6, 11);
+   System.out.println(sb); // Output: Hello World
+   
+
+4. `replace(int start, int end, String str)`
+   - Replaces the characters from the specified `start` to `end` with the specified string.   
+   StringBuilder sb = new StringBuilder("Hello World");
+   sb.replace(6, 11, "Java");
+   System.out.println(sb); // Output: Hello Java
+   
+
+5. `reverse()`
+   - Reverses the sequence of characters in the `StringBuilder`.   
+   StringBuilder sb = new StringBuilder("Hello");
+   sb.reverse();
+   System.out.println(sb); // Output: olleH
+   
+
+6. `toString()`
+   - Converts the `StringBuilder` to a `String`. This is useful when you need to retrieve the string representation of the `StringBuilder`.   
+   StringBuilder sb = new StringBuilder("Hello");
+   String str = sb.toString();
+   System.out.println(str); // Output: Hello
+   
+
+7. `charAt(int index)`
+   - Returns the character at the specified index.  
+   StringBuilder sb = new StringBuilder("Hello");
+   char ch = sb.charAt(1);
+   System.out.println(ch); // Output: e
+   
+
+8. `length()`
+   - Returns the length (number of characters) of the `StringBuilder`.   
+   StringBuilder sb = new StringBuilder("Hello");
+   int length = sb.length();
+   System.out.println(length); // Output: 5
+   
+
+9. `capacity()`
+   - Returns the current capacity of the `StringBuilder`. The capacity is the amount of space allocated for characters.   
+   StringBuilder sb = new StringBuilder("Hello");
+   int capacity = sb.capacity();
+   System.out.println(capacity); // Output may vary; default capacity is 16 + length
+   
+
+###### Example of Using `StringBuilder` ######
+Here’s a complete example demonstrating various methods of the `StringBuilder` class:
+
+public class StringBuilderExample {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("Java");
+        
+        // Append
+        sb.append(" Programming");
+        System.out.println("After append: " + sb); // Output: Java Programming
+        
+        // Insert
+        sb.insert(5, " is fun");
+        System.out.println("After insert: " + sb); // Output: Java is fun Programming
+        
+        // Replace
+        sb.replace(5, 8, "was not");
+        System.out.println("After replace: " + sb); // Output: Java was not fun Programming
+        
+        // Delete
+        sb.delete(5, 14);
+        System.out.println("After delete: " + sb); // Output: Java fun Programming
+        
+        // Reverse
+        sb.reverse();
+        System.out.println("After reverse: " + sb); // Output: gnimmargP nuf avaJ
+        
+        // Convert to String
+        String str = sb.toString();
+        System.out.println("To String: " + str); // Output: gnimmargP nuf avaJ
+    }
+}
+
+Explanation:
+- The `StringBuilder` object `sb` is used to perform various string manipulations.
+- Methods like `append`, `insert`, `replace`, `delete`, and `reverse` are used to modify the content.
+- The `toString()` method is used to convert the final `StringBuilder` content into a `String`.
+
+###### Summary ######
+- `StringBuilder` allows for efficient, mutable string manipulation.
+- Common methods include `append()`, `insert()`, `delete()`, `replace()`, `reverse()`, and `toString()`.
+- `StringBuilder` is preferred over `String` when performing many modifications to strings due to its performance benefits.
+
+
+
+================================================================================
+02. Create and manipulate Strings
+================================================================================
+
+###### Creating Strings
+###### Common Methods for Manipulating Strings
+###### Example of String Manipulation
+###### Summary
+
+
+
+
+###### Creating Strings ######
+In Java, strings are instances of the `String` class, which is part of the `java.lang` package. Strings can be created in several ways:
+
+1. Using String Literals:
+   - Strings are typically created using string literals, which are enclosed in double quotes.
+   String str1 = "Hello, World!";
+
+   Explanation:
+   - The literal `"Hello, World!"` is automatically interned, meaning it's stored in a common pool of string literals to save memory.
+
+2. Using the `new` Keyword:
+   - You can also create strings using the `new` keyword and the `String` constructor.
+   String str2 = new String("Hello, World!");
+
+   Explanation:
+   - This creates a new `String` object with the content `"Hello, World!"`, regardless of whether an identical string already exists in the pool.
+
+###### Common Methods for Manipulating Strings ######
+Here are some commonly used methods of the `String` class:
+
+1. `length()`
+   - Returns the number of characters in the string.
+   String str = "Hello";
+   int length = str.length(); // Output: 5
+
+2. `charAt(int index)`
+   - Returns the character at the specified index.
+   char ch = str.charAt(1); // Output: 'e'
+
+3. `substring(int beginIndex, int endIndex)`
+   - Returns a substring from the specified `beginIndex` to `endIndex` (endIndex is exclusive).
+
+   String sub = str.substring(1, 4); // Output: "ell"
+
+4. `indexOf(String str)`
+   - Returns the index of the first occurrence of the specified substring.
+   int index = str.indexOf("l"); // Output: 2
+
+5. `toUpperCase()`
+   - Converts all characters in the string to uppercase.
+   String upper = str.toUpperCase(); // Output: "HELLO"
+
+6. `toLowerCase()`
+   - Converts all characters in the string to lowercase.
+   String lower = str.toLowerCase(); // Output: "hello"
+
+7. `trim()`
+   - Removes any leading and trailing whitespace from the string.
+   String trimmed = "   Hello   ".trim(); // Output: "Hello"
+
+8. `replace(CharSequence target, CharSequence replacement)`
+   - Replaces all occurrences of the specified substring with the specified replacement.
+   String replaced = str.replace("l", "L"); // Output: "HeLLo"
+
+9. `split(String regex)`
+   - Splits the string around matches of the given regular expression.
+   String[] parts = "one,two,three".split(","); // Output: ["one", "two", "three"]
+
+10. `startsWith(String prefix)`
+    - Checks if the string starts with the specified prefix.
+    boolean starts = str.startsWith("He"); // Output: true
+
+
+11. `endsWith(String suffix)`
+    - Checks if the string ends with the specified suffix.
+    boolean ends = str.endsWith("lo"); // Output: true
+
+
+12. `contains(CharSequence sequence)`
+    - Checks if the string contains the specified sequence of characters.
+    boolean contains = str.contains("ell"); // Output: true
+
+
+###### Example of String Manipulation ######
+Here's a practical example demonstrating various string methods:
+
+public class StringManipulationExample {
+    public static void main(String[] args) {
+        String str = "   Java Programming   ";
+        
+        // Trim the string
+        String trimmed = str.trim();
+        System.out.println("Trimmed: " + trimmed); // Output: "Java Programming"
+        
+        // Convert to uppercase
+        String upper = trimmed.toUpperCase();
+        System.out.println("Uppercase: " + upper); // Output: "JAVA PROGRAMMING"
+        
+        // Replace text
+        String replaced = upper.replace("JAVA", "JAVASCRIPT");
+        System.out.println("Replaced: " + replaced); // Output: "JAVASCRIPT PROGRAMMING"
+        
+        // Check substring
+        boolean contains = replaced.contains("SCRIPT");
+        System.out.println("Contains 'SCRIPT': " + contains); // Output: true
+        
+        // Get substring
+        String sub = replaced.substring(0, 10);
+        System.out.println("Substring: " + sub); // Output: "JAVASCRIPT"
+        
+        // Split the string
+        String[] parts = replaced.split(" ");
+        System.out.println("Split:");
+        for (String part : parts) {
+            System.out.println(part);
+        }
+        // Output:
+        // JAVASCRIPT
+        // PROGRAMMING
+    }
+}
+```
+
+Explanation:
+- The example demonstrates trimming, converting to uppercase, replacing text, checking for substrings, extracting substrings, and splitting a string into parts.
+
+###### Summary ######
+- Creation:
+  - Use string literals or the `new` keyword.
+- Common Methods:
+  - `length()`, `charAt()`, `substring()`, `indexOf()`, `toUpperCase()`, `toLowerCase()`, `trim()`, `replace()`, `split()`, `startsWith()`, `endsWith()`, `contains()`.
+- Performance Considerations:
+  - While strings are immutable, frequent modifications can lead to performance issues. For extensive modifications, consider using `StringBuilder`.
+
+
+
+===========================================================================================
+03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, 
+    java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
+===============================================================================================
+
+
+###### 1. `LocalDateTime`
+####### Creating and Manipulating `LocalDateTime`
+###### 2. `LocalDate`
+####### Creating and Manipulating `LocalDate`
+###### 3. `LocalTime`
+####### Creating and Manipulating `LocalTime`
+###### 4. `DateTimeFormatter`
+####### Creating and Using `DateTimeFormatter`
+###### 5. `Period`
+####### Creating and Using `Period`
+###### Example of Using `java.time` Classes
+###### Summary
+
+
+###### 1. `LocalDateTime` ######
+`LocalDateTime` represents a date-time without a time zone in the ISO-8601 calendar system. It combines a `LocalDate` and `LocalTime` into one object.
+
+####### Creating and Manipulating `LocalDateTime` ######
+- Creating an instance:
+  LocalDateTime dateTime = LocalDateTime.now(); // Current date and time
+  LocalDateTime specificDateTime = LocalDateTime.of(2024, 8, 4, 15, 30); // Specific date and time
+
+
+- Manipulating date-time:
+  LocalDateTime later = dateTime.plusDays(10).minusHours(5); // Add 10 days and subtract 5 hours
+
+
+- Getting specific components:
+  int year = dateTime.getYear();
+  int month = dateTime.getMonthValue();
+  int day = dateTime.getDayOfMonth();
+
+
+###### 2. `LocalDate` ######
+`LocalDate` represents a date without a time component. It’s useful for working with dates alone, without needing the time of day.
+
+####### Creating and Manipulating `LocalDate` ######
+- Creating an instance:
+  LocalDate date = LocalDate.now(); // Current date
+  LocalDate specificDate = LocalDate.of(2024, 8, 4); // Specific date
+
+
+- Manipulating dates:
+  LocalDate futureDate = date.plusWeeks(2).minusDays(5); // Add 2 weeks and subtract 5 days
+
+
+- Getting specific components:
+  int year = date.getYear();
+  int month = date.getMonthValue();
+  int day = date.getDayOfMonth();
+
+
+###### 3. `LocalTime` ######
+`LocalTime` represents a time without a date component. It’s useful for working with times of day.
+
+####### Creating and Manipulating `LocalTime` ######
+- Creating an instance:
+  LocalTime time = LocalTime.now(); // Current time
+  LocalTime specificTime = LocalTime.of(14, 30); // Specific time (2:30 PM)
+
+
+- Manipulating times:
+  LocalTime laterTime = time.plusHours(3).minusMinutes(15); // Add 3 hours and subtract 15 minutes
+
+
+- Getting specific components:
+  int hour = time.getHour();
+  int minute = time.getMinute();
+
+
+###### 4. `DateTimeFormatter` ######
+`DateTimeFormatter` is used for formatting and parsing date-time objects. It provides flexible ways to format date-time data and parse strings into date-time objects.
+
+####### Creating and Using `DateTimeFormatter` ######
+- Formatting date-time:
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  String formattedDateTime = dateTime.format(formatter);
+
+
+- Parsing a date-time string:
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  LocalDate parsedDate = LocalDate.parse("2024-08-04", formatter);
+
+
+###### 5. `Period` ######
+`Period` represents a quantity of time in terms of years, months, and days. It is used to measure the difference between two dates.
+
+####### Creating and Using `Period` ######
+- Creating a period:
+  Period period = Period.of(1, 2, 3); // Represents 1 year, 2 months, and 3 days
+
+
+- Calculating periods between dates:
+  LocalDate startDate = LocalDate.of(2024, 1, 1);
+  LocalDate endDate = LocalDate.of(2024, 8, 4);
+  Period periodBetween = Period.between(startDate, endDate);
+
+
+- Getting period components:
+  int years = periodBetween.getYears();
+  int months = periodBetween.getMonths();
+  int days = periodBetween.getDays();
+
+
+###### Example of Using `java.time` Classes ######
+Here’s an example demonstrating the use of these classes:
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+
+public class DateTimeExample {
+    public static void main(String[] args) {
+        // LocalDateTime
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Current DateTime: " + now);
+
+        LocalDateTime futureDateTime = now.plusMonths(1).minusDays(5);
+        System.out.println("Future DateTime: " + futureDateTime);
+
+        // LocalDate
+        LocalDate today = LocalDate.now();
+        System.out.println("Today's Date: " + today);
+
+        LocalDate nextWeek = today.plusWeeks(1);
+        System.out.println("Next Week's Date: " + nextWeek);
+
+        // LocalTime
+        LocalTime currentTime = LocalTime.now();
+        System.out.println("Current Time: " + currentTime);
+
+        LocalTime timeInFuture = currentTime.plusHours(2);
+        System.out.println("Time in 2 Hours: " + timeInFuture);
+
+        // DateTimeFormatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+        System.out.println("Formatted DateTime: " + formattedDateTime);
+
+        LocalDate parsedDate = LocalDate.parse("04-08-2024", formatter);
+        System.out.println("Parsed Date: " + parsedDate);
+
+        // Period
+        Period period = Period.between(LocalDate.of(2023, 1, 1), LocalDate.of(2024, 8, 4));
+        System.out.println("Period between dates: " + period.getYears() + " years, " +
+                           period.getMonths() + " months, " + period.getDays() + " days");
+    }
+}
+
+Explanation:
+- `LocalDateTime` is used to get the current date and time and manipulate it.
+- `LocalDate` is used for date-only manipulations.
+- `LocalTime` is used for time-only manipulations.
+- `DateTimeFormatter` is used to format and parse date-time strings.
+- `Period` is used to calculate the difference between two dates.
+
+###### Summary ######
+- `LocalDateTime`: Represents a date and time without time zone. Used for combining date and time operations.
+- `LocalDate`: Represents a date without time. Useful for date manipulations.
+- `LocalTime`: Represents a time without a date. Useful for time manipulations.
+- `DateTimeFormatter`: Used for formatting and parsing date-time values.
+- `Period`: Represents a span of time in terms of years, months, and days, useful for measuring the difference between dates.
+
+
+
+
+================================================================================
+------------------04. Declare and use an ArrayList of a given type  ----------
+================================================================================
+
+
+
+###### Declaring and Using `ArrayList` 
+####### 1. Importing the `ArrayList` Class 
+####### 2. Declaring an `ArrayList` 
+####### 3. Adding Elements to an `ArrayList` 
+####### 4. Accessing Elements 
+####### 5. Modifying Elements 
+####### 6. Removing Elements 
+####### 7. Iterating Through an `ArrayList` 
+####### 8. Common Methods 
+####### Example 
+###### Summary 
+
+
+
+###### Declaring and Using `ArrayList` ######
+
+####### 1. Importing the `ArrayList` Class ######
+Before you can use `ArrayList`, you need to import it from the `java.util` package:
+
+import java.util.ArrayList;
+
+####### 2. Declaring an `ArrayList` ######
+You can declare an `ArrayList` by specifying its type parameter, which defines the type of elements it can hold. For example, if you want an `ArrayList` of `String` objects, you would declare it like this:
+
+ArrayList<String> listOfStrings = new ArrayList<>();
+
+Generic Type:
+- `ArrayList<T>` is a generic class where `T` represents the type of elements. This provides type safety and avoids `ClassCastException`.
+
+####### 3. Adding Elements to an `ArrayList` ######
+You can add elements to an `ArrayList` using the `add()` method. Elements are added to the end of the list:
+
+listOfStrings.add("Apple");
+listOfStrings.add("Banana");
+listOfStrings.add("Cherry");
+
+####### 4. Accessing Elements ######
+You can access elements using the `get()` method and provide the index of the element you want to retrieve:
+
+String firstElement = listOfStrings.get(0); // Retrieves "Apple"
+System.out.println("First element: " + firstElement);
+
+####### 5. Modifying Elements ######
+
+To modify an element at a specific index, use the `set()` method:
+
+listOfStrings.set(1, "Blueberry"); // Replaces "Banana" with "Blueberry"
+
+####### 6. Removing Elements ######
+Elements can be removed by index or by object using the `remove()` method:
+
+- By Index:
+  listOfStrings.remove(2); // Removes "Cherry"
+
+- By Object:
+  listOfStrings.remove("Apple"); // Removes "Apple"
+
+
+####### 7. Iterating Through an `ArrayList` ######
+You can use a `for` loop, `for-each` loop, or an iterator to traverse the elements of an `ArrayList`:
+
+- Using a `for` loop:
+  for (int i = 0; i < listOfStrings.size(); i++) {
+      System.out.println(listOfStrings.get(i));
+  }
+
+
+- Using a `for-each` loop:
+  for (String fruit : listOfStrings) {
+      System.out.println(fruit);
+  }
+
+
+- Using an Iterator:
+  Iterator<String> iterator = listOfStrings.iterator();
+  while (iterator.hasNext()) {
+      System.out.println(iterator.next());
+  }
+
+
+####### 8. Common Methods ######
+- `size()`: Returns the number of elements in the list.
+  int size = listOfStrings.size(); // Number of elements
+
+
+- `isEmpty()`: Checks if the list is empty.
+  boolean isEmpty = listOfStrings.isEmpty(); // True if the list is empty
+
+
+- `clear()`: Removes all elements from the list.
+  listOfStrings.clear(); // Clears all elements
+
+
+####### Example ######
+Here’s a complete example demonstrating the usage of `ArrayList`:
+
+import java.util.ArrayList;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // Declare and initialize an ArrayList of Strings
+        ArrayList<String> fruits = new ArrayList<>();
+        
+        // Add elements
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        
+        // Access and print elements
+        System.out.println("First fruit: " + fruits.get(0)); // Output: Apple
+        
+        // Modify an element
+        fruits.set(1, "Blueberry");
+        
+        // Remove an element by index
+        fruits.remove(2); // Removes "Cherry"
+        
+        // Iterate through the ArrayList
+        System.out.println("Fruits in the list:");
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
+        
+        // Print the size of the ArrayList
+        System.out.println("Size of the list: " + fruits.size()); // Output: 2
+        
+        // Check if the ArrayList is empty
+        System.out.println("Is the list empty? " + fruits.isEmpty()); // Output: false
+        
+        // Clear the ArrayList
+        fruits.clear();
+        System.out.println("Size after clearing: " + fruits.size()); // Output: 0
+    }
+}
+
+Explanation:
+- The `ArrayList` is declared and initialized.
+- Elements are added, accessed, modified, and removed.
+- The list is iterated using a `for-each` loop.
+- Common methods are demonstrated.
+
+###### Summary ######
+- Declare an `ArrayList`: Specify the type of elements it will hold (e.g., `ArrayList<String> fruits = new ArrayList<>();`).
+- Add elements: Use `add()`.
+- Access elements: Use `get()`.
+- Modify elements: Use `set()`.
+- Remove elements: Use `remove()`.
+- Iterate through elements: Use `for`, `for-each`, or `Iterator`.
+- Common methods: `size()`, `isEmpty()`, `clear()`.
+
+
+
+
+=============================================================================================
+--------05. Write a simple Lambda expression that consumes a Lambda Predicate expression ----
+=============================================================================================
+
+
+###### Lambda Expressions and Functional Interfaces
+####### 1. Lambda Expressions
+####### 2. Functional Interfaces
+####### 3. Predicate Functional Interface
+###### Writing a Lambda Expression that Consumes a Predicate
+####### Example
+###### Key Points
+###### Summary
+
+
+
+###### Lambda Expressions and Functional Interfaces ######
+
+####### 1. Lambda Expressions ######
+A lambda expression is a shorthand notation for defining an anonymous function. The syntax is as follows:
+
+(parameters) -> expression
+Or, for more complex expressions:
+(parameters) -> { statements }
+
+####### 2. Functional Interfaces ######
+Functional interfaces are interfaces with a single abstract method. The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
+
+####### 3. Predicate Functional Interface ######
+`Predicate<T>` is a functional interface in the `java.util.function` package that represents a boolean-valued function of one argument. It has a single abstract method `test(T t)` that evaluates the predicate.
+
+Signature:
+
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+###### Writing a Lambda Expression that Consumes a Predicate ######
+To write a lambda expression that consumes a `Predicate`, you need to:
+
+1. Define a `Predicate`: Create a lambda expression that implements the `Predicate` interface.
+2. Use the `Predicate`: Apply this `Predicate` to some data.
+
+####### Example ######
+Let's walk through an example where we:
+
+- Define a `Predicate` to test if a number is positive.
+- Use this `Predicate` with a lambda expression to filter a list of numbers.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Define a Predicate to check if a number is positive
+        Predicate<Integer> isPositive = number -> number > 0;
+
+        // Create a list of integers
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(-5);
+        numbers.add(3);
+        numbers.add(0);
+        numbers.add(10);
+
+        // Filter the list using the Predicate
+        System.out.println("Positive numbers:");
+        for (Integer number : numbers) {
+            if (isPositive.test(number)) {
+                System.out.println(number);
+            }
+        }
+    }
+}
+
+Explanation:
+1. Define Predicate:
+   - `Predicate<Integer> isPositive = number -> number > 0;`
+   - This lambda expression checks if a number is greater than zero.
+
+2. Use Predicate:
+   - The `isPositive` predicate is used in the `test` method to filter the list of numbers.
+   - `if (isPositive.test(number))` applies the predicate to each number to determine if it should be printed.
+
+###### Key Points ######
+- Lambda Expression Syntax: `(parameters) -> expression`
+- Predicate Interface: Represents a boolean function with a `test(T t)` method.
+- Lambda with Predicate: Create a lambda expression that implements `Predicate` and then use it to evaluate or filter data.
+
+###### Summary ######
+To write and use a lambda expression with a `Predicate`:
+1. Create a `Predicate` using a lambda expression.
+2. Apply the `Predicate` to data to filter, test, or perform operations based on the predicate’s condition.
