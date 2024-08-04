@@ -13,11 +13,12 @@ Date: 1-2Aug-2024(Thursday-Friday)
 
 -----------01. Declare and initialize variables (including casting of primitive data types)---------------------
 
-* What is a variable?
-* What are the different data types in Java?
-* What is the difference between implicit and explicit casting?
-* How do you declare and initialize a variable?
-* What are the rules for naming variables?
+######## Understanding Variables 
+######## Primitive Data Types 
+######## Declaration and Initialization 
+######## Casting Primitive Data Types 
+######## Important Considerations 
+######## Example 
 
 
 ######## Understanding Variables ################
@@ -29,25 +30,19 @@ Date: 1-2Aug-2024(Thursday-Friday)
 Java has eight primitive data types:
     > byte: 8-bit signed integer (-128 to 127)
     > short: 16-bit signed integer (-32768 to 32767)
-    > int: 32-bit signed integer (-2147483648 to 2147483647)
+    > int: 32-bit signed integer (-2^31 to 2^31-1)
     > long: 64-bit signed integer (-9223372036854775808 to 9223372036854775807)
     > float: 32-bit single-precision floating-point number
     > double: 64-bit double-precision floating-point number
-    > char: 16-bit Unicode character
-    > boolean: true or false
+    > char: 16-bit Unicode character  By default: /u000
+    > boolean: true or false          By default: false
 
 ######## Declaration and Initialization 
-**Declaration:** Specifies the data type and name of the variable.
-    int age;
-    double salary;
-    char initial;
-    boolean isStudent;
+Declaration: Specifies the data type and name of the variable.
+    int age;    double salary;    char initial;    boolean isStudent;
 
-**Initialization:** Assigns a value to the variable.
-    int age = 25;
-    double salary = 45000.50;
-    char initial = 'A';
-    boolean isStudent = true;
+Initialization: Assigns a value to the variable.
+    int age = 25;    double salary = 45000.50;    char initial = 'A';    boolean isStudent = true;
 
 ######## Casting Primitive Data Types ################
     * Casting is converting a value from one data type to another.
@@ -59,6 +54,8 @@ Java has eight primitive data types:
 
         double pi = 3.14159;
         int i = (int) pi; // Explicit casting (double to int, potential data loss)
+        
+        ***insite double int is exist but inside int double is not exist
 
 ######## Important Considerations ################
     * Variable names must start with a letter, underscore (_), or dollar sign ($).
@@ -86,13 +83,13 @@ Java has eight primitive data types:
 
 
 
-
-
-
-
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
 
-## Object Reference Variables vs Primitive in Java
+####### Object Reference Variables
+####### Primitive Variables  Example:
+### Key Differences
+### Additional Points for 1Z0-808
+
 
 ####### Object Reference Variables ##########
     * Store references (memory addresses) to objects.
@@ -111,7 +108,7 @@ Java has eight primitive data types:
 
 
 
-**Example:**
+Example:
     String name = "Alice"; // Object reference variable
     String anotherName = name; // Both variables refer to the same object
 
@@ -133,23 +130,20 @@ Java has eight primitive data types:
     Operations  | Basic arithmetic, comparison  | Object methods and properties 
 
 ### Additional Points for 1Z0-808 #######
-    > Null values:** Object reference variables can be assigned `null` to indicate that they don't refer to any object. Primitive variables cannot be null.
-    > Wrapper classes:** Primitive types have corresponding wrapper classes (e.g., `Integer`, `Double`) that allow them to be treated as objects.
-    > Autoboxing and unboxing:** Java automatically converts between primitive types and their wrapper classes.
-    > Memory management:** Primitive variables are managed by the JVM, while object memory is managed by the garbage collector.
-
+    > Null values: Object reference variables can be assigned `null` to indicate that they don't refer to any object. Primitive variables cannot be null.
+    > Memory management: Primitive variables are managed by the JVM, while object memory is managed by the garbage collector.
 
 
 -----------03. Know how to read or write to object fields-------------------------
 
-Understanding Object Fields: Before diving into reading and writing, it's essential to grasp the concept of object fields.
+######### Accessing Object Fields ##########
+######## Key Points ##########
+######## Additional Considerations
 
 Fields: are variables declared within a class. They represent the data associated with an object.
 Object: is an instance of a class. It holds the values of its fields.
 
-
 ######### Accessing Object Fields ##########
-
 There are primarily two ways to access object fields:
 
 1. Direct Access (Using Dot Operator)
@@ -227,6 +221,15 @@ There are primarily two ways to access object fields:
 
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
 
+######## Creation
+######## Dereference by Reassignment
+######## Garbage Collection
+######## Key Points -Example:
+######## Important Notes
+
+Why object's lifecycle is so important?
+why garbage collection, is so important?
+what is memory leak?
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
@@ -257,7 +260,7 @@ There are primarily two ways to access object fields:
     * Assigning a new value to a reference variable doesn't destroy the old object but breaks the link.
     * Garbage collection is automatic, but its timing is unpredictable.
 
-    **Example:**
+    Example:
 
     public class ObjectLifecycle {
         public static void main(String[] args) {
@@ -271,16 +274,31 @@ There are primarily two ways to access object fields:
     }
 
 
-######## Important Notes:**
+######## Important Notes:
 * While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
 * The `finalize()` method is called before garbage collection, but its use is generally discouraged.
 * Understanding object lifetimes is crucial for preventing memory leaks.
+* Garbage Collection hehaivors for referenced objects are: Strong, Weak, Soft and Phandom.
 
 
 
 
 
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
+
+01. Why to convert primtive data type into Object and vise-versa?
+02. How to do that?
+
+########  Using Wrapper Classes in Jav 
+#########  Example: Using Boolean, Double, and Integer
+#########  Explanation 
+### Additional Examples:
+######### Comparing wrapper objects
+######### Using wrapper class constants
+###### Key Points:
+######  Additional Considerations
+
+
 
 ########  Using Wrapper Classes in Java ###### 
 Wrapper classes in Java provide a way to convert primitive data types into objects. 
@@ -314,36 +332,33 @@ public class WrapperClassExample {
         System.out.println("Numbers: " + numbers);
     }
 }
-```
 
 #########  Explanation: ###### 
-    1. **Creating wrapper class objects:** We create objects of `Boolean`, `Double`, and `Integer` wrapper classes to hold primitive values.
-    2. **Using wrapper class methods:** We can use methods provided by wrapper classes like `toString()` to convert values to strings.
-    3. **Autoboxing and unboxing:** Java automatically converts between primitive types and their corresponding wrapper classes. This is called autoboxing and unboxing.
-    4. **Using wrapper classes in collections:** We can store wrapper class objects in collections like `ArrayList`.
+    1. Creating wrapper class objects: We create objects of `Boolean`, `Double`, and `Integer` wrapper classes to hold primitive values.
+    2. Using wrapper class methods: We can use methods provided by wrapper classes like `toString()` to convert values to strings.
+    3. Autoboxing and unboxing: Java automatically converts between primitive types and their corresponding wrapper classes. This is called autoboxing and unboxing.
+    4. Using wrapper classes in collections: We can store wrapper class objects in collections like `ArrayList`.
 
 ### Additional Examples: ###### 
-    **Parsing strings to primitive types:**
+    Parsing strings to primitive types:
         String strInt = "123";
         int parsedInt = Integer.parseInt(strInt);
 
-**Comparing wrapper objects:**
+######### Comparing wrapper objects: #########
   Integer num1 = 10;
   Integer num2 = new Integer(10);
   System.out.println(num1 == num2); // False (different objects)
   System.out.println(num1.equals(num2)); // True (same value)
 
-**Using wrapper class constants:**
+######### Using wrapper class constants: #########
   boolean isTrue = Boolean.TRUE;
   double pi = Double.PI;
-
 
 ###### Key Points: ###### 
     * Wrapper classes provide object representations of primitive data types.
     * Autoboxing and unboxing simplify the conversion between primitive types and wrapper objects.
     * Wrapper classes offer additional methods and utilities for working with primitive values.
     * Use wrapper classes when you need to store primitive values in collections or when you need to use object-oriented features with primitive values.
-
 
 ######  Additional Considerations
     Null values: Wrapper classes can hold null values, unlike primitive types.
@@ -354,4 +369,3 @@ public class WrapperClassExample {
 
 
 ---
-
