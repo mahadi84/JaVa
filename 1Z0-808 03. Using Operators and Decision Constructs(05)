@@ -12,13 +12,13 @@ Date: 3-Aug-24(Saturday)
 
 --------------------01. Use Java operators; ---------------------
 
-######### Arithmetic Operators
+###### Arithmetic Operators
 ###### Assignment Operators
 ###### Comparison Operators
 ###### Logical Operators
 ###### Bitwise Operators
 ###### Ternary Operator
-###### Operator Precedenc
+########## Operator Precedence
 
 ######### Arithmetic Operators ###### 
     Used for performing mathematical operations.
@@ -119,13 +119,12 @@ The order in which operators are evaluated. Use parentheses to override the defa
 
 --------------------02. use parentheses to override operator precedence---------------------
 
-######### Operator precedence
-######### Example:
+######### Operator precedence -Example:
 ####### To change the order of operations, you can use parentheses
 ########### General Rule
 ########### Example with Nested Parentheses
 ########### Key Points
-#############Example demonstrating clarity
+############# Example demonstrating clarity
 
 
 ######### Operator precedence: ######### 
@@ -167,7 +166,7 @@ While the parentheses might not be strictly necessary in this case, they improve
 ######### Understanding the Difference
 ######### Comparing Strings: Example:
 ######### Comparing Other Objects
-########  Important points
+###########  Important points
 
 ### Understanding the Difference
     There are two primary ways to test equality between objects:
