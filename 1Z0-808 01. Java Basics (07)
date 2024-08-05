@@ -294,11 +294,16 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 
 --------------------06. Import other Java packages to make them accessible in your code  ---------------------------
 
+########  0. Definition of Java Packag 
 ########  1. Importing a Single Class 
 ########  2. Importing All Classes from a Package 
 ########  3. Importing Static Members 
 ######## Practical Example
 
+
+Definition of Java Package: 
+A package is a namespace that organizes a set of related classes and interfaces. 
+It helps manage the code structure, avoid name conflicts, and control access to classes and interfaces.
 
 Importing packages 
    -allow  to use of classes and interfaces that are defined in other packages. 
