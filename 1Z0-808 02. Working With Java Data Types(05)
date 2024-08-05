@@ -85,14 +85,51 @@ Initialization: Assigns a value to the variable.
 
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
 
-####### Object Reference Variables
-####### Primitive Variables  Example:
-### Key Differences
+####### Understanding Object References:
+####### Object Reference Variables  And Primitive Variables  Example:
+####### Key Differences
 ### Additional Points for 1Z0-808
 
 
+### Understanding Object References:
+1. Declaration and Initialization:
+   - When you declare a variable of a class type, you are actually declaring an object reference. For example:
+     MyClass obj;
+     Here, `obj` is a reference to an object of type `MyClass`, but it does not point to any actual object yet.
+
+   - To initialize the reference, you need to create an object and assign it to the reference:
+     obj = new MyClass();
+     Now, `obj` holds the memory address of the newly created `MyClass` object.
+
+Example Code:
+class Person {
+    String name;
+    void setName(String name) { this.name = name; }
+    String getName() {return name; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a new Person object
+        Person person1 = new Person();
+        
+        // Use the reference to call methods on the object
+        person1.setName("Alice");
+        System.out.println(person1.getName()); // Outputs: Alice
+
+        // Create another reference to the same object
+        Person person2 = person1;
+
+        // Modify through the second reference
+        person2.setName("Bob");
+
+        // Changes are reflected through the first reference
+        System.out.println(person1.getName()); // Outputs: Bob
+    }
+}
+
 ####### Object Reference Variables ##########
-    * Store references (memory addresses) to objects.
+    * hold memory addresses of objects
     * Objects are instances of classes.
     * Data types are class names (e.g., `String`, `Integer`, `ArrayList`).
     * Occupy variable-size memory locations.
@@ -100,7 +137,7 @@ Initialization: Assigns a value to the variable.
     * Access object's properties and methods using the dot operator (.).
 
 ####### Primitive Variables  #######
-    * Store simple values directly.
+    * Hold value directly.
     * Data types include: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, and `boolean`.
     * Occupy fixed-size memory locations.
     * Values are copied when assigned to another variable.
