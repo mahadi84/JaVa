@@ -161,12 +161,18 @@ While the parentheses might not be strictly necessary in this case, they improve
 
 --------------------03. Test equality between Strings and other objects using == and equals ()---------------------
 
-***Same Object vs Two Objects vs Custome Objects
-
+#######object reference: 
 ######### Understanding the Difference
 ######### Comparing Strings: Example:
 ######### Comparing Other Objects
 ###########  Important points
+
+#######object reference:  
+is a variable that holds the memory address of an object rather than the object itself. 
+It is used to interact with the object and access its fields and methods.
+
+***Same Object vs Two Objects vs Custome Objects
+
 
 ### Understanding the Difference
     There are two primary ways to test equality between objects:
