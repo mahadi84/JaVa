@@ -278,7 +278,8 @@ what is memory leak?
 * While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
 * The `finalize()` method is called before garbage collection, but its use is generally discouraged.
 * Understanding object lifetimes is crucial for preventing memory leaks.
-* Garbage Collection hehaivors for referenced objects are: Strong, Weak, Soft and Phandom.
+* Memory Leak: it occurs when objects are no longer in use but still referenced.
+* Garbage Collection behaviors for referenced objects are: Strong, Weak, Soft and Phandom.
 
 
 
@@ -320,15 +321,15 @@ public class WrapperClassExample {
         System.out.println("Double value: " + doubleValue);
         System.out.println("Integer value: " + intValue);
 
-        // Autoboxing and unboxing
+        //Unboxing (convert wrapper class object to primitive data type)
         int primitiveInt = intValue; // Unboxing
         Double primitiveDouble = doubleValue; // Unboxing
 
         // Using wrapper classes in collections
         ArrayList<Integer> numbers = new ArrayList<>();
         numbers.add(intValue);
-        numbers.add(20); // Autoboxing
-
+        numbers.add(20); // Autoboxing 
+   
         System.out.println("Numbers: " + numbers);
     }
 }
