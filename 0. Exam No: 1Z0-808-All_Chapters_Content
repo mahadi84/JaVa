@@ -1,0 +1,419 @@
+
+
+-----------------Chapters-----------------------------
+01. Java Basics (07) 
+02. Working With Java Data Types (05) 
+03. Using Operators and Decision Constructs (05)
+04. Creating and Using Arrays (02)
+05. Using Loop Constructs (05)
+06. Working with Methods and Encapsulation (08)
+07. Working with Inheritance (07)
+08. Handling Exceptions (05)
+09. Working with Selected classes from the Java API (06)
+10. Assume the following (05)
+
+
+
+=======================01. Java Basics(07): ============
+01. Define the scope of variables 
+            ####### Scope of Variables
+            ###### Key Points to Remember
+02. Define the structure of a Java class
+            ###### Class Declaration
+            ######  Fields (Attributes)
+            ###### Methods (Behaviors)
+            ###### Constructor
+03. Create executable Java applications with a main method; 
+            ######## Example 1: Basic Structure with Main Method
+            ######## Example 2: Using Static and Instance Methods
+            ######## Example 3: Constructor Overloading
+            ######## Example 4: Using Static Blocks
+            ######## Example 5: Final Variables and Initialization
+            ######## Example 6: Abstract Class and Method
+            ######## Example 7: Interface Implementation
+            ######## Example 8: Inheritance and Method Overriding
+            ######## Example 9: Try-With-Resources
+            ######## Example 10: Lambda Expressions (Java 8+): 
+                             Example with Functional Interfaces
+04. Run a Java program from the command line; 
+            ######## Step 1: Write Your Java Code
+            ######## Step 2: Open the Command Line
+            ######## Step 3: Navigate to the Directory
+            ######## Step 4: Compile the Java Code
+            ######## Step 5: Run the Compiled Java Program
+            ########  Additional Tips
+            ######## Example with Package
+05. Produce console output
+            ######## Explanation ########
+            ########  Example Program Using All Methods ########
+
+06. Import other Java packages to make them accessible in your code
+            ########  0. Definition of Java Packag 
+            ########  1. Importing a Single Class 
+            ########  2. Importing All Classes from a Package 
+            ########  3. Importing Static Members 
+            ######## Practical Example
+07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
+            ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
+            ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
+            ########## Encapsulation        (-Definition, -Features, -Benefits, -Examples)
+            ########## Comparison and Contrast 
+                        01. Platform Independence vs. Object Orientation:
+                        02. Object Orientation vs. Encapsulation:
+                        03. Platform Independence vs. Encapsulation:
+
+
+
+===========02. Working With Java Data Types(05): =========
+01. Declare and initialize variables (including casting of primitive data types)
+            ######## Understanding Variables 
+            ######## Primitive Data Types 
+            ######## Declaration and Initialization 
+            ######## Casting Primitive Data Types 
+            ######## Important Considerations 
+            ######## Example 
+02. Differentiate between object reference variables and primitive variables
+            ####### Understanding Object References:
+            ####### Object Reference Variables  And Primitive Variables  Example:
+            ####### Key Differences
+            ####### Additional Points
+03. Know how to read or write to object fields
+            ######### Accessing Object Fields ##########
+            ######## Key Points ##########
+            ######## Additional Considerations
+04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
+            ######## Creation
+            ######## Dereference by Reassignment
+            ######## Garbage Collection
+            ######## Key Points -Example:
+            ######## Important Notes
+05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
+            -Why to convert primtive data type into Object and vise-versa?
+            -How to do that?
+            ########  Using Wrapper Classes in Jav 
+            #########  Example: Using Boolean, Double, and Integer
+            #########  Explanation 
+            ### Additional Examples:
+            ######### Comparing wrapper objects
+            ######### Using wrapper class constants
+            ###### Key Points:
+            ######  Additional Considerations 
+
+===================03. Using Operators and Decision Constructs(05): =========
+01. Use Java operators; 
+            ###### Arithmetic Operators
+            ###### Assignment Operators
+            ###### Comparison Operators
+            ###### Logical Operators
+            ###### Bitwise Operators
+            ###### Ternary Operator
+            ########## Operator Precedence
+02. use parentheses to override operator precedence
+            ######### Operator precedence -Example:
+            ####### To change the order of operations, you can use parentheses
+            ########### General Rule
+            ########### Example with Nested Parentheses
+            ########### Key Points
+            ############# Example demonstrating clarity
+
+03. Test equality between Strings and other objects using == and equals ()
+            #######object reference: 
+            ######### Understanding the Difference
+            ######### Comparing Strings: Example:
+            ######### Comparing Other Objects
+            ###########  Important points
+04. Create if and if/else and ternary constructs
+            ### If Statement
+            ### If/Else Statement
+            ### Ternary Operator
+            ######  Key points: ###### 
+            ### Example with multiple conditions
+            ### Nested if statements 
+05. Use a switch statement 
+            ### Syntax
+            ### Example
+            ###### Key Points ######
+
+=======================04. Creating and Using Arrays(02): =================
+01. Declare, instantiate, initialize, and use a one-dimensional array
+            0. Definition
+            1. Declare a One-Dimensional Array 
+            2. Instantiate a One-Dimensional Array 
+            3. Initialize a One-Dimensional Array
+                -Initialization at Declaration
+                -Initialization After Instantiation
+            4. Use a One-Dimensional Array
+                -Accessing Array Elements  
+                -Modifying Array Elements  
+                -Looping Through Array Elements   
+                -Example Code  
+
+02. Declare, instantiate, initialize, and use multi-dimensional arrays
+            0. Definition
+            1. Declare a Multi-Dimensional Array  
+            2. Instantiate a Multi-Dimensional Array  
+            3. Initialize a Multi-Dimensional Array  
+                -Initialization at Declaration  
+                -Initialization After Instantiation  
+            4. Use a Multi-Dimensional Array  
+                -Accessing Array Elements  
+                -Modifying Array Elements  
+                -Looping Through Array Elements  
+                -Example Code 
+
+=======================05. Using Loop Constructs(05): ===================
+01. Create and use while loops
+            1. Basic Syntax of `while` Loop 
+            2. Components of `while` Loop 
+            3. Example of `while` Loop 
+            Example 1: Basic `while` Loop ######
+            4. Infinite `while` Loop 
+            5. Using `break` and `continue` Statements in `while` Loop 
+            Example 2: Using `break` ######
+            Example 3: Using `continue` ######
+            6. Common Pitfalls 
+02. Create and use for loops including the enhanced for loop
+            1. Standard `for` Loop  
+                    Example 1: Basic `for` Loop  
+            2. Nested `for` Loops  
+                    Example 2: Nested `for` Loops  
+            3. Enhanced `for` Loop (for-each Loop)  
+                    Example 3: Enhanced `for` Loop with Array  
+            4. Enhanced `for` Loop with Collection  
+                    Example 4: Enhanced `for` Loop with Collection 
+            5. Key Points  
+03. Create and use do/while loops
+            #### Syntax of `do/while` Loop 
+            #### Key Points: 
+            #### Example of `do/while` Loop 
+            #### Example 1: Basic `do/while` Loop 
+            #### Example 2: Using `do/while` for Menu-Driven Programs 
+            #### Common Pitfalls 
+04. Compare loop constructs
+            1. `for` Loop 
+            Syntax:
+            2. `while` Loop 
+            Syntax: 
+            3. `do/while` Loop 
+            Syntax: 
+            Comparison Table 
+            Summary 
+05. Use break and continue  
+             `break` Statement 
+            Syntax: 
+            Example: Using `break` in a `for` Loop 
+            Example: Using `break` in a `while` Loop 
+            `continue` Statement 
+            Syntax: 
+            Example: Using `continue` in a `for` Loop 
+            Example: Using `continue` in a `while` Loop 
+
+
+===================06. Working with Methods and Encapsulation(08): ========
+01. Create methods with arguments and return values;
+            ######## Methods in Java 
+            ######## Creating Methods with Arguments 
+            ######## Return Values 
+            ######## Calling Methods  
+02. including overloaded methods
+            1. Definition:
+            2. Rules for Method Overloading:
+            3. How It Works:
+            4. Example of Method Overloading:
+03. Apply the static keyword to methods and fields
+            ###### The `static` Keyword
+            ###### Static Fields (Class Variables)
+                        1. Definition:
+                        2. Syntax:
+                        3. Accessing Static Fields:
+            ###### Static Methods
+                        1. Definition:
+                        2. Syntax:
+            ###### Key Points for the 1Z0-808 Exam:
+04. Create and overload constructors;
+            ####### Constructors in Java  #######
+            ####### Overloading Constructors  #######
+            ####### Key Points to Remember:  #######
+                    1. Default Constructor:
+                    2. Parameterized Constructors:
+                    3. Constructor Chaining:
+                    4. No Return Type:
+                    5. Overloading vs. Overriding:
+05. differentiate between default and user-defined constructors
+            ###### Default Constructor
+                        1. Definition:
+                        2. Characteristics:
+                        3. Example:
+            ###### User-Defined Constructor
+                        1. Definition:
+                        2. Characteristics:
+                        3. Example:
+            ###### Key Differences: ######
+06. Apply access modifiers
+            ###### Access Modifiers in Java 
+            ###### 1. `public`      -Definition: -Usage: -Example:
+            ###### 2. `protected`   -Definition: -Usage: -Example:
+            ###### 3. Default (Package-Private) -Definition: -Usage: -Example:
+            ###### 4. `private`     -Definition: -Usage: -Example: 
+            ###### Summary of Access Levels: 
+            ###### Key Points for the 1Z0-808 Exam: 
+07. Apply encapsulation principles to a class
+            ###### What is Encapsulation? 
+            ###### Key Principles of Encapsulation 
+            ###### Example of Encapsulation 
+            ###### Key Points for the 1Z0-808 Exam:
+08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
+            ###### Primitive Types
+            ###### Object References
+            ###### Summary
+            ###### Key Points for the 1Z0-808 Exam:
+
+=======================07. Working with Inheritance(07): ==================
+01. Describe inheritance and its benefits
+            ###### What is Inheritance? #####
+            ###### Basic Syntax #####
+            ###### Benefits of Inheritance #####
+                        1. Code Reusability:
+                        2. Method Overriding:
+                        3. Hierarchical Classification:
+                        4. Ease of Maintenance:
+                        5. Polymorphism:
+            ###### Summary #####
+02. Develop code that makes use of polymorphism; 
+            ###### What is Polymorphism? 
+            ###### 1. Compile-Time Polymorphism (Method Overloading) 
+            ###### 2. Runtime Polymorphism (Method Overriding) 
+            ###### Benefits of Polymorphism 
+            ###### Key Points for the 1Z0-808 Exam: 
+03. develop code that overrides methods;
+            ###### What is Method Overriding? 
+            ###### Rules for Method Overriding 
+            ###### Example of Method Overriding 
+            ###### Key Points for the 1Z0-808 Exam: 
+
+04. differentiate between the type of a reference and the type of an object
+            ###### Type of a Reference vs. Type of an Object 
+            ######## 1. Type of a Reference 
+            ######## 2. Type of an Object 
+            ###### Key Differences 
+            ###### Examples to Illustrate the Difference 
+            ###### Summary 
+
+05. Determine when casting is necessary
+            ###### Types of Casting
+            ###### When Casting is Necessary
+            ###### Important Considerations
+            ###### Summary
+06. Use super and this to access objects and constructors
+            ###### 1. Using `super`
+            ####### Accessing Superclass Methods
+            ####### Accessing Superclass Constructors
+            ###### 2. Using `this`
+            ####### Accessing Instance Variables and Methods
+            ####### Calling Other Constructors (Constructor Chaining)
+            ###### Summary
+07. Use abstract classes and interfaces
+            ###### Abstract Classes 
+            ####### Key Points 
+            ####### Example 
+            ###### Interfaces 
+            ####### Key Points 
+            ####### Example 
+            ###### Summary 
+
+===============08. Handling Exceptions(05): ====================
+01. Differentiate among checked exceptions, unchecked exceptions, and Errors
+            ###### 1. Checked Exceptions
+            ####### Characteristics: 
+            ####### Examples: 
+            ####### Example Code: 
+            ###### 2. Unchecked Exceptions
+            ####### Characteristics: 
+            ####### Examples: 
+            ####### Example Code: 
+            ###### 3. Errors
+            ####### Characteristics: 
+            ####### Examples: 
+            ####### Example Code: 
+            ###### Summary
+
+02. Create a try-catch block and determine how exceptions alter normal program flow
+            ###### Try-Catch Block 
+            ####### Structure of a Try-Catch Block 
+            ####### Example 
+            ###### How Exceptions Alter Normal Program Flow 
+            ####### Example with Multiple Catch Blocks and Finally Block 
+            ###### Summary 
+03. Describe the advantages of Exception handling 
+            ###### 1. Improved Program Stability 
+            ###### 2. Enhanced Code Readability and Maintenance 
+            ###### 3. Centralized Error Handling 
+            ###### 4. Error Reporting and Debugging 
+            ###### 5. Graceful Degradation 
+            ###### 6. Robust and Resilient Code 
+            ###### Summary 
+04. Create and invoke a method that throws an exception
+            ###### Creating a Method That Throws an Exception
+            ###### Example: Creating a Method That Throws an Exception
+            ###### Invoking a Method That Throws an Exception
+            ###### Example: Propagating an Exception
+            ###### Summary
+05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
+            ######## Common Causes
+            ######## Example
+            ######## Common Causes
+            ######## Example
+            ######## Common Causes
+            ######## Example
+            ######## Common Causes
+            ######## Example
+
+===========09. Working with Selected classes from the Java API(06): =======
+01. Manipulate data using the StringBuilder class and its methods
+            ###### Key Features of `StringBuilder` 
+            ###### Common Methods of `StringBuilder` 
+            ###### Example of Using `StringBuilder` 
+            ###### Summary 
+02. Create and manipulate Strings
+            ###### Creating Strings
+            ###### Common Methods for Manipulating Strings
+            ###### Example of String Manipulation
+            ###### Summary
+03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
+            ###### 1. `LocalDateTime`
+            ####### Creating and Manipulating `LocalDateTime`
+            ###### 2. `LocalDate`
+            ####### Creating and Manipulating `LocalDate`
+            ###### 3. `LocalTime`
+            ####### Creating and Manipulating `LocalTime`
+            ###### 4. `DateTimeFormatter`
+            ####### Creating and Using `DateTimeFormatter`
+            ###### 5. `Period`
+            ####### Creating and Using `Period`
+            ###### Example of Using `java.time` Classes
+            ###### Summary
+05. Declare and use an ArrayList of a given type
+
+            ###### Declaring and Using `ArrayList` 
+            ####### 1. Importing the `ArrayList` Class 
+            ####### 2. Declaring an `ArrayList` 
+            ####### 3. Adding Elements to an `ArrayList` 
+            ####### 4. Accessing Elements 
+            ####### 5. Modifying Elements 
+            ####### 6. Removing Elements 
+            ####### 7. Iterating Through an `ArrayList` 
+            ####### 8. Common Methods 
+            ####### Example 
+            ###### Summary 
+06. Write a simple Lambda expression that consumes a Lambda Predicate expression
+
+            ###### Lambda Expressions and Functional Interfaces
+            ####### 1. Lambda Expressions
+            ####### 2. Functional Interfaces
+            ####### 3. Predicate Functional Interface
+            ###### Writing a Lambda Expression that Consumes a Predicate
+            ####### Example
+            ###### Key Points
+            ###### Summary
+
+
