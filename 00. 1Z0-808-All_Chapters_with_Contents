@@ -329,7 +329,8 @@
                         4. Static Methods 
                         5. Multiple Inheritance 
             ####### Example 
-            ###### Differences between Abstract Class and Interface 
+            ###### Differences between Abstract Class and Interface
+            ############## When to use Abstract class  or Interface?
 
 ===============08. Handling Exceptions(05): ====================
 01. Differentiate among checked exceptions, unchecked exceptions, and Errors
