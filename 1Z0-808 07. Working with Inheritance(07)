@@ -903,10 +903,14 @@ Explanation:
 - `Dog` extends `Animal` and provides an implementation for the `makeSound()` method.
 - `Dog` can be instantiated and used to call both the overridden method and the concrete method from the abstract class.
 
-###### Interfaces ######
+
+################################## Interfaces #########################################
         -Interfaces are abstract types that allow you to define methods that must be implemented by classes that choose to implement the interface. 
         -Unlike abstract classes, interfaces cannot have instance fields or constructors. 
         -They are used to specify methods that must be implemented by classes, supporting multiple inheritance of behavior.
+         --More about interface:
+           -Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
+           -Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
 
 ####### Key Points ######
 1. Declaration:
@@ -917,54 +921,42 @@ Explanation:
    - Classes implement interfaces using the `implements` keyword.
    - A class must provide implementations for all methods declared in the interface.
 
-3. Default Methods:
-   - From Java 8 onwards, interfaces can have default methods with an implementation, allowing you to add new methods to interfaces without breaking existing implementations.
-
-4. Static Methods:
-   - Interfaces can also have static methods, which are called on the interface itself, not on instances of the class.
-
-5. Multiple Inheritance:
-   - A class can implement multiple interfaces, supporting a form of multiple inheritance.
+3. Default Methods: From Java 8 onwards, interfaces can have default methods with an implementation, allowing you to add new methods to interfaces without breaking existing implementations.
+4. Static Methods: Interfaces can also have static methods, which are called on the interface itself, not on instances of the class.
+5. Multiple Inheritance: A class can implement multiple interfaces, supporting a form of multiple inheritance.
 
 ####### Example ######
-// Interface
-public interface Animal {
-    void makeSound();
-
-    // Default method
-    default void eat() {
-        System.out.println("This animal eats");
-    }
-}
-
-// Concrete class implementing the interface
-public class Dog implements Animal {
-    @Override
-    public void makeSound() {
-        System.out.println("Dog barks");
-    }
-}
-
-// Test class
-public class Test {
-    public static void main(String[] args) {
-        Animal myDog = new Dog();
-        myDog.makeSound(); // Output: Dog barks
-        myDog.eat(); // Output: This animal eats
-    }
-}
+        // Interface
+        public interface Animal {
+            void makeSound();
+        
+            // Default method
+            default void eat() {
+                System.out.println("This animal eats");
+            }
+        }
+        
+        // Concrete class implementing the interface
+        public class Dog implements Animal {
+            @Override
+            public void makeSound() {
+                System.out.println("Dog barks");
+            }
+        }
+        
+        // Test class
+        public class Test {
+            public static void main(String[] args) {
+                Animal myDog = new Dog();
+                myDog.makeSound(); // Output: Dog barks
+                myDog.eat(); // Output: This animal eats
+            }
+        }
 
 Explanation:
 - `Animal` is an interface with an abstract method `makeSound()` and a default method `eat()`.
 - `Dog` implements the `Animal` interface and provides an implementation for the `makeSound()` method.
 - The `eat()` method, being a default method, is available to `Dog` without needing an implementation, but it can be overridden if needed.
 
-###### Summary ######
-- Abstract Classes:
-  - Use abstract classes when you want to define a common base class with some shared implementation, but you also want to enforce that subclasses implement certain methods.
-  - Abstract classes can contain both abstract methods and concrete methods and can be extended by other classes.
 
-- Interfaces:
-  - Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
-  - Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
 
