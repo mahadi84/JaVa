@@ -9,9 +9,9 @@
 06. Use super and this to access objects and constructors
 07. Use abstract classes and interfaces
 
-###################################################################################################################################################### #####
+####################################################################################
         ------01. Describe inheritance and its benefits--------
-###################################################################################################################################################### #####
+####################################################################################
 
 
 ###### What is Inheritance? #####
@@ -851,7 +851,7 @@ Explanation:
 ###### Interfaces 
 ####### Key Points 
 ####### Example 
-###### Difference between Abstract Class and Interface 
+###### Differences between Abstract Class and Interface 
 
 
 ###### Abstract Classes ######
