@@ -851,7 +851,8 @@ Explanation:
 ###### Interfaces 
 ####### Key Points 
 ####### Example 
-###### Differences between Abstract Class and Interface 
+###### Differences between Abstract Class and Interface
+############## When to use Abstract class  or Interface?
 
 
 ###### Abstract Classes ######
@@ -969,6 +970,39 @@ Constructors     |  Yes	                                         | No
 Access Modifiers |  Public, protected, private, default	         | Public (implicitly)
 
 
+############## When to use Abstract class  or Interface?
+01. Use an Abstract Class When:
+    I want to provide a partial implementation of a class.
+    I need to share code among related classes.
+    I want to define a clear inheritance hierarchy.
+    I need to use non-static or non-final fields.
+    I need to define constructors.
+            Example: 
+            abstract class Shape {
+                abstract double area();
+                
+                void printArea() {
+                    System.out.println("Area: " + area());
+                }
+            }
 
+
+02. Use an Interface When:
+    I want to define a contract that unrelated classes can implement.
+    I need to support multiple inheritance of type.
+    I want to achieve maximum flexibility and decoupling.
+    I want to define constants (static final fields).
+            Example:
+            interface Drawable {
+                void draw();
+            }
+
+
+Consider the following factors when deciding between an abstract class and an interface:
+    01. Is there a strong "is-a" relationship between the classes? If so, an abstract class might be suitable.
+    02. Do I need to provide a default implementation for some methods? If so, an abstract class is better.
+    03. Do I need to support multiple inheritance of type? If so, an interface is the only option.
+    04. How much flexibility do I need? Interfaces generally offer more flexibility.
+    05. Remember: There's no strict rule, and often, a combination of both can be used effectively.
 
 -
