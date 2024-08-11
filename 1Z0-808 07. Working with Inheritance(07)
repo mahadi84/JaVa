@@ -904,8 +904,9 @@ Explanation:
 - `Dog` can be instantiated and used to call both the overridden method and the concrete method from the abstract class.
 
 ###### Interfaces ######
-
-Interfaces are abstract types that allow you to define methods that must be implemented by classes that choose to implement the interface. Unlike abstract classes, interfaces cannot have instance fields or constructors. They are used to specify methods that must be implemented by classes, supporting multiple inheritance of behavior.
+        -Interfaces are abstract types that allow you to define methods that must be implemented by classes that choose to implement the interface. 
+        -Unlike abstract classes, interfaces cannot have instance fields or constructors. 
+        -They are used to specify methods that must be implemented by classes, supporting multiple inheritance of behavior.
 
 ####### Key Points ######
 1. Declaration:
