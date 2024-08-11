@@ -315,6 +315,11 @@
 07. Use abstract classes and interfaces
             ###### Abstract Classes 
             ####### Key Points 
+                        1. Declaration
+                        2. Abstract Methods
+                        3. Concrete Methods
+                        4. Constructors
+                        5. Fields
             ####### Example 
             ###### Interfaces 
             ####### Key Points 
