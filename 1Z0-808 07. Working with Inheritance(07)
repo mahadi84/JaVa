@@ -854,26 +854,20 @@ Explanation:
 ###### Summary 
 
 
-
 ###### Abstract Classes ######
-Abstract classes are classes that cannot be instantiated on their own and are meant to be extended by other classes. They can contain abstract methods (methods without a body) as well as concrete methods (methods with a body).
+        -classes that cannot be instantiated on their own and 
+        -are meant to be extended by other classes. 
+        -can contain abstract methods (methods without a body) as well as concrete methods (methods with a body).
 
 ####### Key Points ######
-1. Declaration:
-   - An abstract class is declared using the `abstract` keyword.
-   - Abstract methods within the class are declared without a body and must be implemented by subclasses.
-
-2. Abstract Methods:
-   - Abstract methods are methods that have no implementation in the abstract class and must be overridden by concrete subclasses.
-
-3. Concrete Methods:
-   - Abstract classes can also have methods with implementations that can be used or overridden by subclasses.
-
-4. Constructors:
-   - Abstract classes can have constructors, which can be called from constructors of concrete subclasses.
-
-5. Fields:
-   - Abstract classes can have fields, including constants, which can be used by subclasses.
+        1. Declaration:
+           - An abstract class is declared using the `abstract` keyword.
+           - Abstract methods within the class are declared without a body and must be implemented by subclasses.
+        
+        2. Abstract Methods: Abstract methods are methods that have no implementation in the abstract class and must be overridden by concrete subclasses.
+        3. Concrete Methods: Abstract classes can also have methods with implementations that can be used or overridden by subclasses.
+        4. Constructors: Abstract classes can have constructors, which can be called from constructors of concrete subclasses.
+        5. Fields: Abstract classes can have fields, including constants, which can be used by subclasses.
 
 ####### Example ######
 // Abstract class
