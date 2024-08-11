@@ -322,7 +322,12 @@
                         5. Fields
             ####### Example 
             ###### Interfaces 
-            ####### Key Points 
+            ####### Key Points
+                        1. Declaration 
+                        2. Implementation 
+                        3. Default Methods 
+                        4. Static Methods 
+                        5. Multiple Inheritance 
             ####### Example 
             ###### Summary 
 
