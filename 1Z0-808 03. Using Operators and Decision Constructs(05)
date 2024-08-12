@@ -10,7 +10,9 @@ Date: 3-Aug-24(Saturday)
 
 ====================================================================
 
---------------------01. Use Java operators; ---------------------
+######################################################################################
+               --------------------01. Use Java operators; ---------------------
+######################################################################################
 
 ###### Arithmetic Operators
 ###### Assignment Operators
@@ -116,8 +118,9 @@ The order in which operators are evaluated. Use parentheses to override the defa
 
 
 
-
---------------------02. use parentheses to override operator precedence---------------------
+######################################################################################
+--------------------02. use parentheses to override operator precedence--------------
+######################################################################################
 
 ######### Operator precedence -Example:
 ####### To change the order of operations, you can use parentheses
@@ -158,8 +161,9 @@ In this case, the multiplication (3 * 4) is performed first due to the innermost
 While the parentheses might not be strictly necessary in this case, they improve readability by explicitly showing the two separate calculations being multiplied.
 
 
-
---------------------03. Test equality between Strings and other objects using == and equals ()---------------------
+######################################################################################
+------03. Test equality between Strings and other objects using == and equals ()------
+######################################################################################
 
 #######object reference: 
 ######### Understanding the Difference
@@ -232,8 +236,9 @@ Explanation:
     * Use `Objects.equals()` for null-safe comparisons.
     * Consider using `@Override` annotation to prevent accidental overriding.
 
-
---------------------04. Create if and if/else and ternary constructs ---------------------
+######################################################################################
+--------------------04. Create if and if/else and ternary constructs -----------------
+######################################################################################
 
 ### If Statement
 ### If/Else Statement
@@ -302,8 +307,9 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     }
 
 
-
---------------------------05. Use a switch statement---------------------
+######################################################################################
+      --------------------------05. Use a switch statement---------------------
+######################################################################################
 ### Syntax
 ### Example
 ###### Key Points ######
