@@ -24,19 +24,13 @@ Date: 3-Aug-24(Saturday)
 
 ######### Arithmetic Operators ###### 
     Used for performing mathematical operations.
-        +(Addition)
-        -(Subtraction)
-        \(Multiplication)
-        /(Division)
-        %(Modulo - remainder)
-        ++(Increment)
-        --(Decrement)
+        +(Addition),           -(Subtraction)
+        \(Multiplication)      /(Division)
+        %(Modulo - remainder)  ++(Increment)    --(Decrement)
 
     Example:
         int a = 10, b = 5;
         int sum = a + b;
-        int difference = a - b;
-        int product = a * b;
         int quotient = a / b;
         int remainder = a % b;
         a++; // Increment a by 1
@@ -45,13 +39,9 @@ Date: 3-Aug-24(Saturday)
 
 ###### Assignment Operators ###### 
     Used to assign values to variables.
-
-    * = (Simple assignment)
-    * += (Addition assignment)
-    * -= (Subtraction assignment)
-    * \*== (Multiplication assignment)
-    * /= (Division assignment)
-    * %= (Modulo assignment)
+     = (Simple assignment)          += (Addition assignment)
+    -= (Subtraction assignment)     \== (Multiplication assignment)
+    /= (Division assignment)         %= (Modulo assignment)
 
     Example:
     int x = 5;
@@ -60,13 +50,9 @@ Date: 3-Aug-24(Saturday)
 
 ###### Comparison Operators ###### 
     Used to compare values.
-
-    * == (Equal to)
-    * != (Not equal to)
-    * > (Greater than)
-    * < (Less than)
-    * >= (Greater than or equal to)
-    * <= (Less than or equal to)
+        == (Equal to)                    != (Not equal to)
+        > (Greater than)                 < (Less than)
+        >= (Greater than or equal to)    <= (Less than or equal to)
 
     Example:
     int a = 10, b = 5;
@@ -75,10 +61,9 @@ Date: 3-Aug-24(Saturday)
 
 ###### Logical Operators ###### 
     Used to combine boolean expressions.
-
-    * && (Logical AND)
-    * || (Logical OR)
-    * ! (Logical NOT)
+      && (Logical AND)
+      || (Logical OR)
+      ! (Logical NOT)
 
     Example:
     boolean isTrue = true;
@@ -91,18 +76,14 @@ Date: 3-Aug-24(Saturday)
 ###### Bitwise Operators ###### 
     Used to perform operations on individual bits of integer values.
 
-    * & (Bitwise AND)
-    * | (Bitwise OR)
-    * ^ (Bitwise XOR)
-    * ~ (Bitwise complement)
-    * << (Left shift)
-    * >> (Right shift)
-    * >>> (Unsigned right shift)
+     & (Bitwise AND)     | (Bitwise OR)
+     ^ (Bitwise XOR)     ~ (Bitwise complement)
+     << (Left shift)     >> (Right shift)
+     >>> (Unsigned right shift)
 
     Example:
     int a = 5, b = 3;
     int result = a & b; // Bitwise AND
-
 
 ###### Ternary Operator ###### 
 A shorthand for if-else statements.
@@ -113,7 +94,6 @@ A shorthand for if-else statements.
 
 ###### Operator Precedence ###### 
 The order in which operators are evaluated. Use parentheses to override the default precedence.
-
     int result = 5 + 3 * 2; // Multiplication has higher precedence, so result is 11
 
 
