@@ -211,7 +211,7 @@ This example prints each element of an `ArrayList`.
             >Guaranteed Execution  
             >Condition Checking
 #### Example 2: Using `do/while` for Menu-Driven Programs 
-#### Common Pitfalls 
+
 
 ####### Syntax of `do/while` Loop #######
 The syntax for a `do/while` loop is as follows:
@@ -250,10 +250,8 @@ Example:
 - Condition Checking: The condition is evaluated after the loop's body executes, which is different from the `while` loop where the condition is evaluated before execution.
 
 
-
-
 ####### Example 2: Using `do/while` for Menu-Driven Programs #######
-`do/while` loops are particularly useful for scenarios where you want to ensure that a block of code (like a menu) is displayed at least once and repeated based on user input.
+-to ensure that a block of code (like a menu) is displayed at least once and repeated based on user input.
 
 import java.util.Scanner;
 
@@ -294,10 +292,6 @@ Explanation:
 - Initialization: Not explicitly needed here; the `choice` variable is declared before the loop.
 - Code Block: Displays a menu, takes user input, and performs actions based on the input.
 - Condition: `while (choice != 3);` continues the loop as long as the user’s choice is not 3 (the exit option).
-
-####### Common Pitfalls #######
-- Infinite Loops: Be cautious to ensure that the condition eventually becomes `false`; otherwise, you might create an infinite loop.
-- Initialization and Updates: Ensure proper initialization of variables and correct updates within the loop to avoid unexpected behavior.
 
 
 ----------------04. Compare loop constructs ------------------
