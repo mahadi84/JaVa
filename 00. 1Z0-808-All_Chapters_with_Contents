@@ -17,7 +17,9 @@
 =======================01. Java Basics(07): ============
 01. Define the scope of variables 
             ####### Scope of Variables
-            ###### Key Points to Remember
+            ###### Key Points to Remember(Variables) 
+            -Variable Shadowing        -Final Variables
+            -Static Context            -Initialization
 02. Define the structure of a Java class
             ###### Class Declaration
             ######  Fields (Attributes)
@@ -48,7 +50,7 @@
             ########  Example Program Using All Methods ########
 
 06. Import other Java packages to make them accessible in your code
-            ########  0. Definition of Java Packag 
+            ########  0. Definition of Java Package 
             ########  1. Importing a Single Class 
             ########  2. Importing All Classes from a Package 
             ########  3. Importing Static Members 
@@ -71,33 +73,38 @@
             ######## Declaration and Initialization 
             ######## Casting Primitive Data Types 
             ######## Important Considerations 
-            ######## Example 
 02. Differentiate between object reference variables and primitive variables
             ####### Understanding Object References:
             ####### Object Reference Variables  And Primitive Variables  Example:
             ####### Key Differences
-            ####### Additional Points
+            ### Additional Points about Object reference variables (->Null values ->Memory Management)  
 03. Know how to read or write to object fields
+            ######## Fields(Static, Transient, and Volatile Field ) and Object
             ######### Accessing Object Fields ##########
-            ######## Key Points ##########
-            ######## Additional Considerations
 04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
             ######## Creation
             ######## Dereference by Reassignment
             ######## Garbage Collection
             ######## Key Points -Example:
             ######## Important Notes
+            Why object's lifecycle is so important?
+            why garbage collection, is so important?
+            what is a memory leak?
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
-            -Why to convert primtive data type into Object and vise-versa?
-            -How to do that?
-            ########  Using Wrapper Classes in Jav 
+            #### Why need to convert primitive data type into Object and vice-versa?
+            #### How to do that?
+            ########  Using Wrapper Classes in Java 
             #########  Example: Using Boolean, Double, and Integer
-            #########  Explanation 
-            ### Additional Examples:
+            #########  Explanation -
+                           -Creating wrapper class objects, 
+                           -Using wrapper class methods 
+                           -Autoboxing and unboxing
+                           -Using wrapper classes in collections
+                           -Null values 
+                           -Performance 
+                           -Caching
             ######### Comparing wrapper objects
             ######### Using wrapper class constants
-            ###### Key Points:
-            ######  Additional Considerations 
 
 ===================03. Using Operators and Decision Constructs(05): =========
 01. Use Java operators; 
