@@ -25,18 +25,22 @@
             ######  Fields (Attributes)
             ###### Methods (Behaviors)
             ###### Constructor
-03. Create executable Java applications with a main method; 
+03. Create executable Java applications with a main method;
+            ######## What is the Main method, Why it is Static and Void?
             ######## Example 1: Basic Structure with Main Method
             ######## Example 2: Using Static and Instance Methods
             ######## Example 3: Constructor Overloading
             ######## Example 4: Using Static Blocks
+                                    ######## When to Use Static Blocks
             ######## Example 5: Final Variables and Initialization
-            ######## Example 6: Abstract Class and Method
-            ######## Example 7: Interface Implementation
-            ######## Example 8: Inheritance and Method Overriding
-            ######## Example 9: Try-With-Resources
-            ######## Example 10: Lambda Expressions (Java 8+): 
-                             Example with Functional Interfaces
+                                    ######### Final Variables
+                                    ######### When to Use Final Variables
+                                    ######### Initialization of Final Variables
+            ######## Example 6: Try-With-Resources
+                                    ##### How it works
+                                    ##### Benefits of Try-With-Resources
+                                    ##### How to Declare Multiple Resources(within the same try block)                        
+            ######## Example 7: What is and When to Lambda Expressions
 04. Run a Java program from the command line; 
             ######## Step 1: Write Your Java Code
             ######## Step 2: Open the Command Line
