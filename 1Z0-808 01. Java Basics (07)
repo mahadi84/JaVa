@@ -17,10 +17,12 @@ Date: 31-July-2024(Wednesday)
 ######################################################################################
 
 ####### Scope of Variables
-###### Key Points to Remember ############
+###### Key Points to Remember(Variables) 
+            -Variable Shadowing        -Final Variables
+            -Static Context            -Initialization
+
 
 ####### Scope of Variables
-
 1. Instance Variables ----
     -Declared inside a class but outside any method, constructor, or block.
     -Created when an object of the class is created and destroyed when the object is destroyed.
@@ -47,7 +49,6 @@ Date: 31-July-2024(Wednesday)
 
 ###### Key Points to Remember ############
 -Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
--Access Modifiers: Visibility of instance and class variables can be controlled using access modifiers (`private`, `protected`, `public`, and default).
 -Final Variables: Variables declared with the `final` keyword cannot be reassigned once initialized.
 -Static Context: In a static method, you cannot directly access instance variables or methods; you must use a reference to an instance of the class.
 -Initialization: Local variables must be initialized before use, while instance and class variables are automatically initialized with default values if not explicitly done.
@@ -199,8 +200,6 @@ public class Example3 {
 ######## Example with Package
 
 
-
-
 ######## Step 1: Write Your Java Code ########
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
 1. Open a text editor and write the following code:
@@ -210,7 +209,6 @@ java
             System.out.println("Hello, World!");
         }
     }
-
 
 2. Save the file as `HelloWorld.java`.
 ######## Step 2: Open the Command Line ########
@@ -229,7 +227,6 @@ javac HelloWorld.javaIf there are no errors, the `HelloWorld.class` file will be
 ######## Step 5: Run the Compiled Java Program ########
 Use the `java` command to run the compiled Java program. You should specify the class name without the `.class` extension.
 java HelloWorld
-
 
 You should see the output: Hello, World!
 
@@ -262,7 +259,6 @@ You should see the output: Hello, World!
 ######################################################################################
        --------------------05. Produce console output  -------------------------
 ######################################################################################
-
 
 ######## Explanation ########
 ########  Example Program Using All Methods ########
@@ -438,7 +434,6 @@ Here is a practical example that combines various types of imports:
 ############################################################################################################################################################################
 ------07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.  ------------
 ############################################################################################################################################################################
-
 
 ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
 ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
