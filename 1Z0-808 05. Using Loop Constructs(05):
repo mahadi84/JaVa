@@ -19,10 +19,6 @@
 3. Example of `while` Loop
 4. Infinite `while` Loop 
 5. Using `break` and `continue` Statements in `while` Loop 
-        Example 2: Using `break` ######
-        Example 3: Using `continue` ######
-6. Common Pitfalls 
-
 
 
 
@@ -32,7 +28,6 @@ A `while` loop repeatedly executes a block of code as long as a specified condit
 while (condition) {
     // Code to be executed
 }
-
 
 ###### 2. Components of `while` Loop ######
 - Condition: This is a boolean expression. If it evaluates to `true`, the code inside the loop will execute. If it evaluates to `false`, the loop will terminate.
@@ -54,6 +49,7 @@ while (condition) {
 ###### 4. Infinite `while` Loop ######
 -Loop that continues to execute indefinitely unless explicitly terminated.
 -An infinite `while` loop occurs when the condition always evaluates to `true`. 
+--Infinite Loops: Ensure that the condition will eventually become `false` to avoid creating an infinite loop.
  **Be cautious with this, as it will cause your program to run indefinitely unless interrupted.
         Example:
         public class InfiniteWhileLoop {
@@ -69,11 +65,11 @@ while (condition) {
 - `break`: Exits the loop immediately, regardless of the condition.
 - `continue`: Skips the current iteration and proceeds to the next iteration.
 
-####### Example 2: Using `break` ######
+####### Example 2: Using `break` and `continue` ######
+break, Example:
 public class BreakExample {
     public static void main(String[] args) {
-        int i = 1;
-        
+        int i = 1;        
         while (i <= 10) {
             if (i == 5) {
                 break; // Exit the loop when i is 5
@@ -83,29 +79,19 @@ public class BreakExample {
         }
     }
 }
-
 In this example, the loop will print numbers 1 through 4, then exit when `i` equals 5 due to the `break` statement.
 
-####### Example 3: Using `continue` ######
-public class ContinueExample {
-    public static void main(String[] args) {
-        int i = 0;
-        
+Continue, Example:
+ int i = 0;        
         while (i < 10) {
             i++;
             if (i % 2 == 0) {
-                continue; // Skip the current iteration for even numbers
+                continue; // skips the printing of even numbers
             }
             System.out.println(i); // Print only odd numbers
         }
-    }
-}
 
-In this example, the `continue` statement skips the printing of even numbers, so only odd numbers (1, 3, 5, 7, 9) are printed.
-
-###### 6. Common Pitfalls ######
-- Infinite Loops: Ensure that the condition will eventually become `false` to avoid creating an infinite loop.
-- Incorrect Updates: Make sure the loop control variable (e.g., `i`) is correctly updated to avoid logic errors.
+Result: only odd numbers (1, 3, 5, 7, 9) are printed.
 
 
 ----------------02. Create and use for loops including the enhanced for loop ------------------
