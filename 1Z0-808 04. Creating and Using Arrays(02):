@@ -29,8 +29,8 @@
 - Use: Access, modify, and process the elements of the array.
 
 ######### 1. Declare a One-Dimensional Array   ######
-    -specifying the (data) type of elements the array will hold and the array variable. 
-    -no memory is allocated for the actual elements.
+    -Specifying the (data) type of elements the array will hold and the array variable. 
+    -No memory is allocated for the actual elements.
         Example:
         int[] numbers; // Declaration of an array of integers
 
