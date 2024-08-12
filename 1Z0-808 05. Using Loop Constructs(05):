@@ -16,8 +16,7 @@
 
 1. Basic Syntax of `while` Loop 
 2. Components of `while` Loop 
-3. Example of `while` Loop 
-        Example 1: Basic `while` Loop ######
+3. Example of `while` Loop
 4. Infinite `while` Loop 
 5. Using `break` and `continue` Statements in `while` Loop 
         Example 2: Using `break` ######
@@ -40,34 +39,31 @@ while (condition) {
 - Code Block: The block of code inside the loop that gets executed repeatedly.
 
 ###### 3. Example of `while` Loop ######
-Let’s walk through an example to demonstrate the use of a `while` loop.
-
-####### Example 1: Basic `while` Loop ######
-This example prints numbers from 1 to 5.
-
-public class WhileLoopExample {
-    public static void main(String[] args) {
-        int i = 1; // Initialization
-        
-        while (i <= 5) { // Condition
-            System.out.println(i); // Code to be executed
-            i++; // Increment
+        public class WhileLoopExample {
+            public static void main(String[] args) {
+                int i = 1; // Initialization
+                
+                while (i <= 5) { // Condition
+                    System.out.println(i); // Code to be executed
+                    i++; // Increment
+                }
+            }
         }
-    }
-}
 
 
 ###### 4. Infinite `while` Loop ######
-An infinite `while` loop occurs when the condition always evaluates to `true`. Be cautious with this, as it will cause your program to run indefinitely unless interrupted.
-
-public class InfiniteWhileLoop {
-    public static void main(String[] args) {
-        while (true) {
-            // This code will run forever
-            System.out.println("This will print endlessly");
+-Loop that continues to execute indefinitely unless explicitly terminated.
+-An infinite `while` loop occurs when the condition always evaluates to `true`. 
+ **Be cautious with this, as it will cause your program to run indefinitely unless interrupted.
+        Example:
+        public class InfiniteWhileLoop {
+            public static void main(String[] args) {
+                while (true) {
+                    // This code will run forever
+                    System.out.println("This will print endlessly");
+                }
+            }
         }
-    }
-}
 
 ###### 5. Using `break` and `continue` Statements in `while` Loop ######
 - `break`: Exits the loop immediately, regardless of the condition.
