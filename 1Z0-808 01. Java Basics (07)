@@ -121,12 +121,16 @@ Date: 31-July-2024(Wednesday)
 ######## Example 2: Using Static and Instance Methods
 ######## Example 3: Constructor Overloading
 ######## Example 4: Using Static Blocks
+                        ######## When to Use Static Blocks
 ######## Example 5: Final Variables and Initialization
-######## Example 6: Abstract Class and Method
-######## Example 7: Interface Implementation
-######## Example 8: Inheritance and Method Overriding
-######## Example 9: Try-With-Resources
-######## Example 10: Lambda Expressions (Java 8+) : Example with Functional Interfaces
+                        ######### Final Variables
+                        ######### When to Use Final Variables
+                        ######### Initialization of Final Variables
+######## Example 6: Try-With-Resources
+                        ##### How it works
+                        ##### Benefits of Try-With-Resources
+                        ##### How to Declare Multiple Resources(within the same try block)                        
+######## Example 7: What is and When to Lambda Expressions
 
 
 Static: member (method or fields) belongs to the class itself, rather than an instance of the class.
@@ -185,6 +189,228 @@ public class Example3 {
         System.out.println("Value: " + obj.value);
     }
 }
+
+
+########################## Example 4: Using Static Blocks  
+
+###### Static Blocks in Java
+    -A block of code that is executed only once, when the class is first loaded into memory. 
+    -It's primarily used to initialize static variables or perform other class-level initialization tasks.
+
+    Example:
+            public class StaticBlockExample {
+                static int count = 0;
+            
+                static {
+                    System.out.println("Static block executed");
+                    count = 10;
+                }
+            
+                public static void main(String[] args) {
+                    System.out.println("Count: " + count);
+                }
+            }
+
+
+######## When to Use Static Blocks
+Static blocks are primarily used for class-level initialization tasks. Here are some specific scenarios where they are commonly employed:   
+
+1. Initializing Static Variables:
+    When static variables require complex initialization logic that cannot be done directly in the variable declaration.   
+    For example, initializing a static map with data from a configuration file or database.   
+2. Performing Class-Level Setup:
+    To execute code that needs to run once before any objects of the class are created.   
+    For instance, loading native libraries, registering components, or establishing database connections.
+3. Executing Code Before Main Method:
+    To perform actions before the main method is executed, such as logging or resource allocation.   
+    Example: Initializing a Static Map
+        Java
+        import java.util.HashMap;
+        import java.util.Map;
+        
+        public class StaticBlockExample {
+            private static final Map<String, String> countryCodes = new HashMap<>();
+        
+            static {
+                countryCodes.put("USA", "US");
+                countryCodes.put("Canada", "CA");
+                countryCodes.put("India", "IN");
+            }
+        
+            public static String getCountryCode(String country) {
+                return countryCodes.get(country);
+            }
+        }
+
+
+
+####################### Example 5: Final Variables and Initialization
+
+        ######### Final Variables
+        ####### When to Use Final Variables
+        ######## Initialization of Final Variables
+
+######### Final Variables
+-A constant whose value cannot be changed once it's assigned. 
+-Final variables must be initialized before they are used.
+-Final variables can be used with both primitive and reference types.
+-For reference types, the reference itself is final, but the object it points to might not be immutable.
+-Improve code readability, maintainability, and performance.
+
+####### When to Use Final Variables
+    -To improve code readability, maintainability, and performance.
+    Constants: When you need a value that remains constant throughout the program, like mathematical constants (e.g., PI), physical constants, or configuration values.
+    Immutable Objects: To create immutable objects, where the state of the object cannot be modified after creation.
+    Efficiency: The compiler can often optimize code with final variables, leading to potential performance improvements.
+    Clarity: Using final makes code more readable by explicitly indicating that a value won't change.
+    
+
+
+######## Initialization of Final Variables
+There are two ways to initialize final variables:
+
+        1. Immediate Initialization
+        This is the most common way. The variable is declared and initialized in the same line.  
+            final int MAX_VALUE = 100;
+            final String NAME = "Alice";
+            Use code with caution.
+        
+        2. Blank Final
+        A blank final variable is declared as final but not initialized immediately. It must be initialized before the constructor completes.
+            public class MyClass {
+                final int value;
+            
+                public MyClass(int value) {
+                    this.value = value;
+                }
+            }
+
+        Example:
+        public class Circle {
+            private final double PI = 3.14159;
+            private final double radius;
+        
+            public Circle(double radius) {
+                this.radius = radius;   
+        
+            }
+        
+            public double calculateArea() {
+                return PI * radius * radius;
+            }
+        }
+
+
+In this example, PI is a constant value that won't change, and radius is a final variable that is initialized in the constructor.
+
+
+      
+
+
+################## Example 06:  Try-With-Resources in Java #################################
+    -Java construct introduced in Java 7 that simplifies resource management by ensuring automatic closing of resources at the end of a block. 
+    -It's a cleaner and more reliable alternative to using finally blocks for resource cleanup.
+   
+
+###How it works:
+    -Declare one or more resources within parentheses after the try keyword.
+    -Resources must implement the AutoCloseable interface.
+    -The resources are automatically closed at the end of the try block, regardless of whether an exception is thrown or not. 
+        Example: (Reading from a file)
+            import java.io.BufferedReader;
+            import java.io.FileReader;
+            import java.io.IOException;
+            
+            public class   
+             TryWithResourcesExample {
+                public static void main(String[] args) {
+                    try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            System.out.println(line);
+                        }
+                    } catch (IOException e) {
+                        System.err.println("Error reading file: " + e.getMessage());
+                    }
+                }
+            }
+
+        In this example:   
+        --BufferedReader and FileReader are declared as resources within the try block.
+        --These objects implement the AutoCloseable interface, ensuring they will be closed automatically.
+        --The try block reads lines from the file and prints them.
+        --If an IOException occurs, it's caught and handled.
+##### Benefits of Try-With-Resources:
+        Improved readability: Code is more concise and easier to understand.
+        Reduced error prone code: Eliminates the need for manual resource closing, which can lead to resource leaks.
+        Guaranteed resource closure: Resources are always closed, even in case of exceptions.
+
+#### How to Declare Multiple Resources(within the same try block)?
+        You can declare multiple resources within the same try block:
+        try (Resource1 r1 = createResource1(); Resource2 r2 = createResource2()) {
+            // Use resources
+        } catch (Exception e) {
+            // Handle exceptions
+        }
+
+ **If an exception occurs in the try block, the resources are still closed before the exception is propagated.
+
+
+##################### Example 7: What is and When to Lambda Expressions  ###########################
+
+#### What is  Lambda Expressions
+Lambda expressions are a powerful tool in Java for writing concise and functional-style code. 
+
+
+###### When to Use Lambda Expressions
+* Use lambda expressions when you need to pass behavior as a parameter.
+* Prefer lambda expressions for short, concise code blocks.
+* Consider using method references for even shorter expressions.
+* Be aware of potential performance implications, especially in highly performance-critical code.
+Here are some common scenarios where they shine:
+
+### 1. **Event Handling:**
+* Simplifying event listeners:
+  button.addActionListener(e -> System.out.println("Button clicked!"));
+
+### 2. **Collections:**
+* Filtering, mapping, and reducing data:
+  List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+  List<Integer> evenNumbers = numbers.stream()
+                                    .filter(n -> n % 2 == 0)
+                                    .collect(Collectors.toList());
+
+### 3. **Concurrency:**
+* Creating threads concisely:
+  new Thread(() -> System.out.println("Hello from a thread")).start();
+
+### 4. **Functional Interfaces:**
+* Implementing functional interfaces:
+  Comparator<String> comparator = (s1, s2) -> s1.length() - s2.length();
+
+### 5. **Method References:**
+* Using existing methods as lambda expressions:
+  List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+  names.sort(Comparator.comparing(String::length));
+
+### 6. **Stream API:**
+* Performing complex data manipulations:
+  int sum = numbers.stream().reduce(0, Integer::sum);
+
+
+
+**Example: Combining Multiple Operations**
+
+List<String> words = Arrays.asList("apple", "banana", "orange", "grape");
+
+List<String> result = words.stream()
+                           .filter(word -> word.length() > 5)
+                           .map(String::toUpperCase)
+                           .collect(Collectors.toList());
+
+System.out.println(result); // Output: [BANANA, ORANGE]
+
+In this example, lambda expressions are used to filter words based on length, convert them to uppercase, and collect the results into a new list.
 
 
 ######################################################################################
