@@ -12,7 +12,10 @@ Date: 31-July-2024(Wednesday)
 
 ==============================================================
 
---------------------01. Define the scope of variables----------------------------------
+######################################################################################
+    --------------------01. Define the scope of variables--------------------------
+######################################################################################
+
 ####### Scope of Variables
 ###### Key Points to Remember ############
 
@@ -50,8 +53,9 @@ Date: 31-July-2024(Wednesday)
 -Initialization: Local variables must be initialized before use, while instance and class variables are automatically initialized with default values if not explicitly done.
 
 
-
---------------------02. Define the structure of a Java class---------------------------
+######################################################################################
+--------------------02. Define the structure of a Java class--------------------------
+######################################################################################
 
 ###### Class Declaration
 ######  Fields (Attributes)
@@ -108,8 +112,9 @@ Date: 31-July-2024(Wednesday)
 
 
 
-
---------------------03. Create executable Java applications with a main method; --------------
+######################################################################################
+------------03. Create executable Java applications with a main method; ------
+######################################################################################
 
 ######## Example 1: Basic Structure with Main Method
 ######## Example 2: Using Static and Instance Methods
@@ -181,8 +186,9 @@ public class Example3 {
 }
 
 
-
---------------------04. Run a Java program from the command line;  ---------------------------
+######################################################################################
+     ---------------04. Run a Java program from the command line;  --------------
+######################################################################################
 
 ######## Step 1: Write Your Java Code
 ######## Step 2: Open the Command Line
@@ -253,8 +259,9 @@ You should see the output: Hello, World!
 4. Run the compiled Java program using the fully qualified class name:
     java com.example.HelloWorld
 
-
---------------------05. Produce console output  ----------------------------------------------
+######################################################################################
+       --------------------05. Produce console output  -------------------------
+######################################################################################
 
 
 ######## Explanation ########
@@ -291,8 +298,9 @@ It moves to a new line after printing.
 This is an example of print. It continues on the same line.
 This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 
-
---------------------06. Import other Java packages to make them accessible in your code  ---------------------------
+######################################################################################
+-------06. Import other Java packages to make them accessible in your code  ----------
+######################################################################################
 
 ########  0. Definition of Java Packag 
 ########  1. Importing a Single Class 
@@ -427,7 +435,9 @@ Here is a practical example that combines various types of imports:
     Reversed: dlroW olleH
     [One, Two]
 
---------------------07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.  ---------------------------
+############################################################################################################################################################################
+------07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.  ------------
+############################################################################################################################################################################
 
 
 ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
