@@ -548,51 +548,50 @@ Explanation:
 ###### Summary
 
 
-###### Types of Casting ######
 
 
-##########Object Casting in Java
-Object casting in Java involves converting an object of one type into another. 
-This is primarily used in the context of inheritance and polymorphism. 
-Unlike primitive casting, object casting requires more careful consideration due to the potential for runtime errors.   
+##########Object Casting in Java  #########
+-Converting an object of one type into another. 
+-Primarily used in the context of inheritance and polymorphism. 
+***Unlike primitive casting, object casting requires more careful consideration due to the potential for runtime errors.   
 
-##########Types of Object Casting
-        1. Upcasting (Implicit):
-                ***Upcasting is not typically required to be explicitly written since it is automatically handled by the Java compiler. 
-                -Converting a subclass object to a superclass reference.   
-                -Always safe as a subclass is-a superclass.   
-                -No explicit cast operator required. 
-                      Example:
-                        class Animal {
-                            void eat() {
-                                System.out.println("Animal eats");
-                            }
-                        }
-                        
-                        class Dog extends Animal {
-                            void bark() {
-                                System.out.println("Dog barks");
-                            }
-                        }
-                        
-                        public class   
-                         Main {
-                            public static void main(String[] args) {
-                                Dog dog = new Dog();
-                                Animal animal = dog; // Upcasting
-                            }
-                        }
+##########Types of Object Casting #########
+1. Upcasting (Implicit):
+        ***Upcasting is not typically required to be explicitly written since it is automatically handled by the Java compiler. 
+        -Converting a subclass object to a superclass reference.   
+        -Always safe as a subclass is-a superclass.   
+        -No explicit cast operator required. 
+              Example:
+                class Animal {
+                    void eat() {
+                        System.out.println("Animal eats");
+                    }
+                }
+                
+                class Dog extends Animal {
+                    void bark() {
+                        System.out.println("Dog barks");
+                    }
+                }
+                
+                public class   
+                 Main {
+                    public static void main(String[] args) {
+                        Dog dog = new Dog();
+                        Animal animal = dog; // Upcasting
+                    }
+                }
 
 
-        2. Downcasting (Explicit):
-                -Converting a superclass reference to a subclass object.   
-                -Requires an explicit cast operator (subclass_type).
-                -Not always safe as the object might not actually be an instance of the subclass.
-                -Use "instanceof" operator to check the object's type before downcasting.
-                  Example:
-                        Animal animal = new Dog();
-                        Dog dog = (Dog) animal; // Downcasting
-                        dog.bark(); // Safe because animal is actually a Dog
+2. Downcasting (Explicit):
+        -Converting a superclass reference to a subclass object.   
+        -Requires an explicit cast operator (subclass_type).
+        -Not always safe as the object might not actually be an instance of the subclass.
+        -Use "instanceof" operator to check the object's type before downcasting.
+          Example:
+                Animal animal = new Dog();
+                Dog dog = (Dog) animal; // Downcasting
+                dog.bark(); // Safe because animal is actually a Dog
 
 
 
