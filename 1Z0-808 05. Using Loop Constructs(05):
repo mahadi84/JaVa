@@ -208,49 +208,49 @@ This example prints each element of an `ArrayList`.
 ----------------03. Create and use do/while loops ------------------
 #### Syntax of `do/while` Loop 
 #### Key Points: 
-#### Example of `do/while` Loop 
-#### Example 1: Basic `do/while` Loop 
+            >Guaranteed Execution  
+            >Condition Checking
 #### Example 2: Using `do/while` for Menu-Driven Programs 
 #### Common Pitfalls 
 
 ####### Syntax of `do/while` Loop #######
 The syntax for a `do/while` loop is as follows:
 
-do {
-    // Code to be executed
-} while (condition);
+    Syntex:
+    do {
+        // Code to be executed
+    } while (condition);
 
 Components:
 - Code Block: The block of code inside the `do` clause that will be executed once for sure.
 - Condition: A boolean expression evaluated after the code block executes. If it evaluates to `true`, the loop repeats; if `false`, the loop terminates.
 
+Example:
+    public class DoWhileExample {
+        public static void main(String[] args) {
+            int i = 1; // Initialization
+            
+            do {
+                System.out.println(i); // Code to be executed
+                i++; // Update
+            } while (i <= 5); // Condition
+        }
+    }
+    
+    The loop will print numbers 1 through 5. After printing 5 and incrementing `i` to 6, the condition `i <= 5` becomes `false`, and the loop terminates.
+    
+    Explanation:
+    - Initialization: `int i = 1;` sets up the loop variable `i`.
+    - Code Block: `System.out.println(i);` prints the value of `i`, and `i++` increments `i` after each iteration.
+    - Condition: `while (i <= 5);` checks if `i` is less than or equal to 5 after the code block executes.
+
+
 ####### Key Points: #######
 - Guaranteed Execution: The code block within the `do` section is executed at least once because the condition is checked after the execution.
 - Condition Checking: The condition is evaluated after the loop's body executes, which is different from the `while` loop where the condition is evaluated before execution.
 
-####### Example of `do/while` Loop #######
-Let’s look at a basic example of a `do/while` loop.
 
-######## Example 1: Basic `do/while` Loop #######
-This example prints numbers from 1 to 5.
 
-public class DoWhileExample {
-    public static void main(String[] args) {
-        int i = 1; // Initialization
-        
-        do {
-            System.out.println(i); // Code to be executed
-            i++; // Update
-        } while (i <= 5); // Condition
-    }
-}
-
-Explanation:
-- Initialization: `int i = 1;` sets up the loop variable `i`.
-- Code Block: `System.out.println(i);` prints the value of `i`, and `i++` increments `i` after each iteration.
-- Condition: `while (i <= 5);` checks if `i` is less than or equal to 5 after the code block executes.
-
-The loop will print numbers 1 through 5. After printing 5 and incrementing `i` to 6, the condition `i <= 5` becomes `false`, and the loop terminates.
 
 ####### Example 2: Using `do/while` for Menu-Driven Programs #######
 `do/while` loops are particularly useful for scenarios where you want to ensure that a block of code (like a menu) is displayed at least once and repeated based on user input.
