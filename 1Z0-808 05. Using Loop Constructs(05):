@@ -12,7 +12,9 @@
 ========================================================================
 
 
-----------------01. Create and use while loops ------------------
+######################################################################################
+         ----------------01. Create and use while loops ------------------
+######################################################################################
 
 1. Basic Syntax of `while` Loop 
 2. Components of `while` Loop 
@@ -93,8 +95,9 @@ Continue, Example:
 
 Result: only odd numbers (1, 3, 5, 7, 9) are printed.
 
-
-----------------02. Create and use for loops including the enhanced for loop ------------------
+######################################################################################
+----------------02. Create and use for loops including the enhanced for loop --------
+######################################################################################
 
  1. Standard `for` Loop  
  2. Nested `for` Loops  
@@ -205,7 +208,10 @@ This example prints each element of an `ArrayList`.
 - Enhanced `for` Loop: Ideal for iterating over arrays and collections when you don’t need to know the index of the current element.
 
 
-----------------03. Create and use do/while loops ------------------
+
+######################################################################################
+         ----------------03. Create and use do/while loops ------------------
+######################################################################################
 #### Syntax of `do/while` Loop 
 #### Key Points: 
             >Guaranteed Execution  
@@ -293,8 +299,9 @@ Explanation:
 - Code Block: Displays a menu, takes user input, and performs actions based on the input.
 - Condition: `while (choice != 3);` continues the loop as long as the user’s choice is not 3 (the exit option).
 
-
-----------------04. Compare loop constructs ------------------
+######################################################################################
+           ----------------04. Compare loop constructs ------------------
+######################################################################################
 
 1. `for` Loop 
 2. `while` Loop 
@@ -392,22 +399,32 @@ Use Cases:
 - `do/while` Loop: Best when you need to ensure that the loop body runs at least once, regardless of the condition. Ideal for scenarios like prompting users until valid input is received.
 
 
----------------------------05. Use break and continue  -----------------------------
 
-    `break` Statement 
-            Syntax: 
+######################################################################################
+---------------------------05. Use break and continue  -----------------------------
+######################################################################################
+
+#########   Purpose and Usage of 'break' and 'continue' Statement
+#########  `break` Statement 
             Example: Using `break` in a `for` Loop 
             Example: Using `break` in a `while` Loop 
-    `continue` Statement 
-            Syntax: 
+######### `continue` Statement 
             Example: Using `continue` in a `for` Loop 
             Example: Using `continue` in a `while` Loop 
 
+######### Purpose and Usage of 'break' and 'continue' Statement #########
+- `break` Statement:
+  - Purpose: Exits the current loop or `switch` statement.
+  - Usage: Use it to terminate a loop or `switch` early based on a condition.
+
+- `continue` Statement:
+  - Purpose: Skips the current iteration of the loop and proceeds to the next iteration.
+  - Usage: Use it to skip certain iterations based on a condition without terminating the loop.
 
 
 ######### `break` Statement #########
-The `break` statement is used to exit from a loop or a `switch` statement prematurely. When `break` is executed, the loop or `switch` statement is terminated, and control passes to the statement following the loop or `switch`.
-Syntax:  break;
+The `break` statement is used to exit from a loop or a `switch` statement prematurely. 
+When `break` is executed, the loop or `switch` statement is terminated, and control passes to the statement following the loop or `switch`.
 
 ########## Example: Using `break` in a `for` Loop #########
 In this example, we use `break` to exit the loop when a certain condition is met.
@@ -455,9 +472,9 @@ Explanation:
 - If the user inputs "exit", the `break` statement is executed, terminating the loop.
 
 ######### `continue` Statement #########
-The `continue` statement is used to skip the current iteration of a loop and proceed to the next iteration. It can be used in `for`, `while`, and `do/while` loops.
-Syntax:
-continue;
+  -The `continue` statement is used to skip the current iteration of a loop and proceed to the next iteration. 
+  -It can be used in `for`, `while`, and `do/while` loops.
+
 
 ########## Example: Using `continue` in a `for` Loop #########
 In this example, we use `continue` to skip printing even numbers.
@@ -499,14 +516,6 @@ Explanation:
 - The `continue` statement is executed when `i` is even, which skips the `System.out.println(i);` statement.
 - Only odd numbers from 1 to 10 are printed.
 
-######### Summary #########
-- `break` Statement:
-  - Purpose: Exits the current loop or `switch` statement.
-  - Usage: Use it to terminate a loop or `switch` early based on a condition.
-
-- `continue` Statement:
-  - Purpose: Skips the current iteration of the loop and proceeds to the next iteration.
-  - Usage: Use it to skip certain iterations based on a condition without terminating the loop.
 
 
 
