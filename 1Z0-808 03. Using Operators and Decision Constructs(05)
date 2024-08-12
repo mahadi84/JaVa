@@ -145,15 +145,23 @@ While the parentheses might not be strictly necessary in this case, they improve
 ------03. Test equality between Strings and other objects using == and equals ()------
 ######################################################################################
 
-#######object reference: 
+####### Object reference variable: 
 ######### Understanding the Difference
 ######### Comparing Strings: Example:
 ######### Comparing Other Objects
 ###########  Important points
 
-#######object reference:  
-is a variable that holds the memory address of an object rather than the object itself. 
-It is used to interact with the object and access its fields and methods.
+####### Object reference variable:  
+-is a variable that holds the memory address of an object rather than the object itself. 
+-It is used to interact with the object and access its fields and methods.
+    Example:
+        Declaration: declare an object reference variable with the data type of the class it will reference.
+        Car myCar; // Declares a reference variable of type Car
+          Car myCar = null; // ***A reference variable can hold the value null if it doesn't refer to any object.
+            myCar = new Car("red", 2023); // Creates a Car object and assigns it to myCar
+            System.out.println(myCar.color); // Accesses the color property
+            myCar.start(); // Calls the start() method
+              
 
 ***Same Object vs Two Objects vs Custome Objects
 
