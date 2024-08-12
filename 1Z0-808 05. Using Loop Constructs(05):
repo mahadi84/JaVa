@@ -56,12 +56,6 @@ public class WhileLoopExample {
     }
 }
 
-  Explanation:
-  - Initialization: `int i = 1;` initializes the loop variable.
-  - Condition: `while (i <= 5)` checks if `i` is less than or equal to 5.
-  - Code Block: `System.out.println(i);` prints the value of `i`, and `i++` increments `i` by 1 after each iteration.
-
-The loop will print the numbers 1 through 5. Once `i` becomes 6, the condition `i <= 5` evaluates to `false`, and the loop terminates.
 
 ###### 4. Infinite `while` Loop ######
 An infinite `while` loop occurs when the condition always evaluates to `true`. Be cautious with this, as it will cause your program to run indefinitely unless interrupted.
