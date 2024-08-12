@@ -11,14 +11,15 @@ Date: 1-2Aug-2024(Thursday-Friday)
 
 =======================================
 
+=====================================================================================================================
 -----------01. Declare and initialize variables (including casting of primitive data types)---------------------
+=====================================================================================================================
 
 ######## Understanding Variables 
 ######## Primitive Data Types 
 ######## Declaration and Initialization 
 ######## Casting Primitive Data Types 
 ######## Important Considerations 
-######## Example 
 
 
 ######## Understanding Variables ################
@@ -82,13 +83,14 @@ Initialization: Assigns a value to the variable.
     }
 
 
-
+=====================================================================================================================
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
+=====================================================================================================================
 
 ####### Understanding Object References:
 ####### Object Reference Variables  And Primitive Variables  Example:
 ####### Key Differences
-### Additional Points for 1Z0-808
+### Additional Points about Object reference variables (->Null values ->Memory Management)  
 
 
 ### Understanding Object References:
@@ -166,18 +168,23 @@ Example:
     Assignment  | Value copying                 | Reference copying 
     Operations  | Basic arithmetic, comparison  | Object methods and properties 
 
-### Additional Points for 1Z0-808 #######
+### Additional Points #######
     > Null values: Object reference variables can be assigned `null` to indicate that they don't refer to any object. Primitive variables cannot be null.
     > Memory management: Primitive variables are managed by the JVM, while object memory is managed by the garbage collector.
 
 
+=====================================================================================
 -----------03. Know how to read or write to object fields-------------------------
+======================================================================================
 
+######## Fields(Static, Transient, and Volatile Field ) and Object
 ######### Accessing Object Fields ##########
-######## Key Points ##########
-######## Additional Considerations
 
 Fields: are variables declared within a class. They represent the data associated with an object.
+          Static Fields: Fields declared as static belong to the class itself, not instances.
+          Transient Fields: Fields marked as transient are not serialized.
+          Volatile Fields: Fields marked as volatile ensure visibility across threads.
+
 Object: is an instance of a class. It holds the values of its fields.
 
 ######### Accessing Object Fields ##########
@@ -241,32 +248,18 @@ There are primarily two ways to access object fields:
         }
 
 
-######## Key Points ##########
-    Encapsulation: Protect data integrity by using private fields and providing public getters and setters.
-    Readability: Well-named getters and setters improve code clarity.
-    Flexibility: Accessor methods can be used for complex logic or validation.
-    Direct Access: Use with caution, especially for public fields.
-
-### Additional Considerations
-    Static Fields: Fields declared as static belong to the class itself, not instances.
-    Transient Fields: Fields marked as transient are not serialized.
-    Volatile Fields: Fields marked as volatile ensure visibility across threads.
-
-
-
-
-
+=====================================================================================================================
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
+=====================================================================================================================
 
 ######## Creation
 ######## Dereference by Reassignment
 ######## Garbage Collection
 ######## Key Points -Example:
 ######## Important Notes
-
-Why object's lifecycle is so important?
-why garbage collection, is so important?
-what is memory leak?
+            Why object's lifecycle is so important?
+            why garbage collection, is so important?
+            what is memory leak?
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
@@ -291,7 +284,6 @@ what is memory leak?
     * Once an object is determined to be garbage, its memory is reclaimed for future use.
 
 ######## Key Points: #######
-
     * Objects live in the heap memory.
     * Reference variables hold addresses of objects.
     * Assigning a new value to a reference variable doesn't destroy the old object but breaks the link.
@@ -321,8 +313,9 @@ what is memory leak?
 
 
 
-
+=====================================================================================================================
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
+=====================================================================================================================
 
 01. Why to convert primtive data type into Object and vise-versa?
 02. How to do that?
@@ -402,8 +395,6 @@ public class WrapperClassExample {
     Null values: Wrapper classes can hold null values, unlike primitive types.
     Performance: While autoboxing and unboxing are convenient, they can have a slight performance impact compared to using primitive types directly.
     Caching: Some wrapper classes (like Integer and Byte) have a cache for commonly used values to optimize performance.
-
-
 
 
 ---
