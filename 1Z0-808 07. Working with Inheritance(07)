@@ -548,8 +548,6 @@ Explanation:
 ###### Summary
 
 
-
-
 ##########Object Casting in Java  #########
 -Converting an object of one type into another. 
 -Primarily used in the context of inheritance and polymorphism. 
@@ -582,18 +580,17 @@ Explanation:
                     }
                 }
 
-
 2. Downcasting (Explicit):
         -Converting a superclass reference to a subclass object.   
         -Requires an explicit cast operator (subclass_type).
         -Not always safe as the object might not actually be an instance of the subclass.
         -Use "instanceof" operator to check the object's type before downcasting.
           Example:
-                Animal animal = new Dog();
-                Dog dog = (Dog) animal; // Downcasting
-                dog.bark(); // Safe because animal is actually a Dog
-
-
+                Animal animal = new Dog(); // Upcasting
+                if (animal instanceof Dog) {
+                    Dog dog = (Dog) animal; // Downcasting
+                    dog.bark(); // Accessing subclass-specific method
+                }
 
 ###### When Casting is Necessary ######
 
