@@ -8,7 +8,9 @@
 
 =============================================================================================
 
-----------------------------01. Declare, instantiate, initialize, and use a one-dimensional array --------------
+######################################################################################
+-------01. Declare, instantiate, initialize, and use a one-dimensional array --------
+######################################################################################
 0. Definition
 1. Declare a One-Dimensional Array 
 2. Instantiate a One-Dimensional Array 
@@ -104,8 +106,10 @@ Here’s a complete example that incorporates all the steps:
 
 
 
+######################################################################################
+---------02. Declare, instantiate, initialize, and use multi-dimensional arrays ------
+######################################################################################
 
-------------------02. Declare, instantiate, initialize, and use multi-dimensional arrays -------------------------------
 0. Definition
 1. Declare a Multi-Dimensional Array  
 2. Instantiate a Multi-Dimensional Array  
