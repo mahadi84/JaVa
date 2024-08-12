@@ -300,10 +300,19 @@
             ###### Summary 
 
 05. Determine when casting is necessary
-            ###### Types of Casting
+            ###### Types of Casting 
+                1. Upcasting:
+                2. Downcasting:
             ###### When Casting is Necessary
+                1. To Access Subclass-Specific Methods or Fields:
+                2. When Dealing with Collections:
+                3. When Working with Polymorphism:
+                4. To Handle Type Errors:
             ###### Important Considerations
+                1. `instanceof` Operator:
+                2. `ClassCastException`:
             ###### Summary
+
 06. Use super and this to access objects and constructors
             ###### 1. Using `super`
             ####### Accessing Superclass Methods
