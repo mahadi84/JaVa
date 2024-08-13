@@ -193,19 +193,23 @@ Here are some commonly used methods of the `String` class:
     java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
 ===============================================================================================
 
-
+####### What are these?
+####### Creating and Manipulating:
 ###### 1. `LocalDateTime`
-####### Creating and Manipulating `LocalDateTime`
 ###### 2. `LocalDate`
-####### Creating and Manipulating `LocalDate`
 ###### 3. `LocalTime`
-####### Creating and Manipulating `LocalTime`
 ###### 4. `DateTimeFormatter`
-####### Creating and Using `DateTimeFormatter`
 ###### 5. `Period`
-####### Creating and Using `Period`
 ###### Example of Using `java.time` Classes
-###### Summary
+
+
+###### What are these? ######
+- `LocalDateTime`: Represents a date and time without time zone. Used for combining date and time operations.
+- `LocalDate`: Represents a date without time. Useful for date manipulations.
+- `LocalTime`: Represents a time without a date. Useful for time manipulations.
+- `DateTimeFormatter`: Used for formatting and parsing date-time values.
+- `Period`: Represents a span of time in terms of years, months, and days, useful for measuring the difference between dates.
+
 
 
 ###### 1. `LocalDateTime` ######
@@ -216,10 +220,8 @@ Here are some commonly used methods of the `String` class:
   LocalDateTime dateTime = LocalDateTime.now(); // Current date and time
   LocalDateTime specificDateTime = LocalDateTime.of(2024, 8, 4, 15, 30); // Specific date and time
 
-
 - Manipulating date-time:
   LocalDateTime later = dateTime.plusDays(10).minusHours(5); // Add 10 days and subtract 5 hours
-
 
 - Getting specific components:
   int year = dateTime.getYear();
@@ -235,10 +237,8 @@ Here are some commonly used methods of the `String` class:
   LocalDate date = LocalDate.now(); // Current date
   LocalDate specificDate = LocalDate.of(2024, 8, 4); // Specific date
 
-
 - Manipulating dates:
   LocalDate futureDate = date.plusWeeks(2).minusDays(5); // Add 2 weeks and subtract 5 days
-
 
 - Getting specific components:
   int year = date.getYear();
@@ -254,10 +254,8 @@ Here are some commonly used methods of the `String` class:
   LocalTime time = LocalTime.now(); // Current time
   LocalTime specificTime = LocalTime.of(14, 30); // Specific time (2:30 PM)
 
-
 - Manipulating times:
   LocalTime laterTime = time.plusHours(3).minusMinutes(15); // Add 3 hours and subtract 15 minutes
-
 
 - Getting specific components:
   int hour = time.getHour();
@@ -272,7 +270,6 @@ Here are some commonly used methods of the `String` class:
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
   String formattedDateTime = dateTime.format(formatter);
 
-
 - Parsing a date-time string:
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   LocalDate parsedDate = LocalDate.parse("2024-08-04", formatter);
@@ -285,12 +282,10 @@ Here are some commonly used methods of the `String` class:
 - Creating a period:
   Period period = Period.of(1, 2, 3); // Represents 1 year, 2 months, and 3 days
 
-
 - Calculating periods between dates:
   LocalDate startDate = LocalDate.of(2024, 1, 1);
   LocalDate endDate = LocalDate.of(2024, 8, 4);
   Period periodBetween = Period.between(startDate, endDate);
-
 
 - Getting period components:
   int years = periodBetween.getYears();
@@ -299,8 +294,6 @@ Here are some commonly used methods of the `String` class:
 
 
 ###### Example of Using `java.time` Classes ######
-Here’s an example demonstrating the use of these classes:
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -345,28 +338,11 @@ public class DateTimeExample {
     }
 }
 
-Explanation:
-- `LocalDateTime` is used to get the current date and time and manipulate it.
-- `LocalDate` is used for date-only manipulations.
-- `LocalTime` is used for time-only manipulations.
-- `DateTimeFormatter` is used to format and parse date-time strings.
-- `Period` is used to calculate the difference between two dates.
-
-###### Summary ######
-- `LocalDateTime`: Represents a date and time without time zone. Used for combining date and time operations.
-- `LocalDate`: Represents a date without time. Useful for date manipulations.
-- `LocalTime`: Represents a time without a date. Useful for time manipulations.
-- `DateTimeFormatter`: Used for formatting and parsing date-time values.
-- `Period`: Represents a span of time in terms of years, months, and days, useful for measuring the difference between dates.
-
-
 
 
 ================================================================================
 ------------------04. Declare and use an ArrayList of a given type  ----------
 ================================================================================
-
-
 
 ###### Declaring and Using `ArrayList` 
 ####### 1. Importing the `ArrayList` Class 
@@ -376,14 +352,10 @@ Explanation:
 ####### 5. Modifying Elements 
 ####### 6. Removing Elements 
 ####### 7. Iterating Through an `ArrayList` 
-####### 8. Common Methods 
-####### Example 
-###### Summary 
-
+####### 8. Common Methods (set(), add(), size(), isEmpty(), remove(2),clear())
 
 
 ###### Declaring and Using `ArrayList` ######
-
 ####### 1. Importing the `ArrayList` Class ######
 Before you can use `ArrayList`, you need to import it from the `java.util` package:
 
@@ -449,23 +421,20 @@ You can use a `for` loop, `for-each` loop, or an iterator to traverse the elemen
 
 
 ####### 8. Common Methods ######
-- `size()`: Returns the number of elements in the list.
-  int size = listOfStrings.size(); // Number of elements
-
-
-- `isEmpty()`: Checks if the list is empty.
-  boolean isEmpty = listOfStrings.isEmpty(); // True if the list is empty
-
-
-- `clear()`: Removes all elements from the list.
-  listOfStrings.clear(); // Clears all elements
+- Declare an `ArrayList`: Specify the type of elements it will hold (e.g., `ArrayList<String> fruits = new ArrayList<>();`).
+- Add elements: Use `add()`.
+- Access elements: Use `get()`.
+- Modify elements: Use `set()`.
+- Remove elements: Use `remove()`.
+- Iterate through elements: Use `for`, `for-each`, or `Iterator`.
+- Common methods: 
+      `size()`,   Ex: boolean isEmpty = listOfStrings.size()  //Returns the number of elements in the list.
+      `isEmpty()` Ex: boolean isEmpty = listOfStrings.isEmpty() //Checks if the list is empty.
+      `clear()`.  Ex:  listOfStrings.clear(); // Removes all elements from the list.
 
 
 ####### Example ######
-Here’s a complete example demonstrating the usage of `ArrayList`:
-
 import java.util.ArrayList;
-
 public class ArrayListExample {
     public static void main(String[] args) {
         // Declare and initialize an ArrayList of Strings
@@ -503,22 +472,6 @@ public class ArrayListExample {
     }
 }
 
-Explanation:
-- The `ArrayList` is declared and initialized.
-- Elements are added, accessed, modified, and removed.
-- The list is iterated using a `for-each` loop.
-- Common methods are demonstrated.
-
-###### Summary ######
-- Declare an `ArrayList`: Specify the type of elements it will hold (e.g., `ArrayList<String> fruits = new ArrayList<>();`).
-- Add elements: Use `add()`.
-- Access elements: Use `get()`.
-- Modify elements: Use `set()`.
-- Remove elements: Use `remove()`.
-- Iterate through elements: Use `for`, `for-each`, or `Iterator`.
-- Common methods: `size()`, `isEmpty()`, `clear()`.
-
-
 
 
 =============================================================================================
@@ -532,14 +485,11 @@ Explanation:
 ####### Lambda Expression that Consumes a Predicate
 
 
-
-
 ####### 1. Lambda Expressions ######
-A lambda expression is a shorthand notation for defining an anonymous function. The syntax is as follows:
-
-(parameters) -> expression
-Or, for more complex expressions:
-(parameters) -> { statements }
+-Is a shorthand notation for defining an anonymous function. The syntax is as follows:
+   (parameters) -> expression
+   Or, for more complex expressions:
+   (parameters) -> { statements }
 
 ####### 2. Functional Interfaces ######
 Functional interfaces are interfaces with a single abstract method. 
@@ -550,14 +500,14 @@ The `java.util.function` package provides several functional interfaces, includi
 -that represents a boolean-valued function of one argument. 
 -It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
 
-Signature:
-@FunctionalInterface
-public interface Predicate<T> {
-    boolean test(T t);
-}
+      Signature:
+      @FunctionalInterface
+      public interface Predicate<T> {
+          boolean test(T t);
+      }
 
 ###### Lambda Expression that Consumes a Predicate ######
-To write a lambda expression that consumes a `Predicate`, you need to:
+To write a lambda expression that consumes a `Predicate`, I need to:
 1. Define a `Predicate`: Create a lambda expression that implements the `Predicate` interface.
 2. Use the `Predicate`: Apply this `Predicate` to some data.
 
