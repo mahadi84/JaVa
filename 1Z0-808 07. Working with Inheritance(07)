@@ -49,7 +49,6 @@ public class Subclass extends Superclass {
 - Ease of Maintenance allows changes in the superclass to be automatically reflected in subclasses.
 - Polymorphism supports using superclass references for subclass objects, enabling flexible and dynamic method calls.
 
-
 1. Code Reusability:
    - Inheritance promotes code reuse by allowing a subclass to use the methods and fields of its superclass. This reduces redundancy and improves maintainability.
 
@@ -162,14 +161,14 @@ Here, `myAnimal` is of type `Animal` but refers to a `Cat` object. The overridde
 
 
 ###########################################################################
-       ------02. Develop code that makes use of polymorphism; --------
+       ------02. Develop code that makes use of Polymorphism  --------
 ###########################################################################
 
 ###### What is Polymorphism? 
 ###### 1. Compile-Time Polymorphism (Method Overloading) 
 ###### 2. Runtime Polymorphism (Method Overriding) 
-###### Why Polymorphism 
-###### Key Points for the 1Z0-808 Exam: 
+###### Why Polymorphism?
+
 
 ###### What is Polymorphism? ######
 Polymorphism allows objects of different classes to be treated through a common interface, typically via a common superclass or interface. It comes in two main forms:
@@ -447,7 +446,6 @@ Example 2: Upcasting and Downcasting
 ###### Important Considerations
                 1. `instanceof` Operator:
                 2. `ClassCastException`:
-###### Summary
 
 
 ########## Object Casting in Java  #########
@@ -468,7 +466,7 @@ Example 2: Upcasting and Downcasting
         -Not always safe as the object might not actually be an instance of the subclass.
         -Use "instanceof" operator to check the object's type before downcasting.
 
-########Example:  Upcasting and Downcasting
+########Example:  Upcasting and Downcasting #################
                         public class Animal { }
                         public class Cat extends Animal {
                             public void meow() {
@@ -493,7 +491,6 @@ Example 2: Upcasting and Downcasting
                 - Downcasting is necessary because `meow()` is not a method of `Animal`.
 
 ###### When Casting is Necessary ######
-
 1. To Access Subclass-Specific Methods or Fields:
    - When you have a reference of a superclass type and you need to call methods or access fields that are specific to a subclass, you must use downcasting.
 
@@ -555,12 +552,6 @@ Example 2: Upcasting and Downcasting
        System.out.println("Cast failed: " + e.getMessage());
    }
 
-###### Summary ######
-
-- Upcasting is implicitly handled and does not require explicit casting. It is used to treat a subclass object as an instance of its superclass.
-- Downcasting is required when you need to access methods or fields specific to a subclass from a superclass reference.
-- Always use the `instanceof` operator before downcasting to avoid runtime errors.
-- Understand the type of reference and the type of object to manage casting effectively and ensure type safety.
 
        
 
@@ -570,21 +561,24 @@ Example 2: Upcasting and Downcasting
 
 
 
-###### 1. Using `super`
-####### Accessing Superclass Methods
-####### Accessing Superclass Constructors
+###### 1. Why and how to Use `super`
+####### Accessing Superclass Methods and Constructors
 ###### 2. Using `this`
 ####### Accessing Instance Variables and Methods
 ####### Calling Other Constructors (Constructor Chaining)
-###### Summary
 
 
-###### 1. Using `super` ######
-The `super` keyword refers to the superclass of the current object. It is used to access superclass methods and constructors.
+
+###### 1. Why and how to Use `super` ######
+The `super` keyword refers to the superclass of the current object. 
+It is used to access superclass methods and constructors.
+
+Example: - `super`:
+  - Use `super.methodName()` to call a method from the superclass. //Purpose: To call a method in the superclass that has been overridden in the subclass.
+  - Use `super(arguments)` to invoke a constructor from the superclass.
 
 ####### Accessing Superclass Methods ######
 
-- Purpose: To call a method in the superclass that has been overridden in the subclass.
 - Syntax: `super.methodName()`
 
 Example:
@@ -612,12 +606,7 @@ public class Test {
     }
 }
 
-Explanation:
-- `super.makeSound()` calls the `makeSound` method from the `Animal` class, which is the superclass of `Dog`.
-- This allows the `Dog` class to extend the functionality of the `Animal` class method.
-
 ####### Accessing Superclass Constructors ######
-
 - Purpose: To call a constructor in the superclass from the subclass constructor.
 - Syntax: `super(arguments)`
 
@@ -648,11 +637,14 @@ Explanation:
 - `super(name)` calls the `Animal` class constructor that takes a `String` argument. This ensures the superclass is properly initialized before the subclass initialization continues.
 
 ###### 2. Using `this` ######
-
-The `this` keyword refers to the current instance of the class. It is used to access instance variables and methods of the current object, and to call other constructors in the same class.
+-The `this` keyword refers to the current instance of the class. 
+-It is used to access instance variables and methods of the current object, and to call other constructors in the same class.
+           - `this`:
+             - Use `this.variableName` to refer to instance variables and distinguish them from method parameters.
+             - Use `this.methodName()` to call other methods within the same class.
+             - Use `this(arguments)` to call another constructor in the same class (constructor chaining).
 
 ####### Accessing Instance Variables and Methods ######
-
 - Purpose: To differentiate between instance variables and parameters when they have the same name, and to call other methods in the current class.
 - Syntax: `this.variableName` and `this.methodName()`
 
@@ -723,38 +715,25 @@ Explanation:
 - `this("Unknown Title", "Unknown Author")` in the no-argument constructor calls the two-argument constructor.
 - `this(title, "Unknown Author")` in the single-argument constructor calls the two-argument constructor, ensuring all initialization is centralized.
 
-###### Summary ######
-- `super`:
-  - Use `super.methodName()` to call a method from the superclass.
-  - Use `super(arguments)` to invoke a constructor from the superclass.
+
   
-- `this`:
-  - Use `this.variableName` to refer to instance variables and distinguish them from method parameters.
-  - Use `this.methodName()` to call other methods within the same class.
-  - Use `this(arguments)` to call another constructor in the same class (constructor chaining).
-
-
 #####################################################################################
        ------07. Use abstract classes and interfaces--------
 #####################################################################################
 
 ###### Abstract Classes 
-####### Key Points 
-        1. Declaration
-        2. Abstract Methods
-        3. Concrete Methods
-        4. Constructors
-        5. Fields
-####### Example 
+           1. Declaration
+           2. Abstract Methods
+           3. Concrete Methods
+           4. Constructors
+           5. Fields
 ###### Interfaces 
-####### Key Points
-        1. Declaration 
-        2. Implementation 
-        3. Default Methods 
-        4. Static Methods 
-        5. Multiple Inheritance 
-####### Example 
-###### Differences between Abstract Class and Interface
+           1. Declaration 
+           2. Implementation 
+           3. Default Methods 
+           4. Static Methods 
+           5. Multiple Inheritance 
+############## Differences between Abstract Class and Interface
 ############## When to use Abstract class  or Interface?
 
 
@@ -763,7 +742,6 @@ Explanation:
         -are meant to be extended by other classes. 
         -can contain abstract methods (methods without a body) as well as concrete methods (methods with a body).
 
-####### Key Points ######
         1. Declaration:
            - An abstract class is declared using the `abstract` keyword.
            - Abstract methods within the class are declared without a body and must be implemented by subclasses.
@@ -816,7 +794,6 @@ Explanation:
            -Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
            -Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
 
-####### Key Points ######
 1. Declaration:
    - Interfaces are declared using the `interface` keyword.
    - Methods in an interface are implicitly `public` and `abstract` (until Java 8, when default and static methods were introduced).
@@ -865,15 +842,15 @@ Explanation:
 
 ############## Key Differences
 
-Feature          |   Abstract Class	                         |    Interface
-Inheritance      |  Single inheritance                           | Multiple inheritance
+Feature          |   Abstract Class	                 |    Interface
+Inheritance      |  Single inheritance                       | Multiple inheritance
 Methods          |  Abstract and concrete	                 | Only abstract (before Java 8), default and static from Java 8
 Variables        |  All types (final, non-final, static, non-static) | Only static final
-Constructors     |  Yes	                                         | No
-Access Modifiers |  Public, protected, private, default	         | Public (implicitly)
+Constructors     |  Yes	                            | No
+Access Modifiers |  Public, protected, private, default      | Public (implicitly)
 
 
-############## When to use Abstract class  or Interface?
+############## When to use Abstract class  or Interface?  #####################
 01. Use an Abstract Class When:
     -I want to provide a partial implementation of a class.
     -I need to share code among related classes.
@@ -889,7 +866,6 @@ Access Modifiers |  Public, protected, private, default	         | Public (impli
                 }
             }
 
-
 02. Use an Interface When:
     -I want to define a contract that unrelated classes can implement.
     -I need to support multiple inheritance of type.
@@ -900,12 +876,13 @@ Access Modifiers |  Public, protected, private, default	         | Public (impli
                 void draw();
             }
 
-
-Consider the following factors when deciding between an abstract class and an interface:
+##################### Consider the following factors when deciding between an abstract class and an interface: #####################
     01. Is there a strong "is-a" relationship between the classes? If so, an abstract class might be suitable.
     02. Do I need to provide a default implementation for some methods? If so, an abstract class is better.
     03. Do I need to support multiple inheritance of type? If so, an interface is the only option.
     04. How much flexibility do I need? Interfaces generally offer more flexibility.
     05. Remember: There's no strict rule, and often, a combination of both can be used effectively.
+
+
 
 -
