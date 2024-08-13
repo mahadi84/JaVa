@@ -12,56 +12,73 @@
 -----------01. Differentiate among checked exceptions, unchecked exceptions, and Errors-----------
 ============================================================================================================
 
-
-###### 1. Checked Exceptions
-####### Characteristics: 
-####### Examples: 
-####### Example Code: 
+###### 1. Checked Exceptions( Name any three of them)
+####### Example with 01. try-catch block and 02. throws: 
 ###### 2. Unchecked Exceptions
-####### Characteristics: 
-####### Examples: 
-####### Example Code: 
 ###### 3. Errors
-####### Characteristics: 
-####### Examples: 
-####### Example Code: 
-###### Summary
+####### Types of Errors: 
+####### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors 
 
 
 ###### 1. Checked Exceptions ######
-Checked exceptions are exceptions that the compiler requires you to handle explicitly. They are exceptions that a method may throw and that the calling method must handle or declare.
+-the compiler forces me to handle or declare. 
+-represent potential EXTERNAL(file I/O errors, SQL, network issues, or invalid user input.) errors 
+ that can occur OUTSIDE the immediate control of the program, 
 
-####### Characteristics: #######
-- Compile-Time Checking: The Java compiler checks that checked exceptions are either caught using a `try-catch` block or declared to be thrown using the `throws` keyword in the method signature.
-- Handled by the Programmer: Checked exceptions typically represent conditions that a program should anticipate and handle, such as I/O operations, network errors, or invalid user inputs.
-
-####### Examples: #######
+####### Name any three of them: #######
 - `IOException`: Thrown when an I/O operation fails.
 - `SQLException`: Thrown when there is a database access error.
 - `FileNotFoundException`: Thrown when a file with the specified pathname does not exist.
 
 ####### Example Code: #######
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+There are 2 two primary ways to handle checked exceptions:
 
-public class CheckedExceptionExample {
-    public static void main(String[] args) {
-        try {
-            File file = new File("nonexistentfile.txt");
-            FileReader fr = new FileReader(file); // This line may throw IOException
-        } catch (IOException e) {
-            e.printStackTrace(); // Handling the checked exception
-        }
-    }
-}
+        01. Using a try-catch block:
+            try {
+            // Code that might throw a checked exception
+            } catch (IOException e) {
+            // Handle the exception
+            }
+            ----
+            Example:
+                import java.io.File;
+                import java.io.FileReader;
+                import java.io.IOException;
+                
+                public class CheckedExceptionExample {
+                    public static void main(String[] args) {
+                        try {
+                            File file = new File("nonexistentfile.txt");
+                            FileReader fr = new FileReader(file); // This line may throw IOException
+                        } catch (IOException e) {
+                            e.printStackTrace(); // Handling the checked exception
+                        }
+                    }
+                }
+
+        02. Declaring the exception with throws:
+            public void myMethod() throws IOException {
+                // Method might throw IOException
+            }
+                    Example:
+                    import java.io.IOException;
+                    public class CheckedExceptionExample {
+                        public static void main(String[] args) throws IOException {
+                            readFile("data.txt");
+                        }
+                    
+                        public static void readFile(String fileName) throws IOException {
+                            // Code to read from the file
+                        }
+                    }
+
+
 
 ###### 2. Unchecked Exceptions ######
-Unchecked exceptions are exceptions that the compiler does not require you to handle explicitly. They are subclasses of `RuntimeException` and typically represent programming errors or bugs that can be avoided by correcting the code.
-
-####### Characteristics: #######
-- Runtime Checking: Unchecked exceptions are not checked at compile time but are checked at runtime. They occur due to programming errors such as logic errors or improper use of APIs.
-- Not Required to Handle: Unlike checked exceptions, you are not required to catch or declare unchecked exceptions. They usually indicate errors that are not expected to be recovered from programmatically.
+-Compiler does not force you to handle or declare. 
+-It represents PROGRAMMING(logic or improper use of APIs) errors or 
+-Unexpected conditions that should not occur in normal program execution.
+-Runtime Checking: Not checked at compile time but are checked at runtime. They occur due to programming errors such as 
 
 ####### Examples: #######
 - `NullPointerException`: Thrown when an application attempts to use `null` where an object is required.
@@ -81,11 +98,16 @@ public class UncheckedExceptionExample {
 }
 
 ###### 3. Errors ######
-Errors are serious issues that typically represent problems that a Java application should not try to handle. They are subclasses of the `Error` class and are generally used by the Java Virtual Machine (JVM) to indicate severe problems that are outside the control of the application.
+-Is a serious problem that occurs during program execution, 
+ typically indicating a system-level issue rather than a programming mistake. 
+-These are often unrecoverable conditions that result in program termination.
+**They are subclasses of the `Error` class and are generally used by the Java Virtual Machine (JVM) to indicate severe problems that are outside the control of the application.
 
-####### Characteristics: #######
-- JVM-Level Issues: Errors represent conditions that are generally out of the control of the application and are used to signal severe problems, such as resource exhaustion or system failures.
-- Not Intended to be Caught: Errors are not meant to be caught or handled by applications. Instead, they usually indicate that something has gone seriously wrong with the JVM or the environment in which the application is running.
+####### Types of Errors #######
+VirtualMachineError: Indicates a serious problem with the Java Virtual Machine (JVM), such as running out of memory (OutOfMemoryError) or stack overflow (StackOverflowError).
+ThreadDeath: Signals that a thread has been forcibly terminated.
+LinkageError: Occurs during linking, when classes or interfaces cannot be correctly linked.
+AssertionError: Thrown when an assertion fails.
 
 ####### Examples: #######
 - `OutOfMemoryError`: Thrown when the JVM cannot allocate memory.
@@ -108,19 +130,19 @@ public class ErrorExample {
     }
 }
 
-###### Summary ######
+###### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors ######
 - Checked Exceptions:
-  - Must be either caught or declared in the method signature.
+  - Defination
   - Represent conditions that a program should anticipate and handle.
   - Examples: `IOException`, `SQLException`, `FileNotFoundException`.
 
 - Unchecked Exceptions:
-  - Do not need to be caught or declared.
+  - Defination
   - Represent programming errors or bugs, typically indicating flaws in the logic.
   - Examples: `NullPointerException`, `ArrayIndexOutOfBoundsException`, `ArithmeticException`.
 
 - Errors:
-  - Indicate severe problems that the JVM detects and are usually not meant to be handled by applications.
+  - Defination
   - Represent issues related to the JVM or system-level problems.
   - Examples: `OutOfMemoryError`, `StackOverflowError`, `VirtualMachineError`.
 
