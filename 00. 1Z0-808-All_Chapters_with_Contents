@@ -222,12 +222,10 @@
             ######## Methods in Java 
             ######## Creating Methods with Arguments 
             ######## Return Values 
-            ######## Calling Methods  
+            ######## Calling Methods 
 02. including overloaded methods
-            1. Definition:
-            2. Rules for Method Overloading:
-            3. How It Works:
-            4. Example of Method Overloading:
+            ####### Method Overloading
+            ####### Rules for Method Overloading
 03. Apply the static keyword to methods and fields
             ###### The `static` Keyword
             ###### Static Fields (Class Variables)
@@ -237,7 +235,7 @@
             ###### Static Methods
                         1. Definition:
                         2. Syntax:
-            ###### Key Points for the 1Z0-808 Exam:
+                        3. Restrictions
 04. Create and overload constructors;
             ####### Constructors in Java  #######
             ####### Overloading Constructors  #######
@@ -257,24 +255,20 @@
                         2. Characteristics:
                         3. Example:
             ###### Key Differences: ######
+
 06. Apply access modifiers
             ###### Access Modifiers in Java 
-            ###### 1. `public`      -Definition: -Usage: -Example:
-            ###### 2. `protected`   -Definition: -Usage: -Example:
-            ###### 3. Default (Package-Private) -Definition: -Usage: -Example:
-            ###### 4. `private`     -Definition: -Usage: -Example: 
-            ###### Summary of Access Levels: 
-            ###### Key Points for the 1Z0-808 Exam: 
+            ###### 1. public      -Definition: -Usage: -Example:
+            ###### 2. protected   -Definition: -Usage: -Example:
+            ###### 3. default (Package-Private) -Definition: -Usage: -Example:
+            ###### 4. private     -Definition: -Usage: -Example: 
 07. Apply encapsulation principles to a class
-            ###### What is Encapsulation? 
+            ###### What is Encapsulation and WHy? 
             ###### Key Principles of Encapsulation 
-            ###### Example of Encapsulation 
-            ###### Key Points for the 1Z0-808 Exam:
 08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
             ###### Primitive Types
             ###### Object References
-            ###### Summary
-            ###### Key Points for the 1Z0-808 Exam:
+
 
 =======================07. Working with Inheritance(07): ==================
 01. Describe inheritance and its benefits
