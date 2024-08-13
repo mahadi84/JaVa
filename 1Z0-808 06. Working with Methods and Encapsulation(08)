@@ -107,7 +107,6 @@ public class Main {
 ------------02. including overloaded methods------------------
 ##################################################################################
 
-####### Method Overloading #######
 
 1. Definition:
 2. Rules for Method Overloading:
@@ -115,8 +114,7 @@ public class Main {
 4. Example of Method Overloading:
 
 
-
-
+####### Method Overloading #######
 1. Definition:
 Method overloading in Java allows a class to have more than one method with the same name, but with different parameter lists. This means you can define multiple methods with the same name as long as their parameter types or numbers are different.
 
@@ -181,8 +179,7 @@ In this example:
 ###### Static Methods
             1. Definition:
             2. Syntax:
-###### Key Points for the 1Z0-808 Exam:
-
+            3. Restrictions
 
 
 
@@ -280,6 +277,7 @@ In this example:
         3. Constructor Chaining:
         4. No Return Type:
         5. Overloading vs. Overriding:
+
 
 ####### Constructors in Java  #######
 1. Definition:
@@ -489,26 +487,19 @@ In this example:
 ##################################################################################
 
 ###### Access Modifiers in Java 
-###### 1. `public`      -Definition: -Usage: -Example:
-###### 2. `protected`   -Definition: -Usage: -Example:
-###### 3. Default (Package-Private) -Definition: -Usage: -Example:
-###### 4. `private`     -Definition: -Usage: -Example: 
-###### Summary of Access Levels: 
-###### Key Points for the 1Z0-808 Exam: 
-
-
+###### 1. public      -Definition: -Usage: -Example:
+###### 2. protected   -Definition: -Usage: -Example:
+###### 3. default (Package-Private) -Definition: -Usage: -Example:
+###### 4. private     -Definition: -Usage: -Example: 
 
 
 ###### Access Modifiers in Java ######
-
 Java provides four main access modifiers:
-
-1. `public`
-2. `protected`
-3. `default` (no modifier)
-4. `private`
-
-Each modifier controls access at different levels, from most accessible to least accessible.
+    1. `public`: Accessible from any other class or package.
+    2. `protected`: Accessible within the same package and by subclasses in other packages.
+    3. Default (Package-Private): Accessible only within the same package.
+    4. `private`: Accessible only within the same class.
+   
 
 ###### 1. `public` ######
 Definition:
@@ -593,29 +584,14 @@ public class PrivateExample {
     }
 }
 
-###### Summary of Access Levels: ######
-
-1. `public`: Accessible from any other class or package.
-2. `protected`: Accessible within the same package and by subclasses in other packages.
-3. Default (Package-Private): Accessible only within the same package.
-4. `private`: Accessible only within the same class.
-
-###### Key Points for the 1Z0-808 Exam: ######
-
-- Use `public` for classes, methods, and fields that need to be accessed from other packages or classes.
-- Use `protected` for methods and fields that need to be accessed by subclasses or other classes in the same package.
-- Use default (no modifier) when you want to limit access to the same package, promoting encapsulation while keeping access within a specific group of classes.
-- Use `private` to restrict access to methods and fields that should not be exposed outside the class, ensuring encapsulation and protecting internal data.
 
 
 ##################################################################################
 -------------07. Apply encapsulation principles to a class------------------
 ##################################################################################
 
-###### What is Encapsulation? 
+###### What is Encapsulation and WHy? 
 ###### Key Principles of Encapsulation 
-###### Example of Encapsulation 
-###### Key Points for the 1Z0-808 Exam:
 
 
 
@@ -623,6 +599,11 @@ public class PrivateExample {
 Encapsulation is the concept of wrapping data (fields) and code (methods) together into a single unit, i.e., a class. It involves:
 - Hiding the internal state of an object from the outside world.
 - Providing controlled access to the internal state through public methods.
+
+####### Why Encapsulation
+   - Control: You have control over how the fields are accessed and modified.
+   - Flexibility: You can change the internal implementation of a class without affecting other classes that use it.
+   - Maintainability: Encapsulation makes the code more maintainable by hiding complexity and exposing only necessary parts.
 
 ###### Key Principles of Encapsulation ######
 1. Private Fields: 
@@ -695,39 +676,25 @@ public class Person {
     }
 }
 
-###### Key Points for the 1Z0-808 Exam: ######
-1. Private Fields: 
-   - Declare class fields as `private` to prevent unauthorized access and modification.
 
-2. Public Accessors (Getters) and Mutators (Setters):
-   - Provide `public` getter and setter methods to allow controlled access to private fields.
-   - Implement validation or logic in setters to ensure that data remains valid and consistent.
 
-3. Encapsulation Benefits:
-   - Control: You have control over how the fields are accessed and modified.
-   - Flexibility: You can change the internal implementation of a class without affecting other classes that use it.
-   - Maintainability: Encapsulation makes the code more maintainable by hiding complexity and exposing only necessary parts.
 
-4. Encapsulation in Practice:
-   - Always aim to encapsulate fields by making them `private` and provide public getter and setter methods to interact with these fields. This practice enhances security and integrity of the data within objects.
-
-##################################################################################
+##############################################################################################################################################################
 -------------08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values------------------
-##################################################################################
-
-Java uses "pass-by-value" for both primitive types and object references, but the way this mechanism affects the values can differ between the two. Here’s a detailed explanation:
+##############################################################################################################################################################
 
 ###### Primitive Types
 ###### Object References
-###### Summary
-###### Key Points for the 1Z0-808 Exam:
 
 
+Java uses "pass-by-value" for both primitive types and object references, 
+but the way this mechanism affects the values can differ between the two. 
 
+################Primitive Types:
+   - Passed by value.
+   - Changes within the method do not affect the original value.
+   - Example: `int`, `float`, `boolean`.
 
-
-###### Primitive Types ######
-Primitive types in Java (e.g., `int`, `float`, `double`, `boolean`, etc.) are passed into methods by value. This means that a copy of the value is passed to the method, and changes to the parameter within the method do not affect the original value outside the method.
 
 Example:
 
@@ -749,54 +716,44 @@ Explanation:
 - The output will still be `10`, indicating that `original` remains unchanged.
 
 ###### Object References ######
-
-Object references in Java are also passed by value. However, this means that a copy of the reference (pointer) to the object is passed to the method, not the actual object. Consequently, while you can modify the object's internal state through the reference, you cannot change the reference itself to point to a new object outside the method.
-
-Example:
-public class ObjectExample {
-    static class MyObject {
-        int value;
-    }
-
-    public static void modifyObject(MyObject obj) {
-        obj.value = 20; // This modifies the state of the object
-    }
-
-    public static void reassignObject(MyObject obj) {
-        obj = new MyObject(); // This only changes the local reference
-        obj.value = 30;
-    }
-
-    public static void main(String[] args) {
-        MyObject myObj = new MyObject();
-        myObj.value = 10;
-
-        modifyObject(myObj);
-        System.out.println("After modifyObject: " + myObj.value); // Output: After modifyObject: 20
-
-        reassignObject(myObj);
-        System.out.println("After reassignObject: " + myObj.value); // Output: After reassignObject: 20
-    }
-}
-
-Explanation:
-- In the `modifyObject` method, the `value` of `myObj` is changed to `20`. This change is reflected outside the method because the method operates on the same object.
-- In the `reassignObject` method, a new `MyObject` instance is created and assigned to the local reference `obj`. This does not affect the original reference `myObj`. Hence, the `value` of `myObj` remains `20` outside the method.
-
-###### Summary ######
-1. Primitive Types:
-   - Passed by value.
-   - Changes within the method do not affect the original value.
-   - Example: `int`, `float`, `boolean`.
-
-2. Object References:
    - Passed by value (the reference is copied).
    - Changes to the object’s state within the method affect the original object.
    - Reassigning the reference does not affect the original reference outside the method.
    - Example: Objects of classes.
 
-###### Key Points for the 1Z0-808 Exam: ######
-- Pass-by-Value: Java passes both primitives and object references by value, but with different effects.
-- Primitive Values: Changing a primitive type inside a method does not change the original variable.
-- Object References: Changing the internal state of an object affects the original object, but reassigning the reference inside a method does not affect the original reference.
+    Example:
+    public class ObjectExample {
+        static class MyObject {
+            int value;
+        }
+    
+        public static void modifyObject(MyObject obj) {
+            obj.value = 20; // This modifies the state of the object
+        }
+    
+        public static void reassignObject(MyObject obj) {
+            obj = new MyObject(); // This only changes the local reference
+            obj.value = 30;
+        }
+    
+        public static void main(String[] args) {
+            MyObject myObj = new MyObject();
+            myObj.value = 10;
+    
+            modifyObject(myObj);
+            System.out.println("After modifyObject: " + myObj.value); // Output: After modifyObject: 20
+    
+            reassignObject(myObj);
+            System.out.println("After reassignObject: " + myObj.value); // Output: After reassignObject: 20
+        }
+    }
 
+Explanation:
+- In the `modifyObject` method, the `value` of `myObj` is changed to `20`. This change is reflected outside the method because the method operates on the same object.
+- In the `reassignObject` method, a new `MyObject` instance is created and assigned to the local reference `obj`. 
+ This does not affect the original reference `myObj`. Hence, the `value` of `myObj` remains `20` outside the method.
+
+
+
+
+-
