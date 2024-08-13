@@ -473,18 +473,22 @@ public class ExceptionPropagationExample {
 -----------05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)-----------
 ====================================================================================================================================================================
 
-######## Common Causes
-######## Example
-######## Common Causes
-######## Example
-######## Common Causes
-######## Example
-######## Common Causes
-######## Example
+What are these, How to Recognize them?
+######## NullPointerException, 
+######## ArithmeticException, 
+######## ArrayIndexOutOfBoundsException, 
+######## ClassCastException
+
+########### Definaiton ==============
+-NullPointerException: Occurs when operations are performed on a `null` reference. Common when accessing methods or fields of `null` objects.
+-ArithmeticException: Raised for exceptional arithmetic conditions, such as division by zero.
+-ArrayIndexOutOfBoundsException: Thrown when attempting to access an array with an invalid index.
+-ClassCastException: Happens when an object is cast to a type it is not an instance of.
 
 
 ### 1. `NullPointerException`
-`NullPointerException` is thrown when Ir code attempts to use `null` in a situation where an object is required. This is one of the most common exceptions in Java.
+-Thrown when Ir code attempts to use `null` in a situation where an object is required. 
+-This is one of the most common exceptions in Java.
 
 ######## Common Causes: ########
 - Calling a method on a `null` object reference.
@@ -571,10 +575,7 @@ public class ClassCastExceptionExample {
 Explanation:
 - The `obj` variable holds a `String`, but casting it to `Integer` results in a `ClassCastException`.
 
-### Summary
-- `NullPointerException`: Occurs when operations are performed on a `null` reference. Common when accessing methods or fields of `null` objects.
-- `ArithmeticException`: Raised for exceptional arithmetic conditions, such as division by zero.
-- `ArrayIndexOutOfBoundsException`: Thrown when attempting to access an array with an invalid index.
-- `ClassCastException`: Happens when an object is cast to a type it is not an instance of.
 
 
+
+-
