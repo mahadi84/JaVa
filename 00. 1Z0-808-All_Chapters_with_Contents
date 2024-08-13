@@ -355,77 +355,54 @@
 
 ===============08. Handling Exceptions(05): ====================
 01. Differentiate among checked exceptions, unchecked exceptions, and Errors
-            ###### 1. Checked Exceptions
-            ####### Characteristics: 
-            ####### Examples: 
-            ####### Example Code: 
-            ###### 2. Unchecked Exceptions
-            ####### Characteristics: 
-            ####### Examples: 
-            ####### Example Code: 
-            ###### 3. Errors
-            ####### Characteristics: 
-            ####### Examples: 
-            ####### Example Code: 
-            ###### Summary
+            ###### 1. Checked Exceptions(Name any three of them)
+            ####### Example with 01. try-catch block and 02. throws: 
+            ###### 2. Unchecked Exceptions(Name any three of them)
+            ###### 3. Errors(Name any three of them)
+            ####### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors 
 
 02. Create a try-catch block and determine how exceptions alter normal program flow
-            ###### Try-Catch Block 
-            ####### Structure of a Try-Catch Block 
-            ####### Example 
+            ###### Exception
+            ###### Why Try-Catch Block 
+            ####### Structure of a Try-Catch Block, Finally Block,  Multiple Catch Blocks
             ###### How Exceptions Alter Normal Program Flow 
-            ####### Example with Multiple Catch Blocks and Finally Block 
-            ###### Summary 
 03. Describe the advantages of Exception handling 
+            ###### Defination for all
             ###### 1. Improved Program Stability 
             ###### 2. Enhanced Code Readability and Maintenance 
             ###### 3. Centralized Error Handling 
             ###### 4. Error Reporting and Debugging 
             ###### 5. Graceful Degradation 
             ###### 6. Robust and Resilient Code 
-            ###### Summary 
 04. Create and invoke a method that throws an exception
-            ###### Creating a Method That Throws an Exception
-            ###### Example: Creating a Method That Throws an Exception
-            ###### Invoking a Method That Throws an Exception
-            ###### Example: Propagating an Exception
-            ###### Summary
+            ###### Creating(01.Declare and 02.Throw the Exception) a Method That Throws an Exception
+            ###### Invoking (01.Handle the Exception, 02.Propagating an Exception) a Method That Throws an Exception
 05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
-            ######## Common Causes
-            ######## Example
-            ######## Common Causes
-            ######## Example
-            ######## Common Causes
-            ######## Example
-            ######## Common Causes
-            ######## Example
+            What are these, How to Recognize them?
+            ######## NullPointerException, 
+            ######## ArithmeticException, 
+            ######## ArrayIndexOutOfBoundsException, 
+            ######## ClassCastException
 
 ===========09. Working with Selected classes from the Java API(06): =======
 01. Manipulate data using the StringBuilder class and its methods
+            ###### Why StringBuilder?
             ###### Key Features of `StringBuilder` 
-            ###### Common Methods of `StringBuilder` 
-            ###### Example of Using `StringBuilder` 
-            ###### Summary 
+            ###### Common Methods and Use
 02. Create and manipulate Strings
-            ###### Creating Strings
-            ###### Common Methods for Manipulating Strings
-            ###### Example of String Manipulation
-            ###### Summary
+            ###### What and Why Strings?
+            ###### Key Features of `Strings` 
+            ###### Common Methods and Use
 03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
+            ####### What are these?
+            ####### Creating and Manipulating:
             ###### 1. `LocalDateTime`
-            ####### Creating and Manipulating `LocalDateTime`
             ###### 2. `LocalDate`
-            ####### Creating and Manipulating `LocalDate`
             ###### 3. `LocalTime`
-            ####### Creating and Manipulating `LocalTime`
             ###### 4. `DateTimeFormatter`
-            ####### Creating and Using `DateTimeFormatter`
             ###### 5. `Period`
-            ####### Creating and Using `Period`
             ###### Example of Using `java.time` Classes
-            ###### Summary
 05. Declare and use an ArrayList of a given type
-
             ###### Declaring and Using `ArrayList` 
             ####### 1. Importing the `ArrayList` Class 
             ####### 2. Declaring an `ArrayList` 
@@ -434,20 +411,13 @@
             ####### 5. Modifying Elements 
             ####### 6. Removing Elements 
             ####### 7. Iterating Through an `ArrayList` 
-            ####### 8. Common Methods 
-            ####### Example 
-            ###### Summary 
+            ####### 8. Common Methods (get(),set(), add(), size(), isEmpty(), remove(2),clear())
+          
 06. Write a simple Lambda expression that consumes a Lambda Predicate expression
-
-            ###### Lambda Expressions and Functional Interfaces
             ####### 1. Lambda Expressions
             ####### 2. Functional Interfaces
             ####### 3. Predicate Functional Interface
-            ###### Writing a Lambda Expression that Consumes a Predicate
-            ####### Example
-            ###### Key Points
-            ###### Summary
-
+            ####### Lambda Expression that Consumes a Predicate
 
 =======================10. Assume the following(05):=========== 
 
