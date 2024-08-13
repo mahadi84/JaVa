@@ -1,6 +1,7 @@
 
 
 -----------------Chapters-----------------------------
+
 01. Java Basics (07) 
 02. Working With Java Data Types (05) 
 03. Using Operators and Decision Constructs (05)
@@ -11,7 +12,6 @@
 08. Handling Exceptions (05)
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
-
 
 
 =======================01. Java Basics(07): ============
@@ -31,16 +31,15 @@
             ######## Example 2: Using Static and Instance Methods
             ######## Example 3: Constructor Overloading
             ######## Example 4: Using Static Blocks
-                                    ######## When to Use Static Blocks
+                             ######## When to Use Static Blocks
             ######## Example 5: Final Variables and Initialization
-                                    ######### Final Variables
-                                    ######### When to Use Final Variables
-                                    ######### Initialization of Final Variables
+                             ######### Final Variables
+                             ######### When to Use Final Variables
+                             ######### Initialization of Final Variables
             ######## Example 6: Try-With-Resources
-                                    ##### How it works
-                                    ##### Benefits of Try-With-Resources
-                                    ##### How to Declare Multiple Resources(within the same try block)                        
-            ######## Example 7: What is and When to Lambda Expressions
+                             ##### How it works
+                             ##### Benefits of Try-With-Resources
+                             ##### How to Declare Multiple Resources(within the same try block)                        
 04. Run a Java program from the command line; 
             ######## Step 1: Write Your Java Code
             ######## Step 2: Open the Command Line
@@ -411,12 +410,11 @@
             ####### 5. Modifying Elements 
             ####### 6. Removing Elements 
             ####### 7. Iterating Through an `ArrayList` 
-            ####### 8. Common Methods (get(),set(), add(), size(), isEmpty(), remove(2),clear())
-          
+            ####### 8. Common Methods (get(),set(), add(), size(), isEmpty(), remove(2),clear())          
 06. Write a simple Lambda expression that consumes a Lambda Predicate expression
-            ####### 1. Lambda Expressions
+            ####### 1. Lambda Expressions and When to Lambda Expressions
             ####### 2. Functional Interfaces
-            ####### 3. Predicate Functional Interface
+            ####### 3. Predicate Functional Interface(1.Define and  2.Use Predicate)
             ####### Lambda Expression that Consumes a Predicate
 
 =======================10. Assume the following(05):=========== 
