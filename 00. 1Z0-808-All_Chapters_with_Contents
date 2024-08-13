@@ -119,30 +119,28 @@
             ###### Ternary Operator
             ########## Operator Precedence
 02. use parentheses to override operator precedence
-            ######### Operator precedence -Example:
-            ####### To change the order of operations, you can use parentheses
+            ########### Operator precedence -Example:
+            ########### To change the order of operations, you can use parentheses
             ########### General Rule
             ########### Example with Nested Parentheses
-            ########### Key Points
-            ############# Example demonstrating clarity
-
 03. Test equality between Strings and other objects using == and equals ()
-            #######object reference: 
+            ######### Object reference variable with details example: 
             ######### Understanding the Difference
             ######### Comparing Strings: Example:
             ######### Comparing Other Objects
-            ###########  Important points
+            ######### Important points
 04. Create if and if/else and ternary constructs
             ### If Statement
             ### If/Else Statement
             ### Ternary Operator
-            ######  Key points: ###### 
-            ### Example with multiple conditions
-            ### Nested if statements 
+            ### Nested if statements
 05. Use a switch statement 
-            ### Syntax
-            ### Example
-            ###### Key Points ######
+           ###### What and Why it is #####
+           ###### What are? ######
+                      -Expression: Data Type
+                      -Case Labels
+                      -Break Statement
+                      -Default Case
 
 =======================04. Creating and Using Arrays(02): =================
 01. Declare, instantiate, initialize, and use a one-dimensional array
