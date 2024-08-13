@@ -107,27 +107,20 @@ public class Main {
 ------------02. including overloaded methods------------------
 ##################################################################################
 
-
-1. Definition:
-2. Rules for Method Overloading:
-3. How It Works:
-4. Example of Method Overloading:
+####### Method Overloading
+####### Rules for Method Overloading
 
 
 ####### Method Overloading #######
-1. Definition:
-Method overloading in Java allows a class to have more than one method with the same name, but with different parameter lists. This means you can define multiple methods with the same name as long as their parameter types or numbers are different.
+Method overloading in Java allows a class to have more than one method with the same name, but with different parameter lists. 
+This means you can define multiple methods with the same name as long as their parameter types or numbers are different.
 
-2. Rules for Method Overloading:
+############# Rules for Method Overloading:
 - Different Parameter List: Overloaded methods must have different parameter lists. This can be achieved by varying the number of parameters or the types of parameters.
 - Same Method Name: The methods must have the same name.
 - Return Type Alone Is Not Enough: You cannot overload methods based solely on return type. The parameter list must be different.
 
-3. How It Works:
-When you call an overloaded method, Java determines which version of the method to execute based on the number and types of arguments you pass.
-
-4. Example of Method Overloading:
-
+######## Example of Method Overloading:
 public class OverloadExample {
     // Method with no parameters
     public void display() {
