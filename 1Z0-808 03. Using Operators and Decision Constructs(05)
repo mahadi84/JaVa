@@ -102,16 +102,14 @@ The order in which operators are evaluated. Use parentheses to override the defa
 --------------------02. use parentheses to override operator precedence--------------
 ######################################################################################
 
-######### Operator precedence -Example:
-####### To change the order of operations, you can use parentheses
+########### Operator precedence -Example:
+########### To change the order of operations, you can use parentheses
 ########### General Rule
 ########### Example with Nested Parentheses
-########### Key Points
-############# Example demonstrating clarity
 
 
 ######### Operator precedence: ######### 
-determines the order in which operations are performed in an expression.
+ determines the order in which operations are performed in an expression.
  However, you can explicitly control the order of evaluation by using parentheses.
 
 ######### Example:
@@ -124,17 +122,14 @@ int result = (5 + 3) * 2;
 Now, the addition (5 + 3) is performed first, resulting in `result` being 16.
 
 ########### General Rule: ###########
-
 * Expressions within parentheses are evaluated first.
 * Nested parentheses are evaluated from the innermost to the outermost.
+-Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
+-Excessive use of parentheses can make code harder to read, so use them judiciously.
 
 ########### Example with Nested Parentheses: ###########
 int result = (2 + (3 * 4)) - 5;
 In this case, the multiplication (3 * 4) is performed first due to the innermost parentheses, followed by the addition (2 + 12), and finally the subtraction (14 - 5), resulting in `result` being 9.
-
-########### Key Points #############
-* Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
-* Excessive use of parentheses can make code harder to read, so use them judiciously.
 
 #############Example demonstrating clarity:
     int result = (a + b) * (c - d);
@@ -145,11 +140,11 @@ While the parentheses might not be strictly necessary in this case, they improve
 ------03. Test equality between Strings and other objects using == and equals ()------
 ######################################################################################
 
-####### Object reference variable with details example: 
+######### Object reference variable with details example: 
 ######### Understanding the Difference
 ######### Comparing Strings: Example:
 ######### Comparing Other Objects
-###########  Important points
+######### Important points
 
 ####### Object reference variable:  
 -is a variable that holds the memory address of an object rather than the object itself. 
@@ -250,8 +245,6 @@ Explanation:
 ### If Statement
 ### If/Else Statement
 ### Ternary Operator
-######  Key points: ###### 
-### Example with multiple conditions
 ### Nested if statements
 
 ### If Statement
@@ -277,17 +270,9 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     * A condition
     * The expression to evaluate if the condition is true
     * The expression to evaluate if the condition is false
-
-    int age = 20;
-    String message = (age >= 18) ? "You are an adult." : "You are a minor.";
-    System.out.println(message);
-
-
-######  Key points: ###### 
-    * The condition in an `if` or `if/else` statement must be a boolean expression.
-    * The code blocks within the `if` and `else` statements are executed only if the corresponding condition is true.
-    * The ternary operator is a concise way to assign a value to a variable based on a condition.
-    * Use the ternary operator for simple conditions, but prefer `if/else` for more complex logic.
+        int age = 20;
+        String message = (age >= 18) ? "You are an adult." : "You are a minor.";
+        System.out.println(message);
 
 ### Example with multiple conditions:
     int number = 5;
@@ -317,14 +302,19 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
 ######################################################################################
       --------------------------05. Use a switch statement---------------------
 ######################################################################################
-### Syntax
-### Example
-###### Key Points ######
 
+###### What and Why it is #####
+###### What are? ######
+          -Expression: Data Type
+          -Case Labels
+          -Break Statement
+          -Default Case
 
-- The `switch` statement in Java is used to execute one block of code among many alternatives based on the value of an expression. 
-- It's a cleaner and more readable alternative to using multiple `if-else-if` statements. 
+###### What and Why it is #####
+-When I need to check a variable against several possible constant values.
+-It's a cleaner and more readable alternative to using multiple `if-else-if` statements. 
 
+**The `switch` statement in Java is used to execute one block of code among many alternatives based on the value of an expression. 
 
 ### Syntax
     switch (expression) {
@@ -339,10 +329,7 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
             // default code block
     }
 
-
 ### Example
-Here's a simple example to demonstrate the use of the `switch` statement:
-
 public class Main {
     public static void main(String[] args) {
         int day = 5;
@@ -366,7 +353,7 @@ public class Main {
     }
 }
 
-###### Key Points ######
+###### What are? ######
 -Expression: The expression inside the `switch` statement must be of type `byte`, `short`, `char`, `int`, `String`, or an enum.
 -Case Labels: Each `case` label must be a constant or a literal. Duplicate case values are not allowed.
 -Break Statement: The `break` statement is used to terminate a `case` block. If omitted, the execution will continue to the next `case` block (this is called "fall-through").
