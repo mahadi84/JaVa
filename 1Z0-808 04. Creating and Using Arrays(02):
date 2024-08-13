@@ -11,18 +11,16 @@
 ######################################################################################
 -------01. Declare, instantiate, initialize, and use a one-dimensional array --------
 ######################################################################################
-0. Definition
-1. Declare a One-Dimensional Array 
-2. Instantiate a One-Dimensional Array 
-3. Initialize a One-Dimensional Array
-    -Initialization at Declaration
-    -Initialization After Instantiation
- 4. Use a One-Dimensional Array
-    -Accessing Array Elements  
-    -Modifying Array Elements  
-    -Looping Through Array Elements   
-    -Example Code  
-
+        ######### 0. Definition
+        ######### 1. Declare a One-Dimensional Array 
+        ######### 2. Instantiate a One-Dimensional Array 
+        ######### 3. Initialize a One-Dimensional Array
+            -Initialization at Declaration
+            -Initialization After Instantiation
+        ######### 4. Use a One-Dimensional Array
+            -Accessing Array Elements  
+            -Modifying Array Elements  
+            -Looping Through Array Elements   
 
 ######### Definition   ######
 - Declare: Specify the type and name of the array.
@@ -110,17 +108,17 @@ Here’s a complete example that incorporates all the steps:
 ---------02. Declare, instantiate, initialize, and use multi-dimensional arrays ------
 ######################################################################################
 
-0. Definition
-1. Declare a Multi-Dimensional Array  
-2. Instantiate a Multi-Dimensional Array  
-3. Initialize a Multi-Dimensional Array  
-    -Initialization at Declaration  
-    -Initialization After Instantiation  
-4. Use a Multi-Dimensional Array  
-    -Accessing Array Elements  
-    -Modifying Array Elements  
-    -Looping Through Array Elements  
-    -Example Code 
+        ######### 0. Definition
+        ######### 1. Declare a Multi-Dimensional Array  
+        ######### 2. Instantiate a Multi-Dimensional Array  
+        ######### 3. Initialize a Multi-Dimensional Array  
+            -Initialization at Declaration  
+            -Initialization After Instantiation  
+        ######### 4. Use a Multi-Dimensional Array  
+            -Accessing Array Elements  
+            -Modifying Array Elements  
+            -Looping Through Array Elements  
+
 
 
 ########### 0. Definition  ###########
