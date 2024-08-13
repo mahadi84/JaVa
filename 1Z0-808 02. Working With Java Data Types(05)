@@ -317,11 +317,11 @@ There are primarily two ways to access object fields:
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
 =====================================================================================================================
 
-### Why to convert primtive data type into Object and vise-versa?
-### How to do that?
-########  Using Wrapper Classes in Jav 
-#########  Example: Using Boolean, Double, and Integer
-#########  Explanation -
+######## Why to convert primtive data type into Object and vise-versa?
+######## How to do that?
+########  What and Why Wrapper Classes in Java 
+########  Example: Using Boolean, Double, and Integer
+########  Explanation -
                -Creating wrapper class objects, 
                -Using wrapper class methods 
                -Autoboxing and unboxing
@@ -334,7 +334,7 @@ There are primarily two ways to access object fields:
 
 
 
-########  Using Wrapper Classes in Java ###### 
+########  What and Why Using Wrapper Classes in Java ###### 
 Wrapper classes in Java provide a way to convert primitive data types into objects. 
 This is essential for using primitive data types in collections, as collections can only store objects.
 
