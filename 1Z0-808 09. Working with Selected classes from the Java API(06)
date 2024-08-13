@@ -526,18 +526,13 @@ Explanation:
 =============================================================================================
 
 
-###### Lambda Expressions and Functional Interfaces
 ####### 1. Lambda Expressions
 ####### 2. Functional Interfaces
 ####### 3. Predicate Functional Interface
-###### Writing a Lambda Expression that Consumes a Predicate
-####### Example
-###### Key Points
-###### Summary
+####### Lambda Expression that Consumes a Predicate
 
 
 
-###### Lambda Expressions and Functional Interfaces ######
 
 ####### 1. Lambda Expressions ######
 A lambda expression is a shorthand notation for defining an anonymous function. The syntax is as follows:
@@ -547,27 +542,26 @@ Or, for more complex expressions:
 (parameters) -> { statements }
 
 ####### 2. Functional Interfaces ######
-Functional interfaces are interfaces with a single abstract method. The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
+Functional interfaces are interfaces with a single abstract method. 
+The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
 
 ####### 3. Predicate Functional Interface ######
-`Predicate<T>` is a functional interface in the `java.util.function` package that represents a boolean-valued function of one argument. It has a single abstract method `test(T t)` that evaluates the predicate.
+-`Predicate<T>` is a functional interface in the `java.util.function` package 
+-that represents a boolean-valued function of one argument. 
+-It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
 
 Signature:
-
 @FunctionalInterface
 public interface Predicate<T> {
     boolean test(T t);
 }
 
-###### Writing a Lambda Expression that Consumes a Predicate ######
+###### Lambda Expression that Consumes a Predicate ######
 To write a lambda expression that consumes a `Predicate`, you need to:
-
 1. Define a `Predicate`: Create a lambda expression that implements the `Predicate` interface.
 2. Use the `Predicate`: Apply this `Predicate` to some data.
 
-####### Example ######
-Let's walk through an example where we:
-
+####### Example
 - Define a `Predicate` to test if a number is positive.
 - Use this `Predicate` with a lambda expression to filter a list of numbers.
 
@@ -606,15 +600,8 @@ Explanation:
    - The `isPositive` predicate is used in the `test` method to filter the list of numbers.
    - `if (isPositive.test(number))` applies the predicate to each number to determine if it should be printed.
 
-###### Key Points ######
-- Lambda Expression Syntax: `(parameters) -> expression`
-- Predicate Interface: Represents a boolean function with a `test(T t)` method.
-- Lambda with Predicate: Create a lambda expression that implements `Predicate` and then use it to evaluate or filter data.
 
-###### Summary ######
-To write and use a lambda expression with a `Predicate`:
-1. Create a `Predicate` using a lambda expression.
-2. Apply the `Predicate` to data to filter, test, or perform operations based on the predicate’s condition.
+
 
 
 
