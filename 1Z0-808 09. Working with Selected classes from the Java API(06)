@@ -478,78 +478,123 @@ public class ArrayListExample {
 --------05. Write a simple Lambda expression that consumes a Lambda Predicate expression ----
 =============================================================================================
 
-
-####### 1. Lambda Expressions
+####### 1. Lambda Expressions and When to Lambda Expressions
 ####### 2. Functional Interfaces
-####### 3. Predicate Functional Interface
+####### 3. Predicate Functional Interface(1.Define and  2.Use Predicate)
 ####### Lambda Expression that Consumes a Predicate
 
 
-####### 1. Lambda Expressions ######
--Is a shorthand notation for defining an anonymous function. The syntax is as follows:
-   (parameters) -> expression
-   Or, for more complex expressions:
-   (parameters) -> { statements }
+####### 1. Lambda Expressions and When to Lambda Expressions ######
+   -Is a shorthand notation for defining an anonymous function. 
+   The syntax is as follows:
+      (parameters) -> expression
+      Or, for more complex expressions:
+      (parameters) -> { statements }
+   
+   ###### When to Use Lambda Expressions
+   * Use lambda expressions when you need to pass behavior as a parameter.
+   * Prefer lambda expressions for short, concise code blocks.
+   * Consider using method references for even shorter expressions.
+   * Be aware of potential performance implications, especially in highly performance-critical code.
+   Here are some common scenarios where they shine:
+   
+   ### 1. **Event Handling:**
+   * Simplifying event listeners:
+     button.addActionListener(e -> System.out.println("Button clicked!"));
+   
+   ### 2. **Collections:**
+   * Filtering, mapping, and reducing data:
+     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+     List<Integer> evenNumbers = numbers.stream()
+                                       .filter(n -> n % 2 == 0)
+                                       .collect(Collectors.toList());
+   
+   ### 3. **Concurrency:**
+   * Creating threads concisely:
+     new Thread(() -> System.out.println("Hello from a thread")).start();
+   
+   ### 4. **Functional Interfaces:**
+   * Implementing functional interfaces:
+     Comparator<String> comparator = (s1, s2) -> s1.length() - s2.length();
+   
+   ### 5. **Method References:**
+   * Using existing methods as lambda expressions:
+     List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+     names.sort(Comparator.comparing(String::length));
+   
+   ### 6. **Stream API:**
+   * Performing complex data manipulations:
+     int sum = numbers.stream().reduce(0, Integer::sum);
+   
+         **Example: Combining Multiple Operations**
+         List<String> words = Arrays.asList("apple", "banana", "orange", "grape");
+         List<String> result = words.stream()
+                                    .filter(word -> word.length() > 5)
+                                    .map(String::toUpperCase)
+                                    .collect(Collectors.toList());
+         System.out.println(result); // Output: [BANANA, ORANGE]
+            ***In this example, 
+            lambda expressions are used to filter words based on length, convert them to uppercase, and collect the results into a new list.
+
 
 ####### 2. Functional Interfaces ######
-Functional interfaces are interfaces with a single abstract method. 
-The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
-
-####### 3. Predicate Functional Interface ######
--`Predicate<T>` is a functional interface in the `java.util.function` package 
--that represents a boolean-valued function of one argument. 
--It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
-
-      Signature:
-      @FunctionalInterface
-      public interface Predicate<T> {
-          boolean test(T t);
-      }
-
-###### Lambda Expression that Consumes a Predicate ######
-To write a lambda expression that consumes a `Predicate`, I need to:
-1. Define a `Predicate`: Create a lambda expression that implements the `Predicate` interface.
-2. Use the `Predicate`: Apply this `Predicate` to some data.
-
-####### Example
-- Define a `Predicate` to test if a number is positive.
-- Use this `Predicate` with a lambda expression to filter a list of numbers.
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class LambdaExample {
-    public static void main(String[] args) {
-        // Define a Predicate to check if a number is positive
-        Predicate<Integer> isPositive = number -> number > 0;
-
-        // Create a list of integers
-        List<Integer> numbers = new ArrayList<>();
-        numbers.add(-5);
-        numbers.add(3);
-        numbers.add(0);
-        numbers.add(10);
-
-        // Filter the list using the Predicate
-        System.out.println("Positive numbers:");
-        for (Integer number : numbers) {
-            if (isPositive.test(number)) {
-                System.out.println(number);
+   Functional interfaces are interfaces with a single abstract method. 
+   The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
+   
+   ####### 3. Predicate Functional Interface ######
+   -`Predicate<T>` is a functional interface in the `java.util.function` package 
+   -that represents a boolean-valued function of one argument. 
+   -It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
+   
+         Signature:
+         @FunctionalInterface
+         public interface Predicate<T> {
+             boolean test(T t);
+         }
+   
+   ###### Lambda Expression that Consumes a Predicate ######
+   To write a lambda expression that consumes a `Predicate`, I need to:
+   1. Define a `Predicate`: Create a lambda expression that implements the `Predicate` interface.
+   2. Use the `Predicate`: Apply this `Predicate` to some data.
+   
+   ####### Example
+   - Define a `Predicate` to test if a number is positive.
+   - Use this `Predicate` with a lambda expression to filter a list of numbers.
+   
+            import java.util.ArrayList;
+            import java.util.List;
+            import java.util.function.Predicate;
+            
+            public class LambdaExample {
+                public static void main(String[] args) {
+                    // Define a Predicate to check if a number is positive
+                    Predicate<Integer> isPositive = number -> number > 0;
+            
+                    // Create a list of integers
+                    List<Integer> numbers = new ArrayList<>();
+                    numbers.add(-5);
+                    numbers.add(3);
+                    numbers.add(0);
+                    numbers.add(10);
+            
+                    // Filter the list using the Predicate
+                    System.out.println("Positive numbers:");
+                    for (Integer number : numbers) {
+                        if (isPositive.test(number)) {
+                            System.out.println(number);
+                        }
+                    }
+                }
             }
-        }
-    }
-}
-
-Explanation:
-1. Define Predicate:
-   - `Predicate<Integer> isPositive = number -> number > 0;`
-   - This lambda expression checks if a number is greater than zero.
-
-2. Use Predicate:
-   - The `isPositive` predicate is used in the `test` method to filter the list of numbers.
-   - `if (isPositive.test(number))` applies the predicate to each number to determine if it should be printed.
-
+   
+   Explanation:
+   1. Define Predicate:
+      - `Predicate<Integer> isPositive = number -> number > 0;`
+      - This lambda expression checks if a number is greater than zero.
+   
+   2. Use Predicate:
+      - The `isPositive` predicate is used in the `test` method to filter the list of numbers.
+      - `if (isPositive.test(number))` applies the predicate to each number to determine if it should be printed.
 
 
 
