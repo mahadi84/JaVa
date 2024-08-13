@@ -168,51 +168,38 @@
                              -Looping Through Array Elements  
 =======================05. Using Loop Constructs(05): ===================
 01. Create and use while loops
-            1. Basic Syntax of `while` Loop 
-            2. Components of `while` Loop 
-            3. Example of `while` Loop 
-            Example 1: Basic `while` Loop ######
-            4. Infinite `while` Loop 
-            5. Using `break` and `continue` Statements in `while` Loop 
-            Example 2: Using `break` ######
-            Example 3: Using `continue` ######
-            6. Common Pitfalls 
+            ######## 1. Basic Syntax of `while` Loop 
+            ######## 2. Components of `while` Loop 
+            ######## 3. Example of `while` Loop
+            ######## 4. Infinite `while` Loop 
+            ######## 5. Using `break` and `continue` Statements in `while` Loop 
 02. Create and use for loops including the enhanced for loop
-            1. Standard `for` Loop  
-                    Example 1: Basic `for` Loop  
-            2. Nested `for` Loops  
-                    Example 2: Nested `for` Loops  
-            3. Enhanced `for` Loop (for-each Loop)  
-                    Example 3: Enhanced `for` Loop with Array  
-            4. Enhanced `for` Loop with Collection  
-                    Example 4: Enhanced `for` Loop with Collection 
-            5. Key Points  
+            ########## 1. Standard `for` Loop  
+            ########## 2. Nested `for` Loops  
+            ########## 3. Enhanced `for` Loop (for-each Loop)  
+            ########## 4. Enhanced `for` Loop with Collection  
+            ########## 5. Standard  `for` Vs Enhanced `for` 
+ 
 03. Create and use do/while loops
             #### Syntax of `do/while` Loop 
             #### Key Points: 
-            #### Example of `do/while` Loop 
-            #### Example 1: Basic `do/while` Loop 
+                        >Guaranteed Execution  
+                        >Condition Checking
             #### Example 2: Using `do/while` for Menu-Driven Programs 
-            #### Common Pitfalls 
 04. Compare loop constructs
-            1. `for` Loop 
-            Syntax:
-            2. `while` Loop 
-            Syntax: 
-            3. `do/while` Loop 
-            Syntax: 
-            Comparison Table 
-            Summary 
+            #########1. `for` Loop 
+            #########2. `while` Loop 
+            #########3. `do/while` Loop 
+            ###### All loop Comparison Table
+            ########## When to use what loop
 05. Use break and continue  
-             `break` Statement 
-            Syntax: 
-            Example: Using `break` in a `for` Loop 
-            Example: Using `break` in a `while` Loop 
-            `continue` Statement 
-            Syntax: 
-            Example: Using `continue` in a `for` Loop 
-            Example: Using `continue` in a `while` Loop 
-
+            #########   Purpose and Usage of 'break' and 'continue' Statement
+            #########  `break` Statement 
+                        Example: Using `break` in a `for` Loop 
+                        Example: Using `break` in a `while` Loop 
+            ######### `continue` Statement 
+                        Example: Using `continue` in a `for` Loop 
+                        Example: Using `continue` in a `while` Loop 
 
 ===================06. Working with Methods and Encapsulation(08): ========
 01. Create methods with arguments and return values;
