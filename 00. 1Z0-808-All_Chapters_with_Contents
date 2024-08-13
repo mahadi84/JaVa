@@ -96,7 +96,7 @@
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
             #### Why need to convert primitive data type into Object and vice-versa?
             #### How to do that?
-            ########  Using Wrapper Classes in Java 
+            ########  What and Why Wrapper Classes in Java 
             #########  Example: Using Boolean, Double, and Integer
             #########  Explanation -
                            -Creating wrapper class objects, 
