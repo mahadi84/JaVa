@@ -16,11 +16,11 @@
          ----------------01. Create and use while loops ------------------
 ######################################################################################
 
-1. Basic Syntax of `while` Loop 
-2. Components of `while` Loop 
-3. Example of `while` Loop
-4. Infinite `while` Loop 
-5. Using `break` and `continue` Statements in `while` Loop 
+######## 1. Basic Syntax of `while` Loop 
+######## 2. Components of `while` Loop 
+######## 3. Example of `while` Loop
+######## 4. Infinite `while` Loop 
+######## 5. Using `break` and `continue` Statements in `while` Loop 
 
 
 
@@ -99,11 +99,11 @@ Result: only odd numbers (1, 3, 5, 7, 9) are printed.
 ----------------02. Create and use for loops including the enhanced for loop --------
 ######################################################################################
 
- 1. Standard `for` Loop  
- 2. Nested `for` Loops  
- 3. Enhanced `for` Loop (for-each Loop)  
- 4. Enhanced `for` Loop with Collection  
- 5. Standard  `for` Vs Enhanced `for` 
+ ########## 1. Standard `for` Loop  
+ ########## 2. Nested `for` Loops  
+ ########## 3. Enhanced `for` Loop (for-each Loop)  
+ ########## 4. Enhanced `for` Loop with Collection  
+ ########## 5. Standard  `for` Vs Enhanced `for` 
 
 
 ######### 1. Standard `for` Loop   ##########
@@ -303,11 +303,11 @@ Explanation:
            ----------------04. Compare loop constructs ------------------
 ######################################################################################
 
-1. `for` Loop 
-2. `while` Loop 
-3. `do/while` Loop 
-    ###### All loop Comparison Table
-    ########## When to use what loop
+#########1. `for` Loop 
+#########2. `while` Loop 
+#########3. `do/while` Loop 
+###### All loop Comparison Table
+########## When to use what loop
 
 
 ########## 1. `for` Loop ##########
