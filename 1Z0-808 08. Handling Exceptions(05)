@@ -93,9 +93,7 @@ There are 2 two primary ways to handle checked exceptions:
                         }
                      }
                  }
-         ------- multiple exceptions: -----
-         Example with multiple exceptions:
-         
+         ------- multiple exceptions: -----         
          import java.io.IOException;
          import java.sql.SQLException;
          
