@@ -323,13 +323,13 @@
 
 ===============08. Handling Exceptions(05): ====================
 01. Differentiate among checked exceptions, unchecked exceptions, and Errors
-            ###### Exception
+            ###### Exception, type of Exception.
             ###### 1. Checked Exceptions(Name any three of them)
-            ####### Example with 01. try-catch block and 02. throws: 
+            ###### Example with 01. try-catch block and 02. throws: 
             ###### 2. Unchecked Exceptions(Name any three of them)
-            ###### 3. Errors(Name any three of them)
-            ####### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors 
-
+            ###### Errors(Name any three of them)
+            ###### Difference among Checked Exceptions, Unchecked Exceptions and  Errors
+            ###### Key Differences: try-catch and throws
 02. Create a try-catch block and determine how exceptions alter normal program flow
             ###### Exception
             ###### Why Try-Catch Block 
