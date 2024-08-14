@@ -12,7 +12,7 @@
 -----------01. Differentiate among checked exceptions, unchecked exceptions, and Errors-----------
 ============================================================================================================
 
-###### Exception
+###### Exception, type of Exception.
 ###### 1. Checked Exceptions(Name any three of them)
 ###### Example with 01. try-catch block and 02. throws: 
 ###### 2. Unchecked Exceptions(Name any three of them)
