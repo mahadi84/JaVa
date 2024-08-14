@@ -16,9 +16,9 @@
 ###### 1. Checked Exceptions(Name any three of them)
 ###### Example with 01. try-catch block and 02. throws: 
 ###### 2. Unchecked Exceptions(Name any three of them)
-###### 3. Errors(Name any three of them)
-###### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors
-###### Key Differences: between try-catch vs throws
+###### Errors(Name any three of them)
+###### Difference among Checked Exceptions, Unchecked Exceptions and  Errors
+###### Key Differences: try-catch and throws
 
 
 ########### Exception ###########
@@ -76,29 +76,36 @@ There are 2 two primary ways to handle checked exceptions:
          }
                  Example:
                  import java.io.IOException;
-                 public class CheckedExceptionExample {
-                     public static void main(String[] args) throws IOException {
-                         readFile("data.txt");
-                     }
-                 
-                     public static void readFile(String fileName) throws IOException {
+                   public static void readFile(String fileName) throws IOException {
                          // Code to read from the file
                      }
+
+                    public class CheckedExceptionExample {
+                        public static void main(String[] args) throws IOException {
+                            readFile("data.txt");
+                        }
+                  ----
+                     public static void main(String[] args) {
+                        try {
+                             readFile("data.txt");
+                        } catch (IOException e) {
+                        System.out.println("Error reading file: " + e.getMessage());
+                        }
+                     }
                  }
-         -------
-                  Example with multiple exceptions:
-                  
-                  Java
-                  import java.io.IOException;
-                  import java.sql.SQLException;
-                  
-                  public class MultipleExceptions {
-                  
-                    public static void processData(String fileName, String databaseUrl) throws IOException, SQLException {
-                      // Code to read data from file and process it
-                      // Might throw IOException or SQLException
-                    }
-                  }
+         ------- multiple exceptions: -----
+         Example with multiple exceptions:
+         
+         Java
+         import java.io.IOException;
+         import java.sql.SQLException;
+         
+         public class MultipleExceptions {
+           public static void processData(String fileName, String databaseUrl) throws IOException, SQLException {
+             // Code to read data from file and process it
+             // Might throw IOException or SQLException
+           }
+         }
 
 
 
@@ -172,7 +179,7 @@ public class ErrorExample {
   - Examples: `OutOfMemoryError`, `StackOverflowError`, `VirtualMachineError`.
 
 
-###### Key Differences: between try-catch vs throws  ##########
+######### Key Differences: try-catch and throws  ##########
 
 Feature        |	try-catch         |	throws
 ----------------------------------------------------------------------
