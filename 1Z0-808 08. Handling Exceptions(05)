@@ -43,44 +43,61 @@ When an exception is thrown, the program's execution stops at the point of the e
 ####### Example Code: #######
 There are 2 two primary ways to handle checked exceptions:
 
-        01. Using a try-catch block:
-            try {
-            // Code that might throw a checked exception
-            } catch (IOException e) {
-            // Handle the exception
-            }
-            ----
-            Example:
-                import java.io.File;
-                import java.io.FileReader;
-                import java.io.IOException;
-                
-                public class CheckedExceptionExample {
-                    public static void main(String[] args) {
-                        try {
-                            File file = new File("nonexistentfile.txt");
-                            FileReader fr = new FileReader(file); // This line may throw IOException
-                        } catch (IOException e) {
-                            e.printStackTrace(); // Handling the checked exception
-                        }
+   01. Using a try-catch block:
+      try {
+      // Code that might throw a checked exception
+      } catch (IOException e) {
+      // Handle the exception
+      }
+      ----
+      Example:
+          import java.io.File;
+          import java.io.FileReader;
+          import java.io.IOException;
+          
+          public class CheckedExceptionExample {
+              public static void main(String[] args) {
+                  try {
+                      File file = new File("nonexistentfile.txt");
+                      FileReader fr = new FileReader(file); // This line may throw IOException
+                  } catch (IOException e) {
+                      e.printStackTrace(); // Handling the checked exception
+                  }
+              }
+          }
+   
+   02. Declaring the exception with throws:
+      -The throws keyword in Java is used to declare that a method might throw a specific exception. 
+      -It's a way to inform the caller of the method about potential exceptions that could occur.
+         Example:
+         public void myMethod() throws IOException {
+             // Method might throw IOException
+         }
+                 Example:
+                 import java.io.IOException;
+                 public class CheckedExceptionExample {
+                     public static void main(String[] args) throws IOException {
+                         readFile("data.txt");
+                     }
+                 
+                     public static void readFile(String fileName) throws IOException {
+                         // Code to read from the file
+                     }
+                 }
+         -------
+                  Example with multiple exceptions:
+                  
+                  Java
+                  import java.io.IOException;
+                  import java.sql.SQLException;
+                  
+                  public class MultipleExceptions {
+                  
+                    public static void processData(String fileName, String databaseUrl) throws IOException, SQLException {
+                      // Code to read data from file and process it
+                      // Might throw IOException or SQLException
                     }
-                }
-
-        02. Declaring the exception with throws:
-            public void myMethod() throws IOException {
-                // Method might throw IOException
-            }
-                    Example:
-                    import java.io.IOException;
-                    public class CheckedExceptionExample {
-                        public static void main(String[] args) throws IOException {
-                            readFile("data.txt");
-                        }
-                    
-                        public static void readFile(String fileName) throws IOException {
-                            // Code to read from the file
-                        }
-                    }
+                  }
 
 
 
@@ -152,6 +169,16 @@ public class ErrorExample {
   - Defination
   - Represent issues related to the JVM or system-level problems.
   - Examples: `OutOfMemoryError`, `StackOverflowError`, `VirtualMachineError`.
+
+
+###### Key Differences: between try-catch vs throws  ##########
+
+Feature        |	try-catch         |	throws
+----------------------------------------------------------------------
+Scope	  -------|  Local to a block	| Method level
+Responsibility-|	Handles exception |	Declares potential exception
+Mandatory -----|	Not required	   | Required for checked exceptions
+-----------------------------------------------------------------------
 
 ============================================================================================================
 -----------02. Create a try-catch block and determine how exceptions alter normal program flow-----------
