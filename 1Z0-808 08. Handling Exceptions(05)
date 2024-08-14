@@ -17,7 +17,8 @@
 ###### Example with 01. try-catch block and 02. throws: 
 ###### 2. Unchecked Exceptions(Name any three of them)
 ###### 3. Errors(Name any three of them)
-###### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors 
+###### Difference among Checked Exceptions,  Unchecked Exceptions and  Errors
+###### Key Differences: between try-catch vs throws
 
 
 ########### Exception ###########
