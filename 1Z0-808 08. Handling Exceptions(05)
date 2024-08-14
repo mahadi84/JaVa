@@ -22,6 +22,10 @@
 
 ########### Exception ###########
 An event that disrupts the normal flow of a program's execution
+   They are objects: Exceptions are instances of classes that extend the Throwable class.
+   Thrown at runtime: Exceptions occur during program execution, not during compilation.   
+   Disrupt normal flow: When an exception is thrown, the program's execution stops at the point of the exception and looks for a suitable handler.   
+
    Types of exceptions: 
       01. Checked Exceptions 
       02. Unchecked Exceptions
