@@ -96,7 +96,6 @@ There are 2 two primary ways to handle checked exceptions:
          ------- multiple exceptions: -----
          Example with multiple exceptions:
          
-         Java
          import java.io.IOException;
          import java.sql.SQLException;
          
@@ -106,7 +105,6 @@ There are 2 two primary ways to handle checked exceptions:
              // Might throw IOException or SQLException
            }
          }
-
 
 
 ###### 2. Unchecked Exceptions ######
