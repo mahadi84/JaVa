@@ -22,6 +22,7 @@
 
 ########### Exception ###########
 An event that disrupts the normal flow of a program's execution
+   Types of exceptions: 01.Checked Exceptions 02.Unchecked Exceptions
 
 ###### 1. Checked Exceptions ######
 -the compiler forces me to handle or declare. 
