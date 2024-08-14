@@ -221,36 +221,42 @@ A `try-catch` block allows I to handle exceptions gracefully, preventing the pro
    -I can have multiple `catch` blocks to handle different types of exceptions, allowing I to specify different handling logic for different exceptions.
 
 ####### Example ######
-public class TryCatchExample {
-    public static void main(String[] args) {
-      --- 01---
-        try {
-            int[] numbers = {1, 2, 3};
-            int result = numbers[5]; // This line throws ArrayIndexOutOfBoundsException
-            System.out.println(result);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Caught an ArrayIndexOutOfBoundsException: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Caught an exception: " + e.getMessage());
-        } finally {
-            System.out.println("This block always executes");
-        }
+   public class TryCatchExample {
+       public static void main(String[] args) {
+         --- 01---
+           try {
+               int[] numbers = {1, 2, 3};
+               int result = numbers[5]; // This line throws ArrayIndexOutOfBoundsException
+               System.out.println(result);
+           } catch (ArrayIndexOutOfBoundsException e) {
+               System.out.println("Caught an ArrayIndexOutOfBoundsException: " + e.getMessage());
+           } catch (Exception e) {
+               System.out.println("Caught an exception: " + e.getMessage());
+           } finally {
+               System.out.println("This block always executes");
+           }
+   }
 
      --- 02---
-       try {
-            int[] numbers = {1, 2};
-            int result = 10 / 0; // This line throws ArithmeticException
-            int value = numbers[5]; // This line will not be executed
-        } catch (ArithmeticException e) {
-            System.out.println("Caught an ArithmeticException: " + e.getMessage());
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Caught an ArrayIndexOutOfBoundsException: " + e.getMessage());
-        } finally {
-            System.out.println("Finally block always executes");
-        }
-    }
-}
- 
+       public class MultipleExceptions {
+          public static void main(String[] args) {
+              int[] numbers = {1, 2, 3};
+              int divisor = 0;
+      
+              try {
+                  // This block might throw ArithmeticException or ArrayIndexOutOfBoundsException
+                  int result = numbers[4] / divisor;
+                  System.out.println(result);
+              } catch (ArithmeticException e) {
+                  System.out.println("Arithmetic Exception occurred: " + e.getMessage());
+              } catch (ArrayIndexOutOfBoundsException e) {
+                  System.out.println("Array Index Out Of Bounds Exception occurred: " + e.getMessage());
+              } catch (Exception e) {
+                  System.out.println("Generic Exception occurred: " + e.getMessage());
+              }
+          }
+      }
+
 
 
 ###### How Exceptions Alter Normal Program Flow ######
