@@ -130,7 +130,7 @@ public class UncheckedExceptionExample {
     }
 }
 
-###### 3. Errors ######
+###### Errors ######
 -Is a serious problem that occurs during program execution, 
  typically indicating a system-level issue rather than a programming mistake. 
 -These are often unrecoverable conditions that result in program termination.
@@ -178,13 +178,16 @@ public class ErrorExample {
 
 
 ######### Key Differences: try-catch and throws  ##########
-
+ Example: Check: 1. Checked Exceptions 
+----------------------------------------------------------------------
 Feature        |	try-catch         |	throws
 ----------------------------------------------------------------------
 Scope	  -------|  Local to a block	| Method level
 Responsibility-|	Handles exception |	Declares potential exception
 Mandatory -----|	Not required	   | Required for checked exceptions
 -----------------------------------------------------------------------
+
+
 
 ============================================================================================================
 -----------02. Create a try-catch block and determine how exceptions alter normal program flow-----------
