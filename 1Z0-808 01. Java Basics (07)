@@ -188,19 +188,23 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
 ####################### Example 5: Final Variables and Initialization
 
 ######### Final Variables
-    -A constant whose value cannot be changed once it's assigned. 
-    -Final variables must be initialized before they are used.
-    -Final variables can be used with both primitive and reference types.
-    -For reference types, the reference itself is final, but the object it points to might not be immutable.
-    -Improve code readability, maintainability, and performance.
+            -A variable declared with the final keyword.
+            -Its value cannot be changed once assigned.   
+            -Can be both instance and class variables.
+            -Can be used with primitive types, Strings, and objects.
+                Example:            
+                public class Example {
+                    final int MAX_VALUE = 100; // Instance final variable
+                    
+                    public void method() {
+                        final String name = "Alice"; // Local final variable
+                    }
+                }
 
 ####### When to Use Final Variables
-    -To improve code readability, maintainability, and performance.
     Constants: When you need a value that remains constant throughout the program, like mathematical constants (e.g., PI), physical constants, or configuration values.
     Immutable Objects: To create immutable objects, where the state of the object cannot be modified after creation.
     Efficiency: The compiler can often optimize code with final variables, leading to potential performance improvements.
-    Clarity: Using final makes code more readable by explicitly indicating that a value won't change.
-    
 
 ######## Initialization of Final Variables
 There are two ways to initialize final variables:
