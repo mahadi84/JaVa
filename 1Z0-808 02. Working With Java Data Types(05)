@@ -325,7 +325,7 @@ There are primarily two ways to access object fields:
                -Performance 
                -Caching
 ######### How to convert String to Integer?
-######### Using wrapper class constants
+######### How to declare wrapper class as constants?
 
 
 ########  What and Why Using Wrapper Classes in Java ###### 
@@ -333,9 +333,7 @@ There are primarily two ways to access object fields:
     ***This is essential for using primitive data types in collections, as collections can only store objects.
 
 #########  Example: Using Boolean, Double, and Integer ############ 
-
 import java.util.ArrayList;
-
 public class WrapperClassExample {
     public static void main(String[] args) {
         // Creating wrapper class objects
@@ -377,8 +375,7 @@ public class WrapperClassExample {
         String strInt = "123";
         int parsedInt = Integer.parseInt(strInt);
 
-
-######### Using wrapper class constants: #########
+######### How to declare wrapper class as constants: #########
   boolean isTrue = Boolean.TRUE;
   double pi = Double.PI;
 
