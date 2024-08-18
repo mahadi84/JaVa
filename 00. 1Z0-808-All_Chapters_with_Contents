@@ -46,7 +46,6 @@
                         01. System.out.println()
                         02. System.out.print()
                         03. System.out.printf()
-
 06. Import other Java packages to make them accessible in your code
             ########  0. What is a Java Package how to import that
             ########  1. Importing a Single Class 
