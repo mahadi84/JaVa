@@ -79,11 +79,14 @@
             ######## Creation
             ######## Dereference by Reassignment
             ######## Garbage Collection
-            ######## Key Points -Example:
-            ######## Important Notes
-            Why object's lifecycle is so important?
-            why garbage collection, is so important?
-            what is a memory leak?
+            ######## Answer the below questions:
+                        -What are `System.gc()` and `finalize()` methode
+                        -Why object's lifecycle is so important?
+                        -why garbage collection, is so important?
+                        -what is a memory leak?
+                        -Where object does live?
+                        -What does a Reference variable hold?
+                        -Assigning a new value to a reference variable destroys the old object?
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
             ######## What and Why Wrapper Classes in Java
             ######## Why to convert primitive data type into Object and vice-versa?
