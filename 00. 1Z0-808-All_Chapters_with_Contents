@@ -1,6 +1,6 @@
+            1Z0-808
 
-
------------------Chapters-----------------------------
+-----------------CHAPTERs-----------------------------
 
 01. Java Basics (07) 
 02. Working With Java Data Types (05) 
@@ -12,7 +12,6 @@
 08. Handling Exceptions (05)
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
-
 
 =======================01. Java Basics(07): ============
 01. Define the scope of variables
@@ -50,7 +49,6 @@
             ########  1. Importing a Single Class 
             ########  2. Importing All Classes from a Package 
             ########  3. Importing Static Members 
-
 07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
             ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
             ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
@@ -59,8 +57,6 @@
                         01. Platform Independence vs. Object Orientation:
                         02. Object Orientation vs. Encapsulation:
                         03. Platform Independence vs. Encapsulation:
-
-
 
 ===========02. Working With Java Data Types(05): =========
 01. Declare and initialize variables (including casting of primitive data types)
@@ -148,8 +144,7 @@
             ######### 4. Use a One-Dimensional Array
                             -Accessing Array Elements  
                             -Modifying Array Elements  
-                            -Looping Through Array Elements   
-
+                            -Looping Through Array Elements 
 02. Declare, instantiate, initialize, and use multi-dimensional arrays
             ######### 0. Definition
             ######### 1. Declare a Multi-Dimensional Array  
@@ -160,7 +155,8 @@
             ######### 4. Use a Multi-Dimensional Array  
                              -Accessing Array Elements  
                              -Modifying Array Elements  
-                             -Looping Through Array Elements  
+                             -Looping Through Array Elements
+
 =======================05. Using Loop Constructs(05): ===================
 01. Create and use while loops
             ######## 1. Basic Syntax of `while` Loop 
@@ -234,7 +230,6 @@
                         2. Characteristics:
                         3. Example:
             ###### Key Differences: ######
-
 06. Apply access modifiers
             ###### Access Modifiers in Java 
             ###### 1. public      -Definition: -Usage: -Example:
@@ -247,7 +242,6 @@
 08. Determine the effect upon object references and primitive values when they are passed  into methods that change the values
             ###### Primitive Types
             ###### Object References
-
 
 =======================07. Working with Inheritance(07): ==================
 01. Describe inheritance and its benefits
@@ -271,12 +265,10 @@
                             3.Return Type, Exceptions 
                             5.`final`, `static`, and `private` Methods
                             )
-
 04. differentiate between the type of a reference and the type of an object
             ######## 1. Type of a Reference 
             ######## 2. Type of an Object 
             ######## Key Differences
-
 05. Determine when object casting is necessary
             ###### Object Casting
             ###### Types of Object Casting (1.Upcasting(Implicit) and 2.Downcasting(Explicit))
@@ -383,28 +375,23 @@
             ####### Lambda Expression that Consumes a Predicate
 
 =======================10. Assume the following(05):=========== 
-
 01. Missing package and import statements: 
     If sample code do not include package or import statements, and the question does not explicitly 
     refer to these missing statements, then assume that all sample code is in the same package, or 
     import  statements  exist to support them.
-
 02. No file or directory path names for classes: 
     If a question does not state the file names or directory locations of classes, then assume one of the 
     following, whichever will enable the code to compile and run:
     All classes are in one file Each class is contained in a separate file, and all files are in one directory.
-
 03. Unintended line breaks: 
     Sample code might have unintended line breaks. If you see a line of code that looks like it has 
     wrapped,  and this creates a situation where the wrapping is significant (for example, a quoted 
     String literal has  wrapped), assume that the wrapping is an extension of the same line, and the 
     line does not contain a  hard carriage return that would cause a compilation failure.
-
 04. Code fragments: 
     A code fragment is a small section of source code that is presented without its context. Assume 
     that all necessary supporting code exists and that the supporting environment fully supports the 
     correct  compilation and execution of the code shown and its omitted environment.
-
 05. Descriptive comments: 
     Take descriptive comments, such as "setter and getters go here," at face value. Assume that the 
     correct code   exists, compiles, and runs successfully to create the described effect.
