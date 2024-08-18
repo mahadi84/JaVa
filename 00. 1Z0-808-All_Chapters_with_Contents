@@ -29,13 +29,9 @@
             ######## Example 1: Basic Structure with Main Method
             ######## Example 2: Static Blocks
                              ######## When to Use Static Blocks
-            ######## Example 3: Final Variables and Initialization
+            ######## Example 3: Final(Constant) Variables and Initialization
                              ######### Final Variables, When to Use it?
-                             ######### Initialization (1.Immediate Initialization and  2.Blank Final) of Final Variables
-            ######## Example 4: Try-With-Resources
-                             ##### What it is
-                             ##### Benefits of Try-With-Resources
-                             ##### How to Declare Multiple Resources(within the same try block)                        
+                             ######### Initialization (1.Immediate Initialization and  2.Blank Final) of Final Variables                    
 04. Run a Java program from the command line; 
             ######## Step 1: Write and Save Your Java Code into .java extention file
             ######## Step 2: Open the Command Line
