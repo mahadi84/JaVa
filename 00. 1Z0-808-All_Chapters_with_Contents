@@ -66,9 +66,10 @@
 ===========02. Working With Java Data Types(05): =========
 01. Declare and initialize variables (including casting of primitive data types)
             ######## Primitive Data Types 
-            ######## Declaration and Initialization 
+            ######## Declaration and Initialization
+            ######## What is casting, why casting, 01. Implicit casting (widening), 02.Explicit casting (narrowing)?
             ######## Casting Primitive Data Types 
-            ######## Important Considerations 
+            ######## How to name a variable with DATA TYPE?
 02. Differentiate between object reference variables and primitive variables
             ####### Understanding Object References:
             ####### Object Reference Variables  And Primitive Variables  Example:
