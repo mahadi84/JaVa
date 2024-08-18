@@ -151,6 +151,9 @@ public class HelloWorld {
                         System.out.println("Count: " + count);
                     }
                 }
+        Output:
+        Static block executed
+        Count: 10
 
 ######## When to Use Static Blocks
 Static blocks are primarily used for class-level initialization tasks. Here are some specific scenarios where they are commonly employed:   
