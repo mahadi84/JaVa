@@ -16,11 +16,16 @@ Date: 31-July-2024(Wednesday)
     --------------------01. Define the scope of variables--------------------------
 ######################################################################################
 
-####### Scope of Variables
-###### Key Points to Remember(Variables) 
-            -Variable Shadowing        -Final Variables
-            -Static Context            -Initialization
+    ######## Understanding Variables 
+    ####### Scope of Variables(Declaration, Creation, Accessable, Default value) with example
+    ###### What are: 
+            -Variable Shadowing   
+            -Static Context
 
+######## Understanding Variables ################
+    * A variable is a named storage location that holds a value.
+    * In Java, variables must be declared before use.
+    * The data type of a variable determines the type of data it can hold.
 
 ####### Scope of Variables
 1. Instance Variables ----
@@ -31,7 +36,7 @@ Date: 31-July-2024(Wednesday)
 
 2. Class Variables (Static Variables) ----
     -Declared with the `static` keyword inside a class but outside any method, constructor, or block.
-    -Belongs to the class itselt, not instances.
+    -Belongs to the class itself, not instances.
     -Created when the program starts and destroyed when the program stops.
     -Accessible from all static and instance methods, constructors, and blocks.
     -Default values are assigned if not explicitly initialized.
@@ -47,59 +52,29 @@ Date: 31-July-2024(Wednesday)
     -Treated as local variables within the scope of the method, constructor, or block.
     -Must be initialized explicitly before use.
 
-###### Key Points to Remember ############
+###### What are: ############
 -Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
--Final Variables: Variables declared with the `final` keyword cannot be reassigned once initialized.
 -Static Context: In a static method, you cannot directly access instance variables or methods; you must use a reference to an instance of the class.
--Initialization: Local variables must be initialized before use, while instance and class variables are automatically initialized with default values if not explicitly done.
-
 
 ######################################################################################
 --------------------02. Define the structure of a Java class--------------------------
 ######################################################################################
 
 ###### Class Declaration
-######  Fields (Attributes)
-###### Methods (Behaviors)
-###### Constructor
-
 
 ###### Class Declaration: ######
-   public class MyClass {
-       // Class body
-   }
-   
-   public: Access modifier indicating the class is accessible from anywhere.
-   class: Keyword to define a class.
-   MyClass: Name of the class.
+   public class Person {
+        //Fields/Attributes  **Data members that store the state of an object.
+       private String name; 
+       private int age;
 
-######  Fields (Attributes): ######
-   private int age;
-   public String name;
-   
-   Data members that store the state of an object.
-   Access modifiers (e.g., private, public) determine visibility.
-
-###### Methods (Behaviors): ######
-   public void greet() {
+//Methods (Behaviors):  Functions that define the actions an object can perform.
+ public void greet() {  
        System.out.println("Hello, " + name + "!");
    }
-   
-   Functions that define the actions an object can perform.
-   Access modifiers (e.g., public, private) control method accessibility.
-   Return type specifies the data type of the value returned by the method.
 
-###### Constructor: ######
-   -Special method used to initialize objects.
-   -No return type, including void.
-   -Constructor name matches the class name.
-
-   Example:
-   public class Person {
-       private String name;
-       private int age;
-   
-       public Person(String name, int age) {
+//Constructor  
+       public Person(String name, int age) { 
            this.name = name;
            this.age = age;
        }
@@ -110,7 +85,11 @@ Date: 31-July-2024(Wednesday)
    
        }
    }
-
+   
+   public: Access modifier indicating the class is accessible from anywhere.
+   class: Keyword to define a class.
+   MyClass: Name of the class.
+ 
 
 
 ######################################################################################
@@ -118,16 +97,14 @@ Date: 31-July-2024(Wednesday)
 ######################################################################################
 
 ######## Example 1: Basic Structure with Main Method
-######## Example 2: Using Static and Instance Methods
-######## Example 3: Constructor Overloading
-######## Example 4: Using Static Blocks
-                        ######## When to Use Static Blocks
-######## Example 5: Final Variables and Initialization
+######## Example 2: UStatic Blocks
+                        ######## What it is and When to Use Static Blocks
+######## Example 3: Final Variables and Initialization
                         ######### Final Variables
                         ######### When to Use Final Variables
                         ######### Initialization of Final Variables
-######## Example 6: Try-With-Resources
-                        ##### How it works
+######## Example 4: Try-With-Resources
+                        ##### What it is?
                         ##### Benefits of Try-With-Resources
                         ##### How to Declare Multiple Resources(within the same try block)                        
 
@@ -135,7 +112,7 @@ Date: 31-July-2024(Wednesday)
 Static: member (method or fields) belongs to the class itself, rather than an instance of the class.
 Void: (return type)method does not return any value.
 
-What is the Main method, Why it is static and Void?
+############## What is the Main method, Why it is static and Void?
 Ans: The main method: 
      - is the entry point of the Java program, 
      - declares static because it calls before any objects are created and 
@@ -145,47 +122,6 @@ Ans: The main method:
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-    }
-}
-
-######## Example 2: Using Static and Instance Methods ########
-public class Example2 {
-    public static void main(String[] args) {
-        Example2 obj = new Example2();
-        obj.instanceMethod();
-        staticMethod();
-    }
-
-    public void instanceMethod() {
-        System.out.println("This is an instance method.");
-    }
-
-    public static void staticMethod() {
-        System.out.println("This is a static method.");
-    }
-}
-
-######## Example 3: Constructor Overloading ########
-Can a Class have multiple constructors?
-If, Yes, How to call each other?
-Can a constructor Overload in a same class?
-Can a constructor be private?
-What is singleton pattern?
-
-public class Example3 {
-    int value;
-
-    public Example3() {
-        this(10); // Calls the other constructor
-    }
-
-    public Example3(int value) {
-        this.value = value;
-    }
-
-    public static void main(String[] args) {
-        Example3 obj = new Example3();
-        System.out.println("Value: " + obj.value);
     }
 }
 
@@ -245,16 +181,15 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
 
 ####################### Example 5: Final Variables and Initialization
 
-        ######### Final Variables
-        ####### When to Use Final Variables
+        ######## Final Variables & When to Use Final Variables
         ######## Initialization of Final Variables
 
 ######### Final Variables
--A constant whose value cannot be changed once it's assigned. 
--Final variables must be initialized before they are used.
--Final variables can be used with both primitive and reference types.
--For reference types, the reference itself is final, but the object it points to might not be immutable.
--Improve code readability, maintainability, and performance.
+    -A constant whose value cannot be changed once it's assigned. 
+    -Final variables must be initialized before they are used.
+    -Final variables can be used with both primitive and reference types.
+    -For reference types, the reference itself is final, but the object it points to might not be immutable.
+    -Improve code readability, maintainability, and performance.
 
 ####### When to Use Final Variables
     -To improve code readability, maintainability, and performance.
@@ -263,7 +198,6 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
     Efficiency: The compiler can often optimize code with final variables, leading to potential performance improvements.
     Clarity: Using final makes code more readable by explicitly indicating that a value won't change.
     
-
 
 ######## Initialization of Final Variables
 There are two ways to initialize final variables:
@@ -392,7 +326,7 @@ java HelloWorld
 You should see the output: Hello, World!
 
 
-########  Additional Tips ########
+######## What to do if javac compile command does not work ########
 -Setting Up the Environment: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
 -Handling Packages: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
 
@@ -421,8 +355,11 @@ You should see the output: Hello, World!
        --------------------05. Produce console output  -------------------------
 ######################################################################################
 
-######## Explanation ########
-########  Example Program Using All Methods ########
+######## Explanation with example 
+            01. System.out.println()
+            02. System.out.print()
+            03. System.out.printf()
+########  Example Program Using All Methods
 
 
 ######## Explanation ########
@@ -459,11 +396,10 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 -------06. Import other Java packages to make them accessible in your code  ----------
 ######################################################################################
 
-########  0. Definition of Java Packag 
+########  0. What is a Java Package how to import that
 ########  1. Importing a Single Class 
 ########  2. Importing All Classes from a Package 
 ########  3. Importing Static Members 
-######## Practical Example
 
 
 Definition of Java Package: 
