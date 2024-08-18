@@ -16,6 +16,27 @@ Date: 31-July-2024(Wednesday)
     --------------------01. Define the scope of variables--------------------------
 ######################################################################################
 
+###### Procedural Programming Vs Object-Oriented Programming
+
+-------------------------------------------------------------------------------------------------
+Feature             |	Procedural Programming     |	Object-Oriented Programming
+-------------------------------------------------------------------------------------------------
+When to use         |   suitable for smaller, simpler problems | preferred for larger, complex systems that require code reusability,
+Focus               |	Procedures/functions       |	Objects
+Data and functions  |	Separate                   |	Combined into objects
+Approach            |	Top-down (problem is broken down into smaller steps)|	Bottom-up (real-world entities are modeled as objects)
+Data sharing        |	Global variables           |	Data encapsulation within objects
+Code reusability    |	Limited                    |	High (inheritance, polymorphism)
+Complexity          |	Often simpler for smaller problems |	Can be more complex for smaller problems but scales better
+Examples            |	C, Pascal                  |	Java, Python, C++
+-------------------------------------------------------------------------------------------------
+
+
+#####is Java fully OOP? Why?
+    Java: Not Fully Object-Oriented as Java has primitive data types(like int, double, boolean) that are not objects.
+    -primitive data types are a departure from the pure OOP concept where everything should be an object.   
+
+
 ######## Understanding Variables ################
     * A variable is a named storage location that holds a value.
     * In Java, variables must be declared before use.
