@@ -31,7 +31,6 @@ Complexity          |	Often simpler for smaller problems |	Can be more complex f
 Examples            |	C, Pascal                  |	Java, Python, C++
 -------------------------------------------------------------------------------------------------
 
-
 #####is Java fully OOP? Why?
     Java: Not Fully Object-Oriented as Java has primitive data types(like int, double, boolean) that are not objects.
     -primitive data types are a departure from the pure OOP concept where everything should be an object.   
@@ -96,7 +95,6 @@ Examples            |	C, Pascal                  |	Java, Python, C++
    class: Keyword to define a class.
    MyClass: Name of the class.
  
-
 ######################################################################################
 ------------03. Create executable Java applications with a main method; ------
 ######################################################################################
@@ -129,9 +127,7 @@ public class HelloWorld {
     }
 }
 
-
 ########################## Example 4: Using Static Blocks  
-
 ###### Static Blocks in Java
     -To execute code that needs to run once before any objects of the class are created.   
         Example: establishing database connections.
@@ -238,19 +234,9 @@ There are two ways to initialize final variables:
         }
 In this example, PI is a constant value that won't change, and radius is a final variable that is initialized in the constructor.
 
-
 ######################################################################################
      ---------------04. Run a Java program from the command line;  --------------
 ######################################################################################
-
-######## Step 1: Write Your Java Code
-######## Step 2: Open the Command Line
-######## Step 3: Navigate to the Directory
-######## Step 4: Compile the Java Code
-######## Step 5: Run the Compiled Java Program
-########  Additional Tips
-######## Example with Package
-
 
 ######## Step 1: Write Your Java Code ########
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
@@ -282,29 +268,23 @@ java HelloWorld
 
 You should see the output: Hello, World!
 
-
 ######## What to do if javac compile command does not work ########
 -Setting Up the Environment: Ensure that the `javac` and `java` commands are available in your PATH. You can check this by running `javac -version` and `java -version`. If not, you may need to add the JDK bin directory to your system's PATH.
 -Handling Packages: If your Java file includes a package declaration, you need to navigate to the root directory of your package structure and use the fully qualified class name to compile and run the program.
 
 ######## Example with Package ########
 1. Create a file named `com/example/HelloWorld.java` with the following content:
-
     package com.example;
-
     public class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello, World!");
         }
     }
 
-
 2. Open the command line and navigate to the directory containing the `com` directory:
     cd path/to/your/java/file
-
 3. Compile the Java file:
     javac com/example/HelloWorld.java
-
 4. Run the compiled Java program using the fully qualified class name:
     java com.example.HelloWorld
 
@@ -312,18 +292,10 @@ You should see the output: Hello, World!
        --------------------05. Produce console output  -------------------------
 ######################################################################################
 
-######## Explanation with example 
-            01. System.out.println()
-            02. System.out.print()
-            03. System.out.printf()
-########  Example Program Using All Methods
-
-
 ######## Explanation ########
 -System.out.println("..."): Prints the string and moves to a new line.
 -System.out.print("..."): Prints the string without moving to a new line.
 -System.out.printf("format string", args): Prints a formatted string. The `%n` format specifier in `printf` is used to insert a newline.
-
 
 ########  Example Program Using All Methods ########
 Here is a full example demonstrating all three methods:
@@ -353,12 +325,7 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 -------06. Import other Java packages to make them accessible in your code  ----------
 ######################################################################################
 
-########  0. What is a Java Package how to import that
-########  1. Importing a Single Class 
-########  2. Importing All Classes from a Package 
-########  3. Importing Static Members 
-
-Definition of Java Package: 
+#############What is a Java Package##############
 A package is a namespace that organizes a set of related classes and interfaces. 
 It helps manage the code structure, avoid name conflicts, and control access to classes and interfaces.
 
@@ -372,7 +339,6 @@ To import a specific class from a package, you use the `import` statement follow
 
 Syntax:
 import packageName.ClassName;
-
 
 Example:
 import java.util.ArrayList;
