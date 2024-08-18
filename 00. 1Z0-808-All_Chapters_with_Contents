@@ -88,20 +88,16 @@
                         -What does a Reference variable hold?
                         -Assigning a new value to a reference variable destroys the old object?
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
-            ######## What and Why Wrapper Classes in Java
-            ######## Why to convert primitive data type into Object and vice-versa?
-            ######## How to do that?
-            ######## Example: Using Boolean, Double, and Integer
-            ######## How:  -Creating wrapper class objects, 
-                           -Using wrapper class methods 
-                           -Autoboxing and unboxing
-                           -Using wrapper classes in collections
-            ########  What are these:
-                           -Null values 
-                           -Performance 
-                           -Caching
-            ######### Comparing wrapper objects
-            ######### Using wrapper class constants
+                        ######## What and Why Wrapper Classes in Java
+                               ***Why convert primitive data type into Object and vice-versa?
+                        ######## Example: Using Boolean, Double, and Integer
+                        ######## How:  
+                                    -Creating wrapper class objects, -Using wrapper class methods  
+                                    -Autoboxing and unboxing         -Using wrapper classes in collections
+                        ########  What are these:
+                           -Null values -Performance -Caching
+                        ######### How to convert String to Integer?
+                        ######### How to declare wrapper class as constants?
 
 ===================03. Using Operators and Decision Constructs(05): =========
 01. Use Java operators; 
