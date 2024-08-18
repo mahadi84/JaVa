@@ -270,7 +270,12 @@ In this example:
         3. Constructor Chaining:
         4. No Return Type:
         5. Overloading vs. Overriding:
-
+####### Answer below questions:
+        Can a Class have multiple constructors?
+        If, Yes, How to call each other?
+        Can a constructor Overload in a same class?
+        Can a constructor be private?
+        What is singleton pattern?
 
 ####### Constructors in Java  #######
 1. Definition:
