@@ -193,6 +193,7 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
             -Can be used with primitive types, Strings, and objects.
                 Example:            
                 public class Example {
+                    It's highly recommended to use uppercase with underscores for readability. This clearly indicates their constant nature.
                     final int MAX_VALUE = 100; // Instance final variable
                     
                     public void method() {
@@ -201,7 +202,7 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
                 }
 
 ####### When to Use Final Variables
-    Constants: When you need a value that remains constant throughout the program, like mathematical constants (e.g., PI), physical constants, or configuration values.
+    Constants(static final): When you need a value that remains constant throughout the program, like mathematical constants (e.g., PI), physical constants, or configuration values.
     Immutable Objects: To create immutable objects, where the state of the object cannot be modified after creation.
     Efficiency: The compiler can often optimize code with final variables, leading to potential performance improvements.
 
