@@ -17,8 +17,8 @@
 =======================01. Java Basics(07): ============
 01. Define the scope of variables
             ######## Understanding Variables 
-            ####### Scope of Variables(Declaration, Creation, Accessible, Default value) with example
-            ###### What are:  -Variable Shadowing   -Static Context
+            ######## Scope of Variables(Declaration, Creation, Accessible, Default value) with example
+            ######## What are:  -Variable Shadowing   -Static Context
 02. Define the structure of a Java class
             ###### Class Declaration
 03. Create executable Java applications with a main method;
