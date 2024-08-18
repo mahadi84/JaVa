@@ -314,8 +314,7 @@ There are primarily two ways to access object fields:
 =====================================================================================================================
 
 ######## What and Why Wrapper Classes in Java
-######## Why to convert primtive data type into Object and vise-versa?
-######## How to do that?
+         ***Why convert primitive data type into Object and vice-versa?
 ######## Example: Using Boolean, Double, and Integer
 ######## How:  -Creating wrapper class objects, 
                -Using wrapper class methods 
@@ -325,13 +324,13 @@ There are primarily two ways to access object fields:
                -Null values 
                -Performance 
                -Caching
-######### Comparing wrapper objects
+######### How to convert String to Integer?
 ######### Using wrapper class constants
 
 
 ########  What and Why Using Wrapper Classes in Java ###### 
-Wrapper classes in Java provide a way to convert primitive data types into objects. 
-This is essential for using primitive data types in collections, as collections can only store objects.
+    Wrapper classes in Java provide a way to convert primitive data types into objects. 
+    ***This is essential for using primitive data types in collections, as collections can only store objects.
 
 #########  Example: Using Boolean, Double, and Integer ############ 
 
@@ -373,16 +372,11 @@ public class WrapperClassExample {
     -Caching: Some wrapper classes (like Integer and Byte) have a cache for commonly used values to optimize performance.
 
 
-### Additional Examples: ###### 
+### How to convert String to Integer ###### 
     Parsing strings to primitive types:
         String strInt = "123";
         int parsedInt = Integer.parseInt(strInt);
 
-######### Comparing wrapper objects: #########
-  Integer num1 = 10;
-  Integer num2 = new Integer(10);
-  System.out.println(num1 == num2); // False (different objects)
-  System.out.println(num1.equals(num2)); // True (same value)
 
 ######### Using wrapper class constants: #########
   boolean isTrue = Boolean.TRUE;
