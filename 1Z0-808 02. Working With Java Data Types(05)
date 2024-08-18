@@ -251,11 +251,14 @@ There are primarily two ways to access object fields:
 ######## Creation
 ######## Dereference by Reassignment
 ######## Garbage Collection
-######## Key Points -Example:
-######## Answer below questions:
+######## Answer the below questions:
+            -What are `System.gc()` and `finalize()` methode
             -Why object's lifecycle is so important?
             -why garbage collection, is so important?
             -what is a memory leak?
+            -Where object does live?
+            -What does a Reference variable hold?
+            -Assigning a new value to a reference variable destroys the old object?
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
@@ -279,13 +282,21 @@ There are primarily two ways to access object fields:
     * Once an object is determined to be garbage, its memory is reclaimed for future use.
     * Garbage collection is automatic, but its timing is unpredictable.
 
-######## Key Points: #######
+######## Important Notes:
+* While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
+* The `finalize()` method is called before garbage collection, but its use is generally discouraged.
+* Understanding object lifetimes is crucial for preventing memory leaks.
+* Memory Leak: it occurs when objects are no longer in use but still referenced.
+* Garbage Collection behaviors for referenced objects are: Strong, Weak, Soft and Phandom.
+
+* Where object does live?
     * Objects live in the heap memory.
+* What does a Reference variable hold?
     * Reference variables hold addresses of objects.
+* Assigning a new value to a reference variable destroys the old object.
     * Assigning a new value to a reference variable doesn't destroy the old object but breaks the link.
 
     Example:
-
     public class ObjectLifecycle {
         public static void main(String[] args) {
             String name1 = new String("Alice"); // Object creation
@@ -296,16 +307,6 @@ There are primarily two ways to access object fields:
             // At this point, the "Alice" object is eligible for garbage collection
         }
     }
-
-
-######## Important Notes:
-* While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
-* The `finalize()` method is called before garbage collection, but its use is generally discouraged.
-* Understanding object lifetimes is crucial for preventing memory leaks.
-* Memory Leak: it occurs when objects are no longer in use but still referenced.
-* Garbage Collection behaviors for referenced objects are: Strong, Weak, Soft and Phandom.
-
-
 
 
 =====================================================================================================================
