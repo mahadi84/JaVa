@@ -133,20 +133,23 @@ public class HelloWorld {
 ########################## Example 4: Using Static Blocks  
 
 ###### Static Blocks in Java
-    -A block of code that is executed only once, when the class is first loaded into memory. 
-    -It's primarily used to initialize static variables or perform other class-level initialization tasks.
-
-    Example:
-            public class StaticBlockExample {
-                static int count = 0;            
-                static {
-                    System.out.println("Static block executed");
-                    count = 10;
-                }            
-                public static void main(String[] args) {
-                    System.out.println("Count: " + count);
+    -To execute code that needs to run once before any objects of the class are created.   
+        Example: establishing database connections.
+    -A block of code that is executed only once to initialize static variables.
+    -Perform actions before the main method is executed, 
+        Example: Logging or Resource allocation.   
+    -When the class is first loaded into memory.
+        Example:
+                public class StaticBlockExample {
+                    static int count = 0;            
+                    static {
+                        System.out.println("Static block executed");
+                        count = 10;
+                    }            
+                    public static void main(String[] args) {
+                        System.out.println("Count: " + count);
+                    }
                 }
-            }
 
 ######## When to Use Static Blocks
 Static blocks are primarily used for class-level initialization tasks. Here are some specific scenarios where they are commonly employed:   
