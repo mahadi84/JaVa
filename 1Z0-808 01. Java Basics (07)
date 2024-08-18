@@ -167,7 +167,6 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
 3. Executing Code Before Main Method:
     To perform actions before the main method is executed, such as logging or resource allocation.   
     Example: Initializing a Static Map
-        Java
         import java.util.HashMap;
         import java.util.Map;
         
@@ -209,17 +208,14 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
 ######## Initialization of Final Variables
 There are two ways to initialize final variables:
 
-        1. Immediate Initialization
-        This is the most common way. The variable is declared and initialized in the same line.  
+        1. Immediate Initialization: This is the most common way. The variable is declared and initialized in the same line.  
             final int MAX_VALUE = 100;
             final String NAME = "Alice";
-            Use code with caution.
         
         2. Blank Final
         A blank final variable is declared as final but not initialized immediately. It must be initialized before the constructor completes.
             public class MyClass {
-                final int value;
-            
+                final int value;            
                 public MyClass(int value) {
                     this.value = value;
                 }
