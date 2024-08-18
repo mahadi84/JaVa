@@ -15,49 +15,44 @@
 
 
 =======================01. Java Basics(07): ============
-01. Define the scope of variables 
-            ####### Scope of Variables
-            ###### Key Points to Remember(Variables) 
-            -Variable Shadowing        -Final Variables
-            -Static Context            -Initialization
+01. Define the scope of variables
+            ######## Understanding Variables 
+            ####### Scope of Variables(Declaration, Creation, Accessible, Default value) with example
+            ###### What are:  -Variable Shadowing   -Static Context
 02. Define the structure of a Java class
             ###### Class Declaration
-            ######  Fields (Attributes)
-            ###### Methods (Behaviors)
-            ###### Constructor
 03. Create executable Java applications with a main method;
             ######## What is the Main method, Why it is Static and Void?
             ######## Example 1: Basic Structure with Main Method
-            ######## Example 2: Using Static and Instance Methods
-            ######## Example 3: Constructor Overloading
-            ######## Example 4: Using Static Blocks
+            ######## Example 2: Static Blocks
                              ######## When to Use Static Blocks
-            ######## Example 5: Final Variables and Initialization
-                             ######### Final Variables
-                             ######### When to Use Final Variables
+            ######## Example 3: Final Variables and Initialization
+                             ######### Final Variables, When to Use Final Variables
                              ######### Initialization of Final Variables
-            ######## Example 6: Try-With-Resources
-                             ##### How it works
+            ######## Example 4: Try-With-Resources
+                             ##### What it is
                              ##### Benefits of Try-With-Resources
                              ##### How to Declare Multiple Resources(within the same try block)                        
 04. Run a Java program from the command line; 
-            ######## Step 1: Write Your Java Code
+            ######## Step 1: Write and Save Your Java Code into .java extention file
             ######## Step 2: Open the Command Line
             ######## Step 3: Navigate to the Directory
-            ######## Step 4: Compile the Java Code
+            ######## Step 4: Compile the Java Code (JAVAC)
             ######## Step 5: Run the Compiled Java Program
-            ########  Additional Tips
-            ######## Example with Package
+            ######## What to do if "javac" compile command does not work
+            ######## How to compile code if code associate with a java Package?
 05. Produce console output
-            ######## Explanation ########
-            ########  Example Program Using All Methods ########
+            ######## Explanation with example 
+                        01. System.out.println()
+                        02. System.out.print()
+                        03. System.out.printf()
 
 06. Import other Java packages to make them accessible in your code
-            ########  0. Definition of Java Package 
+            ########  0. What is a Java Package how to import that
             ########  1. Importing a Single Class 
             ########  2. Importing All Classes from a Package 
             ########  3. Importing Static Members 
-            ######## Practical Example
+
 07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
             ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
             ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
@@ -71,7 +66,6 @@
 
 ===========02. Working With Java Data Types(05): =========
 01. Declare and initialize variables (including casting of primitive data types)
-            ######## Understanding Variables 
             ######## Primitive Data Types 
             ######## Declaration and Initialization 
             ######## Casting Primitive Data Types 
