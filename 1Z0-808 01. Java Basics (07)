@@ -186,7 +186,7 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
 
 ####################### Example 5: Final Variables and Initialization
 
-######### Final Variables
+######### Final(Constant) Variables
             -A variable declared with the final keyword.
             -Its value cannot be changed once assigned.   
             -Can be both instance and class variables.
@@ -238,51 +238,6 @@ There are two ways to initialize final variables:
         }
 In this example, PI is a constant value that won't change, and radius is a final variable that is initialized in the constructor.
 
-################## Example 06:  Try-With-Resources in Java #################################
-    -Java construct introduced in Java 7 that simplifies resource management by ensuring automatic closing of resources at the end of a block. 
-    -It's a cleaner and more reliable alternative to using finally blocks for resource cleanup.
-
-###How it works:
-    -Declare one or more resources within parentheses after the try keyword.
-    -Resources must implement the AutoCloseable interface.
-    -The resources are automatically closed at the end of the try block, regardless of whether an exception is thrown or not. 
-        Example: (Reading from a file)
-            import java.io.BufferedReader;
-            import java.io.FileReader;
-            import java.io.IOException;
-            
-            public class   
-             TryWithResourcesExample {
-                public static void main(String[] args) {
-                    try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            System.out.println(line);
-                        }
-                    } catch (IOException e) {
-                        System.err.println("Error reading file: " + e.getMessage());
-                    }
-                }
-            }
-
-        In this example:   
-        --BufferedReader and FileReader are declared as resources within the try block.
-        --These objects implement the AutoCloseable interface, ensuring they will be closed automatically.
-        --The try block reads lines from the file and prints them.
-        --If an IOException occurs, it's caught and handled.
-##### Benefits of Try-With-Resources:
-        Improved readability: Code is more concise and easier to understand.
-        Reduced error prone code: Eliminates the need for manual resource closing, which can lead to resource leaks.
-        Guaranteed resource closure: Resources are always closed, even in case of exceptions.
-
-#### How to Declare Multiple Resources(within the same try block)?
-        You can declare multiple resources within the same try block:
-        try (Resource1 r1 = createResource1(); Resource2 r2 = createResource2()) {
-            // Use resources
-        } catch (Exception e) {
-            // Handle exceptions
-        }
- **If an exception occurs in the try block, the resources are still closed before the exception is propagated.
 
 ######################################################################################
      ---------------04. Run a Java program from the command line;  --------------
