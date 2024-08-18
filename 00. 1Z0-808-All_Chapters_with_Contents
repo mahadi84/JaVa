@@ -30,8 +30,8 @@
             ######## Example 2: Static Blocks
                              ######## When to Use Static Blocks
             ######## Example 3: Final Variables and Initialization
-                             ######### Final Variables, When to Use Final Variables
-                             ######### Initialization of Final Variables
+                             ######### Final Variables, When to Use it?
+                             ######### Initialization (1.Immediate Initialization and  2.Blank Final) of Final Variables
             ######## Example 4: Try-With-Resources
                              ##### What it is
                              ##### Benefits of Try-With-Resources
