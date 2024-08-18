@@ -367,6 +367,7 @@ public class WrapperClassExample {
     -Using wrapper class methods: We can use methods provided by wrapper classes like `toString()` to convert values to strings.
     -Autoboxing and unboxing: Java automatically converts between primitive types and their corresponding wrapper classes. This is called autoboxing and unboxing.
     -Using wrapper classes in collections: We can store wrapper class objects in collections like `ArrayList`.
+
     -Null values: Wrapper classes can hold null values, unlike primitive types.
     -Performance: While autoboxing and unboxing are convenient, they can have a slight performance impact compared to using primitive types directly.
     -Caching: Some wrapper classes (like Integer and Byte) have a cache for commonly used values to optimize performance.
