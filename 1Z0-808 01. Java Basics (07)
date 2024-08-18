@@ -16,12 +16,6 @@ Date: 31-July-2024(Wednesday)
     --------------------01. Define the scope of variables--------------------------
 ######################################################################################
 
-    ######## Understanding Variables 
-    ####### Scope of Variables(Declaration, Creation, Accessable, Default value) with example
-    ###### What are: 
-            -Variable Shadowing   
-            -Static Context
-
 ######## Understanding Variables ################
     * A variable is a named storage location that holds a value.
     * In Java, variables must be declared before use.
@@ -36,16 +30,16 @@ Date: 31-July-2024(Wednesday)
 
 2. Class Variables (Static Variables) ----
     -Declared with the `static` keyword inside a class but outside any method, constructor, or block.
-    -Belongs to the class itself, not instances.
     -Created when the program starts and destroyed when the program stops.
     -Accessible from all static and instance methods, constructors, and blocks.
     -Default values are assigned if not explicitly initialized.
+    -Belongs to the class itself, not instances.
 
 3. Local Variables----
     -Declared inside a method, constructor, or block.
     -Created when the method, constructor, or block is entered and destroyed when it is exited.
+    -Access/Scope is limited to the method, constructor, or block in which they are declared.
     -Must be initialized explicitly before use as they do not have default values.
-    -Scope is limited to the method, constructor, or block in which they are declared.
 
 4. Parameters ----
     -Variables passed to methods, constructors, or blocks.
@@ -60,29 +54,20 @@ Date: 31-July-2024(Wednesday)
 --------------------02. Define the structure of a Java class--------------------------
 ######################################################################################
 
-###### Class Declaration
-
 ###### Class Declaration: ######
    public class Person {
         //Fields/Attributes  **Data members that store the state of an object.
        private String name; 
        private int age;
 
-//Methods (Behaviors):  Functions that define the actions an object can perform.
- public void greet() {  
-       System.out.println("Hello, " + name + "!");
-   }
-
-//Constructor  
+    //Methods (Behaviors):  Functions that define the actions an object can perform.
+     public void greet() {  
+           System.out.println("Hello, " + name + "!");
+       }
+    //Constructor  
        public Person(String name, int age) { 
            this.name = name;
            this.age = age;
-       }
-   
-       public void   
-    greet() {
-           System.out.println("Hello, my name is " + name + " and I am " + age + " years old.");   
-   
        }
    }
    
@@ -91,13 +76,12 @@ Date: 31-July-2024(Wednesday)
    MyClass: Name of the class.
  
 
-
 ######################################################################################
 ------------03. Create executable Java applications with a main method; ------
 ######################################################################################
 
 ######## Example 1: Basic Structure with Main Method
-######## Example 2: UStatic Blocks
+######## Example 2: Static Blocks
                         ######## What it is and When to Use Static Blocks
 ######## Example 3: Final Variables and Initialization
                         ######### Final Variables
@@ -107,7 +91,6 @@ Date: 31-July-2024(Wednesday)
                         ##### What it is?
                         ##### Benefits of Try-With-Resources
                         ##### How to Declare Multiple Resources(within the same try block)                        
-
 
 Static: member (method or fields) belongs to the class itself, rather than an instance of the class.
 Void: (return type)method does not return any value.
@@ -134,18 +117,15 @@ public class HelloWorld {
 
     Example:
             public class StaticBlockExample {
-                static int count = 0;
-            
+                static int count = 0;            
                 static {
                     System.out.println("Static block executed");
                     count = 10;
-                }
-            
+                }            
                 public static void main(String[] args) {
                     System.out.println("Count: " + count);
                 }
             }
-
 
 ######## When to Use Static Blocks
 Static blocks are primarily used for class-level initialization tasks. Here are some specific scenarios where they are commonly employed:   
@@ -177,12 +157,7 @@ Static blocks are primarily used for class-level initialization tasks. Here are 
             }
         }
 
-
-
 ####################### Example 5: Final Variables and Initialization
-
-        ######## Final Variables & When to Use Final Variables
-        ######## Initialization of Final Variables
 
 ######### Final Variables
     -A constant whose value cannot be changed once it's assigned. 
@@ -278,9 +253,7 @@ In this example, PI is a constant value that won't change, and radius is a final
         } catch (Exception e) {
             // Handle exceptions
         }
-
  **If an exception occurs in the try block, the resources are still closed before the exception is propagated.
-
 
 ######################################################################################
      ---------------04. Run a Java program from the command line;  --------------
@@ -401,7 +374,6 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 ########  2. Importing All Classes from a Package 
 ########  3. Importing Static Members 
 
-
 Definition of Java Package: 
 A package is a namespace that organizes a set of related classes and interfaces. 
 It helps manage the code structure, avoid name conflicts, and control access to classes and interfaces.
@@ -458,11 +430,9 @@ If you want to import static members (fields and methods) of a class, you use th
 
 Syntax:
 import static packageName.ClassName.staticMemberName;
-
-
-or to import all static members:
+OR
+import all static members:
 import static packageName.ClassName.*;
-
 
 Example:
 import static java.lang.Math.*;
@@ -479,7 +449,6 @@ public class StaticImportExample {
 
 ######## Practical Example ########
 Here is a practical example that combines various types of imports:
-
 1. Create a package named `com.example.utils` and a class `StringUtils` inside it:
     // File: com/example/utils/StringUtils.java
     package com.example.utils;
@@ -516,10 +485,8 @@ Here is a practical example that combines various types of imports:
     3. Open the command line and navigate to the root directory.
     4. Compile the `StringUtils` class:
         javac com/example/utils/StringUtils.java
-
     5. Compile the `Main` class:
         javac Main.java
-
     6. Run the `Main` class:
         java Main
 
@@ -540,26 +507,21 @@ Here is a practical example that combines various types of imports:
                 02. Object Orientation vs. Encapsulation:
                 03. Platform Independence vs. Encapsulation:
 
-
 ######### Platform Independence ##########
 Java is a widely-used programming language known for its powerful features and capabilities. 
 
 Definition:----
     Platform Independence means that a program written in Java can run on any device that has the Java Virtual Machine (JVM) installed, regardless of the underlying hardware and operating system.
-
 Features:----
     -Write Once, Run Anywhere (WORA): Java programs are compiled into bytecode, which can be executed on any JVM. This allows the same Java program to run on different platforms without modification.
     -Java Virtual Machine (JVM): The JVM is the key to Java's platform independence. It abstracts the underlying hardware and operating system, allowing Java bytecode to run on any device with a compatible JVM.
-
 Benefits:----
     -Cross-Platform Compatibility: Developers can write a single version of their application and deploy it across multiple platforms, reducing development and maintenance costs.
     -Portability: Java programs can easily be moved from one platform to another without needing recompilation.
-
 Examples:----
     -A Java program developed on Windows can run on Linux or macOS without any changes to the code.
 
 ########## Object Orientation ##########
-
 Definition:----
     Object Orientation is a programming paradigm(model or approch or pattern) based on the concept of "objects," which can contain data (fields) and code (methods). Java is inherently an object-oriented language.
 
@@ -578,7 +540,6 @@ Examples:----
     -Creating a `Vehicle` class and then extending it with `Car` and `Bike` subclasses, each having specific implementations of methods defined in `Vehicle`.
 
 ########## Encapsulation ##########
-
 Definition:----
    Encapsulation is the practice of bundling data (fields) and methods that operate on that data into a single unit or class, and restricting access to some of the object's components.
 
