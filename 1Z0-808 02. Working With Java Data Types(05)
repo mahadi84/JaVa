@@ -15,17 +15,12 @@ Date: 1-2Aug-2024(Thursday-Friday)
 -----------01. Declare and initialize variables (including casting of primitive data types)---------------------
 =====================================================================================================================
 
-######## Understanding Variables 
 ######## Primitive Data Types 
-######## Declaration and Initialization 
+######## Declaration and Initialization
+######## What is casting, why casting, 01. Implicit casting (widening), 02.Explicit casting (narrowing)?
 ######## Casting Primitive Data Types 
-######## Important Considerations 
+######## How to name a variable with DATA TYPE?
 
-
-######## Understanding Variables ################
-    * A variable is a named storage location that holds a value.
-    * In Java, variables must be declared before use.
-    * The data type of a variable determines the type of data it can hold.
 
 ######## Primitive Data Types ################
 Java has eight primitive data types:
@@ -58,7 +53,7 @@ Initialization: Assigns a value to the variable.
         
         ***insite double int is exist but inside int double is not exist
 
-######## Important Considerations ################
+######## How to name a variable  ################
     * Variable names must start with a letter, underscore (_), or dollar sign ($).
     * Variable names are case-sensitive.
     * Keywords cannot be used as variable names.
@@ -81,7 +76,6 @@ Initialization: Assigns a value to the variable.
             int x = (int) 3.14; // x will be 3
         }
     }
-
 
 =====================================================================================================================
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
