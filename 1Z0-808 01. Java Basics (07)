@@ -135,6 +135,7 @@ public class HelloWorld {
 ###### Static Blocks in Java
     -To execute code that needs to run once before any objects of the class are created.   
         Example: establishing database connections.
+        ***db_conn with static, is considered a bad practice due to potential resource leaks, thread safety issues, and inflexibility.
     -A block of code that is executed only once to initialize static variables.
     -Perform actions before the main method is executed, 
         Example: Logging or Resource allocation.   
