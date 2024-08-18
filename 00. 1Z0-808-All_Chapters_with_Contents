@@ -16,7 +16,9 @@
 
 =======================01. Java Basics(07): ============
 01. Define the scope of variables
+            ###### Procedural Programming Vs Object-Oriented Programming
             ######## Is Java fully OOP? Why?
+
             ######## Understanding Variables 
             ######## Scope of Variables(Declaration, Creation, Accessible, Default value) with example
             ######## What are:  -Variable Shadowing   -Static Context
