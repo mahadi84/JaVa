@@ -117,8 +117,8 @@
 03. Test equality between Strings and other objects using == and equals ()
             ######### Object reference variable(Declare, Access): 
             ######### Understanding the Difference between `==` and `equals()`
-            ######### What is String?
-            ######### Comparing Strings VS Comparing Other Objects
+            ######### What is String? How to create String with 01.String Literals. 02.new Keyword.
+            ######### Comparing Strings VS Comparing Other Objects.
             ######### Why and When to use:
                          -hashCode()  -Objects.equals()  -@Override
 04. Create if and if/else and ternary constructs
