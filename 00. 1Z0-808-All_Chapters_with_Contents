@@ -148,7 +148,7 @@
 
 =======================05. Using Loop Constructs(05): ===================
 01. Create and use while loops            
-            ######## What is  While Loop and Components of `while` Loop 
+            ######## What is  WHILE Loop and Components of `while` Loop 
             ######## What is  Infinite `while` Loop 
             ######## Why Using `break` and `continue` Statements in `while` Loop 
 02. Create and use for loops including the enhanced for loop
@@ -159,7 +159,7 @@
             ########## 5. Standard  `for` Vs Enhanced `for` 
  
 03. Create and use do/while loops
-            #### Syntax of `do/while` Loop 
+            #### DO/WHILE Loop 
             #### Key Points: 
                         >Guaranteed Execution  
                         >Condition Checking
@@ -201,7 +201,7 @@
 04. Create and overload constructors;
             ####### Constructors in Java  #######
             ####### Overloading Constructors  #######
-            ####### Key Points to Remember:  #######
+            ####### What are These #######
                     1. Default Constructor:
                     2. Parameterized Constructors:
                     3. Constructor Chaining:
@@ -209,13 +209,11 @@
                     5. Overloading vs. Overriding:
 05. differentiate between default and user-defined constructors
             ###### Default Constructor
-                        1. Definition:
-                        2. Characteristics:
-                        3. Example:
+                        1. Definition
+                        2. Characteristics
             ###### User-Defined Constructor
-                        1. Definition:
-                        2. Characteristics:
-                        3. Example:
+                        1. Definition
+                        2. Characteristics
             ###### Key Differences: ######
 06. Apply access modifiers
             ###### Access Modifiers in Java 
