@@ -266,31 +266,26 @@
                             1. `instanceof` Operator:
                             2. `ClassCastException`:
 06. Use super and this to access objects and constructors
-            ###### 1. Using `super`
-            ####### Accessing Superclass Methods
-            ####### Accessing Superclass Constructors
-            ###### 2. Using `this`
+            ####### 1. Why and how to Use `super`
+            ####### Accessing Superclass Methods and Constructors
+            ####### 2. Using `this`
             ####### Accessing Instance Variables and Methods
             ####### Calling Other Constructors (Constructor Chaining)
-            ###### Summary
+           
 07. Use abstract classes and interfaces
             ###### Abstract Classes 
-            ####### Key Points 
-                        1. Declaration
-                        2. Abstract Methods
-                        3. Concrete Methods
-                        4. Constructors
-                        5. Fields
-            ####### Example 
+                       1. Declaration
+                       2. Abstract Methods
+                       3. Concrete Methods
+                       4. Constructors
+                       5. Fields
             ###### Interfaces 
-            ####### Key Points
-                        1. Declaration 
-                        2. Implementation 
-                        3. Default Methods 
-                        4. Static Methods 
-                        5. Multiple Inheritance 
-            ####### Example 
-            ###### Differences between Abstract Class and Interface
+                       1. Declaration 
+                       2. Implementation 
+                       3. Default Methods 
+                       4. Static Methods 
+                       5. Multiple Inheritance 
+            ############## Differences between Abstract Class and Interface
             ############## When to use Abstract class  or Interface?
 
 ===============08. Handling Exceptions(05): ====================
@@ -308,7 +303,7 @@
             ####### Structure of a Try-Catch Block, Finally Block,  Multiple Catch Blocks
             ###### How Exceptions Alter Normal Program Flow 
 03. Describe the advantages of Exception handling 
-            ###### Defination for all
+            ###### Definition for all
             ###### 1. Improved Program Stability 
             ###### 2. Enhanced Code Readability and Maintenance 
             ###### 3. Centralized Error Handling 
