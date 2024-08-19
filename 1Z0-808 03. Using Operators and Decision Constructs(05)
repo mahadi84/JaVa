@@ -137,7 +137,7 @@ While the parentheses might not be strictly necessary in this case, they improve
 
 ######### Object reference variable(Declare, Access): 
 ######### Understanding the Difference between `==` and `equals()`
-######### What is String?
+######### What is String? How to create String with 01. String Literals. 02. new Keyword.
 ######### Comparing Strings VS Comparing Other Objects
 ######### Why and When to use:
              -hashCode()  -Objects.equals()  -@Override
@@ -188,8 +188,19 @@ Another Details Example:-----
 
 ######### What is String?
 -SPECIAL OBJECT: Strings are a special OBJECT in Java whereas in some other programming languages where strings might be primitive data types.
-                -collection of characters treated as a single unit
+                -a collection of characters treated as a single unit
 -IMMUTABLE: Once a string object is created, its content cannot be changed.
+
+      There are two primary ways to create strings:
+            01. String Literals: 
+                ->The most common method.   
+                ->Enclose characters within double quotes.   
+                ->Example: String greeting = "Hello, world!";
+      
+            02. new Keyword: 
+                ->Less common.
+                ->Use the new keyword and a String constructor.
+                ->Example: String message = new String("Welcome");
 
 ### Comparing Strings
  While they are objects, the `String` class overrides the `equals()` method to compare the actual content of the strings.
