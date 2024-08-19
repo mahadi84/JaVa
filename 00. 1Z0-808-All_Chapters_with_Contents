@@ -111,24 +111,22 @@
             ###### Ternary Operator
             ########## Operator Precedence
 02. use parentheses to override operator precedence
-            ########### Operator precedence -Example:
-            ########### To change the order of operations, you can use parentheses
-            ########### General Rule
-            ########### Example with Nested Parentheses
+            ########### What is Operator precedence?
+            ########### Why parentheses and nested parentheses are used in Operator precedence?
+            ########### which one performed first: int result = (2 + (3 * 4)) - 5;
 03. Test equality between Strings and other objects using == and equals ()
-            ######### Object reference variable with details example: 
-            ######### Understanding the Difference
-            ######### Comparing Strings: Example:
-            ######### Comparing Other Objects
-            ######### Important points
+            ######### Object reference variable(Declare, Access): 
+            ######### Understanding the Difference between `==` and `equals()`
+            ######### What is String?
+            ######### Comparing Strings VS Comparing Other Objects
+            ######### Why and When to use:
+                         -hashCode()  -Objects.equals()  -@Override
 04. Create if and if/else and ternary constructs
-            ### If Statement
-            ### If/Else Statement
+            ### If/Else Statement and Nested if statements
             ### Ternary Operator
-            ### Nested if statements
 05. Use a switch statement 
-           ###### What and Why it is #####
-           ###### What are? ######
+            ###### Why it is #####
+            ###### What are Syntex and ..? ######
                       -Expression: Data Type
                       -Case Labels
                       -Break Statement
@@ -137,23 +135,15 @@
 =======================04. Creating and Using Arrays(02): =================
 01. Declare, instantiate, initialize, and use a one-dimensional array
             ######### 0. Definition
-            ######### 1. Declare a One-Dimensional Array 
-            ######### 2. Instantiate a One-Dimensional Array 
-            ######### 3. Initialize a One-Dimensional Array
-                            -Initialization at Declaration
-                            -Initialization After Instantiation
-            ######### 4. Use a One-Dimensional Array
+            ######### 1. Declare, Instantiate, Initialize(01. At Declaration 02. After Instantiation) a One-Dimensional Array 
+            ######### 2. Use a One-Dimensional Array
                             -Accessing Array Elements  
                             -Modifying Array Elements  
                             -Looping Through Array Elements 
 02. Declare, instantiate, initialize, and use multi-dimensional arrays
             ######### 0. Definition
-            ######### 1. Declare a Multi-Dimensional Array  
-            ######### 2. Instantiate a Multi-Dimensional Array  
-            ######### 3. Initialize a Multi-Dimensional Array  
-                              -Initialization at Declaration  
-                              -Initialization After Instantiation  
-            ######### 4. Use a Multi-Dimensional Array  
+            ######### 1. Declare, Instantiate, Initialize(01. At Declaration 02.After Instantiation) a Multi-Dimensional Array  
+            ######### 2. Use a Multi-Dimensional Array  
                              -Accessing Array Elements  
                              -Modifying Array Elements  
                              -Looping Through Array Elements
