@@ -66,10 +66,10 @@
             ######## Casting Primitive Data Types 
             ######## How to name a variable with DATA TYPE?
 02. Differentiate between object reference variables and primitive variables
-            ####### Understanding Object References:
+            ####### Understanding Object References( Declaration and Initialization)
             ####### Object Reference Variables  And Primitive Variables  Example:
             ####### Key Differences
-            ####### ->Null values ->Memory Management for Object Reference and Primitive Variables 
+            ####### ->Null values ->Memory Management (for Object Reference and Primitive Variables)
 03. Know how to read or write to object fields
             ######## Fields(Static, Transient, and Volatile Field) and Object
             ######## Accessing Object Fields:
@@ -95,7 +95,9 @@
                                     -Creating wrapper class objects, -Using wrapper class methods  
                                     -Autoboxing and unboxing         -Using wrapper classes in collections
                         ########  What are these:
-                           -Null values -Performance -Caching
+                                     -Null values(Wrapper class) 
+                                     -Performance(autoboxing and unboxing) 
+                                     -Caching(Wrapper class)
                         ######### How to convert String to Integer?
                         ######### How to declare wrapper class as constants?
 
