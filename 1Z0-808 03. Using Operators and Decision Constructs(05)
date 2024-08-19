@@ -92,20 +92,14 @@ A shorthand for if-else statements.
     String result = (x > 5) ? "Greater than 5" : "Less than or equal to 5";
 
 
-###### Operator Precedence ###### 
-The order in which operators are evaluated. Use parentheses to override the default precedence.
-    int result = 5 + 3 * 2; // Multiplication has higher precedence, so result is 11
-
-
 
 ######################################################################################
 --------------------02. use parentheses to override operator precedence--------------
 ######################################################################################
 
-########### Operator precedence -Example:
-########### To change the order of operations, you can use parentheses
-########### General Rule
-########### Example with Nested Parentheses
+########### What is Operator precedence?
+########### Why parentheses and nested parentheses are used in Operator precedence?
+########### which one performed first: int result = (2 + (3 * 4)) - 5;
 
 
 ######### Operator precedence: ######### 
@@ -118,14 +112,15 @@ int result = 5 + 3 * 2;
 Without parentheses, the multiplication (3 * 2) is performed first due to operator precedence, resulting in `result` being 11.
 
 ####### To change the order of operations, you can use parentheses:
+- Expressions within parentheses() are evaluated first.
+-Nested parentheses are evaluated from the innermost to the outermost.
+-Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
+-Excessive use of parentheses can make code harder to read, so use them judiciously.
+
 int result = (5 + 3) * 2;
 Now, the addition (5 + 3) is performed first, resulting in `result` being 16.
 
-########### General Rule: ###########
-* Expressions within parentheses are evaluated first.
-* Nested parentheses are evaluated from the innermost to the outermost.
--Parentheses can be used to clarify the intended order of operations, even when the default precedence is correct.
--Excessive use of parentheses can make code harder to read, so use them judiciously.
+
 
 ########### Example with Nested Parentheses: ###########
 int result = (2 + (3 * 4)) - 5;
@@ -140,11 +135,12 @@ While the parentheses might not be strictly necessary in this case, they improve
 ------03. Test equality between Strings and other objects using == and equals ()------
 ######################################################################################
 
-######### Object reference variable with details example: 
-######### Understanding the Difference
-######### Comparing Strings: Example:
-######### Comparing Other Objects
-######### Important points
+######### Object reference variable(Declare, Access): 
+######### Understanding the Difference between `==` and `equals()`
+######### What is String?
+######### Comparing Strings VS Comparing Other Objects
+######### Why and When to use:
+             -hashCode()  -Objects.equals()  -@Override
 
 ####### Object reference variable:  
 -is a variable that holds the memory address of an object rather than the object itself. 
@@ -182,7 +178,6 @@ Another Details Example:-----
 
 ### Understanding the Difference
     There are two primary ways to test equality between objects:
-
     1. `==` -operator:   
             -Compares object references. 
             -It checks if two references point to the same object in memory.
@@ -191,8 +186,12 @@ Another Details Example:-----
             -Compares the contents of two objects. 
             -It checks if the objects represent the same value.
 
+######### What is String?
+-SPECIAL OBJECT: Strings are a special OBJECT in Java whereas in some other programming languages where strings might be primitive data types.
+                -collection of characters treated as a single unit
+-IMMUTABLE: Once a string object is created, its content cannot be changed.
+
 ### Comparing Strings
-Strings are special objects in Java.
  While they are objects, the `String` class overrides the `equals()` method to compare the actual content of the strings.
 
 #### Example:
@@ -242,39 +241,12 @@ Explanation:
 --------------------04. Create if and if/else and ternary constructs -----------------
 ######################################################################################
 
-### If Statement
-### If/Else Statement
+### If/Else Statement and Nested if statements
 ### Ternary Operator
-### Nested if statements
-
-### If Statement
-    The `if` statement allows you to execute a block of code if a specified condition is true.
-
-    int age = 25;
-    if (age >= 18) {
-        System.out.println("You are an adult.");
-    }
 
 ### If/Else Statement
     The `if/else` statement provides an alternative block of code to execute if the condition is false.
-
-    int age = 15;
-    if (age >= 18) {
-        System.out.println("You are an adult.");
-    } else {
-        System.out.println("You are a minor.");
-    }
- 
-### Ternary Operator
-The ternary operator is a shorthand way to write an `if/else` statement. It takes three operands:
-    * A condition
-    * The expression to evaluate if the condition is true
-    * The expression to evaluate if the condition is false
-        int age = 20;
-        String message = (age >= 18) ? "You are an adult." : "You are a minor.";
-        System.out.println(message);
-
-### Example with multiple conditions:
+   ### Example with multiple conditions:
     int number = 5;
     if (number > 0) {
         System.out.println("Number is positive.");
@@ -283,7 +255,6 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
     } else {
         System.out.println("Number is negative.");
     }
-
 
 ### Nested if statements:
     int age = 16;
@@ -298,13 +269,23 @@ The ternary operator is a shorthand way to write an `if/else` statement. It take
         System.out.println("Not eligible due to age.");
     }
 
+### Ternary Operator
+The ternary operator is a shorthand way to write an `if/else` statement. It takes three operands:
+    * A condition
+    * The expression to evaluate if the condition is true
+    * The expression to evaluate if the condition is false
+        int age = 20;
+        String message = (age >= 18) ? "You are an adult." : "You are a minor.";
+        System.out.println(message);
+
+
 
 ######################################################################################
       --------------------------05. Use a switch statement---------------------
 ######################################################################################
 
-###### What and Why it is #####
-###### What are? ######
+###### Why it is #####
+###### What are Syntex and ..? ######
           -Expression: Data Type
           -Case Labels
           -Break Statement
