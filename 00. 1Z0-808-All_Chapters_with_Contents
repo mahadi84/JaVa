@@ -147,12 +147,10 @@
                         -Looping Through Array Elements
 
 =======================05. Using Loop Constructs(05): ===================
-01. Create and use while loops
-            ######## 1. Basic Syntax of `while` Loop 
-            ######## 2. Components of `while` Loop 
-            ######## 3. Example of `while` Loop
-            ######## 4. Infinite `while` Loop 
-            ######## 5. Using `break` and `continue` Statements in `while` Loop 
+01. Create and use while loops            
+            ######## What is  While Loop and Components of `while` Loop 
+            ######## What is  Infinite `while` Loop 
+            ######## Why Using `break` and `continue` Statements in `while` Loop 
 02. Create and use for loops including the enhanced for loop
             ########## 1. Standard `for` Loop  
             ########## 2. Nested `for` Loops  
