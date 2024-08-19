@@ -134,19 +134,17 @@
 
 =======================04. Creating and Using Arrays(02): =================
 01. Declare, instantiate, initialize, and use a one-dimensional array
-            ######### 0. Definition
-            ######### 1. Declare, Instantiate, Initialize(01. At Declaration 02. After Instantiation) a One-Dimensional Array 
-            ######### 2. Use a One-Dimensional Array
-                            -Accessing Array Elements  
-                            -Modifying Array Elements  
-                            -Looping Through Array Elements 
+            ######### Definition one-dimensional array
+            ######### Declare, Instantiate, Initialize(01. At Declaration 02. After Instantiation)
+            #########   -Accessing Array Elements  
+                        -Modifying Array Elements  
+                        -Looping Through Array Elements
 02. Declare, instantiate, initialize, and use multi-dimensional arrays
-            ######### 0. Definition
-            ######### 1. Declare, Instantiate, Initialize(01. At Declaration 02.After Instantiation) a Multi-Dimensional Array  
-            ######### 2. Use a Multi-Dimensional Array  
-                             -Accessing Array Elements  
-                             -Modifying Array Elements  
-                             -Looping Through Array Elements
+            ######### Definition multi-dimensional arrays
+            ######### Declare, Instantiate, Initialize(01. At Declaration 02.After Instantiation) 
+            #########   -Accessing Array Elements  
+                        -Modifying Array Elements  
+                        -Looping Through Array Elements
 
 =======================05. Using Loop Constructs(05): ===================
 01. Create and use while loops
