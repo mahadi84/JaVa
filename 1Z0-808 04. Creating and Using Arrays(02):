@@ -46,15 +46,13 @@
 
 Example:
 ########## Initialization at Declaration
-    int[] numbers = {1, 2, 3, 4, 5}; // Declaration and initialization in one line
+    int[] numbers = {1, 2, 3}; // Declaration and initialization in one line
 
 ########## Initialization After Instantiation
       int[] numbers; // Declaration of an array of integers
             numbers[0] = 1; // Assigning values to each index
             numbers[1] = 2;
             numbers[2] = 3;
-            numbers[3] = 4;
-            numbers[4] = 5;
 
 ######### 4. Use a One-Dimensional Array   ######
 Once the array is declared, instantiated, and initialized, you can use it to access its elements. You can retrieve or modify elements using their index.
@@ -77,14 +75,12 @@ Here’s a complete example that incorporates all the steps:
         public class ArrayExample {
             public static void main(String[] args) {
                 // Declare and instantiate the array
-                int[] numbers = new int[5];
+                int[] numbers = new int[3];
                 
                 // Initialize the array elements
                 numbers[0] = 1;
                 numbers[1] = 2;
                 numbers[2] = 3;
-                numbers[3] = 4;
-                numbers[4] = 5;
                 
                 // Use the array
                 // Accessing and printing individual elements
