@@ -559,14 +559,11 @@ Example 2: Upcasting and Downcasting
        ------06. Use super and this to access objects and constructors--------
 #####################################################################################
 
-
-
-###### 1. Why and how to Use `super`
+####### 1. Why and how to Use `super`
 ####### Accessing Superclass Methods and Constructors
-###### 2. Using `this`
+####### 2. Using `this`
 ####### Accessing Instance Variables and Methods
 ####### Calling Other Constructors (Constructor Chaining)
-
 
 
 ###### 1. Why and how to Use `super` ######
