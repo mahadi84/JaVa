@@ -52,10 +52,7 @@ Initialization: Assigns a value to the variable.
     02. Explicit casting (narrowing) requires a cast operator to prevent data loss.
         double pi = 3.14159;
         int i = (int) pi; // Explicit casting (double to int, potential data loss)
-            OR
-        double d = 3.14159;
-        int i = (int) d; // i will be 3
-        
+
         ***inside double int exists but inside int double is not exist
 
 ######## How to name a variable  ################
