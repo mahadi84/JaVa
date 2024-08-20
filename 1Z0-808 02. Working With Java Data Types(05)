@@ -177,25 +177,22 @@ Example:
                 02. Using Accessor Methods
 
 Fields: are variables declared within a class. They represent the data associated with an object.
-          01. Static(স্থির) Fields: Fields declared as static belong to the class itself, not instances.
-          03. Transient(ক্ষণস্থায়ী) Fields: 
+          01. Static(স্থির) Fields: 
+                    -Fields declared as static belong to the class itself, not instances.
+                    -Initialized only once: When the class is loaded into memory.
+                           Example: public static final double PI = 3.14159;
+          02. Transient(ক্ষণস্থায়ী) Fields: 
                    -Fields that are not serialized.
                    -When I have data that is sensitive.
                            Example: private transient String password; // Password shouldn't be serialized
-          04. Volatile(অস্থির) Fields
+          03. Volatile(অস্থির) Fields
                    -Ensures visibility of changes to a variable across threads.
                    -When multiple threads access and modify a shared variable.
                         Example:
                             public class Counter {
-                                private volatile int count = 0;
-                            
-                                public void increment() {
-                                    count++;
-                                }
-                            
-                                public int getCount() {
-                                    return count;
-                                }
+                                private volatile int count = 0;                            
+                                    public void increment() { count++; }
+                                    public int getCount() {  return count; }
                             }        
                 ****In this example, the count variable is marked as volatile. 
                 This guarantees that any changes made to count by one thread will be immediately visible to other threads. 
