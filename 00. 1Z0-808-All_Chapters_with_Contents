@@ -60,7 +60,7 @@
 
 ===========02. Working With Java Data Types(05): =========
 01. Declare and initialize variables (including casting of primitive data types)
-            ######## Primitive Data Types 
+            ######## Primitive Data Types with size 
             ######## Declaration and Initialization
             ######## What is casting, why casting, 01. Implicit casting (widening), 02.Explicit casting (narrowing)?
             ######## Casting Primitive Data Types 
