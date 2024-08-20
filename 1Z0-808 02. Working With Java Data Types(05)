@@ -15,7 +15,7 @@ Date: 1-2Aug-2024(Thursday-Friday)
 -----------01. Declare and initialize variables (including casting of primitive data types)---------------------
 =====================================================================================================================
 
-######## Primitive Data Types 
+######## Primitive Data Types with Size
 ######## Declaration and Initialization
 ######## What is casting, why casting, 01. Implicit casting (widening), 02.Explicit casting (narrowing)?
 ######## Casting Primitive Data Types 
@@ -132,7 +132,7 @@ public class Main {
     * References are copied when assigned, but the underlying object is not.
     * Access object's properties and methods using the dot operator (.).
 
-####### Primitive Variables  #######
+####### Primitive(প্রাচীন/মৌলিক) Variables  #######
     * Hold value directly.
     * Data types include: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, and `boolean`.
     * Occupy fixed-size memory locations.
@@ -177,12 +177,12 @@ Example:
                 02. Using Accessor Methods
 
 Fields: are variables declared within a class. They represent the data associated with an object.
-          01. Static Fields: Fields declared as static belong to the class itself, not instances.
-          03. Transient Fields: 
+          01. Static(স্থির) Fields: Fields declared as static belong to the class itself, not instances.
+          03. Transient(ক্ষণস্থায়ী) Fields: 
                    -Fields that are not serialized.
                    -When I have data that is sensitive.
                            Example: private transient String password; // Password shouldn't be serialized
-          04. Volatile Fields
+          04. Volatile(অস্থির) Fields
                    -Ensures visibility of changes to a variable across threads.
                    -When multiple threads access and modify a shared variable.
                         Example:
@@ -199,7 +199,7 @@ Fields: are variables declared within a class. They represent the data associate
                             }        
                 ****In this example, the count variable is marked as volatile. 
                 This guarantees that any changes made to count by one thread will be immediately visible to other threads. 
-                Without volatile, there's a risk of inconsistent values due to caching.
+                Without volatility, there's a risk of inconsistent values due to caching.
 
 
 Object: is an instance of a class. It holds the values of its fields.
