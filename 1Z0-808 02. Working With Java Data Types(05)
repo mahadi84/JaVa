@@ -40,18 +40,23 @@ Declaration: Specifies the data type and name of the variable.
 Initialization: Assigns a value to the variable.
     int age = 25;    double salary = 45000.50;    char initial = 'A';    boolean isStudent = true;
 
-######## Casting Primitive Data Types ################
+######## What is Casting(Primitive Data Types) and Why casting, ################
     * Casting is converting a value from one data type to another.
-    * Implicit casting (widening) happens automatically for compatible types (e.g., int to double).
-    * Explicit casting (narrowing) requires a cast operator to prevent data loss.
+         Question: int a = 10/3 Result is an int of double? If I want to show the result in int than? 
+         Ans: That is why casting.
+######## 01. Implicit casting (widening), 02.Explicit casting (narrowing) ################
+     01. Implicit casting (widening) happens automatically for compatible types (e.g., int to double).
+        int num = 10/3;
+        double d = (double) num; // Implicit casting (int to double)
 
-        int num = 10;
-        double d = num; // Implicit casting (int to double)
-
+    02. Explicit casting (narrowing) requires a cast operator to prevent data loss.
         double pi = 3.14159;
         int i = (int) pi; // Explicit casting (double to int, potential data loss)
+            OR
+        double d = 3.14159;
+        int i = (int) d; // i will be 3
         
-        ***insite double int is exist but inside int double is not exist
+        ***inside double int exists but inside int double is not exist
 
 ######## How to name a variable  ################
     * Variable names must start with a letter, underscore (_), or dollar sign ($).
