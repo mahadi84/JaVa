@@ -718,6 +718,7 @@ Explanation:
        ------07. Use abstract classes and interfaces--------
 #####################################################################################
 
+######### Differences between ABSTRACT Class and INTERFACE
 ###### Abstract Classes 
            1. Declaration
            2. Abstract Methods
@@ -730,9 +731,18 @@ Explanation:
            3. Default Methods 
            4. Static Methods 
            5. Multiple Inheritance 
-############## Differences between Abstract Class and Interface
 ############## When to use Abstract class  or Interface?
 
+######### Differences between ABSTRACT Class and INTERFACE
+------------------------------------------------------------------------------------------------------------------------------
+Feature          |   Abstract Class	                 |    Interface
+-------------------------------------------------------------------------------------------------------------------------------
+Inheritance      |  Single inheritance                       | Multiple inheritance
+Methods          |  Abstract and concrete	                 | Only abstract (before Java 8), default and static from Java 8
+Variables        |  All types (final, non-final, static, non-static) | Only static final
+Constructors     |  Yes	                            | No
+Access Modifiers |  Public, protected, private, default      | Public (implicitly)
+--------------------------------------------------------------------------------------------------------------------------------
 
 ###### Abstract Classes ######
         -classes that cannot be instantiated on their own and 
@@ -835,18 +845,6 @@ Explanation:
 - `Animal` is an interface with an abstract method `makeSound()` and a default method `eat()`.
 - `Dog` implements the `Animal` interface and provides an implementation for the `makeSound()` method.
 - The `eat()` method, being a default method, is available to `Dog` without needing an implementation, but it can be overridden if needed.
-
-
-############## Key Differences
-------------------------------------------------------------------------------------------------------------------------------
-Feature          |   Abstract Class	                 |    Interface
--------------------------------------------------------------------------------------------------------------------------------
-Inheritance      |  Single inheritance                       | Multiple inheritance
-Methods          |  Abstract and concrete	                 | Only abstract (before Java 8), default and static from Java 8
-Variables        |  All types (final, non-final, static, non-static) | Only static final
-Constructors     |  Yes	                            | No
-Access Modifiers |  Public, protected, private, default      | Public (implicitly)
---------------------------------------------------------------------------------------------------------------------------------
 
 
 ############## When to use Abstract class  or Interface?  #####################
