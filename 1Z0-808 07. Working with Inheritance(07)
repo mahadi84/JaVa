@@ -838,13 +838,15 @@ Explanation:
 
 
 ############## Key Differences
-
+------------------------------------------------------------------------------------------------------------------------------
 Feature          |   Abstract Class	                 |    Interface
+-------------------------------------------------------------------------------------------------------------------------------
 Inheritance      |  Single inheritance                       | Multiple inheritance
 Methods          |  Abstract and concrete	                 | Only abstract (before Java 8), default and static from Java 8
 Variables        |  All types (final, non-final, static, non-static) | Only static final
 Constructors     |  Yes	                            | No
 Access Modifiers |  Public, protected, private, default      | Public (implicitly)
+--------------------------------------------------------------------------------------------------------------------------------
 
 
 ############## When to use Abstract class  or Interface?  #####################
