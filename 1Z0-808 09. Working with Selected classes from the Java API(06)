@@ -485,12 +485,33 @@ public class ArrayListExample {
 
 
 ####### 1. Lambda Expressions and When to Lambda Expressions ######
-   -Is a shorthand notation for defining an anonymous function. 
-   The syntax is as follows:
-      (parameters) -> expression
-      Or, for more complex expressions:
-      (parameters) -> { statements }
+   Lambda Expressions:
+         Anonymous functions: Lambda expressions are anonymous functions that can be treated as values.
+         Functional interface: They can only be used to implement functional interfaces, which have exactly one abstract method.
+            Syntax:
+            (parameters) -> expression (for single-line expressions)
+            (parameters) -> { statements } (for multi-line expressions)
+            parameters -> expression (if there's only one parameter and no parentheses)
+         
+   Examples:         
+   #######Single-line expression:         
+      Runnable runnable = () -> System.out.println("Hello from lambda!");
+      runnable.run();         
+   #######Multi-line expression:         
+      Comparator<String> comparator = (s1, s2) -> {
+          int result = s1.length() - s2.length();
+          if (result == 0) {
+              return s1.compareTo(s2);
+          }
+          return result;
+      };
+      String[] strings = {"apple", "banana", "cherry"};
+      Arrays.sort(strings, comparator);
    
+   #######Method reference:         
+   List<String> fruits = Arrays.asList("apple", "banana", "cherry");
+   fruits.forEach(System.out::println);
+            
    ###### When to Use Lambda Expressions
    * Use lambda expressions when you need to pass behavior as a parameter.
    * Prefer lambda expressions for short, concise code blocks.
