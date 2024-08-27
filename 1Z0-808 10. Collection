@@ -1,3 +1,12 @@
+
+
+01. Array Vs ArrayList
+02. What is  HashMap, When to use it?
+03. HashSet Vs LinkedHashSet Vs TreeSet
+
+===============================================
+
+
 import java.security.Key;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,8 +22,69 @@ public class Collectionss {
 
     public static void main(String[] args) {
 
+//================================================================================  
+//++++++++++++++++++++++++++++ Array Vs ArrayList ++++++++++++++++++++++
+//================================================================================ 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ArrayVsArrayList{
+    public static void main(String[] args) {
+        // Creating an array of integers
+        int[] numbers = new int[5];
+
+        // Creating an ArrayList  of integers
+        ArrayList<Integer> numbersList = new ArrayList<>();
+
+        // Assigning values to elements
+        numbers[0] = 10;
+        numbers[1] = 20;
+        numbers[2] = 30;
+        numbers[3] = 40;
+        numbers[4] = 50;
+
+         // Adding elements to the ArrayList
+         numbersList.add(10);
+         numbersList.add(20);
+         numbersList.add(30);
+         numbersList.add(40);
+         numbersList.add(50);
+
+        // Accessing  Arrayelements
+        System.out.println("The third element is: " + numbers[2]);
+        // Printing the array
+        System.out.println("The array elements are: " + Arrays.toString(numbers));
+
+         // Accessing ArrayList elements
+         System.out.println("The third element is: " + numbersList.get(2));
+
+         // Printing the ArrayList
+         System.out.println("The ArrayList elements are: " + numbersList);
+
+        // Resizing the array (not possible directly)
+        numbers = Arrays.copyOf(numbers, numbers.length + 1); // Manual resizing
+
+         // Resizing the ArrayList (dynamically)
+         numbersList.add(60); // Automatically resizes
+    }
+
+
+
+    
+}
+
+Key Differences:
+
+Fixed size vs. dynamic size: Arrays have a fixed size determined at creation, while ArrayLists can dynamically resize as needed.
+Element access: Accessing elements in an array is done using an index, while accessing elements in an ArrayList is done using the get() method.
+Iteration: Iterating over an array can be done using a for loop, while iterating over an ArrayList can also be done using a for-each loop.
+Methods: ArrayLists provide additional methods for operations like add, remove, contains, size, etc., which are not available in arrays.
+
         
-        // +++++++++++++++ HashMap++++++++++++++++
+//================================================================================  
+//+++++++++++++++++++++++ HashMap ++++++++++++++++++++++++++++++++++++++++++++++++
+//================================================================================ 
         // >Key-value pairs >Unordered data >Dynamic size
 
         Map <String, Integer> emps = new HashMap<>();
@@ -43,7 +113,9 @@ public class Collectionss {
          System.out.println("Map size: " + mapSize);
 
 
-// +++++++++++++++++++++++ HashSet, LinkedHashSet and TreeSet ++++++++++++++++++++++++++
+//================================================================================  
+//+++++++++++++++++++++++ HashSet, LinkedHashSet and TreeSet ++++++++++++++++++++
+//================================================================================ 
 
 
         Set <String> emps = new HashSet<>();
