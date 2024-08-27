@@ -324,16 +324,15 @@ There are primarily two ways to access object fields:
 
 ######## What and Why Wrapper Classes in Java
          ***Why convert primitive data type into Object and vice-versa?
-######## Example: Using Boolean, Double, and Integer
-######## How:  -Creating wrapper class objects, 
-               -Using wrapper class methods 
-               -Autoboxing and unboxing
-               -Using wrapper classes in collections
+######## How:  -Autoboxing and unboxing
+               -Using wrapper classes in collections(Arraylist)
 ########  What are these:
+               -Each primitive type has its wrapper class.
                -Null values 
                -Performance 
                -Caching
 ######### How to convert String to Integer?
+######### How to convert Integer to String?
 ######### How to declare wrapper class as constants?
 
 
@@ -341,48 +340,91 @@ There are primarily two ways to access object fields:
     Wrapper classes in Java provide a way to convert primitive data types into objects. 
     ***This is essential for using primitive data types in collections, as collections can only store objects.
 
-#########  Example: Using Boolean, Double, and Integer ############ 
-import java.util.ArrayList;
-public class WrapperClassExample {
-    public static void main(String[] args) {
-        // Creating wrapper class objects
-        Boolean boolValue = true;
-        Double doubleValue = 3.14;
-        Integer intValue = 10;
+################################################## 
+       How:    -Creating wrapper class objects, 
+               -Using wrapper class methods 
+               -Autoboxing and unboxing           
+               -Using wrapper classes in collections 
+#################################################### 
 
-        // Using wrapper class methods
-        System.out.println("Boolean value: " + boolValue);
-        System.out.println("Double value: " + doubleValue);
-        System.out.println("Integer value: " + intValue);
-
-        //Unboxing (convert wrapper class object to primitive data type)
-        int primitiveInt = intValue; // Unboxing
-        Double primitiveDouble = doubleValue; // Unboxing
-
-        // Using wrapper classes in collections
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(intValue);
-        numbers.add(20); // Autoboxing 
-   
-        System.out.println("Numbers: " + numbers);
-    }
-}
+                import java.util.ArrayList;
+                import java.util.Iterator;
+                
+                public class WrapClass {                
+                    public static void main(String[] args){
+                        // Boxing and Auto Boxing
+                        int iValue= 10;
+                        // Integer Boxing= new Integer(iValue); //Boxing  (This Integer() is depricated)
+                        Integer AutoBoxing= iValue; //Auto Boxing
+                        // System.out.println(AutoBoxing);
+                        
+                        // Unboxing and Auto Unboxing
+                        // int UnBoxing = AutoBoxing.intValue(); //Unboxing
+                        int AutoUnBoxing = AutoBoxing; //Auto Unboxing
+                        // System.out.println(AutoUnBoxing);
+                                        
+                         // Using wrapper classes in collections
+                        ArrayList<Integer> numbers = new ArrayList<>();
+                        numbers.add(AutoBoxing);
+                        numbers.add(20); 
+                        numbers.add(30); 
+                
+                        System.out.println("Numbers: " + numbers);
+                        
+                        // foreach
+                        // numbers.forEach(System.out::println);
+                        
+                        //extendent for loop
+                        // for (Integer num : numbers) {
+                        //     System.out.println(num);
+                        // }
+                
+                        // Lambda Expression with for
+                        // numbers.forEach(num->System.out.println(num));
+                        
+                        //While loop
+                        Iterator<Integer> num= numbers.iterator();
+                        while (num.hasNext()) {
+                            System.out.println(num.next());
+                            
+                        }
+                
+                
+                    }
+                }
 
 #########  Explanation: ###### 
-    -Creating wrapper class objects: We create objects of `Boolean`, `Double`, and `Integer` wrapper classes to hold primitive values.
-    -Using wrapper class methods: We can use methods provided by wrapper classes like `toString()` to convert values to strings.
-    -Autoboxing and unboxing: Java automatically converts between primitive types and their corresponding wrapper classes. This is called autoboxing and unboxing.
-    -Using wrapper classes in collections: We can store wrapper class objects in collections like `ArrayList`.
-
+    -Each primitive type has its Wrapper Class Ex: int to Integer, double to Double.
     -Null values: Wrapper classes can hold null values, unlike primitive types.
     -Performance: While autoboxing and unboxing are convenient, they can have a slight performance impact compared to using primitive types directly.
     -Caching: Some wrapper classes (like Integer and Byte) have a cache for commonly used values to optimize performance.
 
 
-### How to convert String to Integer ###### 
+### How to convert String to Integer and Integer to String ###### 
     Parsing strings to primitive types:
         String strInt = "123";
         int parsedInt = Integer.parseInt(strInt);
+
+### How to convert Integer to String ###### 
+            class Person {
+            private String name;
+            private int age;
+        
+            public Person(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+        
+            @Override
+            public String toString() {
+                return "Person{"   
+         +
+                        "name='" + name + '\'' +
+                        ", age=" + age +
+                        '}';
+            }
+        }
+                
 
 ######### How to declare wrapper class as constants: #########
   boolean isTrue = Boolean.TRUE;
