@@ -5,7 +5,7 @@
 02. Develop code that makes use of polymorphism; 
 03. develop code that overrides methods;  
 04. differentiate between the type of a reference and the type of an object
-05. Determine when casting is necessary
+05. Determine when (Object) casting is necessary
 06. Use super and this to access objects and constructors
 07. Use abstract classes and interfaces
 
@@ -467,28 +467,39 @@ Example 2: Upcasting and Downcasting
         -Use "instanceof" operator to check the object's type before downcasting.
 
 ########Example:  Upcasting and Downcasting #################
-                        public class Animal { }
-                        public class Cat extends Animal {
-                            public void meow() {
-                                System.out.println("Cat meows");
+                      class A{
+                          public void sound() {
+                         System.out.println(" A: Animal Sound");
+                      }
+                          }
+                      class B extends A {
+                         @Override
+                            public void sound() {
+                               System.out.println("B: Cat meows");
                             }
-                        }
-                        
-                        public class Test {
-                            public static void main(String[] args) {
-                                Animal myAnimal = new Cat(); // Upcasting: Cat object assigned to Animal reference
-                        
-                                // myAnimal.meow(); // Compile-time error: meow() is not visible to Animal reference
-                        
-                                Cat myCat = (Cat) myAnimal; // Downcasting: Animal reference to Cat object
-                                myCat.meow(); // Output: Cat meows
-                            }
-                        }
+                      }
+                      
+                      public class UpDown{
+                               public static void main(String[] args) {
+                                  A obj = (A) new B(); // Upcasting: Cat object assigned to Animal reference
+                                  // A obj = new B(); // UP Casting(B2A), Automatically 
+                                  obj.sound();
+                      
+                                  if (obj instanceof A){
+                                     B objB = (B) obj; // Downcasting(A2B):
+                                     objB.sound(); // Output: Cat meows
+                                  }
+                               }
+                      }
+
+OUTPUT:
+B: Cat meows
+B: Cat meows
                 
                 Explanation:
-                - `myAnimal` is a reference of type `Animal`, but it points to a `Cat` object.
-                - To access `meow()` method, you must downcast `myAnimal` to `Cat`.
-                - Downcasting is necessary because `meow()` is not a method of `Animal`.
+                - `obj` is a reference of type `A`, but it points to a `B` object.
+                - To access `sound()` method, you must downcast `obj` to `B`.
+                - Downcasting is necessary because `sound()` is not a method of `A`.
 
 ###### When Casting is Necessary ######
 1. To Access Subclass-Specific Methods or Fields:
