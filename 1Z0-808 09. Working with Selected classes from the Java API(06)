@@ -489,28 +489,34 @@ public class ArrayListExample {
          Anonymous functions: Lambda expressions are anonymous functions that can be treated as values.
          Functional interface: They can only be used to implement functional interfaces, which have exactly one abstract method.
             Syntax:
+            parameters -> expression (if there's only one parameter and no parentheses)
             (parameters) -> expression (for single-line expressions)
             (parameters) -> { statements } (for multi-line expressions)
-            parameters -> expression (if there's only one parameter and no parentheses)
          
    Examples:         
-   #######Single-line expression:         
-      Runnable runnable = () -> System.out.println("Hello from lambda!");
-      runnable.run();         
-   #######Multi-line expression:         
-      Comparator<String> comparator = (s1, s2) -> {
-          int result = s1.length() - s2.length();
-          if (result == 0) {
-              return s1.compareTo(s2);
-          }
-          return result;
-      };
-      String[] strings = {"apple", "banana", "cherry"};
-      Arrays.sort(strings, comparator);
-   
-   #######Method reference:         
-   List<String> fruits = Arrays.asList("apple", "banana", "cherry");
-   fruits.forEach(System.out::println);
+      // **interface can not instantiate like class with new keyword */
+      interface InterfaceA{
+             void show(); 
+      }
+      
+      // implements InterfaceA
+      class ClassB implements InterfaceA{
+             public void show(){
+                    System.out.println("I am from Interface A");
+             }    
+      }
+      
+      public class Demo {       
+             public static void main(String [] args){
+                    /** call and show() from inteface ClassB */ 
+                    // ClassB obj = new ClassB();
+                    // obj.show();
+      
+                    /** Lamda Expression (call Functional interface) */
+                    InterfaceA obj = ()->System.out.println("I am from Interface A with Lambda Exapression");
+                    obj.show();
+             } 
+      }
             
    ###### When to Use Lambda Expressions
    * Use lambda expressions when you need to pass behavior as a parameter.
