@@ -468,37 +468,42 @@ Example 2: Upcasting and Downcasting
 
 ########Example:  Upcasting and Downcasting #################
                       class A{
-                          public void sound() {
-                         System.out.println(" A: Animal Sound");
-                      }
-                          }
+                                 public void sound() {
+                                    System.out.println(" A: Animal Sound");
+                                 }
+                                     }
                       class B extends A {
-                         @Override
-                            public void sound() {
-                               System.out.println("B: Cat meows");
-                            }
-                      }
-                      
-                      public class UpDown{
+                                    @Override
+                                       public void sound() {
+                                          System.out.println("B: Cat meows");
+                                       }
+                                       public void eat() {
+                                          System.out.println("B: Cat eat meat.");
+                                       }
+                                 }
+                                 
+                                 
+                       public class UpDown{
                                public static void main(String[] args) {
                                   A obj = (A) new B(); // Upcasting: Cat object assigned to Animal reference
-                                  // A obj = new B(); // UP Casting(B2A), Automatically 
+                                  // A obj = new B(); // UP Casting(Class B2A), Automatically 
                                   obj.sound();
                       
                                   if (obj instanceof A){
-                                     B objB = (B) obj; // Downcasting(A2B):
-                                     objB.sound(); // Output: Cat meows
+                                     B objB = (B) obj; // Downcasting(Class A2B):
+                                     objB.eat(); // Output: Cat eat meat
                                   }
                                }
-                      }
+                                 }
 
-OUTPUT:
-B: Cat meows
-B: Cat meows
+
+           OUTPUT:
+           B: Cat meows
+           B: Cat eat meat
                 
                 Explanation:
                 - `obj` is a reference of type `A`, but it points to a `B` object.
-                - To access `sound()` method, you must downcast `obj` to `B`.
+                - To access `eat()` method, you must downcast `obj` to `B`.
                 - Downcasting is necessary because `sound()` is not a method of `A`.
 
 ###### When Casting is Necessary ######
