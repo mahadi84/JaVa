@@ -1,0 +1,101 @@
+import java.security.Key;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import javax.xml.catalog.CatalogFeatures.Feature;
+
+public class Collectionss {
+
+    public static void main(String[] args) {
+
+        
+        // +++++++++++++++ HashMap++++++++++++++++
+        // >Key-value pairs >Unordered data >Dynamic size
+
+        Map <String, Integer> emps = new HashMap<>();
+        emps.put("Mahadi", 3);
+        emps.put("Labib", 1);
+        emps.put("Mehjabin", 2);
+
+
+        System.out.println(emps);
+        System.out.println(emps.get(2));
+        System.out.println(emps.remove(2));
+        System.out.println(emps.containsKey(0));
+        System.out.println(emps.containsValue("Mahadi"));
+
+
+        // Iterate over the key-value pairs in the map
+        for (Map.Entry<String, Integer> entry : emps.entrySet()) {
+            int emp_id = entry.getValue();
+            String emp_name = entry.getKey();
+            System.out.println(emp_id + "-name: " + emp_name);
+        }
+
+        
+        //  // Get the size of the map
+         int mapSize = emps.size();
+         System.out.println("Map size: " + mapSize);
+
+
+// +++++++++++++++++++++++ HashSet, LinkedHashSet and TreeSet ++++++++++++++++++++++++++
+
+
+        Set <String> emps = new HashSet<>();
+        // Set <String> emps = new LinkedHashSet<>();
+        // Set <String> emps = new TreeSet<>();
+        emps.add("Mahadi");
+        emps.add("Labib");
+        emps.add("Mehjabin");
+        emps.add("Mahadi");
+
+        // System.out.println(emps.remove(1));
+        // System.out.println(emps);
+
+        // extendent for loop
+        for (String emp : emps) {
+            System.out.println(emp);
+        }
+        
+        // foreach
+        emps.forEach(System.out::println);
+        
+        // Lambda Expression with for
+        emps.forEach(e->System.out.println(e));
+        
+        //While loop
+        Iterator<String> emp = emps.iterator();
+        while (emp.hasNext()) {
+            System.out.println(emp.next());
+        }
+    
+    }
+    
+}
+
+
+ ==================key difference ===================
+ Key Differences:
+
+ Feature	    |   HashSet	        |       LinkedHashSet	    |   TreeSet
+ ------------------------------------------------------------------------------
+ Order	    |   Unordered	    |   Insertion order	        |  Natural or custom order
+ Performance  |	Fastest	        |   Slightly slower	        |  Slowest
+ Use cases	| General-purpose,
+                 fast lookup      |     Insertion order, 
+                                         fast lookup	        | Sorted order, range-based operations
+
+
+
+
+
+
+
+
+
+------
