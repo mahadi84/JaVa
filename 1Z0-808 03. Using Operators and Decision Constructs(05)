@@ -193,13 +193,11 @@ Another Details Example:-----
 
       There are two primary ways to create strings:
             01. String Literals: 
-                ->The most common method.   
-                ->Enclose characters within double quotes.   
+                ->The most common method.
                 ->Example: String greeting = "Hello, world!";
       
             02. new Keyword: 
                 ->Less common.
-                ->Use the new keyword and a String constructor.
                 ->Example: String message = new String("Welcome");
 
 ### Comparing Strings
