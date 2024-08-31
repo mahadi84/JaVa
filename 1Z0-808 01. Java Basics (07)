@@ -326,8 +326,12 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 ######################################################################################
 
 #############What is a Java Package##############
-A package is a namespace that organizes a set of related classes and interfaces. 
-It helps manage the code structure, avoid name conflicts, and control access to classes and interfaces.
+A package 
+    -is a namespace 
+    -that organizes a set of related classes and interfaces. 
+    -It helps manage the code structure,
+    -avoid name conflicts, and 
+    -control access to classes and interfaces.
 
 Importing packages 
    -allow  to use of classes and interfaces that are defined in other packages. 
