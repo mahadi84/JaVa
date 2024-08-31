@@ -330,8 +330,7 @@ A package
     -is a namespace 
     -that organizes a set of related classes and interfaces. 
     -It helps manage the code structure,
-    -avoid name conflicts, and 
-    -control access to classes and interfaces.
+    -avoid name conflict
 
 Importing packages 
    -allow  to use of classes and interfaces that are defined in other packages. 
