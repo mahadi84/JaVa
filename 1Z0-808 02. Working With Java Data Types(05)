@@ -371,14 +371,15 @@ There are primarily two ways to access object fields:
                 
                         System.out.println("Numbers: " + numbers);
                         
-                        // foreach
-                        // numbers.forEach(System.out::println);
-                        
                         //extendent for loop
                         // for (Integer num : numbers) {
                         //     System.out.println(num);
                         // }
-                
+
+
+                        // foreach
+                        // numbers.forEach(System.out::println);
+                              
                         // Lambda Expression with for
                         // numbers.forEach(num->System.out.println(num));
                         
