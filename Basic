@@ -80,7 +80,7 @@ public class test extends JFrame implements ActionListener {
 //----Construct function
     test(){
        
- 	//--------------JFrame attributes --------------------------
+ //--------------JFrame attributes --------------------------
  	setLayout(null);      			//to get label.setBounts work properly
         setTitle("TEST FORM");   		//Form title
         setSize(800, 600); 			// Form size
@@ -88,7 +88,6 @@ public class test extends JFrame implements ActionListener {
         setLocationRelativeTo(null); 		// Center the form
         setVisible(true);
 
-        
 //---------------Logo----------------
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
         Image i2 = i1.getImage().getScaledInstance(70, 75, Image.SCALE_DEFAULT);
@@ -97,7 +96,7 @@ public class test extends JFrame implements ActionListener {
         JLabel label = new JLabel(i3);
             label.setBounds(90, 40, 70, 75);
             add(label);
-        
+
 
 //-------------Level Heading  --------------------
         l1 = new JLabel("WELCOME TO..");
