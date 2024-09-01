@@ -1,10 +1,35 @@
-
+00. List
 
 01. Array Vs ArrayList
 02. What is  HashMap, When to use it?
 03. HashSet Vs LinkedHashSet Vs TreeSet
 
-===============================================
+04. What is Threads?
+
+
+
+
+========================= 00. List ================================
+
+-List is  Java Interface
+-represents an ordered collection of elements that allows duplicate values.
+-extends the Collection interface inherits the basic methods like add, remove, contains, isEmpty
+
+ArrayList: A resizable array-based implementation that provides efficient random access.
+LinkedList: A doubly-linked list implementation that is efficient for insertions and deletions at the beginning or end of the list.
+Vector: A synchronized, resizable array-based implementation.
+Stack (Data Structure): A LIFO (Last-In-First-Out) stack implementation that extends Vector.
+Queue (Data Structure): A FIFO (First-In-First-Out) queue implementation that extends AbstractCollection.
+
+
+
+
+
+
+
+========================================================
+
+
 
 
 import java.security.Key;
@@ -167,7 +192,52 @@ Methods: ArrayLists provide additional methods for operations like add, remove, 
 
 
 
+==================== 04. What is Threads? ===========================
+-Threads are the smallest unit of execution within a process.
+-Allow multiple tasks to run concurrently within a single program
+-perform parallel
+-Lightweight
+-Shared resources
 
+Creating Threads:---
+        There are two primary ways to create threads in Java:
+        
+        01. Extending the Thread class:
+        --------------------------
+        class MyThread extends Thread {
+            public void run() {
+                // Thread's execution code
+            }
+        }
 
+        
+        02. Implementing the Runnable interface:
+        ----------------------------------------
+        class MyTask implements Runnable {
+            public void run() {
+                // Thread's execution code
+            }
+        }
 
-------
+Example:
+--------
+public class MyThread extends Thread {
+    int num;
+    String name;
+
+    MyThread(int num, String name){
+        this.num=num;
+        this.name=name;
+
+    }
+
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+
+    public static void main(String[] args) {
+        MyThread thread = new MyThread(10, "Mahadi");
+        thread.start();
+
+    }
+}
