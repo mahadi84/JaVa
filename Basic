@@ -80,7 +80,7 @@ public class test extends JFrame implements ActionListener {
 //----Construct function
     test(){
        
- //--------------JFrame attributes --------------------------
+ //--------------JFrame function --------------------------
  	setLayout(null);      			//to get label.setBounts work properly
         setTitle("TEST FORM");   		//Form title
         setSize(800, 600); 			// Form size
