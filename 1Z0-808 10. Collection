@@ -5,7 +5,7 @@
 03. HashSet Vs LinkedHashSet Vs TreeSet
 
 04. What is Threads?
-
+05. What is Stream?
 
 
 
@@ -21,16 +21,7 @@ Vector: A synchronized, resizable array-based implementation.
 Stack (Data Structure): A LIFO (Last-In-First-Out) stack implementation that extends Vector.
 Queue (Data Structure): A FIFO (First-In-First-Out) queue implementation that extends AbstractCollection.
 
-
-
-
-
-
-
 ========================================================
-
-
-
 
 import java.security.Key;
 import java.util.HashMap;
@@ -241,3 +232,21 @@ public class MyThread extends Thread {
 
     }
 }
+
+==================== 05. What is Stream? ===========================
+
+-Stream processes the Collection like Filtering, Sorting,
+
+Example:
+    import java.util.Arrays;
+    import java.util.List;
+    
+    public class StreamExample {
+        public static void main(String[] args){
+            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+            numbers.stream().filter(n -> n % 2 == 0).forEach(n -> System.out.println(n));        
+     // Output: [2,4,6]
+        }
+    }
+
+
