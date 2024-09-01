@@ -218,7 +218,8 @@ Explanation:
     * `s1.equals(s2)` and `s1.equals(s3)`: Both comparisons check the content of the strings, which is the same, so `equals()` returns `true` in both cases.
 
 ### Comparing Other Objects
-    For custom objects, the default implementation of `equals()` inherited from the `Object` class compares object references using `==`. To compare the contents of custom objects, you need to override the `equals()` method appropriately.
+    For custom objects, the default implementation of `equals()` inherited from the `Object` class compares object references using `==`. 
+    To compare the contents of custom objects, you need to override the `equals()` method appropriately.
 
     #### Example:
     class Person {
@@ -250,20 +251,9 @@ Explanation:
 ######################################################################################
 
 ### If/Else Statement and Nested if statements
-### Ternary Operator
 
 ### If/Else Statement
     The `if/else` statement provides an alternative block of code to execute if the condition is false.
-   ### Example with multiple conditions:
-    int number = 5;
-    if (number > 0) {
-        System.out.println("Number is positive.");
-    } else if (number == 0) {
-        System.out.println("Number is zero.");
-    } else {
-        System.out.println("Number is negative.");
-    }
-
 ### Nested if statements:
     int age = 16;
     int weight = 60;
@@ -276,15 +266,6 @@ Explanation:
     } else {
         System.out.println("Not eligible due to age.");
     }
-
-### Ternary Operator
-The ternary operator is a shorthand way to write an `if/else` statement. It takes three operands:
-    * A condition
-    * The expression to evaluate if the condition is true
-    * The expression to evaluate if the condition is false
-        int age = 20;
-        String message = (age >= 18) ? "You are an adult." : "You are a minor.";
-        System.out.println(message);
 
 
 
