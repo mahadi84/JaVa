@@ -87,9 +87,9 @@ Date: 3-Aug-24(Saturday)
 ###### Ternary Operator ###### 
 A shorthand for if-else statements.
     Example:
-    int x = 10;
-    String result = (x > 5) ? "Greater than 5" : "Less than or equal to 5";
-
+      int score = 85;
+      String grade = (score >= 90) ? "A" : (score >= 80) ? "B" : "C";
+      System.out.println(grade); // Output: B
 
 
 ######################################################################################
