@@ -79,8 +79,14 @@ public class test extends JFrame implements ActionListener {
     // @SuppressWarnings({ "rawtypes", "unchecked" })
 //----Construct function
     test(){
-        setLayout(null);      //to get label.setBounts work properly
-        setTitle("TEST FORM");   //Form title 
+       
+ 	//--------------JFrame attributes --------------------------
+ 	setLayout(null);      			//to get label.setBounts work properly
+        setTitle("TEST FORM");   		//Form title
+        setSize(800, 600); 			// Form size
+        getContentPane().setBackground(Color.white);
+        setLocationRelativeTo(null); 		// Center the form
+        setVisible(true);
 
         
 //---------------Logo----------------
@@ -171,11 +177,6 @@ public class test extends JFrame implements ActionListener {
 	    String currentDataAndTime = date.format(formatter);  // Format the current date and time
 
 
-//--------------Form attributes -------------------------- 
-        setSize(800, 600); // Form size
-        getContentPane().setBackground(Color.white);
-        setLocationRelativeTo(null); // Center the form
-        setVisible(true);
     }
 
 
