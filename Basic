@@ -36,9 +36,26 @@ MUST have a Java Project than....
 ================== 02. How to create: ===============================
     ->Form window  ->Form title  ->Set width, height, ->Show it into the center of the window.    
 
-     
 
-//PIN-Text field
+------------------------Full-Screen-Fram ----------------------------------
+// Set the frame title (optional)
+        setTitle("Full Screen JFrame");
+
+        // Get the screen dimensions
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+
+        // Set the frame size to 100% of the screen
+        setSize(screenSize.width, screenSize.height);
+
+        // Set the frame to be undecorated (no title bar, borders, etc.)
+        // This is optional, but it can give a more immersive full-screen experience
+          setUndecorated(true);
+
+        // Set the frame to be visible
+        setVisible(true);
+
+	//PIN-Text field
         JTextField pinText = new JTextField();
             pinText.setBounds(280, 200, 200, 25);
             add(pinText);
