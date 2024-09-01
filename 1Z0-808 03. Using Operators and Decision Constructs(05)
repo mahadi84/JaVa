@@ -24,9 +24,8 @@ Date: 3-Aug-24(Saturday)
 
 ######### Arithmetic Operators ###### 
     Used for performing mathematical operations.
-        +(Addition),           -(Subtraction)
-        \(Multiplication)      /(Division)
-        %(Modulo - remainder)  ++(Increment)    --(Decrement)
+        +,-,*(Multiplication),/(Division)
+        %(Modulo - remainder), ++(Increment), --(Decrement)
 
     Example:
         int a = 10, b = 5;
@@ -40,7 +39,7 @@ Date: 3-Aug-24(Saturday)
 ###### Assignment Operators ###### 
     Used to assign values to variables.
      = (Simple assignment)          += (Addition assignment)
-    -= (Subtraction assignment)     \== (Multiplication assignment)
+    -= (Subtraction assignment)     *= (Multiplication assignment)
     /= (Division assignment)         %= (Modulo assignment)
 
     Example:
