@@ -541,19 +541,19 @@ import javax.swing.*;
 public class RegistrationForm extends JFrame {
 
     public RegistrationForm() {
-        // Set the frame title and size
-        setTitle("User Registration");
+        setTitle("User Registration"); // Set the frame title and size
 
-         // Get the screen dimensions
-         Toolkit toolkit = Toolkit.getDefaultToolkit();
-         Dimension screenSize = toolkit.getScreenSize(); 
-         // Set the frame size to 100% of the screen
-         setSize(screenSize.width, screenSize.height);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();  //Provides (GI) access to a wide range of system-specific functionalities
+        Dimension screenSize = toolkit.getScreenSize(); // Get the screen dimensions
+        setSize(screenSize.width, screenSize.height);   // Set the frame size to 100% of the screen
 
-        // Create a panel for the registration components
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(5, 5, 5, 5);
+        // JPanel is a component-container, used to group other components together.
+        JPanel panel = new JPanel(new GridBagLayout());     //GridBagLayout(Grid Structure): Components are placed within a grid of rows and columns. 
+        panel.setBackground(Color.gray);
+        // panel.setPreferredSize(new Dimension(300, 300));
+                                                       
+        GridBagConstraints constraints = new GridBagConstraints();  //(constraints=সীমাবদ্ধতা)to specify the placement, size, and alignment of components within a grid.
+        constraints.insets = new Insets(5, 5, 10, 5); //padding around a component
 
         // Title
         JLabel title = new JLabel("Registration Form");
