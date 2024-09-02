@@ -83,13 +83,19 @@ Initialization: Assigns a value to the variable.
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
 =====================================================================================================================
 
+####### What is an Instance?
 ####### Understanding Object References:
 ####### Object Reference Variables  And Primitive Variables  Example:
 ####### Key Differences
 ####### ->Null values ->Memory Management for Object Reference and Primitive Variables 
 
 
-### Understanding Object References:
+
+############# What is an Instance? =====================
+Instance in Java refers to a specific copy of a class. When you create an object from a class, you create an instance of that class.
+ClassName instanceName = new ClassName();
+
+#############  Understanding Object References #############
 1. Declaration and Initialization:
    - When you declare a variable of a class type, you are actually declaring an object reference. For example:
      MyClass obj;
@@ -127,11 +133,10 @@ public class Main {
 }
 
 ####### Object Reference Variables ##########
-    * hold memory addresses of objects
+    * Hold memory addresses of objects
     * Objects are instances of classes.
     * Data types are class names (e.g., `String`, `Integer`, `ArrayList`).
     * Occupy variable-size memory locations.
-    * References are copied when assigned, but the underlying object is not.
     * Access object's properties and methods using the dot operator (.).
 
 ####### Primitive(প্রাচীন/মৌলিক) Variables  #######
