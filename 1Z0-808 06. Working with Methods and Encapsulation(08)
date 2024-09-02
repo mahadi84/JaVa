@@ -503,10 +503,6 @@ Java provides four main access modifiers:
 Definition:
 - Visibility: The `public` modifier allows the class, method, or field to be accessible from any other class or package.
 
-Usage:
-- Class: A `public` class can be accessed from any other class in any package.
-- Methods and Fields: `public` methods and fields can be accessed from anywhere.
-
 Example:
 public class PublicExample {
     public int value; // Public field
@@ -518,10 +514,7 @@ public class PublicExample {
 
 ###### 2. `protected` ######
 Definition:
-- Visibility: The `protected` modifier allows access within the same package and also from subclasses (even if they are in different packages).
-
-Usage:
-- Class Members: `protected` fields and methods can be accessed by other classes in the same package or by subclasses in other packages.
+- Visibility: The `protected` modifier allows fields and methods to access within the same package and also from subclasses (even if they are in different packages).
 
 Example:
 public class ProtectedExample {
@@ -560,10 +553,7 @@ class DefaultExample {
 ###### 4. `private` ######
 
 Definition:
-- Visibility: The `private` modifier restricts access to the class in which it is declared. Members marked as `private` are not accessible from outside the class.
-
-Usage:
-- Class Members: `private` fields and methods can only be accessed within the same class. They cannot be accessed from outside the class or by subclasses.
+- Visibility: `private` fields and methods can only be accessed within the same class. They cannot be accessed from outside the class or by subclasses.
 
 Example:
 public class PrivateExample {
@@ -581,7 +571,6 @@ public class PrivateExample {
         display(); // Accessing private method within the same class
     }
 }
-
 
 
 ##################################################################################
@@ -684,11 +673,10 @@ public class Person {
 ###### Primitive Types
 ###### Object References
 
-
 Java uses "pass-by-value" for both primitive types and object references, 
 but the way this mechanism affects the values can differ between the two. 
 
-################Primitive Types:
+################ Primitive Types ###################
    - Passed by value.
    - Changes within the method do not affect the original value.
    - Example: `int`, `float`, `boolean`.
@@ -713,7 +701,7 @@ Explanation:
 - Modifications to `num` inside `modifyPrimitive` do not affect `original`.
 - The output will still be `10`, indicating that `original` remains unchanged.
 
-###### Object References ######
+################## Object References ##################
    - Passed by value (the reference is copied).
    - Changes to the object’s state within the method affect the original object.
    - Reassigning the reference does not affect the original reference outside the method.
