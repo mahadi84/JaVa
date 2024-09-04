@@ -377,9 +377,9 @@
  ======================= 11. Collections =====================================
 
 00. List
-01. Array Vs ArrayList Vs LinkedList
-02. What is  HashMap, and when should I use it?
-03. HashSet Vs LinkedHashSet Vs TreeSet
+01. What are: Array Vs ArrayList Vs LinkedList (When to Use Which)
+02. What are: HashMap Vs LinkedHashMap Vs TreeMap (When to use which)
+03. What are: HashSet Vs LinkedHashSet Vs TreeSet (When to use which)
 04. What is Threads?
 05. What is Stream?
 
