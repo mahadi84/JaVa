@@ -166,13 +166,15 @@ In this example:
 
 ###### The `static` Keyword
 ###### Static Fields (Class Variables)
-            1. Definition:
-            2. Syntax:
-            3. Accessing Static Fields:
+            1. Definition.
+            2. Syntax.
+            3. Accessing Static Fields.
+            4. How to use/call?
 ###### Static Methods
-            1. Definition:
-            2. Syntax:
-            3. Restrictions
+            1. Definition.
+            2. Syntax.
+            3. Restrictions.
+            4. How to use/call?
 
 
 
