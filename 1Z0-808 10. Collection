@@ -1,3 +1,5 @@
+
+0.  Array Vs Collection
 00. List
 
 01. Array Vs ArrayList
@@ -8,6 +10,27 @@
 05. What is Stream?
 
 
+=============== 0. Array vs Collection =======================
+####### Key Differences
+------------------------------------------------------------------------------
+Feature	          Array	                        Collection
+-----------------------------------------------------------------------------
+Size	        Fixed	                        Dynamic
+Access	        Direct using index	            Iterator or other methods
+Storage	        Primitive or reference types	Reference types only
+Performance	    Efficient for random access	    Varies depending on implementation
+-----------------------------------------------------------------------------------
+
+########## Example:
+// Array
+int[] numbers = new int[5];
+numbers[0] = 10;
+numbers[1] = 20;
+
+// Collection (ArrayList)
+List<String> fruits = new ArrayList<>();
+fruits.add("apple");
+fruits.add("banana");
 
 ========================= 00. List ================================
 
