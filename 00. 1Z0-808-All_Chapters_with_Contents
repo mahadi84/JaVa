@@ -348,8 +348,8 @@
 06. Write a simple Lambda expression that consumes a Lambda Predicate expression
             ####### 1. Lambda Expressions and When to Lambda Expressions
             ####### 2. Functional Interfaces
-            ####### 3.  When to use and WHAT is Predicate Functional Interface(1.Define and  2.Use Predicate)
-            ####### Lambda Expression that Consumes a Predicate
+            ####### 3. When to use and WHAT is Predicate Functional Interface(1.Define and  2. Use Predicate)
+            ####### Lambda Expression that Consumes a Predicate(Define Predicate & Use Predicate)
 
 =======================10. Assume the following(05):=========== 
 01. Missing package and import statements: 
