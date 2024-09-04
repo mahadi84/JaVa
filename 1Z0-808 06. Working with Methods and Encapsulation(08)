@@ -493,10 +493,11 @@ In this example:
 
 ###### Access Modifiers in Java ######
 Java provides four main access modifiers:
+        The class, method, or field to be:
     1. `public`: Accessible from any other class or package.
-    2. `protected`: Accessible within the same package and by subclasses in other packages.
-    3. Default (Package-Private): Accessible only within the same package.
-    4. `private`: Accessible only within the same class.
+    2. `private`: Accessible only within the same class.
+    3. `protected`: Accessible within the same package and by subclasses in other packages.
+    4. Default (Package-Private): Accessible only within the same package.
    
 
 ###### 1. `public` ######
@@ -512,45 +513,7 @@ public class PublicExample {
     }
 }
 
-###### 2. `protected` ######
-Definition:
-- Visibility: The `protected` modifier allows fields and methods to access within the same package and also from subclasses (even if they are in different packages).
-
-Example:
-public class ProtectedExample {
-    protected int value; // Protected field
-
-    protected void display() { // Protected method
-        System.out.println("Value: " + value);
-    }
-}
-
-class SubClass extends ProtectedExample {
-    void show() {
-        // Accessing protected field and method from subclass
-        value = 10;
-        display();
-    }
-}
-
-###### 3. Default (Package-Private) ######
-
-Definition:
-- Visibility: The default access modifier (when no modifier is specified) allows access only within the same package.
-
-Usage:
-- Class Members: Members (fields and methods) with default access can only be accessed by other classes in the same package.
-
-Example:
-class DefaultExample {
-    int value; // Default (package-private) field
-
-    void display() { // Default (package-private) method
-        System.out.println("Value: " + value);
-    }
-}
-
-###### 4. `private` ######
+###### 2. `private` ######
 
 Definition:
 - Visibility: `private` fields and methods can only be accessed within the same class. They cannot be accessed from outside the class or by subclasses.
@@ -571,6 +534,46 @@ public class PrivateExample {
         display(); // Accessing private method within the same class
     }
 }
+
+###### 3. `protected` ######
+Definition:
+- Visibility: The `protected` modifier allows fields and methods to access within the same package and also from subclasses (even if they are in different packages).
+
+Example:
+public class ProtectedExample {
+    protected int value; // Protected field
+
+    protected void display() { // Protected method
+        System.out.println("Value: " + value);
+    }
+}
+
+class SubClass extends ProtectedExample {
+    void show() {
+        // Accessing protected field and method from subclass
+        value = 10;
+        display();
+    }
+}
+
+###### 4. Default (Package-Private) ######
+
+Definition:
+- Visibility: The default access modifier (when no modifier is specified) allows access only within the same package.
+
+Usage:
+- Class Members: Members (fields and methods) with default access can only be accessed by other classes in the same package.
+
+Example:
+class DefaultExample {
+    int value; // Default (package-private) field
+
+    void display() { // Default (package-private) method
+        System.out.println("Value: " + value);
+    }
+}
+
+
 
 
 ##################################################################################
