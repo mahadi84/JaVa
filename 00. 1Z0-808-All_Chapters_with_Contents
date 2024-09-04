@@ -327,17 +327,13 @@
             ###### Key Features of `StringBuilder` 
             ###### Common Methods and Use
 02. Create and manipulate Strings
-            ###### Why and how to create Strings? Strings vs String.
+            ###### Why and how to create Strings?
             ###### Key Features of `Strings` 
             ###### Common Methods and Use
 03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
             ####### What are these?
             ####### Creating and Manipulating:
-            ###### 1. `LocalDateTime`
-            ###### 2. `LocalDate`
-            ###### 3. `LocalTime`
-            ###### 4. `DateTimeFormatter`
-            ###### 5. `Period`
+            ###### 1. `LocalDateTime` Vs 2.LocalDat` Vs  3.LocalTime Vs 4.DateTimeFormatter Vs 5.Period
             ###### Example of Using `java.time` Classes
 05. Declare and use an ArrayList of a given type
             ###### Declaring and Using `ArrayList` 
