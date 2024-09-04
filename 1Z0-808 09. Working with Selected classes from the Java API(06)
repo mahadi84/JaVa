@@ -565,7 +565,7 @@ public class ArrayListExample {
    
    ####### 3. When to use and WHAT is Predicate Functional Interface ######
    -`Predicate<T>` is a functional interface in the `java.util.function` package 
-   -that represents a BOLLEAN--valued function of one argument. 
+   -that represents a BOOLEAN--valued function of one argument. 
    -It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
    
          Signature:
