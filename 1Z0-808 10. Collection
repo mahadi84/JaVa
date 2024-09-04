@@ -235,7 +235,7 @@ public class MyThread extends Thread {
 
 ==================== 05. What is Stream? ===========================
 
--Stream processes the Collection like Filtering, Sorting,
+-Stream processes the Collection like Filtering, Sorting, Mapping
 
 Example:
     import java.util.Arrays;
