@@ -261,7 +261,7 @@ There are primarily two ways to access object fields:
 =====================================================================================================================
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
 =====================================================================================================================
-######## What is an Object and what it contains?
+######## What is an Object and Class what it contains?
 ######## Creation
 ######## Dereference by Reassignment
 ######## Garbage Collection
@@ -278,6 +278,12 @@ There are primarily two ways to access object fields:
  Object: -All That we can see, touch, and feel are Objects.
         -An instance of a class.
         -Contains: 01. Data (Attributes or Fields) 02.Behavior (Methods):
+
+######## Class
+Objects and classes are closely related concepts in object-oriented programming (OOP).
+    Class:
+   -A blueprint or template that defines the structure and behavior of objects.
+   -It specifies the attributes (data members) and methods (functions) that objects of that class will have.
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
