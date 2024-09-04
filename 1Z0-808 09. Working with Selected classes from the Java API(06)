@@ -475,8 +475,8 @@ public class ArrayListExample {
 
 ####### 1. Lambda Expressions and When to Lambda Expressions
 ####### 2. Functional Interfaces
-####### 3. Predicate Functional Interface(1.Define and  2.Use Predicate)
-####### Lambda Expression that Consumes a Predicate
+####### 3. Predicate Functional Interface
+####### Lambda Expression that Consumes a Predicate(Define Predicate & Use Predicate:)
 
 
 ####### 1. Lambda Expressions and When to Lambda Expressions ######
@@ -609,15 +609,11 @@ public class ArrayListExample {
                 }
             }
    
-   Explanation:
-   1. Define Predicate:
+   ########## Define Predicate & Use Predicate:
       - `Predicate<Integer> isPositive = number -> number > 0;`
-      - This lambda expression checks if a number is greater than zero.
+      - This lambda expression(isPositive.test(number)) checks if a number is greater than zero.
    
-   2. Use Predicate:
-      - The `isPositive` predicate is used in the `test` method to filter the list of numbers.
-      - `if (isPositive.test(number))` applies the predicate to each number to determine if it should be printed.
-
+ 
 
 
 
