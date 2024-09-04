@@ -11,7 +11,7 @@
 ---------01. Manipulate data using the StringBuilder class and its methods -----
 ================================================================================
 
-###### Why StringBuilder?
+###### Why StringBuilder? StringBuilder vs String
 ###### Key Features of `StringBuilder` 
 ###### Common Methods and Use
 
@@ -101,7 +101,7 @@ Here’s a breakdown of some commonly used methods in the `StringBuilder` class:
 ----------------- 02. Create and manipulate Strings ---------------------------
 ================================================================================
 
-###### Creating Strings
+###### Why and how to create Strings? Strings vs String.
 ###### Common Methods for Manipulating Strings
 ###### Example of String Manipulation
 ###### Summary
