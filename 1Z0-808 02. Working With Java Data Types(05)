@@ -261,7 +261,7 @@ There are primarily two ways to access object fields:
 =====================================================================================================================
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
 =====================================================================================================================
-
+######## What is an Object and what it contains?
 ######## Creation
 ######## Dereference by Reassignment
 ######## Garbage Collection
@@ -273,6 +273,11 @@ There are primarily two ways to access object fields:
             -Where object does live?
             -What does a Reference variable hold?
             -Assigning a new value to a reference variable destroys the old object?
+
+######## Object and it contains
+ Object: -All That we can see, touch, and feel are Objects.
+        -An instance of a class.
+        -Contains: 01. Data (Attributes or Fields) 02.Behavior (Methods):
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
