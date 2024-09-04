@@ -563,9 +563,9 @@ public class ArrayListExample {
    Functional interfaces are interfaces with a single abstract method. 
    The `java.util.function` package provides several functional interfaces, including `Predicate`, `Function`, `Consumer`, and `Supplier`.
    
-   ####### 3. Predicate Functional Interface ######
+   ####### 3. When to use and WHAT is Predicate Functional Interface ######
    -`Predicate<T>` is a functional interface in the `java.util.function` package 
-   -that represents a boolean-valued function of one argument. 
+   -that represents a BOLLEAN--valued function of one argument. 
    -It has a single abstract method `test(T t)` that evaluates or filter data the `Predicate`.
    
          Signature:
