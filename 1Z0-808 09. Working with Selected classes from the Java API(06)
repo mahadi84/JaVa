@@ -101,17 +101,12 @@ Here’s a breakdown of some commonly used methods in the `StringBuilder` class:
 ----------------- 02. Create and manipulate Strings ---------------------------
 ================================================================================
 
-###### Why and how to create Strings? Strings vs String.
-###### Common Methods for Manipulating Strings
-###### Example of String Manipulation
-###### Summary
-
 ###### What and Why Strings?
 ###### Key Features of `Strings` 
 ###### Common Methods and Use
 
 
-###### What is Strings, how to Create and Why String? +++++++++++++++++++
+###### What is Strings, how to Create, and Why String? +++++++++++++++++++
 strings are instances of the `String` class, which is part of the `java.lang` package. Strings can be created in several ways:
 
 1. Using String Literals:
