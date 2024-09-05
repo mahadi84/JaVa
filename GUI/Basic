@@ -1,7 +1,10 @@
 
 
-01. What is JFram and its key Methods?
-02. What is JPanel, its key METHODS and when to USE?
+01. Why is JFram and its key Methods?
+02. Why is JPanel, its key METHODS and when to USE?
+03. Why is GridBagLayout and key METHODS?
+04. Why is GridBagConstraints and key METHODS?
+
 
 
 ======================================================================== 
@@ -126,7 +129,6 @@ public class GridBagLayoutExample extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
 
-
         // Create a GridBagLayout and a GridBagConstraints
         GridBagLayout layout = new GridBagLayout();
         GridBagConstraints constraints = new GridBagConstraints();
@@ -173,7 +175,7 @@ public class GridBagLayoutExample extends JFrame {
     }
 }
 
-################ Key Points:
+################ Functions:
 GridBagConstraints: This class defines the constraints for each component, including its position, size, weight, and insets.
 Constraints Properties:
 gridx and gridy: Specify the column and row index.
