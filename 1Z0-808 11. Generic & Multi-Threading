@@ -1,4 +1,10 @@
 
+01. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability.
+02. What is Threads?  Explain the concept of multithreading and how to create and manage threads in Java.
+03. What is Stream?
+
+
+
 ==================== Generics ==========================
 How Generics Improve Code Reusability:
 
@@ -8,28 +14,135 @@ Generic Classes:  can work with --different data types.
 Generic Methods: can operate on --different types of arguments. 
                   Ex: swap() a generic  method can be used to swap two elements of any type. 
                   This avoids the need to write separate swap methods for each data type.
+
 Bounded Type Parameters: I can use bounded type parameters to restrict the types that can be used with a generic class or method. 
                   This allows you to ensure that the objects passed to the generic component have certain properties or methods.
 
-Example:
-class MyGenericClass<T> {
-    private T data;
+    Example:
+      class GenericClass<T>{
+          private T data;
+          public GenericClass(T t){
+              this.data = t;
+          }
+          public T getData(){
+              return data;
+          }    
+      }
+      
+      public class InnerGenericClass {
+          public static void main(String[] args) {
+              GenericClass<Integer>  tInt = new GenericClass<>(10);
+              GenericClass<String>  tInt1 = new GenericClass<>("Bismillah");
+              System.out.println(tInt.getData());
+              System.out.println(tInt1.getData());              
+          }
+      }
 
-    public MyGenericClass(T data) {
-        this.data = data;
+
+==================== 02. What is Threads? ===========================
+-Allow multiple tasks to run concurrently within a single program
+-perform parallel
+-Lightweight
+-Shared resources
+-Threads are the smallest unit of execution within a process.
+
+Creating Threads:---
+        There are two primary ways to create threads in Java:
+        
+        01. Extending the Thread class:
+        --------------------------
+        class MyThread extends Thread {
+            public void run() {
+                // Thread's execution code
+            }
+        }
+
+        
+        02. Implementing the Runnable interface:
+        ----------------------------------------
+        class MyTask implements Runnable {
+            public void run() {
+                // Thread's execution code
+            }
+        }
+
+Examples:
+--------
+Basic Example:--------
+public class MyThread extends Thread {
+    int num;
+    String name;
+
+    MyThread(int num, String name){
+        this.num=num;
+        this.name=name;
+
     }
 
-    public T getData() {
-        return data;
+    public void run() {
+        System.out.println("Thread is running...");
     }
-}
 
-public class Main {
     public static void main(String[] args) {
-        MyGenericClass<Integer> integerList = new MyGenericClass<>(10);
-        MyGenericClass<String> stringList = new MyGenericClass<>("Hello");
+        MyThread thread = new MyThread(10, "Mahadi");
+        thread.start();
 
-        System.out.println(integerList.getData());
-        System.out.println(stringList.getData());
     }
 }
+
+
+Managing Threads:
+Starting a Thread: Call the start() method on the Thread object to start the thread's execution.
+Stopping a Thread: While Java doesn't have a built-in method to stop a thread directly, you can use techniques like setting a flag or using interrupt() to signal the thread to stop.
+Joining a Thread: Use the join() method to wait for a thread to finish its execution before continuing the main thread.
+Synchronization: Use synchronization mechanisms like synchronized blocks or methods to ensure that multiple threads access shared resources safely.
+Thread Pools: Use ExecutorService to manage a pool of threads efficiently and avoid creating and destroying threads for each task.
+
+
+Complex Example:----
+      import java.util.concurrent.*;
+      public class ThreadPoolExample {
+          public static void main(String[] args) {
+              ExecutorService executor = Executors.newFixedThreadPool(5);
+              for (int i = 0; i < 10; i++) {
+                  int finalI = i;
+                  executor.execute(() -> {
+                      System.out.println("Task " + finalI + " is running.");
+                      try {
+                          Thread.sleep(1000);
+                      } catch (InterruptedException e) {
+                          e.printStackTrace();
+                      }
+                  });
+              }
+              executor.shutdown();
+              try {
+                  executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+      
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+      
+              }
+          }
+      }
+
+This example creates a thread pool with 5 threads and submits 10 tasks to it. The tasks are executed concurrently by the threads in the pool.
+
+
+==================== 03. What is Stream? ===========================
+
+-Stream processes the Collection like Filtering, Sorting, Mapping
+
+Example:
+    import java.util.Arrays;
+    import java.util.List;
+    
+    public class StreamExample {
+        public static void main(String[] args){
+            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+            numbers.stream().filter(n -> n % 2 == 0).forEach(n -> System.out.println(n));        
+     // Output: [2,4,6]
+        }
+
+
+-
