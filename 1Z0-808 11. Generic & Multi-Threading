@@ -1,0 +1,35 @@
+
+==================== Generics ==========================
+How Generics Improve Code Reusability:
+
+Generic Classes:  can work with --different data types. 
+                  Ex: ArrayList<E>  is a generic class can store elements of any type E. 
+                  This allows you to create lists of integers, strings, custom objects, or any other type without modifying the class itself.
+Generic Methods: can operate on --different types of arguments. 
+                  Ex: swap() a generic  method can be used to swap two elements of any type. 
+                  This avoids the need to write separate swap methods for each data type.
+Bounded Type Parameters: I can use bounded type parameters to restrict the types that can be used with a generic class or method. 
+                  This allows you to ensure that the objects passed to the generic component have certain properties or methods.
+
+Example:
+class MyGenericClass<T> {
+    private T data;
+
+    public MyGenericClass(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyGenericClass<Integer> integerList = new MyGenericClass<>(10);
+        MyGenericClass<String> stringList = new MyGenericClass<>("Hello");
+
+        System.out.println(integerList.getData());
+        System.out.println(stringList.getData());
+    }
+}
