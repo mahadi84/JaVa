@@ -1,0 +1,29 @@
+Common Questions When Getting a Job as a Java Developer
+Here are some common questions you might encounter:
+
+=========== Core Java Concepts =========== 
+01. Object-Oriented Programming (OOP): Explain the four pillars of OOP (inheritance, polymorphism, encapsulation, and abstraction).
+02. Data Structures and Algorithms: Discuss common data structures (arrays, linked lists, trees, graphs) and algorithms (sorting, searching, dynamic programming) in Java.
+03. Generics: Explain the purpose of generics and how they can be used to improve code reusability.
+04. Collections Framework: Describe the different types of collections in Java (List, Set, Map) and their common operations.
+05. Exception Handling: Discuss the try-catch-finally blocks and how exceptions are handled in Java.
+06. Multithreading: Explain the concept of multithreading and how to create and manage threads in Java.
+
+=========== Java Frameworks and Technologies =========== 
+01. Spring Framework: Discuss your experience with Spring Boot, Spring MVC, Spring Data, and other Spring modules.
+02. Hibernate: Explain how Hibernate is used for object-relational mapping (ORM).
+03. Java EE: Describe the different components of Java EE (servlets, JSP, EJB, JPA).
+04. Web Services: Discuss RESTful and SOAP web services and how to create and consume them.
+05. Microservices: Explain the concept of microservices architecture and its benefits.
+
+=========== Problem-Solving and Critical Thinking =========== 
+Coding Challenges: You may be asked to solve coding problems on the spot or complete a coding exercise before or during the interview.
+Design Patterns: Discuss common design patterns (e.g., Singleton, Factory, Observer) and how they can be applied in Java.
+Performance Optimization: Explain techniques for optimizing Java code for performance.
+Debugging: Describe your approach to debugging Java applications.
+
+=========== Cultural Fit =========== 
+Teamwork: Questions about your experience working in teams and your ability to collaborate.
+Communication: Your ability to communicate technical concepts clearly and effectively will be evaluated.
+Company Culture: Questions about your alignment with the company's values and goals.
+Motivation and Goals: Your career aspirations and reasons for applying to the job will be explored.
