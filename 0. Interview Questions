@@ -27,3 +27,57 @@ Teamwork: Questions about your experience working in teams and your ability to c
 Communication: Your ability to communicate technical concepts clearly and effectively will be evaluated.
 Company Culture: Questions about your alignment with the company's values and goals.
 Motivation and Goals: Your career aspirations and reasons for applying to the job will be explored.
+
+
+
+=================================== ChatGPT Questions ======================================
+01. Java Basics and Core Concepts:
+    What are the main principles of object-oriented programming (OOP) and how does Java implement them?
+    Can you explain the difference between an abstract class and an interface in Java?
+    What is the purpose of the final keyword in Java?
+
+02. Java Collections Framework:
+    What are the differences between ArrayList, LinkedList, and Vector?
+    How does a HashMap work internally, and how does it differ from a TreeMap?
+    Can you explain the difference between HashSet and LinkedHashSet?
+
+03. Concurrency and Multithreading:
+    How do you create a thread in Java? What are the differences between extending Thread and implementing Runnable?
+    Can you explain the concept of synchronization and how you would prevent race conditions?
+    What is the volatile keyword and when would you use it?
+
+04. Exception Handling:
+    How does exception handling work in Java? Can you explain the difference between checked and unchecked exceptions?
+    How would you create a custom exception?
+
+05. Java Memory Management:
+    Can you explain how garbage collection works in Java?
+    What are some common memory leaks in Java and how would you prevent them?
+
+06. Java Streams and Lambda Expressions:
+    What are lambda expressions and how do they simplify coding in Java?
+    How do Java streams work, and what are some common operations you can perform with them?
+
+07. Design Patterns and Principles:
+    What are some common design patterns used in Java? Can you explain one with an example?
+    How does the Singleton pattern work, and what are some potential issues with it?
+
+08. Java 8+ Features:
+    Can you explain the main features introduced in Java 8, such as the new date/time API and default methods in interfaces?
+    How do you use the Optional class to handle null values?
+
+09. Frameworks and Libraries:
+    Have you worked with any Java frameworks such as Spring or Hibernate? Can you describe your experience with them?
+    What is Dependency Injection, and how is it implemented in Spring?
+
+10. Problem-Solving and Algorithms:
+    How would you approach solving a coding problem or algorithmic challenge?
+    Can you write a function to reverse a string or find the factorial of a number?
+
+11. Code Quality and Testing:
+    How do you ensure your code is maintainable and testable?
+    What testing frameworks are you familiar with, and how do you write unit tests in Java?
+
+12. Performance and Optimization:
+    How do you profile and optimize Java applications for performance?
+    What tools do you use for performance monitoring and debugging?
