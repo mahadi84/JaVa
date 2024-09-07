@@ -1,11 +1,11 @@
 
 01. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability.
-02. What is Threads?  Explain the concept of multithreading and how to create and manage threads in Java.
-03. What is Stream?
+02. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java.
+03. What is a Stream with examples of all three types?
 
 
 
-==================== Generics ==========================
+====================01. Generics ==========================
 How Generics Improve Code Reusability:
 
 Generic Classes:  can work with --different data types. 
@@ -39,18 +39,18 @@ Bounded Type Parameters: I can use bounded type parameters to restrict the types
       }
 
 
-==================== 02. What is Threads? ===========================
--Allow multiple tasks to run concurrently within a single program
+==================== 02. What are Threads and Multithreading? ===========================
+Thread: Allow Concurrent Execution of multiple tasks within a single program
+Multithreading: Concurrent Execution of two or more threads within a single program
 -perform parallel
 -Lightweight
 -Shared resources
--Threads are the smallest unit of execution within a process.
 
-Creating Threads:---
+########## Creating Threads:---
         There are two primary ways to create threads in Java:
         
         01. Extending the Thread class:
-        --------------------------
+        -------------------------------
         class MyThread extends Thread {
             public void run() {
                 // Thread's execution code
@@ -91,7 +91,7 @@ public class MyThread extends Thread {
 }
 
 
-Managing Threads:
+########Managing Threads:
 Starting a Thread: Call the start() method on the Thread object to start the thread's execution.
 Stopping a Thread: While Java doesn't have a built-in method to stop a thread directly, you can use techniques like setting a flag or using interrupt() to signal the thread to stop.
 Joining a Thread: Use the join() method to wait for a thread to finish its execution before continuing the main thread.
@@ -143,6 +143,55 @@ Example:
             numbers.stream().filter(n -> n % 2 == 0).forEach(n -> System.out.println(n));        
      // Output: [2,4,6]
         }
+
+
+
+##### 01. Filtering:
+Purpose: Selects elements from a stream based on a specified condition.
+Syntax: stream.filter(predicate)
+
+Example:
+  List<Person> people = Arrays.asList(
+  new Person("Alice", 30),
+  new Person("Bob", 25),
+  new Person("Charlie", 35)
+  );
+  
+  List<Person> adults = people.stream()
+  .filter(p -> p.getAge() >= 18)
+  .collect(Collectors.toList());
+  System.out.println(adults); // Output: [Alice, Bob, Charlie]
+
+##### 02. Sorting:
+Purpose: Arranges elements in a stream according to a specified comparator.
+Syntax: stream.sorted(comparator) or stream.sorted() (for natural ordering)
+
+Example:
+  List<Person> sortedPeople = people.stream()
+  .sorted(Comparator.comparing(Person::getName))
+  .collect(Collectors.toList());  
+  System.out.println(sortedPeople); // Output: [Alice, Bob, Charlie]
+
+##### 03. Mapping:
+Purpose: Transforms elements in a stream to a different type. *`java List<String> names = people.stream() .map(Person::getName) .collect(Collectors.toList());
+System.out.println(names); // Output: [Alice, Bob, Charlie]
+
+##### Combined Example:
+  List<String> adultNames = people.stream()
+          .filter(p -> p.getAge() >= 18)
+          .sorted(Comparator.comparing(Person::getName))
+          .map(Person::getName)
+          .collect(Collectors.toList());
+  
+  System.out.println(adultNames); // Output: [Alice, Bob, Charlie]
+
+#######Key Points:
+Intermediate operations: filter, sorted, and map are intermediate operations that create a new stream. They don't produce a final result.
+Terminal operations: collect(Collectors.toList()) is a terminal operation that consumes the stream and produces a final result (a list in this case).
+Pipelines: Multiple operations can be chained together in a pipeline to perform complex transformations.
+Readability: Using streams can improve code readability and maintainability by expressing operations in a declarative style.
+
+
 
 
 -
