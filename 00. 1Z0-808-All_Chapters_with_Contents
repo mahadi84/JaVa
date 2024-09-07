@@ -375,15 +375,14 @@
     correct code   exists, compiles, and runs successfully to create the described effect.
 
 
- ======================= 11. Collections =====================================
+ ======================= 10. Data Structure and Algorithom =====================================
 
-0.  Array vs Collection
-00. List
-01. What are: Array Vs ArrayList Vs LinkedList (When to Use Which)
-02. What are: HashMap Vs LinkedHashMap Vs TreeMap (When to use which)
-03. What are: HashSet Vs LinkedHashSet Vs TreeSet (When to use which)
-04. What is Threads?
-05. What is Stream?
+01. What is the Data Structure?
+02. Array Vs ArrayList Vs LinkedList (When to Use Which)?
+03. HashMap Vs LinkedHashMap Vs TreeMap (When to use which)?
+04. HashSet Vs LinkedHashSet Vs TreeSet (When to use which)?
+05. What is an algorithm?
+
 
 
 
