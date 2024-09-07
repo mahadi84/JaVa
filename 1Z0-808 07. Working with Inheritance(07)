@@ -810,12 +810,13 @@ Explanation:
 
 
 ################################## Interfaces #########################################
+-Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
+-Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
+     --More about the interface:
         -Interfaces are abstract types that allow you to define methods that must be implemented by classes that choose to implement the interface. 
         -Unlike abstract classes, interfaces cannot have instance fields or constructors. 
         -They are used to specify methods that must be implemented by classes, supporting multiple inheritance of behavior.
-           --More about interface:
-           -Use interfaces to define a contract that multiple classes can implement. Interfaces are ideal for defining behaviors that can be shared across different class hierarchies.
-           -Interfaces support multiple inheritance through their ability to be implemented by multiple classes. From Java 8, they can include default and static methods.
+          
 
 1. Declaration:
    - Interfaces are declared using the `interface` keyword.
