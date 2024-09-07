@@ -5,7 +5,7 @@
 03. Why is GridBagLayout and key METHODS?
 04. Why is GridBagConstraints and key METHODS?
 
-05. How to show Jfram and Jpanel in the center and full screen?
+05. How to show  Panel inside Panel in Fram on the center of the page and full screen with Menu?
 
 
 
@@ -226,53 +226,103 @@ Complex Layouts: GridBagLayout can be used to create complex layouts with precis
 
 
 
-=================================================================================================== 
-------------05. How to show Jfram and Jpanel in the center and full screen? -----------------------
-===================================================================================================
+=========================================================================================================================== 
+------------05. How to show  Panel inside Panel in Fram on the center of the page and full screen? -----------------------
+===========================================================================================================================
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class CenteredPanelExample {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Centered Panel Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class NestedPanelExample extends JFrame {
+    public NestedPanelExample() {
+        setTitle("Nested Panel Example");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null); // Center the frame on the screen
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Make the frame full screen
 
-        // Create a JPanel with a background color
-        JPanel backgroundPanel = new JPanel();
-        backgroundPanel.setBackground(Color.LIGHT_GRAY);
-
-        // Create a centered panel
-        JPanel centeredPanel = new JPanel();
-        centeredPanel.setBackground(Color.WHITE);
-        centeredPanel.setPreferredSize(new Dimension(400, 300));
-
-        // Add a menu bar
+        // Create a menu bar
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.addActionListener(e -> System.exit(0));
+        exitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
 
-        // Add the centered panel to the background panel
-        backgroundPanel.add(centeredPanel, BorderLayout.CENTER);
+        // Create a panel for the background
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(Color.LIGHT_GRAY);
+
+        // Create a panel for the inner content
+        JPanel contentPanel = new JPanel(new GridBagLayout());
+        contentPanel.setPreferredSize(new Dimension(400, 300));
+        // contentPanel.setBackground(Color.WHITE);
+        // contentPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
+         
+        // Create components
+        JLabel usernameLabel = new JLabel("Username:");
+        JTextField usernameField = new JTextField(20);
+        JLabel passwordLabel = new JLabel("Password:");
+        JPasswordField passwordField = new JPasswordField(20);
+        JButton loginButton = new JButton("Login");
+        JButton signupButton = new JButton("Sign up");
+
+        // Add components to the content panel using GridBagLayout
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        // gbc.anchor = GridBagConstraints.WEST;
+        contentPanel.add(usernameLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.ipady= 10;
+        // gbc.fill = GridBagConstraints.HORIZONTAL;
+        contentPanel.add(usernameField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        contentPanel.add(passwordLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.ipady= 10;
+        contentPanel.add(passwordField, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Fill horizontally
+        contentPanel.add(loginButton, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Fill horizontally
+        contentPanel.add(signupButton, gbc);
+
+        // Add the content panel to the background panel
+        backgroundPanel.add(contentPanel, BorderLayout.CENTER);
 
         // Add the background panel to the frame
-        frame.getContentPane().add(backgroundPanel);
+        getContentPane().add(backgroundPanel, BorderLayout.CENTER);
 
-        // Set the frame's menu bar
-        frame.setJMenuBar(menuBar);
 
-       
-        // Set the frame to be full screen
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
-        frame.setVisible(true);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new NestedPanelExample();
     }
 }
-
 
 
 -
