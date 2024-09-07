@@ -375,13 +375,21 @@
     correct code   exists, compiles, and runs successfully to create the described effect.
 
 
- ======================= 10. Data Structure and Algorithom =====================================
-
+ ======================= 10. Data Structure and Algorithm =====================================
 01. What is the Data Structure?
 02. Array Vs ArrayList Vs LinkedList (When to Use Which)?
 03. HashMap Vs LinkedHashMap Vs TreeMap (When to use which)?
 04. HashSet Vs LinkedHashSet Vs TreeSet (When to use which)?
 05. What is an algorithm?
+
+ ======================= 11. Generic & Multi-Threading ===============================
+01. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability.
+02. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java.
+03. What is a Stream with examples of all three types?
+
+ ======================= 11. ===============================
+ ======================= 12. ===============================
+
 
 
 
