@@ -5,6 +5,8 @@
 03. Why is GridBagLayout and key METHODS?
 04. Why is GridBagConstraints and key METHODS?
 
+05. How to show Jfram and Jpanel in the center and full screen?
+
 
 
 ======================================================================== 
@@ -223,6 +225,53 @@ Dynamic Layouts: GridBagLayout is well-suited for creating dynamic layouts where
 Complex Layouts: GridBagLayout can be used to create complex layouts with precise control over component placement and sizing.
 
 
+
+=================================================================================================== 
+------------05. How to show Jfram and Jpanel in the center and full screen? -----------------------
+===================================================================================================
+
+import javax.swing.*;
+import java.awt.*;
+
+public class CenteredPanelExample {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Centered Panel Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create a JPanel with a background color
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(Color.LIGHT_GRAY);
+
+        // Create a centered panel
+        JPanel centeredPanel = new JPanel();
+        centeredPanel.setBackground(Color.WHITE);
+        centeredPanel.setPreferredSize(new Dimension(400, 300));
+
+        // Add a menu bar
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.addActionListener(e -> System.exit(0));
+        fileMenu.add(exitItem);
+        menuBar.add(fileMenu);
+
+        // Add the centered panel to the background panel
+        backgroundPanel.add(centeredPanel, BorderLayout.CENTER);
+
+        // Add the background panel to the frame
+        frame.getContentPane().add(backgroundPanel);
+
+        // Set the frame's menu bar
+        frame.setJMenuBar(menuBar);
+
+       
+        // Set the frame to be full screen
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null); // Center the frame on the screen
+        frame.setVisible(true);
+    }
+}
 
 
 
