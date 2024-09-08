@@ -18,10 +18,10 @@ OOP: a programming paradigm that models the real world as a collection of object
      -Each object represents an instance of a class, which defines the object's properties (data) and behaviors (methods).
 
 ###### 4 pillars of OOP
-        01. Data Abstraction (hiding data and complexity) 
-        02. Inheritance(Code Reusability, Method Overriding, Extended Functionality )
-        03. Encapsulation(bundling data and methods)
-        04. Polymorphism(Object to take many forms)
+        01. Inheritance(Code Reusability, Method Overriding, Extended Functionality )
+        02. Encapsulation(bundling data and methods)
+        03. Polymorphism(Object to take many forms)
+        04. Data Abstraction (hiding data and complexity) 
 
 ###### Procedural Programming Vs Object-Oriented Programming
 
