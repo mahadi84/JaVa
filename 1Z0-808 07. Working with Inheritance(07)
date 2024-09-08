@@ -751,14 +751,14 @@ Explanation:
 
 ######### Differences between ABSTRACT Class and INTERFACE
 ------------------------------------------------------------------------------------------------------------------------------
-Feature          |   Abstract Class	                 |    Interface
+Feature          |   Abstract Class	                               |    Interface
 -------------------------------------------------------------------------------------------------------------------------------
-Definition       |                                           | Blueprints for classes (achieve polymorphism) Ideal for unrelated classes
-                                                               -contracts: Interfaces specify a set of methods that a class must implement,
-Methods          |  Both Abstract and concrete	      | Only abstract (before Java 8), default and static from Java 8
-Inheritance      |  Single inheritance                       | Multiple inheritance
+Definition(Why)  | Want a partial implementation of a class                | Blueprints for classes (achieve polymorphism) Ideal for unrelated classes
+                   and force subclasses to implement the remaining parts.  | Contracts: Interfaces specify a set of methods that a class must implement,
+Methods          |  Both Abstract and concrete	        | Only abstract (before Java 8), default and static from Java 8
+Inheritance      |  Single inheritance                         | Multiple inheritance
 Variables        |  All types (final, non-final, static, non-static) | Only static final
-Constructors     |  Yes	                            | No
+Constructors     |  Yes	                              | No
 Access Modifiers |  Public, protected, private, default      | Public (implicitly)
 Can Instantiate  |  NO                                       | Yes
 Extension        |  Extends(Class to Class) Implemnet(C2I)   | Implemnet(I2C), Extends(I2I) 
