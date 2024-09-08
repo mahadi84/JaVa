@@ -763,7 +763,6 @@ Access Modifiers |  Public, protected, private, default      | Public (implicitl
 Can Instantiate  |  NO                                       | Yes
 Extension        |  Extends(Class to Class) Implemnet(C2I)   | Implemnet(I2C), Extends(I2I) 
 Declare(Keyword) | Abstract(public abstract class Animal {}) | Interface (public interface Animal {})
-Concrete Methods |  Yes(can be overridden by subclasses)     | No, Concrete Methods
 --------------------------------------------------------------------------------------------------------------------------------
 
 ###### Abstract Classes ######
