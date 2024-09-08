@@ -335,10 +335,9 @@ This is an example of printf. Name: Bob, Age: 25, Score: 88.75
 
 #############What is a Java Package##############
 A package 
-          -a mechanism that groups related classes, interfaces, functions, and annotations under a unique name.. 
-          -a hierarchical structure for managing code, making it easier to find, reuse, and maintain.
+          -A mechanism that groups related classes, interfaces, functions, and annotations under a unique name.. 
+          -Why? managing code, making it easier to find, reuse, and maintain.
           -avoid name conflict, especially when working with large projects or when using third-party libraries.
-          -It helps manage the code structure,
     
   
 Importing packages 
