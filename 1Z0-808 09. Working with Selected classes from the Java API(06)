@@ -4,8 +4,7 @@
 01. Manipulate data using the StringBuilder class and its methods
 02. Create and manipulate Strings
 03. Create and manipulate calendar data using classes from java.time.LocalDateTime,  java.time.LocalDate, java.time.LocalTime, java.time.format.DateTimeFormatter, java.time.Period
-04. Declare and use an ArrayList of a given type 
-05. Write a simple Lambda expression that consumes a Lambda Predicate expression
+04. Write a simple Lambda expression that consumes a Lambda Predicate expression
 
 ================================================================================
 ---------01. Manipulate data using the StringBuilder class and its methods -----
@@ -334,143 +333,8 @@ public class DateTimeExample {
 }
 
 
-
-================================================================================
-------------------04. Declare and use an ArrayList of a given type  ----------
-================================================================================
-
-###### Declaring and Using `ArrayList` 
-####### 1. Importing the `ArrayList` Class 
-####### 2. Declaring an `ArrayList` 
-####### 3. Adding Elements to an `ArrayList` 
-####### 4. Accessing Elements 
-####### 5. Modifying Elements 
-####### 6. Removing Elements 
-####### 7. Iterating Through an `ArrayList` 
-####### 8. Common Methods (set(), add(), size(), isEmpty(), remove(2),clear())
-
-
-###### Declaring and Using `ArrayList` ######
-####### 1. Importing the `ArrayList` Class ######
-Before you can use `ArrayList`, you need to import it from the `java.util` package:
-
-import java.util.ArrayList;
-
-####### 2. Declaring an `ArrayList` ######
-You can declare an `ArrayList` by specifying its type parameter, which defines the type of elements it can hold. For example, if you want an `ArrayList` of `String` objects, you would declare it like this:
-
-ArrayList<String> listOfStrings = new ArrayList<>();
-
-Generic Type:
-- `ArrayList<T>` is a generic class where `T` represents the type of elements. This provides type safety and avoids `ClassCastException`.
-
-####### 3. Adding Elements to an `ArrayList` ######
-You can add elements to an `ArrayList` using the `add()` method. Elements are added to the end of the list:
-
-listOfStrings.add("Apple");
-listOfStrings.add("Banana");
-listOfStrings.add("Cherry");
-
-####### 4. Accessing Elements ######
-You can access elements using the `get()` method and provide the index of the element you want to retrieve:
-
-String firstElement = listOfStrings.get(0); // Retrieves "Apple"
-System.out.println("First element: " + firstElement);
-
-####### 5. Modifying Elements ######
-
-To modify an element at a specific index, use the `set()` method:
-
-listOfStrings.set(1, "Blueberry"); // Replaces "Banana" with "Blueberry"
-
-####### 6. Removing Elements ######
-Elements can be removed by index or by object using the `remove()` method:
-
-- By Index:
-  listOfStrings.remove(2); // Removes "Cherry"
-
-- By Object:
-  listOfStrings.remove("Apple"); // Removes "Apple"
-
-
-####### 7. Iterating Through an `ArrayList` ######
-You can use a `for` loop, `for-each` loop, or an iterator to traverse the elements of an `ArrayList`:
-
-- Using a `for` loop:
-  for (int i = 0; i < listOfStrings.size(); i++) {
-      System.out.println(listOfStrings.get(i));
-  }
-
-
-- Using a `for-each` loop:
-  for (String fruit : listOfStrings) {
-      System.out.println(fruit);
-  }
-
-
-- Using an Iterator:
-  Iterator<String> iterator = listOfStrings.iterator();
-  while (iterator.hasNext()) {
-      System.out.println(iterator.next());
-  }
-
-
-####### 8. Common Methods ######
-- Declare an `ArrayList`: Specify the type of elements it will hold (e.g., `ArrayList<String> fruits = new ArrayList<>();`).
-- Add elements: Use `add()`.
-- Access elements: Use `get()`.
-- Modify elements: Use `set()`.
-- Remove elements: Use `remove()`.
-- Iterate through elements: Use `for`, `for-each`, or `Iterator`.
-- Common methods: 
-      `size()`,   Ex: boolean isEmpty = listOfStrings.size()  //Returns the number of elements in the list.
-      `isEmpty()` Ex: boolean isEmpty = listOfStrings.isEmpty() //Checks if the list is empty.
-      `clear()`.  Ex:  listOfStrings.clear(); // Removes all elements from the list.
-
-
-####### Example ######
-import java.util.ArrayList;
-public class ArrayListExample {
-    public static void main(String[] args) {
-        // Declare and initialize an ArrayList of Strings
-        ArrayList<String> fruits = new ArrayList<>();
-        
-        // Add elements
-        fruits.add("Apple");
-        fruits.add("Banana");
-        fruits.add("Cherry");
-        
-        // Access and print elements
-        System.out.println("First fruit: " + fruits.get(0)); // Output: Apple
-        
-        // Modify an element
-        fruits.set(1, "Blueberry");
-        
-        // Remove an element by index
-        fruits.remove(2); // Removes "Cherry"
-        
-        // Iterate through the ArrayList
-        System.out.println("Fruits in the list:");
-        for (String fruit : fruits) {
-            System.out.println(fruit);
-        }
-        
-        // Print the size of the ArrayList
-        System.out.println("Size of the list: " + fruits.size()); // Output: 2
-        
-        // Check if the ArrayList is empty
-        System.out.println("Is the list empty? " + fruits.isEmpty()); // Output: false
-        
-        // Clear the ArrayList
-        fruits.clear();
-        System.out.println("Size after clearing: " + fruits.size()); // Output: 0
-    }
-}
-
-
-
 =============================================================================================
---------05. Write a simple Lambda expression that consumes a Lambda Predicate expression ----
+--------04. Write a simple Lambda expression that consumes a Lambda Predicate expression ----
 =============================================================================================
 
 ####### 1. Lambda Expressions and When to Lambda Expressions
