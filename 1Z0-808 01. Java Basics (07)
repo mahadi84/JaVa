@@ -15,13 +15,14 @@ Date: 31-July-2024(Wednesday)
 
 ==================== 00. What is OOP? Could you explain the 4 pillars of OOP? Procedural Programming Vs Object-Oriented Programming. is Java fully OOP? Why?  =================================
 OOP: a programming paradigm(দৃষ্টান্ত)/style/mode that models the real world as a collection of objects.
-     -Each object represents an instance of a class, which defines the object's properties (data) and behaviors (methods).
 
 ###### 4 pillars of OOP
-        01. Inheritance(Code Reusability, Extended Functionality )
-        02. Encapsulation(bundling data and methods)
-        03. Polymorphism(Object to take many forms, Methode Overloading, Overriding)
-        04. Data Abstraction (hiding data and complexity) 
+          Class: which defines the object's properties (data) and behaviors (methods)
+          Object: represents an instance of a class. All we can see, touch and feel are objects Or real world Entity
+             01. Inheritance(Code Reusability, Extended Functionality )
+             02. Encapsulation(bundling data and methods)
+             03. Polymorphism(Object to take many forms, Methode Overloading, Overriding)
+             04. Data Abstraction (hiding data and complexity) 
 
 ###### Procedural Programming Vs Object-Oriented Programming
 
