@@ -252,9 +252,9 @@ In this example, PI is a constant value that won't change, and radius is a final
      ---------------04. Run a Java program from the command line;  --------------
 ######################################################################################
 
-######## Step 1: Write Your Java Code ########
+######## Step 1: Write Your Java Code and Save it with java extension
 Create a Java file with your code. For example, let's write a simple "Hello, World!" program.
-1. Open a text editor and write the following code:
+A. Open a text editor and write the following code:
 java
     public class HelloWorld {
         public static void main(String[] args) {
@@ -262,23 +262,16 @@ java
         }
     }
 
-2. Save the file as `HelloWorld.java`.
-######## Step 2: Open the Command Line ########
-Open the command line (Command Prompt on Windows, Terminal on macOS or Linux).
-
+B. Save the file as `HelloWorld.java`.
+########Step 2: Open the Command Line
 ######## Step 3: Navigate to the Directory ########
-Navigate to the directory where you saved the `HelloWorld.java` file. You can use the `cd` command to change directories. For example:
-
-cd path/to/your/java/file
+cd path/to/your/java/file  \\Navigate to the directory where you saved the `HelloWorld.java` file. You can use the `cd` command to change directories. For example:
 
 ######## Step 4: Compile the Java Code ########
-Use the `javac` command to compile your Java file. This command will generate a `HelloWorld.class` file containing the bytecode.
-
-javac HelloWorld.javaIf there are no errors, the `HelloWorld.class` file will be created in the same directory.
+javac HelloWorld.java \\Use the `javac` command to compile your Java file. This command will generate a `HelloWorld.class` file containing the bytecode.
 
 ######## Step 5: Run the Compiled Java Program ########
-Use the `java` command to run the compiled Java program. You should specify the class name without the `.class` extension.
-java HelloWorld
+java HelloWorld \\Use the `java` command to run the compiled Java program. You should specify the class name without the `.class` extension.
 
 You should see the output: Hello, World!
 
