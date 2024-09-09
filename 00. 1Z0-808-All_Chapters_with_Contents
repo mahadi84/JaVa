@@ -358,8 +358,16 @@
 02. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java.
 03. What is a Stream with examples of all three types?
 
- ======================= 11. ===============================
- ======================= 12. ===============================
+======================= 12. ===============================
+01. Spring Framework: Discuss your experience with Spring Boot, Spring MVC, Spring Data, and other Spring modules.
+02. Hibernate: Explain how Hibernate is used for object-relational mapping (ORM).
+03. Java EE: Describe the different components of Java EE (servlets, JSP, EJB, JPA).
+04. Web Services: Discuss RESTful and SOAP web services and how to create and consume them.
+05. Microservices: Explain the concept of microservices architecture and its benefits.
+
+ ======================= 13. ===============================
+Explain What are these why are these?
+Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory
 
 
 
