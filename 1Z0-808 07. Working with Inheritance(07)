@@ -353,42 +353,21 @@ public class TestOverriding {
     ------04. differentiate between the type of a reference and the type of an object--------
 #################################################################################################
 
-######## 1. Type of a Reference 
-######## 2. Type of an Object 
-######## Key Differences
+######## Key Differences between the type of a reference and the type of an object
 
-
-
-######## 1. Type of a Reference ########
-- Definition: The type of a reference (or variable) is the data type that defines what kind of objects the reference can point to. This type determines the methods and properties available to the reference.
-- Declaration: When you declare a reference variable, you specify its type. This type determines the class of objects that the reference variable can refer to.
-
-Example:
-Animal myAnimal;
-
-Here, `myAnimal` is a reference of type `Animal`. It can point to any object of type `Animal` or any subclass of `Animal` (e.g., `Dog`, `Cat`).
-
-######## 2. Type of an Object ########
-- Definition: The type of an object is the actual class of the object instantiated at runtime. It represents the specific implementation and can include additional methods and properties beyond those defined by the reference type.
-- Instantiation: The type of an object is determined when you create the object using the `new` keyword.
-
-Example:
-myAnimal = new Dog();
-
-Here, `myAnimal` is assigned an instance of `Dog`. The actual type of the object `myAnimal` points to is `Dog`, even though its reference type is `Animal`.
 
 ###### Key Differences ######
-1. Reference Type:
-   - Determines what methods and properties are available to the reference variable.
-   - Set at compile time based on the variable’s declaration.
-   - Example: If a reference is declared as `Animal`, it can only access methods defined in the `Animal` class (or its superclass) unless overridden.
-
-2. Object Type:
-   - Determines the actual class of the object created at runtime.
-   - Influences which implementation of methods is executed if method overriding is used.
-   - Example: An object of type `Dog` will have `Dog` class-specific methods and overridden methods, even if it’s referred to by an `Animal` reference.
-
-
+----------------------------------------------------------------------------------------------------------------------------------------
+Feature      |	Reference Types                         |	Object Types
+----------------------------------------------------------------------------------------------------------------------------------------
+Declaration  |Declared using class names or primitive wrapper class names.    |	Declared using the new keyword with a class name.
+Relationship |Reference types point to object types.    | Object types are the actual entities being referenced.
+Definition   |Used to refer to objects in memory.       | Instances of classes, representing real-world entities or concepts.
+Storage      |Store memory addresses of objects.        | Occupy memory space on the heap.
+Equality     |Compared using == operator (checks if references are equal).    |	Compared using equals() method (checks if objects are equal based on their content).
+Null         |Can be assigned null value.               | Cannot be assigned null value (but can be null references).
+Examples     |String, Integer, MyCustomClass            | new String("hello"), new Integer(10), new MyClass()
+----------------------------------------------------------------------------------------------------------------------------------------
 
 ###### Examples to Illustrate the Difference ######
 Example 1: Reference Type vs. Object Type
