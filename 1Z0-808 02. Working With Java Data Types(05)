@@ -136,12 +136,13 @@ public class Main {
 ### Key Differences #######
 
     Feature     | Primitive Variables           | Object Reference Variables 
-    ---------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
     Storage     | Direct value storage          | Reference to object location 
     Data Types  | Built-in types (int, char)    | Class names (Integer, Charecter) 
     Memory      | Fixed size                    | Variable size 
     Assignment  | Value copying                 | Reference copying 
     Operations  | Basic arithmetic, comparison  | Object methods and properties 
+---------------------------------------------------------------------------------------------
 
 
 
