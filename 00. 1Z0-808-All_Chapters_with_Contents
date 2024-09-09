@@ -191,15 +191,13 @@
             ####### Method Overloading
             ####### Rules for Method Overloading
 03. Apply the static keyword to methods and fields
-            ###### The `static` Keyword
+           ###### The `static` Keyword
             ###### Static Fields (Class Variables)
-                        1. Definition:
-                        2. Syntax:
-                        3. Accessing Static Fields:
+                        1. Definition. Why?
+                        2. How to access/use/call?
             ###### Static Methods
-                        1. Definition:
-                        2. Syntax:
-                        3. Restrictions
+                        1. Definition. Why?
+                        2. How to access/use/call?
 04. Create and overload constructors;
             ####### Constructors in Java  #######
             ####### Overloading Constructors  #######
