@@ -167,31 +167,30 @@ In this example:
 ###### The `static` Keyword
 ###### Static Fields (Class Variables)
             1. Definition.
-            2. Syntax.
-            3. Accessing Static Fields.
-            4. How to use/call?
+            2. How to access/use/call?
 ###### Static Methods
             1. Definition.
-            2. Syntax.
-            3. Restrictions.
-            4. How to use/call?
-
+            2. How to access/use/call?
 
 
 ###### The `static` Keyword ######
-The `static` keyword in Java is used to create class-level members, which means that the member belongs to the class itself rather than to any specific instance of the class. This has implications for both fields (variables) and methods.
+-Create class-level members, 
+-the member belongs to the class itself rather than to any specific instance of the class. 
+***This has implications for both fields (variables) and methods.
 
 ###### Static Fields (Class Variables) ######
 1. Definition:
-A `static` field is shared among all instances of a class. It is not tied to any particular object but rather to the class itself.
+ -A `static` field is shared among all instances of a class. 
+ -It is not tied to any particular object but rather to the class itself.
 
-2. Syntax:
-class MyClass {
-    static int staticField; // Static field declaration
-}
+    Example:
+    class MyClass {
+        static int staticField; // Static field declaration
+    }
 
-3. Accessing Static Fields:
-Static fields can be accessed using the class name or through an instance of the class, but it is generally recommended to use the class name to highlight that it is a class-level member.
+Accessing Static Fields:
+   -can be accessed using the class name or through an instance of the class, 
+   -but it is generally recommended to use the class name to highlight that it is a class-level member.
 
 Example:
 public class Example {
@@ -223,32 +222,29 @@ In this example:
 ###### Static Methods ######
 
 1. Definition:
-A `static` method belongs to the class rather than any specific instance of the class. It can be called without creating an instance of the class.
+-A `static` method belongs to the class rather than any specific instance of the class. 
+-Can be called without creating an instance of the class.
 
-2. Syntax:
-class MyClass {
-    static void staticMethod() {
-        // Method body
-    }
-}
+Syntax:
+        class MyClass {
+            static void staticMethod() {
+                // Method body
+            }
+        }
 
-
-3. Restrictions:
+Restrictions:
 - Static methods cannot access instance variables or instance methods directly. They can only call other static methods or access static fields.
 - Static methods can be called using the class name or through an instance, but it is recommended to use the class name.
 
 Example:
 public class Counter {
     private static int count = 0; // Static field
-
     public static void increment() {
         count++; // Accessing static field
     }
-
     public static void displayCount() {
         System.out.println("Count: " + count); // Accessing static field
     }
-
     public static void main(String[] args) {
         Counter.increment(); // Calling static method
         Counter.displayCount(); // Calling static method
