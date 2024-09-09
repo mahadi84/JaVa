@@ -41,22 +41,15 @@
             ######## How to compile code if code associate with a java Package?
 05. Produce console output
             ######## Explanation with example 
-                        01. System.out.println()
-                        02. System.out.print()
-                        03. System.out.printf()
+                        01. System.out.println()   02. System.out.print()  03. System.out.printf()
 06. Import other Java packages to make them accessible in your code
-            ########  0. What is a Java Package how to import that
-            ########  1. Importing a Single Class 
-            ########  2. Importing All Classes from a Package 
-            ########  3. Importing Static Members 
+            ########  0. What is a Java PACKAGE how to import that
+            ########  1. How to Import a Single Class, All Classes and Static Members?
+
 07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
             ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
             ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
             ########## Encapsulation        (-Definition, -Features, -Benefits, -Examples)
-            ########## Comparison and Contrast 
-                        01. Platform Independence vs. Object Orientation:
-                        02. Object Orientation vs. Encapsulation:
-                        03. Platform Independence vs. Encapsulation:
 
 ===========02. Working With Java Data Types(05): =========
 01. Declare and initialize variables (including casting of primitive data types)
