@@ -1,5 +1,5 @@
 
-01. What is the Data Structure?
+01. What is the Data Structure, When to use which? LIST vs SET vs MAP?
 
 02. Array Vs ArrayList Vs LinkedList (When to Use Which)?
 03. HashMap Vs LinkedHashMap Vs TreeMap (When to use which)?
@@ -41,7 +41,7 @@ LinkedList or Vector implementation: Can be used as a stack.
 
 Choosing the Right Data Structure:
 
-##########Consider:
+##########When to use which?
 Different data structures have different strengths and weaknesses. Choose the one that best suits your specific requirements. For Example
 Access patterns: How often will elements be accessed?
 Insertion/deletion frequency: How frequently will elements be added or removed?
@@ -49,8 +49,15 @@ Sorting requirements: Does the data need to be sorted?
 Memory usage: How much memory is available?
 Performance needs: What is the desired performance level?
 
-
--algorithms (sorting, searching, dynamic programming)
+################### Key Differences
+-----------------------------------------------------
+Feature        | List	    | Set         |	Map
+-----------------------------------------------------
+Order          | Ordered   | Unordered    | N/A
+Duplicates     | Allowed   | Not allowed  | N/A
+Key-Value Pairs| No	   | No	          | Yes
+Access         | Indexed   | Not indexed  | Key-based
+-----------------------------------------------------
 
 
 
