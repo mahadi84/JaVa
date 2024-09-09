@@ -208,19 +208,10 @@
                     4. No Return Type:
                     5. Overloading vs. Overriding:
 05. differentiate between default and user-defined constructors
-            ###### Default Constructor
-                        1. Definition
-                        2. Characteristics
-            ###### User-Defined Constructor
-                        1. Definition
-                        2. Characteristics
             ###### Key Differences: ######
 06. Apply access modifiers
             ###### Access Modifiers in Java 
-            ###### 1. public      -Definition: -Usage: -Example:
-            ###### 2. protected   -Definition: -Usage: -Example:
-            ###### 3. default (Package-Private) -Definition: -Usage: -Example:
-            ###### 4. private     -Definition: -Usage: -Example: 
+            ###### Public, Private, Protected and Default     
 07. Apply encapsulation principles to a class
             ###### What is Encapsulation and WHy? 
             ###### Key Principles of Encapsulation 
