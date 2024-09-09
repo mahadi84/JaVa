@@ -303,12 +303,23 @@ Explanation:
            ----------------04. Compare loop constructs ------------------
 ######################################################################################
 
-#########1. `for` Loop 
-#########2. `while` Loop 
-#########3. `do/while` Loop 
-###### All loop Comparison Table
+########## All loop Comparison Table
 ########## When to use what loop
+######### 1. `for` Loop 
+######### 2. `while` Loop 
+######### 3. `do/while` Loop 
 
+
+########## Comparison Table ##########
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Aspect                  | `for` Loop                                   | `while` Loop                                                          | `do/while` Loop                         
+|-------------------------|----------------------------------------------|-----------------------------------------------------------------------|--------------------------------------------
+| Use Case                | Known number of iterations or indexed access | Unknown number of iterations or based on dynamic conditions           | Guaranteed execution at least once 
+| Initialization & Update | Typically included in loop statement         | Initialization and update must be managed inside loop                 | Initialization and update must be managed inside loop 
+| Condition Check         | Before executing loop body                   | Before executing loop body                                            | After executing loop body               
+| Execution Guarantee     | May not execute if condition is `false`      | May not execute if condition is `false`                               | Executes at least once                  
+| Syntax Complexity       | Compact and concise                          | Simple but may require additional logic for initialization and update | Simple but condition checked after execution 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ########## 1. `for` Loop ##########
 Syntax:
@@ -382,21 +393,6 @@ do {
 
 Use Cases:
 - When you need the loop body to execute at least once, such as displaying a menu or prompting user input.
-
-########## Comparison Table ##########
-
-| Aspect                    | `for` Loop                              | `while` Loop                                              | `do/while` Loop                         |
-|---------------------------|-----------------------------------------|-----------------------------------------------------------|----------------------------------------|
-| Condition Check           | Before executing loop body              | Before executing loop body                                | After executing loop body               |
-| Execution Guarantee       | May not execute if condition is `false` | May not execute if condition is `false`                   | Executes at least once                  |
-| Initialization & Update   | Typically included in loop statement    | Initialization and update must be managed inside loop     | Initialization and update must be managed inside loop |
-| Use Case                  | Known number of iterations or indexed access | Unknown number of iterations or based on dynamic conditions | Guaranteed execution at least once |
-| Syntax Complexity         | Compact and concise                     | Simple but may require additional logic for initialization and update | Simple but condition checked after execution |
-
-########## When to use what loop ##########
-- `for` Loop: Best for iterating a known number of times with a counter or index. Compact and ideal for loops where the number of iterations is known before the loop starts.
-- `while` Loop: Best for situations where the number of iterations is not predetermined. The loop may not run if the condition is `false` initially.
-- `do/while` Loop: Best when you need to ensure that the loop body runs at least once, regardless of the condition. Ideal for scenarios like prompting users until valid input is received.
 
 
 
