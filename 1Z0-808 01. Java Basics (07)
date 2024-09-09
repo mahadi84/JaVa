@@ -155,18 +155,10 @@ public class HelloWorld {
         Output:
         Static block executed
         Count: 10
-
-######## When to Use Static Blocks
-Static blocks are primarily used for class-level initialization tasks. Here are some specific scenarios where they are commonly employed:   
-
-1. Initializing Static Variables:
+Example2:
+     Initializing Static Variables:
     When static variables require complex initialization logic that cannot be done directly in the variable declaration.   
-    For example, initializing a static map with data from a configuration file or database.   
-2. Performing Class-Level Setup:
-    To execute code that needs to run once before any objects of the class are created.   
-    For instance, loading native libraries, registering components, or establishing database connections.
-3. Executing Code Before Main Method:
-    To perform actions before the main method is executed, such as logging or resource allocation.   
+    For example, initializing a static map with data from a configuration file or database.   .   
     Example: Initializing a Static Map
         import java.util.HashMap;
         import java.util.Map;
