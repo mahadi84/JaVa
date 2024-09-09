@@ -60,10 +60,9 @@
             ######## How to name a variable with DATA TYPE?
 02. Differentiate between object reference variables and primitive variables
             ####### What is an Instance?
-            ####### Understanding Object References( Declaration and Initialization)
-            ####### Object Reference Variables  And Primitive Variables  Example:
-            ####### Key Differences
-            ####### ->Null values ->Memory Management (for Object Reference and Primitive Variables)
+            ####### Understanding Object References:
+            ####### Key Differences between object reference variables and primitive variables
+            ####### ->Null values ->Memory Management for Object Reference and Primitive Variables 
 03. Know how to read or write to object fields
             ######## Fields(Static, Transient, and Volatile Field) and Object
             ######## Accessing Object Fields:
