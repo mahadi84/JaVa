@@ -24,14 +24,18 @@ Date: 1-2Aug-2024(Thursday-Friday)
 
 ######## Primitive Data Types ################
 Java has eight primitive data types:
-    > byte: 8-bit signed integer (-128 to 127)
-    > short: 16-bit signed integer (-32768 to 32767)
-    > int: 32-bit signed integer (-2^31 to 2^31-1)
-    > long: 64-bit signed integer (-9223372036854775808 to 9223372036854775807)
-    > float: 32-bit single-precision floating-point number
-    > double: 64-bit double-precision floating-point number
-    > char: 16-bit Unicode character  By default: /u000
-    > boolean: true or false          By default: false
+------------------------------------------------------------------------------------------------------------
+Data Type |	Size (bits) |	Default Value         |	Range
+------------------------------------------------------------------------------------------------------------
+byte        |	8       |	0                     |	-128 to 127
+short       |	16      |	0                     |	-2^15 (-32,768) to 2^15 - 1 (32,767).
+int         |	32	    |   0                     |	-2^31 (-2,147,483,648) to 2^31 - 1 (2,147,483,647).
+long        |	64      |	0                     |	-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+float       |	32      |	0.0f                  |	Approximately ±3.4E-38 to ±3.4E+38
+double      |	64      |	0.0d                  |	Approximately ±1.7E-308 to ±1.7E+308
+char        |	16      |'\u0000'(null character) | 0 to 65,535 (Unicode code points)
+boolean     |	1       |	false                 |	true or false
+------------------------------------------------------------------------------------------------------------
 
 ######## Declaration and Initialization 
 Declaration: Specifies the data type and name of the variable.
@@ -82,13 +86,10 @@ Initialization: Assigns a value to the variable.
 =====================================================================================================================
 -----------02. Differentiate between object reference variables and primitive variables-------------------------
 =====================================================================================================================
-
 ####### What is an Instance?
 ####### Understanding Object References:
-####### Object Reference Variables  And Primitive Variables  Example:
-####### Key Differences
+####### Key Differences between object reference variables and primitive variables
 ####### ->Null values ->Memory Management for Object Reference and Primitive Variables 
-
 
 
 ############# What is an Instance? =====================
@@ -132,19 +133,15 @@ public class Main {
     }
 }
 
-####### Object Reference Variables ##########
-    * Hold memory addresses of objects
-    * Objects are instances of classes.
-    * Data types are class names (e.g., `String`, `Integer`, `ArrayList`).
-    * Occupy variable-size memory locations.
-    * Access object's properties and methods using the dot operator (.).
+### Key Differences #######
 
-####### Primitive(প্রাচীন/মৌলিক) Variables  #######
-    * Hold value directly.
-    * Data types include: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, and `boolean`.
-    * Occupy fixed-size memory locations.
-    * Values are copied when assigned to another variable.
-    * No methods or properties associated with them.
+    Feature     | Primitive Variables           | Object Reference Variables 
+    ---------------------------------------------------------------------------
+    Storage     | Direct value storage          | Reference to object location 
+    Data Types  | Built-in types (int, char)    | Class names (Integer, Charecter) 
+    Memory      | Fixed size                    | Variable size 
+    Assignment  | Value copying                 | Reference copying 
+    Operations  | Basic arithmetic, comparison  | Object methods and properties 
 
 
 
@@ -159,15 +156,7 @@ Example:
     x = 20; // Changes the value of x, but y remains 10
 
 
-### Key Differences #######
 
-    Feature     | Primitive Variables           | Object Reference Variables 
-    ---------------------------------------------------------------------------
-    Storage     | Direct value storage          | Reference to object location 
-    Data Types  | Built-in types                | Class names 
-    Memory      | Fixed size                    | Variable size 
-    Assignment  | Value copying                 | Reference copying 
-    Operations  | Basic arithmetic, comparison  | Object methods and properties 
 
 ### Additional Points #######
     > Null values: Object reference variables can be assigned `null` to indicate that they don't refer to any object. Primitive variables cannot be null.
@@ -184,26 +173,32 @@ Example:
                 02. Using Accessor Methods
 
 Fields: are variables declared within a class. They represent the data associated with an object.
-          01. Static(স্থির) Fields: 
-                    -Fields declared as static belong to the class itself, not instances.
-                    -Initialized only once: When the class is loaded into memory.
-                           Example: public static final double PI = 3.14159;
-          02. Transient(ক্ষণস্থায়ী) Fields: 
-                   -Fields that are not serialized.
-                   -When I have data that is sensitive.
-                           Example: private transient String password; // Password shouldn't be serialized
-          03. Volatile(অস্থির) Fields
-                   -Ensures visibility of changes to a variable across threads.
-                   -When multiple threads access and modify a shared variable.
-                        Example:
-                            public class Counter {
-                                private volatile int count = 0;                            
-                                    public void increment() { count++; }
-                                    public int getCount() {  return count; }
-                            }        
-                ****In this example, the count variable is marked as volatile. 
-                This guarantees that any changes made to count by one thread will be immediately visible to other threads. 
-                Without volatility, there's a risk of inconsistent values due to caching.
+
+------------------------------------------------------------------------------------------
+Feature             |	Static Field(স্থির)       |Transient Field(ক্ষণস্থায়ী)  |	Volatile Field(অস্থির)
+------------------------------------------------------------------------------------------
+Scope               |	Class                   |	Object                |	Object
+Lifetime            |	Class's lifetime        |	Object's lifetime     |	Object's lifetime
+Sharing             |	Shared by all instances |	Not shared            |	Not shared
+Serialization       |	Included                |	Excluded              |	Included
+Memory Consistency  |	No guarantee            |	No guarantee	      | Guaranteed
+Modifier            |	static                  |	transient             |	volatile
+------------------------------------------------------------------------------------------
+
+  01. Static(স্থির) Fields:                   
+                   Example: public static final double PI = 3.14159;
+  02. Transient(ক্ষণস্থায়ী) Fields:                   
+                   Example: private transient String password; // Password shouldn't be serialized
+  03. Volatile(অস্থির) Fields                   
+                Example:
+                    public class Counter {
+                        private volatile int count = 0;                            
+                            public void increment() { count++; }
+                            public int getCount() {  return count; }
+                    }        
+        ****In this example, the count variable is marked as volatile. 
+        This guarantees that any changes made to count by one thread will be immediately visible to other threads. 
+        Without volatility, there's a risk of inconsistent values due to caching.
 
 
 Object: is an instance of a class. It holds the values of its fields.
@@ -261,12 +256,12 @@ There are primarily two ways to access object fields:
 =====================================================================================================================
 -----------04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)---
 =====================================================================================================================
-######## What is an Object and Class what it contains?
+######## What is an Object and Class what it contain?
 ######## Creation
 ######## Dereference by Reassignment
 ######## Garbage Collection
 ######## Answer the below questions:
-            -What are `System.gc()` and `finalize()` methode
+            -What are `System.gc()` and `finalize()` method
             -Why object's lifecycle is so important?
             -why garbage collection, is so important?
             -what is a memory leak?
