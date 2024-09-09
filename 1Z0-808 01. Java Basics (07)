@@ -57,29 +57,22 @@ Examples            |	C, Pascal                  |	Java, Python, C++
     * The data type of a variable determines the type of data it can hold.
 
 ####### Scope of Variables
-1. Instance Variables ----
-    -Declared inside a class but outside any method, constructor, or block.
-    -Created when an object of the class is created and destroyed when the object is destroyed.
-    -Accessible from all methods, constructors, and blocks in the class.
-    -Default values are assigned if not explicitly initialized.
+----------------------------------------------------------------------------------------------------------------------
+Feature        | 	Instance Variable                      | Class Variable                     | Local Variable
+----------------------------------------------------------------------------------------------------------------------
+Declaration    | inside a class but outside any method, constructor, or block. | Declared with the `static` keyword inside a class but outside any method, constructor, or block. | Declared inside a method, constructor, or block.
+Keyword        | N/A                                     |  static                              | N/A    
+Scope          | Object-specific                         | Class-specific                       | Block-specific
+Lifetime       | Object's lifetime                       | Class's lifetime                     | Block's lifetime
+Access         | Within class, subclasses,               | Within class, subclasses,            | Within the declaring block
+                  -and other classes in the same package | -and other classes in the same package|-	
+Initialization | Constructor, declaration, or assignment | Declaration or assignment            | Before use
+----------------------------------------------------------------------------------------------------------------------
 
-2. Class Variables (Static Variables) ----
-    -Declared with the `static` keyword inside a class but outside any method, constructor, or block.
-    -Created when the program starts and destroyed when the program stops.
-    -Accessible from all static and instance methods, constructors, and blocks.
-    -Default values are assigned if not explicitly initialized.
-    -Belongs to the class itself, not instances.
-
-3. Local Variables----
-    -Declared inside a method, constructor, or block.
-    -Created when the method, constructor, or block is entered and destroyed when it is exited.
-    -Access/Scope is limited to the method, constructor, or block in which they are declared.
-    -Must be initialized explicitly before use as they do not have default values.
-
-4. Parameters ----
-    -Variables passed to methods, constructors, or blocks.
-    -Treated as local variables within the scope of the method, constructor, or block.
-    -Must be initialized explicitly before use.
+##### Parameters
+      -Variables passed to methods, constructors, or blocks.
+      -Treated as local variables within the scope of the method, constructor, or block.
+      -Must be initialized explicitly before use.
 
 ###### What are: ############
 -Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
@@ -105,10 +98,7 @@ Examples            |	C, Pascal                  |	Java, Python, C++
            this.age = age;
        }
    }
-   
-   public: Access modifier indicating the class is accessible from anywhere.
-   class: Keyword to define a class.
-   MyClass: Name of the class.
+
  
 ######################################################################################
 ------------03. Create executable Java applications with a main method; ------
@@ -350,6 +340,15 @@ To import a specific class from a package, you use the `import` statement follow
 
 Syntax:
 import packageName.ClassName;
+\\Importing All Classes from a Package
+import packageName.*; 
+
+\\Importing Static Members
+import static packageName.ClassName.staticMemberName;
+OR
+import all static members:
+import static packageName.ClassName.*;
+
 
 Example:
 import java.util.ArrayList;
@@ -363,50 +362,6 @@ public class ImportExample {
     }
 }
 
-########  2. Importing All Classes from a Package ######## 
-To import all classes and interfaces from a package, you use the `import` statement followed by the package name and a `.*`.
-
-Syntax:
-import packageName.*;
-
-Example:
-import java.util.*;
-
-public class ImportExample {
-    public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Hello");
-        list.add("World");
-        System.out.println(list);
-
-        HashMap<String, String> map = new HashMap<>();
-        map.put("Key1", "Value1");
-        map.put("Key2", "Value2");
-        System.out.println(map);
-    }
-}
-
-########  3. Importing Static Members ######## 
-If you want to import static members (fields and methods) of a class, you use the `import static` statement.
-
-Syntax:
-import static packageName.ClassName.staticMemberName;
-OR
-import all static members:
-import static packageName.ClassName.*;
-
-Example:
-import static java.lang.Math.*;
-
-public class StaticImportExample {
-    public static void main(String[] args) {
-        double result = sqrt(25);  // No need to write Math.sqrt()
-        System.out.println("Square root of 25 is: " + result);
-
-        double piValue = PI;  // No need to write Math.PI
-        System.out.println("Value of PI is: " + piValue);
-    }
-}
 
 ######## Practical Example ########
 Here is a practical example that combines various types of imports:
@@ -463,10 +418,7 @@ Here is a practical example that combines various types of imports:
 ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
 ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
 ########## Encapsulation        (-Definition, -Features, -Benefits, -Examples)
-########## Comparison and Contrast 
-                01. Platform Independence vs. Object Orientation:
-                02. Object Orientation vs. Encapsulation:
-                03. Platform Independence vs. Encapsulation:
+
 
 ######### Platform Independence ##########
 Java is a widely-used programming language known for its powerful features and capabilities. 
@@ -517,28 +469,6 @@ Benefits:----
 Examples:----
     -Defining private fields in a class and providing public getter and setter methods to access and modify those fields.
 
-########## Comparison and Contrast ##########
-
-1. Platform Independence vs. Object Orientation:
-    -Platform Independence: focuses on the ability of Java programs to run on any platform with a JVM, while 
-    -Object Orientation: is a programming paradigm(Concept) that organizes code around objects and classes.
-    
-    -Platform independence is achieved through the JVM and bytecode,  
-    -whereas object orientation is achieved through language features like classes, inheritance, and polymorphism.
-
-2. Object Orientation vs. Encapsulation:
-    -Object Orientation: encompasses broader principles, including encapsulation, inheritance, and polymorphism. 
-    -Encapsulation: is specifically about bundling data and methods and restricting access to the inner workings of objects.
-
-    -While encapsulation is a fundamental aspect of object-oriented programming, 
-        object orientation also includes other concepts like inheritance and polymorphism to promote code reuse and flexibility.
-
-3. Platform Independence vs. Encapsulation:
-    -Platform Independence: is a feature that ensures Java programs can run on any platform, while 
-    -Encapsulation: is a programming principle that ensures internal data protection and controlled access.
-
-    -Platform independence relates to the deployment and execution environment of Java applications, 
-    -whereas encapsulation is about the design and organization of code within those applications.
 
 
 
