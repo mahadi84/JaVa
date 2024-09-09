@@ -178,10 +178,9 @@ Another Details Example:-----
 ### Understanding the Difference
     There are two primary ways to test equality between objects:
     1. `==` -operator:   
-            -Compares object references. 
             -It checks if two references point to the same object in memory.
-    2. `equals()` 
-            -method: 
+            -Compares object references. 
+    2. `equals()` -method: 
             -Compares the contents of two objects. 
             -It checks if the objects represent the same value.
 
@@ -212,10 +211,6 @@ Another Details Example:-----
     System.out.println(s1.equals(s2)); // Output: true (content is equal)
     System.out.println(s1.equals(s3)); // Output: true (content is equal)
 
-Explanation:
-    * `s1 == s2`: Both `s1` and `s2` refer to the same String object in the String pool, so `==` returns `true`.
-    * `s1 == s3`: `s1` and `s3` refer to different String objects, even though they have the same content, so `==` returns `false`.
-    * `s1.equals(s2)` and `s1.equals(s3)`: Both comparisons check the content of the strings, which is the same, so `equals()` returns `true` in both cases.
 
 ### Comparing Other Objects
     For custom objects, the default implementation of `equals()` inherited from the `Object` class compares object references using `==`. 
@@ -281,8 +276,8 @@ Explanation:
           -Default Case
 
 ###### What and Why it is #####
--When I need to check a variable against several possible constant values.
--It's a cleaner and more readable alternative to using multiple `if-else-if` statements. 
+-Check a variable against several possible constant values.
+-Cleaner and more readable alternative to using multiple `if-else-if` statements. 
 
 **The `switch` statement in Java is used to execute one block of code among many alternatives based on the value of an expression. 
 
