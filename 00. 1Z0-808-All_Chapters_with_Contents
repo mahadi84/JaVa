@@ -234,9 +234,7 @@
                             5.`final`, `static`, and `private` Methods
                             )
 04. differentiate between the type of a reference and the type of an object
-            ######## 1. Type of a Reference 
-            ######## 2. Type of an Object 
-            ######## Key Differences
+           ######## Key Differences between the type of a reference and the type of an object
 05. Determine when object casting is necessary
             ###### Object Casting
             ###### Types of Object Casting (1.Upcasting(Implicit) and 2.Downcasting(Explicit))
@@ -256,18 +254,6 @@
             ####### Calling Other Constructors (Constructor Chaining)
            
 07. Use abstract classes and interfaces
-            ###### Abstract Classes 
-                       1. Declaration
-                       2. Abstract Methods
-                       3. Concrete Methods
-                       4. Constructors
-                       5. Fields
-            ###### Interfaces 
-                       1. Declaration 
-                       2. Implementation 
-                       3. Default Methods 
-                       4. Static Methods 
-                       5. Multiple Inheritance 
             ############## Differences between Abstract Class and Interface
             ############## When to use Abstract class  or Interface?
 
