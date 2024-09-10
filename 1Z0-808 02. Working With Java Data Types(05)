@@ -27,10 +27,10 @@ Java has eight primitive data types:
 ------------------------------------------------------------------------------------------------------------
 Data Type |	Size (bits) |	Default Value         |	Range
 ------------------------------------------------------------------------------------------------------------
-byte        |	8       |	0                     |	-128 to 127
+byte        |	8       |	0                     |	-2^7(-128) to 2^7-1(127)
 short       |	16      |	0                     |	-2^15 (-32,768) to 2^15 - 1 (32,767).
 int         |	32	    |   0                     |	-2^31 (-2,147,483,648) to 2^31 - 1 (2,147,483,647).
-long        |	64      |	0                     |	-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+long        |	64      |	0                     |	-2^63(-9,223,372,036,854,775,808) to 2^63-1(9,223,372,036,854,775,807)
 float       |	32      |	0.0f                  |	Approximately ±3.4E-38 to ±3.4E+38
 double      |	64      |	0.0d                  |	Approximately ±1.7E-308 to ±1.7E+308
 char        |	16      |'\u0000'(null character) | 0 to 65,535 (Unicode code points)
@@ -78,7 +78,7 @@ Initialization: Assigns a value to the variable.
     }
 
 =====================================================================================================================
------------02. Differentiate between object reference variables and primitive variables-------------------------
+-----------02. Differentiate between Object reference variables and Primitive variables-------------------------
 =====================================================================================================================
 ####### What is an Instance?
 ####### Understanding Object References:
@@ -128,7 +128,7 @@ public class Main {
 }
 
 ### Key Differences #######
-
+--------------------------------------------------------------------------------------------
     Feature     | Primitive Variables           | Object Reference Variables 
 --------------------------------------------------------------------------------------------
     Storage     | Direct value storage          | Reference to object location 
@@ -137,7 +137,6 @@ public class Main {
     Assignment  | Value copying                 | Reference copying 
     Operations  | Basic arithmetic, comparison  | Object methods and properties 
 ---------------------------------------------------------------------------------------------
-
 
 
 Example:
@@ -169,16 +168,16 @@ Example:
 
 Fields: are variables declared within a class. They represent the data associated with an object.
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Feature             |	Static Field(স্থির)       |Transient Field(ক্ষণস্থায়ী)  |	Volatile Field(অস্থির)
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Scope               |	Class                   |	Object                |	Object
 Lifetime            |	Class's lifetime        |	Object's lifetime     |	Object's lifetime
 Sharing             |	Shared by all instances |	Not shared            |	Not shared
 Serialization       |	Included                |	Excluded              |	Included
 Memory Consistency  |	No guarantee            |	No guarantee	      | Guaranteed
 Modifier            |	static                  |	transient             |	volatile
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 
   01. Static(স্থির) Fields:                   
                    Example: public static final double PI = 3.14159;
@@ -264,16 +263,6 @@ There are primarily two ways to access object fields:
             -What does a Reference variable hold?
             -Assigning a new value to a reference variable destroys the old object?
 
-######## Object and it contains
- Object: -All That we can see, touch, and feel are Objects.
-        -An instance of a class.
-        -Contains: 01. Data (Attributes or Fields) 02.Behavior (Methods):
-
-######## Class
-Objects and classes are closely related concepts in object-oriented programming (OOP).
-    Class:
-   -A blueprint or template that defines the structure and behavior of objects.
-   -It specifies the attributes (data members) and methods (functions) that objects of that class will have.
 
 ######## Creation ########
     An object is created using the `new` keyword followed by the constructor of the class. The constructor initializes the object's state.
@@ -292,10 +281,10 @@ Objects and classes are closely related concepts in object-oriented programming 
 
 ######## Garbage Collection ########
     Java employs automatic garbage collection to reclaim memory occupied by objects that are no longer in use.
+    * Garbage collection is automatic, but its timing is unpredictable.
     * The garbage collector periodically scans the heap for objects that are unreachable. 
     * An object becomes unreachable when there are no active references to it.
     * Once an object is determined to be garbage, its memory is reclaimed for future use.
-    * Garbage collection is automatic, but its timing is unpredictable.
 
 ######## Important Notes:
 * While `System.gc()` can be used to suggest garbage collection, it's not guaranteed to run immediately.
@@ -329,18 +318,15 @@ Objects and classes are closely related concepts in object-oriented programming 
 =====================================================================================================================
 
 ######## What and Why Wrapper Classes in Java
-         ***Why convert primitive data type into Object and vice-versa?
+         ***Why convert Primitive data type into Object and vice-versa?
 ######## How:  -Autoboxing and unboxing
                -Using wrapper classes in collections(Arraylist)
 ########  What are these:
-               -Each primitive type has its wrapper class.
-               -Null values 
-               -Performance 
-               -Caching
+               -Name all primitive type's correspondent Wrapper class.
+               -Null values -Performance  -Caching
 ######### How to convert String to Integer?
 ######### How to convert Integer to String?
 ######### How to declare wrapper class as constants?
-
 
 ########  What and Why Using Wrapper Classes in Java ###### 
     Wrapper classes in Java provide a way to convert primitive data types into objects. 
