@@ -102,8 +102,7 @@
             ###### Ternary Operator
             ########## Operator Precedence
 02. use parentheses to override operator precedence
-            ########### What is Operator precedence?
-            ########### Why parentheses and nested parentheses are used in Operator precedence?
+            ########### What is Operator precedence? Why parentheses and nested parentheses?
             ########### which one performed first: int result = (2 + (3 * 4)) - 5;
 03. Test equality between Strings and other objects using == and equals ()
             ######### Object reference variable(Declare, Access): 
@@ -119,9 +118,7 @@
             ###### Why it is #####
             ###### What are Syntex and ..? ######
                       -Expression: Data Type
-                      -Case Labels
-                      -Break Statement
-                      -Default Case
+                      -Case Labels -Break Statement -Default Case
 
 =======================04. Creating and Using Arrays(02): =================
 01. Declare, instantiate, initialize, and use a one-dimensional array
