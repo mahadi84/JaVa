@@ -14,11 +14,11 @@ Date: 31-July-2024(Wednesday)
 ==============================================================
 
 ==================== 00. What is OOP? Could you explain the 4 pillars of OOP? Procedural Programming Vs Object-Oriented Programming. is Java fully OOP? Why?  =================================
-OOP: a programming paradigm(দৃষ্টান্ত)/style/mode that models the real world as a collection of objects.
+##### OOP: a programming paradigm(দৃষ্টান্ত)/style/mode that models the real world as a collection of objects.
+            -Class: which defines the object's properties (data) and behaviors (methods)
+            -Object: represents an instance of a class. All we can see, touch and feel are objects Or real world Entity
 
 ###### 4 pillars of OOP
-          Class: which defines the object's properties (data) and behaviors (methods)
-          Object: represents an instance of a class. All we can see, touch and feel are objects Or real world Entity
              01. Inheritance(Code Reusability, Extended Functionality )
              02. Encapsulation(bundling data and methods)
              03. Polymorphism(Object to take many forms, Methode Overloading, Overriding)
@@ -29,14 +29,14 @@ OOP: a programming paradigm(দৃষ্টান্ত)/style/mode that models 
 -------------------------------------------------------------------------------------------------
 Feature             |	Procedural Programming     |	Object-Oriented Programming
 -------------------------------------------------------------------------------------------------
-When to use         |   suitable for smaller, simpler problems | preferred for larger, complex systems that require code reusability,
-Focus               |	Procedures/functions       |	Objects
-Data and functions  |	Separate                   |	Combined into objects
-Approach            |	Top-down (problem is broken down into smaller steps)|	Bottom-up (real-world entities are modeled as objects)
-Data sharing        |	Global variables           |	Data encapsulation within objects
-Code reusability    |	Limited                    |	High (inheritance, polymorphism)
-Complexity          |	Often simpler for smaller problems |	Can be more complex for smaller problems but scales better
-Examples            |	C, Pascal                  |	Java, Python, C++
+When to use         | suitable for smaller, simpler problems | preferred for larger, complex systems that require code reusability,
+Focus               | Procedures/functions       | Objects
+Data and functions  | Separate                   | Combined into objects
+Approach            | Top-down (problem is broken down into smaller steps)| Bottom-up (real-world entities are modeled as objects)
+Data sharing        | Global variables           | Data encapsulation within objects
+Code reusability    | Limited                    | High (inheritance, polymorphism)
+Complexity          | Often simpler for smaller problems |	Can be more complex for smaller problems but scales better
+Examples            | C, Pascal                  | Java, Python, C++
 -------------------------------------------------------------------------------------------------
 
 #####is Java fully OOP? Why?
@@ -48,13 +48,17 @@ Examples            |	C, Pascal                  |	Java, Python, C++
     --------------------01. Define the scope of variables--------------------------
 ######################################################################################
 
-
-
-
 ######## Understanding Variables ################
     * A variable is a named storage location that holds a value.
     * In Java, variables must be declared before use.
     * The data type of a variable determines the type of data it can hold.
+
+######## How to name a variable  ################
+    * Variable names must start with a letter, underscore (_), or dollar sign ($).
+    * Variable names are case-sensitive.
+    * Keywords cannot be used as variable names.
+    * Use meaningful variable names to improve code readability.
+    * Initialize variables before using them to avoid errors.
 
 ####### Scope of Variables
 ----------------------------------------------------------------------------------------------------------------------
@@ -76,7 +80,6 @@ Initialization | Constructor, declaration, or assignment | Declaration or assign
 
 ###### What are: ############
 -Variable Shadowing: A local variable can have the same name as an instance or class variable, causing the local variable to shadow the other variable within its scope.
--Static Context: In a static method, you cannot directly access instance variables or methods; you must use a reference to an instance of the class.
 
 ######################################################################################
 --------------------02. Define the structure of a Java class--------------------------
@@ -134,13 +137,13 @@ public class HelloWorld {
 
 ########################## Example 4: Using Static Blocks  
 ###### Static Blocks in Java
-    -To execute code that needs to run once before any objects of the class are created.   
+    01. To execute code that needs to run once before any objects of the class are created.   
         Example: establishing database connections.
         ***db_conn with static, is considered a bad practice due to potential resource leaks, thread safety issues, and inflexibility.
-    -A block of code that is executed only once to initialize static variables.
-    -Perform actions before the main method is executed, 
+    02. A block of code that is executed only once to initialize static variables.
+    03. Perform actions before the main method is executed, 
         Example: Logging or Resource allocation.   
-    -When the class is first loaded into memory.
+    04. When the class is first loaded into memory.
         Example:
                 public class StaticBlockExample {
                     static int count = 0;            
@@ -155,35 +158,33 @@ public class HelloWorld {
         Output:
         Static block executed
         Count: 10
-Example2:
-     Initializing Static Variables:
-    When static variables require complex initialization logic that cannot be done directly in the variable declaration.   
-    For example, initializing a static map with data from a configuration file or database.   .   
-    Example: Initializing a Static Map
-        import java.util.HashMap;
-        import java.util.Map;
-        
-        public class StaticBlockExample {
-            private static final Map<String, String> countryCodes = new HashMap<>();
-        
-            static {
-                countryCodes.put("USA", "US");
-                countryCodes.put("Canada", "CA");
-                countryCodes.put("India", "IN");
-            }
-        
-            public static String getCountryCode(String country) {
-                return countryCodes.get(country);
-            }
-        }
+
+    05. When static variables require complex initialization logic that cannot be done directly in the variable declaration.   
+          Example2:Initializing a Static Map ( initializing a static map with data from a configuration file or database.   .   )
+                  import java.util.HashMap;
+                  import java.util.Map;
+                  
+                  public class StaticBlockExample {
+                      private static final Map<String, String> countryCodes = new HashMap<>();
+                  
+                      static {
+                          countryCodes.put("USA", "US");
+                          countryCodes.put("Canada", "CA");
+                          countryCodes.put("India", "IN");
+                      }
+                  
+                      public static String getCountryCode(String country) {
+                          return countryCodes.get(country);
+                      }
+                  }
 
 ####################### Example 5: Final Variables and Initialization
 
 ######### Final(Constant) Variables
-            -A variable declared with the final keyword.
             -Its value cannot be changed once assigned.   
             -Can be both instance and class variables.
             -Can be used with primitive types, Strings, and objects.
+            -A variable declared with the final keyword.
                 Example:            
                 public class Example {
                     It's highly recommended to use uppercase with underscores for readability. This clearly indicates their constant nature.
@@ -338,13 +339,12 @@ import packageName.*;
 \\Importing Static Members
 import static packageName.ClassName.staticMemberName;
 OR
-import all static members:
+\\import all static members:
 import static packageName.ClassName.*;
 
 
 Example:
 import java.util.ArrayList;
-
 public class ImportExample {
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
