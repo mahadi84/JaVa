@@ -1,8 +1,20 @@
 
+Date: 10-0Sept-2024
+
+
 //========= Example: 01  ====================
 // Variable (Instant, Static, Final(Constant));
 // Encapsulation and Method/Constructor Chainning;
 // Static Block
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+
 class allInOne {
 
     //instance variable
@@ -34,51 +46,81 @@ class allInOne {
     public void setNumber(int num){  this.num =num;}
     public int getNumber(){  return num;}
     
-    // public static void main(String[] args) {
-    //     //obj is a reference of type "allInOne"
-    //     allInOne obj;
-    //    //obj is assigned an instance of "allInOne"
-    //     obj= new allInOne();
+    public static void main(String[] args) {
+        //obj is a reference of type "allInOne"
+        allInOne obj;
+       //obj is assigned an instance of "allInOne"
+        obj= new allInOne();
         
-    //     obj.account_name= "Mehjabin"; // Memory leak
-    //     obj.account_name= "Mahafuj";
-    //     // opening_balance=100;
-    //     // emp_opening_balance=100;
-    
-    //     obj.setNumber(999);
-    //     System.out.println(obj.getNumber());
-    
-    //     System.out.println("Account Name:"+obj.account_name);
-    //     System.out.println("Account No."+obj.account_no);
-    // }
+        // obj.account_name= "Mehjabin"; // Memory leak
+        // obj.account_name= "Mahafuj";
+        
+        //assign value to Static/Class Field/Properties
+            // opening_balance=100;
+            // emp_opening_balance=100;
+        
+        //Encapsulation
+            // obj.setNumber(999);
+            // System.out.println(obj.getNumber());    
+            // System.out.println("Account Name:"+obj.account_name);
+            // System.out.println("Account No."+obj.account_no);
+
+        // List and Set
+            // TreeSet<String> d= new TreeSet<>();     //Sorted(a-z or 1-9) that's Slow
+            // HashSet<String> d= new HashSet<>(); //Unordered but no duplicate
+            // List<String> d= new ArrayList<>(); //Ordered but allow duplicate
+                // d.add("Mahadi");
+                // d.add("Hasan");
+                // d.add("Hasan");
+                // d.add("Bappy");
+            // d.forEach(n->System.out.println(n));
+            // for (String e : d) {System.out.println(e);}
+            // Iterator e =d.iterator();
+            // while (e.hasNext()) {  System.out.println(e.next());}
+
+        // Map(Key Value pair)
+            // HashMap<String, Integer> d = new HashMap<>();
+            //     d.put("Mahadi", 100);
+            //     d.put("Hasan", 200);
+            //     d.put("Hasan", 300);
+            //     d.put("Bappy", 400);
+            //     d.put("Mahadi", 500);
+            // for( Map.Entry<String, Integer> e: d.entrySet()){
+            //    int emp_id= e.getValue();
+            //    String emp_name= e.getKey();
+            //    System.out.println( "Employee ID: "+ emp_id+" Employee Name: "+emp_name);
+            // }
+
+
+
+
+
+
+
+    }
      
     }
 
 
 //========= Example: 02 ====================
-// Generic Class
-    public class Generics <T>{
-        T data;
-        public void returnAnyType(T t){ this.data= t; }
-        public T getData(){ return data; }
+// Generic Class and method (Work for any data type)
+    // public class Generics <T>{
+    //     T data;
+    //     public void returnAnyType(T t){ this.data= t; }
+    //     public T getData(){ return data; }
 
-        public static void main(String[] args) {
+    //     public static void main(String[] args) {
 
-            Generics<Integer> obj= new Generics<>();
-            obj.returnAnyType(420);
-            System.out.println("I am integer type: "+obj.getData());
+    //         Generics<Integer> obj= new Generics<>();
+    //         obj.returnAnyType(420);
+    //         System.out.println("I am integer type: "+obj.getData());
 
-            Generics<String> objString= new Generics<>();
-            objString.returnAnyType("Mahadi Hasan");
-            System.out.println("I am string: " + objString.getData());
-        }
-    }
-
-
-
-
--
+    //         Generics<String> objString= new Generics<>();
+    //         objString.returnAnyType("Mahadi Hasan");
+    //         System.out.println("I am string: " + objString.getData());
+    //     }
+    // }
 
 
 
--
+
