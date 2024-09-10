@@ -1,58 +1,84 @@
-public class allInOne {
 
+//========= Example: 01  ====================
+// Variable (Instant, Static, Final(Constant));
+// Encapsulation and Method/Constructor Chainning;
+// Static Block
+class allInOne {
 
-//instance variable
-public int account_no; 
-public String account_name;
-public String account_type;
-
-//class varible
-static int opening_balance=10;
-//constant varible
-final int emp_opening_balance=0; 
-
-//for encapsulation
-private int num;
-
-// Method overloading or Constructor Chainning
-public allInOne(){
-    this("Labib Hasan", 123456);
-}
-public allInOne(String account_name, int account_no){
-    this.account_name= account_name;
-    this.account_no=account_no;
-}
-
-//static block to add static value
-static{ opening_balance=50;}
-
-
-// Encapsulation
-public void setNumber(int num){  this.num =num;}
-public int getNumber(){  return num;}
-
-
-
-public static void main(String[] args) {
-    //obj is a reference of type "allInOne"
-    allInOne obj;
-   //obj is assigned an instance of "allInOne"
-    obj= new allInOne();
+    //instance variable
+    public int account_no; 
+    public String account_name;
+    public String account_type;
     
-    obj.account_name= "Mehjabin"; // Memory leak
-    obj.account_name= "Mahafuj";
-    // opening_balance=100;
-    // emp_opening_balance=100;
-
-    obj.setNumber(999);
-    System.out.println(obj.getNumber());
-
-    System.out.println("Account Name:"+obj.account_name);
-    System.out.println("Account No."+obj.account_no);
-}
-
-
-
-
+    //class varible
+    static int opening_balance=10;
+    //constant varible
+    final int emp_opening_balance=0; 
     
-}
+    //for encapsulation
+    private int num;
+    
+    // Method overloading or Constructor Chainning
+    public allInOne(){
+        this("Labib Hasan", 123456);
+    }
+    public allInOne(String account_name, int account_no){
+        this.account_name= account_name;
+        this.account_no=account_no;
+    }
+    
+    //static block to add static value
+    static{ opening_balance=50;}
+    
+    // Encapsulation
+    public void setNumber(int num){  this.num =num;}
+    public int getNumber(){  return num;}
+    
+    // public static void main(String[] args) {
+    //     //obj is a reference of type "allInOne"
+    //     allInOne obj;
+    //    //obj is assigned an instance of "allInOne"
+    //     obj= new allInOne();
+        
+    //     obj.account_name= "Mehjabin"; // Memory leak
+    //     obj.account_name= "Mahafuj";
+    //     // opening_balance=100;
+    //     // emp_opening_balance=100;
+    
+    //     obj.setNumber(999);
+    //     System.out.println(obj.getNumber());
+    
+    //     System.out.println("Account Name:"+obj.account_name);
+    //     System.out.println("Account No."+obj.account_no);
+    // }
+     
+    }
+
+
+//========= Example: 02 ====================
+// Generic Class
+    public class Generics <T>{
+        T data;
+        public void returnAnyType(T t){ this.data= t; }
+        public T getData(){ return data; }
+
+        public static void main(String[] args) {
+
+            Generics<Integer> obj= new Generics<>();
+            obj.returnAnyType(420);
+            System.out.println("I am integer type: "+obj.getData());
+
+            Generics<String> objString= new Generics<>();
+            objString.returnAnyType("Mahadi Hasan");
+            System.out.println("I am string: " + objString.getData());
+        }
+    }
+
+
+
+
+-
+
+
+
+-
