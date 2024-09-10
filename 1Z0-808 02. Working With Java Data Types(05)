@@ -59,12 +59,6 @@ Initialization: Assigns a value to the variable.
 
         ***inside double int exists but inside int double is not exist
 
-######## How to name a variable  ################
-    * Variable names must start with a letter, underscore (_), or dollar sign ($).
-    * Variable names are case-sensitive.
-    * Keywords cannot be used as variable names.
-    * Use meaningful variable names to improve code readability.
-    * Initialize variables before using them to avoid errors.
 
 ######## Example 
     public class VariableExample {
