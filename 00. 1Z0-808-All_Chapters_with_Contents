@@ -66,8 +66,8 @@
 03. Know how to read or write to object fields
             ######## Fields(Static, Transient, and Volatile Field) and Object
             ######## Accessing Object Fields:
-                            01. Direct Access, 
-                            02. Using Accessor Methods
+                          01. Direct Access, 
+                          02. Using Accessor Methods
 04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
             ######## Creation
             ######## Dereference by Reassignment
@@ -94,13 +94,10 @@
 
 ===================03. Using Operators and Decision Constructs(05): =========
 01. Use Java operators; 
-            ###### Arithmetic Operators
-            ###### Assignment Operators
-            ###### Comparison Operators
-            ###### Logical Operators
-            ###### Bitwise Operators
-            ###### Ternary Operator
-            ########## Operator Precedence
+            ###### Arithmetic Operators         ###### Assignment Operators
+            ###### Comparison Operators         ###### Logical Operators
+            ###### Bitwise Operators            ###### Ternary Operator
+               ########## Operator Precedence  ##########
 02. use parentheses to override operator precedence
             ########### What is Operator precedence? Why parentheses and nested parentheses?
             ########### which one performed first: int result = (2 + (3 * 4)) - 5;
@@ -145,19 +142,15 @@
             ########## 3. Enhanced `for` Loop (for-each Loop)  
             ########## 4. Enhanced `for` Loop with Collection  
             ########## 5. Standard  `for` Vs Enhanced `for` 
- 
 03. Create and use do/while loops
             #### DO/WHILE Loop 
             #### Key Points: 
-                        >Guaranteed Execution  
-                        >Condition Checking
+                    >Guaranteed Execution   >Condition Checking
             #### Example 2: Using `do/while` for Menu-Driven Programs 
 04. Compare loop constructs
-            #########1. `for` Loop 
-            #########2. `while` Loop 
-            #########3. `do/while` Loop 
-            ###### All loop Comparison Table
-            ########## When to use what loop
+            #########1. `for` Loop         #########2. `while` Loop 
+            #########3. `do/while` Loop    ###### All loop Comparison Table
+                 ########## When to use what loop
 05. Use break and continue  
             #########   Purpose and Usage of 'break' and 'continue' Statement
             #########  `break` Statement 
@@ -178,7 +171,7 @@
             ####### Rules for Method Overloading
 03. Apply the static keyword to methods and fields
            ###### The `static` Keyword
-            ###### Static Fields (Class Variables)
+           ###### Static Fields (Class Variables)
                         1. Definition. Why?
                         2. How to access/use/call?
             ###### Static Methods
@@ -209,10 +202,8 @@
 01. Describe inheritance and its benefits
            ###### What is Inheritance? #####
            ###### Why Inheritance #####
-                        1. Code Reusability:
-                        2. Method Overriding:
-                        3. Hierarchical Classification:
-                        4. Ease of Maintenance:
+                        1. Code Reusability:              2. Method Overriding:
+                        3. Hierarchical Classification:   4. Ease of Maintenance:
                         5. Polymorphism:
 02. Develop code that makes use of polymorphism; 
             ###### What is Polymorphism? 
@@ -222,10 +213,8 @@
 03. develop code that overrides methods;
             ###### What is Method Overriding? 
             ###### Rules for Method Overriding (
-                            1.Same Method Signature, 
-                            2.Access Modifier, 
-                            3.Return Type, Exceptions 
-                            5.`final`, `static`, and `private` Methods
+                            1.Same Method Signature,      2.Access Modifier, 
+                            3.Return Type, Exceptions     4.`final`, `static`, and `private` Methods
                             )
 04. differentiate between the type of a reference and the type of an object
            ######## Key Differences between the type of a reference and the type of an object
@@ -233,13 +222,10 @@
             ###### Object Casting
             ###### Types of Object Casting (1.Upcasting(Implicit) and 2.Downcasting(Explicit))
             ###### When Casting is Necessary
-                            1. To Access Subclass-Specific Methods or Fields:
-                            2. When Dealing with Collections:
-                            3. When Working with Polymorphism:
-                            4. To Handle Type Errors:
+                            1. To Access Subclass-Specific Methods or Fields:      2. When Dealing with Collections:
+                            3. When Working with Polymorphism:                     4. To Handle Type Errors:
             ###### Important Considerations
-                            1. `instanceof` Operator:
-                            2. `ClassCastException`:
+                            1. `instanceof` Operator:      2. `ClassCastException`:
 06. Use super and this to access objects and constructors
             ####### 1. Why and how to Use `super`
             ####### Accessing Superclass Methods and Constructors
@@ -267,21 +253,16 @@
             ###### How Exceptions Alter Normal Program Flow 
 03. Describe the advantages of Exception handling 
             ###### Definition for all
-            ###### 1. Improved Program Stability 
-            ###### 2. Enhanced Code Readability and Maintenance 
-            ###### 3. Centralized Error Handling 
-            ###### 4. Error Reporting and Debugging 
-            ###### 5. Graceful Degradation 
-            ###### 6. Robust and Resilient Code 
+            ###### 1. Improved Program Stability   ###### 2. Enhanced Code Readability and Maintenance 
+            ###### 3. Centralized Error Handling   ###### 4. Error Reporting and Debugging 
+            ###### 5. Graceful Degradation         ###### 6. Robust and Resilient Code 
 04. Create and invoke a method that throws an exception
             ###### Creating(01.Declare and 02.Throw the Exception) a Method That Throws an Exception
             ###### Invoking (01.Handle the Exception, 02.Propagating an Exception) a Method That Throws an Exception
 05. Recognize common exception classes (such as NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, ClassCastException)
             What are these, How to Recognize them?
-            ######## NullPointerException, 
-            ######## ArithmeticException, 
-            ######## ArrayIndexOutOfBoundsException, 
-            ######## ClassCastException
+            ######## NullPointerException,            ######## ArithmeticException, 
+            ######## ArrayIndexOutOfBoundsException,  ######## ClassCastException
 
 ===========09. Working with Selected classes from the Java API(06): =======
 01. Manipulate data using the StringBuilder class and its methods
