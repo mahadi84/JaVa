@@ -116,14 +116,11 @@ Here’s a complete example that incorporates all the steps:
             -Looping Through Array Elements  
 
 
-
 ########### 0. Definition  ###########
-
 - Declare: Specify the type and dimensions of the multi-dimensional array.
 - Instantiate: Create the array object and allocate memory for its dimensions.
 - Initialize: Assign values to the elements in the array.
 - Use: Access, modify, and process the elements using nested loops.
-
 
 ########### 1. Declare a Multi-Dimensional Array  ###########
 In Java, a multi-dimensional array is essentially an array of arrays. 
@@ -142,7 +139,6 @@ Initialization involves assigning values to the elements in the array.
 You can do this either at the time of declaration or after instantiation.
 
 ############ Initialization at Declaration  ###########
-
         int[][] matrix = {
             {1, 2, 3, 4},
             {5, 6, 7, 8},
@@ -152,16 +148,10 @@ You can do this either at the time of declaration or after instantiation.
 ############ Initialization After Instantiation  ###########
         matrix[0][0] = 1; // Initialize elements individually
         matrix[0][1] = 2;
-        matrix[0][2] = 3;
-        matrix[0][3] = 4;
         matrix[1][0] = 5;
         matrix[1][1] = 6;
-        matrix[1][2] = 7;
-        matrix[1][3] = 8;
         matrix[2][0] = 9;
         matrix[2][1] = 10;
-        matrix[2][2] = 11;
-        matrix[2][3] = 12;
 
 ########### 4. Use a Multi-Dimensional Array  ###########
 You can access or modify the elements of a multi-dimensional array using two indices: one for the row and one for the column.
@@ -194,17 +184,11 @@ Here’s a complete example that demonstrates declaring, instantiating, initiali
                 // Initialize the array elements
                 matrix[0][0] = 1;
                 matrix[0][1] = 2;
-                matrix[0][2] = 3;
-                matrix[0][3] = 4;
                 matrix[1][0] = 5;
                 matrix[1][1] = 6;
-                matrix[1][2] = 7;
-                matrix[1][3] = 8;
                 matrix[2][0] = 9;
                 matrix[2][1] = 10;
-                matrix[2][2] = 11;
-                matrix[2][3] = 12;
-                
+
                 // Use the array
                 // Accessing and printing elements
                 System.out.println("Element at (0,0): " + matrix[0][0]); // Output: 1
