@@ -14,16 +14,17 @@
 10. Assume the following (05)
 
 =======================01. Java Basics(07): ============
-00. What is OOP? Explain the Class, Object and the 4 pillars of OOP.
+00. Object Oriented Programming
+            ######### What is OOP?
+            ########  What does a Class define, and what is an Object?
+            ######### Explain the 4 pillars of OOP.
             ######### Procedural Programming Vs Object-Oriented Programming
-             ######## Is Java fully OOP? Why?
+            ######### Is Java fully OOP? Why?
 01. Define the scope of variables        
-            ######## Understanding Variables 
+            ######## What is a Variables, How to name/declare it, Can I name variable start with 0-9, Why? 
             ######## Scope of Variables(Declaration, Creation, Accessible, Default value) with example
-            ######## What are:  -Variable Shadowing   -Static Context
-02. Define the structure of a Java class
-            ###### Class Declaration
-03. Create executable Java applications with a main method;
+            ######## Variable Shadowing
+02. Create executable Java applications with a main method;
             ######## What is the Main method, Why it is Static and Void?
             ######## Example 1: Basic Structure with Main Method
             ######## Example 2: Static Blocks
@@ -31,37 +32,36 @@
             ######## Example 3: Final(Constant) Variables and Initialization
                              ######### Final Variables, When to Use it?
                              ######### Initialization (1.Immediate Initialization and  2.Blank Final) of Final Variables                    
-04. Run a Java program from the command line; 
+03. Run a Java program from the command line; 
             ######## Step 1: Write and Save Your Java Code into .java extention file
             ######## Step 2: Open the Command Line
             ######## Step 3: Navigate to the Directory
             ######## Step 4: Compile the Java Code (JAVAC)
             ######## Step 5: Run the Compiled Java Program
-            ######## What to do if "javac" compile command does not work
-            ######## How to compile code if code associate with a java Package?
-05. Produce console output
-            ######## Explanation with example 
-                        01. System.out.println()   02. System.out.print()  03. System.out.printf()
-06. Import other Java packages to make them accessible in your code
+                        ######## What to do if "javac" compile command does not work
+                        ######## How to compile code if code associate with a java Package?
+04. Produce console output
+            ########  01. System.out.println()   02. System.out.print()  03. System.out.printf()
+05. Import other Java packages to make them accessible in your code
             ########  0. What is a Java PACKAGE how to import that
-            ########  1. How to Import a Single Class, All Classes and Static Members?
+            ########  1. How to Import a Single Class, All Classes, and Static Members?
 
-07. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
-            ######### Platform Independence (-Definition, -Features, -Benefits, -Examples)
+06. Compare and contrast the features and components of Java such as: platform independence, object orientation, encapsulation, etc.
+            ########## Platform Independence (-Definition, -Features, -Benefits, -Examples)
             ########## Object Orientation   (-Definition, -Features, -Benefits, -Examples)
             ########## Encapsulation        (-Definition, -Features, -Benefits, -Examples)
 
-===========02. Working With Java Data Types(05): =========
+============================02. Working With Java Data Types(05): =====================================
 01. Declare and initialize variables (including casting of primitive data types)
             ######## Primitive Data Types with size 
             ######## Declaration and Initialization
             ######## What is casting, why casting, 01. Implicit casting (widening), 02.Explicit casting (narrowing)?
             ######## Casting Primitive Data Types 
-            ######## How to name a variable with DATA TYPE?
+            ######## How to declare a variable with DATA TYPE?
 02. Differentiate between object reference variables and primitive variables
             ####### What is an Instance?
             ####### Understanding Object References:
-            ####### Key Differences between object reference variables and primitive variables
+            ####### Key Differences between Object reference variables and Primitive variables
             ####### ->Null values ->Memory Management for Object Reference and Primitive Variables 
 03. Know how to read or write to object fields
             ######## Fields(Static, Transient, and Volatile Field) and Object
@@ -69,7 +69,6 @@
                             01. Direct Access, 
                             02. Using Accessor Methods
 04. Explain an Object's Lifecycle (creation, "dereference by reassignment" and garbage collection)
-            ######## What are an Object and Class what it contains?
             ######## Creation
             ######## Dereference by Reassignment
             ######## Garbage Collection
@@ -82,15 +81,13 @@
                         -What does a Reference variable hold?
                         -Assigning a new value to a reference variable destroys the old object?
 05. Develop code that uses wrapper classes such as Boolean, Double, and Integer
-            ######## What and Why Wrapper Classes in Java
-                     ***Why convert primitive data type into Object and vice-versa?
+           ######## What and Why Wrapper Classes in Java
+                     ***Why convert Primitive data type into Object and vice-versa?
             ######## How:  -Autoboxing and unboxing
-                           -Using wrapper classes in collections(ArrayList)
+               -Using wrapper classes in collections(Arraylist)
             ########  What are these:
-                           -Each primitive type has its wrapper class.
-                           -Null values 
-                           -Performance 
-                           -Caching
+               -Name all primitive type's correspondent Wrapper class.
+               -Null values -Performance  -Caching
             ######### How to convert String to Integer?
             ######### How to convert Integer to String?
             ######### How to declare wrapper class as constants?
