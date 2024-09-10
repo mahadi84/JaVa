@@ -69,16 +69,16 @@ Access         | Indexed   | Not indexed  | Key-based
 
 ############# Key Differences
 ------------------------------------------------------------------------------------
-Feature	               Array	                ArrayList	    LinkedList
+Feature	               |Array	                |ArrayList	  |LinkedList
 ------------------------------------------------------------------------------------
-Size>	                Fixed	                 Dynamic	      Dynamic
-implementation>    	    Array	                 Array	          Doubly linked list
-Random access>	        Efficient	             Efficient	      Inefficient
+Size>	                |Fixed	                 |Dynamic	  |Dynamic
+implementation>    	|Array  	         |Array	          |Doubly linked list
+Random access>	        |Efficient	         |Efficient	  |Inefficient
 Insertions/deletions>(beginning/middle)	
-                        Inefficient	             Inefficient	  Efficient
+                        |Inefficient	         |Inefficient	  |Efficient
 Insertions/deletions(end)>	
-                        Inefficient	             Efficient	       Efficient
-Storage> 	       Primitive or reference types, Reference types   Reference types
+                        |Inefficient	         |Efficient	  |Efficient
+Storage> 	        |Primitive or reference types,|Reference types   |Reference types
 -------------------------------------------------------------------------------------
 
 ############# When to Use Which 
@@ -148,12 +148,12 @@ While they share the same basic functionality, they differ significantly in thei
 
 ########## Key Differences
 -------------------------------------------------------------------------------------------------------
-Feature	              HashMap	                 LinkedHashMap	                     TreeMap
+Feature	           | HashMap	                | LinkedHashMap	                        | TreeMap
 --------------------------------------------------------------------------------------------------------
-Implementation:	   Hash table	            Extends HashMap, doubly linked list	     Red-black tree
-Order:	           No specific order	        Insertion or access order	         Sorted order
-Performance:	   Generally fastest	        Slightly slower than HashMap	     Slower than HashMap for most operations, but efficient for range-based queries
-Use cases:         Most general-purpose	Caches, history lists	Sorted data,         range-based queries
+Implementation:	   | Hash table	             | Extends HashMap, doubly linked list	 | Red-black tree
+Order:	           | No specific order	     | Insertion or access order	         | Sorted order
+Performance:	   | Generally fastest	     | Slightly slower than HashMap	         | Slower than HashMap for most operations, but efficient for range-based queries
+Use cases:         | Most general-purpose Caches, | history lists	Sorted data,     | range-based queries
 ---------------------------------------------------------------------------------------------------------------------
 
 ######### When to use which:
@@ -195,12 +195,12 @@ HashSet, LinkedHashSet, and TreeSet are three fundamental data structures in Jav
 
 #############Key Differences
 ------------------------------------------------------------------------------------------------------
-Feature	            HashSet	                LinkedHashSet	                        TreeSet
+Feature	            | HashSet	            |  LinkedHashSet	                    | TreeSet
 ------------------------------------------------------------------------------------------------------
-Implementation	    Hash table	            Extends HashSet, doubly linked list	    Red-black tree
-Order	            No specific order	    Insertion order	                        Sorted order
-Performance	        Generally fastest	    Slightly slower than HashSet	        Slower than HashSet for most operations, but efficient for sorted iteration and range-based queries
-Use cases	        Most general-purpose	Caches, history lists	                Sorted data, range-based queries
+Implementation	    | Hash table	    | Extends HashSet, doubly linked list   | Red-black tree
+Order	            | No specific order	    | Insertion order	                    | Sorted order
+Performance	    | Generally fastest	    | Slightly slower than HashSet	    | Slower than HashSet for most operations, but efficient for sorted iteration and range-based queries
+Use cases	    | Most general-purpose  | Caches, history lists	            | Sorted data, range-based queries
 ----------------------------------------------------------------------------------------------------------
 
 ############# When to use which
