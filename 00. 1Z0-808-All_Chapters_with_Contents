@@ -13,7 +13,28 @@
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
 
-=======================01. Java Basics(07): ============
+===========================Selected Questions ======================================
+
+01. Scope/Different Type of Variables(Instance vs Static vs Locat) with example. (C_01_Q_01)
+02. Primitive Data Types with size. (C_02_Q_01)
+03. Key Differences between Object reference variables and Primitive variables. (C_02_Q_02)
+04. Difference between `==` and `equals()`. (C_03_Q_03)
+05. When to use what loop? (C_05_Q_04)
+06. differentiate between default and user-defined constructors. (C_06_Q_05)
+07. differentiate between the type of a reference and the type of an object. (C_07_Q_04)          
+08. Determine when object casting is necessary. (C_07_Q_05)
+     ###### Types of Object Casting (1.Upcasting(Implicit) and 2.Downcasting(Explicit))
+09. Differences between Abstract Class and Interface. (C_07_Q_07)
+10. What is Exception? Differentiate among checked exceptions, unchecked exceptions, and Errors. (C_08_Q_01)
+11. Lambda Expression that Consumes a Predicate(Define Predicate & Use Predicate). (C_09_Q_04)
+12. What is the Data Structure, When to use which? LIST vs SET vs MAP? (C_10_Q_01)
+13. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability. (C_11_Q_01)
+14. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_02)
+15. What is a Stream with examples of all three types? (C_11_Q_03)
+16.  Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory. (C_13_Q_01)
+            
+
+======================01. Java Basics(07): ============
 00. Object Oriented Programming
             ######### What is OOP?
             ########  What does a Class define, and what is an Object?
@@ -22,7 +43,7 @@
             ######### Is Java fully OOP? Why?
 01. Define the scope of variables        
             ######## What is a Variables, How to name/declare it, Can I name variable start with 0-9, Why? 
-            ######## Scope of Variables(Declaration, Creation, Accessible, Default value) with example
+            ######## Scope/Different Type of Variables(Instance vs Static vs Locat) with example
             ######## Variable Shadowing
 02. Create executable Java applications with a main method;
             ######## What is the Main method, Why it is Static and Void?
@@ -239,7 +260,7 @@
 
 ===============08. Handling Exceptions(05): ====================
 01. Differentiate among checked exceptions, unchecked exceptions, and Errors
-            ###### Exception, type of Exception.
+            ###### What is Exception, type of Exception.
             ###### 1. Checked Exceptions(Name any three of them)
             ###### Example with 01. try-catch block and 02. throws: 
             ###### 2. Unchecked Exceptions(Name any three of them)
