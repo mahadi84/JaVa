@@ -13,3 +13,34 @@ Example:
     OR
     List<String> myList = Arrays.asList("apple", "banana", "orange");
 
+
+================== List and Set ===================
+            TreeSet<String> d= new TreeSet<>();     //Sorted(a-z or 1-9) that's Slow
+            HashSet<String> d= new HashSet<>(); //Unordered but no duplicate
+            List<String> d= new ArrayList<>(); //Ordered but allow duplicate
+                d.add("Mahadi");
+                d.add("Hasan");
+                d.add("Hasan");
+                d.add("Bappy");
+            d.forEach(n->System.out.println(n));
+            for (String e : d) {System.out.println(e);}
+            Iterator e =d.iterator();
+            while (e.hasNext()) {  System.out.println(e.next());}
+
+==================  Map(Key Value pair) ===================
+            HashMap<String, Integer> d = new HashMap<>();
+                d.put("Mahadi", 100);
+                d.put("Hasan", 200);
+                d.put("Hasan", 300);
+                d.put("Bappy", 400);
+                d.put("Mahadi", 500);
+            for( Map.Entry<String, Integer> e: d.entrySet()){
+               int emp_id= e.getValue();
+               String emp_name= e.getKey();
+               System.out.println( "Employee ID: "+ emp_id+" Employee Name: "+emp_name);
+            }
+
+
+
+
+-
