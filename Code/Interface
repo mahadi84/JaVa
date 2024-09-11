@@ -1,0 +1,41 @@
+
+
+interface AccountNo{
+    void account_no(int a);
+}
+
+interface AccountTitle{
+    void account_title();  
+}
+
+
+public class acc implements AccountNo, AccountTitle{
+    public int acc_no;
+
+        public void account_no(int acc_no){
+            this.acc_no=acc_no;
+        }
+
+        public int getAccNo(){
+            return acc_no;
+        }
+
+        public void account_title(){
+            System.out.println("Mahadi");
+        }
+
+        public static void main(String[] args) {
+            acc a= new acc();
+            a.account_no(102030);
+            System.out.print("Account Name: "); a.account_title();
+            System.out.println("Account No: "+ a.getAccNo());
+            
+        }
+    
+}
+
+
+
+
+
+-
