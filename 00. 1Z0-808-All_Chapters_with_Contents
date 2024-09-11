@@ -32,7 +32,7 @@
 13. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability. (C_11_Q_01)
 14. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_02)
 15. What is a Stream with examples of all three types? (C_11_Q_03)
-16.  Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory. (C_13_Q_01)
+16. Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory. (C_13_Q_01)
             
 
 ======================01. Java Basics(07): ============
