@@ -1,1 +1,31 @@
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Streamm{
+
+    public static void main(String[] args) {
+        // With ArrayList
+        List<Integer> l = new ArrayList();
+            l.add(2);
+            l.add(5);
+            l.add(1);
+            l.add(5);
+        // l.stream().filter(n->n%2==0).forEach(n->System.out.println(n));
+
+        // With Arrays
+            List<Integer> e = Arrays.asList(1,2,3,4,5,6);        
+            List<Integer> a = e.stream().filter(n->n%2==0).collect(Collectors.toList());        
+            a.forEach(n->System.out.println(n));
+
+
+        
+    }
+
+
+    
+}
+
