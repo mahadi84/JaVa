@@ -3,7 +3,7 @@
 ======================= Interface =================================
 
 interface AccountNo{
-    //Functional method(Method without body)
+     // Abstract method (does not have a body)
     void account_no(int a);
 }
 
