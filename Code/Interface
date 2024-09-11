@@ -1,5 +1,7 @@
 
 
+======================= Interface =================================
+
 interface AccountNo{
     void account_no(int a);
 }
@@ -34,7 +36,25 @@ public class acc implements AccountNo, AccountTitle{
     
 }
 
+=================== Generics ===========================
 
+// Generic Class and method (Work for any data type)
+    public class Generics <T>{
+        T data;
+        public void returnAnyType(T t){ this.data= t; }
+        public T getData(){ return data; }
+
+        public static void main(String[] args) {
+
+            Generics<Integer> obj= new Generics<>();
+            obj.returnAnyType(420);
+            System.out.println("I am integer type: "+obj.getData());
+
+            Generics<String> objString= new Generics<>();
+            objString.returnAnyType("Mahadi Hasan");
+            System.out.println("I am string: " + objString.getData());
+        }
+    }
 
 
 
