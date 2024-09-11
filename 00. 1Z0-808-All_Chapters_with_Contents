@@ -27,7 +27,8 @@
 09. Differences between Abstract Class and Interface. (C_07_Q_07)
 10. What is Exception? Differentiate among checked exceptions, unchecked exceptions, and Errors. (C_08_Q_01)
 11. Lambda Expression that Consumes a Predicate(Define Predicate & Use Predicate). (C_09_Q_04)
-12. What is the Data Structure, When to use which? LIST vs SET vs MAP? (C_10_Q_01)
+12. What is the Data Structure, When to use which? 
+    ### What are LIST(ArrayList, LinkedList) vs SET(HashSet, LinkedHashSet, TreeSet) vs MAP(HashMap, LinkedHashMap, TreeMap)? (C_10_Q_01)
 13. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability. (C_11_Q_01)
 14. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_02)
 15. What is a Stream with examples of all three types? (C_11_Q_03)
