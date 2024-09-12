@@ -13,7 +13,7 @@
 09. Working with Selected classes from the Java API (06)
 10. Assume the following (05)
 
-===========================Selected Questions ======================================
+===========================(80/20)Selected Questions ======================================
 
 01. Scope/Different Type of Variables(Instance vs Static vs Locat) with example. (C_01_Q_01)
 02. Primitive Data Types with size. (C_02_Q_01)
@@ -29,10 +29,11 @@
 11. Lambda Expression that Consumes a Predicate, like find even number. (C_09_Q_04)
 12. What is the Data Structure, When to use which? 
     ### What are LIST(ArrayList, LinkedList) vs SET(HashSet, LinkedHashSet, TreeSet) vs MAP(HashMap, LinkedHashMap, TreeMap)? (C_10_Q_01)
-13. Explain the purpose of generics and how they can be used to improve code reusability. (C_11_Q_01)
-14. What are Threads and Multithread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_02)
-15. What is a Stream? Examples of all three(filtering, sorting, mapping) types? (C_11_Q_03)
-16. Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory. (C_13_Q_01)
+13. What/When is Generic? Where it is used? Key Benefits of Generics?. (C_11_Q_01)
+14. What/When is a Stream with examples of all three types? (C_11_Q_02)
+15. What/WHY is Thread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_03)
+16. What/When/Why Factory, Singleton, Decorator, and Strategy Patterns? Design Patterns Comparison:  (C_13_Q_01)
+
             
 
 ======================01. Java Basics(07): ============
