@@ -154,7 +154,8 @@ C) Server-Side Applications:
                 // Thread's execution code
             }
         }
-          #### Example:
+
+    ######## Example:
                 public class MultithreadedExample {
                     public static void main(String[] args) {
                         Runnable task = () -> {
