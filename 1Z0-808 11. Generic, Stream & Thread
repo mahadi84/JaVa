@@ -1,23 +1,24 @@
 
-01. What is Generic? Explain the purpose of generics and how they can be used to improve code reusability.
+
+01. What is Generic? Where it is used? Key Benefits of Generics?
 02. What is a Stream with examples of all three types?
 03. What/WHY is Thread?  Explain the concept of multithreading and how to create and manage threads in Java.
 
 
 
 ====================01. Generics ==========================
-How Generics Improve Code Reusability:
+-Define classes, interfaces, and methods that can work with different data (integers, strings, custom objects, or any other) types without compromising type safety.
 
-Generic Classes:  can work with --different data types. 
-                  Ex: ArrayList<E>  is a generic class can store elements of any type E. 
-                  This allows you to create lists of integers, strings, custom objects, or any other type without modifying the class itself.
-Generic Methods: can operate on --different types of arguments. 
-                  Ex: swap() a generic  method can be used to swap two elements of any type. 
-                  This avoids the need to write separate swap methods for each data type.
+#### Where it is used?
+      A) Collections Framework (ArrayList, HashSet,HashMap)
+      B) Method and Constructor Parameters: Example: public <T> void printElements(List<T> list) can print elements of any type.
+      C) Custom Data Structures: Example: A generic "Stack" class can store elements of any type.
 
-Bounded Type Parameters: I can use bounded type parameters to restrict the types that can be used with a generic class or method. 
-                  This allows you to ensure that the objects passed to the generic component have certain properties or methods.
-
+##### Key Benefits of Generics:
+    Type Safety: Prevents type-related errors at compile time, improving code reliability.
+    Reusability: Creates more reusable code by defining classes and methods that can work with different data types.
+    Efficiency: Can sometimes improve performance by reducing the need for boxing and unboxing operations.
+    
     Example:
       class GenericClass<T>{
           private T data;
@@ -42,59 +43,54 @@ Bounded Type Parameters: I can use bounded type parameters to restrict the types
 
 ==================== 02. What is Stream? ===========================
 
--Stream processes the Collection like Filtering, Sorting, Mapping
+-Stream processes the Collection like Filtering, Sorting, Mapping and Reducing
 
 Example:
-    import java.util.Arrays;
-    import java.util.List;
-    
-    public class StreamExample {
-        public static void main(String[] args){
-            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-            numbers.stream().filter(n -> n % 2 == 0).forEach(n -> System.out.println(n));        
-     // Output: [2,4,6]
-        }
+  import java.util.*;
+  import java.util.stream.Collectors;
 
+      public class StreamExample {
+          // Define the Person class (replace with your actual implementation)
+          public static class Person {
+              private int age;
+              private String name;
+      
+              Person(int a, String n) {
+                  this.age=a;
+                  this.name=n;
+              }
+      
+              // Getters and setters for age and name (omitted for brevity)
+              public int getAge() { return age; }
+      
+              public String getName() { return name;  }
+          }
+      
+          public static void main(String[] args) {
+              // Replace this with your actual way of creating a list of Person objects
+              List<Person> people = List.of(
+                      new Person(20, "Alice"),
+                      new Person(16, "Bob"),
+                      new Person(25, "Charlie")
+              );
+      
+              // Filter by age, map to names, sort, and collect into a list
+              List<String> names = people.stream()
+                                         .filter(p -> p.getAge() >= 18) // Filter adults
+                                         .map(Person::getName) // Map to names
+                                         .sorted() // Sort names alphabetically
+                                         .collect(Collectors.toList()); // Collect into a List
+      
+              System.out.println(names); // Output: [Alice, Charlie]
+      
+              // Reduce
+               List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+                  int sum = numbers.stream()
+                       .reduce(0, Integer::sum);
+                  System.out.println(sum);
+          }
+      }
 
-
-##### 01. Filtering:
-Purpose: Selects elements from a stream based on a specified condition.
-Syntax: stream.filter(predicate)
-
-Example:
-  List<Person> people = Arrays.asList(
-  new Person("Alice", 30),
-  new Person("Bob", 25),
-  new Person("Charlie", 35)
-  );
-  
-  List<Person> adults = people.stream()
-  .filter(p -> p.getAge() >= 18)
-  .collect(Collectors.toList());
-  System.out.println(adults); // Output: [Alice, Bob, Charlie]
-
-##### 02. Sorting:
-Purpose: Arranges elements in a stream according to a specified comparator.
-Syntax: stream.sorted(comparator) or stream.sorted() (for natural ordering)
-
-Example:
-  List<Person> sortedPeople = people.stream()
-  .sorted(Comparator.comparing(Person::getName))
-  .collect(Collectors.toList());  
-  System.out.println(sortedPeople); // Output: [Alice, Bob, Charlie]
-
-##### 03. Mapping:
-Purpose: Transforms elements in a stream to a different type. *`java List<String> names = people.stream() .map(Person::getName) .collect(Collectors.toList());
-System.out.println(names); // Output: [Alice, Bob, Charlie]
-
-##### Combined Example:
-  List<String> adultNames = people.stream()
-          .filter(p -> p.getAge() >= 18)
-          .sorted(Comparator.comparing(Person::getName))
-          .map(Person::getName)
-          .collect(Collectors.toList());
-  
-  System.out.println(adultNames); // Output: [Alice, Bob, Charlie]
 
 #######Key Points:
 Intermediate operations: filter, sorted, and map are intermediate operations that create a new stream. They don't produce a final result.
