@@ -29,7 +29,7 @@
 11. What is Exception? Differentiate among checked exceptions, unchecked exceptions, and Errors. (C_08_Q_01)
 12. Lambda Expression that Consumes a Predicate, like find even number. (C_09_Q_04)
 13. What is the Data Structure, When to use which? 
-    ### What are LIST(ArrayList, LinkedList) vs SET(HashSet, LinkedHashSet, TreeSet) vs MAP(HashMap, LinkedHashMap, TreeMap)? (C_10_Q_01)
+    ###LIST(ArrayList, LinkedList) vs SET(HashSet, LinkedHashSet, TreeSet) vs MAP(HashMap, LinkedHashMap, TreeMap)? (C_10_Q_01)
 14. What/When is Generic? Where it is used? Key Benefits of Generics?. (C_11_Q_01)
 15. What/When is a Stream with examples of all three types? (C_11_Q_02)
 16. What/WHY is Thread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_03)
