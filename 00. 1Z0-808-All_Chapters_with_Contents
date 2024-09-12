@@ -17,22 +17,23 @@
 
 01. Scope/Different Type of Variables(Instance vs Static vs Locat) with example. (C_01_Q_01)
 02. Primitive Data Types with size. (C_02_Q_01)
-03. Key Differences between Object reference variables and Primitive variables. (C_02_Q_02)
-04. Difference between `==` and `equals()`. (C_03_Q_03)
-05. When to use what loop(for, foreach, extentended for, while and do-while)? (C_05_Q_04)
-06. Differentiate between default and user-defined constructors. (C_06_Q_05)
-07. Differentiate between Reference type and object type. (C_07_Q_04)          
-08. What is object casting and when is it necessary? (C_07_Q_05)
+03. What are Wrapper Classes and where are they used? (C_02_Q_05)
+04. Key Differences between Object reference variables and Primitive variables. (C_02_Q_02)
+05. Difference between `==` and `equals()`. (C_03_Q_03)
+06. When to use what loop(for, foreach, extentended for, while and do-while)? (C_05_Q_04)
+07. Differentiate between default and user-defined constructors. (C_06_Q_05)
+08. Differentiate between Reference type and object type. (C_07_Q_04)          
+09. What is object casting and when is it necessary? (C_07_Q_05)
      ###### Types of Object Casting (1.Upcasting(Implicit) and 2.Downcasting(Explicit))
-09. Differences between Abstract Class and Interface. Whech to which? (C_07_Q_07)
-10. What is Exception? Differentiate among checked exceptions, unchecked exceptions, and Errors. (C_08_Q_01)
-11. Lambda Expression that Consumes a Predicate, like find even number. (C_09_Q_04)
-12. What is the Data Structure, When to use which? 
+10. Differences between Abstract Class and Interface. Whech to which? (C_07_Q_07)
+11. What is Exception? Differentiate among checked exceptions, unchecked exceptions, and Errors. (C_08_Q_01)
+12. Lambda Expression that Consumes a Predicate, like find even number. (C_09_Q_04)
+13. What is the Data Structure, When to use which? 
     ### What are LIST(ArrayList, LinkedList) vs SET(HashSet, LinkedHashSet, TreeSet) vs MAP(HashMap, LinkedHashMap, TreeMap)? (C_10_Q_01)
-13. What/When is Generic? Where it is used? Key Benefits of Generics?. (C_11_Q_01)
-14. What/When is a Stream with examples of all three types? (C_11_Q_02)
-15. What/WHY is Thread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_03)
-16. What/When/Why Factory, Singleton, Decorator, and Strategy Patterns? Design Patterns Comparison:  (C_13_Q_01)
+14. What/When is Generic? Where it is used? Key Benefits of Generics?. (C_11_Q_01)
+15. What/When is a Stream with examples of all three types? (C_11_Q_02)
+16. What/WHY is Thread?  Explain the concept of multithreading and how to create and manage threads in Java. (C_11_Q_03)
+17. What/When/Why Factory, Singleton, Decorator, and Strategy Patterns? Design Patterns Comparison:  (C_13_Q_01)
 
             
 
