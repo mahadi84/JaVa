@@ -57,7 +57,7 @@ class Singleton {
 
 ================ 03. Decorator Design Pattern ================
 Definition: 
-    Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified
+    Defines a One(model)-to-Many(views) dependency between objects so that when one object changes state, all its dependents are notified
         and updated automatically.
 
 Real-Example: A model-view-controller (MVC) architecture, where the model notifies the view when its data changes. 
@@ -85,10 +85,9 @@ class Mocha extends Beverage {
 
 
 ================ 04. Strategy Design Pattern ================
-Definition: -Choose between different algorithms at runtime.
-            -Encapsulates algorithms and makes them interchangeable.
+Definition: -Choose/Switch between different (e.g., bubble sort, quick sort, merge sort) algorithms at runtime based on the specific requirements of the data.
+
 When to Use:
-    -Sorting algorithm that can be switched between different algorithms (e.g., bubble sort, quick sort, merge sort) based on the specific requirements of the data.
     -Payment processing strategy that can be switched between different payment gateways (e.g., PayPal, Stripe, credit card).
 
 Example:
@@ -120,4 +119,7 @@ class Sorter {
 
 
 
+
+
+-
 
