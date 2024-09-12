@@ -317,7 +317,7 @@ There are primarily two ways to access object fields:
 -----------05. Develop code that uses wrapper classes such as Boolean, Double, and Integer ---------------------
 =====================================================================================================================
 
-######## What and Why Wrapper Classes in Java
+######## What are Wrapper Classes and where are they used?
          ***Why convert Primitive data type into Object and vice-versa?
 ######## How:  -Autoboxing and unboxing
                -Using wrapper classes in collections(Arraylist)
@@ -329,8 +329,14 @@ There are primarily two ways to access object fields:
 ######### How to declare wrapper class as constants?
 
 ########  What and Why Using Wrapper Classes in Java ###### 
-    Wrapper classes in Java provide a way to convert primitive data types into objects. 
-    ***This is essential for using primitive data types in collections, as collections can only store objects.
+    -Provide a convenient way to work with primitive data types within an object-oriented context. 
+    -This is essential for using primitive data types in collections, as collections can only store objects.
+######## Where it is used?
+    Wrapper classes can be 
+        -used in collections, 
+        -passed as arguments to methods, and 
+        -used as generic type parameters, 
+    providing object-oriented capabilities for primitive values.
 
 ################################################## 
        How:    -Creating wrapper class objects, 
