@@ -1,4 +1,6 @@
-Design Pattern Comparison: Factory Singleton, Decorator, and Strategy
+
+What/When/Why Factory, Singleton, Decorator, and Strategy Patterns?
+ -Design Pattern Comparison: 
 
 ================01. Factory Design Pattern ================
 Purpose: Creates objects without specifying their exact class.
