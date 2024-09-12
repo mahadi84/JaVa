@@ -1,10 +1,95 @@
-Design Pattern Comparison: Strategy, Singleton, Decorator, and Factory
+Design Pattern Comparison: Factory Singleton, Decorator, and Strategy
 
-================ 01. Strategy Design Pattern ================
-Purpose: Encapsulates algorithms and makes them interchangeable.
+================01. Factory Design Pattern ================
+Purpose: Creates objects without specifying their exact class.
 When to Use:
-When you need to choose between different algorithms at runtime.
-When you want to avoid tight coupling between the client and the algorithm.
+    -Database connection factory that returns the appropriate connection object based on the specified database type (e.g., MySQL, PostgreSQL).
+    -Creating different types of shapes (e.g., circles, squares, triangles).
+
+Example:
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    // ...
+}
+
+class Rectangle implements Shape {
+    // ...
+}
+
+class ShapeFactory {
+    public Shape getShape(String shapeType) {
+        if (shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle();
+        } else if (shapeType.equalsIgnoreCase("RECTANGLE"))   
+ {
+            return new Rectangle();
+        }
+        return   
+ null;
+    }
+}
+
+================ 02. Singleton Design Pattern ================
+Purpose: Ensures a class has only one instance and provides a global point of access to it.
+    When to Use:
+        -A logger class that provides a single instance for logging messages throughout the application.
+
+Example:
+Java
+class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return   
+ instance;
+    }
+}
+
+
+================ 03. Decorator Design Pattern ================
+Definition: 
+    Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified
+        and updated automatically.
+
+Real-Example: A model-view-controller (MVC) architecture, where the model notifies the view when its data changes. 
+
+
+Example:
+interface Beverage {
+    double cost();
+    String getDescription();
+}
+
+class Espresso implements Beverage {
+    // ...
+}
+
+class Mocha extends Beverage {
+    private Beverage beverage;
+
+    public Mocha(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    // ...
+}
+
+
+================ 04. Strategy Design Pattern ================
+Definition: -Choose between different algorithms at runtime.
+            -Encapsulates algorithms and makes them interchangeable.
+When to Use:
+    -Sorting algorithm that can be switched between different algorithms (e.g., bubble sort, quick sort, merge sort) based on the specific requirements of the data.
+    -Payment processing strategy that can be switched between different payment gateways (e.g., PayPal, Stripe, credit card).
 
 Example:
 interface SortingStrategy {
@@ -33,89 +118,6 @@ class Sorter {
 }
 
 
-================ 02. Singleton Design Pattern ================
-Purpose: Ensures a class has only one instance and provides a global point of access to it.
-When to Use:
-When you need to control the number of instances of a class.
-When you need a global point of access to a shared resource.
-
-Example:
-Java
-class Singleton {
-    private static Singleton instance;
-
-    private Singleton() {
-    }
-
-    public static Singleton getInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
-        return   
- instance;
-    }
-}
-
-
-================ 03. Decorator Design Pattern ================
-Purpose: Adds new responsibilities to objects dynamically.
-When to Use:
-When you need to add behavior to objects without modifying their existing code.
-When you want to provide different implementations of a behavior.
-
-Example:
-interface Beverage {
-    double cost();
-    String getDescription();
-}
-
-class Espresso implements Beverage {
-    // ...
-}
-
-class Mocha extends Beverage {
-    private Beverage beverage;
-
-    public Mocha(Beverage beverage) {
-        this.beverage = beverage;
-    }
-
-    // ...
-}
-
-
-================04. Factory Design Pattern ================
-Purpose: Creates objects without specifying their exact class.
-When to Use:
-When you need to decouple the creation of objects from their usage.
-When you want to provide different implementations of a product.
-
-Example:
-interface Shape {
-    void draw();
-}
-
-class Circle implements Shape {
-    // ...
-}
-
-class Rectangle implements Shape {
-    // ...
-}
-
-class ShapeFactory {
-    public Shape getShape(String shapeType) {
-        if (shapeType.equalsIgnoreCase("CIRCLE")) {
-            return new Circle();
-        } else if (shapeType.equalsIgnoreCase("RECTANGLE"))   
- {
-            return new Rectangle();
-        }
-        return   
- null;
-    }
-}
 
 
 
-----
