@@ -33,7 +33,7 @@ public class Conn {
 
 
 
-==================== READ ============================
+==================== CRUD ============================
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -41,7 +41,7 @@ public class test {
 
     public static void main(String[] args) throws SQLException {
         db_conn con= new db_conn();
-
+---------------------Read -----------------------
         String sql= "select * from login";
         ResultSet rs = con.s.executeQuery(sql);
             while (rs.next()) {
@@ -50,7 +50,7 @@ public class test {
                 System.out.println("ID: " + id + ", Name: " + name);
             }
 
-------------------------INSERT ---------------------------
+------------------------Insert ---------------------------
         String pin = "1000";
         String amount = "2300";
             // Get the current date and time
