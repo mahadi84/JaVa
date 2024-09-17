@@ -13,6 +13,7 @@ public class Conn {
         String password = "";
         
         try{
+            \\Add mysql-connector-java-8.0.28.jar into the project
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.c = DriverManager.getConnection(jdbcURL, username, password);
             this.s = this.c.createStatement();
