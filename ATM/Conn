@@ -14,6 +14,7 @@ public class Conn {
         
         try{
             \\ Add mysql-connector-java-8.0.28.jar into the project
+            \\ Download the latest file: https://dev.mysql.com/downloads/connector/j/?os=26
             \\ How to Add the above/any file?
             \\ Go to the bottom-left of VS code 
             \\ Click on "JAVA Project"(Not showing, Right-Click on Prjoect file (ATM for example) and Select "JAVA Project") 
