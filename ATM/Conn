@@ -30,3 +30,27 @@ public class Conn {
     }
     
 }
+
+
+
+==================== READ ============================
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class test {
+
+    public static void main(String[] args) throws SQLException {
+        db_conn con= new db_conn();
+
+        String sql= "select * from login";
+        ResultSet rs = con.s.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("formno");
+                String name = rs.getString("cardno");
+                System.out.println("ID: " + id + ", Name: " + name);
+            }
+
+    }
+  
+}
+
