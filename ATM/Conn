@@ -50,7 +50,25 @@ public class test {
                 System.out.println("ID: " + id + ", Name: " + name);
             }
 
-    }
+------------------------INSERT ---------------------------
+        String pin = "1000";
+        String amount = "2300";
+            // Get the current date and time
+            LocalDateTime date = LocalDateTime.now();
+            // Define a formatter
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");        
+            // Format the current date and time
+            String currentDataAndTime = date.format(formatter);
+
+                con.s.executeUpdate("insert into bank values('"+0+"','"+pin+"', '"+currentDataAndTime+"', 'Deposit', '"+amount+"')");
+                //Show result in POP-UP
+                JOptionPane.showMessageDialog(null, "Tk.. "+amount+" Deposited Successfully");
+
   
-}
+}//.../end of main function
+
+
+
+
+-
 
