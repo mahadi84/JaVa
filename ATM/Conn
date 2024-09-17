@@ -18,7 +18,8 @@ public class Conn {
             \\ How to Add the above/any file?
             \\ Go to the bottom-left of VS code 
             \\ Click on "JAVA Project"(Not showing, Right-Click on Prjoect file (ATM for example) and Select "JAVA Project") 
-            \\ Click on "Referenced Library" and "+" and show the .jar file path. 
+            \\ Click on "Referenced Library" and "+" and show the .jar file path.
+            \\ Restart VS Code
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.c = DriverManager.getConnection(jdbcURL, username, password);
             this.s = this.c.createStatement();
