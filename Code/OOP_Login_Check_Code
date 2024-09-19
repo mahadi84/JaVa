@@ -1,0 +1,76 @@
+
+
+==================== Login Main() =====================================
+import java.sql.*;
+import java.lang.String;
+// import java.sql.SQLException;
+
+public class Login {    
+    public static void main(String[] args) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        LoginCheckClass lCC= new LoginCheckClass(databaseConnection);
+       
+        String cardNo= "5040935913701752";
+        String pin= "1000";       
+        Encap_Login eL =lCC.loginCheck(cardNo, pin); //As it will return Encap_Login data_type
+
+            if (eL != null) {            
+                System.out.println(eL.getformno());
+            }else{
+                System.out.println("User Not Found!");
+            }
+        
+        databaseConnection.closeConnection();
+
+    } 
+}
+
+
+==================== LoginCheckClass ==================================
+import java.sql.*;
+public class LoginCheckClass {
+    private DatabaseConnection databaseConnection;
+
+    public LoginCheckClass(DatabaseConnection databaseConnection){
+            this.databaseConnection= databaseConnection;
+    }
+   
+    public Encap_Login loginCheck(String cardNo, String pin) throws SQLException{
+        String sql= "Select * from login WHERE cardno=? AND pin=?";        
+        PreparedStatement statement= databaseConnection.getConnection().prepareStatement(sql);        
+        statement.setString(1, cardNo);
+        statement.setString(2, pin);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            Encap_Login eL= new Encap_Login();
+            eL.setCardno(resultSet.getString("cardno"));
+            eL.setPin(resultSet.getString("pin"));
+            eL.setFormno(resultSet.getInt("formno"));
+            return eL;
+        }
+        
+        statement.close();
+        resultSet.close();
+        return null;
+    }
+ 
+}
+
+========================== Encapsulation Login ===================================
+
+public class Encap_Login {
+
+    private String cardno;
+    private String pin;
+    private int formNo;
+   
+    public void setCardno(String cardno){ this.cardno = cardno; }    
+    public void setPin(String pin){ this.pin = pin; }   
+    public void setFormno(int formNo){ this.formNo = formNo; }   
+    
+    public String getCardno(){  return cardno; }
+    public String getPin(){ return pin;}
+    public int getformno(){ return formNo;}
+}
+
