@@ -19,7 +19,7 @@ int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
 ########For Loop:
         for (int i = 0; i < twoDimenArr.length; i++) { // Loop through each row
             for (int j = 0; j < twoDimenArr[i].length; j++) { // Loop through each column in the current row
-                System.out.print(array[i][j] + " ");
+                System.out.print(twoDimenArr[i][j] + " ");
             }
             System.out.println(); // Move to the next line after printing each row
         }
