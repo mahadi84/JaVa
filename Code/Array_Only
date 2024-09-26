@@ -1,10 +1,29 @@
 
-How to Search data in array?
 
+
+
+01. How to print a two-dimensional Array?
+02. How do you search data in an array (linear, binary, stream search)?
+
+
+
+
+================== 01. How to print a two-dimensional Array?  ======================
+int[][] twoDimenArr=  {{3,2,1},{7,8,9}};
+        for (int[] row : twoDimenArr) {
+            for (int element : row) {                
+                System.out.print(element);
+            }
+        System.out.println();
+        }
+
+
+
+
+==================== 02. How to Search data in an array? ====================
 import java.util.*;
 
 public class Learning{
-
     public int findArrayData(int[] a, int key){
         for(int i=0; i<a.length; i++){
             if(a[i]==key){
@@ -12,7 +31,6 @@ public class Learning{
             }
         }
         return -1;
-
     }
 
 
