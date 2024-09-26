@@ -1,13 +1,12 @@
 
 
-
 00. What is an Array?
 01. How to print a two-dimensional Array?
 02. How do you search data in an array (linear, binary, stream search)?
 
 
-================ 00. What is an Array? ==================
--Special Variable holds multiple data. int[] a, int[][]a,
+======================= 00. What is an Array? ========================
+-Special Variable holds multiple data. int[] a= {1,2}, int[][]a={{1,2},{3,4}},
 -Fixed Size, No need to set Array size like [1] while declaring.
 -Element is Non-Add/Edit/Removable
 -Arrays.length shows Array length
@@ -33,7 +32,6 @@ int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
         }
 
 
-
 ==================== 02. How to Search data in an array? ====================
 import java.util.*;
 
@@ -46,7 +44,6 @@ public class Learning{
         }
         return -1;
     }
-
 
     public static void main(String[] args) {
         // int[] a= new int[] {1,2,3,4,5};
@@ -69,6 +66,5 @@ public class Learning{
         System.out.println("Element found: " + found);
     }
 }
-
 
 ---------
