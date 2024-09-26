@@ -1,9 +1,16 @@
 
 
 
-
+00. What is an Array?
 01. How to print a two-dimensional Array?
 02. How do you search data in an array (linear, binary, stream search)?
+
+
+================ 00. What is an Array? ==================
+-Special Variable holds multiple data. int[] a, int[][]a,
+-Fixed Size, No need to set Array size like [1] while declaring.
+-Element is Non-Add/Edit/Removable
+-Arrays.length shows Array length
 
 
 ================== 01. How to print a two-dimensional Array?  ======================
