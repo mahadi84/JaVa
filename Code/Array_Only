@@ -1,0 +1,42 @@
+
+How to Search data in array?
+
+import java.util.*;
+
+public class Learning{
+
+    public int findArrayData(int[] a, int key){
+        for(int i=0; i<a.length; i++){
+            if(a[i]==key){
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+
+    public static void main(String[] args) {
+        // int[] a= new int[] {1,2,3,4,5};
+        int[] a= {1,9,3,1,5};
+        int key =5;
+
+        //Liner Search
+        //for small or unsorted arrays,Result-Start-counting: 1
+       Learning d= new Learning();
+       System.out.println(d.findArrayData(a,key));
+
+        //Binary Search
+        //for large, sorted arrays for faster performance,Result-start-counting: 0
+        Arrays.sort(a);
+        int i= Arrays.binarySearch(a, key);
+        System.out.println(i);
+
+        //Stream Search, more modern and functional approach, Result: true/false
+        boolean found = Arrays.stream(a).anyMatch(x -> x == key);
+        System.out.println("Element found: " + found);
+    }
+}
+
+
+---------
