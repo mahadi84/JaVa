@@ -4,9 +4,6 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
-
-// LocalTime t = LocalTime.now();
-// LocalDateTime dt = LocalDateTime.now();
         LocalDate d = LocalDate.now();
         LocalDate creatDate = LocalDate.of(2024, 9, 29);
 // Chainning
@@ -32,3 +29,13 @@ import java.time.format.DateTimeFormatter;
 
         System.out.println(dB);
         
+
+*****
+
+// LocalTime t = LocalTime.now();
+// LocalDateTime dt = LocalDateTime.now();
+
+
+
+
+-
