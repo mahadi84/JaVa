@@ -20,9 +20,14 @@
  
 --------------------------One Dimension []----------------------------
 String[] oneD = {"a ", "b ", "c ","d "};
-        for(int i=0; i<oneD.length; i++){            
+       ######## for(int i=0; i<oneD.length; i++){            
                     System.out.print(oneD[i]);
         }
+#######For-Each Loop:
+       for (String e : oneD) {  
+              System.out.println(e);
+        }
+
 
 
 ---------------------- two-dimensional [][]  ---------------------------
