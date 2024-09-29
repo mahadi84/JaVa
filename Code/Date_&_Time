@@ -1,4 +1,10 @@
+01. Why pluseYears work on chaining but not getYear()?
+02. What are the Difference among:
+        LocalDate d = LocalDate.now();
+        LocalTime t = LocalTime.now();
+        LocalDateTime dt = LocalDateTime.now();
 
+---------------------------------
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -33,8 +39,7 @@ System.out.println(dB);
 
 *****
 
-// LocalTime t = LocalTime.now();
-// LocalDateTime dt = LocalDateTime.now();
+
 
 
 
