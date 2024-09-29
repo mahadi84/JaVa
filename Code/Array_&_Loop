@@ -11,11 +11,9 @@
 -Element is Non-Add/Edit/Removable
 -Arrays.length shows Array length
 
-
-
-[]    = one "for-loop" need to print data 
-[][]  = two "for-loop" --
-[][][]= three "for-loop" --
+[]    = to print data  needs one "for-loop"
+[][]  = to print data  needs two "for-loop"
+[][][]= to print data  needs three "for-loop"
 
  
 --------------------------One Dimension []----------------------------
@@ -61,10 +59,6 @@ String[][][] threeD = {{{"aa ","aa-2 ", "aa-3"},{"bb ","bb-2 ", "bb-3 "}},{{"cc 
             }
             System.out.println();
         }
-
-
-
-
 
 
 
