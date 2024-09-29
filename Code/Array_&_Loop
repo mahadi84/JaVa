@@ -1,7 +1,7 @@
 
 
 00. What is an Array?
-01. How to print a two-dimensional Array?
+01. How to print a One_,Two_,&_Three dimensional Array?
 02. How do you search data in an array (linear, binary, stream search)?
 
 
@@ -64,6 +64,8 @@ String[][][] threeD = {{{"aa ","aa-2 ", "aa-3"},{"bb ","bb-2 ", "bb-3 "}},{{"cc 
 
 
 ==================== 02. How to Search data in an array? ====================
+**Arrays.sort(a);
+
 import java.util.*;
 
 public class Learning{
