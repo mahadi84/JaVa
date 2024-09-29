@@ -257,6 +257,8 @@ Here are some commonly used methods of the `String` class:
 
 
 ###### 4. `DateTimeFormatter` ######
+import java.time.format.DateTimeFormatter;
+
 `DateTimeFormatter` is used for formatting and parsing date-time objects. It provides flexible ways to format date-time data and parse strings into date-time objects.
 
 ####### Creating and Using `DateTimeFormatter` ######
