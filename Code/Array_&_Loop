@@ -20,15 +20,21 @@
 String[] oneD = {"a ", "b ", "c ","d "};
        ######## for(int i=0; i<oneD.length; i++){            
                     System.out.print(oneD[i]);
-        }
-#######For-Each Loop:
-       for (String e : oneD) {  
-              System.out.println(e);
-        }
+                   }
+       #######For-Each Loop:
+              for (String e : oneD) {  
+                     System.out.println(e);
+               }
+
+      #######While      
+              int i=0;
+              while (i<oneD.length){
+                  System.out.println(oneD[i]);
+                  i++;
+              }
 
 
-
----------------------- two-dimensional [][]  ---------------------------
+---------------------- Two-dimensional [][]  ---------------------------
 int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
 
 ########For Loop:
