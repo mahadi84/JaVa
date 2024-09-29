@@ -6,14 +6,15 @@ import java.time.format.DateTimeFormatter;
 
         LocalDate d = LocalDate.now();
         LocalDate creatDate = LocalDate.of(2024, 9, 29);
-// Chainning
+
+//(+),(-) Date with Method_Chainning
         LocalDate plus= d.plusYears(1).plusMonths(1).plusWeeks(1).minusDays(1);
 
         int year= d.getYear();
         int month= d.getMonthValue();
         int doM= d.getDayOfMonth();
 
-// Date Formate
+// Date Format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String fd = d.format(formatter);
 
@@ -26,8 +27,8 @@ import java.time.format.DateTimeFormatter;
         int yB = periodBetween.getYears();
         int mB = periodBetween.getMonths();
         int dB = periodBetween.getDays();
-
-        System.out.println(dB);
+//Output
+System.out.println(dB);
         
 
 *****
