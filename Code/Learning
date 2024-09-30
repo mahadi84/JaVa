@@ -3,24 +3,82 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
-class parentClass {    
-    public parentClass(int salary){
+public class Learning{
 
-    }
-
-    
 }
 
-public class Learning extends parentClass{
 
-    public static void main(String[] args) {
-        parentClass p = new Learning();
+// ============================ Form Validation ==================================
+// private void setLearning(String name, String pass){
+//         if (name.trim().isEmpty()) {
+//                 System.out.println("Name Field is empty");
+//         }else{
+//                 System.out.println("Username: "+name.trim());
+//         }
+//         if(pass.trim().isEmpty()){
+//                 System.out.println("Password Field is empty");
+//         }else{
+//                 System.out.println("Password: "+pass.trim());                       
+//         }
+// }
 
-    }
-    
-}
+// public static void main(String[] args) {
+//         String name=" Mahadi";
+//         String pass=" 123";
+//         Learning l= new Learning();
+//         l.setLearning(name, pass);                
+// }
 
-//------------------------ Overloading(constructor)  --------------------------
+
+
+// ============================ Interface ====================================
+
+// interface Shape{    
+//     double calculateArea();    
+// }
+
+// class Circle implements Shape{
+//     private double radious;
+
+//     public Circle(double radious){
+//         this.radious= radious;
+//     }
+
+//     public double calculateArea(){
+//         return Math.PI*radious*radious;
+//     }
+// }
+
+// public class Rectangle implements Shape{
+//     private double length;
+//     private double width;
+
+//     public Rectangle(double length, double width){
+//         this.length= length;
+//         this.width= width;
+//     }
+
+//     public double calculateArea(){
+//         return length*width;
+//     }
+
+//     public static void main(String[] args) {
+//         // Shape a= new Circle(3);
+//         // Shape r= new Rectangle(2.5,8); 
+//         //     System.out.println(a.calculateArea());
+//         //     System.out.println(r.calculateArea());
+
+//         Shape [] shape= {new Circle(5.5), new Rectangle(8.5,2)};
+//         for (Shape s : shape) {
+//             System.out.println("Area: "+s.calculateArea());
+//         }
+//     }
+
+// }
+
+
+
+// ============================ Overloading(constructor)  ================================
 
 // public Learning(){}
 //     public Learning(String name){
@@ -59,7 +117,7 @@ public class Learning extends parentClass{
 
 
 
-//---------------------------  String vs StringBuilder --------------------------
+// ============================  String vs StringBuilder ============================
 
         // String name= " Labib";
 
@@ -96,7 +154,7 @@ public class Learning extends parentClass{
 
 
 
-// -------------------------- Date and Time ------------------
+// ============================ Date and Time ----=====================
 
         
 // // LocalTime t = LocalTime.now();
@@ -177,11 +235,7 @@ public class Learning extends parentClass{
         // }
 
 
-
-
-
-// --------------- Priority/Order Initializer ------------------
-
+// ============================ Priority/Order Initializer =====================
 //     public static String sName= "Static_Block";
 //     public String iName= "Instance_Block";
 //     public String iName2= "Instance_Out_of_Block";
