@@ -1,0 +1,266 @@
+
+import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class Learning{
+    public Learning(){}
+    public Learning(String name){
+        System.out.println("String");
+    }
+    public Learning(int salary){
+        System.out.println("Int");
+    }
+    public Learning(int salary, String name){
+        System.out.println("Int_String");
+    }
+    public Learning(String name, int salary){
+        System.out.println("String_Int");
+    }
+
+    public void callObj(){
+        System.out.println("I'm Mr. Called Object");
+    }
+
+    public static void testObj(Learning l){
+        l.callObj();
+        // System.out.println(l);
+    }
+
+   
+public static void main(String[] args) {
+            new Learning("Mahadi");
+            new Learning(1, "Hasan");
+            new Learning("Labib", 1);
+            new Learning(1);
+
+            Learning l = new Learning();
+            testObj(l);
+
+    }
+
+}
+
+
+// String vs StringBuilder
+
+        // String name= " Labib";
+
+        // name.length();
+        // name.charAt(2);
+        // name.indexOf("b");
+        // name.substring(2, 4); //bi
+        
+        // name.startsWith("a");
+        // name.replace("a", "H");
+        // name.concat("Muhammad");
+
+        // name.isEmpty();
+        // name.isBlank();
+        // name.trim();
+        // name.toUpperCase(); //
+        // name.toLowerCase();
+
+        // name.contains("z"); //false;
+        // name.compareTo("Labib"); // 0 if found
+        // name.compareToIgnoreCase("LABIB"); // 0
+        
+        // StringBuilder sb= new StringBuilder();
+        // sb.append("Muhammad Mahadi Hasan");
+        // //First four functions from "String name= Labib"
+        // // sb.delete(10, 15); //Muhammad M Hasan
+        // // sb.insert(0, "-"); //-Muhammad Mahadi Hasan
+        // //sb.reverse(); //nasaH idahaM dammahuM
+        // //sb.length() // 21
+        // //sb.capacity() // Output may vary; default capacity is 16 + length
+        // System.out.println(sb);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+// // LocalTime t = LocalTime.now();
+// // LocalDateTime dt = LocalDateTime.now();
+//         LocalDate d = LocalDate.now();
+//         LocalDate creatDate = LocalDate.of(2024, 9, 29);
+// // Chainning
+//         LocalDate plus= d.plusYears(1).plusMonths(1).plusWeeks(1).minusDays(1);
+
+//         int year= d.getYear();
+//         int month= d.getMonthValue();
+//         int doM= d.getDayOfMonth();
+
+// // Date Formate
+//         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//         String fd = d.format(formatter);
+
+// // LocalDate startDate = LocalDate.of(2024, 1, 1);
+//         LocalDate startDate = LocalDate.now();
+//         LocalDate endDate = LocalDate.of(2024, 8, 4);
+//         Period periodBetween = Period.between(startDate, endDate);
+      
+// // Getting period components:
+//         int yB = periodBetween.getYears();
+//         int mB = periodBetween.getMonths();
+//         int dB = periodBetween.getDays();
+
+
+//         LocalDate d22 = LocalDate.now().plusYears(1);
+//         System.out.println(d22);
+        
+    
+
+ 
+
+
+
+
+
+
+        
+        // First approach 
+        // String[][][] threeD= new String[3][3][3];
+
+        // threeD[0][0][0]="row-1, Col-1 ";
+        // threeD[0][0][1]="row-1, Col-2 ";
+        // threeD[0][0][2]="row-1, Col-3 ";
+        
+        // threeD[0][1][0]="row-2, Col-1 ";
+        // threeD[0][1][1]="row-2, Col-2 ";
+        // threeD[0][1][2]="row-2, Col-3 ";
+
+        // threeD[1][0][0]="row-3, Col-1 ";
+        // threeD[1][0][1]="row-3, Col-2 ";
+        // threeD[1][0][2]="row-3, Col-3 ";
+        
+        // threeD[2][0][0]="row-4, Col-1 ";
+        // threeD[2][0][1]="row-4, Col-2 ";
+        // threeD[2][0][2]="row-4, Col-3 ";
+
+        // Second approach 
+
+        // String[][][] threeD = {{{15,20},{30,40}},{{25,50},{60,80}}};
+
+        
+        // System.out.println("----One Dimension-----");
+        // String[] oneD = {"a ", "b ", "c ","d "};
+        // for(int i=0; i<oneD.length; i++){            
+        //             System.out.print(oneD[i]);
+        // }
+
+  
+        // System.out.println(" \n \n----Two Dimension-----");
+
+        // String[][] twoD = {{"aa ","aa-2 "},{"bb ","bb-2 "},{"cc ","cc-1 "},{"dd ","dd-1 "}};
+        // for(int i=0; i<twoD.length; i++){
+        //     for(int j=0; j<twoD[i].length; j++){
+        //             System.out.print(twoD[i][j]);
+        //     }
+        //     System.out.println();
+        // }
+
+        // System.out.println("\n \n----Three Dimension-----");
+
+        // String[][][] threeD = {{{"aa ","aa-2 ", "aa-3"},{"bb ","bb-2 ", "bb-3 "}},{{"cc ","cc-1 ", "cc-3 "},{"dd ","dd-1 ", "dd-2"}}};	
+        // for(int i=0; i<threeD.length; i++){
+        //     for(int j=0; j<threeD[i].length; j++){
+        //         for(int k=0; k<threeD[i][j].length; k++){
+        //             System.out.print(threeD[i][j][k]);
+        //         }
+        //         System.out.println();
+        //     }
+        //     System.out.println();
+        // }
+
+
+        // String[][][] twoD= new String[2][2];
+
+        // twoD[0][0]="a";
+        // twoD[0][1]="b";
+        // twoD[1][0]="d";
+        // twoD[1][1]="e";
+
+
+        // for(int i=0; i<twoD.length; i++){
+        //     for(int j=0; j<twoD[i].length; j++){
+        //             System.out.println(twoD[i][j][k]);
+        //     }
+        // }
+
+
+
+
+
+
+
+//  --------------- One dimensional array without loop {}  --------------- 
+    // public static void main(String[] args) {
+        
+    //     int[] a1= {1,5,2,7,3}; 
+    //     Arrays.sort(a1);   
+    //     String[] Sa= {"a","c","b","d"}; 
+    //      Arrays.sort(Sa);  
+        
+    //      System.out.println("-- For ---");        
+    //      for(int i=0; i< a1.length; i++)
+    //     System.out.println(a1[i]);
+
+    //     System.out.println("-- While ---");        
+    //     int i=0;
+    //     while (i<Sa.length){
+    //         System.out.println(Sa[i]);
+    //         i++;
+    //     }
+
+    //     System.out.println("---For-Each--");
+    //     for (String s : Sa) {
+    //         System.out.println(s);
+            
+    //     }
+        
+    // }
+
+
+
+
+// --------------- Priority Initializer ------------------
+
+
+//     public static String sName= "Static_Block";
+//     public String iName= "Instance_Block";
+//     public String iName2= "Instance_Out_of_Block";
+
+//     public Learning()
+// {
+
+//     System.out.println("Constructor_Block");
+// }
+//     {
+//         System.out.println(iName);
+//     }
+
+//     static{
+//         System.out.println(sName);
+//     }
+
+//    static {
+//         new Learning();
+//     }
+
+//     public static void main(String[] args) {
+//         System.out.println("Main_function_Block");
+//         // new Learning();
+        
+//     }
+
