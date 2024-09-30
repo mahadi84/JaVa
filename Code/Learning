@@ -1,48 +1,65 @@
-
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class Learning{
-    public Learning(){}
-    public Learning(String name){
-        System.out.println("String");
-    }
-    public Learning(int salary){
-        System.out.println("Int");
-    }
-    public Learning(int salary, String name){
-        System.out.println("Int_String");
-    }
-    public Learning(String name, int salary){
-        System.out.println("String_Int");
-    }
 
-    public void callObj(){
-        System.out.println("I'm Mr. Called Object");
-    }
-
-    public static void testObj(Learning l){
-        l.callObj();
-        // System.out.println(l);
-    }
-
-   
-public static void main(String[] args) {
-            new Learning("Mahadi");
-            new Learning(1, "Hasan");
-            new Learning("Labib", 1);
-            new Learning(1);
-
-            Learning l = new Learning();
-            testObj(l);
+class parentClass {    
+    public parentClass(int salary){
 
     }
 
+    
 }
 
+public class Learning extends parentClass{
 
-// String vs StringBuilder
+    public static void main(String[] args) {
+        parentClass p = new Learning();
+
+    }
+    
+}
+
+//------------------------ Overloading(constructor)  --------------------------
+
+// public Learning(){}
+//     public Learning(String name){
+//         System.out.println("String");
+//     }
+//     public Learning(int salary){
+//         System.out.println("Int");
+//     }
+//     public Learning(int salary, String name){
+//         System.out.println("Int_String");
+//     }
+//     public Learning(String name, int salary){
+//         System.out.println("String_Int");
+//     }
+
+//     public void callObj(){
+//         System.out.println("I'm Mr. Called Object");
+//     }
+
+//     public static void testObj(Learning l){
+//         l.callObj();
+//         // System.out.println(l);
+//     }
+
+   
+// public static void main(String[] args) {
+//             new Learning("Mahadi");
+//             new Learning(1, "Hasan");
+//             new Learning("Labib", 1);
+//             new Learning(1);
+
+//             Learning l = new Learning();
+//             testObj(l);
+
+//     }
+
+
+
+//---------------------------  String vs StringBuilder --------------------------
 
         // String name= " Labib";
 
@@ -79,15 +96,7 @@ public static void main(String[] args) {
 
 
 
-
-
-
-
-
-
-
-
-
+// -------------------------- Date and Time ------------------
 
         
 // // LocalTime t = LocalTime.now();
@@ -101,7 +110,7 @@ public static void main(String[] args) {
 //         int month= d.getMonthValue();
 //         int doM= d.getDayOfMonth();
 
-// // Date Formate
+// // Date Format
 //         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 //         String fd = d.format(formatter);
 
@@ -122,45 +131,29 @@ public static void main(String[] args) {
     
 
  
+// ============================ ARRAY =================================
 
-
-
-
-
-
-        
-        // First approach 
-        // String[][][] threeD= new String[3][3][3];
-
-        // threeD[0][0][0]="row-1, Col-1 ";
-        // threeD[0][0][1]="row-1, Col-2 ";
-        // threeD[0][0][2]="row-1, Col-3 ";
-        
-        // threeD[0][1][0]="row-2, Col-1 ";
-        // threeD[0][1][1]="row-2, Col-2 ";
-        // threeD[0][1][2]="row-2, Col-3 ";
-
-        // threeD[1][0][0]="row-3, Col-1 ";
-        // threeD[1][0][1]="row-3, Col-2 ";
-        // threeD[1][0][2]="row-3, Col-3 ";
-        
-        // threeD[2][0][0]="row-4, Col-1 ";
-        // threeD[2][0][1]="row-4, Col-2 ";
-        // threeD[2][0][2]="row-4, Col-3 ";
-
-        // Second approach 
-
-        // String[][][] threeD = {{{15,20},{30,40}},{{25,50},{60,80}}};
-
-        
-        // System.out.println("----One Dimension-----");
+        //----------------------One Dimension---------------
         // String[] oneD = {"a ", "b ", "c ","d "};
         // for(int i=0; i<oneD.length; i++){            
         //             System.out.print(oneD[i]);
         // }
 
+            //    -- While ---        
+            //     int i=0;
+            //     while (i<Sa.length){
+            //         System.out.println(Sa[i]);
+            //         i++;
+            //     }
+
+            //     ---For-Each--
+            //     for (String s : Sa) {
+            //         System.out.println(s);
+                    
+            //     }
+
   
-        // System.out.println(" \n \n----Two Dimension-----");
+        // ----------------------Two Dimension-----------------------
 
         // String[][] twoD = {{"aa ","aa-2 "},{"bb ","bb-2 "},{"cc ","cc-1 "},{"dd ","dd-1 "}};
         // for(int i=0; i<twoD.length; i++){
@@ -170,7 +163,7 @@ public static void main(String[] args) {
         //     System.out.println();
         // }
 
-        // System.out.println("\n \n----Three Dimension-----");
+        // ----------------------Three Dimension--------------------------
 
         // String[][][] threeD = {{{"aa ","aa-2 ", "aa-3"},{"bb ","bb-2 ", "bb-3 "}},{{"cc ","cc-1 ", "cc-3 "},{"dd ","dd-1 ", "dd-2"}}};	
         // for(int i=0; i<threeD.length; i++){
@@ -184,79 +177,21 @@ public static void main(String[] args) {
         // }
 
 
-        // String[][][] twoD= new String[2][2];
-
-        // twoD[0][0]="a";
-        // twoD[0][1]="b";
-        // twoD[1][0]="d";
-        // twoD[1][1]="e";
-
-
-        // for(int i=0; i<twoD.length; i++){
-        //     for(int j=0; j<twoD[i].length; j++){
-        //             System.out.println(twoD[i][j][k]);
-        //     }
-        // }
 
 
 
-
-
-
-
-//  --------------- One dimensional array without loop {}  --------------- 
-    // public static void main(String[] args) {
-        
-    //     int[] a1= {1,5,2,7,3}; 
-    //     Arrays.sort(a1);   
-    //     String[] Sa= {"a","c","b","d"}; 
-    //      Arrays.sort(Sa);  
-        
-    //      System.out.println("-- For ---");        
-    //      for(int i=0; i< a1.length; i++)
-    //     System.out.println(a1[i]);
-
-    //     System.out.println("-- While ---");        
-    //     int i=0;
-    //     while (i<Sa.length){
-    //         System.out.println(Sa[i]);
-    //         i++;
-    //     }
-
-    //     System.out.println("---For-Each--");
-    //     for (String s : Sa) {
-    //         System.out.println(s);
-            
-    //     }
-        
-    // }
-
-
-
-
-// --------------- Priority Initializer ------------------
-
+// --------------- Priority/Order Initializer ------------------
 
 //     public static String sName= "Static_Block";
 //     public String iName= "Instance_Block";
 //     public String iName2= "Instance_Out_of_Block";
 
-//     public Learning()
-// {
-
-//     System.out.println("Constructor_Block");
-// }
-//     {
-//         System.out.println(iName);
-//     }
-
-//     static{
-//         System.out.println(sName);
-//     }
-
-//    static {
-//         new Learning();
-//     }
+//     public Learning(){
+//            System.out.println("Constructor_Block");
+//            }
+//     { System.out.println(iName);}
+//     static{ System.out.println(sName);}
+//     static { new Learning();}
 
 //     public static void main(String[] args) {
 //         System.out.println("Main_function_Block");
