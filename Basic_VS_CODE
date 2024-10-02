@@ -26,8 +26,8 @@ Date: 09 June 2024
 
 ->Pop-up "Do you want to save your workspace configuration as file?"
 ->Click on "Don't Save"
-->Go to "src" folder where all class have write
-                 That's it.
+->Go to "src" folder where all Files(class) have to create
+   That's it.
 
 ====================== 0.1. DELETE a Java project in VS_Code? ================================
 	File->Close Folder
