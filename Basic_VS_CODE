@@ -1,6 +1,8 @@
 Date: 09 June 2024
 
 00. How do I create a java project in VS_Code?
+0.1. Close a java project in VS_Code?
+
 01. How do I change the Java version into VS_CODE to the latest One?
 
 02. How to create:
@@ -15,7 +17,7 @@ Date: 09 June 2024
 04. Basic FORM and RECEIVE EVENT.
 
 
-====================== 00. How do I create a java project in VS_Code? ================================
+====================== 00. How do I create a Java project in VS_Code? ================================
 ->Click on "Explorer" Or (Ctrl+Shift+E)
 ->Click on "CREATE JAVA PROJECT"
 ->Select "No build tools"
@@ -25,6 +27,10 @@ Date: 09 June 2024
 ->Click on "Don't Save"
 ->Go to "src" folder where all class have write
                  That's it.
+
+====================== 0.1. DELETE a Java project in VS_Code? ================================
+	File->Close Folder
+
 
 ================== 01. How do I change the Java version into VS_CODE to the latest One? ========================
 MUST have a Java Project than....
