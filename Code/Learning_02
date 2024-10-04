@@ -1,0 +1,69 @@
+
+
+// ======================What, Why, How? Polymorphism, Overridding, Object Casting, ======================
+// Can a child access parent/grand-parent/uncle's Object's property OR vise-versa??
+// If No, Why? what is the solution?
+
+// class Animal{ 
+//     public boolean hasHair(){
+//         return true;
+//     }
+//     public void fourLeggged(){
+//        System.out.println("Check it now");
+//     }
+// }
+// interface hasTail{
+//     public boolean isTail();
+// }
+// class Abd{}
+
+// public class Cat extends Animal implements hasTail{
+//      public boolean isTail(){
+//         return false;
+//     }
+
+//     public void fourLeggged(){
+//         System.out.println("Yes, Four Legged Animal");
+//      }
+
+//     public static void main(String[] args) {
+//         Cat cat = new Cat();
+
+//         //Casting (Child to Parent)
+//         Animal animal = new Cat();
+//         hasTail ht = new Cat();
+
+//         //Casting (Parent to Child)
+//         Cat animal2cat = (Cat) animal; 
+//         Cat ht2cat = (Cat) ht; //Casting
+//         // Animal ht2animal = (Animal) ht; //does it work?
+
+
+//         // Animal a = new Animal(); 
+//             //ClassCatException
+//         // Cat c= (Cat) a;
+
+//         // Abd d= new Abd();
+//             //Un-related cast to Compile error   
+//         // Cat c=(Cat) d;     
+
+//         animal.fourLeggged();
+//         System.out.println(animal.hasHair());
+//         System.out.println(ht.isTail());
+//         System.out.println("----");
+//         // cat/ht2cat.fourLeggged();
+//         System.out.println(cat.hasHair());
+//         System.out.println(cat.isTail());
+//     }
+
+// // OUTPUT:
+// // Yes, Four Legged Animal
+// // true
+// // false
+// // ----
+// // Yes, Four Legged Animal
+// // true
+// // false
+
+// }
+
