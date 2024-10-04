@@ -1,6 +1,6 @@
 
 
-// ======================What, Why, How? Polymorphism, Overridding, Object Casting, ======================
+// ======================What, Why, How? Polymorphism, Overriding, Object Casting, ======================
 // Can a child access parent/grand-parent/uncle's Object's property OR vise-versa??
 // If No, Why? what is the solution?
 
