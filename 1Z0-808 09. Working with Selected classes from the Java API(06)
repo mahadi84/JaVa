@@ -39,6 +39,16 @@ System.out.println(bugs.equals(alias)); // true
 08. reverse() 09. toString()
 
 
+There are three ways to construct a StringBuilder:
+StringBuilder sb1 = new StringBuilder();
+StringBuilder sb2 = new StringBuilder("animal");
+StringBuilder sb3 = new StringBuilder(10);
+
+4: StringBuilder a = new StringBuilder("abc");
+5: StringBuilder b = a.append("de");6: b = b.append("f").append("g");
+7: System.out.println("a=" + a);
+8: System.out.println("b=" + b);
+
 againStrings[0] = new StringBuilder(); // DOES NOT COMPILE
 objects[0] = new StringBuilder(); // careful!
 
