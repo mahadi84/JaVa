@@ -2,25 +2,293 @@
 ===========09. Working with Selected classes from the Java API(06) String, StringBuilder, ArrayList, DataTime, Lamda Expression: ======= 10-12Aug-24(Wednesday)
 
 
----- Creating a String  ----- 
+---------------- Creating a String  ------------------------ 
 01. length() 02. charAt() 03. indexOf() 
 04. substring() 
-         {
+         Ex: 
          String string = "animals";
          System.out.println(string.substring(3)); // mals
          System.out.println(string.substring(string.indexOf('m'))); // mals
          System.out.println(string.substring(3, 4)); // m
-         }
-05. toLowerCase() and toUpperCase 06. equals() and equalsIgnoreCase()
-07. startsWith() and endsWith() 08. contains() 09. replace() Ex:String result = lowercase.replace('a', 'A'); 
+         
+05. toLowerCase() and toUpperCase 
+06. equals() and equalsIgnoreCase()
+         Ex:
+         System.out.println("abc".equals("ABC")); // false
+         System.out.println("ABC".equals("ABC")); // true
+         System.out.println("abc".equalsIgnoreCase("ABC")); // true
+07. startsWith() and endsWith() 08. contains() 
+09. replace() Ex:String result = lowercase.replace('a', 'A'); 
 10. trim()
 
----------- Creating a StringBuilder --------------
+
+String[] arr = new String[3];
+String [] arrText = new String[3] { "cricket", "beetle", "ladybug" }; //Can not assaign Size and data at the same time
+
+
+String [] bugs = { "cricket", "beetle", "ladybug" };
+OR
+String [] bugs = new String[] { "cricket", "beetle", "ladybug" };
+String [] alias = bugs; //assign reference(possible)
+System.out.println(bugs.equals(alias)); // true
+
+----------------------- Creating a StringBuilder ----------------
 01. length() 02. charAt() 03. indexOf() 04. substring() 05. append() 
 06. insert() (Ex: sb.insert(7, "-");)
 07. delete() and deleteCharAt() Ex: sb.delete(1, 3); sb.deleteCharAt(5); // throws an exception
 08. reverse() 09. toString()
----------
+
+
+againStrings[0] = new StringBuilder(); // DOES NOT COMPILE
+objects[0] = new StringBuilder(); // careful!
+
+---------------------------- Array -----------------------------
+String[] mammals = {"monkey", "chimp", "donkey"};
+String[] birds = new String[6];
+System.out.println(birds.length);
+
+int[] numbers = {2,4,6,8};
+System.out.println(Arrays.binarySearch(numbers, 2)); // 0
+
+String[] numbers = { "10", "9", "100" };
+Arrays.sort(numbers);
+Arrays.binarySearch(numbers, 2)
+
+--------------------------- ArrayList --------------------------
+There are 3 ways to create an ArrayList:--
+ArrayList list1 = new ArrayList();
+ArrayList list2 = new ArrayList(10);
+ArrayList list3 = new ArrayList(list2);
+
+ist<String> list6 = new ArrayList<>();
+ArrayList<String> list7 = new List<>(); // DOES NOT COMPILE
+
+ArrayList list = new ArrayList(); //When no data type declared
+list.add("hawk"); // [hawk]list.add(Boolean.TRUE); // [hawk, true]
+System.out.println(list); // [hawk, true]
+
+ArrayList<String> safer = new ArrayList<>(); //When data(String) type declared
+safer.add(Boolean.TRUE); // DOES NOT COMPILE
+
+add()
+ List<String> birds = new ArrayList<>();
+5: birds.add("hawk"); // [hawk]
+6: birds.add(1, "robin"); // [hawk, robin]
+7: birds.add(0, "blue jay"); // [blue jay, hawk, robin]
+8: birds.add(1, "cardinal"); // [blue jay, cardinal, hawk, robin]
+9: System.out.println(birds); // [blue jay, cardinal, hawk, robin]
+
+remove()
+List<String> birds = new ArrayList<>();
+4: birds.add("hawk"); // [hawk]
+5: birds.add("hawk"); // [hawk, hawk]
+6: System.out.println(birds.remove("cardinal")); // prints false
+7: System.out.println(birds.remove("hawk")); // prints true
+
+set()
+The set() method changes one of the elements of the ArrayList without changing the size.
+15: List<String> birds = new ArrayList<>();
+16: birds.add("hawk"); // [hawk]
+17: System.out.println(birds.size()); // 1
+18: birds.set(0, "robin"); // [robin]
+19: System.out.println(birds.size()); // 1
+20: birds.set(1, "robin"); // IndexOutOfBoundsException
+
+isEmpty() and size()
+System.out.println(birds.isEmpty()); // true
+System.out.println(birds.size()); // 0
+birds.add("hawk"); // [hawk]
+birds.add("hawk"); // [hawk, hawk]System.out.println(birds.isEmpty()); // false
+System.out.println(birds.size()); // 2
+
+clear()
+The clear() method provides an easy way to discard all elements of the ArrayList. The
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); // [hawk]
+birds.add("hawk"); // [hawk, hawk]
+System.out.println(birds.isEmpty()); // false
+System.out.println(birds.size()); // 2
+birds.clear(); // []
+System.out.println(birds.isEmpty()); // true
+System.out.println(birds.size()); // 0
+After we call clear(), birds is back to being an empty ArrayList of size 0.
+
+contains()
+The contains() method checks whether a certain value is in the ArrayList. The method
+signature is as follows:
+boolean contains(Object object)
+The following shows how to use this method:
+List<String> birds = new ArrayList<>();
+birds.add("hawk"); // [hawk]
+System.out.println(birds.contains("hawk")); // true
+System.out.println(birds.contains("robin")); // false
+
+
+equals()
+Finally, ArrayList has a custom implementation of equals() so you can compare two lists
+to see if they contain the same elements in the same order.
+boolean equals(Object object)
+Understanding an ArrayList 133134 Chapter 3 ■ Core Java APIs
+The following shows an example:
+31: List<String> one = new ArrayList<>();
+32: List<String> two = new ArrayList<>();
+33: System.out.println(one.equals(two)); // true
+34: one.add("a"); // [a]
+35: System.out.println(one.equals(two)); // false
+36: two.add("a"); // [a]
+37: System.out.println(one.equals(two)); // true
+38: one.add("b"); // [a,b]
+39: two.add(0, "b"); // [b,a]
+40: System.out.println(one.equals(two)); // false
+
+------------------------ Converting Between array and List --------------------------
+You should know how to convert between an array and an ArrayList. Let’s start with
+turning an ArrayList into an array:
+3: List<String> list = new ArrayList<>();
+4: list.add("hawk");Understanding an ArrayList 137
+5: list.add("robin");
+6: Object[] objectArray = list.toArray();
+7: System.out.println(objectArray.length); // 2
+8: String[] stringArray = list.toArray(new String[0]);
+9: System.out.println(stringArray.length); // 2
+
+20: String[] array = { "hawk", "robin" }; // [hawk, robin]
+21: List<String> list = Arrays.asList(array); // returns fixed size list
+22: System.out.println(list.size()); // 2
+23: list.set(1, "test"); // [hawk, test]
+24: array[0] = "new"; // [new, test]
+25: for (String b : array) System.out.print(b + " "); // new test
+26: list.remove(1); // throws UnsupportedOperation Excep
+
+
+------------------------ Wrapper Class ----------------------
+int primitive = Integer.parseInt("123"); //converts a String to an int primitive
+Integer wrapper = Integer.valueOf("123"); //converts a String to an Integer wrapper class
+
+int bad1 = Integer.parseInt("a"); // throws NumberFormatException
+Integer bad2 = Integer.valueOf("123.45"); // throws NumberFormatException
+
+
+Autoboxing
+Why won’t you need to be concerned with whether a primitive or wrapper class is returned,
+you ask? Since Java 5, you can just type the primitive value and Java will convert it to the
+relevant wrapper class for you. This is called autoboxing. Let’s look at an example:
+4: List<Double> weights = new ArrayList<>();
+5: weights.add(50.5); // [50.5]
+6: weights.add(new Double(60)); // [50.5, 60.0]
+7: weights.remove(50.5); // [60.0]
+8: double first = weights.get(0); // 60.0
+
+What do you think happens if you try to unbox a null?
+3: List<Integer> heights = new ArrayList<>();
+4: heights.add(null);
+5: int h = heights.get(0); // NullPointerException
+
+--------------------------- Date and Time ----------------------
+System.out.println(LocalDate.now());
+System.out.println(LocalTime.now());
+System.out.println(LocalDateTime.now());
+
+LocalDate date1 = LocalDate.of(2015, Month.JANUARY, 20);
+LocalDate date2 = LocalDate.of(2015, 1, 20);
+
+LocalTime time1 = LocalTime.of(6, 15); // hour and minute
+LocalTime time2 = LocalTime.of(6, 15, 30); // + seconds
+LocalTime time3 = LocalTime.of(6, 15, 30, 200); // + nanoseconds
+
+public static LocalTime of(int hour, int minute)
+public static LocalTime of(int hour, int minute, int second)
+public static LocalTime of(int hour, int minute, int second, int nanos)
+
+Manipulating Dates and Times:----
+Adding to a date is easy. The date and time classes are immutable, just like String was.
+This means that we need to remember to assign the results of these methods to a reference
+variable so they are not lost.
+
+12: LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
+13: System.out.println(date); // 2014-01-20
+14: date = date.plusDays(2);
+15: System.out.println(date); // 2014-01-22
+16: date = date.plusWeeks(1);
+
+continuedWorking with Dates and Times 143
+17: System.out.println(date); // 2014-01-29
+18: date = date.plusMonths(1);
+19: System.out.println(date); // 2014-02-28
+20: date = date.plusYears(5);
+21: System.out.println(date); // 2019-02-28
+
+22: LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+23: LocalTime time = LocalTime.of(5, 15);
+24: LocalDateTime dateTime = LocalDateTime.of(date, time);
+25: System.out.println(dateTime); // 2020-01-20T05:15
+26: dateTime = dateTime.minusDays(1);
+27: System.out.println(dateTime); // 2020-01-19T05:15
+28: dateTime = dateTime.minusHours(10);
+29: System.out.println(dateTime); // 2020-01-18T19:15
+30: dateTime = dateTime.minusSeconds(30);
+31: System.out.println(dateTime); // 2020-01-18T19:14:30
+
+Period:--
+
+public static void main(String[] args) {
+LocalDate start = LocalDate.of(2015, Month.JANUARY, 1);
+LocalDate end = LocalDate.of(2015, Month.MARCH, 30);
+Period period = Period.ofMonths(1); // create a period
+performAnimalEnrichment(start, end, period);
+}
+
+Period annually = Period.ofYears(1); // every 1 year
+Period quarterly = Period.ofMonths(3); // every 3 monthsWorking with Dates and Times 147
+Period everyThreeWeeks = Period.ofWeeks(3); // every 3 weeks
+Period everyOtherDay = Period.ofDays(2); // every 2 days
+Period everyYearAndAWeek = Period.of(1, 0, 7); // every year and 7 days
+
+Period wrong = Period.ofYears(1).ofWeeks(1); // every week
+This tricky code is really like writing the following:
+Period wrong = Period.ofYears(1);
+wrong = Period.ofWeeks(7);
+
+3: LocalDate date = LocalDate.of(2015, 1, 20);
+4: LocalTime time = LocalTime.of(6, 15);
+5: LocalDateTime dateTime = LocalDateTime.of(date, time);
+6: Period period = Period.ofMonths(1);
+7: System.out.println(date.plus(period)); // 2015-02-20
+8: System.out.println(dateTime.plus(period)); // 2015-02-20T06:15
+9: System.out.println(time.plus(period)); // UnsupportedTemporalTypeException
+
+
+Formatting Dates and Times
+
+DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
+System.out.println(dateTime.format(f)); // 13-20-2020, 11:12
+
+
+The date and time classes support many methods to get data out of them:
+LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+System.out.println(date.getDayOfWeek()); // MONDAY
+System.out.println(date.getMonth()); // JANUARY
+System.out.println(date.getYear()); // 2020
+System.out.println(date.getDayOfYear()); // 20
+
+DateTimeFormatter shortDateTime =
+DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+System.out.println(shortDateTime.format(dateTime)); // 1/20/20
+System.out.println(shortDateTime.format(date)); // 1/20/20
+System.out.println(
+shortDateTime.format(time)); // UnsupportedTemporalTypeException
+
+
+Parsing Dates and Times:-------
+DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");
+LocalDate date = LocalDate.parse("01 02 2015", f);
+LocalTime time = LocalTime.parse("11:22");
+System.out.println(date); // 2015-01-02
+System.out.println(time); // 11:22
+
+
+
+-------------------------- Lambda Expression -------------------
 
 
 
@@ -30,6 +298,8 @@
 
 
 
+
+===============================================================================================
 
 
 01. Manipulate data using the StringBuilder class and its methods
