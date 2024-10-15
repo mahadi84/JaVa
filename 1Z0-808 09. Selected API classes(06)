@@ -103,88 +103,88 @@ ArrayList<String> safer = new ArrayList<>(); //When data(String) type declared
 safer.add(Boolean.TRUE); // DOES NOT COMPILE
 
 01. add()
- List<String> birds = new ArrayList<>();
-5: birds.add("hawk"); // [hawk]
-6: birds.add(1, "robin"); // [hawk, robin]
-7: birds.add(0, "blue jay"); // [blue jay, hawk, robin]
-8: birds.add(1, "cardinal"); // [blue jay, cardinal, hawk, robin]
-9: System.out.println(birds); // [blue jay, cardinal, hawk, robin]
+         List<String> birds = new ArrayList<>();
+         birds.add("hawk"); // [hawk]
+         birds.add(1, "robin"); // [hawk, robin]
+         birds.add(0, "blue jay"); // [blue jay, hawk, robin]
+         birds.add(1, "cardinal"); // [blue jay, cardinal, hawk, robin]
+         System.out.println(birds); // [blue jay, cardinal, hawk, robin]
 
 02. get()
-List<String> birds = new ArrayList<>();
-birds.add("robin");
-birds.add("cardinal"); 
-birds.add("hawk"); 
-String secondBirds = birds.get(1); // Get the element at index 1 (second element)
-System.out.println("Second birds: " + secondBirds);
-Output:
+         List<String> birds = new ArrayList<>();
+         birds.add("robin");
+         birds.add("cardinal"); 
+         birds.add("hawk"); 
+         String secondBirds = birds.get(1); // Get the element at index 1 (second element)
+         System.out.println("Second birds: " + secondBirds);
+         Output:
 
 03. set()
-The set() method changes one of the elements of the ArrayList without changing the size.
-15: List<String> birds = new ArrayList<>();
-16: birds.add("hawk"); // [hawk]
-17: System.out.println(birds.size()); // 1
-18: birds.set(0, "robin"); // [robin]
-19: System.out.println(birds.size()); // 1
-20: birds.set(1, "robin"); // IndexOutOfBoundsException
+         The set() method changes one of the elements of the ArrayList without changing the size.
+         List<String> birds = new ArrayList<>();
+         birds.add("hawk"); // [hawk]
+         System.out.println(birds.size()); // 1
+         birds.set(0, "robin"); // [robin]
+         System.out.println(birds.size()); // 1
+         birds.set(1, "robin"); // IndexOutOfBoundsException
 
 04. size() and  isEmpty() 
-System.out.println(birds.isEmpty()); // true
-System.out.println(birds.size()); // 0
-birds.add("hawk"); // [hawk]
-birds.add("hawk"); // [hawk, hawk]System.out.println(birds.isEmpty()); // false
-System.out.println(birds.size()); // 2
+         System.out.println(birds.isEmpty()); // true
+         System.out.println(birds.size()); // 0
+         birds.add("hawk"); // [hawk]
+         birds.add("hawk"); // [hawk, hawk]System.out.println(birds.isEmpty()); // false
+         System.out.println(birds.size()); // 2
 
 
 05. remove()
-List<String> birds = new ArrayList<>();
-4: birds.add("hawk"); // [hawk]
-5: birds.add("hawk"); // [hawk, hawk]
-6: System.out.println(birds.remove("cardinal")); // prints false
-7: System.out.println(birds.remove("hawk")); // prints true
+         List<String> birds = new ArrayList<>();
+         birds.add("hawk"); // [hawk]
+         birds.add("hawk"); // [hawk, hawk]
+         System.out.println(birds.remove("cardinal")); // prints false
+         System.out.println(birds.remove("hawk")); // prints true
 
 06. removeOf()
 
 
 07. clear()
-The clear() method provides an easy way to discard all elements of the ArrayList. The
-List<String> birds = new ArrayList<>();
-birds.add("hawk"); // [hawk]
-birds.add("hawk"); // [hawk, hawk]
-System.out.println(birds.isEmpty()); // false
-System.out.println(birds.size()); // 2
-birds.clear(); // []
-System.out.println(birds.isEmpty()); // true
-System.out.println(birds.size()); // 0
-After we call clear(), birds is back to being an empty ArrayList of size 0.
+         The clear() method provides an easy way to discard all elements of the ArrayList. The
+         List<String> birds = new ArrayList<>();
+         birds.add("hawk"); // [hawk]
+         birds.add("hawk"); // [hawk, hawk]
+         System.out.println(birds.isEmpty()); // false
+         System.out.println(birds.size()); // 2
+         birds.clear(); // []
+         System.out.println(birds.isEmpty()); // true
+         System.out.println(birds.size()); // 0
+         After we call clear(), birds is back to being an empty ArrayList of size 0.
 
 08. contains()
-The contains() method checks whether a certain value is in the ArrayList. The method
-signature is as follows:
-boolean contains(Object object)
-The following shows how to use this method:
-List<String> birds = new ArrayList<>();
-birds.add("hawk"); // [hawk]
-System.out.println(birds.contains("hawk")); // true
-System.out.println(birds.contains("robin")); // false
+         The contains() method checks whether a certain value is in the ArrayList. The method
+         signature is as follows:
+         boolean contains(Object object)
+         The following shows how to use this method:
+         List<String> birds = new ArrayList<>();
+         birds.add("hawk"); // [hawk]
+         System.out.println(birds.contains("hawk")); // true
+         System.out.println(birds.contains("robin")); // false
 
 
 09. equals()
-Finally, ArrayList has a custom implementation of equals() so you can compare two lists
-to see if they contain the same elements in the same order.
-boolean equals(Object object)
-Understanding an ArrayList 133134 Chapter 3 ■ Core Java APIs
-The following shows an example:
-31: List<String> one = new ArrayList<>();
-32: List<String> two = new ArrayList<>();
-33: System.out.println(one.equals(two)); // true
-34: one.add("a"); // [a]
-35: System.out.println(one.equals(two)); // false
-36: two.add("a"); // [a]
-37: System.out.println(one.equals(two)); // true
-38: one.add("b"); // [a,b]
-39: two.add(0, "b"); // [b,a]
-40: System.out.println(one.equals(two)); // false
+         Finally, ArrayList has a custom implementation of equals() so you can compare two lists
+         to see if they contain the same elements in the same order.
+         boolean equals(Object object)
+         Understanding an ArrayList 133134 Chapter 3 ■ Core Java APIs
+         The following shows an example:
+          List<String> one = new ArrayList<>();
+          List<String> two = new ArrayList<>();
+          System.out.println(one.equals(two)); // true
+          one.add("a"); // [a]
+          System.out.println(one.equals(two)); // false
+          two.add("a"); // [a]
+          System.out.println(one.equals(two)); // true
+          one.add("b"); // [a,b]
+          two.add(0, "b"); // [b,a]
+          System.out.println(one.equals(two)); // false
 
 
 ------------------------ Converting Between array and List --------------------------
