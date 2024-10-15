@@ -230,9 +230,9 @@ What do you think happens if you try to unbox a null?
 =========================================== Date and Time =========================================
 -Immutable
 
-01. LocalDate currentDate = LocalDate.now();
-02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);
-03. TwoDayAhead = currentDate.plusDays(2);
+01. LocalDate currentDate = LocalDate.now();                 //Auto generate date
+02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);   //My generated date
+03. TwoDayAhead = currentDate.plusDays(2);                   //
 04. Period oneMonth = Period.ofMonths(1);
          LocalDate nextMonth = currentDate.plus(oneMonth);
 05. DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
