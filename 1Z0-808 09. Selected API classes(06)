@@ -234,15 +234,18 @@ LocalDate: Contains just a date—no time and no time zone.
 LocalTime: Contains just a time—no date and no time zone.
 LocalDateTime: Contains both a date and time but no time zone.
 
-01. LocalDate currentDate = LocalDate.now();                 //Auto generate date
+01. LocalDate today = LocalDate.now();                       //Auto generate date
 02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);   //My generated date
-03. TwoDayAhead = currentDate.plusDays(2);                   //
-04. Period oneMonth = Period.ofMonths(1);
-         LocalDate nextMonth = currentDate.plus(oneMonth);
-05. DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
-         formatDate = currentDate.format(f)); // 13-20-2020, 11:12
-06. week = currentDate.getDayOfWeek() //
-07. LocalDate date = LocalDate.parse("01 02 2015", f); //Create/Parse date
+03. TwoDayAhead = today.plusDays(2);      //(plus/minus)Days/Weeks()/Months()/Years(), (plus/minus)Hours/Minues/Seconds
+04. Period oneMonth = Period.ofMonths(1); //ofDays/Weeks()/Months()/Years() //period for time does work. UnsupportedTemporalTypeException
+         LocalDate nextMonth = today.plus(oneMonth);
+05. DateTimeFormatter f = DateTimeFormatter.ofPattern("DD-MM-YYYY, hh:mm");
+         formatDate = today.format(f); // 20-12-2024, 11:12
+06. week = today.getDayOfWeek() //
+07. LocalDate date = LocalDate.parse("01 02 2024", f); //Create/Parse date
+
+08. DateTimeFormatter shortDateTime = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT); // Show date format: 1/20/20
+     System.out.println(shortDateTime.format(today)); 
 
 
 
