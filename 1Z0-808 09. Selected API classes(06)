@@ -228,7 +228,11 @@ What do you think happens if you try to unbox a null?
 5: int h = heights.get(0); // NullPointerException
 
 =========================================== Date and Time =========================================
--Immutable
+-The date and time classes are immutable, just like String is.
+
+LocalDate: Contains just a date—no time and no time zone.
+LocalTime: Contains just a time—no date and no time zone.
+LocalDateTime: Contains both a date and time but no time zone.
 
 01. LocalDate currentDate = LocalDate.now();                 //Auto generate date
 02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);   //My generated date
@@ -257,10 +261,8 @@ public static LocalTime of(int hour, int minute)
 public static LocalTime of(int hour, int minute, int second)
 public static LocalTime of(int hour, int minute, int second, int nanos)
 
-Manipulating Dates and Times:----
-Adding to a date is easy. The date and time classes are immutable, just like String was.
-This means that we need to remember to assign the results of these methods to a reference
-variable so they are not lost.
+
+MANIPULATING DATES AND TIMES:----
 
 12: LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
 13: System.out.println(date); // 2014-01-20
@@ -286,8 +288,7 @@ continuedWorking with Dates and Times 143
 30: dateTime = dateTime.minusSeconds(30);
 31: System.out.println(dateTime); // 2020-01-18T19:14:30
 
-Period:--
-
+PERIOD:--
 
 Period oneMonth = Period.ofMonths(1);
 LocalDate currentDate = LocalDate.now();
@@ -321,7 +322,7 @@ wrong = Period.ofWeeks(7);
 9: System.out.println(time.plus(period)); // UnsupportedTemporalTypeException
 
 
-Formatting Dates and Times
+FORMATTING DATES AND TIMES:---
 
 DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
 System.out.println(dateTime.format(f)); // 13-20-2020, 11:12
@@ -341,8 +342,8 @@ System.out.println(shortDateTime.format(date)); // 1/20/20
 System.out.println(
 shortDateTime.format(time)); // UnsupportedTemporalTypeException
 
+PARSING DATES AND TIMES:-------
 
-Parsing Dates and Times:-------
 DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");
 LocalDate date = LocalDate.parse("01 02 2015", f);
 LocalTime time = LocalTime.parse("11:22");
