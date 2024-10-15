@@ -5,7 +5,7 @@
 ---------------- Creating a String  ------------------------ 
 String is a special class and immutable(can not add, delete to it only replace).
 
-Functions:
+FUNCTIONS:
          01. length() 02. charAt() 03. indexOf() 
          04. substring() 
                   Ex: 
