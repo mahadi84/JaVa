@@ -399,7 +399,7 @@ PREDICATES:
 5: bunnies.add("floppy");
 6: bunnies.add("hoppy");
 7: System.out.println(bunnies); // [long ear, floppy, hoppy]
-8: bunnies.removeIf(s -> s.charAt(0) != 'h'); //A predicate that takes a String and returns a boolean. Remove the word that has "h" as the first latter.
+8: bunnies.removeIf(s -> s.charAt(0) != 'h'); //A predicate that takes a String and returns a boolean. Show only the word that has "h" as the first latter.
 9: System.out.println(bunnies); // [hoppy]
 
 
