@@ -61,6 +61,8 @@ objects[0] = new StringBuilder(); // careful!
 -Fixed-size
 -Can not Add/Insert, Edit, and Delete once declared/initialized.
 
+FUNCTIONS:--
+01. length 02. sort() 03. binarySearch()
 
 String[] mammals = {"monkey", "chimp", "donkey"};
 String[] birds = new String[6];
@@ -356,9 +358,8 @@ System.out.println(time); // 11:22
 
 
 ===================================== Lambda Expression =============================================
-Lambdas work with interfaces that have only one method. These are called functional
-interfaces—interfaces that can be used with functional programming. (It’s actually more
-complicated than this, but for the OCA exam this definition is fine.)
+Lambdas work with interfaces that have only one method. These are called functional interfaces—interfaces 
+that can be used with functional programming. (It’s actually more complicated than this)
 
 a -> a.canHop()
 (Animal a) -> { return a.canHop(); }
