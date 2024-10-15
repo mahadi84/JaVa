@@ -17,7 +17,6 @@ but not subclass of RuntimeException                    Yes                     
 03. Error Subclass of Error                             No                                   No
 
 
-
 Common RUNTIME exceptions include:
 ■ ArithmeticException (Thrown by the JVM when code attempts to divide by zero)
 ■ ArrayIndexOutOfBoundsException (Thrown by the JVM when code uses an illegal index to access an array)
@@ -38,7 +37,22 @@ Common ERRORS include:
 
 
 
+------------- Printing an Exception --------------
+There are three ways to print an exception. You can let Java print it out, print just the message, or print where the stack trace comes from. This example shows all three approaches:
+5: public static void main(String[] args) {
+6: try {
+7: hop();
+8: } catch (Exception e) {
+9: System.out.println(e);
+10: System.out.println(e.getMessage());
+11: e.printStackTrace();
+12: }
+13: }
+14: private static void hop() {
+15: throw new RuntimeException("cannot hop");
+16: }
 
+---------
 A checked exception includes Exception and all subclasses that do not extend
 RuntimeException.
 
@@ -276,20 +290,7 @@ class Bunny extends Hopper {
 public void hop() throws IllegalStateException { }
 }
 
-------------- Printing an Exception --------------
-There are three ways to print an exception. You can let Java print it out, print just the message, or print where the stack trace comes from. This example shows all three approaches:
-5: public static void main(String[] args) {
-6: try {
-7: hop();
-8: } catch (Exception e) {
-9: System.out.println(e);
-10: System.out.println(e.getMessage());
-11: e.printStackTrace();
-12: }
-13: }
-14: private static void hop() {
-15: throw new RuntimeException("cannot hop");
-16: }
+
 
 
 
