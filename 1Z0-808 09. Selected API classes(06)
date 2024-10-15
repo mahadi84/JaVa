@@ -74,6 +74,9 @@ Arrays.sort(numbers);
 Arrays.binarySearch(numbers, 2)
 
 --------------------------- ArrayList --------------------------
+-Java Class and mutable
+-Can Add/Insert, Edit, and Delete once declared/initialized.
+
 There are 3 ways to create an ArrayList:--
          ArrayList list1 = new ArrayList();
          ArrayList list2 = new ArrayList(10);
@@ -225,6 +228,18 @@ What do you think happens if you try to unbox a null?
 5: int h = heights.get(0); // NullPointerException
 
 =========================================== Date and Time =========================================
+01. LocalDate currentDate = LocalDate.now();
+02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);
+03. TwoDayAhead = currentDate.plusDays(2);
+04. Period oneMonth = Period.ofMonths(1);
+         LocalDate nextMonth = currentDate.plus(oneMonth);
+05. DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
+         formatDate = currentDate.format(f)); // 13-20-2020, 11:12
+06. week = currentDate.getDayOfWeek() //
+07. LocalDate date = LocalDate.parse("01 02 2015", f); //Create/Parse date
+
+
+
 System.out.println(LocalDate.now());
 System.out.println(LocalTime.now());
 System.out.println(LocalDateTime.now());
@@ -270,6 +285,12 @@ continuedWorking with Dates and Times 143
 31: System.out.println(dateTime); // 2020-01-18T19:14:30
 
 Period:--
+
+
+Period oneMonth = Period.ofMonths(1);
+LocalDate currentDate = LocalDate.now();
+LocalDate nextMonth = currentDate.plus(oneMonth);
+
 
 public static void main(String[] args) {
 LocalDate start = LocalDate.of(2015, Month.JANUARY, 1);
