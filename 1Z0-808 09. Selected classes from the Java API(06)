@@ -3,23 +3,24 @@
 
 
 ---------------- Creating a String  ------------------------ 
-01. length() 02. charAt() 03. indexOf() 
-04. substring() 
-         Ex: 
-         String string = "animals";
-         System.out.println(string.substring(3)); // mals
-         System.out.println(string.substring(string.indexOf('m'))); // mals
-         System.out.println(string.substring(3, 4)); // m
-         
-05. toLowerCase() and toUpperCase 
-06. equals() and equalsIgnoreCase()
-         Ex:
-         System.out.println("abc".equals("ABC")); // false
-         System.out.println("ABC".equals("ABC")); // true
-         System.out.println("abc".equalsIgnoreCase("ABC")); // true
-07. startsWith() and endsWith() 08. contains() 
-09. replace() Ex:String result = lowercase.replace('a', 'A'); 
-10. trim()
+Functions:
+         01. length() 02. charAt() 03. indexOf() 
+         04. substring() 
+                  Ex: 
+                  String string = "animals";
+                  System.out.println(string.substring(3)); // mals
+                  System.out.println(string.substring(string.indexOf('m'))); // mals
+                  System.out.println(string.substring(3, 4)); // m
+                  
+         05. toLowerCase() and toUpperCase 
+         06. equals() and equalsIgnoreCase()
+                  Ex:
+                  System.out.println("abc".equals("ABC")); // false
+                  System.out.println("ABC".equals("ABC")); // true
+                  System.out.println("abc".equalsIgnoreCase("ABC")); // true
+         07. startsWith() and endsWith() 08. contains() 
+         09. replace() Ex:String result = lowercase.replace('a', 'A'); 
+         10. trim()
 
 
 String[] arr = new String[3];
@@ -33,16 +34,17 @@ String [] alias = bugs; //assign reference(possible)
 System.out.println(bugs.equals(alias)); // true
 
 ----------------------- Creating a StringBuilder ----------------
-01. length() 02. charAt() 03. indexOf() 04. substring() 05. append() 
-06. insert() (Ex: sb.insert(7, "-");)
-07. delete() and deleteCharAt() Ex: sb.delete(1, 3); sb.deleteCharAt(5); // throws an exception
-08. reverse() 09. toString()
+Functions:
+         01. length() 02. charAt() 03. indexOf() 04. substring() 05. append() 
+         06. insert() (Ex: sb.insert(7, "-");)
+         07. delete() and deleteCharAt() Ex: sb.delete(1, 3); sb.deleteCharAt(5); // throws an exception
+         08. reverse() 09. toString()
 
 
 There are three ways to construct a StringBuilder:
-StringBuilder sb1 = new StringBuilder();
-StringBuilder sb2 = new StringBuilder("animal");
-StringBuilder sb3 = new StringBuilder(10);
+         StringBuilder sb1 = new StringBuilder();
+         StringBuilder sb2 = new StringBuilder("animal");
+         StringBuilder sb3 = new StringBuilder(10);
 
 4: StringBuilder a = new StringBuilder("abc");
 5: StringBuilder b = a.append("de");
@@ -53,7 +55,7 @@ StringBuilder sb3 = new StringBuilder(10);
 againStrings[0] = new StringBuilder(); // DOES NOT COMPILE
 objects[0] = new StringBuilder(); // careful!
 
----------------------------- Array -----------------------------
+========================== Array =================================
 String[] mammals = {"monkey", "chimp", "donkey"};
 String[] birds = new String[6];
 System.out.println(birds.length);
@@ -67,11 +69,19 @@ Arrays.binarySearch(numbers, 2)
 
 --------------------------- ArrayList --------------------------
 There are 3 ways to create an ArrayList:--
-ArrayList list1 = new ArrayList();
-ArrayList list2 = new ArrayList(10);
-ArrayList list3 = new ArrayList(list2);
+         ArrayList list1 = new ArrayList();
+         ArrayList list2 = new ArrayList(10);
+         ArrayList list3 = new ArrayList(list2);
 
-ist<String> list6 = new ArrayList<>();
+Array Functions: 
+         01. add() 
+         02. get() 03.set() 04. size() and  isEmpty() 
+         05. remove() 06. removeOf()
+         07. clear()  08. contains()
+         09. equals()
+
+
+List<String> list6 = new ArrayList<>();
 ArrayList<String> list7 = new List<>(); // DOES NOT COMPILE
 
 ArrayList list = new ArrayList(); //When no data type declared
@@ -81,7 +91,7 @@ System.out.println(list); // [hawk, true]
 ArrayList<String> safer = new ArrayList<>(); //When data(String) type declared
 safer.add(Boolean.TRUE); // DOES NOT COMPILE
 
-add()
+01. add()
  List<String> birds = new ArrayList<>();
 5: birds.add("hawk"); // [hawk]
 6: birds.add(1, "robin"); // [hawk, robin]
@@ -89,14 +99,16 @@ add()
 8: birds.add(1, "cardinal"); // [blue jay, cardinal, hawk, robin]
 9: System.out.println(birds); // [blue jay, cardinal, hawk, robin]
 
-remove()
-List<String> birds = new ArrayList<>();
-4: birds.add("hawk"); // [hawk]
-5: birds.add("hawk"); // [hawk, hawk]
-6: System.out.println(birds.remove("cardinal")); // prints false
-7: System.out.println(birds.remove("hawk")); // prints true
+02. get()
+ List<String> birds = new ArrayList<>();
+birds.add("robin");
+birds.add("cardinal"); 
+birds.add("hawk"); 
+String secondBirds = birds.get(1); // Get the element at index 1 (second element)
+System.out.println("Second birds: " + secondBirds);
+Output:
 
-set()
+03. set()
 The set() method changes one of the elements of the ArrayList without changing the size.
 15: List<String> birds = new ArrayList<>();
 16: birds.add("hawk"); // [hawk]
@@ -105,14 +117,25 @@ The set() method changes one of the elements of the ArrayList without changing t
 19: System.out.println(birds.size()); // 1
 20: birds.set(1, "robin"); // IndexOutOfBoundsException
 
-isEmpty() and size()
+04. size() and  isEmpty() 
 System.out.println(birds.isEmpty()); // true
 System.out.println(birds.size()); // 0
 birds.add("hawk"); // [hawk]
 birds.add("hawk"); // [hawk, hawk]System.out.println(birds.isEmpty()); // false
 System.out.println(birds.size()); // 2
 
-clear()
+
+05. remove()
+List<String> birds = new ArrayList<>();
+4: birds.add("hawk"); // [hawk]
+5: birds.add("hawk"); // [hawk, hawk]
+6: System.out.println(birds.remove("cardinal")); // prints false
+7: System.out.println(birds.remove("hawk")); // prints true
+
+06. removeOf()
+
+
+07. clear()
 The clear() method provides an easy way to discard all elements of the ArrayList. The
 List<String> birds = new ArrayList<>();
 birds.add("hawk"); // [hawk]
@@ -124,7 +147,7 @@ System.out.println(birds.isEmpty()); // true
 System.out.println(birds.size()); // 0
 After we call clear(), birds is back to being an empty ArrayList of size 0.
 
-contains()
+08. contains()
 The contains() method checks whether a certain value is in the ArrayList. The method
 signature is as follows:
 boolean contains(Object object)
@@ -135,7 +158,7 @@ System.out.println(birds.contains("hawk")); // true
 System.out.println(birds.contains("robin")); // false
 
 
-equals()
+09. equals()
 Finally, ArrayList has a custom implementation of equals() so you can compare two lists
 to see if they contain the same elements in the same order.
 boolean equals(Object object)
@@ -152,9 +175,9 @@ The following shows an example:
 39: two.add(0, "b"); // [b,a]
 40: System.out.println(one.equals(two)); // false
 
+
 ------------------------ Converting Between array and List --------------------------
-You should know how to convert between an array and an ArrayList. Let’s start with
-turning an ArrayList into an array:
+Convert between an array and an ArrayList:
 3: List<String> list = new ArrayList<>();
 4: list.add("hawk");Understanding an ArrayList 137
 5: list.add("robin");
@@ -172,7 +195,7 @@ turning an ArrayList into an array:
 26: list.remove(1); // throws UnsupportedOperation Excep
 
 
------------------------- Wrapper Class ----------------------
+=================================== Wrapper Class ==============================================
 int primitive = Integer.parseInt("123"); //converts a String to an int primitive
 Integer wrapper = Integer.valueOf("123"); //converts a String to an Integer wrapper class
 
@@ -195,7 +218,7 @@ What do you think happens if you try to unbox a null?
 4: heights.add(null);
 5: int h = heights.get(0); // NullPointerException
 
---------------------------- Date and Time ----------------------
+=========================================== Date and Time =========================================
 System.out.println(LocalDate.now());
 System.out.println(LocalTime.now());
 System.out.println(LocalDateTime.now());
@@ -299,7 +322,7 @@ System.out.println(time); // 11:22
 
 
 
--------------------------- Lambda Expression -------------------
+===================================== Lambda Expression =============================================
 
 
 
