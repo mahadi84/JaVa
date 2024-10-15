@@ -3,6 +3,8 @@
 
 
 ---------------- Creating a String  ------------------------ 
+String is a special class and immutable(can not add, delete to it only replace).
+
 Functions:
          01. length() 02. charAt() 03. indexOf() 
          04. substring() 
@@ -56,6 +58,10 @@ againStrings[0] = new StringBuilder(); // DOES NOT COMPILE
 objects[0] = new StringBuilder(); // careful!
 
 ========================== Array =================================
+-Fixed-size
+-Can not Add/Insert, Edit, and Delete once declared/initialized.
+
+
 String[] mammals = {"monkey", "chimp", "donkey"};
 String[] birds = new String[6];
 System.out.println(birds.length);
@@ -100,7 +106,7 @@ safer.add(Boolean.TRUE); // DOES NOT COMPILE
 9: System.out.println(birds); // [blue jay, cardinal, hawk, robin]
 
 02. get()
- List<String> birds = new ArrayList<>();
+List<String> birds = new ArrayList<>();
 birds.add("robin");
 birds.add("cardinal"); 
 birds.add("hawk"); 
@@ -324,12 +330,46 @@ System.out.println(time); // 11:22
 
 ===================================== Lambda Expression =============================================
 
+a -> a.canHop()
+(Animal a) -> { return a.canHop(); }
+
+**These two lines do the exact same thing:
+
+There are three parts:
+■ Specify a single parameter with the name a
+■ The arrow operator to separate the parameter and body
+■ A body that calls a single method and returns the result of that method
+
+3: print(() -> true); // 0 parameters
+4: print(a -> a.startsWith("test")); // 1 parameter
+5: print((String a) -> a.startsWith("test")); // 1 parameter
+6: print((a, b) -> a.startsWith("test")); // 2 parameters
+7: print((String a, String b) -> a.startsWith("test")); // 2 parameters
 
 
+print(a, b -> a.startsWith("test")); // DOES NOT COMPILE (needs parentheses around the parameter lis)
+print(a -> { a.startsWith("test"); }); // DOES NOT COMPILE (parentheses are only optional when there is one parameter and it doesn’t have a type declared, missing the return keyword)
+print(a -> { return a.startsWith("test") }); // DOES NOT COMPILE  (missing the semicolon)
 
+(a, b) -> { int a = 0; return 5;} // DOES NOT COMPILE  (doesn’t allow us to redeclare a local variable)
+(a, b) -> { int c = 0; return 5;}  (okay, because it uses a different variable name:)
 
+PREDICATES:
+an interface with one method:
+boolean test(Animal a);
 
+package java.util.function and the gist of it is as follows:
+public interface Predicate<T> {
+boolean test(T t);
+}
 
+3: List<String> bunnies = new ArrayList<>();
+4: bunnies.add("long ear");
+5: bunnies.add("floppy");
+6: bunnies.add("hoppy");
+7: System.out.println(bunnies); // [long ear, floppy, hoppy]
+8: bunnies.removeIf(s -> s.charAt(0) != 'h');
+9: System.out.println(bunnies); // [hoppy]
 
 
 
