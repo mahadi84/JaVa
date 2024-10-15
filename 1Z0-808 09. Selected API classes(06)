@@ -329,6 +329,9 @@ System.out.println(time); // 11:22
 
 
 ===================================== Lambda Expression =============================================
+Lambdas work with interfaces that have only one method. These are called functional
+interfaces—interfaces that can be used with functional programming. (It’s actually more
+complicated than this, but for the OCA exam this definition is fine.)
 
 a -> a.canHop()
 (Animal a) -> { return a.canHop(); }
@@ -336,9 +339,9 @@ a -> a.canHop()
 **These two lines do the exact same thing:
 
 There are three parts:
-■ Specify a single parameter with the name a
-■ The arrow operator to separate the parameter and body
-■ A body that calls a single method and returns the result of that method
+         ■ Specify a single parameter with the name a
+         ■ The arrow operator to separate the parameter and body
+         ■ A body that calls a single method and returns the result of that method
 
 3: print(() -> true); // 0 parameters
 4: print(a -> a.startsWith("test")); // 1 parameter
@@ -355,20 +358,20 @@ print(a -> { return a.startsWith("test") }); // DOES NOT COMPILE  (missing the s
 (a, b) -> { int c = 0; return 5;}  (okay, because it uses a different variable name:)
 
 PREDICATES:
-an interface with one method:
-boolean test(Animal a);
-
-package java.util.function and the gist of it is as follows:
-public interface Predicate<T> {
-boolean test(T t);
-}
+         an interface with one method:
+         boolean test(Animal a);
+         
+         package java.util.function and the gist of it is as follows:
+         public interface Predicate<T> {
+         boolean test(T t);
+         }
 
 3: List<String> bunnies = new ArrayList<>();
 4: bunnies.add("long ear");
 5: bunnies.add("floppy");
 6: bunnies.add("hoppy");
 7: System.out.println(bunnies); // [long ear, floppy, hoppy]
-8: bunnies.removeIf(s -> s.charAt(0) != 'h');
+8: bunnies.removeIf(s -> s.charAt(0) != 'h'); //A predicate that takes a String and returns a boolean. Remove the word that has "h" as the first latter.
 9: System.out.println(bunnies); // [hoppy]
 
 
