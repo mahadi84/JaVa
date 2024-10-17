@@ -34,7 +34,28 @@ String[] oneD = {"a ", "b ", "c ","d "};
               }
 
 
----------------------- Two-dimensional [][]  ---------------------------
+---------------------- Two-dimensional [][] Store more than one array data ---------------------------
+##Example: 01
+        // int v[][] = new int[No.of.Row/Arr][Length/Size/Field of Row];
+        int v[][] = new int[1][2]; //
+        v[0][0]= 1;
+        v[0][1]= 2;
+        
+            for(int i=0; i<1; i++){               //i<v.length    | No.of.Row/Arr
+                for(int j=0; j<2; j++){           //j<j[i].length | Length/Size/Field of Row
+                    System.out.println(v[i][j]);
+                }
+            }
+          ----for-each ----
+            for (int[] is : v) {
+                for (int is2 : is) {
+                    System.out.println(is2);
+                }
+            }
+         
+
+
+##Example: 02
 int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
 
 ########For Loop:
