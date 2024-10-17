@@ -8,7 +8,7 @@
   02. Accessibility(Public..): The overriding method in the subclass must have the same or a more/wider accessible modifier than the overridden method in the superclass. 
   03. Not More Specific: The overriding method in the subclass cannot have a more specific parameter type than the overridden method in the superclass. 
                 For example, if the superclass method takes an Object parameter, the overriding method cannot take an Integer parameter.
-  04. Exception: The overriding method in the subclass can have a Blank/Same/Narrower and Not New Exception
+  04. Exception: The overriding method in the subclass can have a Same/Narrower and Not New Exception
   05. Not Static: If a method in the subclass has the same signature as a static method in the superclass, it will not override the superclass method but will hide it.
   06. Not Final: If a method in the superclass is declared final, it cannot be overridden in subclasses.
 
