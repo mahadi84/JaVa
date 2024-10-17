@@ -51,7 +51,7 @@ String[] oneD = {"a ", "b ", "c ","d "};
             }
           ----for-each ----
             for (int[] is : v) {            | row length
-                for (int is2 : is) {        | column length
+                for (int is2 : is) {        | array elements from Column
                     System.out.println(is2);
                 }
             }
