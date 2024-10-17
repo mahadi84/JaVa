@@ -20,6 +20,24 @@
       If a subclass declares a variable with the same name as a parent class variable, the subclass variable hides the parent class variable within the subclass's scope.
 
 
+##### Interface Methods in Java
+
+1. Abstract Methods
+   - These are the most common type of interface methods.
+   - They have a method signature (name, return type, and parameters) but no implementation.
+   - Classes that implement the interface must provide a concrete implementation for these methods.
+2. Default Methods:
+   - Implementing classes can either use the default implementation or override it with their own.
+   - This is useful for adding new functionality to existing interfaces without breaking compatibility with existing implementations.
+3. Static Methods:
+  - Also introduced in Java 8, static methods belong to the interface itself, not to instances of classes that implement it.
+   - They are called directly on the interface name, like static methods in classes.
+   - They are useful for providing utility methods related to the interface's concept.
+**Key points to remember:**
+- Interface methods are always public.
+- Interface methods cannot have an access modifier other than public.
+- Interface methods cannot have a body (unless they are default or static methods).
+- Default and static methods can be overridden by implementing classes.
 
 
 
