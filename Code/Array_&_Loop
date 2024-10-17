@@ -17,6 +17,8 @@
 
  
 --------------------------One Dimension []----------------------------
+int v[] = new int[1];
+
 String[] oneD = {"a ", "b ", "c ","d "};
        ######## for(int i=0; i<oneD.length; i++){            
                     System.out.print(oneD[i]);
@@ -36,19 +38,18 @@ String[] oneD = {"a ", "b ", "c ","d "};
 
 ---------------------- Two-dimensional [][] Store more than one array data ---------------------------
 ##Example: 01
-        // int v[][] = new int[No.of.Row/Arr][Length/Size/Field of Row];
-        int v[][] = new int[1][2]; //
+        int v[][] = new int[1][2]; //  row 1, column 2
         v[0][0]= 1;
         v[0][1]= 2;
         
-            for(int i=0; i<1; i++){               //i<v.length    | No.of.Row/Arr
-                for(int j=0; j<2; j++){           //j<j[i].length | Length/Size/Field of Row
-                    System.out.println(v[i][j]);
+            for(int i=0; i<1; i++){       //i<v.length    | row length
+                for(int j=0; j<2; j++){   //j<j[i].length | column length
+                   System.out.println(v[i][j]);
                 }
             }
           ----for-each ----
-            for (int[] is : v) {
-                for (int is2 : is) {
+            for (int[] is : v) {            | row length
+                for (int is2 : is) {        | column length
                     System.out.println(is2);
                 }
             }
@@ -56,7 +57,7 @@ String[] oneD = {"a ", "b ", "c ","d "};
 
 
 ##Example: 02
-int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
+int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} }; //  row 3, column 3   [3][3]
 
 ########For Loop:
         for (int i = 0; i < twoDimenArr.length; i++) { // Loop through each row
@@ -76,6 +77,8 @@ int[][] twoDimenArr = { {1, 2, 3},{4, 5, 6},{7, 8, 9} };
 
         
 ------------------------Three Dimension [][][][]-----------------------------------
+int element = cube[1][2][3]; // Accesses the element at row 1, column 2, layer 3
+
 String[][][] threeD = {{{"aa ","aa-2 ", "aa-3"},{"bb ","bb-2 ", "bb-3 "}},{{"cc ","cc-1 ", "cc-3 "},{"dd ","dd-1 ", "dd-2"}}};	
         for(int i=0; i<threeD.length; i++){
             for(int j=0; j<threeD[i].length; j++){
