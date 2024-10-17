@@ -2,11 +2,11 @@
 ===================06. Working with Methods and Encapsulation(08): ========6-Aug-24(Tuesday)
 
 Method Overloading Rules:
-1. Method Name: The methods must have the same name.
-2. Parameter List: The parameter lists must differ in the number, type, or order of the parameters.
-3. Return Type: The return type is not considered in method overloading.
-4. Access Modifiers: Access modifiers (public, private, protected, default) do not affect method overloading.
-5. Varargs: Varargs (variable arguments) can be used in method overloading, but they are treated as a single array parameter.
+    1. Method Name: The methods must have the same name.
+    2. Parameter List: The parameter lists must differ in the number, type, or order of the parameters.
+    3. Return Type: The return type is not considered in method overloading.
+    4. Access Modifiers: Access modifiers (public, private, protected, default) do not affect method overloading.
+    5. Varargs: Varargs (variable arguments) can be used in method overloading, but they are treated as a single array parameter.
 
 
 
