@@ -19,27 +19,48 @@
   04. Shadowing: While variables cannot be overridden, they can be shadowed. 
       If a subclass declares a variable with the same name as a parent class variable, the subclass variable hides the parent class variable within the subclass's scope.
 
+================== Interface ========================
+##### Interface's Variable
+  - Interface variables are always public, static, and final.
+  - They are typically used to define constants.
+  - They can be accessed using the interface name, e.g., `Shape.PI`.
+  - They cannot be overridden by implementing classes.
+  
+  **Additional considerations:**
+  -It is generally considered good practice to use uppercase letters for interface variable names to indicate that they are constants.
 
-##### Interface Methods in Java
+##### Interface's Methods Type and Use
+  1. Abstract Methods
+     - These are the most common type of interface methods.
+     - They have a method signature (name, return type, and parameters) but no implementation(without Body).
+     - Can not directly instantiate, Classes that implement the interface must provide a concrete implementation for these methods.
+  2. Default Methods:
+     - Implementing classes can either use the default implementation or override it with their own.
+     - This is useful for adding new functionality to existing interfaces without breaking compatibility with existing implementations.
+  3. Static Methods:
+    - Also introduced in Java 8, static methods belong to the interface itself, NOT to instances of classes that implement it.
+     - They are called directly on the interface name, like static methods in classes.
+     - They are useful for providing utility methods related to the interface's concept.
+      Example:
+              interface Drawable {    
+                      void draw();
+                      static void drawShapes(Drawable[] shapes) {
+                          for (Drawable shape : shapes) {
+                              shape.draw();
+                          }
+                      }
+              }
+  
+  **Key points to remember:**
+  - Interface methods are always public. 
+  - Interface methods cannot have a body (unless they are default or static methods).
+  - Default and static methods can be overridden by implementing classes.
 
-1. Abstract Methods
-   - These are the most common type of interface methods.
-   - They have a method signature (name, return type, and parameters) but no implementation.
-   - Classes that implement the interface must provide a concrete implementation for these methods.
-2. Default Methods:
-   - Implementing classes can either use the default implementation or override it with their own.
-   - This is useful for adding new functionality to existing interfaces without breaking compatibility with existing implementations.
-3. Static Methods:
-  - Also introduced in Java 8, static methods belong to the interface itself, not to instances of classes that implement it.
-   - They are called directly on the interface name, like static methods in classes.
-   - They are useful for providing utility methods related to the interface's concept.
-**Key points to remember:**
-- Interface methods are always public.
-- Interface methods cannot have an access modifier other than public.
-- Interface methods cannot have a body (unless they are default or static methods).
-- Default and static methods can be overridden by implementing classes.
 
 
+
+
+-----------------
 
 
 
