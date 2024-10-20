@@ -1,6 +1,6 @@
 
-=========Find/Filter number that value is/are below 0(Zero)============
-        List<Integer> words = Arrays.asList(-6,-5,0,1,5);
+========= Find/Filter  Negative/Positive number============
+        List<Integer> list = Arrays.asList(-6,-5,0,1,5);
         OR
         List<Integer> list = new ArrayList<>();
         list.add(-6);
@@ -8,7 +8,7 @@
         list.add(0);
         list.add(1);
         list.add(5);
-        print(list, e -> e < 0);  //Find 
+        print(list, e -> e < 0);  //Find Negative number
         print(list, e -> e > 0); //Find Positive number
         }
         public static void print(List<Integer> list, Predicate<Integer> p) {
@@ -18,28 +18,31 @@
 
  OUTPUT: -6, -5
 
-========== Find/Filter  Even Number ========================= 
-    List<Integer> evenNumbers = list.stream()
-                                       .filter(n -> n % 2 == 0)
-                                       .collect(Collectors.toList());
-        System.out.println(evenNumbers);
-
 =========== Find/Filter Positive Number ==================
          List<Integer> positiveNumbers = list.stream()
                 .filter(number -> number > 0)
                 .collect(Collectors.toList());
         System.out.println("Positive numbers: " + positiveNumbers);
 OUTPUT: [1,5]
-    
+
+========== Find/Filter Even Number ========================= 
+    List<Integer> evenNumbers = list.stream()
+                                       .filter(n -> n % 2 == 0)
+                                       .collect(Collectors.toList());
+        System.out.println(evenNumbers);
+OUTPUT: [-6, 0]
 
 
-========== Find/Filter word length>2 ========================= 
+========== Find/Filter data with length =========================
 
- List<String> words = Arrays.asList("apple", "banana", "orange", "grape");
+ List<String> words = Arrays.asList("app", "bana", "orange", "grape");
          List<String> result = words.stream()
-                                    .filter(word -> word.length() > 5)
+                                    .filter(word -> word.length() >= 5)
                                     .map(String::toUpperCase)
                                     .collect(Collectors.toList());
+
+                                    System.out.println(result);
+
 
 
 
