@@ -35,13 +35,14 @@ OUTPUT: [-6, 0]
 
 ========== Find/Filter data with length =========================
 
- List<String> words = Arrays.asList("app", "bana", "orange", "grape");
+List<String> words = Arrays.asList("app", "banana", "orange", "grape");
          List<String> result = words.stream()
-                                    .filter(word -> word.length() >= 5)
+                                    .filter(word -> word.length() >= 5 && word.startsWith("o"))
                                     .map(String::toUpperCase)
                                     .collect(Collectors.toList());
+        System.out.println(result);
+OUTPUT: ORANGE
 
-                                    System.out.println(result);
 
 
 
