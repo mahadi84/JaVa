@@ -17,7 +17,7 @@ Date: 09 June 2024
 04. Basic FORM and RECEIVE EVENT.
 
 
-====================== 00. How do I create a Java project in VS_Code? ================================
+====================== 00. How do I create a Java project in VS_Code? AND GETTER and SETTER and CONSTRUCTOR etc ================================
 ->Click on "Explorer" Or (Ctrl+Shift+E) OR (Ctrl+Alt+Win+N)
 ->Click on "CREATE JAVA PROJECT" Or SELECT "New Java Project"
 ->Select "No build tools"
@@ -28,6 +28,15 @@ Date: 09 June 2024
 ->Click on "Don't Save"
 ->Go to "src" folder where all Files(class) have to create
    That's it.
+
+#########GETTER and SETTER ############
+-Right-Click anywhere on the vs_code page
+-"Source Action"
+-"Generate Getters and Setters"
+-Select the field that I want to create Getter and Setter for.
+
+
+
 
 ====================== 0.1. DELETE a Java project in VS_Code? ================================
 	File->Close Folder
