@@ -163,6 +163,13 @@ CREATE TABLE `customers` (
  
 )
 
+======================== Database Connectivity Library =========================
+Download: https://dev.mysql.com/downloads/connector/j/
+
+VS_CODE(Left-Bottom): 
+Click on "JAVA PROJECTS" >Click on PROJECT NAME > Click on "(+)Reference Libraries" >Select the driver just downloaded
+-That's it.
+
 
 
 
