@@ -1,3 +1,26 @@
+===================== Driver and Connection Check Only =============================
+import java.sql.*;
+
+public class DatabaseConnection {
+    private static final String url = "jdbc:mysql:///java_new_banking_system";
+    private static final String username = "root";
+    private static final String password = "";
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver is working fine.");
+        }catch (ClassNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            Connection connection = DriverManager.getConnection(url, username, password);
+            System.out.println("Database connected succesfully"); 
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+}
 
 
 ================= DB_Connection, getConnection, closeConnction =====================
