@@ -1,7 +1,7 @@
 throws SQLException;
 
 String query= "Insert into Appointment (doctor_id, name, appointment_date) value(?,?,?)";
-PreparedStatement preparedStatement= connection.PreparedStatement(query);
+PreparedStatement preparedStatement= connection.PrepareStatement(query);
       preparedStatement.setInt(1, doctor_id);
       preparedStatement.setString(1, name);
  int affectedRow= preparedStatement.executeUpdate(); 
