@@ -1,0 +1,9 @@
+throws SQLException;
+
+String query= "Insert into Appointment (doctor_id, name, appointment_date) value(?,?,?)";
+PreparedStatement preparedStatement= connection.PreparedStatement(query);
+      preparedStatement.setInt(1, doctor_id);
+      preparedStatement.setString(1, name);
+ int affectedRow= preparedStatement.executeUpdate(); 
+
+ Resultset resultset= preparedStatement.executeQuery();
