@@ -1,0 +1,74 @@
+    
+// patient_id= 10;
+// doctor_id= 10;
+// date= 2024-10-21
+
+// 01. check whether patient_id is exist?
+// 02. check whether doctor_id is exist?
+// 03. check whether doctor is avaiable on that date?
+//     Finally insert the data into Appoinment table.
+
+
+public static void getAppoinment(Patient patient, Doctor doctor, Connection connection){
+
+int patient_id= 10;
+int doctor_id= 10;
+String appoinment_date= 2024-10-21;
+
+if (patient.getPatientById(patient_id) && doctor.getDoctorById(doctor_id)){
+    if(checkDoctorAvailability(doctor_id, appoinment_date, connection)){       
+        String query= "Insert into Appointment (patient_id, doctor_id, appointment_date) value(?,?,?)";
+                try{
+                            PreparedStatement preparedStatement= connection.PreparedStatement(query);
+                            preparedStatement.setInt(1, patient_id);
+                            preparedStatement.setInt(2, doctor_id);
+                            preparedStatement.setString(3, appoinment_date);
+                            int affectedRow= preparedStatement.executeUpdate();
+
+                            if(affectedRow>0){
+                                System.out.print("Appoinment succesfull");
+                            }else {
+                                System.out.print("Appoinment Failed.");
+                            }
+
+                    }catch(SQLException e){
+                        e.printStackTrace();
+                    }
+            }else{
+                System.out.println("Doctor is not available for the day");
+            }
+
+}else{
+    System.out.println("Doctor or Patient not found");
+}
+
+}
+
+private static boolean checkDoctorAvailability(int doctor_id, String appoinment_date, Connection connection){
+    String query= "Select count(*) from Appoinment where doctor_id= ? and appoinment_date= ?";
+        try{
+            PreparedStatement preparedstatement = connection.PreparedStatement(query);
+            preparedStatement.setInt(1, doctor_id);
+            preparedStatement.setString(2, appoinment_date);
+            Resultset resultset= preparedStatement.executeQuery();
+            if(resultset.next()){
+                int count= resultset.getInt(1);
+                    if(count>0){
+                        return true;
+                    }else{
+                        return false
+                    }
+            } 
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+
+}
+
+
+
+
+
+
+-
