@@ -1,0 +1,33 @@
+JDBC (Java Database Connectivity) is an API that enables Java applications to interact with databases. 
+
+JDBC Driver: A driver is a software component that enables Java applications to interact with a database. There are different types of drivers:
+                Type 1: JDBC-ODBC Bridge Driver
+                Type 2: Native-API Driver
+                Type 3: Network Protocol Driver
+                Type 4: Thin Driver
+
+----------- Key Components of JDBC -------------------
+-ClassNotFoundException
+-SQLException;
+-Class.forName("com.mysql.cj.jdbc.Driver");
+-Connection
+-DriverManager
+-getConnection(url, username, password)
+-PreparedStatement
+-PrepareStatement()
+-executeQuery()
+-executeUpdate()
+-Resultset
+-affectedRow
+
+
+
+-----------------------
+
+String query= "Insert into Appointment (doctor_id, name, appointment_date) value(?,?,?)";
+PreparedStatement preparedStatement= connection.PrepareStatement(query);
+      preparedStatement.setInt(1, doctor_id);
+      preparedStatement.setString(1, name);
+ int affectedRow= preparedStatement.executeUpdate(); 
+
+ Resultset resultset= preparedStatement.executeQuery();
