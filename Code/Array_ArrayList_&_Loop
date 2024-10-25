@@ -4,6 +4,21 @@
 01. How to print a One_,Two_,&_Three dimensional Array?
 02. How do you search data in an array (linear, binary, stream search)?
 
+-------------------------------------
+Arrays.asList() Vs new ArrayList()
+--------------------------------------
+Arrays.asList():
+  -Creates a fixed-size list, 
+  -Cannot modify the underlying array or add/remove elements to the list.
+  -May have better performance for small collections, as it avoids creating a new object.
+
+Example:
+    String[] fruits = {"apple", "banana", "orange"};
+    List<String> myList = Arrays.asList(fruits);
+    OR
+    List<String> myList = Arrays.asList("apple", "banana", "orange");
+
+
 
 ======================= 00. What is an Array? ========================
 -If Array were not invented, a developer would need to declare thousands of variables like int a,b,c....and so on
