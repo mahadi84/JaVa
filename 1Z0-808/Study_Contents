@@ -199,7 +199,7 @@
     - Runtime Exceptions 314
     - Checked Exceptions 317
     - Errors 317
-    - Calling Methods That Throw Exceptions 318
+    - **** Calling Methods That Throw Exceptions 318
     - Subclasses 319
     - Printing an Exception 321
     - Summary 323
