@@ -1,19 +1,5 @@
 
 
-Arrays.asList() Vs new ArrayList()
---------------------------------------
-Arrays.asList():
-  -Creates a fixed-size list, 
-  -Cannot modify the underlying array or add/remove elements to the list.
-  -May have better performance for small collections, as it avoids creating a new object.
-
-Example:
-    String[] fruits = {"apple", "banana", "orange"};
-    List<String> myList = Arrays.asList(fruits);
-    OR
-    List<String> myList = Arrays.asList("apple", "banana", "orange");
-
-
 ================== List and Set ===================
             TreeSet<String> d= new TreeSet<>();     //Sorted(a-z or 1-9) that's Slow
             HashSet<String> d= new HashSet<>(); //Unordered but no duplicate
