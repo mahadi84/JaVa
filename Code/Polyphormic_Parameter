@@ -1,0 +1,30 @@
+
+Why and When to use Polymorphic Parameter?
+
+
+=============== 01. Edit Value=================
+public class Emp {
+  public int x;
+  public int y;
+
+    public static void main(String[] args) {
+      Emp e =new Emp();         
+          e.x=10;    
+          e.y=20; 
+          System.out.println(e.x +" - "+e.y); 
+          editE(e);               
+          System.out.println(e.x +" - "+e.y); 
+          
+   }
+
+
+   private static void editE(Emp e){
+    e.x=50;
+    e.y=55;    
+   }
+     
+ }
+
+OUTPUT: 
+      10 - 20
+      50 - 55
