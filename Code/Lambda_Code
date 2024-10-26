@@ -1,5 +1,5 @@
 
-================= Check from the list wheather a Animal Swim or Fly ==========================
+================= Check from the list whether an Animal can Swim or Fly ==========================
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +23,8 @@ public boolean isCanFly() { return canFly;}
 
 }
 
-interface CheckBehavoir{ boolean test(Animal a);} // ** Notice Why interface? for Functional interface 
-class CheckCanSwim implements CheckBehavoir{     // // ** Notice Why Extends? Interface can not instanciate
+interface CheckBehavoir{ boolean test(Animal a);} // ** Why (Functional) interface and boolean? Lambda works with these.  
+class CheckCanSwim implements CheckBehavoir{     // // ** Why Extends? An interface can not instantiate
     public boolean test(Animal a){ return a.canSwim(); }
 }
 
@@ -38,8 +38,8 @@ public class LambdaSearch {
         animals.add(new Animal("Crow", false, true));
 
     // check(animals, new CheckCanSwim()); /// ** Notice 2nd Param (Sub goes to Super Class)
-    // check(animals, c-> c.canSwim());
-    print(animals, c-> !c.canSwim());
+    // check(animals, a-> a.canSwim()); //(Animal a)->{return a.canSwim();}
+    print(animals, a-> !a.canSwim()); 
 
     }
 
