@@ -1,5 +1,60 @@
 
-========= Find/Filter  Negative/Positive number============
+================= Check from the list wheather a Animal Swim or Fly ==========================
+import java.util.ArrayList;
+import java.util.List;
+
+class Animal{
+    private String name;
+    private boolean canSwim;
+    private boolean canFly;
+
+   public Animal(String name, boolean canSwim, boolean canFly){
+                this.name=name;
+                this.canSwim=canSwim;
+                this.canFly=canFly;
+   }
+
+public boolean canSwim(){return canSwim;}
+public boolean canFly(){return canFly;}
+
+public String getName() { return name;}
+public boolean isCanSwim() { return canSwim;} // ** Notice return data
+public boolean isCanFly() { return canFly;} 
+
+}
+
+interface CheckBehavoir{ boolean test(Animal a);} // ** Notice Why interface? for Functional interface 
+class CheckCanSwim implements CheckBehavoir{     // // ** Notice Why Extends? Interface can not instanciate
+    public boolean test(Animal a){ return a.canSwim(); }
+}
+
+public class LambdaSearch {
+    public static void main(String[] args) {
+        List <Animal> animals= new ArrayList<>();
+        animals.add(new Animal("Frog", true, false));
+        animals.add(new Animal("Fish", true, false));
+        animals.add(new Animal("Dove", false, true));
+        animals.add(new Animal("Bulbul", false, true));
+        animals.add(new Animal("Crow", false, true));
+
+    // check(animals, new CheckCanSwim()); /// ** Notice 2nd Param (Sub goes to Super Class)
+    // check(animals, c-> c.canSwim());
+    print(animals, c-> !c.canSwim());
+
+    }
+
+        private static void print(List<Animal> animals, CheckBehavoir cb){
+            for(Animal ani : animals){
+               if (cb.test(ani)) {                 // ** Notice checked boolean data 
+                   System.out.println("Animal: "+ani.getName());
+                }        
+            }
+        }
+}
+
+
+
+========================= Find/Filter  Negative/Positive number===================================
         List<Integer> list = Arrays.asList(-6,-5,0,1,5);
         OR
         List<Integer> list = new ArrayList<>();
