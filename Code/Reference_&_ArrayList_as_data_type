@@ -1,0 +1,71 @@
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+class Car{
+    private int  carId;
+    private String brand;
+    private String model;
+    private boolean isAvailable;
+    private int perDayCost;
+
+    public Car(int carId, String brand, String model, boolean isAvailable, int perDayCost) {
+        this.carId = carId;
+        this.brand = brand;
+        this.model = model;
+        this.isAvailable = isAvailable;
+        this.perDayCost = perDayCost;
+    }
+
+    public String getBrand() { return brand; }
+    public String getModel() { return model; }
+    public boolean isAvailable() {return isAvailable; }
+    public int getPerDayCost(int day) { return perDayCost*day; }  
+}
+
+
+
+class CarRentalSystem {
+    private List<Car> cars;
+    private List<Customer> customers;   
+
+    public CarRentalSystem() {cars = new ArrayList<>(); }
+    public void addCar(Car car) { cars.add(car); }
+    public List<Car> getCars() {return cars; }
+    
+}
+
+public class Main {
+
+    public static void main(String[] args) {        
+    // List<Car> car= new ArrayList<>();
+    //     car.add(new Car(1,"BMW-01","BMW", true, 1000));
+    //     car.add(new Car(2,"BMW-02","BMW", true, 2000));
+    //     car.add(new Car(3, "VW-100","BMW", true, 5000));
+    //     car.add(new Car(4,"VW-200","BMW", true, 6000));
+
+        // for (Car c : r.getCar()) {            
+            // System.out.println(Car car= r.getCar());
+        // }
+    Car car= new Car(1,"TOY-01","TOYOTA", true, 1000);
+    Car car1= new Car(2,"TOY-02","TOYOTA", true, 500);
+    Car car2= new Car(3,"TOY-500","TOYOTA", true, 6000);
+    
+    CarRentalSystem crs= new CarRentalSystem();
+    crs.addCar(car);
+    crs.addCar(car1);
+    crs.addCar(car2);
+
+    Car car4 = crs.getCars().get(0);
+    System.out.println(car4.getBrand());
+
+    
+    }  
+    
+    
+}
+
