@@ -48,8 +48,9 @@ public class LambdaSearch {
     }
 
         private static void print(List<Animal> animals, CheckBehavoir cb){
+        //private static void print(List<Animal> animals, Predicate<Animal> p){ //generics
             for(Animal ani : animals){
-               if (cb.test(ani)) {                 // ** Notice checked boolean data 
+               if (p.test(ani)) {                 // ** Notice checked boolean data 
                    System.out.println("Animal: "+ani.getName());
                 }        
             }
