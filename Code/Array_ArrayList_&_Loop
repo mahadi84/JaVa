@@ -187,3 +187,26 @@ class Employee{
 
 }
 
+============================== ArrayList<> with Generics Output ========================
+
+public static <T> void printList(ArrayList<T> list) {
+        for (T item : list) {
+            System.out.println(item);
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add("a");
+        arr.add("b");
+        arr.add("c");
+
+        ArrayList<Integer> n = new ArrayList<>();
+        n.add(1);
+        n.add(2);
+        n.add(3);
+
+        // Print both lists using the same method
+        printList(arr);
+        printList(n);
+    }
