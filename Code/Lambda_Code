@@ -26,6 +26,8 @@ public boolean isCanFly() { return canFly;}
 interface CheckBehavoir{ boolean test(Animal a);} // ** Why (Functional) interface and boolean? Lambda works with these. 
 OR
 interface Predicate<T>{ boolean test(T t);} // ** Generics receives any data type  but works with only interface and boolean(return type)
+
+
 //class CheckCanSwim implements CheckBehavoir{     // // ** Why Extends? An interface can not instantiate
    // public boolean test(Animal a){ return a.canSwim(); }
 //}
