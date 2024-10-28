@@ -1,12 +1,12 @@
 
-
-How to register a Student with List and Setter as well?
-How to register a Teacher with List and Setter as well?
-How to receive Fee from Student and Pay salary to Teacher and Calculate final Income?
+Objective: 
+Register a student with a list and setter.
+Register a teacher with a list and setter.
+To receive Fees from Students,  Pay salaries to Teachers, and Calculate final Income. (School, Teacher and Student Class)
 
 Use of : 
 01. List, 
-02. Statice Method
+02. Static Method from one class to another
 
 
 
@@ -73,10 +73,7 @@ public class Main {
 
 ========================================== School ==============================================
 
-import java.util.List;
-
 public class School {
-
     private List<Teacher> teachers;
     private List<Student> students;
     private static int receivedFees;
@@ -124,13 +121,10 @@ public class School {
 
     }
 
-    
-
 }
 
 ========================================== Teacher ==============================================
-public class Teacher {
-    
+public class Teacher {    
     private int id;
     private String name;
     private int salary;
@@ -166,6 +160,7 @@ public class Teacher {
         return salary - receivedSalary;
     }
 
+//Pay Salaryand store info it to Student and Teacher Class
     public void setReceivedSalary(int recSalary) {
         receivedSalary = recSalary;
         School.setpaidSalary(recSalary);
@@ -177,19 +172,15 @@ public class Teacher {
         return "Teacher Name: "+name + ", Salary: Tk."+receivedSalary+" \n" ;
     }
 
-    
-    
 }
 
 ========================================== Student ==============================================
 public class Student {
-
     private int id;
     private String name;
     private int grad;
     private int yearlyFee =3000;
     private int paidFee;
-
 
     public Student(int id, String name, int grad) {
         this.id = id;
@@ -220,6 +211,8 @@ public class Student {
     public int getPaidFee() {
         return paidFee;
     }
+
+//Receive fee and store it to Student and School Class
     public void setPaidFee(int pFee) {
         this.paidFee += pFee;
         School.setReceivedFees(paidFee);
