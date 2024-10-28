@@ -137,6 +137,13 @@ public class Teacher {
         this.receivedSalary=0;
     }
 
+//Pay Salaryand store info it to Student and Teacher Class
+    public void setReceivedSalary(int recSalary) {
+        receivedSalary = recSalary;
+        School.setpaidSalary(recSalary);
+
+    }
+
     public int getId() {
         return id;
     }
@@ -158,13 +165,6 @@ public class Teacher {
 
     public int getReceivedSalary() {
         return salary - receivedSalary;
-    }
-
-//Pay Salaryand store info it to Student and Teacher Class
-    public void setReceivedSalary(int recSalary) {
-        receivedSalary = recSalary;
-        School.setpaidSalary(recSalary);
-
     }
 
 
@@ -189,6 +189,11 @@ public class Student {
         this.paidFee=0;
     }
 
+    //Receive fee and store it to Student and School Class
+    public void setPaidFee(int pFee) {
+        this.paidFee += pFee;
+        School.setReceivedFees(paidFee);
+    }
 
     public int getId() {
         return id;
@@ -212,16 +217,8 @@ public class Student {
         return paidFee;
     }
 
-//Receive fee and store it to Student and School Class
-    public void setPaidFee(int pFee) {
-        this.paidFee += pFee;
-        School.setReceivedFees(paidFee);
-
-    }
-
     public int getUnpaidFee(){
         return yearlyFee - paidFee;
-
     }
 
     public String toString(){
