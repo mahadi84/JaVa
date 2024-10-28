@@ -1,0 +1,243 @@
+
+
+How to register a Student with List and Setter as well?
+How to register a Teacher with List and Setter as well?
+How to receive Fee from Student and Pay salary to Teacher and Calculate final Income?
+
+Use of : 
+01. List, 
+02. Statice Method
+
+
+
+============================= Main Class =====================================
+/*
+How to register a Student with List and Setter as well?
+How to register a Teacher with List and Setter as well?
+*/ 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Student labib    = new Student(1,"Muhammad Labib Hasan", 1);
+        Student mehjabin = new Student(2,"Mehjabin Binte Hasan", 3);
+        Student samin    = new Student(3,"Samin", 2);
+        
+        List<Student> students= new ArrayList<>();
+        students.add(labib);
+        students.add(mehjabin);
+        students.add(samin);        
+        
+        
+        Teacher mizan  = new Teacher(1,"Md. Mizanur Rahman", 600);
+        Teacher mahadi = new Teacher(2,"Muhammad Mahadi Hasan", 300);
+        Teacher shafi  = new Teacher(3,"Md. Shafiullah ", 200);
+        
+        List<Teacher> teachers= new ArrayList<>();
+        teachers.add(mizan);
+        teachers.add(mahadi);
+        teachers.add(shafi);
+        
+        School school = new School(teachers, students);
+        
+        Teacher nahid = new Teacher(3,"Md. Nahid ", 250);
+        school.setTeacher(nahid);
+
+      
+        
+        Student turin = new Student(3,"Turin", 2);
+        school.setStudent(turin);
+
+
+        //Pay Teacher's Salary
+        mizan.setReceivedSalary(2500);
+        mahadi.setReceivedSalary(100);
+
+        //Received Students Fees
+        turin.setPaidFee(500);
+        samin.setPaidFee(300);
+
+        // System.out.println("Total Fees Received: "+school.getReceivedFees());
+        // System.out.println("Total Salary Paid: "+school.getPaidSalary());
+        // System.out.println("Total Income: "+school.getIncome());
+
+        System.out.println(school.getTeachers());
+        // System.out.println(school.getStudents());
+       
+    
+    }
+}
+
+========================================== School ==============================================
+
+import java.util.List;
+
+public class School {
+
+    private List<Teacher> teachers;
+    private List<Student> students;
+    private static int receivedFees;
+    private static int paidSalary;
+
+    public School(List<Teacher> teachers, List<Student> students) {
+        this.teachers = teachers;
+        this.students = students;    
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        teachers.add(teacher);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudent(Student student) {
+        students.add(student);
+    }
+
+    public int getReceivedFees() {
+        return receivedFees;
+    }
+
+    public static void setReceivedFees(int fees) {
+        receivedFees += fees;
+    }
+
+    public int getPaidSalary() {
+        return paidSalary;
+    }
+
+    public static void setpaidSalary(int pSalary) {
+       paidSalary += pSalary;
+    }
+
+    public int getIncome(){
+        return receivedFees - paidSalary;
+
+    }
+
+    
+
+}
+
+========================================== Teacher ==============================================
+public class Teacher {
+    
+    private int id;
+    private String name;
+    private int salary;
+    private int receivedSalary;
+    
+    public Teacher(int id, String name, int salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.receivedSalary=0;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getSalary() {
+        return salary;
+    }
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getReceivedSalary() {
+        return salary - receivedSalary;
+    }
+
+    public void setReceivedSalary(int recSalary) {
+        receivedSalary = recSalary;
+        School.setpaidSalary(recSalary);
+
+    }
+
+
+    public String toString(){
+        return "Teacher Name: "+name + ", Salary: Tk."+receivedSalary+" \n" ;
+    }
+
+    
+    
+}
+
+========================================== Student ==============================================
+public class Student {
+
+    private int id;
+    private String name;
+    private int grad;
+    private int yearlyFee =3000;
+    private int paidFee;
+
+
+    public Student(int id, String name, int grad) {
+        this.id = id;
+        this.name = name;
+        this.grad = grad;
+        this.paidFee=0;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getGrad() {
+        return grad;
+    }
+    public void setGrad(int grad) {
+        this.grad = grad;
+    }
+    public int getPaidFee() {
+        return paidFee;
+    }
+    public void setPaidFee(int pFee) {
+        this.paidFee += pFee;
+        School.setReceivedFees(paidFee);
+
+    }
+
+    public int getUnpaidFee(){
+        return yearlyFee - paidFee;
+
+    }
+
+    public String toString(){
+        return "Student Name: "+name +", Grad: "+grad + ",\n";
+    }
+    
+}
+
+
+
+
+-
