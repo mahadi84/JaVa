@@ -5,56 +5,63 @@ Date: 28 Oct 2024
 
 
 public class Main {
-    public static void main(String[] args) {
-        PayrollSystem payrollSystem = new PayrollSystem();
+    public static void main(String[] args)  {
+      PayRollSystem pr = new PayRollSystem();
+       FullTimeEmployee fte= new FullTimeEmployee("Muhammad Mahadi Hasan", 20242201, 2500);
+       FullTimeEmployee fte1= new FullTimeEmployee("Md. Shafiullah", 20242202, 3000);
 
-        FullTimeEmployee emp1 = new FullTimeEmployee("John Doe", 101, 5000.0);
-        PartTimeEmployee emp2 = new PartTimeEmployee("Jane Smith", 102, 30, 15.0);
+       PartTimeEmployee pte= new PartTimeEmployee("Kabir Hossain", 20242101, 100, 30);
 
-        payrollSystem.addEmployee(emp1);
-        payrollSystem.addEmployee(emp2);
+       pr.setEmployee(fte);
+       pr.setEmployee(fte1);
+       pr.setEmployee(pte);
 
-        System.out.println("Initial Employee Details:");
-        payrollSystem.displayEmployees();
+       System.out.println("\n All Employees");
+       pr.displayEmployee();
+       pr.removeEmployee(20242201);
+       System.out.println("\n After Remove one employee \n ");
+       pr.displayEmployee();
+       System.out.println("\n ");
 
-        System.out.println("\nRemoving Employee...");
-        payrollSystem.removeEmployee(101);
 
-        System.out.println("\nRemaining Employee Details:");
-        payrollSystem.displayEmployees();
     }
 }
 
 
 
+
 ========================================== PayrollSystem ================================================
-class PayrollSystem {
-    private List<Employee> employeeList;
+import java.util.ArrayList;
+import java.util.List;
 
-    public PayrollSystem() {
-        employeeList = new ArrayList<>();
+public class PayRollSystem {
+    // private List<Employee> employees = new ArrayList<>();
+    private List<Employee> employeesList;
+
+    public PayRollSystem() {
+        employeesList = new ArrayList<>();
     }
 
-    public void addEmployee(Employee employee) {
-        employeeList.add(employee);
+    public void setEmployee(Employee e) {
+        employeesList.add(e);
     }
 
-    public void removeEmployee(int id) {
-        Employee employeeToRemove = null;
-        for (Employee employee : employeeList) {
-            if (employee.getId() == id) {
-                employeeToRemove = employee;
-                break;
+    public void removeEmployee(int removeEmpWithId){
+         Employee removeEmployee = null;
+        for (Employee emp : employeesList) {
+            if (emp.getId() == removeEmpWithId) {
+                removeEmployee = emp;
+                break;               
             }
         }
-        if (employeeToRemove != null) {
-            employeeList.remove(employeeToRemove);
+        if (removeEmployee != null) {
+            employeesList.remove(removeEmployee);  // Remove an element by value, by index also works
         }
     }
 
-    public void displayEmployees() {
-        for (Employee employee : employeeList) {
-            System.out.println(employee);
+    public void displayEmployee(){
+        for (Employee emp : employeesList) {
+            System.out.println(emp);
         }
     }
 }
