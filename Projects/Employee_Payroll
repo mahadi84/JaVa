@@ -31,8 +31,6 @@ public class Main {
 
 
 ========================================== PayrollSystem ================================================
-import java.util.ArrayList;
-import java.util.List;
 
 public class PayRollSystem {
     // private List<Employee> employees = new ArrayList<>();
@@ -55,7 +53,7 @@ public class PayRollSystem {
             }
         }
         if (removeEmployee != null) {
-            employeesList.remove(removeEmployee);  // Remove an element by value, by index also works
+            employeesList.remove(removeEmployee);  // Remove an element by value, by index both works fine
         }
     }
 
