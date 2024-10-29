@@ -5,6 +5,7 @@ Objective:
     - To receive Fees from Students,  Pay salaries to Teachers, and Calculate final Income. (School, Teacher and Student Class)
 
 Use of : 
+    00. ArrayList as Data Type and Parameter
     01. List, 
     02. Static Method from one class to another
 
