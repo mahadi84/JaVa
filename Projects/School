@@ -112,7 +112,7 @@ public class Teacher {
         this.receivedSalary=0;
     }
 
-//Pay Salaryand store info it to Student and Teacher Class
+//Pay Salary and store info it to Student and Teacher Class
     public void setReceivedSalary(int recSalary) {
         receivedSalary = recSalary;
         School.setpaidSalary(recSalary);
