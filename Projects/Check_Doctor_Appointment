@@ -9,6 +9,15 @@ How to  Check?
 --------------------------------FRONT END(DATA INPUT)--------------------------
 ===============================================================================
 
+CREATE TABLE `book_appointment` (
+  `id` int(20) AUTO_INCREMENT PRIMARY KEY,
+  `patientId` int(100) NOT NULL,
+  `doctorId` int(100) NOT NULL,
+  `appointmentDate` varchar(100) NOT NULL
+)
+
+----------------
+
 import java.sql.*;
 import java.util.Scanner;
 
@@ -135,6 +144,15 @@ public class HospitalManagementSystem {
 ---------------------------------------PATIENT CLASS (CRD)--------------------------------------- 
 =================================================================================================
 
+CREATE TABLE `patients` (
+  `id` int(20) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `age` varchar(100) NOT NULL,
+  `gender` varchar(100) NOT NULL
+)
+
+-----------
+
 import java.sql.*;
 import java.util.Scanner;
 
@@ -219,6 +237,13 @@ public class Patient {
 ====================================================================================== 
 ------------------------------------------DOCTOR_CLASS(R)----------------------------
 ======================================================================================
+CREATE TABLE `doctors` (
+  `id` int(20) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `specialization` varchar(100) NOT NULL
+)
+------------
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
