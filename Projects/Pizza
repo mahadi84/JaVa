@@ -1,3 +1,22 @@
+
+
+
+
+
+public class Main{
+     public static void main(String[] args) {
+            Pizza p= new Pizza(true);
+            p.addExtraSouce();
+            p.addExtraChees();
+            p.addTakeAway();
+            p.getBill();
+     }
+}
+
+
+============================== Pizza ==========================
+
+
 public class Pizza{
 
     private int price;
@@ -53,16 +72,9 @@ public class Pizza{
         System.out.println(bill);
     }
 
-
-    
-    public static void main(String[] args) {
-        Pizza p= new Pizza(true);
-        p.addExtraSouce();
-        p.addExtraChees();
-        p.addTakeAway();
-        p.getBill();
-    }
-
-
-
 }
+
+
+
+
+-
