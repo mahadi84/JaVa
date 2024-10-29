@@ -8,6 +8,7 @@ Objective:
 
 Use of :
     - Abstract Class and Method
+    - ArrayList as Data Type and Parameter
     - Find/Check specific Objects using id
     - Remove an element by value(Object), by index both works fine
 
