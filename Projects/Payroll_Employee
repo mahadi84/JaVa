@@ -2,7 +2,17 @@
 Date: 28 Oct 2024
 
 
+Objective: 
+-Full Time and Part Time Employees Register using Abstract Class and Method
+-Calculate the Salary for both
 
+Use of :
+-Abstract Class and Method
+-Find/Check specific Objects using id
+-Remove an element by value(Object), by index both works fine
+
+
+------------------------------------------------
 
 public class Main {
     public static void main(String[] args)  {
