@@ -1,3 +1,14 @@
+
+
+======================== Database Connectivity Library =========================
+Download: https://dev.mysql.com/downloads/connector/j/
+
+VS_CODE(Left-Bottom): 
+Click on "JAVA PROJECTS" >Click on PROJECT NAME > Click on "(+)Reference Libraries" >Select the driver just downloaded
+-That's it.
+
+
+
 ===================== Driver and Connection Check Only =============================
 import java.sql.*;
 
@@ -184,14 +195,6 @@ CREATE TABLE `customers` (
   `email` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL
 )
-
-======================== Database Connectivity Library =========================
-Download: https://dev.mysql.com/downloads/connector/j/
-
-VS_CODE(Left-Bottom): 
-Click on "JAVA PROJECTS" >Click on PROJECT NAME > Click on "(+)Reference Libraries" >Select the driver just downloaded
--That's it.
-
 
 
 
