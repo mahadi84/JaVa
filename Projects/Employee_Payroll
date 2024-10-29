@@ -77,20 +77,15 @@ abstract class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id;}
+    public String getName() {return name;}
 
     // Abstract method to be implemented by subclasses
     public abstract double calculateSalary();
 
     @Override
     public String toString() {
-        return "Employee [name=" + name + ", id=" + id + ", salary=" + calculateSalary() + "]";
+      return "Employee [name=" + name + ", id=" + id + ", salary=" + calculateSalary() + "]";
     }
 }
 
@@ -105,9 +100,8 @@ class FullTimeEmployee extends Employee {
     }
 
     @Override
-    public double calculateSalary() {
-        return monthlySalary;
-    }
+    public double calculateSalary() { return monthlySalary; }
+
 }
 
 
@@ -123,9 +117,7 @@ class PartTimeEmployee extends Employee {
     }
 
     @Override
-    public double calculateSalary() {
-        return hoursWorked * hourlyRate;
-    }
+    public double calculateSalary() { return hoursWorked * hourlyRate; }
 }
 
 
