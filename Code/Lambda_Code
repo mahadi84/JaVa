@@ -1,7 +1,5 @@
 
 ================= Check from the list whether an Animal can Swim or Fly ==========================
-import java.util.ArrayList;
-import java.util.List;
 
 class Animal{
     private String name;
@@ -60,6 +58,7 @@ public class LambdaSearch {
 
 
 ========================= Find/Filter  Negative/Positive number===================================
+
         List<Integer> list = Arrays.asList(-6,-5,0,1,5);
         OR
         List<Integer> list = new ArrayList<>();
