@@ -1,4 +1,11 @@
 
+Objective:
+-Use of Class inheritance
+-Parent Class "Vehicle", setDirection(), move(), stop() 
+-Child Class "Car"  changeGear(), ChangeSpeed()
+-Create  BMW extends Car
+
+
 -------------------------------------------------------------------------------------------------------------
             Propertise             |             Behaviour()                       | getter() and setter()
 -------------------------------------------------------------------------------------------------------------
@@ -10,7 +17,25 @@ BMW      |       ----              | contructor(),accelerate()
 -------------------------------------------------------------------------------------------------------------
 
 
------------------------------- Vehicle -----------------------------
+======================== Main ===========================================
+
+public class Main {
+
+    public static void main(String[] args) {
+        Bmw b= new Bmw("BMW", false);
+
+        b.move(40,0);
+        b.accelerate(55);
+
+        System.out.println("Current Gear: "+ b.getCurrentGear());
+        System.out.println("Current Speed: "+ b.getCurrentSpeed());
+    }
+    
+}
+
+
+
+==================================  Vehicle ==============================
 public class Vehicle {
     private String name;
     private int currentSpeed;
@@ -163,18 +188,7 @@ public class Bmw extends Car {
 
 }
 
-======================== Main ===========================================
 
-public class Main {
 
-    public static void main(String[] args) {
-        Bmw b= new Bmw("BMW", false);
 
-        b.move(40,0);
-        b.accelerate(55);
-
-        System.out.println("Current Gear: "+ b.getCurrentGear());
-        System.out.println("Current Speed: "+ b.getCurrentSpeed());
-    }
-    
-}
+-
