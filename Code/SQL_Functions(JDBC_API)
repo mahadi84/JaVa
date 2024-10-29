@@ -48,8 +48,6 @@ JDBC Driver: A driver is a software component that enables Java applications to 
         }
 
 
-
-
 ----------------------------- SQL Query ---------------------------------
 
 String query= "Insert into Appointment (doctor_id, name, appointment_date) value(?,?,?)";
