@@ -3,13 +3,13 @@ Date: 28 Oct 2024
 
 
 Objective: 
--Register Full Time and Part Time Employees using Abstract Class, Method and Inheritance
--Calculate the Salary for both
+    - Register Full Time and Part Time Employees using Abstract Class, Method and Inheritance
+    - Calculate the Salary for both
 
 Use of :
--Abstract Class and Method
--Find/Check specific Objects using id
--Remove an element by value(Object), by index both works fine
+    - Abstract Class and Method
+    - Find/Check specific Objects using id
+    - Remove an element by value(Object), by index both works fine
 
 
 ------------------------------------------------
