@@ -45,8 +45,6 @@ public class Main {
         
         Teacher nahid = new Teacher(3,"Md. Nahid ", 250);
         school.setTeacher(nahid);
-
-      
         
         Student turin = new Student(3,"Turin", 2);
         school.setStudent(turin);
@@ -84,37 +82,14 @@ public class School {
         this.students = students;    
     }
 
-    public List<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        teachers.add(teacher);
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudent(Student student) {
-        students.add(student);
-    }
-
-    public int getReceivedFees() {
-        return receivedFees;
-    }
-
-    public static void setReceivedFees(int fees) {
-        receivedFees += fees;
-    }
-
-    public int getPaidSalary() {
-        return paidSalary;
-    }
-
-    public static void setpaidSalary(int pSalary) {
-       paidSalary += pSalary;
-    }
+    public List<Teacher> getTeachers() {  return teachers; }
+    public void setTeacher(Teacher teacher) {  teachers.add(teacher);}
+    public List<Student> getStudents() {  return students; }
+    public void setStudent(Student student) {  students.add(student); }
+    public int getReceivedFees() { return receivedFees; }
+    public static void setReceivedFees(int fees) {   receivedFees += fees;  }
+    public int getPaidSalary() {  return paidSalary; }
+    public static void setpaidSalary(int pSalary) {  paidSalary += pSalary; }
 
     public int getIncome(){
         return receivedFees - paidSalary;
@@ -141,32 +116,12 @@ public class Teacher {
     public void setReceivedSalary(int recSalary) {
         receivedSalary = recSalary;
         School.setpaidSalary(recSalary);
-
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getSalary() {
-        return salary;
-    }
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public int getReceivedSalary() {
-        return salary - receivedSalary;
-    }
-
+    public int getId() { return id;   }   
+    public String getName() { return name;   }    
+    public int getSalary() {  return salary; }
+    public int getReceivedSalary() { return salary - receivedSalary; }
 
     public String toString(){
         return "Teacher Name: "+name + ", Salary: Tk."+receivedSalary+" \n" ;
@@ -195,31 +150,11 @@ public class Student {
         School.setReceivedFees(paidFee);
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getGrad() {
-        return grad;
-    }
-    public void setGrad(int grad) {
-        this.grad = grad;
-    }
-    public int getPaidFee() {
-        return paidFee;
-    }
-
-    public int getUnpaidFee(){
-        return yearlyFee - paidFee;
-    }
+    public int getId(){ return id; }
+    public String getName(){ return name; }
+    public int getGrad(){ return grad; }
+    public int getPaidFee(){ return paidFee; }
+    public int getUnpaidFee(){ return yearlyFee - paidFee; }
 
     public String toString(){
         return "Student Name: "+name +", Grad: "+grad + ",\n";
