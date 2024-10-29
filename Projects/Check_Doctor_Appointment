@@ -147,7 +147,7 @@ public class HospitalManagementSystem {
 CREATE TABLE `patients` (
   `id` int(20) AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100) NOT NULL,
-  `age` varchar(100) NOT NULL,
+  `age` int(100) NOT NULL,
   `gender` varchar(100) NOT NULL
 )
 
