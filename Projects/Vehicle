@@ -1,9 +1,9 @@
 
 Objective:
--Use of Class inheritance
--Parent Class "Vehicle", setDirection(), move(), stop() 
--Child Class "Car"  changeGear(), ChangeSpeed()
--Create  BMW extends Car
+   - Use of Class inheritance
+   - Parent Class "Vehicle", setDirection(), move(), stop() 
+   - Child Class "Car"  changeGear(), ChangeSpeed()
+   - Create  BMW extends Car
 
 
 -------------------------------------------------------------------------------------------------------------
