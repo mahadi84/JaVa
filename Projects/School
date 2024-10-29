@@ -1,12 +1,12 @@
 
 Objective: 
-Register a student with a list and setter.
-Register a teacher with a list and setter.
-To receive Fees from Students,  Pay salaries to Teachers, and Calculate final Income. (School, Teacher and Student Class)
+    - Register a student with a list and setter.
+    - Register a teacher with a list and setter.
+    - To receive Fees from Students,  Pay salaries to Teachers, and Calculate final Income. (School, Teacher and Student Class)
 
 Use of : 
-01. List, 
-02. Static Method from one class to another
+    01. List, 
+    02. Static Method from one class to another
 
 
 
