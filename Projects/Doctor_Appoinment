@@ -1,0 +1,140 @@
+
+
+
+=========================== Main =============================================
+
+public class Main{
+    public static void main(String[] args) throws Exception {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        PatientCRUD patientCRUD = new PatientCRUD(databaseConnection);
+
+        Patient patient = new Patient();        
+        
+        // Create a new patient
+            patient.setName("Shafiullah");
+            patient.setAge(18);
+            patient.setGender("Male");
+            patientCRUD.createPatient(patient);
+    }
+}
+
+
+=========================== Patient ==========================================
+
+CREATE TABLE `patients` (
+  `id` int(20) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `age` int(100) NOT NULL,
+  `gender` varchar(100) NOT NULL
+)
+--------------------------------------------------
+
+public class Patient {
+    // private int id;
+    private String name;
+    private int age;
+    private String gender;
+
+    //---- Getters 
+    // public int getId() {return id; }
+    public String getName() {return name; }
+    public int getAge() {return age; }
+    public String getGender() {return gender; }
+
+    //---- Setters
+    // public void setId(int id) {this.id=id; }
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }else{
+            this.name = name;
+        }
+    }
+    public void setAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age cannot be 0");
+        }else{
+            this.age = age;
+        }
+
+    }
+    public void setGender(String gender) {
+        if (gender == null || gender.isEmpty()) {
+            throw new IllegalArgumentException("Gender cannot be null or empty");
+        }else{
+            this.gender=gender; 
+        }
+    }
+
+}
+------------------------ Patient CRUD --------------------------
+
+public class PatientCRUD {
+    private DatabaseConnection databaseConnection;
+
+    public PatientCRUD(DatabaseConnection databaseConnection) {
+        this.databaseConnection = databaseConnection;
+    }
+
+    // Create a new customer
+    public void createPatient(Patient patient) throws SQLException {
+        String query = "INSERT INTO patients (name, age, gender) VALUES (?, ?, ?)";
+        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query);
+        statement.setString(1, patient.getName());
+        statement.setInt(2, patient.getAge());
+        statement.setString(3, patient.getGender());
+        
+        int affectedRows= statement.executeUpdate();
+
+        if(affectedRows>0){
+            System.out.println("Patient Added Successfully!!");
+        }else{
+            System.out.println("Failed to add Patient!!");
+        }
+
+        statement.close();
+    }
+
+}
+
+=========================== Doctor ===================================
+=========================== Appoinment ===============================
+
+
+
+=========================== Database Connection ==============================
+
+import java.sql.*;
+        public class DatabaseConnection {
+            private Connection connection;
+            public DatabaseConnection() throws SQLException {
+                // Replace placeholders with your database credentials
+                String jdbcURL="jdbc:mysql:///java_doctor_appoinment";
+                String username="root";
+                String password="Mahadi@123";
+                
+                try{
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    // System.out.println("Driver is working fine.");
+                }catch (ClassNotFoundException e){
+                    System.out.println(e.getMessage());
+                }
+                
+                try{
+                    connection = DriverManager.getConnection(jdbcURL, username, password);
+                    // System.out.println("Database connected succesfully");
+                }catch( Exception e){
+                    System.out.println(e);
+                }
+            }
+        
+            public Connection getConnection() {
+                return connection;
+            }
+        
+            public void closeConnection() throws SQLException {
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+        }
