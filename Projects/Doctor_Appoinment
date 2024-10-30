@@ -46,45 +46,60 @@ CREATE TABLE `patients` (
 )
 --------------------------------------------------
 
+
 public class Patient {
-    // private int id;
+    private int id;
     private String name;
     private int age;
     private String gender;
 
-    //---- Getters 
-    // public int getId() {return id; }
+    // Getters 
+    public int getId() {return id; }
     public String getName() {return name; }
     public int getAge() {return age; }
     public String getGender() {return gender; }
 
-    //---- Setters
-    // public void setId(int id) {this.id=id; }
+    //Setters
+    public void setId(int id) {this.id=id; }
     public void setName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
-        }else{
-            this.name = name;
         }
+            this.name = name;
     }
     public void setAge(int age) {
-        if (age < 18) {
+        if (age < 18 || age > 110) {
             throw new IllegalArgumentException("Age cannot be 0");
-        }else{
-            this.age = age;
         }
+            this.age = age;
 
     }
+
     public void setGender(String gender) {
         if (gender == null || gender.isEmpty()) {
             throw new IllegalArgumentException("Gender cannot be null or empty");
-        }else{
-            this.gender=gender; 
         }
+            this.gender=gender; 
+
+    }
+//Update Field Validation
+    public void updateName(String newName){
+        setName(newName);        
+    }
+    public void updateAge(int newAge){
+        setAge(newAge);
+    }
+    public void updateGender(String newAge){
+        setGender(newAge);
     }
 
+
+
 }
+
 ------------------------ Patient CRUD --------------------------
+
+import java.sql.*;
 
 public class PatientCRUD {
     private DatabaseConnection databaseConnection;
@@ -102,10 +117,111 @@ public class PatientCRUD {
         statement.setString(3, patient.getGender());
         
         int affectedRows= statement.executeUpdate();
+
         if(affectedRows>0){
             System.out.println("Patient Added Successfully!!");
         }else{
             System.out.println("Failed to add Patient!!");
+        }
+
+        statement.close();
+    }
+
+// Show all customers
+    public void viewPatients(){
+        String query = "select * from patients";
+        try{
+            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("Patients: ");
+            System.out.println("+------------+------------------------------+----------+------------+");
+            System.out.println("| Patient Id | Name                         | Age      | Gender     |");
+            System.out.println("+------------+------------------------------+----------+------------+");
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String gender = resultSet.getString("gender");
+                System.out.printf("| %-10s | %-28s | %-8s | %-10s |\n", id, name, age, gender);
+                System.out.println("+------------+------------------------------+----------+------------+");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    
+    // Get patient by ID
+    public void getPatientById(int id){
+        String query = "SELECT * FROM patients WHERE id = ?";
+        try{
+            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                System.out.println(resultSet.getString("name"));
+                // return true;
+            }else{
+                System.out.println("No patient found with this ID.");
+                // return false;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+      // Update a customer
+      public void updatePatient(Patient patient) throws SQLException {
+
+        StringBuilder sql = new StringBuilder("UPDATE patients SET ");
+         sql= patient.getName() != null ? sql.append("name = ?,"): sql.append("");
+         sql= patient.getAge()  != 0 ? sql.append("age = ?,"): sql.append("");
+         sql= patient.getGender() != null ? sql.append("gender = ?"): sql.append("");
+         // Remove the last comma if it exists
+            if (sql.length() > 0 && sql.charAt(sql.length() - 1) == ',') {
+                 sql.deleteCharAt(sql.length() - 1);
+            }        
+         sql= sql.append(" WHERE id = ?");        
+        
+        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql.toString());
+        
+        int parameterIndex = 1;
+
+        if (patient.getName() != null) {            
+            statement.setString(parameterIndex++, patient.getName());
+        }
+        if (patient.getAge() != 0) {
+            statement.setInt(parameterIndex++, patient.getAge());
+        }
+        if (patient.getGender() != null) {
+            statement.setString(parameterIndex++, patient.getGender());
+        }
+        statement.setInt(parameterIndex, patient.getId());
+
+        int affectedRows= statement.executeUpdate();
+        if(affectedRows>0){
+            System.out.println("Patient update Successfully!!");
+        }else{
+            System.out.println("Failed to update Patient!!");
+        }
+        statement.close();        
+
+    }
+
+    // Delete a Patient
+    public void deletePatient(int patientId) throws SQLException {
+        String query = "DELETE FROM patients WHERE id = ?";
+        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query);
+        statement.setInt(1, patientId);
+        
+        int affectedRows= statement.executeUpdate();
+        if(affectedRows>0){
+            System.out.println("Patient delete Successfully!!");
+        }else{
+            System.out.println("Failed to delete Patient!!");
         }
 
         statement.close();
