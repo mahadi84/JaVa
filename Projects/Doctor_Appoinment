@@ -100,6 +100,8 @@ public class Patient {
 ------------------------ Patient CRUD --------------------------
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientCRUD {
     private DatabaseConnection databaseConnection;
@@ -111,21 +113,23 @@ public class PatientCRUD {
     // Create a new customer
     public void createPatient(Patient patient) throws SQLException {
         String query = "INSERT INTO patients (name, age, gender) VALUES (?, ?, ?)";
-        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query);
-        statement.setString(1, patient.getName());
-        statement.setInt(2, patient.getAge());
-        statement.setString(3, patient.getGender());
-        
-        int affectedRows= statement.executeUpdate();
+    
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
+            statement.setString(1, patient.getName());
+            statement.setInt(2, patient.getAge());
+            statement.setString(3, patient.getGender());
 
-        if(affectedRows>0){
-            System.out.println("Patient Added Successfully!!");
-        }else{
-            System.out.println("Failed to add Patient!!");
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Patient added successfully!");
+            } else {
+                System.out.println("Failed to add patient!");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while adding patient: " + e.getMessage());
+            throw e; // Rethrow or handle the exception as needed
         }
-
-        statement.close();
-    }
+    }    
 
 // Show all customers
     public void viewPatients(){
@@ -154,26 +158,146 @@ public class PatientCRUD {
 
     
     // Get patient by ID
-    public void getPatientById(int id){
+    public Patient getPatientById(int id) throws SQLException {
+        if (id <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
+
         String query = "SELECT * FROM patients WHERE id = ?";
-        try{
-            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
+        Patient patient = null; // Initialize the Patient object
+
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                System.out.println(resultSet.getString("name"));
-                // return true;
-            }else{
-                System.out.println("No patient found with this ID.");
-                // return false;
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Create a new Patient object from the result set
+                    patient = new Patient();
+                    patient.setId(resultSet.getInt("id"));
+                    patient.setName(resultSet.getString("name"));
+                    patient.setAge(resultSet.getInt("age"));
+                    patient.setGender(resultSet.getString("gender"));
+                    System.out.println("Patient found: " + patient.getName());
+                } else {
+                    System.out.println("No patient found with this ID.");
+                }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error while retrieving patient: " + e.getMessage());
+            throw e; // Rethrow or handle the exception as needed
+        }
+
+        return patient; // Return the Patient object (or null if not found)
+    }
+
+
+
+      // Update a customer
+    public void updatePatient(Patient patient) throws SQLException {
+        List<String> updates = new ArrayList<>();
+        List<Object> parameters = new ArrayList<>();
+        
+        if (patient.getName() != null) {
+            updates.add("name = ?");
+            parameters.add(patient.getName());
+        }
+        if (patient.getAge() != 0) {
+            updates.add("age = ?");
+            parameters.add(patient.getAge());
+        }
+        if (patient.getGender() != null) {
+            updates.add("gender = ?");
+            parameters.add(patient.getGender());
+        }
+
+        if (updates.isEmpty()) {
+            System.out.println("No fields to update.");
+            return; // No updates to perform
+        }
+
+        String sql = "UPDATE patients SET " + String.join(", ", updates) + " WHERE id = ?";
+        parameters.add(patient.getId());
+
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < parameters.size(); i++) {
+                statement.setObject(i + 1, parameters.get(i));
+            }
+
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Patient updated successfully!");
+            } else {
+                System.out.println("Failed to update patient!");
+            }
         }
     }
 
 
-      // Update a customer
+        // Delete a Patient
+        public void deletePatient(int patientId) throws SQLException {
+            if (patientId <= 0) {throw new IllegalArgumentException("Patient ID must be nemeric"); }
+
+            String query = "DELETE FROM patients WHERE id = ?";
+            try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
+                statement.setInt(1, patientId);
+                
+                int affectedRows = statement.executeUpdate();
+                if (affectedRows > 0) {
+                    System.out.println("Patient deleted successfully!");
+                } else {
+                    System.out.println("No patient found with the provided ID. Deletion failed.");
+                }
+            } catch (SQLException e) {
+                System.err.println("Error while deleting patient: " + e.getMessage());
+                throw e; // Rethrow or handle the exception as needed
+            }
+        }
+
+
+}
+
+
+     // ----------------------- Update a Patient (Way_01) ---------------------------------------
+** try and catch block will close DB Connection not need  "statement.close();"
+
+public void updatePatient(Patient patient) throws SQLException {
+        List<String> updates = new ArrayList<>();
+        List<Object> parameters = new ArrayList<>();
+        
+        if (patient.getName() != null) {
+            updates.add("name = ?");
+            parameters.add(patient.getName());
+        }
+        if (patient.getAge() != 0) {
+            updates.add("age = ?");
+            parameters.add(patient.getAge());
+        }
+        if (patient.getGender() != null) {
+            updates.add("gender = ?");
+            parameters.add(patient.getGender());
+        }
+
+        if (updates.isEmpty()) {
+            System.out.println("No fields to update.");
+            return; // No updates to perform
+        }
+
+        String sql = "UPDATE patients SET " + String.join(", ", updates) + " WHERE id = ?";
+        parameters.add(patient.getId());
+
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < parameters.size(); i++) {
+                statement.setObject(i + 1, parameters.get(i));
+            }
+
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Patient updated successfully!");
+            } else {
+                System.out.println("Failed to update patient!");
+            }
+        }
+    }
+
+
+      // ----------------------- Update a Patient (Way_02) ---------------------------------------
       public void updatePatient(Patient patient) throws SQLException {
 
         StringBuilder sql = new StringBuilder("UPDATE patients SET ");
@@ -250,6 +374,7 @@ CREATE TABLE `doctors` (
 import java.sql.*;
         public class DatabaseConnection {
             private Connection connection;
+            
             public DatabaseConnection() throws SQLException {
                 // Replace placeholders with your database credentials
                 String jdbcURL="jdbc:mysql:///java_doctor_appoinment";
@@ -275,9 +400,13 @@ import java.sql.*;
                 return connection;
             }
         
-            public void closeConnection() throws SQLException {
+            public void closeConnection() {
                 if (connection != null) {
-                    connection.close();
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        System.out.println("Failed to close the database connection."+ e.getMessage());
+                    }
                 }
             }
         }
