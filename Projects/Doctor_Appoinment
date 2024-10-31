@@ -4,21 +4,115 @@
 =========================== Main =============================================
 
 public class Main{
+
+
+  
+  public static void requestAppointment(int doctorId, int patientId, String appointmentDate, DatabaseConnection databaseConnection) throws Exception{
+
+        if (DoctorDAO.doctorExist(doctorId, databaseConnection) && PatientDAO.patientExist(patientId, databaseConnection)) {
+          System.out.println("Ok");          
+        }else{
+          System.out.println("Not found");
+        }
+
+    // BookAppoinment a = new BookAppoinment(databaseConnection);
+    //   if (a.checkDoctorAvaible(doctorId, appointmentDate)) {
+    //     // System.out.println("Found Nothing");
+    //       if(a.getAppointment(doctorId, patientId, appointmentDate, databaseConnection)){
+    //         System.out.println("Appointment Successful");
+    //       }else{
+    //         System.out.println("Failed Appointment");
+    //       }
+    //   }else{
+    //     System.out.println("Doctor is not available");
+    //   }
+
+                
+ }
+  
+
+
+
     public static void main(String[] args) throws Exception {
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        PatientCRUD patientCRUD = new PatientCRUD(databaseConnection);
 
-        Patient patient = new Patient();        
+
+        requestAppointment(1, 1, "10-1-2024", databaseConnection);
+        // BookAppoinment.viewAppoinments(databaseConnection);
+
+
+
+
+
+
+
+
+
+
+
+//--------------------- Patient ---------------------------------------- 
+        PatientDAO patientDAO = new PatientDAO(databaseConnection);
+        Patient patient = new Patient();     
         
-        // Create a new patient
-            patient.setName("Shafiullah");
-            patient.setAge(18);
-            patient.setGender("Male");
-            patientCRUD.createPatient(patient);
+        // Create a new customer
+            // patient.setName("Md. Shahriar");
+            // patient.setAge(28);
+            // patient.setGender("Male");
+            // patientDAO.createPatient(patient);
+
+        // // Show all Patiences
+            // patientDAO.viewPatients();
+
+        // // Get Patient by ID
+        // patientDAO.getPatientById(8);
+
+
+        // // // // Update a customer
+        //   patient.setId(1);
+        //   patient.updateName("Md. Akhlakur Rahman");
+        // // //   patient.updateAge(39);
+        //   patient.updateGender("Male");
+        //   patientDAO.updatePatient(patient);
+
+      // // Delete a customer
+    //   patientCRUD.deletePatient(9);
+    
+
+
+
+    // -------------Doctor ------------------------------------------------
+
+    DoctorDAO doctorDAO = new DoctorDAO(databaseConnection);
+    Doctor doctor = new Doctor();     
+        
+    // // Create a new customer
+    //     doctor.setName("Muhammad Labib Hasan");
+    //     doctor.setSpecialization("Medicine");
+    //     doctorDAO.createDoctor(doctor);   
+
+
+    // // Show all Doctor
+    //     doctorDAO.viewDoctors();
+
+    // // Get Doctor by ID
+    // doctorDAO.getDoctorById(1);
+
+
+     // // Update a doctor
+          // doctor.setId(1);
+          // // doctor.updateName("Md. Akhlakur Rahman");
+          // doctor.setSpecialization("Medicine");
+          // doctorDAO.updateDoctor(doctor);
+
+
+     // // Get Doctor by ID
+    // doctorDAO.deleteDoctor(1);
+
     }
 }
 
-============================== Get Appointment ===============================
+
+============================== Book Appointment ===============================
 
 CREATE TABLE `book_appointment` (
   `id` int(20) AUTO_INCREMENT PRIMARY KEY,
@@ -26,6 +120,85 @@ CREATE TABLE `book_appointment` (
   `doctorId` int(100) NOT NULL,
   `appointmentDate` varchar(100) NOT NULL
 )
+
+---------------
+public class BookAppoinment {
+
+    private DatabaseConnection databaseConnection;
+
+    public BookAppoinment(DatabaseConnection databaseConnection) {
+        this.databaseConnection = databaseConnection;
+    }
+
+    public boolean checkDoctorAvaible(int doctorId, String appointmentDate) throws SQLException{
+            if (doctorId <= 0 || appointmentDate ==null) { throw new IllegalArgumentException("check Doctor ID or Date"); }
+            String query = "SELECT count(*) FROM book_appoinment WHERE doctorId = ? AND appointmentDate= ?";
+                try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)) {
+                    preparedStatement.setInt(1, doctorId);
+                    preparedStatement.setString(2, appointmentDate);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if(resultSet.next()){
+                        int count = resultSet.getInt(1);
+                        if(count==0){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+    return false;
+
+    }
+
+    public static boolean getAppointment(int doctorId, int patientId, String appointmentDate, DatabaseConnection databaseConnection) throws SQLException{
+        String query = "INSERT INTO book_appoinment (doctorId, patientId,appointmentDate) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
+            statement.setInt(1, doctorId);
+            statement.setInt(2, patientId);
+            statement.setString(3, appointmentDate);
+            
+            int affectedRows= statement.executeUpdate();
+            if(affectedRows>0){
+                return true;
+                // System.out.println("Appoinment Successfull!!");
+            }else{
+                return false;
+                // System.out.println("Failed to book Appoinment!!");
+            }
+        }
+        // return false;
+    }
+
+
+    // Show all appoinment
+    public static void viewAppoinments(DatabaseConnection databaseConnection)throws SQLException{
+        String query = "select * from book_appoinment";
+        try(PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)){            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("Booked Appoinment: ");
+            System.out.println("+------------+------------------------------+------------+------------+");
+            System.out.println("| Sl.        | Doctor ID                    | Patient ID | Date       |");
+            System.out.println("+------------+------------------------------+------------+------------+");
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                int doctorId = resultSet.getInt("doctorId");
+                int patientId = resultSet.getInt("patientId");
+                String appointmentDate = resultSet.getString("appointmentDate");
+                System.out.printf("| %-10s | %-28s | %-11s | %-10s |\n", id, doctorId, patientId, appointmentDate);
+                System.out.println("+------------+------------------------------+----------+------------+");
+            }
+
+        }
+
+
+    }
+
+}
+
+
+
 
 =========================== Patient ==========================================
 
@@ -88,16 +261,12 @@ public class Patient {
 
 }
 
------------------------- Patient CRUD --------------------------
+------------------------ Patient DAO --------------------------
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-public class PatientCRUD {
+public class PatientDAO {
     private DatabaseConnection databaseConnection;
 
-    public PatientCRUD(DatabaseConnection databaseConnection) {
+    public PatientDAO(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
 
@@ -180,7 +349,7 @@ public class PatientCRUD {
 
 
 
-      // Update a customer
+      // Update a doctor
     public void updatePatient(Patient patient) throws SQLException {
         List<String> updates = new ArrayList<>();
         List<Object> parameters = new ArrayList<>();
@@ -242,7 +411,30 @@ public class PatientCRUD {
         }
 
 
+        // Get Patients by ID
+    public static boolean patientExist(int patientId, DatabaseConnection databaseConnection) throws SQLException {
+        if (patientId <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
+
+        String query = "SELECT count(*) FROM patients WHERE id = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, patientId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+                    if(resultSet.next()){
+                        int count = resultSet.getInt(1);
+                        if(count==0){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+        }
+        return false; // Return the Patients object (or null if not found)
+    }
+
+
 }
+
+
 
 
      // ----------------------- Update a Patient (Way_01) ---------------------------------------
@@ -386,8 +578,205 @@ CREATE TABLE `doctors` (
   `specialization` varchar(100) NOT NULL
 )
 
+----------------- Doctor ----------------------------
 
------------------------- Doctor CRUD --------------------------
+public class Doctor {
+    private int id;
+    private String name;
+    private String specialization;
+
+    // Getters 
+    public int getId() {return id; }
+    public String getName() {return name; }
+    public String getSpecialization() {return specialization; }
+
+    //Setters
+    public void setId(int id) {this.id=id; }
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }else{
+            this.name = name;
+        }
+    }
+    public void setSpecialization(String specialization) {
+        if (specialization == null || specialization.isEmpty()) {
+            throw new IllegalArgumentException("Specialization cannot be null or empty");
+        }else{
+            this.specialization = specialization;
+        }
+    }
+
+    public void updateName(String newName) {
+        setName(newName);
+    }
+    public void updateSpecialization(String newSpecialization) {
+        setSpecialization(newSpecialization);
+    }
+}
+
+
+
+------------------------ Doctor DAO --------------------------
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DoctorDAO {
+    private DatabaseConnection databaseConnection;
+
+    public DoctorDAO(DatabaseConnection databaseConnection) {
+        this.databaseConnection = databaseConnection;
+    }
+
+    // Create a new Doctor
+    public void createDoctor(Doctor doctor) throws SQLException {
+        String query = "INSERT INTO doctors (name, specialization) VALUES (?, ?)";
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
+            statement.setString(1, doctor.getName());
+            statement.setString(2, doctor.getSpecialization());
+            
+            int affectedRows= statement.executeUpdate();
+            if(affectedRows>0){
+                System.out.println("Doctor Added Successfully!!");
+            }else{
+                System.out.println("Failed to add Doctor!!");
+            }
+        }
+    }
+
+    // Show all doctors
+    public void viewDoctors(){
+        String query = "select * from doctors";
+        try{
+            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("Doctors: ");
+            System.out.println("+------------+----------------------------+--------------------+");
+            System.out.println("| Doctor Id | Name                        | Specialization     |");
+            System.out.println("+------------+----------------------------+--------------------+");
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String specialization = resultSet.getString("specialization");
+                System.out.printf("| %-10s | %-30s | %-18s  \n", id, name, specialization);
+                System.out.println("+------------+----------------------------+----------------+");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    // Get doctor by ID
+    public Doctor getDoctorById(int id) throws SQLException {
+        if (id <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
+
+        String query = "SELECT * FROM doctors WHERE id = ?";
+        Doctor doctor = null; // Initialize the Doctor object
+
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Create a new Doctor object from the result set
+                    doctor = new Doctor();                    
+                    doctor.setId(resultSet.getInt("id"));
+                    doctor.setName(resultSet.getString("name"));
+                    doctor.setSpecialization(resultSet.getString("specialization"));
+                    System.out.println("Doctor found: " + doctor.getName());
+                } else {
+                    System.out.println("No Doctor found with this ID.");
+                }
+            }
+        }catch (SQLException e) {
+            System.err.println("Error while retrieving Doctor: " + e.getMessage());
+            throw e; // Rethrow or handle the exception as needed
+        }
+        return doctor; // Return the Doctor object (or null if not found)
+    }
+
+     // Update a doctor
+     public void updateDoctor(Doctor doctor) throws SQLException {
+        List<String> updates = new ArrayList<>();
+        List<Object> parameters = new ArrayList<>();
+        
+        if (doctor.getName() != null) {
+            updates.add("name = ?");
+            parameters.add(doctor.getName());
+        }
+        
+        if (doctor.getSpecialization() != null) {
+            updates.add("specialization = ?");
+            parameters.add(doctor.getSpecialization());
+        }
+
+        if (updates.isEmpty()) {
+            System.out.println("No fields to update.");
+            return; // No updates to perform
+        }
+
+        String sql = "UPDATE doctors SET " + String.join(", ", updates) + " WHERE id = ?";
+        parameters.add(doctor.getId());
+
+        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < parameters.size(); i++) {
+                statement.setObject(i + 1, parameters.get(i));
+            }
+
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Doctor updated successfully!");
+            } else {
+                System.out.println("Failed to update doctor!");
+            }
+        }
+    }
+
+
+    
+        // Delete a Doctor
+        public void deleteDoctor(int doctorId) throws SQLException {
+            if (doctorId <= 0) {throw new IllegalArgumentException("Doctor ID must be nemeric"); }
+
+            String query = "DELETE FROM doctors WHERE id = ?";
+            try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
+                statement.setInt(1, doctorId);
+                
+                int affectedRows = statement.executeUpdate();
+                if (affectedRows > 0) {
+                    System.out.println("Doctor deleted successfully!");
+                } else {
+                    System.out.println("No Doctor found with the provided ID. Deletion failed.");
+                }
+            } catch (SQLException e) {
+                System.err.println("Error while deleting Doctor: " + e.getMessage());
+                throw e; // Rethrow or handle the exception as needed
+            }
+        }
+
+    // Get doctor by ID
+    public static boolean doctorExist(int doctorId, DatabaseConnection databaseConnection) throws SQLException {
+        if (doctorId <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
+
+        String query = "SELECT count(*) FROM doctors WHERE id = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, doctorId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+                    if(resultSet.next()){
+                        int count = resultSet.getInt(1);
+                        if(count==0){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+        }
+        return false; // Return the Doctor object (or null if not found)
+    }
+
+}
 
 
 
