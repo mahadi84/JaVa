@@ -1,0 +1,49 @@
+public class Patient {
+    private int id;
+    private String name;
+    private int age;
+    private String gender;
+
+    // Getters 
+    public int getId() {return id; }
+    public String getName() {return name; }
+    public int getAge() {return age; }
+    public String getGender() {return gender; }
+
+    //Setters
+    public void setId(int id) {this.id=id; }
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+            this.name = name;
+    }
+    public void setAge(int age) {
+        if (age < 18 || age > 110) {
+            throw new IllegalArgumentException("Age must be between 18-110");
+        }
+            this.age = age;
+
+    }
+
+    public void setGender(String gender) {
+        if (gender == null || gender.isEmpty()) {
+            throw new IllegalArgumentException("Gender cannot be null or empty");
+        }
+            this.gender=gender; 
+
+    }
+//Update Field Validation
+    public void updateName(String newName){
+        setName(newName);        
+    }
+    public void updateAge(int newAge){
+        setAge(newAge);
+    }
+    public void updateGender(String newAge){
+        setGender(newAge);
+    }
+
+
+
+}
