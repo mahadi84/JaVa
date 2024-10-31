@@ -1,0 +1,102 @@
+
+import java.sql.*;
+
+public class Main{
+    // public static void requestAppointment(int doctorId, int patientId, String appointmentDate, DatabaseConnection databaseConnection) throws Exception{
+    //     if (DoctorDAO.doctorExist(doctorId, databaseConnection) && PatientDAO.patientExist(patientId, databaseConnection)) {
+    //         if (BookAppoinment.checkDoctorAvailable(doctorId, appointmentDate, databaseConnection)) {
+    //             if(BookAppoinment.bookAppointment(doctorId, patientId, appointmentDate, databaseConnection)){
+    //                     System.out.println("Appoinment Successfull.");
+    //                 }else{System.out.println("Faild !! Appoinment.");};
+    //         }else{System.out.println("Doctor already has appointed for that day.");}
+    //     }else{System.out.println("Doctor or Patient ID Not Found");}                
+    // }
+
+
+    public static void requestAppointment(int doctorId, int patientId, String appointmentDate, DatabaseConnection connection) throws Exception {
+        DoctorDAO doctorDAO = new DoctorDAO(connection);
+        PatientDAO patientDAO = new PatientDAO(connection);
+        BookAppointment bookAppointment = new BookAppointment(connection);
+
+        // Check if doctor and patient exist
+        if (!doctorDAO.doctorExist(doctorId) || !patientDAO.patientExist(patientId)) {
+            System.out.println("Doctor or Patient ID not found.");
+            return; // Early return
+        }
+
+        // Check if the doctor is available
+        if (!bookAppointment.checkDoctorAvailable(doctorId, appointmentDate)) {
+            System.out.println("Doctor already has an appointment for that day.");
+            return; // Early return
+        }
+
+        // Try to book the appointment
+        if (bookAppointment.bookAppointment(doctorId, patientId, appointmentDate)) {
+            System.out.println("Appointment successful.");
+        } else {
+            System.out.println("Failed to book appointment.");
+        }
+    }
+
+    public static void main(String[] args) throws Exception{
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+
+
+            // requestAppointment(1, 2, "10-01-2024", databaseConnection);
+
+            BookAppointment bookAppointment = new BookAppointment(databaseConnection);
+            bookAppointment.viewAllAppointments();
+
+            // ========================= PATIENT ENCAP & DAO ===========================
+            PatientDAO patientDAO = new PatientDAO(databaseConnection);
+            Patient patient = new Patient();
+
+            // // Create a new patient
+            // patient.setName("Rigan");
+            // patient.setAge(30);
+            // patient.setGender("Male");
+            // patientDAO.createPatient(patient);
+
+            // // View all Patients
+            // patientDAO.viewPatients();
+
+            // // Search Patient by ID
+            // patientDAO.getPatientById(1);
+
+            // // Update patient details
+            // patient.setId(2); // Ensure correct ID
+            // patient.setName("Riad Ahmed");
+            // patient.setAge(40);
+            // patient.setGender("Male");
+            // patientDAO.updatePatient(patient);
+
+            // Delete patient
+            // patientDAO.deletePatient(1);
+
+            // =========================== DOCTOR ENCAP & DAO ==============================
+            DoctorDAO doctorDAO = new DoctorDAO(databaseConnection);
+            Doctor doctor = new Doctor();
+
+            // // Search Doctor by ID
+            // doctorDAO.getDoctorById(2);
+
+            // // View all Doctors
+            // doctorDAO.viewDoctors();
+
+            // // Create a new doctor
+            // doctor.setName("Ayaf Hasan");
+            // doctor.setSpecialization("Kidney Specialist");
+            // doctorDAO.createDoctor(doctor);
+
+            // // Delete doctor (ensure correct ID)
+            // doctorDAO.deleteDoctor(1); // Use a valid doctor ID
+          
+            databaseConnection.closeConnection();
+        
+    }
+}
+
+
+
+
+-
