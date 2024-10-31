@@ -297,7 +297,42 @@ public void updatePatient(Patient patient) throws SQLException {
     }
 
 
-      // ----------------------- Update a Patient (Way_02) ---------------------------------------
+      // ----------------------- Update a Patient (Way_02) using Map<Integer, Object>   ---------------------------------------
+
+            public void updatePatient(Patient patient) throws SQLException {
+                StringBuilder sql = new StringBuilder("UPDATE patients SET ");
+                Map<Integer, Object> parameters = new HashMap<>();
+                int parameterIndex = 1;
+            
+                if (patient.getName() != null) {
+                    parameters.put(parameterIndex++, patient.getName());
+                    sql.append("name = ?, ");
+                }
+                if (patient.getAge() != 0) {
+                    parameters.put(parameterIndex++, patient.getAge());
+                    sql.append("age = ?, ");
+                }
+                if (patient.getGender() != null) {
+                    parameters.put(parameterIndex++, patient.getGender());
+                    sql.append("gender = ?, ");
+                }
+            
+                if (sql.length() > 0) {
+                    sql.deleteCharAt(sql.length() - 2);
+                }
+                sql.append(" WHERE id = ?");
+            
+                PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql.toString());
+                for (Map.Entry<Integer, Object> entry : parameters.entrySet()) {
+                    statement.setObject(entry.getKey(), entry.getValue());
+                }
+                statement.setInt(parameterIndex, patient.getId());
+            
+                int affectedRows = statement.executeUpdate();
+                // ... handle success or failure as before
+            }
+      // ----------------------- Update a Patient (Way_03) ---------------------------------------
+
       public void updatePatient(Patient patient) throws SQLException {
 
         StringBuilder sql = new StringBuilder("UPDATE patients SET ");
