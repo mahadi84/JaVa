@@ -195,7 +195,7 @@ public class PatientDAO {
         this.databaseConnection = databaseConnection;
     }
 
-    // Create a new customer
+//------------------------ Create a new customer------------------------------------
     public void createPatient(Patient patient) throws SQLException {
         String query = "INSERT INTO patients (name, age, gender) VALUES (?, ?, ?)";
     
@@ -216,7 +216,7 @@ public class PatientDAO {
         }
     }    
 
-// Show all customers
+//----------------------------- Show all customers---------------------------------------
     public void viewPatients(){
         String query = "select * from patients";
         try{
@@ -242,7 +242,7 @@ public class PatientDAO {
     }
 
     
-    // Get patient by ID
+//--------------------------------- Get patient by ID ------------------------------------
     public Patient getPatientById(int id) throws SQLException {
         if (id <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
 
@@ -274,7 +274,7 @@ public class PatientDAO {
 
 
 
-      // Update a doctor
+//------------------------ Update a patient -------------------------------
     public void updatePatient(Patient patient) throws SQLException {
         List<String> updates = new ArrayList<>();
         List<Object> parameters = new ArrayList<>();
@@ -315,7 +315,7 @@ public class PatientDAO {
     }
 
 
-        // Delete a Patient
+//---------------------- Delete a Patient -----------------------------------
         public void deletePatient(int patientId) throws SQLException {
             if (patientId <= 0) {throw new IllegalArgumentException("Patient ID must be nemeric"); }
 
@@ -336,7 +336,7 @@ public class PatientDAO {
         }
 
 
-        // Get Patients by ID
+//---------------------------- Patients Exist? ---------------------------
     public static boolean patientExist(int patientId, DatabaseConnection databaseConnection) throws SQLException {
         if (patientId <= 0) { throw new IllegalArgumentException("ID must be a numaric."); }
 
@@ -360,141 +360,6 @@ public class PatientDAO {
 }
 
 
-
-
-     // ----------------------- Update a Patient (Way_01) ---------------------------------------
-** try and catch block will close DB Connection not need  "statement.close();"
-
-public void updatePatient(Patient patient) throws SQLException {
-        List<String> updates = new ArrayList<>();
-        List<Object> parameters = new ArrayList<>();
-        
-        if (patient.getName() != null) {
-            updates.add("name = ?");
-            parameters.add(patient.getName());
-        }
-        if (patient.getAge() != 0) {
-            updates.add("age = ?");
-            parameters.add(patient.getAge());
-        }
-        if (patient.getGender() != null) {
-            updates.add("gender = ?");
-            parameters.add(patient.getGender());
-        }
-
-        if (updates.isEmpty()) {
-            System.out.println("No fields to update.");
-            return; // No updates to perform
-        }
-
-        String sql = "UPDATE patients SET " + String.join(", ", updates) + " WHERE id = ?";
-        parameters.add(patient.getId());
-
-        try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql)) {
-            for (int i = 0; i < parameters.size(); i++) {
-                statement.setObject(i + 1, parameters.get(i));
-            }
-
-            int affectedRows = statement.executeUpdate();
-            if (affectedRows > 0) {
-                System.out.println("Patient updated successfully!");
-            } else {
-                System.out.println("Failed to update patient!");
-            }
-        }
-    }
-
-
-      // ----------------------- Update a Patient (Way_02) using Map<Integer, Object>   ---------------------------------------
-
-            public void updatePatient(Patient patient) throws SQLException {
-                StringBuilder sql = new StringBuilder("UPDATE patients SET ");
-                Map<Integer, Object> parameters = new HashMap<>();
-                int parameterIndex = 1;
-            
-                if (patient.getName() != null) {
-                    parameters.put(parameterIndex++, patient.getName());
-                    sql.append("name = ?, ");
-                }
-                if (patient.getAge() != 0) {
-                    parameters.put(parameterIndex++, patient.getAge());
-                    sql.append("age = ?, ");
-                }
-                if (patient.getGender() != null) {
-                    parameters.put(parameterIndex++, patient.getGender());
-                    sql.append("gender = ?, ");
-                }
-            
-                if (sql.length() > 0) {
-                    sql.deleteCharAt(sql.length() - 2);
-                }
-                sql.append(" WHERE id = ?");
-            
-                PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql.toString());
-                for (Map.Entry<Integer, Object> entry : parameters.entrySet()) {
-                    statement.setObject(entry.getKey(), entry.getValue());
-                }
-                statement.setInt(parameterIndex, patient.getId());
-            
-                int affectedRows = statement.executeUpdate();
-                // ... handle success or failure as before
-            }
-      // ----------------------- Update a Patient (Way_03) ---------------------------------------
-
-      public void updatePatient(Patient patient) throws SQLException {
-
-        StringBuilder sql = new StringBuilder("UPDATE patients SET ");
-         sql= patient.getName() != null ? sql.append("name = ?,"): sql.append("");
-         sql= patient.getAge()  != 0 ? sql.append("age = ?,"): sql.append("");
-         sql= patient.getGender() != null ? sql.append("gender = ?"): sql.append("");
-         // Remove the last comma if it exists
-            if (sql.length() > 0 && sql.charAt(sql.length() - 1) == ',') {
-                 sql.deleteCharAt(sql.length() - 1);
-            }        
-         sql= sql.append(" WHERE id = ?");        
-        
-        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(sql.toString());
-        
-        int parameterIndex = 1;
-
-        if (patient.getName() != null) {            
-            statement.setString(parameterIndex++, patient.getName());
-        }
-        if (patient.getAge() != 0) {
-            statement.setInt(parameterIndex++, patient.getAge());
-        }
-        if (patient.getGender() != null) {
-            statement.setString(parameterIndex++, patient.getGender());
-        }
-        statement.setInt(parameterIndex, patient.getId());
-
-        int affectedRows= statement.executeUpdate();
-        if(affectedRows>0){
-            System.out.println("Patient update Successfully!!");
-        }else{
-            System.out.println("Failed to update Patient!!");
-        }
-        statement.close();        
-
-    }
-
-    // Delete a Patient
-    public void deletePatient(int patientId) throws SQLException {
-        String query = "DELETE FROM patients WHERE id = ?";
-        PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query);
-        statement.setInt(1, patientId);
-        
-        int affectedRows= statement.executeUpdate();
-        if(affectedRows>0){
-            System.out.println("Patient delete Successfully!!");
-        }else{
-            System.out.println("Failed to delete Patient!!");
-        }
-
-        statement.close();
-    }
-
-}
 
 =========================== Doctor ===================================
 CREATE TABLE `doctors` (
@@ -704,11 +569,6 @@ public class DoctorDAO {
 }
 
 
-
-=========================== Appoinment ===============================
-
-
-
 =========================== Database Connection ==============================
 
 import java.sql.*;
@@ -750,3 +610,9 @@ import java.sql.*;
                 }
             }
         }
+
+
+
+
+
+-
