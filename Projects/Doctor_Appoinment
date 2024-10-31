@@ -36,67 +36,6 @@ public class Main{
 
 }
 
-//--------------------- Patient ---------------------------------------- 
-        PatientDAO patientDAO = new PatientDAO(databaseConnection);
-        Patient patient = new Patient();     
-        
-        // Create a new customer
-            // patient.setName("Md. Shahriar");
-            // patient.setAge(28);
-            // patient.setGender("Male");
-            // patientDAO.createPatient(patient);
-
-        // // Show all Patiences
-            // patientDAO.viewPatients();
-
-        // // Get Patient by ID
-        // patientDAO.getPatientById(8);
-
-
-        // // // // Update a customer
-        //   patient.setId(1);
-        //   patient.updateName("Md. Akhlakur Rahman");
-        // // //   patient.updateAge(39);
-        //   patient.updateGender("Male");
-        //   patientDAO.updatePatient(patient);
-
-      // // Delete a customer
-    //   patientCRUD.deletePatient(9);
-    
-
-
-
-    // -------------Doctor ------------------------------------------------
-
-    DoctorDAO doctorDAO = new DoctorDAO(databaseConnection);
-    Doctor doctor = new Doctor();     
-        
-    // // Create a new customer
-    //     doctor.setName("Muhammad Labib Hasan");
-    //     doctor.setSpecialization("Medicine");
-    //     doctorDAO.createDoctor(doctor);   
-
-
-    // // Show all Doctor
-    //     doctorDAO.viewDoctors();
-
-    // // Get Doctor by ID
-    // doctorDAO.getDoctorById(1);
-
-
-     // // Update a doctor
-          // doctor.setId(1);
-          // // doctor.updateName("Md. Akhlakur Rahman");
-          // doctor.setSpecialization("Medicine");
-          // doctorDAO.updateDoctor(doctor);
-
-
-     // // Get Doctor by ID
-    // doctorDAO.deleteDoctor(1);
-
-    }
-}
-
 
 ============================== Book Appointment ===============================
 
