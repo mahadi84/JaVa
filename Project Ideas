@@ -1,5 +1,18 @@
 
 
+
+
+Enterprise Applications
+Description: Java’s robustness and scalability make it a preferred language for enterprise-level applications. These are large-scale, complex applications used by businesses to manage operations.
+Examples:
+    01. Banking and financial transaction systems
+    02. Enterprise Resource Planning (ERP) systems
+    03. Inventory management systems
+    04. Human Resource Management Systems (HRMS)
+    05. Supply chain management
+
+
+
 01.Personalized News Aggregator
 Description: Create a Java application that scrapes news articles from various sources, categorizes them, and filters them based on user preferences. Implement a basic NLP algorithm for sentiment analysis on articles.
 Skills: Web scraping with JSoup, Multithreading, Data Structures, RESTful API, Natural Language Processing (NLP), JavaFX for UI.
