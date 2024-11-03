@@ -21,7 +21,7 @@ Final Step:
 
 
 
-------------- Book_appointment ----------------
+------------- Table: Book Appointment ----------------
 CREATE TABLE book_appointment(
   id int(20) AUTO_INCREMENT PRIMARY KEY,
   patientId int(100) NOT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE book_appointment(
   appointmentId varchar(50) NOT NULL
 )
 
----------------------Table ------------------
+---------------------Table: Doctors ------------------
 CREATE TABLE doctors(
   id int(20) AUTO_INCREMENT PRIMARY KEY,
   name varchar(100) NOT NULL,
   specialization varchar(100) NOT NULL
 )
 
-------------- Ppatients -------------------
+------------- Table: Patients -------------------
 CREATE TABLE patients(
   id int(20) AUTO_INCREMENT PRIMARY KEY,
   name varchar(100) NOT NULL,
