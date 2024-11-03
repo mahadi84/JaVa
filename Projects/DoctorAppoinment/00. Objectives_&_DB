@@ -27,7 +27,8 @@ CREATE TABLE book_appointment(
   patientId int(100) NOT NULL,
   doctorId int(100) NOT NULL,
   appointmentDate varchar(100) NOT NULL,
-  bookingDate varchar(100) NOT NULL
+  bookingDate varchar(100) NOT NULL,
+  appointmentId varchar(50) NOT NULL
 )
 
 ---------------------Table ------------------
