@@ -13,7 +13,8 @@ public class Main{
     // }
 
 
-    public static void requestAppointment(int doctorId, int patientId, String appointmentDate, DatabaseConnection connection) throws Exception {
+   
+public static void requestAppointment(int doctorId, int patientId, String appointmentDate, String bookingDate, DatabaseConnection connection) throws Exception {
         DoctorDAO doctorDAO = new DoctorDAO(connection);
         PatientDAO patientDAO = new PatientDAO(connection);
         BookAppointment bookAppointment = new BookAppointment(connection);
@@ -31,7 +32,7 @@ public class Main{
         }
 
         // Try to book the appointment
-        if (bookAppointment.bookAppointment(doctorId, patientId, appointmentDate)) {
+        if (bookAppointment.bookAppointment(doctorId, patientId, appointmentDate, bookingDate)) {
             System.out.println("Appointment successful.");
         } else {
             System.out.println("Failed to book appointment.");
@@ -41,21 +42,36 @@ public class Main{
     public static void main(String[] args) throws Exception{
         DatabaseConnection databaseConnection = new DatabaseConnection();
 
+        // final int  doctorId= 2;
+        // final int  patientId= 1;
+        // final String  appointmentDate="15-11-2024";
 
-            // requestAppointment(1, 2, "10-01-2024", databaseConnection);
+
+        // LocalDate date = LocalDate.now();
+        // DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yy");
+        // final String  bookingDate= date.format(f);
+
+        // requestAppointment(doctorId, patientId, appointmentDate,bookingDate, databaseConnection);
 
             BookAppointment bookAppointment = new BookAppointment(databaseConnection);
-            bookAppointment.viewAllAppointments();
+            // bookAppointment.viewAllAppointments();
+            String appointmentId= "APPT20240003";
+            bookAppointment.searchAppointmentById(appointmentId);
 
             // ========================= PATIENT ENCAP & DAO ===========================
             PatientDAO patientDAO = new PatientDAO(databaseConnection);
             Patient patient = new Patient();
 
-            // // Create a new patient
-            // patient.setName("Rigan");
-            // patient.setAge(30);
-            // patient.setGender("Male");
-            // patientDAO.createPatient(patient);
+
+          //  final String name= "Shafiullah";
+          //  final int age=45;
+          //  final String gender= "Male";
+
+          //   // Create a new patient
+          //   patient.setName(name);
+          //   patient.setAge(age);
+          //   patient.setGender(gender);
+          //   patientDAO.createPatient(patient);
 
             // // View all Patients
             // patientDAO.viewPatients();
@@ -83,10 +99,12 @@ public class Main{
             // // View all Doctors
             // doctorDAO.viewDoctors();
 
-            // // Create a new doctor
-            // doctor.setName("Ayaf Hasan");
-            // doctor.setSpecialization("Kidney Specialist");
-            // doctorDAO.createDoctor(doctor);
+          //  final String name= "Ayaf Hasan";
+          //  final String specialization= "Medicine";
+          //   // Create a new doctor
+          //   doctor.setName(name);
+          //   doctor.setSpecialization(specialization);
+          //   doctorDAO.createDoctor(doctor);
 
             // // Delete doctor (ensure correct ID)
             // doctorDAO.deleteDoctor(1); // Use a valid doctor ID
@@ -95,7 +113,6 @@ public class Main{
         
     }
 }
-
 
 
 
