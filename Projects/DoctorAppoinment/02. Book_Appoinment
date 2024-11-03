@@ -1,5 +1,6 @@
-
 import java.sql.*;
+import java.time.LocalDate;
+
 
 public class BookAppointment {
 
@@ -8,6 +9,9 @@ public class BookAppointment {
     public BookAppointment(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
+
+
+    // -------------------------------  Check Doctor Availablity  --------------------------------
 
     public boolean checkDoctorAvailable(int doctorId, String appointmentDate) throws SQLException {
         validateInputs(doctorId, appointmentDate);
@@ -26,17 +30,26 @@ public class BookAppointment {
         return false; // Default to false if no results
     }
 
-    public boolean bookAppointment(int doctorId, int patientId, String appointmentDate) throws SQLException {
-        validateInputs(doctorId, appointmentDate);
-        if (patientId <= 0) {
-            throw new IllegalArgumentException("Patient ID must be positive.");
-        }
+// ----------------------------------- Book Appointment ----------------------------
 
-        String query = "INSERT INTO book_appointment (doctorId, patientId, appointmentDate) VALUES (?, ?, ?)";
+    public boolean bookAppointment(int doctorId, int patientId, String appointmentDate, String bookingDate) throws SQLException {
+        validateInputs(doctorId, appointmentDate);
+        String query = "INSERT INTO book_appointment (doctorId, patientId, appointmentDate, bookingDate, appointmentId) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = databaseConnection.getConnection().prepareStatement(query)) {
             statement.setInt(1, doctorId);
             statement.setInt(2, patientId);
             statement.setString(3, appointmentDate);
+            statement.setString(4, bookingDate);
+
+            try{
+                int lastID = this.getLastAppointmentID();
+                // System.out.println(lastID);
+                String appointmentId = BookAppointment.generateAppointmentID(lastID);
+                System.out.println(appointmentId);
+                statement.setString(5, appointmentId);
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
 
             int affectedRows = statement.executeUpdate();
             return affectedRows > 0; // Return true if appointment was booked successfully
@@ -46,25 +59,113 @@ public class BookAppointment {
         }
     }
 
-    public void viewAllAppointments() throws SQLException {
-        String query = "SELECT * FROM book_appointment";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
+// ----------------------------- viewAllAppointments -----------------------------------------------------
 
-            System.out.println("Booked Appointments: ");
-            System.out.println("+------------+----------------+----------------+------------+");
-            System.out.println("| Sl.        | Doctor ID      |  Patient ID    | Date       |");
-            System.out.println("+------------+----------------+----------------+------------+");
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int doctorId = resultSet.getInt("doctorId");
-                int patientId = resultSet.getInt("patientId");
-                String appointmentDate = resultSet.getString("appointmentDate");
-                System.out.printf("| %-10s | %-14s | %-14s | %-10s |\n", id, doctorId, patientId, appointmentDate);
-                System.out.println("+------------+----------------+----------------+------------+");
+    public void viewAllAppointments() throws SQLException {
+
+        String query="SELECT ba.id, ba.appointmentId, ba.appointmentDate, ba.bookingDate,  d.name as doctorName, p.name as patientNam";  
+        String query1= query.concat(" FROM book_appointment ba");
+        String query2= query1.concat(" INNER JOIN doctors d ON ba.doctorId = d.id ");
+        String query4= query2.concat(" INNER JOIN patients p ON ba.patientId = p.id");
+        try (PreparedStatement stmt = databaseConnection.getConnection().prepareStatement(query4)) {
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("All Appoints:");
+            System.out.println("+---+-----------------+----------------------+----------------------+-------------------------+--------------+");
+            System.out.println("|Sl.| Appoinment ID   |  Appoinment Date     |  Doctor Name         | Patient Name            |Booking Date  |");
+            System.out.println("+---+-----------------+----------------------+----------------------+-------------------------+--------------+");
+                while (rs.next()) {          
+                    int id = rs.getInt("id");
+                    String appointmentId = rs.getString("appointmentId");
+                    String appointmentDate = rs.getString("appointmentDate");
+                    String bookingDate = rs.getString("bookingDate");
+                    String doctorName = rs.getString("doctorName");
+                    String patientName = rs.getString("patientNam");
+
+            System.out.printf("| %-1s | %-15s | %-20s | %-20s | %-23s | %-12s |\n", id, appointmentId, appointmentDate,doctorName, patientName, bookingDate);
+            System.out.println("+---+-----------------+----------------------+----------------------+-------------------------+----------------");
+                // Create an Appointment object or populate a data structure
+                // Appointment appointment = new Appointment(appointmentId, appointmentDate, appointmentTime, doctorName, patientName);
+                // ... (add appointment to a list or other data structure)
             }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
+
+// ----------------- Search Appointment By Id -----------------------------------------------------
+
+    public void searchAppointmentById(String appointment_ID) throws SQLException {
+        if (appointment_ID.isBlank() || appointment_ID ==null) {
+            throw new IllegalArgumentException("Patient ID must be positive.");
+        }
+
+        String query="SELECT ba.id, ba.appointmentDate, ba.bookingDate,  d.name as doctorName, p.name as patientNam";  
+        String query1= query.concat(" FROM book_appointment ba");
+        String query2= query1.concat(" INNER JOIN doctors d ON ba.doctorId = d.id ");
+        String query3= query2.concat(" INNER JOIN patients p ON ba.patientId = p.id");
+        String query4= query3.concat(" WHERE ba.appointmentId = ?");
+        try (PreparedStatement stmt = databaseConnection.getConnection().prepareStatement(query4)) {
+            stmt.setString(1, appointment_ID);
+            // stmt.setString(2, appointment_Date);
+            // stmt.setInt(3, doctor_Id);
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("Appointment No: "+appointment_ID);
+            System.out.println("+------+----------------------+----------------------+------------------+--------------+");
+            System.out.println("| Sl.  |    Doctor Name       |  Patient Name        | Appoinment Date  | Booking Date |");
+            System.out.println("+------+----------------------+----------------------+------------------+--------------+");
+                if(rs.next()) {          
+                    int d = rs.getInt("id");
+                    String appointmentDate = rs.getString("appointmentDate");
+                    String bookingDate = rs.getString("bookingDate");
+                    String doctorName = rs.getString("doctorName");
+                    String patientName = rs.getString("patientNam");
+
+            System.out.printf("| %-4s | %-20s | %-20s | %-16s | %-12s |\n", d, doctorName, patientName, appointmentDate,bookingDate);
+            System.out.println("+------+----------------------+----------------------+------------------+--------------+");
+            // Create an Appointment object or populate a data structure
+            // Appointment appointment = new Appointment(appointmentId, appointmentDate, appointmentTime, doctorName, patientName);
+            // ... (add appointment to a list or other data structure)
+        }else{
+                System.out.println("|                No matching found with supplied Apoointment ID.                       |");
+                System.out.println("+--------------------------------------------------------------------------------------+");
+
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+// ----------------- Generate Appoint ID with Char and Year ----------------
+   
+    private int getLastAppointmentID() throws SQLException {
+        String query = "SELECT MAX(id) FROM book_appointment";
+        try (PreparedStatement stmt = databaseConnection.getConnection().prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return rs.getInt(1);
+                } else {
+                    return  0; // Handle the case where no appointments exist
+                }
+        }
+    }
+
+    private static String generateAppointmentID(int lastID) {
+        int newID = lastID + 1;
+        LocalDate date= LocalDate.now();
+        int currentYear = date.getYear();
+        // int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    return "APPT" + currentYear + String.format("%04d", newID);
+    }
+
+    
+
+
+
+// --------------------Field validation --------------------------
 
     private void validateInputs(int doctorId, String appointmentDate) {
         if (doctorId <= 0) {
@@ -74,9 +175,13 @@ public class BookAppointment {
             throw new IllegalArgumentException("Appointment date cannot be null or empty.");
         }
     }
+
+
+
+
+
+
+
+
 }
 
-
-
-
--
