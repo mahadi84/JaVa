@@ -6,12 +6,12 @@ Objective: Book a doctor's appointment.
 Steps 01:
   -Register:
       -Doctor with Specialization
-      -Pitent with age and gender
+      -Patients with age and gender
 
-Stpes 02:
-  -Before Appointment, Check wheather
+Steps 02:
+  -Before Book an Appointment, Check whether
       -Doctor and Patient already in our database
-      -Doctor is avilable on that date
+      -Doctor is available on that date
 
 Final Step:
     -Enter and Doctor_ID, Patient_ID and Appoinment_Date on the book_appointment Table.
