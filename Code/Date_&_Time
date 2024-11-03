@@ -100,8 +100,9 @@ wrong = Period.ofWeeks(7);
 
 FORMATTING DATES AND TIMES:---
 
-DateTimeFormatter f = DateTimeFormatter.ofPattern("MM-dd-yy, hh:mm");
-System.out.println(dateTime.format(f)); // 13-20-2020, 11:12
+LocalDate date = LocalDate.now()
+DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yy, hh:mm");
+System.out.println(date.format(f)); // 20-10-2020, 11:12
 
 
 The date and time classes support many methods to get data out of them:
