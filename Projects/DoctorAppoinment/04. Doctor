@@ -1,11 +1,12 @@
 
 ---------------------Table ------------------
-CREATE TABLE patients(
+
+CREATE TABLE doctors(
   id int(20) AUTO_INCREMENT PRIMARY KEY,
   name varchar(100) NOT NULL,
-  age int(100) NOT NULL,
-  gender varchar(100) NOT NULL
+  specialization varchar(100) NOT NULL
 )
+
 ---------------------------------------------
 
 
