@@ -21,25 +21,25 @@ Examples:
 
 
 01.Personalized News Aggregator
-Description: Create a Java application that scrapes news articles from various sources, categorizes them, and filters them based on user preferences. Implement a basic NLP algorithm for sentiment analysis on articles.
-Skills: Web scraping with JSoup, Multithreading, Data Structures, RESTful API, Natural Language Processing (NLP), JavaFX for UI.
+    Description: Create a Java application that scrapes news articles from various sources, categorizes them, and filters them based on user preferences. Implement a basic NLP algorithm for sentiment analysis on articles.
+    Skills: Web scraping with JSoup, Multithreading, Data Structures, RESTful API, Natural Language Processing (NLP), JavaFX for UI.
 
 02. Real-Time Data Dashboard for Financial Markets
-Description: Create a real-time dashboard that retrieves and displays financial market data (e.g., stock prices, currency rates) and visualizes trends and patterns with customizable views.
-Skills: REST API, Multithreading, JSON Parsing, JavaFX/Swing for UI, Data Visualization libraries.
+    Description: Create a real-time dashboard that retrieves and displays financial market data (e.g., stock prices, currency rates) and visualizes trends and patterns with customizable views.
+    Skills: REST API, Multithreading, JSON Parsing, JavaFX/Swing for UI, Data Visualization libraries.
 
 03. Expense Tracker with Analytics
-Description: Design an application for tracking expenses, where users can log transactions, categorize them, and set budget goals. Add analytics to visualize spending patterns and provide suggestions for cost-saving.
-Skills: Collections, File I/O, RESTful services (optional), JavaFX for UI, Data Visualization with external libraries (e.g., JFreeChart).
+    Description: Design an application for tracking expenses, where users can log transactions, categorize them, and set budget goals. Add analytics to visualize spending patterns and provide suggestions for cost-saving.
+    Skills: Collections, File I/O, RESTful services (optional), JavaFX for UI, Data Visualization with external libraries (e.g., JFreeChart).
 
 04. Data Structures and Algorithms Visualizer
-Description: Develop an interactive tool to visualize various data structures (e.g., trees, graphs, heaps) and algorithms (e.g., sorting, searching, pathfinding). This is excellent for learning and teaching.
-Skills: Collections, JavaFX for UI, Multithreading, Animation libraries.
+    Description: Develop an interactive tool to visualize various data structures (e.g., trees, graphs, heaps) and algorithms (e.g., sorting, searching, pathfinding). This is excellent for learning and teaching.
+    Skills: Collections, JavaFX for UI, Multithreading, Animation libraries.
 
 05. Social Media Data Analyzer
-Description: Build a tool to analyze Twitter data (or any other public social media platform) using sentiment analysis and visualize data trends. Show trends based on hashtags, geolocations, or time-based data.
-Skills: REST APIs, NLP (Natural Language Processing), JSON Parsing, Data Visualization with JavaFX or other libraries.
+    Description: Build a tool to analyze Twitter data (or any other public social media platform) using sentiment analysis and visualize data trends. Show trends based on hashtags, geolocations, or time-based data.
+    Skills: REST APIs, NLP (Natural Language Processing), JSON Parsing, Data Visualization with JavaFX or other libraries.
 
 06. Smart Task Scheduler with Machine Learning Integration
-Description: Build a task scheduler that prioritizes tasks based on urgency, user productivity patterns, and task dependencies. Integrate a basic machine-learning model (e.g., K-means clustering) that learns and adjusts the priority based on user behaviors.
-Skills: Collections, File I/O, JDBC (database), Machine Learning integration, Threads, Data Structures, JavaFX for UI.
+    Description: Build a task scheduler that prioritizes tasks based on urgency, user productivity patterns, and task dependencies. Integrate a basic machine-learning model (e.g., K-means clustering) that learns and adjusts the priority based on user behaviors.
+    Skills: Collections, File I/O, JDBC (database), Machine Learning integration, Threads, Data Structures, JavaFX for UI.
