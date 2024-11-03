@@ -1,14 +1,4 @@
 
----------------------Table ------------------
-
-CREATE TABLE doctors(
-  id int(20) AUTO_INCREMENT PRIMARY KEY,
-  name varchar(100) NOT NULL,
-  specialization varchar(100) NOT NULL
-)
-
----------------------------------------------
-
 
 public class Doctor {
     private int id;
