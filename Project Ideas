@@ -2,8 +2,8 @@
 
 
 
-Enterprise Applications
-Description: Java’s robustness and scalability make it a preferred language for enterprise-level applications. These are large-scale, complex applications used by businesses to manage operations.
+#### Enterprise Applications
+    Description: Java’s robustness and scalability make it a preferred language for enterprise-level applications. These are large-scale, complex applications used by businesses to manage operations.
 Examples:
     01. Banking and financial transaction systems
     02. Enterprise Resource Planning (ERP) systems
@@ -11,6 +11,13 @@ Examples:
     04. Human Resource Management Systems (HRMS)
     05. Supply chain management
 
+
+### Big Data and Data Processing Applications
+    Description: Java is frequently used with big data technologies, such as Apache Hadoop and Apache Spark, to handle and process massive data volumes.
+Examples:
+    01. Data analysis tools for large datasets
+    02. Log processing systems
+    03. Real-time analytics applications
 
 
 01.Personalized News Aggregator
