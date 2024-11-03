@@ -1,19 +1,4 @@
 
-
-
-------------- Table ----------------
-CREATE TABLE book_appointment(
-  id int(20) AUTO_INCREMENT PRIMARY KEY,
-  patientId int(100) NOT NULL,
-  doctorId int(100) NOT NULL,
-  appointmentDate varchar(100) NOT NULL,
-  bookingDate varchar(100) NOT NULL
-)
-
----------------------
-
-
-
 import java.sql.*;
 
 public class BookAppointment {
