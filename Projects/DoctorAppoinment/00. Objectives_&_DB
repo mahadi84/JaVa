@@ -1,0 +1,49 @@
+Date: 1 Nov 2024
+
+
+Objective: Book a doctor's appointment.
+
+Steps 01:
+  -Register:
+      -Doctor with Specialization
+      -Patients with age and gender
+
+Steps 02:
+  -Before Book an Appointment, Check whether
+      -Doctor and Patient already in our database
+      -Doctor is available on that date
+
+Step 03:
+    -Enter and Doctor_ID, Patient_ID and Appoinment_Date on the book_appointment Table.
+
+Final Step:
+    -Check appointment details(Doctor, Patient name, Booked Date and Appointment Date) by appointment ID
+
+
+
+------------- Book_appointment ----------------
+CREATE TABLE book_appointment(
+  id int(20) AUTO_INCREMENT PRIMARY KEY,
+  patientId int(100) NOT NULL,
+  doctorId int(100) NOT NULL,
+  appointmentDate varchar(100) NOT NULL,
+  bookingDate varchar(100) NOT NULL
+)
+
+---------------------Table ------------------
+CREATE TABLE doctors(
+  id int(20) AUTO_INCREMENT PRIMARY KEY,
+  name varchar(100) NOT NULL,
+  specialization varchar(100) NOT NULL
+)
+
+------------- Ppatients -------------------
+CREATE TABLE patients(
+  id int(20) AUTO_INCREMENT PRIMARY KEY,
+  name varchar(100) NOT NULL,
+  age int(100) NOT NULL,
+  gender varchar(100) NOT NULL
+)
+
+
+-
