@@ -1,3 +1,15 @@
+
+--------------Table --------------
+CREATE TABLE patients(
+  id int(20) AUTO_INCREMENT PRIMARY KEY,
+  name varchar(100) NOT NULL,
+  age int(100) NOT NULL,
+  gender varchar(100) NOT NULL
+)
+---------------------------------------------
+
+
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
