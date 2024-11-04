@@ -1,0 +1,237 @@
+Creating a Java REST API without any frameworks involves manually setting up HTTP connections, handling requests, and managing JSON responses. Here’s a simple example to demonstrate a basic inventory management system using core Java, which listens on a specified port, parses incoming HTTP requests, and provides JSON responses.
+
+1. Project Structure
+For this project, we’ll create:
+
+A SimpleHTTPServer class to handle HTTP connections.
+InventoryHandler class to process requests for different endpoints.
+A Database class for in-memory storage (using Java collections).
+A simple Item class to represent inventory items.
+2. Dependencies
+Since we’re not using any frameworks, ensure your Java installation is up-to-date. No external libraries are required.
+
+3. Setting up Classes
+1. Item Class
+This class represents an inventory item.
+
+java
+Copy code
+public class Item {
+    private int id;
+    private String name;
+    private String description;
+    private int quantity;
+    private double price;
+
+    public Item(int id, String name, String description, int quantity, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    // Getters and Setters
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+    public int getQuantity() { return quantity; }
+    public double getPrice() { return price; }
+
+    // Converts item to JSON string
+    @Override
+    public String toString() {
+        return "{\"id\":" + id + ",\"name\":\"" + name + "\",\"description\":\"" + description +
+                "\",\"quantity\":" + quantity + ",\"price\":" + price + "}";
+    }
+}
+2. Database Class
+This will be a simple in-memory database using a HashMap.
+
+java
+Copy code
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Database {
+    private Map<Integer, Item> items = new HashMap<>();
+    private AtomicInteger idCounter = new AtomicInteger(1);
+
+    public Item addItem(String name, String description, int quantity, double price) {
+        int id = idCounter.getAndIncrement();
+        Item item = new Item(id, name, description, quantity, price);
+        items.put(id, item);
+        return item;
+    }
+
+    public Item getItem(int id) {
+        return items.get(id);
+    }
+
+    public Map<Integer, Item> getAllItems() {
+        return items;
+    }
+
+    public boolean deleteItem(int id) {
+        return items.remove(id) != null;
+    }
+}
+3. InventoryHandler Class
+This class handles basic REST endpoints.
+
+java
+Copy code
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.util.Map;
+
+public class InventoryHandler {
+    private Database database;
+
+    public InventoryHandler() {
+        database = new Database();
+    }
+
+    public void handleRequest(String method, String path, BufferedReader reader, PrintWriter writer) throws IOException {
+        if (method.equals("GET") && path.equals("/items")) {
+            getAllItems(writer);
+        } else if (method.equals("POST") && path.equals("/items")) {
+            addItem(reader, writer);
+        } else if (method.startsWith("GET") && path.startsWith("/items/")) {
+            getItem(path, writer);
+        } else if (method.startsWith("DELETE") && path.startsWith("/items/")) {
+            deleteItem(path, writer);
+        } else {
+            writer.println("HTTP/1.1 404 Not Found");
+            writer.println("Content-Type: application/json");
+            writer.println();
+            writer.println("{\"error\": \"Endpoint not found\"}");
+        }
+    }
+
+    private void getAllItems(PrintWriter writer) {
+        writer.println("HTTP/1.1 200 OK");
+        writer.println("Content-Type: application/json");
+        writer.println();
+
+        StringBuilder response = new StringBuilder("[");
+        for (Item item : database.getAllItems().values()) {
+            response.append(item.toString()).append(",");
+        }
+        if (response.length() > 1) response.setLength(response.length() - 1);  // Remove trailing comma
+        response.append("]");
+
+        writer.println(response.toString());
+    }
+
+    private void addItem(BufferedReader reader, PrintWriter writer) throws IOException {
+        StringBuilder body = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null && !line.isEmpty()) {
+            body.append(line);
+        }
+
+        String[] parts = body.toString().split(",");
+        String name = parts[0].split(":")[1].replace("\"", "");
+        String description = parts[1].split(":")[1].replace("\"", "");
+        int quantity = Integer.parseInt(parts[2].split(":")[1]);
+        double price = Double.parseDouble(parts[3].split(":")[1]);
+
+        Item newItem = database.addItem(name, description, quantity, price);
+
+        writer.println("HTTP/1.1 201 Created");
+        writer.println("Content-Type: application/json");
+        writer.println();
+        writer.println(newItem.toString());
+    }
+
+    private void getItem(String path, PrintWriter writer) {
+        int id = Integer.parseInt(path.split("/")[2]);
+        Item item = database.getItem(id);
+
+        writer.println("HTTP/1.1 200 OK");
+        writer.println("Content-Type: application/json");
+        writer.println();
+        if (item != null) {
+            writer.println(item.toString());
+        } else {
+            writer.println("{\"error\": \"Item not found\"}");
+        }
+    }
+
+    private void deleteItem(String path, PrintWriter writer) {
+        int id = Integer.parseInt(path.split("/")[2]);
+        boolean deleted = database.deleteItem(id);
+
+        writer.println("HTTP/1.1 200 OK");
+        writer.println("Content-Type: application/json");
+        writer.println();
+        if (deleted) {
+            writer.println("{\"message\": \"Item deleted\"}");
+        } else {
+            writer.println("{\"error\": \"Item not found\"}");
+        }
+    }
+}
+4. SimpleHTTPServer Class
+This class listens for HTTP connections and delegates to InventoryHandler.
+
+java
+Copy code
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SimpleHTTPServer {
+    private static final int PORT = 8080;
+
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            InventoryHandler handler = new InventoryHandler();
+            System.out.println("Server started on port " + PORT);
+
+            while (true) {
+                try (Socket socket = serverSocket.accept()) {
+                    handleClient(socket, handler);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void handleClient(Socket socket, InventoryHandler handler) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter writer = new PrintWriter(socket.getOutputStream());
+
+        String requestLine = reader.readLine();
+        if (requestLine != null) {
+            String[] parts = requestLine.split(" ");
+            String method = parts[0];
+            String path = parts[1];
+
+            handler.handleRequest(method, path, reader, writer);
+            writer.flush();
+        }
+
+        reader.close();
+        writer.close();
+        socket.close();
+    }
+}
+4. Running the Application
+Compile the code:
+
+Compile each of the classes using javac.
+Run the Server:
+
+Start the SimpleHTTPServer class: java SimpleHTTPServer.
+Testing the API:
+
+Use curl or any HTTP client tool (like Postman) to test endpoints:
+GET all items: curl -X GET http://localhost:8080/items
+POST an item: curl -X POST -d "name=Phone&description=Smartphone&quantity=10&price=500" http://localhost:8080/items
+GET a specific item: curl -X GET http://localhost:8080/items/1
+DELETE an item: curl -X DELETE http://localhost:8080/items/1
+This example illustrates a simple REST API using core Java only. For more scalability and functionality, consider using Java frameworks like Spring Boot.
