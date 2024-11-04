@@ -166,4 +166,94 @@ public class Student {
 
 
 
+===================================== With Database ======================================================
+
+
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    grade INT,
+    yearly_fee INT,
+    paid_fee INT
+);
+
+CREATE TABLE teachers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    salary INT,
+    received_salary INT
+);
+
+CREATE TABLE transactions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    type ENUM('fee', 'salary'),
+    amount INT,
+    date DATE,
+    student_id INT,
+    teacher_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id)   
+
+);
+
+---------------------------------
+
+import java.sql.*;
+
+public class SchoolManagement {
+    private Connection connection;
+
+    public SchoolManagement(String url, String username, String password) throws SQLException {
+        connection = DriverManager.getConnection(url, username, password);
+    }
+
+    public void addStudent(Student student) throws SQLException {
+        // ... (insert into students table)
+    }
+
+    public void addTeacher(Teacher teacher) throws SQLException {
+        // ... (insert into teachers table)
+    }
+
+    public void recordFeePayment(int studentId, int amount) throws SQLException {
+        // ... (insert into transactions table with type 'fee')
+    }
+
+    public void recordSalaryPayment(int teacherId, int amount) throws SQLException {
+        // ... (insert into transactions table with type 'salary')
+    }
+
+    public int calculateAnnualIncome() throws SQLException {
+        int totalIncome = 0;
+        // Use SQL query to calculate total income from transactions table
+        String query = "SELECT SUM(amount) FROM transactions WHERE type = 'fee'";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                totalIncome += resultSet.getInt(1);
+            }
+        }
+
+        // Subtract total salary paid
+        query = "SELECT SUM(amount) FROM transactions WHERE type = 'salary'";
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                totalIncome -= resultSet.getInt(1);
+            }
+        }
+
+        return totalIncome;
+    }
+
+    // ... other methods for retrieving, updating, and deleting data
+}
+
+
+
+
+
+
+
+
 -
