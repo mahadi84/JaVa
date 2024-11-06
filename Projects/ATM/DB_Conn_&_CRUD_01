@@ -103,6 +103,29 @@ public class test {
         //         JOptionPane.showMessageDialog(null, "Tk.. "+amount+" Deposited Successfully");
 
 
+//----------------------- Withdraw ------------------------------------                 
+            ResultSet rs = conn.s.executeQuery("select * from bank where pin = '"+pin+"'");
+            int balance = 0;
+            while(rs.next()){
+               if(rs.getString("mode").equals("Deposit")){
+                   balance += Integer.parseInt(rs.getString("amount"));
+               }else{
+                   balance -= Integer.parseInt(rs.getString("amount"));
+               }
+            }
+            if(balance < Integer.parseInt(amount)){ //Check whether requested balance is available
+                JOptionPane.showMessageDialog(null, "Insufficient Balance");
+                return;
+            }
+            conn.s.executeUpdate("insert into bank values('"+0+"','"+pin+"', '"+currentDataAndTime+"', 'Withdra', '"+amount+"')");
+            JOptionPane.showMessageDialog(null, "Tk. "+amount+" Debited Successfully");
+                    
+
+
+
+
+
+
 
     }
 
