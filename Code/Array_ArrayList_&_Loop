@@ -2,7 +2,8 @@
 
 00. Why/What is an Array?
 01. How to print a One_,Two_,&_Three dimensional Array?
-02. How do you search data in an array (linear, binary, stream search)?
+02. How do I search data in an array (linear, binary, stream search)?
+03. How do I convert an array to a list and vice versa?
 
 -------------------------------------
 Arrays.asList() Vs new ArrayList()
@@ -210,3 +211,11 @@ public static <T> void printList(ArrayList<T> list) {
         printList(arr);
         printList(n);
     }
+
+
+
+======================== 03. How do I convert an array to a list and vice versa? ===================
+    List<Integer> list = Arrays.asList(10, 4, -1, 5);
+    Collections.sort(list);
+        Integer array[] = list.toArray(new Integer[4]);
+        System.out.println(array[0]);
