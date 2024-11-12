@@ -1,0 +1,27 @@
+import java.sql.SQLException;
+
+public class Main {
+    public static void main(String[] args) throws SQLException {
+
+        DatabaseConnection connection= new DatabaseConnection();
+        PayRollSystem pr = new PayRollSystem(connection); 
+
+        // // Add employees
+        pr.addEmployee(new FullTimeEmployee("Muhammad Mahadi Hasan", 20242201, 2500));
+        // pr.addEmployee(new FullTimeEmployee("Md. Shafiullah", 20242202, 3000));
+
+        // pr.addEmployee(new PartTimeEmployee("Kabir Hossain", 20242101, 100, 30)); 
+
+        // // Display employees
+        // System.out.println("\nAll Employees");
+        // pr.displayEmployee();
+
+        // // Remove an employee
+        // pr.removeEmployee(20242201); 
+        // System.out.println("\nAfter Remove one employee \n");
+        // pr.displayEmployee();
+        // System.out.println("\n");
+
+        connection.closeConnection();
+    }
+}
