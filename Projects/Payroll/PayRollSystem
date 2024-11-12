@@ -14,13 +14,13 @@ public class PayRollSystem {
 
     public void addEmployee(Employee e) throws SQLException {
        
-        String query= "INSERT INTO employees (id, name, employee_type, monthly_salary, hourly_rate, hours_worked) " +
+        String query= "INSERT INTO employees (employee_id, employee_name, employee_type, monthly_salary, hourly_rate, hours_worked) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.getConnection().prepareStatement(query)) {
 
-            statement.setInt(1, e.getId());
-            statement.setString(2, e.getName());
+            statement.setInt(1, e.getEmpId());
+            statement.setString(2, e.getEmpName());
 
             if (e instanceof FullTimeEmployee) {
                 statement.setString(3, "FullTime");
@@ -62,8 +62,8 @@ public class PayRollSystem {
             ResultSet resultSet = preparedStatement.executeQuery()){
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
+                int emp_id = resultSet.getInt("employee_id");
+                String emp_name = resultSet.getString("employee_name");
                 String employeeType = resultSet.getString("employee_type");
                 double salary = 0.0;
 
@@ -75,7 +75,7 @@ public class PayRollSystem {
                     salary = hourlyRate * hoursWorked;
                 }
 
-                System.out.println("Employee [name=" + name + ", id=" + id + ", salary=" + salary + "]");
+                System.out.println("Employee [Empolyee ID= " + emp_id + ", Employee Name= " + emp_name + ", salary= " + salary + "]");
             }
 
         } catch (SQLException ex) {
@@ -84,3 +84,6 @@ public class PayRollSystem {
     }
 }
 
+
+
+-
