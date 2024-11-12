@@ -6,10 +6,11 @@ public class Main {
         DatabaseConnection connection= new DatabaseConnection();
         PayRollSystem pr = new PayRollSystem(connection); 
 
-        // // Add employees
+        // // Add Full Time Employee
         pr.addEmployee(new FullTimeEmployee("Muhammad Mahadi Hasan", 20242201, 2500));
         // pr.addEmployee(new FullTimeEmployee("Md. Shafiullah", 20242202, 3000));
 
+        // // Add Part Time Employee
         // pr.addEmployee(new PartTimeEmployee("Kabir Hossain", 20242101, 100, 30)); 
 
         // // Display employees
