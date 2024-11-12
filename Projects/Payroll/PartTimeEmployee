@@ -1,0 +1,36 @@
+
+
+public class PartTimeEmployee extends Employee {
+
+
+    private String name;
+    private int empId;
+    private int hoursWorked;
+    private double hourlyRate;
+    
+
+    public PartTimeEmployee(String name, int empId, int hoursWorked, double hourlyRate) {
+        this.name = name;
+        this.empId = empId;
+        this.hoursWorked = hoursWorked;
+        this.hourlyRate = hourlyRate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+
+}
