@@ -45,15 +45,13 @@ public class PayRollSystem {
 
 
     public void removeEmployee(int removeEmpWithId) {
-        try ( PreparedStatement statement = connection.getConnection().prepareStatement(
-                     "DELETE FROM employees WHERE id = ?")) {
-
-            statement.setInt(1, removeEmpWithId);
-            statement.executeUpdate();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        String query= "DELETE FROM employees WHERE id = ?";
+           try(PreparedStatement statement = connection.getConnection().prepareStatement(query)) {
+               statement.setInt(1, removeEmpWithId);
+               statement.executeUpdate();
+           }catch (SQLException ex) {
+               ex.printStackTrace();
+           }
     }
 
     public void displayEmployee() {
