@@ -1,0 +1,28 @@
+
+
+public class FullTimeEmployee extends Employee {
+    
+    private String name;
+    private int empId;
+    private double monthlySalary;
+
+    
+    public FullTimeEmployee(String name, int empId, double monthlySalary) {
+        this.name = name;
+        this.empId = empId;
+        this.monthlySalary = monthlySalary;
+    }
+
+    public double getMonthlySalary() {
+        return monthlySalary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return empId;
+    }
+
+}
