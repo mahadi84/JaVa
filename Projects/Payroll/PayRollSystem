@@ -75,7 +75,7 @@ public class PayRollSystem {
                     salary = hourlyRate * hoursWorked;
                 }
 
-                System.out.println("Employee [Empolyee ID= " + emp_id + ", Employee Name= " + emp_name + ", salary= " + salary + "]");
+                System.out.println("Employee [Empolyee ID= " + emp_id + ", Employee Name= " + emp_name +", Emp Type= "+employeeType+", salary= " + salary + "]");
             }
 
         } catch (SQLException ex) {
