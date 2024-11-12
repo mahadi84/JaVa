@@ -1,0 +1,30 @@
+Date: 12-Nov-2024
+
+Objective: 
+    - Register Full Time and Part Time Employees using Abstract Class, Method and Inheritance
+    - Calculate the Salary for both
+
+Use of :
+    - Abstract Class and Method
+    - ArrayList as Data Type and Parameter
+    - Find/Check specific Objects using id
+    - Remove an element by value(Object), by index both works fine
+
+
+
+----------------------- DB Table -----------------------
+CREATE TABLE employees (
+    id INT PRIMARY KEY Auto_increment,
+    employee_id INT unique,
+    employee_name VARCHAR(255) NOT NULL,
+    employee_type VARCHAR(255) NOT NULL,
+    monthly_salary DECIMAL(10, 2), 
+    hourly_rate DECIMAL(10, 2),
+    hours_worked INT
+);
+
+
+
+
+
+-
