@@ -31,6 +31,9 @@
         //  System.out.println(name.equals("mahadi"));
         //  System.out.println(name.equalsIgnoreCase("mahadi"));
 
+        //  System.out.println(name.startsWith("A"));
+        //  System.out.println(name.endsWith("A"));
+
 
         //  System.out.println(name.toUpperCase());
         //  System.out.println(name.toLowerCase());
@@ -73,6 +76,14 @@
 
 ===================================== Array ==========================================
 
+FUNCTIONS:--
+01. length 02. sort() 03. binarySearch()
+
+String[] numbers = { "10", "9", "100" };
+Arrays.sort(numbers);
+Arrays.binarySearch(numbers, 2)
+
+
         // ------------- One Dimentional ------------
         // int[] iA= new int[1];  //[tray icon, indicate an array]
         // int[] iA = {1, 2, 3};
@@ -109,10 +120,57 @@
 
 
 
+================================= ArrayList ======================================
+
+There are 3 ways to create an ArrayList:--
+         ArrayList list1 = new ArrayList();
+         ArrayList list2 = new ArrayList(10);
+         ArrayList list3 = new ArrayList(list2);
+
+FUNCTIONS: 
+         01. add() 
+         02. get() 03.set() 04. size() and  isEmpty() 
+         05. remove() 06. removeOf()
+         07. clear()  08. contains()
+         09. equals()
 
 
 
 
+===================================== Lambda Expression =============================================
+1: a -> a.canHop()
+2: (Animal a) -> { return a.canHop(); }
+**These two lines do the exact same thing:
+
+3: print(() -> true); // 0 parameters
+4: print(a -> a.startsWith("test")); // 1 parameter
+5: print((String a) -> a.startsWith("test")); // 1 parameter
+6: print((a, b) -> a.startsWith("test")); // 2 parameters
+7: print((String a, String b) -> a.startsWith("test")); // 2 parameters
+--
+(a, b) -> { int a = 0; return 5;} // DOES NOT COMPILE  (doesn’t allow us to redeclare a local variable)
+(a, b) -> { int c = 0; return 5;}  (okay, because it uses a different variable name:)
 
 
--
+
+=========================================== Date and Time =========================================
+-The date and time classes are immutable, just like String is.
+
+LocalDateTime: Contains both a date and time but no time zone.
+
+01. LocalDate today = LocalDate.now();                       //Auto generate date
+02. LocalDate date = LocalDate.of(2014, Month.JANUARY, 2);   //My generated date
+03. TwoDayAhead = today.plusDays(2);      //(plus/minus)Days/Weeks()/Months()/Years(), (plus/minus)Hours/Minues/Seconds
+04. Period oneMonth = Period.ofMonths(1); //ofDays/Weeks()/Months()/Years() //period for time does work. UnsupportedTemporalTypeException
+         LocalDate nextMonth = today.plus(oneMonth);
+05. DateTimeFormatter f = DateTimeFormatter.ofPattern("DD-MM-YYYY, hh:mm");
+         formatDate = today.format(f); // 20-12-2024, 11:12
+06. week = today.getDayOfWeek() //
+07. LocalDate date = LocalDate.parse("01 02 2024", f); //Create/Parse date
+
+08. DateTimeFormatter shortDateTime = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT); // Show date format: 1/20/20
+     System.out.println(shortDateTime.format(today)); 
+
+
+
+--
