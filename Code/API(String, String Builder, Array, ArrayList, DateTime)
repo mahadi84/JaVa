@@ -2,7 +2,18 @@
 
 ================================== String =====================================
     
-         String name= "Mahadi";        
+         String name= "Mahadi"; 
+
+        //----
+        // String str1 = "Hello";
+        // str1 = str1 + " World"; 
+        // System.out.println(str1);
+
+        // String str2 = "Hello";
+        // String str3 = name.concat(str2).length(); //** Why copilation error.
+        // System.out.println(str3);
+        //----
+
 
         //  System.out.println(name.length());
         //  System.out.println(name.charAt(000));
