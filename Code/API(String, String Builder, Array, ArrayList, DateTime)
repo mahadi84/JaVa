@@ -1,0 +1,40 @@
+
+
+====================== String =========================
+ String name= "Mahadi";        
+        //  System.out.println(name.length());
+        //  System.out.println(name.charAt(10));
+        //  System.out.println(name.indexOf("z"));
+        //  System.out.println(name.lastIndexOf("i"));
+        
+        // System.out.println(name.substring(1));
+        // System.out.println(name.substring(1, 2));
+        // System.out.println(name.substring(1, 1));
+        
+        // System.out.println(name.replace("dii", "R"));
+
+        //  System.out.println(name.concat("_Z"));
+         
+        //  System.out.println(name.contains("hadiz"));
+
+        //  System.out.println(name.equals("mahadi"));
+        //  System.out.println(name.equalsIgnoreCase("mahadi"));
+
+
+        //  System.out.println(name.toUpperCase());
+        //  System.out.println(name.toLowerCase());
+        
+        char[] c= name.toCharArray();  //Converts the string to a new character array.
+        System.out.println(c[0]);
+        
+        //  valueOf(Object obj): Returns the string representation of the specified object.
+        String numStr = String.valueOf(123); // numStr will be "123"
+         System.out.println(numStr.toLowerCase());
+
+
+====================== StringBuilder =========================
+
+
+
+
+
