@@ -1,9 +1,11 @@
 
 
-====================== String =========================
- String name= "Mahadi";        
+================================== String =====================================
+    
+         String name= "Mahadi";        
+
         //  System.out.println(name.length());
-        //  System.out.println(name.charAt(10));
+        //  System.out.println(name.charAt(000));
         //  System.out.println(name.indexOf("z"));
         //  System.out.println(name.lastIndexOf("i"));
         
@@ -12,9 +14,7 @@
         // System.out.println(name.substring(1, 1));
         
         // System.out.println(name.replace("dii", "R"));
-
-        //  System.out.println(name.concat("_Z"));
-         
+        //  System.out.println(name.concat("_Z"));         
         //  System.out.println(name.contains("hadiz"));
 
         //  System.out.println(name.equals("mahadi"));
@@ -24,17 +24,42 @@
         //  System.out.println(name.toUpperCase());
         //  System.out.println(name.toLowerCase());
         
-        char[] c= name.toCharArray();  //Converts the string to a new character array.
-        System.out.println(c[0]);
+        // char[] c= name.toCharArray();  //Converts the string to a new character array.
+        // System.out.println(c[0]);
         
-        //  valueOf(Object obj): Returns the string representation of the specified object.
-        String numStr = String.valueOf(123); // numStr will be "123"
-         System.out.println(numStr.toLowerCase());
+        // //  valueOf(Object obj): Returns the string representation of the specified object.
+        // String numStr = String.valueOf(123); // numStr will be "123"
+        //  System.out.println(numStr.toLowerCase());
+        
+        
+======================================== StringBuilder  =======================================
+        
+        // StringBuilder sb= new StringBuilder();
+        // int capacity = sb.capacity(); // Initial capacity is usually 16
+        // sb.ensureCapacity(100); // Makes sure the capacity is at least 100
+                // sb.append(" abc");
+                // sb.append(" 123").insert(0, "Hello ").setCharAt(0, 'h');
+
+                // System.out.println(sb.length());
+                // System.out.println(sb.charAt(000));
+                // System.out.println(sb.indexOf("h"));
+                // System.out.println(sb.lastIndexOf("h"));
+
+                // System.out.println(sb.substring(2)); //is there any difference form String?
+                // System.out.println(sb.substring(100));
+                // System.out.println(sb.substring(1,100));
+                // System.out.println(sb.substring(1,1));
+                
+                // System.out.println(sb.deleteCharAt(1)); //**
+                // System.out.println(sb.delete(1,1)); //**
+                
+                // System.out.println(sb.reverse()); 
+
+                // String result = sb.toString(); //Converts the StringBuilder object to a String object.
+                // System.out.println(result);
 
 
-====================== StringBuilder =========================
 
 
 
-
-
+-
