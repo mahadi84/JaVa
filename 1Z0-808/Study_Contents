@@ -157,29 +157,57 @@
 ############# Chapter 5 Class Design 233 ##########################
 
     - Introducing Class Inheritance 234
+        > why >Why Single/Multiple > No. of times extends a class
     - Extending a Class 235
+        > how to Stop extending
     - Applying Class Access Modifiers 237
+        > role of Default in a file
     - Creating Java Objects 237
+        > Object Super Class/Object 
     - Defining Constructors 238
+        > this() vs super() > default constructor > overloading 
+        > non-argument/argument constructor in parent and child (Yes Vs Yes, No vs No, Yes vs No, No vs Yes)
+        > reviewing 5-rules > calling constructor
     - Calling Inherited Class Members 244
+        > directly/(optional)this(current and parent) vs super
     - Inheriting Methods 246
+        > overriding and 4-rules for nonprivate method > overloading vs overriding
+        > redeclaring private methods > hidding static method > overriding vs hidding
+        > final keyword
     - Inheriting Variables 257
+        > hidding >
     - Creating Abstract Classes 259
+        > why? 
     - Defining an Abstract Class 260
+        > can have only abstract method?
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
+        > 5-rules for class > 4-rules for method
     - Implementing Interfaces 266
+        > declare
     - Defining an Interface 267
+        > 5-rules
     - Inheriting an Interface 269
+        > 2-rules > class, interfaces and keywords
+        > abstract methods and multiple interface
     - Interface Variables 273
+        > always what?
     - Default Interface Methods 274
+        > why?
+        > 4-rules > default methods and multiple inheritance
     - Static Interface Methods 278
+        > 2-rules
     - Understanding Polymorphism 279
+        > why?
     - Object vs. Reference 281
+        > 2-rules
     - Casting Objects 282
+        > Grandparent, parent and child's property-access
+        > 4-rules
     - Virtual Methods 284
     - Polymorphic Parameters 285
-    - Polymorphism and Method Overriding 287Contents xix
+        > why and how? >casting
+    - Polymorphism and Method Overriding 287
     - Summary 288
     - Exam Essentials 289
     - Review Questions 291
