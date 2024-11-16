@@ -192,7 +192,7 @@
         > abstract methods and multiple interface
           ( method name = same, or same/different params/return type)
     - Interface Variables 273
-        > always what?
+        > assume always what?
     - Default Interface Methods 274
         > why?
         > 4-rules > default methods and multiple inheritance
