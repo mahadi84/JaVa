@@ -166,6 +166,7 @@
         > Object as Super Class/Object 
     - Defining Constructors 238
         > this() vs super() > default constructor > overloading 
+        > understand compiler enhancement
         > non-argument/argument constructor in parent and child (Yes Vs Yes, No vs No, Yes vs No, No vs Yes)
         > reviewing 5-rules > calling constructor
     - Calling Inherited Class Members 244
