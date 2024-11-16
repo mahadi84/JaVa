@@ -182,7 +182,7 @@
         > can have only abstract method? > final, private, abstract keyword with method.
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
-        > 5-rules for class > 4-rules for method
+        > 5-rules for definition Abs. class > 4-rules for definition Abs. method
     - Implementing Interfaces 266
         > declare
     - Defining an Interface 267
