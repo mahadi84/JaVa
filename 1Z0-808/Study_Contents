@@ -157,7 +157,7 @@
 ############# Chapter 5 Class Design 233 ##########################
 
     - Introducing Class Inheritance 234
-        > why >why Single/Multiple > No. of times extends a class
+        > why >what Single/Multiple > No. of times extends a class
     - Extending a Class 235
         > how to Stop extending
     - Applying Class Access Modifiers 237
