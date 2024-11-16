@@ -202,7 +202,7 @@
     - Static Interface Methods 278
         > 2-rules
     - Understanding Polymorphism 279
-        > definition & why? 
+        > defination & why? 
     - Object vs. Reference 281
         > 2-rules > parents members also store an obj?
     - Casting Objects 282
@@ -211,7 +211,7 @@
     - Virtual Methods 284
     - Polymorphic Parameters 285
         > what,why and how with example? 
-        > casting > creating method in related/unrelated class
+        > casting > creating method in parent/child/unrelated class
     - Polymorphism and Method Overriding 287
     - Summary 288
     - Exam Essentials 289
