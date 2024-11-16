@@ -195,7 +195,9 @@
         > assume always what?
     - Default Interface Methods 274
         > why?
-        > 4-rules > default methods and multiple inheritance
+        > 4-rules
+        > default methods and multiple inheritance
+             ( method name = same, or same/different params/return type
     - Static Interface Methods 278
         > 2-rules
     - Understanding Polymorphism 279
