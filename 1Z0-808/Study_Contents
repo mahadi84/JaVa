@@ -190,7 +190,7 @@
     - Inheriting an Interface 269
         > 2-rules > class, interfaces and keywords
         > abstract methods and multiple interface
-          ( method name = same, or different params/return type)
+          ( method name = same, or same/different params/return type)
     - Interface Variables 273
         > always what?
     - Default Interface Methods 274
