@@ -179,7 +179,7 @@
     - Creating Abstract Classes 259
         > why? 
     - Defining an Abstract Class 260
-        > can have only abstract method?
+        > can have only abstract method? > final, private, abstract keyword with method.
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
         > 5-rules for class > 4-rules for method
