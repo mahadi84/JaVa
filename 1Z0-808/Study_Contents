@@ -149,6 +149,7 @@
     - Writing Simple Lambdas 208
        > functional programming  > anonymous method > data type 'boolean'
     - Lambda Example 209
+       > find negative/positive number > String startwith NOT 'h' > age of panda greater 5years > animal can swim. (Code>Lambda_Code)
     - Lambda Syntax 211
        > (Animal a)-> {return a.canHop();} vs  a-> a.canHop();
        > print(()->true) 
