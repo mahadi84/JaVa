@@ -137,13 +137,15 @@
        > public: protected and classes in the other packages
     - Private Access 173
     - Default (Package Private) Access 175
+       > Two different packages 1. Football and 2. Cricket, can access members to each other
     - Protected Access 176
+       > Two different packages 1. Football and 2. Cricket can access members creating subclass to each other
     - Public Access 180
     - Designing Static Methods and Fields 181
-    - Calling a Static Variable or Method 182
         > count
+    - Calling a Static Variable or Method 182
     - Static vs. Instance 183
-       > static works inside instance block, does not works opposite
+       > static works inside instance block, does not work opposite
     - Static Variables 185
     - Static Initialization 186
     - Static Imports 187
