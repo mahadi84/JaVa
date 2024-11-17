@@ -87,10 +87,10 @@
     - The String Pool 105
         > location in java virtual machine that collect all strings > garbage collectible 
     - Important String Methods 105
-        > charAt() > indexOf() > lastIndexOf() > substring()
-        > replace() > concat() > contains() > equals() > equalsIgnoreCase()
-        > startsWith() > endsWith() > toUpperCase() > toLowerCase()
-        > toCharArray() > valueOf()
+        01. charAt() 02. indexOf() 03. lastIndexOf() 04. substring()
+        05. replace() 06. concat() 07. contains() 08. equals() 09. equalsIgnoreCase()
+        10. startsWith()  11. endsWith()  12. toUpperCase() 13. toLowerCase()
+        14. toCharArray()  15. valueOf()
     - Method Chaining 110
         > String a= "abc"; String b= a.toUpperCase(); b= b.replace("B", "2").replace('C', '3');
     - Using the StringBuilder Class 111
@@ -101,28 +101,44 @@
     - Creating a StringBuilder 113
         >StringBuilder sb1 = new StringBuilder(); StringBuilder sb2 = new StringBuilder("animal"); StringBuilder sb3 = new StringBuilder(10);
     - Important StringBuilder Methods 114
-        > charAt() > indexOf() > lastIndexOf() > substring()
-        > append() > insert() > delete() and deleteCharAt() >reverse() > toString()
+        01. charAt() 02. indexOf() 03. lastIndexOf() 04. substring()
+        05. append() 06. insert() 07. delete() 08. deleteCharAt() 09. reverse() 10. toString()
     - StringBuilder vs. StringBuffer 117
         > newer-older >faster-slower
     - Understanding Equality 117
         > String x = "Hello World"; String z = " Hello World".trim(); 
         > System.out.println(x == z); // false > System.out.println(x.equals(z)); // true
     - Understanding Java Arrays 119
+        > Special variable > store multiple same type of data
+    - Creating an Array of Primitives 119
+        > int[] iA= new int[1];  //[tray icon, indicate an array]      
+    - Creating an Array with Reference Variables 121
+        > String [] bugs = { "cricket", "beetle", "ladybug" };
+        > String [] alias = bugs;
+          >System.out.println(bugs.equals(alias)); // true
+          >System.out.println(bugs.toString()); // [Ljava.lang.String;@160bc7c0
+       > Object[] objects= bugs;
+       > String[] againStrings = (String[]) objects;
+    - Using an Array 123
+       > String[] birds = new String[6]; System.out.println(birds.length); //print all 6 elements of the array are null.
+    - Sorting 124
+       > Unsorted array, A surprise—this result isn’t predictable
+       > String[] strings = { "10", "9", "100" }; Arrays.sort(strings); //outputs 10 100 9.
+    - Searching 125
+      > int[] numbers = {2,4,6,8}; 
+      > System.out.println(Arrays.binarySearch(numbers, 2)); // 0
+      > System.out.println(Arrays.binarySearch(numbers, 1)); // -1
+    - Varargs 126
+    - Multidimensional Arrays 126
         > int[] iA= new int[1];  //[tray icon, indicate an array]
         > char[][] cA2= {{'A', 'B', 'C'}, {'D', 'E', 'F'}}; //table with 2 rows and 3 columns
         > char[][] cA= new char[no_of_rows][no_of_cols];
-        >  int[][][] building = new int[no_of_floors][no_of_rows][no_of_column/rooms]; 
-    - Creating an Array of Primitives 119
-    - Creating an Array with Reference Variables 121
-    - Using an Array 123
-    - Sorting 124
-    - Searching 125
-    - Varargs 126
-    - Multidimensional Arrays 126
+        > int[][][] building = new int[no_of_floors][no_of_rows][no_of_column/rooms]; 
     - Understanding an ArrayList 129
     - Creating an ArrayList 129
     - Using an ArrayList 130
+         01. add()  02. get() 03.set() 04. size() and  isEmpty() 
+         05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
     - Wrapper Classes 134
     - Autoboxing 136
     - Converting Between array and List 136
