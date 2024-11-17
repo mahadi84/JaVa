@@ -138,11 +138,15 @@
     - Static Imports 187
     - Passing Data Among Methods 188
     - Overloading Methods 191
+       >
     - Creating Constructors 196
+       > special method, name as class name > no return type >when use this?
     - Default Constructor 197
+       > included by java automatically but when?
     - Overloading Constructors 199
+       > must have a different type/no./sequence parameters
     - Final Fields 202
-
+       > set value exactly once > while declaring or constructor
     - Order of Initialization 202
        > 4 rules(Super, Static(Variable, Block), Instance(Variable, Block), Constructor)
        > static method/object instantiate into instance block
@@ -155,7 +159,7 @@
        > another common technique like encapsulation
        > making classes immutable so they can not be changed at all
        > omit the setters, not getter  > constuctor  >only when object is constructed 
-       > how to stop get reference too > toString() example
+       > issue with stringBuilder() and how to stop get reference too > toString() example
 
     - Writing Simple Lambdas 208
        > functional programming  > anonymous method > data type 'boolean'
