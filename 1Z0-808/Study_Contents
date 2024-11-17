@@ -238,11 +238,11 @@
       > parameter > free to declare any type
     - Recognizing Common Exception Types 313
     - Runtime Exceptions 314
-       > unchecked(7examples) by JVM
+       > unchecked(7examples) by JVM > program can not catch
     - Checked Exceptions 317
-        > compile-time(2example) must handled
+        > compile-time(2example) must handled > program can catch
     - Errors 317
-        >3example by JVM
+        > 3 example by JVM > program can not catch
     - Calling Methods That Throw Exceptions 318
     - Subclasses 319
       > unreachable 
