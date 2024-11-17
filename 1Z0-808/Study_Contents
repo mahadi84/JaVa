@@ -229,13 +229,12 @@
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
         > 5-rules for definition Abs. class ( cannot be instantiated, any number, including zero, of abstract and nonabstract methods, 
-           may not be marked as private or final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements for all of the inherited abstract methods.)
-        > 4-rules for definition Abs. method(only be defined in abstract classes, may not be declared private or final,  
-           must not provide a method body/implementation, same rules for overriding a method )
+           not private/final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements all abstract methods.)
+        > 4-rules for definition Abs. method(defined in abstract classes only, non-private/no-final, not method body/implementation, same rules for overriding a method )
     - Implementing Interfaces 266
         > declare
     - Defining an Interface 267
-        > 5-rules(cannot be instantiated, not required to have any methods,  may not be marked as final, assumed to have public or default access, non-default methods are assumed abstract and public )
+        > 5-rules(cannot be instantiated, not required to have any methods,  not final, assumed to have public or default access, non-default methods are assumed abstract and public )
     - Inheriting an Interface 269
         > 2-rules(interface extends another interface, first concrete class must provide an implementation for all of the inherited abstract methods) 
         > class, interfaces and keywords
