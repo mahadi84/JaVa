@@ -162,7 +162,7 @@
         
     - Creating Dates and Times 138
          > LocalDate: Contains just a date >LocalDateTime Contains both a date and time but no time zone.
-         > System.out.println(LocalDate.now());
+         > System.out.println(LocalDate/LocalTime/LocalDateTime.now());
     - Manipulating Dates and Times 142
          > LocalDate date = LocalDate.now(); > System.out.println(date); // 2024-01-20
          > date = date.plusDays/Weeks/Months/Years(2); > System.out.println(date); // 2024-01-22
@@ -179,6 +179,7 @@
         > LocalTime time = LocalTime.parse("11:22");
              >System.out.println(date); // 2015-01-02
              >System.out.println(time); // 11:22
+
     - Summary 151
     - Exam Essentials 152
     - Review Questions 153
