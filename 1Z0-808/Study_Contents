@@ -228,31 +228,37 @@
         > can have only abstract method? > final, private, abstract keyword with method.
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
-        > 5-rules for definition Abs. class > 4-rules for definition Abs. method
+        > 5-rules for definition Abs. class ( cannot be instantiated, any number, including zero, of abstract and nonabstract methods, 
+           may not be marked as private or final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements for all of the inherited abstract methods.)
+        > 4-rules for definition Abs. method(only be defined in abstract classes, may not be declared private or final,  
+           must not provide a method body/implementation, same rules for overriding a method )
     - Implementing Interfaces 266
         > declare
     - Defining an Interface 267
-        > 5-rules
+        > 5-rules(cannot be instantiated, not required to have any methods,  may not be marked as final, assumed to have public or default access, non-default methods are assumed abstract and public )
     - Inheriting an Interface 269
-        > 2-rules > class, interfaces and keywords
+        > 2-rules(interface extends another interface, first concrete class must provide an implementation for all of the inherited abstract methods) 
+        > class, interfaces and keywords
         > abstract methods and multiple interface
           ( method name = same, or same/different params/return type)
     - Interface Variables 273
         > assume always what?
     - Default Interface Methods 274
         > why?
-        > 4-rules
+        > 4-rules( only be declared within an interface ,must be marked with the default keyword,  not assumed to be static, final, or abstract, default method is assumed to be public)
         > default methods and multiple inheritance
              ( method name = same, or same/different params/return type
     - Static Interface Methods 278
-        > 2-rules
+        > 2-rules(static method is assumed to be public,  reference to the name of the interface must be used)
     - Understanding Polymorphism 279
         > defination & why? 
     - Object vs. Reference 281
-        > 2-rules > parents members also store an obj?
+        > 2-rules(object(properties exist within the object in memory.), reference(methods and variables areaccessible to the Java program)) 
+        > parents' members also store in memory as obj?
     - Casting Objects 282
         > Grandparent, parent and child's property-access
-        > 4-rules > 2 examples of rule 4
+        > 4-rules(super2sub explicite, sub2super, not-related compilation error, or exemption runtime, ) 
+        > 2 examples of rule 4
     - Virtual Methods 284
     - Polymorphic Parameters 285
         > what,why and how with example? 
@@ -267,31 +273,31 @@
 ############# Chapter 6 Exceptions 299 ##########################
 
     - Understanding Exceptions 300
-      > what
+        > what
     - The Role of Exceptions 300
-      > baby stand up itself > need help to stand up
+        > baby stand up itself > need help to stand up
     - Understanding Exception Types 302
-      > object >throwable > check, uncheck & error
+        > object >throwable > check, uncheck & error
     - Throwing an Exception 304
-      > throws vs throw
+        > throws vs throw
     - Using a try Statement 305
-      > bracket 
+        > bracket 
     - Adding a finally Block 307
-      > always execute  > try-catch-finally sequence
+        > always execute  > try-catch-finally sequence
     - Catching Various Types of Exceptions 309
-      > parent-child sequence
+        > parent-child sequence
     - Throwing a Second Exception 311
-      > parameter > free to declare any type
+        > parameter > free to declare any type
     - Recognizing Common Exception Types 313
     - Runtime Exceptions 314
-       > unchecked(7examples) by JVM > program can not catch
+        > unchecked(7examples) by JVM > program can not catch
     - Checked Exceptions 317
         > compile-time(2example) must handled > program can catch
     - Errors 317
         > 3 example by JVM > program can not catch
     - Calling Methods That Throw Exceptions 318
     - Subclasses 319
-      > unreachable 
+        > unreachable 
     - Printing an Exception 321
       > e > e.getMessage() > e.printStackTrace()
 
