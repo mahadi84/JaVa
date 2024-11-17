@@ -138,13 +138,18 @@
     - Static Imports 187
     - Passing Data Among Methods 188
     - Overloading Methods 191
-       >
+       > Everything other than the method signature/name can vary. example:(access modifiers, return type, parameter, exception).
+       > must have a different type/no./sequence of parameters
+       > varargs: fly(int... length) ex: fly(1,2,3) vs fly(int[] length) ex: fly(new int[] {1,2,3})
+       > Autoboxing > Reference Types > Primitives
+       > autoboxing and varargs come last when Java looks at overloaded methods.
+    
     - Creating Constructors 196
        > special method, name as class name > no return type >when use this?
     - Default Constructor 197
        > included by java automatically but when?
     - Overloading Constructors 199
-       > must have a different type/no./sequence parameters
+       > must have a different type/no./sequence of parameters
     - Final Fields 202
        > set value exactly once > while declaring or constructor
     - Order of Initialization 202
