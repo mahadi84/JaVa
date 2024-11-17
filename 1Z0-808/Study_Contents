@@ -119,24 +119,36 @@
 
     - Designing Methods 166
     - Optional Specifiers 168
+       > static, abstract, final, synchronized, native, strictfp
     - Return Type 169
+       > void return nothing but not restict.
     - Method Name 170
+       > start with _, &,  A-Z, a-z
     - Parameter List 171
     - Optional Exception List 171
     - Method Body 171
     - Working with Varargs 172
+       > only parameter works these two ways: 01. walk1(int... nums) 02. walk2(int start, int... nums)
+       > nums.length of walk2(1), walk2(1, 2), walk2(1,2,3), walk2(1, new int[] {4,5});
     - Applying Access Modifiers 173
+       > private: only accessible within the same class
+       > default(package-private): private and other classes in the same package
+       > protected: default access and child classes
+       > public: protected and classes in the other packages
     - Private Access 173
     - Default (Package Private) Access 175
     - Protected Access 176
     - Public Access 180
     - Designing Static Methods and Fields 181
     - Calling a Static Variable or Method 182
+        > count
     - Static vs. Instance 183
-    - Static Variables 185xviii Contents
+       > static works inside instance block, does not works opposite
+    - Static Variables 185
     - Static Initialization 186
     - Static Imports 187
     - Passing Data Among Methods 188
+       > pass-by-value with example  > pass-by-reference with example stringBuilder() 
     - Overloading Methods 191
        > Everything other than the method signature/name can vary. example:(access modifiers, return type, parameter, exception).
        > must have a different type/no./sequence of parameters
