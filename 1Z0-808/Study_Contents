@@ -142,9 +142,11 @@
     - Default Constructor 197
     - Overloading Constructors 199
     - Final Fields 202
+
     - Order of Initialization 202
-       > block
-       > static > instance
+       > 4 rules(Super, Static(Variable, Block), Instance(Variable, Block), Constructor)
+       > static method/object instantiate into instance block
+       > 
 
     - Encapsulating Data 205
        > bundling data into the method  > making uncontrolled changes to my class
