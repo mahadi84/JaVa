@@ -167,7 +167,6 @@
     - Order of Initialization 202
        > 4 rules(Super, Static(Variable, Block), Instance(Variable, Block), Constructor)
        > static method/object instantiate into instance block
-       > 
 
     - Encapsulating Data 205
        > bundling data into the method  > making uncontrolled changes to my class
