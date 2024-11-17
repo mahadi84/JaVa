@@ -148,16 +148,37 @@
        > Converting String to  wrapper class:   Boolean.valueOf("TRUE"); Byte.valueOf("2");
     - Autoboxing 136
        >List<Double> weights = new ArrayList<>();
-           >weights.add(50.5); // [50.5]
-           >weights.add(new Double(60)); // [50.5, 60.0]
+           > weights.add(50.5); // [50.5]  > weights.add(new Double(60)); // [50.5, 60.0]
     - Converting Between array and List 136
+         >  String[] array = { "hawk", "robin" };  List<String> list = Arrays.asList(array); list.size();
+
+         > List<String> list = new ArrayList<>();  list.add("hawk"); list.add("robin");
+             > Object[] objectArray = list.toArray();  String[] stringArray = list.toArray(new String[0]); stringArray.length;
+        
     - Sorting 138
+         > List<Integer> numbers = new ArrayList<>(); numbers.add(99); numbers.add(5); numbers.add(81); 
+         > Collections.sort(numbers); Output:[5, 81, 99]
     - Working with Dates and Times 138
+        
     - Creating Dates and Times 138
+         > LocalDate: Contains just a date >LocalDateTime Contains both a date and time but no time zone.
+         > System.out.println(LocalDate.now());
     - Manipulating Dates and Times 142
+         > LocalDate date = LocalDate.now(); > System.out.println(date); // 2024-01-20
+         > date = date.plusDays/Weeks/Months/Years(2); > System.out.println(date); // 2024-01-22
     - Working with Periods 145
+         >LocalDate date = LocalDate.of(2015, 1, 20);  Period period = Period.ofMonths(1); System.out.println(date.plus(period)); // 2015-02-20
+        > LocalTime time = LocalTime.of(6, 15);  LocalDateTime dateTime = LocalDateTime.of(date, time); System.out.println(dateTime.plus(period)); // 2015-02-20T06:15
+
     - Formatting Dates and Times 148
+        > LocalDate date = LocalDate.of(2020, Month.JANUARY, 20); LocalTime time = LocalTime.of(11, 12, 34);
+        > LocalDateTime dateTime = LocalDateTime.of(date, time);
+        > DateTimeFormatter f = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm"); System.out.println(dateTime.format(f)); // January 20, 2020, 11:12
     - Parsing Dates and Times 151
+        > DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");  LocalDate date = LocalDate.parse("01 02 2015", f);
+        > LocalTime time = LocalTime.parse("11:22");
+             >System.out.println(date); // 2015-01-02
+             >System.out.println(time); // 11:22
     - Summary 151
     - Exam Essentials 152
     - Review Questions 153
