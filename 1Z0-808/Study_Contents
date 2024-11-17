@@ -143,8 +143,17 @@
     - Overloading Constructors 199
     - Final Fields 202
     - Order of Initialization 202
+       > block
+       > static > instance
+
     - Encapsulating Data 205
+       > bundling data into the method  > making uncontrolled changes to my class
+       > private data(properties) >public method( is(), get(), set(), update())
     - Creating Immutable Classes 207
+       > another common technique like encapsulation
+       > making classes immutable so they can not be changed at all
+       > omit the setters, not getter  > constuctor  >only when object is constructed 
+       > how to stop get reference too > toString() example
 
     - Writing Simple Lambdas 208
        > functional programming  > anonymous method > data type 'boolean'
