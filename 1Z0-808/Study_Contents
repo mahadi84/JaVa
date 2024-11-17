@@ -145,10 +145,21 @@
     - Order of Initialization 202
     - Encapsulating Data 205
     - Creating Immutable Classes 207
+
     - Writing Simple Lambdas 208
+       > functional programming  > anonymous method > data type 'boolean'
     - Lambda Example 209
     - Lambda Syntax 211
+       > (Animal a)-> {return a.canHop();} vs  a-> a.canHop();
+       > print(()->true) 
+       > print(a->a.startsWtih("test"));      > print((String a)->a.startsWtih("test"));
+       > print((a,b)-> a.startsWith("test")); > print((String a, Sring b)-> a.startsWith("test"));
+       > print((a,b)-> { int c =0; return 5; }
+
     - Predicates 214
+       > what & why > functional interface > data type boolean > generics
+       > Interface Predicate<T>{boolean test(T t);} > removeIf() >Arraylist<>()
+
     - Summary 215
     - Exam Essentials 216
     - Review Questions 218
@@ -213,6 +224,7 @@
         > what,why and how with example? 
         > casting > creating method in parent/child/unrelated class
     - Polymorphism and Method Overriding 287
+
     - Summary 288
     - Exam Essentials 289
     - Review Questions 291
@@ -248,6 +260,7 @@
       > unreachable 
     - Printing an Exception 321
       > e > e.getMessage() > e.printStackTrace()
+
     - Summary 323
     - Exam Essentials 324
     - Review Questions 325
