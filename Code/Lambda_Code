@@ -1,4 +1,48 @@
 
+======================================= Single data check Example :01 ===========================
+public class Panda {
+    int age;
+        private static void check(Panda panda, Predicate<Panda> pred) {
+            String result = pred.test(panda) ? "match" : "not match";
+            System.out.print(result);
+        }
+    
+        public static void main(String[] args) {
+            Panda p1 = new Panda();
+            p1.age = 1;
+            check(p1, p -> p.age < 5);    
+        }
+}
+
+--------------------------------- Multiple data check with for-each loop<Ingeter> (Find Negative/Positive number) -------------------------
+List<Integer> list = Arrays.asList(-6,-5,0,1,5);
+        print(list, e -> e < 0);  //Find Negative number
+        print(list, e -> e > 0); //Find Positive number
+        }
+    public static void print(List<Integer> list, Predicate<Integer> p) {
+        for (Integer num : list)
+            if (p.test(num))
+        System.out.println(num);
+    }
+ OUTPUT: -6, -5
+
+
+--------------- With ArrayList<String> -----------------
+// Example with Arraylist
+        List<String> bunnies = new ArrayList<>();
+             bunnies.add("long ear");
+             bunnies.add("floppy");
+             bunnies.add("hoppy");
+             bunnies.add("");
+             System.out.println(bunnies); // [long ear, floppy, hoppy]
+            //  bunnies.removeIf(s -> s.charAt(0) != 'h'); //**works all functions with String
+            //  bunnies.removeIf(s -> s.isEmpty());
+             bunnies.removeIf(s -> { return s.endsWith("y"); });
+             System.out.println(bunnies);
+
+
+
+
 ================= Check from the list whether an Animal can Swim or Fly ==========================
 
 class Animal{
