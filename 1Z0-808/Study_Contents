@@ -213,15 +213,22 @@
         > this() vs super() > default constructor > overloading 
         > understand compiler enhancement
         > non-argument/argument constructor in parent and child (Yes Vs Yes, No vs No, Yes vs No, No vs Yes)
-        > reviewing 5-rules > calling constructor
+        > reviewing 5-rules (
+            -call with this() at first line, 
+            -super() may not at first line, -no super()..? java will add non-argument one, 
+            -If parent doesn’t have a no-argument constructor and the child doesn’t define any,  compiler will throw an error and try to insert a default no-argument
+              constructor into the child class. 
+            -If the parent doesn’t have a no-argument constructor, the compiler requires an explicit call to a parent constructor in each child constructor  ) 
+        > calling constructor(this(),super())
     - Calling Inherited Class Members 244
         > directly/(optional)this(current and parent) vs super
     - Inheriting Methods 246
-        > overriding and 4-rules for nonprivate method > overloading vs overriding
+        > overriding and 4-rules for nonprivate method(Access Modifier(Same/Broader), Return type(Same/Coveriant), Signature(Same), Parameter(Same), Exception(No/Narrower/not-new)
+        > overloading vs overriding
         > redeclaring private methods > hidding static method > overriding vs hidding
         > final keyword
     - Inheriting Variables 257
-        > hidding >
+        > hidding 
     - Creating Abstract Classes 259
         > why? 
     - Defining an Abstract Class 260
