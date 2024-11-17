@@ -140,7 +140,16 @@
          01. add()  02. get() 03.set() 04. size() and  isEmpty() 
          05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
     - Wrapper Classes 134
+       > Each 8 primitive type has a wrapper class
+       >Example of constructing
+         > new Boolean(true),new Byte((byte) 1),new Short((short) 1),new Integer(1),
+         > new Long(1),new Float(1.0),new Double(1.0),new Character('c'),
+       > Converting String to primitive: Boolean.parseBoolean("true"); Byte.parseByte("1");
+       > Converting String to  wrapper class:   Boolean.valueOf("TRUE"); Byte.valueOf("2");
     - Autoboxing 136
+       >List<Double> weights = new ArrayList<>();
+           >weights.add(50.5); // [50.5]
+           >weights.add(new Double(60)); // [50.5, 60.0]
     - Converting Between array and List 136
     - Sorting 138
     - Working with Dates and Times 138
