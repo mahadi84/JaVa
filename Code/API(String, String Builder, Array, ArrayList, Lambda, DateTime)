@@ -90,7 +90,7 @@ Arrays.binarySearch(numbers, 2)
         // iA[0] = 1;
 
 
-        // ------------- Two Dimentional ------------
+        // ------------- Two Dimensional ------------
         // char[][] cA2= {{'A', 'B', 'C'}, {'D', 'E', 'F'}}; //table with 2 rows and 3 columns
         // char[][] cA= new char[no_of_rows][no_of_cols];
         // char[][] cA= new char[3][3];
@@ -98,7 +98,6 @@ Arrays.binarySearch(numbers, 2)
         // cA[0][1]= 'B'; //Is it Ok?
 
         // ------------- Three Dimentional ------------
-        // Imagine a 3D array representing a building with floors, rows, and columns(perhaps representing rooms):
             // int[][][] building = new int[no_of_floors][no_of_rows][no_of_column/rooms]; 
 
         String[][][] building= new String[1][1][1];
