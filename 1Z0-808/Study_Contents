@@ -221,20 +221,33 @@
 ############# Chapter 6 Exceptions 299 ##########################
 
     - Understanding Exceptions 300
+      > what
     - The Role of Exceptions 300
+      > baby stand up itself > need help to stand up
     - Understanding Exception Types 302
+      > object >throwable > check, uncheck & error
     - Throwing an Exception 304
+      > throws vs throw
     - Using a try Statement 305
+      > bracket 
     - Adding a finally Block 307
+      > always execute  > try-catch-finally sequence
     - Catching Various Types of Exceptions 309
+      > parent-child sequence
     - Throwing a Second Exception 311
+      > parameter > free to declare any type
     - Recognizing Common Exception Types 313
     - Runtime Exceptions 314
+       > unchecked(7examples) by JVM
     - Checked Exceptions 317
+        > compile-time(2example) must handled
     - Errors 317
-    - **** Calling Methods That Throw Exceptions 318
+        >3example by JVM
+    - Calling Methods That Throw Exceptions 318
     - Subclasses 319
+      > unreachable 
     - Printing an Exception 321
+      > e > e.getMessage() > e.printStackTrace()
     - Summary 323
     - Exam Essentials 324
     - Review Questions 325
