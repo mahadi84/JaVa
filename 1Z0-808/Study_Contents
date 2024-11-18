@@ -161,7 +161,7 @@
 
 ############# Chapter 2 Operators and Statements 51 ##########################
 
-    - Understanding Java Operators 52
+   - Understanding Java Operators 52
       > Other unary operators +, -, !
       > Multiplication/Division/Modulus *, /, %
       > Addition/Subtraction +, -
@@ -236,6 +236,7 @@
          >int x = 1;if(x) { // DOES NOT COMPILE
          >int x = 1; if(x = 5) { // DOES NOT COMPILE
          >Tenary Operator:
+            int x = 5; System.out.println(x > 2 ? x < 4 ? 10 : 8 : 7); Ans: 8;
             int y = 10; int x = (y > 5) ? (2 * y) : (3 * y); Ans: 20
             System.out.println((y > 5) ? 21 : "Zebra");
             int animal = (y < 91) ? 9 : "Horse"; // DOES NOT COMPILE
@@ -338,13 +339,14 @@
                // Somewhere in loop
                continue optionalLabel;
             }
-            > FIRST_CHAR_LOOP: for (int a = 1; a <= 4; a++) {
-                  for (char x = 'a'; x <= 'c'; x++) {
-                     if (a == 2 || x == 'b')
-                     continue FIRST_CHAR_LOOP;
-                     System.out.print(" " + a + x);
-                  }
+            int count = 0;
+               ROW_LOOP: for(int row = 1; row <=3; row++)
+               for(int col = 1; col <=2 ; col++) {
+               if(row * col % 2 == 0) continue ROW_LOOP;
+               count++;
                }
+            System.out.println(count);
+            Output: 1
 
     - Summary 92
     - Exam Essentials 92
