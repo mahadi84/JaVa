@@ -535,7 +535,7 @@
     - Optional Specifiers 168
        > static, abstract, final, synchronized, native, strictfp
     - Return Type 169
-       > void return nothing but not restict.
+       > void return nothing but not restrict.
     - Method Name 170
        > start with _, &,  A-Z, a-z
     - Parameter List 171
@@ -551,18 +551,39 @@
        > public: protected and classes in the other packages
     - Private Access 173
     - Default (Package Private) Access 175
-       > Two different packages 1. Football and 2. Cricket, can access members to each other
+       > Two different packages 1. Football and 2. Cricket, can access members to each other?
     - Protected Access 176
-       > Two different packages 1. Football and 2. Cricket can access members creating subclass to each other
+       > Two different packages 1.Football and 2.Cricket can access members creating subclass to each other?
     - Public Access 180
     - Designing Static Methods and Fields 181
-        > count
+        > public static int count = 0; // static variable
+        > public static void main(String[] args) { // static method}
+        > Koala.main(new String[0]); // call static method
+        > count (vearible is very common)
     - Calling a Static Variable or Method 182
+        >Koala.count = 4;
+        Koala koala1 = new Koala();
+        Koala koala2 = new Koala();
+        koala1.count = 6;
+        koala2.count = 5;
+        System.out.println(Koala.count);
+          Answer 5. All the Koala variables(4,6) are just distractions. 
     - Static vs. Instance 183
        > static works inside instance block, does not work opposite
     - Static Variables 185
     - Static Initialization 186
+        > private static int one;
+          private static final int two;
+          private static final int three = 3;
+          private static final int four; // DOES NOT COMPILE
+               static {
+               one = 1;  
+               two = 2;
+               three = 3; // DOES NOT COMPILE
+               two = 4; // DOES NOT COMPILE
+               }
     - Static Imports 187
+          >import static java.util.Arrays.asList;
     - Passing Data Among Methods 188
        > pass-by-value with example  > pass-by-reference with example stringBuilder() 
     - Overloading Methods 191
@@ -594,7 +615,8 @@
        > issue with stringBuilder() and how to stop get reference too > toString() example
 
     - Writing Simple Lambdas 208
-       > functional programming  > anonymous method > data type 'boolean'
+       > functional programming(interfaces with a single abstract method)(SAM) 
+       > anonymous method > data type 'boolean'
     - Lambda Example 209
        > find negative/positive number > String startwith NOT 'h' > age of panda greater 5years > animal can swim. (Code>Lambda_Code)
     - Lambda Syntax 211
@@ -607,6 +629,15 @@
     - Predicates 214
        > what & why > functional interface > data type boolean > generics
        > Interface Predicate<T>{boolean test(T t);} > removeIf() >Arraylist<>()
+         Class{           
+               print(animals, a -> a.canHop());
+               }
+                private static void print(List<Animal> animals, Predicate<Animal> checker) {
+                for (Animal animal : animals) {
+                if (checker.test(animal))
+                System.out.print(animal + " ");
+                }               
+                }
 
     - Summary 215
     - Exam Essentials 216
