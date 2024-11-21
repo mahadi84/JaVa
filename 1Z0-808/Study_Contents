@@ -14,10 +14,26 @@
          * line comment
          */
     - Classes vs. Files 5
+          > Java does not require that the class be public.
+          > If you do have a public class, it needs to match the filename.
+          > at most one of the classes in the file is allowed to be public.
     - Writing a main() Method 6
+          > the entry point
+          > java Zoo Zoo 2 whar are these?
+          > what happens if you don’t pass in enough arguments?
+            Reading args[0] goes fine and Zoo is printed out.
     - Understanding Package Declarations and Imports 9
-         > puts classes in packages. >logical groupings for classes.
+         > Java comes with thousands of built-in classes, 
+            and there are countless more from developers like me.
+            With all those classes, Java needs a way to organize them.
+         > puts classes in packages(as like put file into folder). 
+         > logical groupings for classes.
+         > Package names are hierarchical like the Japanise mail
+         > package names dot-separeted like a.b.c
+         > if no file found, error:"Class/member cannot be resolved to a type"
     - Wildcards 10
+         > Classes in the same package are often imported together. 
+             I can use a shortcut to import  all the classes in a package:
          > import java.util.*; // imports java.util.Random among other things
          > compiler figures out what’s actually needed.
     - Redundant Imports 11
@@ -28,13 +44,16 @@
          > will compile without any issue
          
     - Naming Conflicts 12
-         > When the class is found in multiple packages, Java gives you the compiler error:
-         > implementations of java.util.Date and java.sql.Date
-         > import java.util.*;   > import java.sql.*; // DOES NOT COMPILE
-           >public class Conflicts { Date date;  // some more code } //compiler error:
-         > What does Java do with “ties” for precedence?
-           import java.util.Date;  import java.sql.Date;
-          Ans: the compiler tells you: The import java.sql.Date collides with another import statement
+          > import java.util.*;   
+            import java.sql.*; // DOES NOT COMPILE
+            **any one of import above with .Date will remove the error
+            public class Conflicts { Date date; } //compiler error:The type Date is ambiguous
+            public class Conflicts { java.sql.Date date; } //OK now.
+          > What if we do import both .Date like below?
+            import java.util.Date;  
+            import java.sql.Date;
+          Ans: When the class is found in multiple packages, Java gives you the compiler error:
+               "The import java.sql.Date collides with another import statement"
     - Creating a New Package 13
          > packages to avoid naming conflicts and to reuse your code
          >C:\temp\packagea\ClassA.java
@@ -48,6 +67,9 @@
             }
     - Code Formatting on the Exam 16
     - Creating Objects 16
+          > Our programs wouldn’t be able to do anything useful if we didn’t have the ability to create
+            new objects. Remember that an object is an instance of a class.
+          > All we can see/feel are objects.
     - Constructors 17
     - Reading and Writing Object Fields 18
          >Swan mother = new Swan();
@@ -93,9 +115,10 @@
          > String reference = "hello";
             int len = reference.length();
             int bad = len.length(); // DOES NOT COMPILE
-         > primitive name lowercase. classes name uppercase.
+         > primitive name lowercase. classes name start with uppercase.
     - Declaring and Initializing Variables 25
-         > int i1, i2, i3 = 0;> boolean b1, b2; > String s1 = "1", s2;   > double d1, double d2;
+         > int i1, i2, i3 = 0; > boolean b1, b2; 
+         > String s1 = "1", s2;   > double d1, double d2;
     - Declaring Multiple Variables 26
     - Identifiers 27
          > to name, including variables, methods, classes, and fields:
@@ -108,6 +131,7 @@
     - Local Variables 29
          > defined within a method, must be initialized before use
     - Instance and Class Variables 30
+         > Default return type:
          > boolean false  >byte, short, int, long 0 (in the type’s bit-length)
          > float, double 0.0 (in the type’s bit-length) > char '\u0000' (NUL)
          > All object references (everything else) null
@@ -123,8 +147,8 @@
          > Method declarations void method() No Anywhere inside a class
     - Destroying Objects 36
          > objects are stored in program memory’s heap
-         > eventually it will run out of memory.
-         > a garbage collector to automatically look for objects that aren’t needed anymore.
+         > JVM has larges heap memory but it will run out of memory eventually.
+         > a garbage collector to automatically look for objects that aren’t needed/referenced anymore.
     - Garbage Collection 36
          > System.gc() is not guaranteed to run
          > An object is no longer reachable when one of two situations occurs:
@@ -143,7 +167,7 @@
             }
          Ans: one,two,three = "b"
     - finalize() 38
-         > might run zero or one time. twice=impossible.
+         > might run zero or one time. run twice = impossible.
             public class Finalizer {
                private static List objects = new ArrayList();
                protected void finalize() {
@@ -151,7 +175,8 @@
                } 
             }
     - Benefits of Java 39
-         > Object Oriented(allows for functional programming as well) > Encapsulation 
+         > Object Oriented(allows for functional programming as well) 
+         > Encapsulation 
          > Platform Independent  > Robust > Simple > Secure
     
     - Summary 40
