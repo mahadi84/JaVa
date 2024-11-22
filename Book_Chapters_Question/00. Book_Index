@@ -728,9 +728,13 @@
     - The Role of Exceptions 300
         > baby stand up itself > need help to stand up
     - Understanding Exception Types 302
-        > object >throwable > check, uncheck & error
+        > object >throwable > check, uncheck(Runtime Exception) & error
     - Throwing an Exception 304
-        > throws vs throw
+        > declare and throw      > throws vs throw
+        > I can declare all types of exceptions
+          public void ohNo() throws Exception {
+           new throw Exception();
+           }
     - Using a try Statement 305
         > bracket 
     - Adding a finally Block 307
@@ -741,16 +745,53 @@
         > parameter > free to declare any type
     - Recognizing Common Exception Types 313
     - Runtime Exceptions 314
-        > unchecked(7examples) by JVM > program can not catch
+        > unchecked(7examples) by JVM > > program can not catch but I can optionally declare
+        > ArrayIndexOutOfBoundsException > NullPointerException
+        > ArithmeticException            > ClassCastException
+        > IllegalArgumentException       > NumberFormatException
+       
     - Checked Exceptions 317
-        > compile-time(2example) must handled > program can catch
+        > compile-time(2example) must handled > program can catch > must declared
+        > IOException >FileNotFoundException > SQLException
     - Errors 317
         > 3 example by JVM > program can not catch
+        > StackOverflowError > ExceptionInInitializerError 
+        > OutOfMemoryError   > VirtualMachineError
     - Calling Methods That Throw Exceptions 318
     - Subclasses 319
         > unreachable 
     - Printing an Exception 321
       > e > e.getMessage() > e.printStackTrace()
+      > Which of the following can be inserted in the blank to make the code compile? (Choose all that apply)?
+       public static void main(String[] args) {
+            try {
+            System.out.println("work real hard");
+            } catch ( e) {
+            } catch (RuntimeException e) {
+            }
+       }
+    Ans: -IllegalArgumentException & 
+         -StackOverflowError (because it isn’t in the same inheritance tree as RuntimeException)
+
+     >Q_02: What does the output of the following contain? (Choose all that apply)
+             public static void main(String[] args) {
+                 System.out.print("a");
+                 try {
+                 System.out.print("b");
+                 throw new IllegalArgumentException();
+                 } catch (IllegalArgumentException e) {
+                 System.out.print("c");
+                 throw new RuntimeException("1");
+                 } catch (RuntimeException e) {
+                 System.out.print("d");
+                 throw new RuntimeException("2");
+                 } finally {
+                 System.out.print("e");
+                 throw new RuntimeException("3");
+                 }
+              }
+       Ans: abce & An exception with the message set to "3"
+
 
     - Summary 323
     - Exam Essentials 324
