@@ -311,6 +311,7 @@ exception, the keyword throw is used and a new exception is created.
 the catch route, it is allowed to have multiple catch clauses.
 4. B. The second line tries to cast an Integer to a String. Since String does not extend
 Integer, this is not allowed and a ClassCastException is thrown.
+
 5. A, B, D. java.io.IOException is thrown by many methods in the java.io package,
 but it is always thrown programmatically. The same is true for NumberFormatException;
 it is thrown programmatically by the wrapper classes of java.lang. The other
@@ -333,6 +334,8 @@ because it is unreachable code.
 up; then line 5 throws an Exception. Line 6 catches the exception, line 7 prints
 Problem, and then line 8 calls System.exit, which terminates the JVM. The finally
 block does not execute because the JVM is no longer running.
+
+
 10. E. The parseName method is invoked within main() on a new Dog object. Line 4 prints
 1. The try block executes and 2 is printed. Line 7 throws a NumberFormatException, so
 line 8 doesn’t execute. The exception is caught on line 9, and line 10 prints 4. Because the
@@ -360,6 +363,8 @@ throw an exception.
 option A correct. Runtime exceptions can be thrown in any method, making options
 C and E correct. Option D matches the exception type declared and so is also correct.
 Option B is incorrect because a broader exception is not allowed.
+
+
 15. A, B, D, E. ArrayIndexOutOfBoundsException, IllegalArgumentException, and NumberFormatException
 are runtime exceptions. Sorry, you have to memorize them. Any
 class that extends RuntimeException is a runtime (unchecked) exception. Classes that
@@ -384,6 +389,8 @@ compiler realizes that IOException would be an unreachable catch block. Option D
 is not allowed because the same exception can’t be specified in two different catch
 blocks. Finally, option A is not allowed because it’s more general than RuntimeException
 and would make that block unreachable.
+
+
 20. A, E. The code begins normally and prints a on line 13, followed by b on line 15. On
 line 16, it throws an exception that’s caught on line 17. Remember, only the most specific
 matching catch is run. Line 18 prints c, and then line 19 throws another exception.
