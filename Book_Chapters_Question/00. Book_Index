@@ -827,11 +827,11 @@
         > SQLException
     - Errors 317
         > 3 example by JVM > program can not catch
-        Errors are rare, but you might see these:
-        > ExceptionInInitializerError Thrown by the JVM when a static initializer throws an exception and doesn’t handle it
-        > StackOverflowError Thrown by the JVM when a method calls itself too many times
-        (this is called infi nite recursion because the method typically calls itself without end)
-        > NoClassDefFoundError Thrown by the JVM when a class that the code uses is available  at compile time but not runtime
+            Errors are rare, Thrown by the JVM but you might see these:
+        > ExceptionInInitializerError: when a static initializer throws an exception and doesn’t handle it
+        > StackOverflowError: when a method calls itself too many times
+        (this is called infinite recursion because the method typically calls itself without an end)
+        > NoClassDefFoundError: when a class that the code uses is available  at compile time but not runtime
     - Calling Methods That Throw Exceptions 318
             public class Bunny {
                 public static void main(String[] args) {
@@ -840,9 +840,11 @@
                 private static void eatCarrot() throws NoMoreCarrotsException {
                 }
             }
+
+           Ans:   main() throws NoMoreCarrotsException
     - Subclasses 319    
         > unreachable (if parent exception comes first OR Exception/subclass of it, comes first before RuntimeException)
-            Both A and B  is 0
+            Both A and B  are 0
              try {
              return a / b;
              }catch (RuntimeException e) {
