@@ -172,8 +172,7 @@
 
 13. What is the output of the following code?
     1: class Arthropod
-    2: public void printName(double input) { System.out
-    .print("Arthropod"); }
+    2: public void printName(double input) { System.out.print("Arthropod"); }
     3: }
     4: public class Spider extends Arthropod {
     5: public void printName(int input) { System.out.print("Spider"); }
