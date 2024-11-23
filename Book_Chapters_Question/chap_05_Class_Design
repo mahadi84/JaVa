@@ -261,8 +261,7 @@
         E. The code will not compile because of line 6.
         F. The code will not compile because of line 8.
 
-19. Which of the following statements can be inserted in the blank so that the code will
-compile successfully? (Choose all that apply)
+19. Which of the following statements can be inserted in the blank so that the code will compile successfully? (Choose all that apply)
     public class Snake {}
     public class Cobra extends Snake {}
     public class GardenSnake {}
