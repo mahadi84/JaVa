@@ -782,7 +782,7 @@
     - Understanding Polymorphism 279
         > defination & why?
         > A method that takes a parameter with type java.lang.Object will take any reference.
-        > If a method takes a superclass of three objects, then any of those classes may be passed as a parameter to the method.
+        > If a method takes a superclass of three objects (and "null" but not grandfather-like new Object()), then any of those classes may be passed as a parameter to the method.
             public class Reptile {
              public String getName() {return "Reptile"; }
             }
