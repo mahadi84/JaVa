@@ -327,12 +327,12 @@ accessible than the method in the parent class, which is allowed. Finally, optio
 correct because the method is declared as static in the parent class and not so in the
 child class. For nonprivate methods in the parent class, both methods must use static
 (hide) or neither should use static (override).
+
 5. A, D, E, F. First off, options B and C are incorrect because protected and public methods
 may be overridden, not hidden. Option A is correct because private methods are
 always hidden in a subclass. Option D is also correct because static methods cannot
 be overridden, only hidden. Options E and F are correct because variables may only be
 hidden, regardless of the access modifier.
-
 6. D. The code fails to compile because Beetle, the first concrete subclass, doesn’t implement
 getNumberOfSections(), which is inherited as an abstract method; therefore,
 option D is correct. Option B is incorrect because there is nothing wrong with this
@@ -356,12 +356,12 @@ marked as static but no method body has been provided. The method declaration fo
 chew() on line 4 is also incorrect, since an interface method that provides a body must
 be marked as default or static explicitly. Therefore, option F is the correct answer
 since this code contains two compile-time errors.
-348 Appendix A ■ Answers to Review Questions
 9. A. Although the definition of methods on lines 2 and 5 vary, both will be converted to
 public abstract by the compiler. Line 4 is fine, because an interface can have public
 or default access. Finally, the class Falcon doesn’t need to implement the interface
 methods because it is marked as abstract. Therefore, the code will compile without
 issue.
+
 10. B, C, E, F. Option A is wrong, because an abstract class may contain concrete methods.
 Since Java 8, interfaces may also contain concrete methods in form of static or
 default methods. Although all variables in interfaces are assumed to be public static
@@ -373,7 +373,6 @@ structures require a concrete subclass to be instantiated, so option F is correc
 though an instance of an object that implements an interface inherits java.lang.
 Object, the interface itself doesn’t; otherwise, Java would support multiple inheritance
 for objects, which it doesn’t. Therefore, option G is incorrect.
-
 11. A, D, E. Interface variables are assumed to be public static final; therefore, options
 A, D, and E are correct. Options B and C are incorrect because interface variables must
 be public—interfaces are implemented by classes, not inherited by interfaces. Option F
@@ -396,6 +395,7 @@ makeSound() method. Option C is correct; any class that implements CanBark autom
 inherits its methods, as well as any inherited methods defined in the parent
 interface. Because option C is correct, it follows that option D is incorrect. Finally, an
 interface can extend multiple interfaces, so option E is incorrect.
+
 15. B. Concrete classes are, by definition, not abstract, so option A is incorrect. A concrete
 class must implement all inherited abstract methods, so option B is correct. Option C
 is incorrect; a superclass may have already implemented an inherited interface, so the
