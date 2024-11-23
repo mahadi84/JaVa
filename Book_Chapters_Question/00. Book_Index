@@ -761,7 +761,19 @@
         > 5-rules for definition Abs. class ( cannot be instantiated, any number, including zero, of abstract and nonabstract methods, 
            not private/final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements all abstract(also if inherited any) methods.)
         > 4-rules for definition Abs. method(defined in abstract classes only, non-private/no-final, not method body/implementation, same rules for overriding a method )
-    - Implementing Interfaces 266
+            > What will be the output? If yes, what is the output?
+              public abstract class Bird {
+                private void fly() { System.out.println("Bird is flying"); }
+                public static void main(String[] args) {
+                  Bird bird = new Pelican();
+                  bird.fly();
+                 }
+              }
+              class Pelican extends Bird {
+                protected void fly() { System.out.println("Pelican is flying"); }
+              }
+
+- Implementing Interfaces 266
         > Special type of class > may contain Abastract, Default and Static Method and only public final static variable 
     - Defining an Interface 267
         > 5-rules(cannot be instantiated, not required to have any methods,  not final, assumed to have public or default access, non-default methods are assumed abstract and public )
