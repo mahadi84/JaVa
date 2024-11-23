@@ -211,8 +211,7 @@
 
 16. What is the output of the following code?
     1: abstract class Reptile {
-    2: public final void layEggs() { System.out.println("Reptile laying eggs");
-    }
+    2: public final void layEggs() { System.out.println("Reptile laying eggs");}
     3: public static void main(String[] args) {
     4: Reptile reptile = new Lizard();
     5: reptile.layEggs();
