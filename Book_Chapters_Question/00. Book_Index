@@ -762,7 +762,28 @@
     - Static Interface Methods 278
         > 2-rules(static method is assumed to be public,  reference to the name of the interface must be used)
     - Understanding Polymorphism 279
-        > defination & why? 
+        > defination & why?
+        > A method that takes a parameter with type java.lang.Object will take any reference.
+        > If a method takes a superclass of three objects, then any of those classes may be passed as a parameter to the method.
+            public class Reptile {
+             public String getName() {return "Reptile"; }
+            }
+            public class Alligator extends Reptile {
+             public String getName() {return "Alligator";}
+            }
+            public class Crocodile extends Reptile {
+             public String getName() {return "Crocodile";}
+            }
+
+             public class ZooWorker {
+               public static void feed(Reptile reptile) { 
+                      System.out.println("Feeding reptile "+reptile.getName());
+               }
+               public static void main(String[] args) {
+                feed(new Alligator());  feed(new Crocodile()); feed(new Reptile());
+               }
+             }
+            output: Feeding: Alligator, Feeding: Crocodile, Feeding: Reptile
          Q_01: Which of the following statements can be inserted in the blank line so that the code will compile successfully? 
               Can access brothers' property? (Choose all that apply)
          public interface CanHop {}
