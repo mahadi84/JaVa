@@ -743,6 +743,16 @@
         > 2-rules(static method is assumed to be public,  reference to the name of the interface must be used)
     - Understanding Polymorphism 279
         > defination & why? 
+         Q_01: Which of the following statements can be inserted in the blank line so that the code will compile successfully? 
+              Can access brothers' property? (Choose all that apply)
+         public interface CanHop {}
+         public class BrazilianHornedFrog extends Frog {}
+         public class TurtleFrog extends Frog {}
+         public class Frog implements CanHop {
+           public static void main(String[] args) {
+             ________ frog = new TurtleFrog();
+            }
+
     - Object vs. Reference 281
         > 2-rules(object(properties exist within the object in memory.), reference(methods and variables areaccessible to the Java program)) 
         > parents' members also store in memory as obj?
