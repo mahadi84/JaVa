@@ -724,42 +724,102 @@
 ############# Chapter 6 Exceptions 299 ##########################
 
     - Understanding Exceptions 300
-        > what
-    - The Role of Exceptions 300
+        > coding mistakes 
+        > Others are completely beyond your control(errors)
+        > Internet connection goes down
+        - The Role of Exceptions 300
         > baby stand up itself > need help to stand up
     - Understanding Exception Types 302
-        > object >throwable > check, uncheck(Runtime Exception) & error
+        > object > throwable 
+        > Exception(checked), uncheck(Runtime Exception)  > Error
     - Throwing an Exception 304
         > declare and throw      > throws vs throw
         > I can declare all types of exceptions
           public void ohNo() throws Exception {
-           new throw Exception();
+            throw new Exception();
            }
     - Using a try Statement 305
-        > bracket 
+        > {} bracket is must 
     - Adding a finally Block 307
-        > always execute  > try-catch-finally sequence
+        > finally always execute  
+        > try-catch-finally this sequence is important
     - Catching Various Types of Exceptions 309
         > parent-child sequence
     - Throwing a Second Exception 311
         > parameter > free to declare any type
+            public static void main(String[] args) {
+                FileReader reader = null;
+                    try {
+                    reader = read();
+                    } catch (IOException e) {
+                    try {
+                    if (reader != null) reader.close();
+                    } catch (IOException inner) {
+                    }
+                    }
+            }
+            private static FileReader read() throws IOException {
+            // CODE GOES HERE
+            }
     - Recognizing Common Exception Types 313
     - Runtime Exceptions 314
-        > unchecked(7examples) by JVM > > program can not catch but I can optionally declare
-        > ArrayIndexOutOfBoundsException > NullPointerException
-        > ArithmeticException            > ClassCastException
-        > IllegalArgumentException       > NumberFormatException
+        They don’t have to be handled or declared.
+        They can be thrown by the programmer or by the JVM. Common runtime exceptions include the following:
+        > ArithmeticException Thrown by the JVM when code attempts to divide by zero 
+                int answer = 11 / 0; Or int answer = 0 / 0;
+        > ArrayIndexOutOfBoundsException Thrown by the JVM when code uses an illegal index to access an array
+                int[] countsOfMoose = new int[3];   System.out.println(countsOfMoose[-1]);
+        > ClassCastException Thrown by the JVM when an attempt is made to cast an exception to a subclass of which it is not an instance
+                String type = "moose";   Object obj = type;   Integer number = (Integer) obj;
+        > IllegalArgumentException Thrown by the programmer to indicate that a method has been passed an illegal or inappropriate argument
+                if (numberEggs < 0) throw new IllegalArgumentException("# eggs must not be negative"); this.numberEggs = numberEggs;
+        > NullPointerException Thrown by the JVM when there is a null reference where an object is required
+                Object x = null;  x.toString(); x.length();
+        > NumberFormatException Thrown by the programmer when an attempt is made to convert a string to a numeric type but the string doesn’t have an appropriate format
+                public String name;   int x = Integer.parseInt(name);
        
     - Checked Exceptions 317
-        > compile-time(2example) must handled > program can catch > must declared
-        > IOException >FileNotFoundException > SQLException
+        > compile-time must handled > program can catch must be handled or declared. 
+        They can be thrown by the programmer or by the JVM.
+    
+        > FileNotFoundException Thrown programmatically when code tries to reference a file that does not exist
+        > IOException Thrown programmatically when there’s a problem reading or writing a fi le
+        > SQLException
     - Errors 317
         > 3 example by JVM > program can not catch
-        > StackOverflowError > ExceptionInInitializerError 
-        > OutOfMemoryError   > VirtualMachineError
+        Errors are rare, but you might see these:
+        > ExceptionInInitializerError Thrown by the JVM when a static initializer throws an exception and doesn’t handle it
+        > StackOverflowError Thrown by the JVM when a method calls itself too many times
+        (this is called infi nite recursion because the method typically calls itself without end)
+        > NoClassDefFoundError Thrown by the JVM when a class that the code uses is available  at compile time but not runtime
     - Calling Methods That Throw Exceptions 318
-    - Subclasses 319
-        > unreachable 
+            public class Bunny {
+                public static void main(String[] args) {
+                eatCarrot();// DOES NOT COMPILE
+                }
+                private static void eatCarrot() throws NoMoreCarrotsException {
+                }
+            }
+    - Subclasses 319    
+        > unreachable (if parent exception comes first OR Exception comes first before RuntimeException)
+        > It’s okay to declare new runtime exceptions in a subclass method is that  the declaration is redundant. 
+        > Methods are free to throw any runtime exceptions they want without mentioning them in the method declaration.
+
+        Which of the following can be inserted into Lion to make this code compile? (Choose all that apply)
+            class HasSoreThroatException extends Exception {}
+            class TiredException extends RuntimeException {}
+            interface Roar {
+            void roar() throws HasSoreThroatException;
+            }
+            class Lion implements Roar {// INSERT CODE HERE
+            }
+                A. public void roar(){}
+                B. public void roar() throws Exception{}
+                C. public void roar() throws HasSoreThroatException{}
+                D. public void roar() throws IllegalArgumentException{}
+                E. public void roar() throws TiredException{}
+
+                Ans: A,C,D,E
     - Printing an Exception 321
       > e > e.getMessage() > e.printStackTrace()
       > Which of the following can be inserted in the blank to make the code compile? (Choose all that apply)?
@@ -773,8 +833,7 @@
     Ans: -IllegalArgumentException & 
          -StackOverflowError (because it isn’t in the same inheritance tree as RuntimeException)
 
-     >Q_02: What does the output of the following contain? (Choose all that apply)
-             public static void main(String[] args) {
+     >Q_02: What does the output of the following contain? (Choose all that apply)            
                  System.out.print("a");
                  try {
                  System.out.print("b");
@@ -782,15 +841,28 @@
                  } catch (IllegalArgumentException e) {
                  System.out.print("c");
                  throw new RuntimeException("1");
-                 } catch (RuntimeException e) {
-                 System.out.print("d");
-                 throw new RuntimeException("2");
-                 } finally {
+                 }finally {
                  System.out.print("e");
                  throw new RuntimeException("3");
                  }
-              }
+
        Ans: abce & An exception with the message set to "3"
+    Q_03: Why  NumberFormatException does not thrown by JVM?
+          > it is thrown programmatically by the wrapper classes of java.lang.
+
+
+    - Exception as return type of a method.
+        public class ExceptionReturnExample {
+            public static Exception createException() {
+                Exception myException = new Exception("This is a sample exception.");
+                return myException; // Returning the Exception object
+            }    
+            public static void main(String[] args) {
+                Exception returnedException = createException(); 
+                System.out.println(returnedException.getMessage()); // Accessing the exception message
+            }
+        }
+
 
 
     - Summary 323
