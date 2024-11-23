@@ -841,7 +841,7 @@
                 }
             }
     - Subclasses 319    
-        > unreachable (if parent exception comes first OR Exception comes first before RuntimeException)
+        > unreachable (if parent exception comes first OR Exception/subclass of it, comes first before RuntimeException)
             Both A and B  is 0
              try {
              return a / b;
@@ -871,6 +871,7 @@
     - Printing an Exception 321
       > e > e.getMessage() > e.printStackTrace()
       > Which of the following can be inserted in the blank to make the code compile? (Choose all that apply)?
+         A.Exception  B.IOException  C. IllegalArgumentException  D.RuntimeException E.StackOverflowError
        public static void main(String[] args) {
             try {
             System.out.println("work real hard");
