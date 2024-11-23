@@ -741,7 +741,7 @@
     - Creating a Concrete Class 262
     - Extending an Abstract Class 263
         > 5-rules for definition Abs. class ( cannot be instantiated, any number, including zero, of abstract and nonabstract methods, 
-           not private/final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements all abstract methods.)
+           not private/final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements all abstract(also if inherited any) methods.)
         > 4-rules for definition Abs. method(defined in abstract classes only, non-private/no-final, not method body/implementation, same rules for overriding a method )
     - Implementing Interfaces 266
         > Special type of class > may contain Abastract, Default and Static Method and only public final static variable 
