@@ -898,7 +898,17 @@
        Ans: abce & An exception with the message set to "3"
     Q_03: Why  NumberFormatException does not thrown by JVM?
           > it is thrown programmatically by the wrapper classes of java.lang.
-
+    Q_04: What is the role of "throw e"  and what does System.exit(0);
+             String name=null;
+           try {System.out.print("2");
+               name.toString();
+              System.out.print("3");
+           }catch (NullPointerException e) {
+            System.out.print("4");
+            throw e;
+           }
+       Ans: > through exception again; 
+            >System.exit(0) exit out immediatly form the program.
 
     - Exception as return type of a method.
         public class ExceptionReturnExample {
