@@ -234,7 +234,6 @@
 16. Which scenario is the best use of an exception?
     A. An element is not found when searching a list.
     B. An unexpected parameter is passed into a method.
-    Review Questions 331
     C. The computer caught fire.
     D. You want to loop through a list.
     E. You don’t know how to code a method.
@@ -245,8 +244,7 @@
     interface Roar {
     void roar() throws HasSoreThroatException;
     }
-    class Lion implements Roar {// INSERT CODE HERE
-    }
+    class Lion implements Roar {// INSERT CODE HERE  }
         A. public void roar(){}
         B. public void roar() throws Exception{}
         C. public void roar() throws HasSoreThroatException{}
