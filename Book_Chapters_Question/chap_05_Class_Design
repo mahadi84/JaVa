@@ -272,12 +272,12 @@
     new SnakeHandler().setSnake( );
     }
     }
-    A. new Cobra()
-    B. new GardenSnake()
-    C. new Snake()
-    D. new Object()
-    E. new String("Snake")
-    F. null
+        A. new Cobra()
+        B. new GardenSnake()
+        C. new Snake()
+        D. new Object()
+        E. new String("Snake")
+        F. null
 
 20. What is the result of the following code?
     1: public abstract class Bird {
