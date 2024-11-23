@@ -739,6 +739,12 @@
     - Defining an Abstract Class 260
         > can have only abstract method? > final, private, abstract keyword with method.
     - Creating a Concrete Class 262
+        Will this compile?
+        public interface CanFly {  void fly();   }
+        interface HasWings {  public abstract Object getWindSpan();  }
+        abstract class Falcon implements CanFly, HasWings { } //Why compile this?
+        public class Falcon1 implements CanFly, HasWings { } //Why not this?
+  
     - Extending an Abstract Class 263
         > 5-rules for definition Abs. class ( cannot be instantiated, any number, including zero, of abstract and nonabstract methods, 
            not private/final,  inherits all of its abstract methods as its own abstract methods, first concrete class implements all abstract(also if inherited any) methods.)
