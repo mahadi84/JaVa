@@ -77,8 +77,7 @@
         E. import aquarium.jellies.Jelly.*;
         F. None of these can make the code compile.
 
-6. Given the following classes, what is the maximum number of imports that can be removed
-    and have the code still compile?
+6. Given the following classes, what is the maximum number of imports that can be removed and have the code still compile?
     package aquarium; public class Water { }
     package aquarium;
     import java.lang.*;
