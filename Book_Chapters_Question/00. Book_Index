@@ -109,18 +109,16 @@
          > A reference can be assigned to a new object using the new keyword.
             java.util.Date today=new java.util.Date();
          > An object in memory can be accessed only via a reference.
-
     - Key Differences 25
+         > primitive name lowercase. classes name start with uppercase.
+    - Declaring and Initializing Variables 25
          > short numPets = 5;   numPets.length(); // DOES NOT COMPILE
          > int value = null; // DOES NOT COMPILE 
          > int numGrains = 5.6; // DOES NOT COMPILE  numGrains.length(); // DOES NOT COMPILE
-         > String reference = "hello";  int len = reference.length();
-
-         > primitive name lowercase. classes name start with uppercase.
-    - Declaring and Initializing Variables 25
+         > String reference = "hello";  int len = reference.length();        
+    - Declaring Multiple Variables 26
          > int i1, i2, i3 = 0; > boolean b1, b2; 
          > String s1 = "1", s2;   > double d1, double d2;
-    - Declaring Multiple Variables 26
     - Identifiers 27
          > to name, including variables, methods, classes, and fields:
          > The name must begin with a letter or the symbol $ or _.
