@@ -275,7 +275,6 @@ apply)
     protected void finalize() {
     System.out.println("Roar!");
     }
-    Review Questions 49
     public static void main(String[] args) {
     Bear bear = new Bear();
     bear = null;
