@@ -7,8 +7,14 @@
 ############# Chapter 1 Java Building Blocks 1 ##########################
 
  - Understanding the Java Class Structure 2
+      > Classes are the basic building blocks
+      > An object is a runtime instance of a class in memory.
     - Fields and Methods 2
+      > fields, more generally known as variables.
+      > variables hold the state of the program, and methods operate on that state.
+      > If the change is important to remember, a variable stores that change.
     - Comments 4
+         > single vs muli-line line comments
          // comment until end of line OR  // // cat OR /* */ */
          /* Multiple Or /** Multiple
          * line comment
@@ -18,8 +24,9 @@
           > If you do have a public class, it needs to match the filename.
           > at most one of the classes in the file is allowed to be public.
     - Writing a main() Method 6
-          > the entry point
-          > java Zoo Zoo 2 whar are these?
+          > the entry point of the program
+          > main(int[] a); main(int... a)
+          > java Zoo Zoo 2  vs ClassName.main(args)?
           > what happens if you don’t pass in enough arguments?
             Reading args[0] goes fine and Zoo is printed out.
     - Understanding Package Declarations and Imports 9
