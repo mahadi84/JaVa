@@ -244,8 +244,7 @@ apply)
         F. A, C
         G. A, B
 
-19. Suppose we have a class named Rabbit. Which of the following statements are true?
-(Choose all that apply)
+19. Suppose we have a class named Rabbit. Which of the following statements are true? (Choose all that apply)
     1: public class Rabbit {
     2: public static void main(String[] args) {
     3: Rabbit one = new Rabbit();
