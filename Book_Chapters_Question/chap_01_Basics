@@ -231,8 +231,8 @@ apply)
         F. main is a reference to an object.
         G. None of the above.
 
-18. Which represent the order in which the following statements can be assembled into a program
-that will compile successfully? (Choose all that apply)
+18. Which represent the order in which the following statements can be assembled into a program that will compile successfully? 
+    (Choose all that apply)
     A: class Rabbit {}
     B: import java.util.*;
     C: package animals;
