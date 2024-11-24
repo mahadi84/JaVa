@@ -26,7 +26,7 @@
     - Writing a main() Method 6
           > the entry point of the program
           > main(int[] a); main(int... a)
-          > java Zoo Zoo 2  vs ClassName.main(args)?
+          > java Zoo Zoo 2  vs ClassName.main(new String[]{"A", "B"})?
           > what happens if you don’t pass in enough arguments?
             Reading args[0] goes fine and Zoo is printed out.
     - Understanding Package Declarations and Imports 9
@@ -136,10 +136,10 @@
     - Identifiers 27
          > to name, including variables, methods, classes, and fields:
          > The name must begin with a letter or the symbol $ or _.
+               Ex: __SStillOkbutKnotsonice$
          > Subsequent characters may also be numbers.
-         > You cannot use the same name as a Java reserved word. 
-            Ex: __SStillOkbutKnotsonice$
-
+         > You cannot use the same name as a Java-reserved word. 
+            
     - Understanding Default Initialization of Variables 29
     - Local Variables 29
          > defined within a method, must be initialized before use
@@ -151,7 +151,7 @@
     - Understanding Variable Scope 31
          > Local variables—in scope from declaration to end of block
          > Instance variables—in scope from declaration until object garbage collected
-         > Class variables—in scope from declaration until program ends
+         > Class variables—in scope from declaration until the program ends
     - Ordering Elements in a Class 34
          > Package 
          > Import 
@@ -160,7 +160,7 @@
          > Method declarations void method() No Anywhere inside a class
     - Destroying Objects 36
          > objects are stored in program memory’s heap
-         > JVM has larges heap memory but it will run out of memory eventually.
+         > JVM has large heap memory but it will run out of memory eventually.
          > a garbage collector to automatically look for objects that aren’t needed/referenced anymore.
     - Garbage Collection 36
          > System.gc() is not guaranteed to run
@@ -192,8 +192,8 @@
             }
     - Benefits of Java 39
          > Object Oriented(allows for functional programming as well) 
-         > Encapsulation 
-         > Platform Independent  > Robust > Simple > Secure
+         > Encapsulation  > Platform Independent  > Robust 
+         > Simple > Secure
     
     - Summary 40
     - Exam Essentials 41
