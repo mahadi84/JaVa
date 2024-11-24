@@ -266,6 +266,12 @@
          > compare to numeric primitive data types only and return a boolean value.
          > If the two numeric operands are not of the same data type, the smaller one is promoted larger one.
          > a instanceof b | answer: true/false
+         > Result of the below code:
+             int x1 = 50, x2 = 75;
+             boolean b = x1 >= x2;
+             if(b = true) System.out.println("Success");
+             else System.out.println("Failure");
+             Ans: "Success"
     - Logical Operators 64
          > (&), (|), and (^), 
          > applied to both numeric and boolean data types.
