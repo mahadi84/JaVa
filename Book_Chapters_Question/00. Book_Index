@@ -83,8 +83,9 @@
           > Our programs wouldn’t be able to do anything useful if we didn’t have the ability to create new objects. 
           > All we can see/feel are objects.
     - Constructors 17
+          > Special function, Same as Class name with NO return type.
     - Reading and Writing Object Fields 18
-         >Swan mother = new Swan();
+         > Swan mother = new Swan();
           mother.numberEggs = 1; // set variable
           System.out.println(mother.numberEggs); // read variable
     - Instance Initializer Blocks 18
@@ -109,7 +110,7 @@
          > int 32-bit; long 64-bit; 
          > float 32-bit floating-point value 123.45f; 
          > double 64-bit floating-point value 123.456; 
-         > boolean ; char 16-bit Unicode value 'a'
+         > boolean true/flase; char 16-bit Unicode value 'a'
 
          > long max = 3123456789; // DOES NOT COMPILE
          > long max = 3123456789L; // now Java knows it is a long
