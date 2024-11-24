@@ -134,8 +134,8 @@ apply)
         F. java BirdDisplay.class "Blue Jay" Sparrow
         G. Does not compile.
 
-9. Which of the following legally fill in the blank so you can run the main() method from the
-command line? (Choose all that apply)
+9. Which of the following legally fill in the blank so you can run the main() method from the command line? 
+   (Choose all that apply)
     public static void main( )
     A. String[] _names
     B. String[] 123
