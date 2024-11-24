@@ -160,18 +160,21 @@
          > An object is no longer reachable when one of two situations occurs:
            >The object no longer has any references pointing to it.
            >All references to the object have gone out of scope.
-         > object first becomes eligible for garbage collection:
-           public class Scope {
-               public static void main(String[] args) {
-               String one, two;
-               one = new String("a");
-               two = new String("b");
-               one = two;
-               String three = one;
-               one = null;
-               } 
-            }
-         Ans: one,two,three = "b"
+         > Which line will be eligible for garbage collection?
+             1: public class Rabbit {
+              2: public static void main(String[] args) {
+              3: Rabbit one = new Rabbit();
+              4: Rabbit two = new Rabbit();
+              5: Rabbit three = one;
+              6: one = null;
+              7: Rabbit four = one;
+              8: three = null;
+              9: two = null;
+              10: two = new Rabbit();
+              11: System.gc();
+              12: } }
+            
+              Ans: Line: 8,9
     - finalize() 38
          > might run zero or one time. run twice = impossible.
             public class Finalizer {
