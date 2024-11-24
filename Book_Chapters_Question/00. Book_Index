@@ -117,6 +117,8 @@
     - Key Differences 25
          > primitive name lowercase. classes name start with uppercase.
     - Declaring and Initializing Variables 25
+         > int amount = 0b101; OR 0xE; > double amount = 0xE;  
+           ***prefix: 0b= Binary, 0x=Hexadecimal 
          > short numPets = 5;   numPets.length(); // DOES NOT COMPILE
          > int value = null; // DOES NOT COMPILE 
          > int numGrains = 5.6; // DOES NOT COMPILE  numGrains.length(); // DOES NOT COMPILE
