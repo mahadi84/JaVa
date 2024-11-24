@@ -345,12 +345,26 @@
     - The while Statement 76
             > terminate with a boolean expression false, 
             > continue as long as the expression evaluates to true.
-            > int x = 2;  int y = 5;  while(x < 10)  y++;
+            > int m = 9, n = 1, x = 0;
+               while(m > n) {
+                m--;
+                n += 2;
+                x += m + n;
+                }
     - The do-while Statement 78
             > guarantees that the statement or block will be executed at least once.
             >terminate with a boolean expression, > continue as long as the expression evaluates to true.
-            >for( ; ; ) {  System.out.println("Hello World");   } //Creating an Infinite Loop
+            >boolean keepGoing = true;
+              int result = 15, i = 10;
+              do {
+              i--;
+              if(i==8) keepGoing = false;
+              result -= 2;
+              } while(keepGoing);
+               System.out.println(result);
+              
     - The for Statement 80
+            >for( ; ; ) {  System.out.println("Hello World");   } //Creating an Infinite Loop
             > for(long y = 0, x = 4; x < 5 && y < 10; x++, y++) {
             System.out.print(y + " ");
             }
@@ -415,7 +429,7 @@
                     count++;
                }
             System.out.println(count);
-            Output: 1
+            
 
     - Summary 92
     - Exam Essentials 92
