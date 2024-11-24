@@ -203,8 +203,8 @@ apply)
     E. double d4 = 1_234.0;
     F. None of the above.
 
-16. Given the following class, which of the following lines of code can replace INSERT CODE
-HERE to make the code compile? (Choose all that apply)
+16. Given the following class, which of the following lines of code can replace INSERT CODE HERE 
+    to make the code compile? (Choose all that apply)
     public class Price {
     public void admission() {
     INSERT CODE HERE
