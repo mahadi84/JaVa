@@ -145,8 +145,7 @@ apply)
     F. String names
     G. None of the above.
 
-10. Which of the following are legal entry point methods that can be run from the command
-line? (Choose all that apply)
+10. Which of the following are legal entry point methods that can be run from the command line? (Choose all that apply)
     A. private static void main(String[] args)
     B. public static final main(String[] args)
     C. public void main(String[] args)
