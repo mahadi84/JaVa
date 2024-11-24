@@ -8,8 +8,7 @@
     E. %
     F. <=
 
-2. What data type (or types) will allow the following code snippet to compile? (Choose all that
-    apply)
+2. What data type (or types) will allow the following code snippet to compile? (Choose all that apply)
     byte x = 5;
     byte y = 10;
     _____ z = x + y;
@@ -154,7 +153,6 @@
 14. What is the output of the following code snippet?
     3: int c = 7;
     4: int result = 4;
-    98 Chapter 2 ■ Operators and Statements
     5: result += ++c;
     6: System.out.println(result);
     A. 8
@@ -274,6 +272,7 @@ in an int value. Options B, C, and D solve this problem by reducing the long val
 int. Option E does not solve the problem and actually makes it worse by attempting
 to place the value in a smaller data type. Option F solves the problem by increasing the
 data type of the assignment so that long is allowed.
+
 5. C. This code does not contain any compilation errors or an infinite loop, so options D,
 E, and F are incorrect. The break statement on line 8 causes the loop to execute once
 and finish, so option C is the correct answer.
@@ -299,9 +298,10 @@ code compiles and runs without issue, so option F is not correct.
 9. F. In this example, the update statement of the for loop is missing, which is fine as the
 statement is optional, so option D is incorrect. The expression inside the loop increments
 i but then assigns i the old value. Therefore, i ends the loop with the same value
-338 Appendix A ■ Answers to Review Questions
 that it starts with: 0. The loop will repeat infinitely, outputting the same statement over
 and over again because i remains 0 after every iteration of the loop.
+
+
 10. D. Line 4 generates a possible loss of precision compiler error. The cast operator has
 the highest precedence, so it is evaluated first, casting a to a byte. Then, the addition is
 evaluated, causing both a and b to be promoted to int values. The value 90 is an int
@@ -324,6 +324,7 @@ operator is used, so c is incremented to 4 and the new value is returned to the
 expression. The value of result is computed by adding 4 to the original value of 8,
 resulting in a new value of 12, which is output on line 6. Therefore, option C is the
 correct answer.
+
 15. E. This is actually a much simpler problem than it appears to be. The while statement
 on line 4 is missing parentheses, so the code will not compile, and option E is the correct
 answer. If the parentheses were added, though, option F would be the correct
