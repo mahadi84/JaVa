@@ -111,10 +111,11 @@
          > An object in memory can be accessed only via a reference.
 
     - Key Differences 25
-         > int value = null; // DOES NOT COMPILE > String s = null;
-         > String reference = "hello";
-            int len = reference.length();
-            int bad = len.length(); // DOES NOT COMPILE
+         > short numPets = 5;   numPets.length(); // DOES NOT COMPILE
+         > int value = null; // DOES NOT COMPILE 
+         > int numGrains = 5.6; // DOES NOT COMPILE  numGrains.length(); // DOES NOT COMPILE
+         > String reference = "hello";  int len = reference.length();
+
          > primitive name lowercase. classes name start with uppercase.
     - Declaring and Initializing Variables 25
          > int i1, i2, i3 = 0; > boolean b1, b2; 
