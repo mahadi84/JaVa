@@ -486,6 +486,12 @@
            if (t.equals(s)) System.out.println("three");
            if ("Hello" == s) System.out.println("four"); //String to obj compare, Works
            if ("Hello" == t) System.out.println("five");
+          
+          > String vs StringBuilder Equality/comparison
+           String s1 = "java";  StringBuilder s2 = new StringBuilder("java");
+             System.out.println(s1 == s2) // does not compile as they are different data types.
+             System.out.println(s1.equals(s2)) // outpuT: false/nothing, objects to be equivalent
+      
      - Understanding Java Arrays 119
           > Special variable > store multiple same type of data
           > int [] numAnimals2; int numAnimals3[];
