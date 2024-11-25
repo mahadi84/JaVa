@@ -480,7 +480,7 @@
           > x == z; // false > x.equals(z) // true
           >String s = "Hello"; 
            String t = new String(s); //String obj reference as parameter
-           if ("Hello".equals(s)) System.out.println("one"); //Direct string compare to Object=Ok
+           if ("Hello".equals(s)) System.out.println("one"); //Direct string compare to Object, Works
            if (t == s) System.out.println("two");
            if (t.equals(s)) System.out.println("three");
            if ("Hello" == s) System.out.println("four"); //String to obj compare, Works
