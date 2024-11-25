@@ -561,13 +561,10 @@
           > weights.add(50); // [50.5]  > weights.add(new Double(60)); // [50.5, 60.0]
             weights.add(Integer.valueOf(50));  //the compiler translates it into Integer something like this
      - Converting Between array and List 136
-          >  String[] array = { "hawk", "robin" };  
-               List<String> list = Arrays.asList(array); list.size();
-     
-          > List<String> list = new ArrayList<>();  list.add("hawk"); list.add("robin");
-               > Object[] objectArray = list.toArray();  
-               > String[] stringArray = list.toArray(new String[0]); //stringArray.length;
-     
+           > List<Integer> list = Arrays.asList(10, 4, -1, 5); //Array to list *list.length
+              Collections.sort(list);
+           > Integer array[] = list.toArray(new Integer[4]); //List to array *list.size()
+               System.out.println(array[0]); //output: -1
      - Sorting 138
           > List<Integer> numbers = new ArrayList<>(); numbers.add(99); numbers.add(5);
           > Collections.sort(numbers); Output:[5, 99]
