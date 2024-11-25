@@ -477,7 +477,7 @@
           07. delete() 08. deleteCharAt() 
           09. reverse() 10. toString()
 
-          > StringBuilder b = "rumble";  
+          > StringBuilder b = new  StringBuilder("rumble");  
              b.append(4).deleteCharAt(3).delete(3, b.length() - 1);
              System.out.println(b);
           > int total = 0;
