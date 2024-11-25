@@ -465,8 +465,7 @@
      - Mutability and Chaining 112
          >StringBuffer and StringBuilder are immutable.
           > StringBuilder sb = new StringBuilder();
-              sb.append("Pubali").append("Bank").insert(1, "P").insert(4, "LC");
-               System.out.println("b=" + sb);
+              sb.append("aaa").insert(1, "bb").insert(4, "ccc");  //Output: abbacca
      - Creating a StringBuilder 113
           >StringBuilder sb1 = new StringBuilder(); 
           StringBuilder sb2 = new StringBuilder("animal"); 
