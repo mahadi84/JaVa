@@ -440,32 +440,33 @@
 ############# Chapter 3 Core Java APIs 101 ##########################
 
      - Creating and Manipulating Strings 102
-          > String fundamental class > with new without new
+          > String is a  fundamental class > Create String with "new" or direct(without new)
      - Concatenation 102
           > 1+2+"c"    > String s= "1"; s+="2"; s+=3; 
+          > int numFish = 4;   String anotherFish = numFish + 1; //Does not compile
           > String s1= "1"; String s2= s1.concat("2");  s2.concat("3"); OUTPUT:12
      - Immutability 104
-          > String is non-changeable, make non-larger or non-smaller
+          > String is like Steel Almira non-changeable(can not make larger or smaller)
+          > An immutable object cannot be modified.
+          > An immutable object can be garbage collected.
      - The String Pool 105
-          > location in JVM that collect all strings 
+          > location in JVM that collects all strings ex: String s="Hi Java";
           > garbage collectible 
      - Important String Methods 105
-          01. charAt() 02. indexOf() 03. lastIndexOf() 04. substring()
+          01. charAt() 02. indexOf() 03. lastIndexOf() 04. substring(2), substring(2,3)
           05. replace() 06. concat() 07. contains() 08. equals() 09. equalsIgnoreCase()
           10. startsWith()  11. endsWith()  12. toUpperCase() 13. toLowerCase()
           14. toCharArray()  15. valueOf()
      - Method Chaining 110
           > String a= "abc"; String b= a.toUpperCase(); b= b.replace("B", "2").replace('C', '3');
      - Using the StringBuilder Class 111
-          > Mutable
           > StringBuilder sb = new StringBuilder("start"); sb.append("+middle"); 
           > StringBuilder same = sb.append("+end"); // "start+middle+end"
      - Mutability and Chaining 112
-          > StringBuilder a = new StringBuilder("abc");
-            StringBuilder b = a.append("de");
-            b = b.append("f").append("g");
-               System.out.println("a=" + a);
-               System.out.println("b=" + b);
+         >StringBuffer and StringBuilder are immutable.
+          > StringBuilder sb = new StringBuilder();
+              sb.append("Pubali").append("Bank").insert(1, "P").insert(4, "LC");
+               System.out.println("b=" + sb);
      - Creating a StringBuilder 113
           >StringBuilder sb1 = new StringBuilder(); 
           StringBuilder sb2 = new StringBuilder("animal"); 
@@ -502,12 +503,13 @@
           > String[] birds = new String[6]; 
              System.out.println(birds.length); //print all 6 elements of the array are null.
      - Sorting 124
-          > Unsorted array, A surprise—this result isn’t predictable
+          > Unsorted array, result is unpredictable
           > String[] strings = { "10", "9", "100" }; Arrays.sort(strings); //outputs 10 100 9.
      - Searching 125
           > int[] numbers = {2,4,6,8}; 
           > System.out.println(Arrays.binarySearch(numbers, 2)); // 0
           > System.out.println(Arrays.binarySearch(numbers, 1)); // -1
+          > System.out.println(Arrays.binarySearch(numbers, 9/45)); // -5
      - Varargs 126
           > variable argument
      - Multidimensional Arrays 126
