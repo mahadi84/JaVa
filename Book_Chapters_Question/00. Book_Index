@@ -542,6 +542,7 @@
           c.add(1);
           b.add(1);
          System.out.println(b.equals(c));
+         (==) does not work with ArrayList.
      - Using an ArrayList 130
           01. add()  02. get() 03.set() 04. size() and  isEmpty() 
           05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
@@ -573,10 +574,13 @@
      - Creating Dates and Times 138
           > LocalDate: Contains just a date 
           >LocalDateTime Contains both a date and time but no time zone.
-          > System.out.println(LocalDate/LocalTime/LocalDateTime.now());
+          > System.out.println(LocalDate/LocalTime/LocalDateTime.now());          
      - Manipulating Dates and Times 142
           > LocalDate date = LocalDate.now(); > System.out.println(date); // 2024-01-20
           > date = date.plusDays/Weeks/Months/Years(2); > System.out.println(date); // 2024-01-22
+          > how to create a date of June 21, 2014?
+            LocalDate date = LocalDate.of(2014, Month.June, 21)
+          > date.getYear()
      - Working with Periods 145
           > LocalDate date = LocalDate.of(2015, 1, 20);  
           > Period period = Period.ofMonths(1); System.out.println(date.plus(period)); // 2015-02-20
