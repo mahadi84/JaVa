@@ -356,8 +356,7 @@
         F. LocalDate.of(2014, Month.JUNE, 21);
 
 29. What is the output of the following code?
-    LocalDate date = LocalDate.parse("2018-04-30", DateTimeFormatter.ISO_LOCAL_
-    DATE);
+    LocalDate date = LocalDate.parse("2018-04-30", DateTimeFormatter.ISO_LOCAL_DATE);
     date.plusDays(2);
     date.plusHours(3);
     System.out.println(date.getYear() + " " + date.getMonth() + " "+ date.getDayOfMonth());
@@ -386,7 +385,6 @@
         B. 2018 APRIL 30
         C. 2018 MAY 2
         D. 2021 APRIL 2
-        Review Questions 163
         E. 2021 APRIL 30
         F. 2021 MAY 2
         G. A runtime exception is thrown.
