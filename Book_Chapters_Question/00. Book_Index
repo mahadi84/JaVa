@@ -546,6 +546,7 @@
      - Using an ArrayList 130
           01. add()  02. get() 03.set() 04. size() and  isEmpty() 
           05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
+           values.add(5);  values.set(0, 6);  loop_output:6
      - Wrapper Classes 134
           > Object representations of primitive data types
           > Each 8 primitive type has a wrapper class
