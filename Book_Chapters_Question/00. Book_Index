@@ -453,7 +453,8 @@
           > location in JVM that collects all strings ex: String s="Hi Java";
           > garbage collectible 
      - Important String Methods 105
-          01. charAt() 02. indexOf() 03. lastIndexOf() 04. substring(2), substring(2,3)
+          01. charAt(6) if 6 not exist 02. indexOf() 03. lastIndexOf() 
+          04. substring(2), substring(2,3), substring(3,3), substring(300); 300 not exist.
           05. replace() 06. concat() 07. contains() 08. equals() 09. equalsIgnoreCase()
           10. startsWith()  11. endsWith()  12. toUpperCase() 13. toLowerCase()
           14. toCharArray()  15. valueOf()
