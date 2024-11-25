@@ -478,10 +478,10 @@
      - Understanding Equality 117
           > String x = "Hello World"; String z = " Hello World".trim(); 
           > x == z; // false > x.equals(z) // true
-          >String s = "Hello"; String t = new String(s);
-           if ("Hello".equals(s)) System.out.println("one");
+          >String s = "Hello"; 
+           String t = new String(s); //String obj reference as parameter
+           if ("Hello".equals(s)) System.out.println("one"); //Direct string compare to Object
            if (t == s) System.out.println("two");
-           if (t.equals(s)) System.out.println("three");
            if ("Hello" == s) System.out.println("four");
            if ("Hello" == t) System.out.println("five");
      - Understanding Java Arrays 119
