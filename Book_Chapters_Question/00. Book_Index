@@ -510,9 +510,11 @@
           > int[] iA= new int[1];  //[tray icon, indicate an array]      
      - Creating an Array with Reference Variables 121
           > String [] bugs = { "cricket", "beetle", "ladybug" };
+          > String [] bugs2 = { "cricket", "beetle", "ladybug" };
           > String [] alias = bugs;
-          >System.out.println(bugs.equals(alias)); // true
-          >System.out.println(bugs.toString()); // [Ljava.lang.String;@160bc7c0
+          > System.out.println(bugs.equals(alias)); // true
+          > System.out.println(bugs2.equals(alias)); // false
+          > System.out.println(bugs.toString()); // [Ljava.lang.String;@160bc7c0
           > Object[] objects= bugs;
           > String[] againStrings = (String[]) objects;
      - Using an Array 123
@@ -535,6 +537,12 @@
           > int[][][] building = new int[no_of_floors][no_of_rows][no_of_column/rooms]; 
      - Understanding an ArrayList 129
      - Creating an ArrayList 129
+         > ArrayList c = new ArrayList<>();
+         > ArrayList b = new ArrayList<>();
+          c.add(1);
+          b.add(1);
+         System.out.println(b.equals(c));
+
      - Using an ArrayList 130
           01. add()  02. get() 03.set() 04. size() and  isEmpty() 
           05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
