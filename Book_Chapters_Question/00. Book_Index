@@ -480,9 +480,10 @@
           > x == z; // false > x.equals(z) // true
           >String s = "Hello"; 
            String t = new String(s); //String obj reference as parameter
-           if ("Hello".equals(s)) System.out.println("one"); //Direct string compare to Object
+           if ("Hello".equals(s)) System.out.println("one"); //Direct string compare to Object=Ok
            if (t == s) System.out.println("two");
-           if ("Hello" == s) System.out.println("four");
+           if (t.equals(s)) System.out.println("three");
+           if ("Hello" == s) System.out.println("four"); //String to obj compare, Works
            if ("Hello" == t) System.out.println("five");
      - Understanding Java Arrays 119
           > Special variable > store multiple same type of data
