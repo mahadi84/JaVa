@@ -313,7 +313,6 @@
 26. Which of the following are true statements about the following code? (Choose all that apply)
     4: List<Integer> ages = new ArrayList<>();
     5: ages.add(Integer.parseInt("5"));
-    Review Questions 161
     6: ages.add(Integer.valueOf("6"));
     7: ages.add(7);
     8: ages.add(null);
