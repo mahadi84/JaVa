@@ -529,7 +529,7 @@
           > System.out.println(Arrays.binarySearch(numbers, 1)); // -1
           > System.out.println(Arrays.binarySearch(numbers, 9/45)); // -5
      - Varargs 126
-          > variable argument
+          > variable argument >main(int... a)example: main(1,2,3);
      - Multidimensional Arrays 126
           > int [][] args = new int[4][];
           > char[][] cA2= {{'A', 'B', 'C'}, {'D', 'E', 'F'}}; //table with 2 rows and 3 columns
@@ -542,7 +542,6 @@
           c.add(1);
           b.add(1);
          System.out.println(b.equals(c));
-
      - Using an ArrayList 130
           01. add()  02. get() 03.set() 04. size() and  isEmpty() 
           05. remove() 06. removeOf()  07. clear()  08. contains()  09. equals()
@@ -553,14 +552,14 @@
           Example of constructing
                int -> Integer, double -> Double, char -> Character, boolean -> Boolean, 
                byte -> Byte, short -> Short, long -> Long,float -> Float
-          > Converting String to primitive: Boolean.parseBoolean("true"); Byte.parseByte("1");
+          > Converting String to primitive(Autoboxing): Boolean.parseBoolean("true"); Byte.parseByte("1");
           > Converting String to  wrapper class:   Boolean.valueOf("TRUE"); Byte.valueOf("2");
      - Autoboxing 136
           >I type the primitive value and Java will convert it to the relevant wrapper class for me.
-          >List<Integer> weights = new ArrayList<>();
-          > weights.add(50); // [50.5]  > weights.add(new Double(60)); // [50.5, 60.0]
-            weights.add(Integer.valueOf(50));  //the compiler translates it into Integer something like this
-     - Converting Between array and List 136
+          >List<Integer> ages = new ArrayList<>();
+             ages.add(50); 
+             ages.add(Integer.parseInt("5"));            
+     - Converting between Array and List 136
            > List<Integer> list = Arrays.asList(10, 4, -1, 5); //Array to list *list.length
               Collections.sort(list);
            > Integer array[] = list.toArray(new Integer[4]); //List to array *list.size()
@@ -568,8 +567,9 @@
      - Sorting 138
           > List<Integer> numbers = new ArrayList<>(); numbers.add(99); numbers.add(5);
           > Collections.sort(numbers); Output:[5, 99]
+
      - Working with Dates and Times 138
-     
+          >immutable     
      - Creating Dates and Times 138
           > LocalDate: Contains just a date 
           >LocalDateTime Contains both a date and time but no time zone.
