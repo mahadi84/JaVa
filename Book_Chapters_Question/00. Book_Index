@@ -793,7 +793,10 @@
 ############# Chapter 5 Class Design 233 ##########################
 
     - Introducing Class Inheritance 234
-        > why >what Single/Multiple > No. of times extends a class
+        > to create new classes (subclasses or derived classes) 
+          that are based on existing classes (superclasses or base classes). 
+        > The subclass inherits the properties (fields) and behaviors (methods) of the superclass. 
+        > what Single/Multiple > No. of times can extend a class
     - Extending a Class 235
         > how to Stop extending
     - Applying Class Access Modifiers 237
