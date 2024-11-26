@@ -88,8 +88,7 @@
     D. Immutability uses package private instance variables.
     E. Immutability uses private instance variables.
     F. Immutability allows setters.
-9. Which are methods using JavaBeans naming conventions for accessors and mutators?
-    (Choose all that apply)
+9. Which are methods using JavaBeans naming conventions for accessors and mutators?(Choose all that apply)
     A. public boolean getCanSwim() { return canSwim;}
     B. public boolean canSwim() { return numberWings;}
     C. public int getNumWings() { return numberWings;}
