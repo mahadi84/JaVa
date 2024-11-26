@@ -319,26 +319,19 @@
                final String suffix = "JR";
                int id = 0;
                switch(firstName) {
-               case "Test":
-               return 52;
+               case "Test": return 52;
                case middleName: // DOES NOT COMPILE- middleName not final
-               id = 5;
-               break;
+               id = 5; break;
                case suffix:
-               id = 0;
-               break;
+               id = 0; break;
                case lastName: // DOES NOT COMPILE- final, but not constant as it is passed to the function
-               id = 8;
-               break;
+               id = 8; break;
                case 5: // DOES NOT COMPILE- not String;
-               id = 7;
-               break;
+               id = 7; break;
                case 'J': // DOES NOT COMPILE- not String;
-               id = 10;
-               break;
+               id = 10; break;
                case java.time.DayOfWeek.SUNDAY: // DOES NOT COMPILE- enum value
-               id=15;
-               break;
+               id=15; break;
                }
                return id;
             }
@@ -752,14 +745,15 @@
             }
 
     - Encapsulating Data 205
-       > bundling data into the method  
+       > bundling data (fields) and the methods (functions) in a single unit (a class). 
+         It's like creating a protective capsule around your data.
        > making uncontrolled changes to my class
        > access modifiers to allow read access to all methods, but not any instance variables.
        > private data(properties) >public method( is(), get(), set(), update())
     - Creating Immutable Classes 207
        > another common technique like encapsulation
        > making classes immutable so they can not be changed at all
-       > omit the setters, not getter  > constructor works as setter  >only when object is constructed 
+       > omit the setters, not getter  > constructor works as setter  > works only when object is constructed 
        > issue with stringBuilder() and how to stop get reference too > toString() example
 
     - Writing Simple Lambdas 208
