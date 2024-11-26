@@ -647,17 +647,10 @@
           Answer 5. All the Koala variables(4,6) are just distractions. 
     - Static vs. Instance 183
        > static works inside instance block, does not work opposite
-    - Static Variables 185
-          public static void swing() { System.out.print("swing ");}
-                        public void climb() {System.out.println("climb ");}
-                        public static void play() { swing();}
-                         public static void main(String[] args) {
-                             Rope rope = new Rope();  rope.play();
-                             Rope rope2 = null; rope2.play();
-                         }
-          Output: swing swing
+    - Static Variables 185          
     - Static Initialization 186
-        > private static int one;
+        > > Question: 01:
+          private static int one;
           private static final int two;
           private static final int three = 3;
           private static final int four; // DOES NOT COMPILE
@@ -667,6 +660,15 @@
                three = 3; // DOES NOT COMPILE
                two = 4; // DOES NOT COMPILE
                }
+         > Question: 02:
+          public static void swing() { System.out.print("swing ");}
+             public void climb() {System.out.println("climb ");}
+             public static void play() { swing();}
+             public static void main(String[] args) {
+                  Rope rope = new Rope();  rope.play();
+                  Rope rope2 = null; rope2.play();
+              }
+          Output: swing swing
     - Static Imports 187
           >import static java.util.Arrays.asList;
     - Passing Data Among Methods 188
