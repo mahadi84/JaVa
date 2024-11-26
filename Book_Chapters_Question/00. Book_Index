@@ -674,17 +674,31 @@
     - Passing Data Among Methods 188
        > pass-by-value with example  > pass-by-reference with example stringBuilder() 
     - Overloading Methods 191
+       > 1. Flexibility 2. Readability and Code Organization/Cleanliness 3. Code Reusability
        > Everything other than the method signature/name can vary. example:(access modifiers, return type, parameter, exception).
        > Signature includes the method name, and parameter only.
        > must have a different type/no./sequence of parameters
        > varargs: fly(int... length) ex: fly(1,2,3) vs fly(int[] length) ex: fly(new int[] {1,2,3})
        > Autoboxing > Reference Types > Primitives
-       > autoboxing and varargs come last when Java looks at overloaded methods.
-       Q: Is overloading a method from parent class to child class possible?
+       > autoboxing and varargs come last when Java looks at overloaded methods.      
+           Example: 
+             public class OverloadingExample {
+              public void printValue(int value) { System.out.println("int: " + value);}
+              public void printValue(Integer value) { System.out.println("Integer: " + value);}
+              public void printValue(long value) { System.out.println("long: " + value);}
+              public void printValue(Number value) {System.out.println("Number: " + value);}
+              public void printValue(int... values) {System.out.println("int varargs: " + Arrays.toString(values));}
+               public static void main(String[] args) {
+                   OverloadingExample example = new OverloadingExample();
+                   example.printValue(5); // Output: int: 5 
+               }
+             }
+          Q: Is overloading a method from parent class to child class possible?
                  class Parent {
                      public void display(String message) { System.out.println("Parent: " + message); }
                   }
                  class Child extends Parent {                     
+                     public void display() { } //How about this
                      public void display(int number) { // Overloading the display method with a different parameter list
                          System.out.println("Child: " + number);
                      }
