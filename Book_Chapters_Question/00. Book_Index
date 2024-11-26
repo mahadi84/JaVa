@@ -648,6 +648,14 @@
     - Static vs. Instance 183
        > static works inside instance block, does not work opposite
     - Static Variables 185
+          public static void swing() { System.out.print("swing ");}
+                        public void climb() {System.out.println("climb ");}
+                        public static void play() { swing();}
+                         public static void main(String[] args) {
+                             Rope rope = new Rope();  rope.play();
+                             Rope rope2 = null; rope2.play();
+                         }
+          Output: swing swing
     - Static Initialization 186
         > private static int one;
           private static final int two;
