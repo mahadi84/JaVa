@@ -703,6 +703,22 @@
     - Order of Initialization 202
        > 4 rules(Super, Static(Variable, Block), Instance(Variable, Block), Constructor)
        > static method/object instantiate into instance block
+        > class Order {
+               static String result = "";
+               { result += "c"; }
+               static
+               { result += "u"; }
+               { result += "r"; }
+               }
+          public class OrderDriver {
+               public static void main(String[] args) {
+               System.out.print(Order.result + " ");
+               System.out.print(Order.result + " ");
+               new Order();
+               // new Order();
+               System.out.print(Order.result + " ");
+               }
+               }
 
     - Encapsulating Data 205
        > bundling data into the method  
@@ -728,17 +744,21 @@
        > print((a,b)-> { int c =0; return 5; }
 
     - Predicates 214
-       > what & why > functional interface > data type boolean > generics
+       > powerful tools for expressing conditions and filtering data. 
+       > functional interface > data type boolean > generics
        > Interface Predicate<T>{boolean test(T t);} > removeIf() >Arraylist<>()
-         Class{           
-               print(animals, a -> a.canHop());
-               }
-                private static void print(List<Animal> animals, Predicate<Animal> checker) {
-                for (Animal animal : animals) {
-                if (checker.test(animal))
-                System.out.print(animal + " ");
-                }               
-                }
+           public class Panda {
+            int age;
+            public static void main(String[] args) {
+            Panda p1 = new Panda();
+            p1.age = 1;
+            check(p1, p -> p.age < 5);
+            }
+             private static void check(Panda panda, Predicate<Panda> pred) {
+             String result = pred.test(panda) ? "match" : "not match";
+             System.out.print(result);
+             } 
+           }
 
     - Summary 215
     - Exam Essentials 216
