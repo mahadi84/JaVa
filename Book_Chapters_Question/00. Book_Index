@@ -556,7 +556,7 @@
           > Converting String to primitive(Autoboxing): Boolean.parseBoolean("true"); Byte.parseByte("1");
           > Converting String to  wrapper class:   Boolean.valueOf("TRUE"); Byte.valueOf("2");
      - Autoboxing 136
-          >I type the primitive value and Java will convert it to the relevant wrapper class for me.
+          >I type the primitive value and Java will convert it to the relevant wrapper class for me automatically.
           >List<Integer> ages = new ArrayList<>();
              ages.add(50); 
              ages.add(Integer.parseInt("5"));            
@@ -678,6 +678,7 @@
        > Everything other than the method signature/name can vary. example:(access modifiers, return type, parameter, exception).
        > Signature includes the method name, and parameter only.
        > must have a different type/no./sequence of parameters
+       > parameter with type java.lang.Object will take any reference.
        > varargs: fly(int... length) ex: fly(1,2,3) vs fly(int[] length) ex: fly(new int[] {1,2,3})
        > Autoboxing > Reference Types > Primitives
        > autoboxing and varargs come last when Java looks at overloaded methods.      
@@ -758,7 +759,7 @@
     - Creating Immutable Classes 207
        > another common technique like encapsulation
        > making classes immutable so they can not be changed at all
-       > omit the setters, not getter  > constuctor  >only when object is constructed 
+       > omit the setters, not getter  > constructor works as setter  >only when object is constructed 
        > issue with stringBuilder() and how to stop get reference too > toString() example
 
     - Writing Simple Lambdas 208
@@ -931,8 +932,7 @@
     - Static Interface Methods 278
         > 2-rules(static method is assumed to be public,  reference to the name of the interface must be used)
     - Understanding Polymorphism 279
-        > defination & why?
-        > A method that takes a parameter with type java.lang.Object will take any reference.
+        > allows objects of different classes to be treated as objects of a common type. Polymorphism, meaning "many forms,".
         > If a method takes a superclass of three objects (and "null" but not grandfather-like new Object()), then any of those classes may be passed as a parameter to the method.
             public class Reptile {
              public String getName() {return "Reptile"; }
