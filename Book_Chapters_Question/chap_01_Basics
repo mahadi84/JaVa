@@ -120,8 +120,7 @@
         import aquarium.jellies.Water;
         F. None of these imports can make the code compile.
 
-8. Given the following class, which of the following calls print out Blue Jay? (Choose all that
-apply)
+8. Given the following class, which of the following calls print out Blue Jay? (Choose all that apply)
     public class BirdDisplay {
     public static void main(String[] name) {
     System.out.println(name[1]);
