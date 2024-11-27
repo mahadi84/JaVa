@@ -688,16 +688,15 @@
                }
              }
           Q: Is overloading a method from parent class to child class possible?
-                 class Parent {
-                     public void display(String message) { System.out.println("Parent: " + message); }
+                public class Parent {
+                  public void display(String message) { System.out.println("Parent: " + message); }
                   }
-                 class Child extends Parent {                     
-                     public void display() { } //How about this
-                     public void display(int number) { // Overloading the display method with a different parameter list
+                class Child extends Parent {                     
+                     public int display() { return 1; } //Overloading with different return type and param.
+                     public void display(int number) { // Overloading
                          System.out.println("Child: " + number);
                      }
                   }
-
           Yes: It works.   
     
     - Creating Constructors 196
