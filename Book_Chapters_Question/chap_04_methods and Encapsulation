@@ -1,6 +1,12 @@
 
 ======================== Chapter 4: Methods and Encapsulation =====================================
 
+----------------------------------------------------
+  6, 7, 8, 18, 
+----------------------------------------------------
+
+
+
 1. Which of the following can fill in the blank in this code to make it compile? (Choose all that apply)
     public class Ant {
     _____ void method() { }
