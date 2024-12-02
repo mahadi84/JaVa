@@ -616,8 +616,8 @@
        > nums.length of walk2(1), walk2(1, 2), walk2(1,2,3), walk2(1, new int[] {4,5});
     - Applying Access Modifiers 173
        > private: Only accessible within the same class.
-       > default(package-private): Accessible within the same class and same package. /  Like a house party where only people living in the house can attend.
-       > protected: Accessible within the same class, same package, and subclasses.  /  ...and also their close relatives can attend, even if those relatives live elsewhere.
+       > default(package-private): Accessible within the same class and same package. wider than private  /  Like a house party where only people living in the house can attend.
+       > protected: Accessible within the same class, same package, and subclasses. wider than defult /  ...and also their close relatives can attend, even if those relatives live elsewhere.
        > public: Accessible from anywhere.(classes in the other packages as well)
     - Private Access 173
     - Default (Package Private) Access 175
