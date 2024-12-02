@@ -396,7 +396,7 @@
         D. tacfb
         E. tacftacb
         F. The code does not compile.
-    G. An exception is thrown.
+        G. An exception is thrown.
 24. Which of the following will compile when inserted in the following code? (Choose all that apply)
     public class Order3 {
     final String value1 = "1";
