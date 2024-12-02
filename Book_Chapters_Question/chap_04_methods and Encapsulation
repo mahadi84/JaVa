@@ -399,15 +399,15 @@
         G. An exception is thrown.
 24. Which of the following will compile when inserted in the following code? (Choose all that apply)
     public class Order3 {
-    final String value1 = "1";
-    static String value2 = "2";
-    String value3 = "3";
-    {
-    // CODE SNIPPET 1
-    }
-    static {
-    // CODE SNIPPET 2
-    }
+          final String value1 = "1";
+          static String value2 = "2";
+          String value3 = "3";
+          {
+            // CODE SNIPPET 1
+          }
+          static {
+            // CODE SNIPPET 2
+          }
     }
         A. value1 = "d"; instead of // CODE SNIPPET 1
         B. value2 = "e"; instead of // CODE SNIPPET 1
@@ -418,25 +418,25 @@
 
 25. Which of the following are true about the following code? (Choose all that apply)
     public class Create {
-    Create() {
-    System.out.print("1 ");
-    }
-    Create(int num) {
-    System.out.print("2 ");
-    }
-    Create(Integer num) {
-    System.out.print("3 ");
-    }
-    Create(Object num) {
-    System.out.print("4 ");
-    }
-    Create(int... nums) {
-    System.out.print("5 ");
-    }
-    public static void main(String[] args) {
-    new Create(100);
-    new Create(1000L);
-    }
+      Create() {
+      System.out.print("1 ");
+      }
+      Create(int num) {
+      System.out.print("2 ");
+      }
+      Create(Integer num) {
+      System.out.print("3 ");
+      }
+      Create(Object num) {
+      System.out.print("4 ");
+      }
+      Create(int... nums) {
+      System.out.print("5 ");
+      }
+      public static void main(String[] args) {
+      new Create(100);
+      new Create(1000L);
+      }
     }
         A. The code prints out 2 4.
         B. The code prints out 3 4.
