@@ -14,8 +14,7 @@
         C. It is final.
         D. It is mutable.
 
-3. Which of the following creates a StringBuilder with a different value than the other
-        options?
+3. Which of the following creates a StringBuilder with a different value than the other options?
         A. new StringBuilder().append("clown")
         B. new StringBuilder("clown")
         C. new StringBuilder("cl").insert(2, "own")
@@ -31,8 +30,7 @@
         C. The code compiles but outputs something else.
         D. The code does not compile.
 
-5. How many of the types ArrayList, List, and Object can fill in the blank to produce code
-        that compiles?
+5. How many of the types ArrayList, List, and Object can fill in the blank to produce code that compiles?
         List frisbees = new ();
         A. None
         B. One
@@ -98,8 +96,7 @@
         C. true 1
         D. true 2
 
-12. The author of this method forgot to include the data type. Which of the following reference
-        types can fill in the blank to complete this method?
+12. The author of this method forgot to include the data type. Which of the following reference types can fill in the blank to complete this method?
         public static void secret( mystery) {
         mystery.add("metal");
         String str = mystery.get(0);
@@ -187,8 +184,7 @@
         C. I and II
         D. I, II, and III
 
-20. Which of the answer choices results in a different value being output than the other three
-        choices?
+20. Which of the answer choices results in a different value being output than the other three choices?
         StringBuilder sb = new StringBuilder("radical ");
         sb = ;
         System.out.print(sb);
@@ -243,8 +239,7 @@
         C. StringBuilder
         D. None of the above
 
-25. Which statement is true about the following figure while ensuring the code continues to
-        compile?
+25. Which statement is true about the following figure while ensuring the code continues to compile?
         List
         P Q
         balloons = new ArrayList ();
@@ -284,8 +279,7 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
 
-29. Of the classes LocalDate, LocalDateTime, LocalTime, and LocalTimeStamp, how many
-        include hours, minutes, and seconds?
+29. Of the classes LocalDate, LocalDateTime, LocalTime, and LocalTimeStamp, how many include hours, minutes, and seconds?
         A. One
         B. Two
         C. Three
@@ -455,8 +449,7 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
 
-46. Which of the following types can you pass as a parameter to the replace() method on the
-        String class?
+46. Which of the following types can you pass as a parameter to the replace() method on the String class?
         I. char
         II. String
         III. StringBuilder
@@ -525,7 +518,7 @@
         
 
 
-=================== Answers =============================
+================================ Answers =============================
 
 1. C. Option A is incorrect because StringBuilder does not support multiple threads. In
 fact, threads aren’t even covered on the OCA, which should be your clue that this answer
