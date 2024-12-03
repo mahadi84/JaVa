@@ -17,7 +17,8 @@ Step 03:
     -Enter and Doctor_ID, Patient_ID and Appoinment_Date on the book_appointment Table.
 
 Final Step:
-    -Check appointment details(Doctor, Patient name, Booked Date and Appointment Date) by appointment ID
+    -Check and show appointment details(Doctor, Patient name, Booked Date and Appointment Date) 
+      by appointment ID, joinning 3(Doctor,Patient,Appointment) tables.
 
 
 
