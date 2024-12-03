@@ -271,10 +271,10 @@ the message White-tailed?
 
 
 31. Which of the following statements about Java is true?
-A. Java is a procedural programming language.
-B. Java allows method overloading.
-C. Java allows operator overloading.
-D. Java allows direct access to objects in memory.
+        A. Java is a procedural programming language.
+        B. Java allows method overloading.
+        C. Java allows operator overloading.
+        D. Java allows direct access to objects in memory.
 
 32. Given the following code, what values inserted in order into the blank lines, allow the code to compile?
         agent;
@@ -370,8 +370,8 @@ is the result of compiling the following class?
         C. The code does not compile because of line 6.
         D. The code compiles without issue.
 
-41. Given a class that uses the following import statements, which class would not be automatically
-accessible within the class without using its full package name?
+41. Given a class that uses the following import statements, 
+which class would not be automatically accessible within the class without using its full package name?
         import dog.*;
         import dog.puppy.*;
         A. dog.puppy.female.KC
@@ -385,9 +385,8 @@ accessible within the class without using its full package name?
         C. Platform independence
         D. Polymorphism
 
-43. Given the following class definition, what is the maximum number of import statements
-that can be discarded and still have the code compile? For this question, assume that the
-Broccoli class is in the food.vegetables package, and the Apple class is the food.fruit package.
+43. Given the following class definition, what is the maximum number of import statements that can be discarded and still have the code compile? 
+For this question, assume that the Broccoli class is in the food.vegetables package, and the Apple class is the food.fruit package.
         package food;
         import food.vegetables.*;
         import food.fruit.*;
@@ -423,7 +422,6 @@ Broccoli class is in the food.vegetables package, and the Apple class is the foo
         System.out.print(feet + tracks + s.wheels);
         }
         }
-        Chapter 1 ■ Java Basics
         A. The code does not compile.
         B. 5
         C. 10
