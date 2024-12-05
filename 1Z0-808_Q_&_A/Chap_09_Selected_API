@@ -4,13 +4,13 @@
 
 1. What is the best reason for using StringBuilder instead of String?
         A. StringBuilder adds support for multiple threads.
-        B. StringBuilder can use == to compare values.
+        B. StringBuilder can use == to compare values. **
         C. StringBuilder saves memory by reducing the number of objects created.
         D. StringBuilder supports different languages and encodings.
         
 2. What is not true about a String?
         A. It can be created without coding a call to a constructor.
-        B. It can be reused via the string pool.
+        B. It can be reused via the string pool. **
         C. It is final.
         D. It is mutable.
 
