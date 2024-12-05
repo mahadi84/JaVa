@@ -83,7 +83,7 @@
         A. It allows you to convert a primitive to a wrapper class.
         B. It allows you to change the bytecode while the application is running.
         C. It allows you to inherit from multiple classes.
-        D. It allows you to write code that has the execution deferred.
+        D. It allows you to write code that has the execution deferred(বিলম্বিত).
 
 11. What is the output of the following?
         5: StringBuilder line = new StringBuilder("-");
