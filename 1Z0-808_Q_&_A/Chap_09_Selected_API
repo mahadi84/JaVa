@@ -2,6 +2,9 @@
 
 =====================Chapter 9(Selected Java API) =========================================
 
+3,5,7,11,12,15,16,19,21,25
+
+
 1. What is the best reason for using StringBuilder instead of String?
         A. StringBuilder adds support for multiple threads.
         B. StringBuilder can use == to compare values. **
@@ -234,8 +237,7 @@
         D. None of the above
 
 25. Which statement is true about the following figure while ensuring the code continues to compile?
-        List
-        P Q
+        List P Q
         balloons = new ArrayList ();
         A. <> can be inserted at position P without making any other changes.
         B. <> can be inserted at position Q without making any other changes.
