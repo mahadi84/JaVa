@@ -188,16 +188,10 @@
         StringBuilder sb = new StringBuilder("radical ");
         sb = ;
         System.out.print(sb);
-        A. new StringBuilder("radical ")
-        .append("robots")
-        B. new StringBuilder("radical ")
-        .delete(1, 100)
-        .append("obots")
-        .insert(1, "adical r")
-        C. new StringBuilder("radical ")
-        .insert(7, "robots")
-        D. new StringBuilder("radical ")
-        .insert(sb.length(), "robots")
+        A. new StringBuilder("radical ").append("robots")
+        B. new StringBuilder("radical ").delete(1, 100).append("obots").insert(1, "adical r")
+        C. new StringBuilder("radical ").insert(7, "robots")
+        D. new StringBuilder("radical ").insert(sb.length(), "robots")
 
 21. What is the output of the following?
         String[] array = {"Natural History", "Science"};
