@@ -238,8 +238,7 @@
         D. None of the above
 
 25. Which statement is true about the following figure while ensuring the code continues to compile?
-        List P Q
-        balloons = new ArrayList ();
+        List P  balloons = new ArrayList Q ();
         A. <> can be inserted at position P without making any other changes.
         B. <> can be inserted at position Q without making any other changes.
         C. <> can be inserted at both positions P and Q.
