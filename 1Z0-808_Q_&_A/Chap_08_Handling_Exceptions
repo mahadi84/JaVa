@@ -155,8 +155,7 @@
         C. The finally statement requires brackets {}.
         D. The finally block cannot throw an exception.
 
-14. Given that FileNotFoundException is a subclass of IOException, what is the output of
-        the following application?
+14. Given that FileNotFoundException is a subclass of IOException, what is the output of the following application?
         package office;
         import java.io.*;
         public class Printer {
