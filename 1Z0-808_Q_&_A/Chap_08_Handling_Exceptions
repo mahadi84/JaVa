@@ -121,8 +121,7 @@
         C. The code does not compile because of line p3.
         D. The code compiles, but a stack trace is printed at runtime.
 
-11. Which of the following exception types must be handled or declared by the method in
-        which they are thrown?
+11. Which of the following exception types must be handled or declared by the method in which they are thrown?
         A. NullPointerException
         B. Exception
         C. RuntimeException
