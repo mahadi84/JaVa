@@ -27,7 +27,7 @@
 
 3. Which of the following diagrams of java.lang classes shows the inheritance model properly?
         A. Object->Exception->Throwable->RuntimeException->Error
-        B. Object->Throwable Exception->RuntimeException->Error
+        B. Object->Throwable->Exception->RuntimeException->Error
         C. Object->Exception->Throwable->RuntimeException->Error
         D. Object->Throwable->Exception->RuntimeException->Error
 
