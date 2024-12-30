@@ -31,8 +31,7 @@
         C. Object->Exception->Throwable->RuntimeException->Error
         D. Object->Throwable->Exception->RuntimeException->Error
 
-4. Which of the following Throwable types is it recommended not to catch in a Java
-        application?
+4. Which of the following Throwable types is it recommended not to catch in a Java application?
         A. Error
         B. CheckedException
         C. Exception
