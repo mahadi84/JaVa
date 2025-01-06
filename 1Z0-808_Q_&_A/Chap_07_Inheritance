@@ -2,7 +2,7 @@
 
 ========================Chapter_07(Working with Inheritance) =================
 
-1,9,12,14,17,18,19,21,23,26,27,29,32,35
+1,9,12,14,17,18,19,21,23,26,27,29,32,35,37,40
 
 
 1. How many lines of the following program contain compilation errors?
@@ -542,7 +542,7 @@
         C. private instance methods
         D. final instance methods
 
-39. Fill in the blanks: An interface another interface, while a class another class.
+39. Fill in the blanks: An interface __ another interface, while a class __ another class.
         A. implements, extends
         B. extends, extends
         C. implements, implements
@@ -555,6 +555,7 @@
         class ComplexMath extends Math {
         public final double secret = 4;
         }
+
         public class InfiniteMath extends ComplexMath {
         public final double secret = 8;
         public static void main(String[] numbers) {
