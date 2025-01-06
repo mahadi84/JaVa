@@ -634,7 +634,7 @@
         C. If a parent class contains a no-argument constructor, a child class must contain a no-argument constructor.
         D. If a parent class contains a no-argument constructor, a child class must contain at least one constructor.
 
-47. Fill in the blanks: The determines which attributes exist in  memory, while the determines which attributes are accessible by the caller.
+47. Fill in the blanks: __ The determines which attributes exist in  memory, while __ the determines which attributes are accessible by the caller.
         A. reference type, signature
         B. object type, superclass
         C. reference type, object type
@@ -645,11 +645,10 @@
         interface MusicCreator { public Number play(); }
         abstract class StringInstrument { public Long play() {return 3L;} }
         public class Violin extends StringInstrument implements MusicCreator {
-        public play() {
+        public __ play() {
         return 12;
         }
         }
-        
         A. Long
         B. Integer
         C. Long or Integer
