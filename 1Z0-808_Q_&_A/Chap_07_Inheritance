@@ -621,7 +621,7 @@
         C. It does not compile for two reasons.
         D. It does not compile for three reasons.
 
-45. Fill in the blanks: methods must have a different list of parameters, while methods must have the exact same return type.
+45. Fill in the blanks: __ methods must have a different list of parameters, while __ methods must have the exact same return type.
         A. Overloaded, overridden
         B. Inherited, overridden
         C. Overridden, overloaded
