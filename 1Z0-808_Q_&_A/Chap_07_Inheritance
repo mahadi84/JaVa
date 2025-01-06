@@ -628,25 +628,19 @@
         D. None of the above
 
 46. Which of the following statements about no-argument constructors is correct?
-        A. If a parent class does not include a no-argument constructor, a child class cannot
-        declare one.
-        B. If a parent class does not include a no-argument constructor (nor a default one inserted
-        by the compiler), a child class must contain at least one constructor definition.
-        C. If a parent class contains a no-argument constructor, a child class must contain a
-        no-argument constructor.
-        D. If a parent class contains a no-argument constructor, a child class must contain at least
-        one constructor.
+        A. If a parent class does not include a no-argument constructor, a child class cannot declare one.
+        B. If a parent class does not include a no-argument constructor (nor a default one inserted by the compiler),
+           a child class must contain at least one constructor definition.
+        C. If a parent class contains a no-argument constructor, a child class must contain a no-argument constructor.
+        D. If a parent class contains a no-argument constructor, a child class must contain at least one constructor.
 
-47. Fill in the blanks: The determines which attributes exist in
-        memory, while the determines which attributes are accessible
-        by the caller.
+47. Fill in the blanks: The determines which attributes exist in  memory, while the determines which attributes are accessible by the caller.
         A. reference type, signature
         B. object type, superclass
         C. reference type, object type
         D. object type, reference type
 
-48. Given that Integer and Long are subclasses of Number, what type can be used to fill in
-        the blank in the class below to allow it to compile?
+48. Given that Integer and Long are subclasses of Number, what type can be used to fill in  the blank in the class below to allow it to compile?
         package orchestra;
         interface MusicCreator { public Number play(); }
         abstract class StringInstrument { public Long play() {return 3L;} }
