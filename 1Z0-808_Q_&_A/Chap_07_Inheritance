@@ -2,7 +2,7 @@
 
 ========================Chapter_07(Working with Inheritance) =================
 
-1,9,12,14,17,18,19
+1,9,12,14,17,18,19,21,23,26,27,29
 
 
 1. How many lines of the following program contain compilation errors?
@@ -729,13 +729,13 @@ Second, the return types void and Object are not covariant. One of them would ha
 changed for the override to be compatible. Finally, the access modifier in the child class must
 be the same or broader than in the parent class. Since package-private is narrower than
 protected, the code will not compile. For these reasons, Option C is the correct answer.
-
-
 10. C. First off, the return types of an overridden method must be covariant. Next, it is true that
 the access modifier must be the same or broader in the child method. Using a narrower access
 modifier in the child class would not allow the code to compile. Overridden methods must not
 throw any new or broader checked exceptions than the method in the superclass. For these
 reasons, Options A, B, and D are true statements. Option C is the false statement. An overridden method is not required to throw a checked exception defined in the parent class.
+
+
 11. C. The process() method is declared final in the Computer class. The Laptop class then
 attempts to override this method, resulting in a compilation error, making Option C the
 correct answer.
@@ -775,10 +775,10 @@ compatible with each other. Since Integer is not a subclass of Short, and vice v
 is no subclass that can be used to fill in the blank that would allow the code to compile.
 In other words, the Saxophone class cannot compile regardless of its implementation of
 play(), making Option D the correct answer.
-
-
 20. C. A class can implement an interface, not extend it. Alternatively, a class extends an
 abstract class. Therefore, Option C is the correct answer.
+
+
 21. A. The code compiles and runs without issue, making Options C and D incorrect.
 Although super.material and this.material are poor choices in accessing static variables, they are permitted. Since super is used to access the variable in getMaterial(), the
 value papyrus is returned, making Option A the correct answer. Also, note that the constructor Book(String) is not used in the Encyclopedia class.
@@ -825,12 +825,12 @@ due to polymorphism, can be read using any of those references since the underly
 is a SoccerBall. In other words, casting it to a different reference variable does not modify
 the object or cause it to lose its underlying SoccerBall information. Therefore, the code
 compiles without issue, and Option A is correct.
-
-
 30. C. Both of these descriptions refer to variable and static method hiding, respectively,
 making Option C correct. Only instance methods can be overridden, making Options
 A and B incorrect. Option D is also incorrect because replacing is not a real term in this
 context.
+
+
 31. B. The code does not compile, so Option D is incorrect. The issue here is that the override
 of getEqualSides() in Square is invalid. A static method cannot override a non-static
 method and vice versa. For this reason, Option B is the correct answer.
@@ -865,14 +865,14 @@ answer.
 39. B. An interface can only extend another interface, while a class can only extend another
 class. A class can also implement an interface, although that comparison is not part of the
 question text. Therefore, Option B is the correct answer.
-
-
 40. A. The code compiles without issue, so Option D is incorrect. Java allows methods to be
 overridden, but not variables. Therefore, marking them final does not prevent them from
 being reimplemented in a subclass. Furthermore, polymorphism does not apply in the same
 way it would to methods as it does to variables. In particular, the reference type determines
 the version of the secret variable that is selected, making the output 2 and Option A the
 correct answer.
+
+
 41. D. Options A and C are incorrect because an overridden method cannot reduce the
 visibility of the inherited method. Option B is incorrect because an overridden method
 cannot declare a broader checked exception than the inherited method. Finally, Option
