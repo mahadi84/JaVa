@@ -358,8 +358,7 @@
         D. A reference to a class that implements an interface can be assigned to an interface
         reference only with an explicit cast.
 
-26. Of the following four modifiers, choose the one that is not implicitly applied to all interface
-        variables.
+26. Of the following four modifiers, choose the one that is not implicitly applied to all interface variables.
         A. final
         B. abstract
         C. static
