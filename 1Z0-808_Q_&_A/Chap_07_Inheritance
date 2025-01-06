@@ -398,13 +398,14 @@
 29. What is the output of the following application?
         package sports;
         abstract class Ball {
-        protected final int size;
-        public Ball(int size) {
-        this.size = size;
-        }
+                protected final int size;
+                public Ball(int size) {
+                this.size = size;
+                }
         }
         
         interface Equipment {}
+
         public class SoccerBall extends Ball implements Equipment {
         public SoccerBall() {
         super(5);
@@ -428,6 +429,7 @@
         B. overriding, hiding
         C. hiding, hiding
         D. replacing, overriding
+
 31. Which statement about the following class is correct?
         package shapes;
         abstract class Parallelogram {
@@ -485,7 +487,6 @@
         C. concrete class
         D. interface
         
-
 35. How many compiler errors does the following code contain?
         package animal;
         interface CanFly {
