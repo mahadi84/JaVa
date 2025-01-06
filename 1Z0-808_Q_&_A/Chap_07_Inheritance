@@ -518,7 +518,8 @@
         }
         interface SingMonologue { 
                 default int talk() { 
-                return 5; } 
+                return 5; 
+                } 
         }
         
         public class Performance implements SpeakDialogue, SingMonologue {
@@ -541,8 +542,7 @@
         C. private instance methods
         D. final instance methods
 
-39. Fill in the blanks: An interface another interface, while a class
-        another class.
+39. Fill in the blanks: An interface another interface, while a class another class.
         A. implements, extends
         B. extends, extends
         C. implements, implements
