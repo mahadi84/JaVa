@@ -2,7 +2,7 @@
 
 ========================Chapter_07(Working with Inheritance) =================
 
-1,9,12,14,17,18,19,21,23,26,27,29,32,35,37,40
+1,9,12,14,17,18,19,21,23,26,27,29,32,35,37,40,44,46,48=19
 
 
 1. How many lines of the following program contain compilation errors?
@@ -660,8 +660,7 @@
         C. Give an interface the ability to create concrete methods.
         D. Allow an interface to define a method at the class level.
 
-50. Given that EOFException is a subclass of IOException, what is the output of the following
-        application?
+50. Given that EOFException is a subclass of IOException, what is the output of the following application?
         package ai;
         import java.io.*;
         class Machine {
