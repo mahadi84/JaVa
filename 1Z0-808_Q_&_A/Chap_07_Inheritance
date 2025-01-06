@@ -103,8 +103,7 @@
         C. Java allows multiple inheritance using non-abstract classes.
         D. Java allows multiple inheritance using interfaces.
 
-9. How many changes need to be made to the classes below to properly override the watch()
-        method?
+9. How many changes need to be made to the classes below to properly override the watch() method?
         package entertainment;
         class Television {
         protected final void watch() {}
