@@ -1,7 +1,7 @@
 
 =========================== Chapter_6(Working with Methods and Encapsulation) =================================
 
-1. Fill in the blanks: The access modifier allows access to everything the access modifier does and more.
+1. Fill in the blanks: __ The access modifier allows access to everything the access modifier __ does and more.
         A. package-private, protected
         B. protected, public
         C. protected, package-private
