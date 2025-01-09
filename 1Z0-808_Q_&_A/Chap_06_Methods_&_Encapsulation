@@ -90,6 +90,7 @@
         B. local
         C. static
         D. instance
+
 10. Which line of code, inserted at line p1, causes the application to print 5?
         package games;
         public class Jump {
