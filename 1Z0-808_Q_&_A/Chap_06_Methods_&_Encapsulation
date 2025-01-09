@@ -248,8 +248,7 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         D. useful.MathHelper.roundValue(65.3)
 
 
-20. Given a method with one of the following return types, which data type prevents the
-return statement from being used within the method?
+20. Given a method with one of the following return types, which data type prevents the return statement from being used within the method?
         A. byte
         B. String
         C. void
