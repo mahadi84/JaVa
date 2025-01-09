@@ -128,7 +128,7 @@
         package storage;
         public class Box {
         public String stuff;
-        String () {
+        __ String __() {
         return stuff;
         }
         public void setStuff(String stuff) {
