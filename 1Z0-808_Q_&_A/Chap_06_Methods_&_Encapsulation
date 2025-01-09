@@ -233,6 +233,7 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         B. String
         C. long
         D. boolean
+
 19. What is the best way to call the following method from another class in the same package, 
     assuming the class using the method does not have any static imports?
         package useful;
