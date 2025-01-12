@@ -585,7 +585,8 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         B. The code does not compile because of line m1.
         C. The code does not compile because of line m2.
         D. The code compiles but throws an exception at runtime.
-        48. Which of the following is a valid method name in Java?
+
+48. Which of the following is a valid method name in Java?
         A. $sprint()
         B. \jog13()
         C. walk#()
