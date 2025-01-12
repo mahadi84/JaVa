@@ -1,7 +1,7 @@
 
 =========================== Chapter_6(Working with Methods and Encapsulation) =================================
 
-3,6,10,11,12,13,17 =
+3,6,10,11,12,13,17,21,22,24,27,28,30 =
 
 
 1. Fill in the blanks: __ The access modifier allows access to everything the access modifier __ does and more.
@@ -410,10 +410,8 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         C. A static initialization block is allowed to reference an instance variable.
         D. A final static variable may be set in a constructor.
 
-34. Given the following method declaration, which line can be inserted to make the
-        code compile?
-        public short calculateDistance(double lat1, double lon1,
-        double lat2, double lon2) {
+34. Given the following method declaration, which line can be inserted to make the code compile?
+        public short calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         // INSERT CODE HERE
         }
         A. return new Integer(3);
@@ -442,6 +440,7 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         B. Two
         C. Three
         D. The code will not compile regardless of the number of lines removed.
+
 37. What is the output of the following application?
         package pet;
         public class Puppy {
@@ -458,12 +457,11 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         C. It does not compile because of line q2.
         D. It does not compile because of line q3.
 
-38. Fill in the blanks: The access modifier allows access to everything the access modifier does and more.
+38. Fill in the blanks: __The access modifier allows access to everything the access modifier __ does and more.
         A. public, private
         B. private, package-private
         C. package-private, protected
         D. private, public
-
 
 39. What is the output of the following application?
         package ship;
@@ -498,7 +496,7 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         D. Drink.water();
 
 41. Given the following method declaration signature, which of the following is a valid call of this method?
-public void call(int count, String me, String... data)
+        public void call(int count, String me, String... data)
         A. call(9,"me",10,"Al")
         B. call(5)
         C. call(2,"home","sweet")
