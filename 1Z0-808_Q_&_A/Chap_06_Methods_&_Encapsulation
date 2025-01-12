@@ -271,12 +271,13 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         C. Two
         D. The code will not compile regardless of the number of final modifiers that are removed.
 
-22. Fill in the blanks: is used to call a constructor in the parent class,
-while is used to reference a member of the parent class.
+22. Fill in the blanks: __ is used to call a constructor in the parent class,
+        while __ is used to reference a member of the parent class.
         A. super and this()
         B. super and super()
         C. super() and this
         D. super() and super
+
 23. Given the following method signature, which classes can call it?
         void run(String government)
         A. Classes in other packages
