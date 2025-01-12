@@ -598,12 +598,11 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
         C. Only classes in the same package as Bouncer
         D. Any superclass of Bouncer
 
-50. Given the following two classes, each in a different package, which line inserted below
-        allows the second class to compile?
+50. Given the following two classes, each in a different package, which line inserted below allows the second class to compile?
         package commerce;
         public class Bank {
-        public void withdrawal(int amountInCents) {}
-        public void deposit(int amountInCents) {}
+                public void withdrawal(int amountInCents) {}
+                public void deposit(int amountInCents) {}
         }
         package employee;
         // INSERT CODE HERE
