@@ -2,6 +2,9 @@
 
 ================================== Chapter_05(Using Loop Constructs) ====================================
 
+5,6,15,16,18,19,21,23,24 =
+
+
 1. Which type of loop is best known for its boolean condition that controls entry to the loop?
         A. do-while loop
         B. for (traditional)
@@ -61,8 +64,7 @@
         C. Both statements
         D. Neither statement
         
-10. Which type of loop has a boolean condition that is first checked after a single iteration
-        through the loop?
+10. Which type of loop has a boolean condition that is first checked after a single iteration through the loop?
         A. do-while loop
         B. for (traditional)
         C. for-each
@@ -112,8 +114,7 @@
         C. The loops complete with no output.
         D. This is an infinite loop.
         
-15. What is the result of the following when run with
-        java peregrine.TimeLoop September 3 1940?
+15. What is the result of the following when run with java peregrine. TimeLoop September 3 1940?
         package peregrine;
         public class TimeLoop {
         public static void main(String[] args) {
@@ -168,8 +169,7 @@
         C. segmentC
         D. All of the above
         
-19. How many of the loop types (while, do while, traditional for, and enhanced for) allow
-        you to write code that creates an infinite loop?
+19. How many of the loop types (while, do while, traditional for, and enhanced for) allow you to write code that creates an infinite loop?
         A. One
         B. Two
         C. Three
