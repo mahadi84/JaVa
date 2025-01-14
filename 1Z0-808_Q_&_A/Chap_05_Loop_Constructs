@@ -2,7 +2,7 @@
 
 ================================== Chapter_05(Using Loop Constructs) ====================================
 
-5,6,15,16,18,19,21,23,24,26,27,28,**30, 31,33,34,35,38,39,40 =
+5,6,15,16,18,19,21,23,24,26,27,28,**30, 31,33,34,35,38,39,40,41,43,47,48 = 24
 
 
 1. Which type of loop is best known for its boolean condition that controls entry to the loop?
@@ -452,20 +452,16 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
         
-44. Which of the following best describes the flow of execution in this for loop if beta always
-        returns false?
+44. Which of the following best describes the flow of execution in this for loop if beta always returns false?
         for (alpha; beta; gamma) {
-        delta;
+          delta;
         }
         A. alpha
         B. alpha, beta
         C. alpha, beta, gamma
         D. None of the above
-        
-        
-        
-45. Which of the following best describes the flow of execution in this for loop if the loop
-        body is run exactly once?
+
+45. Which of the following best describes the flow of execution in this for loop if the loop body is run exactly once?
         for (alpha; beta; gamma) {
         delta;
         }
@@ -530,7 +526,7 @@
         public static void main(String... args) {
         String[] nycTourLoops = new String[] { "Downtown", "Uptown", "Brooklyn" };
         String[] times = new String[] { "Day", "Night" };
-        for ( i < 1; i++, j++)
+        for ( __ i < 1; i++, j++)
         System.out.println(nycTourLoops[i] + " " + times[j]);
         }
         }
@@ -549,7 +545,6 @@ entering the loop. However, it is best known for having a counter variable, maki
 Option B incorrect. Option A is incorrect because the boolean condition on a do-while
 loop is at the end of the loop. Option C is incorrect because there is no condition as part
 of the loop construct.
-
 2. B. A traditional for loop is best known for having a loop variable counting up or down as
 the loop progresses. Therefore, Option B is correct. Options A and D are incorrect because
 do-while and while loops are known for their boolean conditions. Option C is incorrect
@@ -566,6 +561,7 @@ variable. Option C is correct.
 5. B. The continue keyword is used to end the loop iteration immediately and resume execution at the next iteration. Therefore, Option B is correct. Option A is incorrect because
 the break statement causes execution to proceed after the loop body. Options C and D
 are incorrect because these are not keywords in Java.
+
 6. A. The break keyword is used to end the loop iteration immediately, skip any remaining executions of the loop, and resume execution immediately after the loop. Therefore, Option A is
 correct. Option B is incorrect because execution proceeds at the next execution of the current
 loop for continue. Options C and D are incorrect because these are not keywords in Java.
@@ -576,13 +572,12 @@ means you can loop through an array in ascending or descending order, and Option
 9. A. With a for-each loop, the loop order is determined for you. With an array, this means
 starting with index 0, and Option A is correct. A traditional for loop allows you to control
 the order and iterate in either order.
-
-
 10. A. A do-while loop has a condition that returns a boolean at the end of the loop. 
 Therefore, Option A is correct. Option D is incorrect because a while loop has this condition at
 the beginning of the loop. A traditional for loop is best known for having a loop variable,
 making Option B incorrect. Option C is incorrect because there is no condition as part of
 the loop construct.
+
 11. B. A while loop requires a boolean condition. While singer is a variable, it is not a
 boolean. Therefore, the code does not compile, and Option B is correct.
 12. B. This is a correct loop to go through an ArrayList or List starting from the end. It starts
@@ -600,6 +595,7 @@ output. Option A is correct.
 iteration of the loop. The program prints args. Then i is incremented to 4. Which is also
 greater than or equal to 0. Since i never gets smaller, this code produces an infinite loop
 and the answer is Option D.
+
 16. B. Since count is a class variable that isn’t specifically initialized, it defaults to 0. On the
 first iteration of the loop, "Washington", is 11 characters and count is set to 1. The if
 statement’s body is not run. The loop then proceeds to the next iteration. This time, the
@@ -616,10 +612,9 @@ do { } while(true), for(;;) and while(true). Therefore, Option C is correct. And
 yes, we know it is possible to create an infinite loop with for-each by creating your own
 custom Iterable. This isn’t on the OCA or OCP exam though. If you think the answer is
 Option D, this is a great reminder of what not to read into on the real exam!
-
-
 20. A. This is a correct loop to go through an ArrayList or List starting from the beginning.
 It starts with index 0 and goes to the last index in the list. Option A is correct.
+
 21. D. Braces are optional around loops if there is only one statement. Parentheses are not
 allowed to surround a loop body though, so the code does not compile, and Option D is
 correct.
@@ -638,6 +633,7 @@ Option B is correct.
 25. C. A while loop checks the boolean condition before entering the loop. In this code, that
 condition is false, so the loop body is never run. No output is produced, and Option C is
 correct.
+
 26. C. A for-each loop is allowed to be used with arrays and ArrayList objects.
 StringBuilder is not an allowed type for this loop, so Option C is the answer.
 27. B. This is a correct do-while loop. On the first iteration of the loop, the if statement
@@ -651,8 +647,6 @@ Then the loop index is checked again. Since the length 4 is not equal to 3, the 
 entered again. This repeats for 6, 8, 10, etc. The loop never ends, and Option D is correct.
 29. B. In a for loop, the segments are an initialization expression, a boolean conditional, and
 an update statement in that order. Therefore, Option B is correct.
-
-
 30. B. On the first iteration through the outer loop, chars becomes 1 element. The inner loop
 is run once and count becomes 9. On the second iteration through the outer loop, chars
 becomes 2 elements. The inner loop runs twice so count becomes 7. On the third iteration
@@ -660,6 +654,7 @@ through the outer loop, chars becomes 3 elements. The inner loop runs three time
 so count becomes 4. On the fourth iteration through the outer loop, chars becomes 4
 elements. The inner loop runs four times so count becomes 0. Then both loops end.
 Therefore, Option B is correct.
+
 31. A. On the first iteration of the outer loop, i starts out at 10. The inner loop sees that
 10 > 3 and subtracts 3, making the 7 the new value of i. Since 7 > 3, we subtract 3 again,
 making i set to 4. Yet again 4 > 3, so i becomes 1. Then k is finally incremented to 1. The
@@ -691,14 +686,13 @@ is what would happen if the if-then statement was empty. Therefore, count increm
 each element of the array. The code outputs 4, and Option C is correct.
 39. C. A do-while loop requires a boolean condition. The builder variable is a
 StringBuilder and not a boolean. The code does not compile, and Option C is correct.
-
-
 40. A. At first this code appears to be an infinite loop. However, there is a break statement. On
 line 6, count is set to 0. On line 9, it is changed to 1. Then the condition on line 10 runs.
 count is less than 2 so the inner loop continues. Then count is set to 2 on the next iteration
 of the inner loop. The loop condition on line 10 runs again and this time is false. The inner
 loop is completed. Then line 11 of the outer loop runs and sends execution to after the loop
 on line 13. At this point count is still 2, so Option A is correct.
+
 41. C. Option A breaks out of the inner loop, but the outer loop is still infinite. Option B has
 the same problem. Option C is correct because it breaks out of both loops.
 42. B. This code is correct. It initializes two variables and uses both variables in the condition
@@ -714,6 +708,7 @@ entered, and Option B is correct.
 beta, to see if loop execution should start. Then the loop body, which is delta, runs. After
 the loop execution, the updater, which is gamma, runs. Then the loop condition, which is
 beta, is checked again. Therefore, Option B is correct.
+
 46. C. Option A goes through five indexes on the iterations: 0, 1, 2, 3 and 4. Option B also
 goes through five indexes: 1, 2, 3, 4 and 5. Option D goes through five iterations as well,
 from 0 to 4. However, Option C goes through six iterations since the loop condition is at
