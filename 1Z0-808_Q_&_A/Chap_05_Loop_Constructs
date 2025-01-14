@@ -330,8 +330,7 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
         
-35. What is the result of the following when run with
-        java peregrine.TimeLoop September 3 1940?
+35. What is the result of the following when run with java peregrine.TimeLoop September 3 1940?
         package peregrine;
         public class TimeLoop {
         public static void main(String[] args) {
@@ -376,8 +375,7 @@
         package chicago;
         public class Loop {
         private static int count;
-        private static String[] stops = new String[] { "Washington",
-        "Monroe", "Jackson", "LaSalle" };
+        private static String[] stops = new String[] { "Washington", "Monroe", "Jackson", "LaSalle" };
         public static void main(String[] args) {
         while (count < stops.length) {
         if (stops[count++].length() < 8) {
@@ -679,6 +677,7 @@ Tricky, we know. But it is an important distinction. This makes Option C correct
 35. D. There are three arguments passed to the program. This means that i is 3 on the first
 iteration of the loop. The program attempts to print args[3]. Since indexes are zero based
 in Java, it throws an ArrayIndexOutOfBoundsException.
+
 36. B. The first time the loop condition is checked, the variable tie is null. The loop body
 executes, setting tie. Despite the indention, there are no brackets surrounding the loop
 body so the print does not run yet. Then the loop condition is checked and tie is not
