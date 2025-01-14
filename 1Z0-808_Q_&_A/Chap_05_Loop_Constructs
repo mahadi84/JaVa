@@ -418,9 +418,8 @@
         
 41. Fill in the blank so this code compiles and does not cause an infinite loop.
         t: while (true) {
-        f: while(true) {
-        }
-        }
+        f: while(true) {  }
+           }
         A. break;
         B. break f;
         C. break t;
@@ -430,12 +429,12 @@
 42. What is the result of the following?
         String[] nycTourLoops = new String[] { "Downtown", "Uptown", "Brooklyn" };
         String[] times = new String[] { "Day", "Night" };
-        for (int i = 0, j = 0; i < nycTourLoops.length
-        && j < times.length; i++, j++)
-        {
-        System.out.print(nycTourLoops[i] + " " + times[j] + "-");
+        for (int i = 0, j = 0; i < nycTourLoops.length && j < times.length; i++, j++){
+                System.out.print(nycTourLoops[i] + " " + times[j] + "-");
         }
-        A. Downtown DayB. Downtown Day-Uptown NightC. The code does not compile.
+        A. Downtown Day
+        B. Downtown Day-Uptown Night
+        C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
         
 43. How many lines does the following code output?
