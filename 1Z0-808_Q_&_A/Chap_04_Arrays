@@ -334,24 +334,19 @@
         C. int[] nums[] = new int[][] { { 0 }, { 0 } };
         D. int[] nums[] = new int[][] { { 0, 0 } };
         
-34. How do you access the array element with the value of "z"?
-        "one"
-        "p"
-        "x"
-        "y"
-        "x"
-        "y"
-        "z"
-        "two" "three"
+34. How do you access the array element with the value of "z"?        
         dimensions
+        "one"  "two"  "three"    
+        "x"     "p"   "x"
+        "y"           "y"
+                      "z"
         A. dimensions["three"][2]
         B. dimensions["three"][3]
         C. dimensions[2][2]
         D. dimensions[3][3]
         
 35. How many lines does the following code output?
-        String[] days = new String[] { "Sunday", "Monday", "Tuesday",
-        "Wednesday", "Thursday", "Friday", "Saturday" };
+        String[] days = new String[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
         for (int i = 1; i <= days.length; i++)
         System.out.println(days[i]);
         A. Six
