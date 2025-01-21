@@ -1,7 +1,7 @@
 
 ====================== Chapter_03(Using Operators and Decision Constructs) ==================
 
- 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20=
+ 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20,23,24=
 
 1. Which of the following variable types is not permitted in a switch statement?
         A. String
@@ -236,9 +236,8 @@
         D. The code does not compile.
         
         
-22. Fill in the blanks: The operator is used to find the difference
-        between two numbers, while the operator is used to find the
-        remainder when one number is divided by another.
+22. Fill in the blanks: The operator is used to find the difference between two numbers, 
+    while the operator is used to find the remainder when one number is divided by another.
         A. /, %
         B. –, %
         C. %, <
