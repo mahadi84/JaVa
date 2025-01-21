@@ -1,7 +1,7 @@
 
 ====================== Chapter_03(Using Operators and Decision Constructs) ==================
 
- 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20,23,24,26,27,29,30,33,36,37,40=
+ 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20,23,24,26,27,29,30,33,36,37,40,43,44=
 
 1. Which of the following variable types is not permitted in a switch statement?
         A. String
@@ -456,8 +456,7 @@
         return threshold > 5 ? 1 : 0;
         }
         public static final void main(String[] days) {
-        System.out.print(getResult(5)+getResult(1)
-        +getResult(0)+getResult(2)+"");
+        System.out.print(getResult(5)+getResult(1)+getResult(0)+getResult(2)+"");
         }
         }
         A. 0
