@@ -1,7 +1,7 @@
 
 ====================== Chapter_03(Using Operators and Decision Constructs) ==================
 
- 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20,23,24,26,27,29,30=
+ 2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20,23,24,26,27,29,30,33,36,37,40=
 
 1. Which of the following variable types is not permitted in a switch statement?
         A. String
@@ -349,7 +349,6 @@
         package bob;
         public class AreYouBob {
         public static void main(String[] unused) {
-        
         String bob = new String("bob");
         String notBob = bob;
         System.out.print((bob==notBob)+" "+(bob.equals(notBob)));
@@ -379,9 +378,7 @@
 34. Which of the following is not a possible result of executing the following application?
         public class ConditionallyLogical {
         public static void main(String... data) {
-        if(data.length>=1
-        && (data[0].equals("sound") || data[0].equals ("logic"))
-        && data.length<2) {
+        if(data.length>=1 && (data[0].equals("sound") || data[0].equals ("logic")) && data.length<2) {
         System.out.print(data[0]);
         }
         }
@@ -391,9 +388,7 @@
         C. The application throws an exception at runtime.
         D. logic is printed.
         
-35. Fill in the blanks: The operators +, , ,
-        , and ++ are listed in the same or increasing level of operator
-        precedence.
+35. Fill in the blanks: The operators /,*,%, and ++ are listed in the same or increasing level of operator precedence.
         A. *, --, /
         B. %, -, *
         C. /, *, %
@@ -404,7 +399,8 @@
         B. There is a conditional form of the operator, denoted as ^^.
         C. If both operands of ^ are true, the result is true.
         D. The ^ operator can only be applied to boolean values.
-        37. Given the following Venn diagram and the variables, x, y, and z, which Java expression
+
+37. Given the following Venn diagram and the variables, x, y, and z, which Java expression
         most closely represents the filled-in region of the diagram?
         x
         z
@@ -434,8 +430,7 @@
         C. int
         D. None of the above
         
-39. Which two operators would be used to test if a number is equal to or greater than 5.21 but
-        strictly less than 8.1?
+39. Which two operators would be used to test if a number is equal to or greater than 5.21 but strictly less than 8.1?
         A. > and <=
         B. >= and >
         C. < and >=
@@ -502,8 +497,7 @@
         C. The code does not compile but would compile if parentheses were added.
         D. None of the above
         
-45. Fill in the blanks: A switch statement can have case statements
-        and default statements.
+45. Fill in the blanks: A switch statement can have case statements and default statements.
         A. at most one, at least one
         B. any number of, at most one
         C. at least one, any number of
@@ -539,9 +533,7 @@
         C. true and true
         D. false and true
         
-49. Fill in the blanks: The operators –, , ,
-        , and % are listed in the same or increasing level of operator
-        precedence.
+49. Fill in the blanks: The operators –, , , , and % are listed in the same or increasing level of operator precedence.
         A. +, /, *
         B. --, -, *
         C. ++, /, *
@@ -698,10 +690,10 @@ or logic. Since we know from the first part of the statement that data is of len
 doesn’t change the output when data is an array of size one. Therefore, sound and logic are both possible outputs. For these reasons, Option C is the only result that is unexpected at runtime.
 35. C. In Option A, the division operator / incorrectly comes after the decrement –– operator.In Option B, the subtraction operator - incorrectly comes after the modulus % operator. 
 In Option D, the division operator / incorrectly comes after the subtraction - operator. The correct answer is Option C, where all three operators have the same order of precedence.
-36. D. The exclusive or (XOR) ^ operator requires evaluating both operands to determine the
-result. For this reason, Options A and B are incorrect. For Option B, you can’t have a shortcircuit operation if both operands are always read, therefore ^^ does not exist. Option C is
-an incorrect statement as the ^ operator only returns true if exactly one operand is true.
-Finally, Option D is correct as the ^ is only applied to boolean values in Java.
+
+36. D. The exclusive or (XOR) ^ operator requires evaluating both operands to determine the result. For this reason, Options A and B are incorrect. 
+For Option B, you can’t have a short-circuit operation if both operands are always read, therefore ^^ does not exist. 
+Option C is an incorrect statement as the ^ operator only returns true if exactly one operand is true. Finally, Option D is correct as the ^ is only applied to boolean values in Java.
 37. C. The diagram represents the overlap of x and y, corresponding to when one of them is true. Therefore, x || y, Option C, most closely matches this relationship. 
 Note that z is unused in the diagram and therefore is not required in any expression.
 38. D. The value of a case statement must be constant, a literal value, or final variable. 
