@@ -1,5 +1,6 @@
 
 ====================== Chapter_03(Using Operators and Decision Constructs) ==================
+
  2,5,6,9,10,11,12,13,14,**15,16,17,18,**19,20=
 
 1. Which of the following variable types is not permitted in a switch statement?
@@ -749,3 +750,7 @@ The correct answer is Option A, where the subtraction - and addition + operators
 the expressions are of type int, but the assignment is to the variable game, of type String. Since the assignment is invalid, the code does not compile, and Option C is correct.
 
 
+
+
+
+-
