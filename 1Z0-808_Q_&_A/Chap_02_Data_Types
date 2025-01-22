@@ -1,6 +1,6 @@
 
 ============================ Chap_02(Data Types) ================================
-2,6,9,11,13,24,25,26,27,28,37
+2,6,9,11,13,24,25,26,27,28,37,43,44,45,46,48=16
 
 
 1. Which of the following declarations does not compile?
@@ -481,8 +481,7 @@
         C. public TennisBall() {}
         D. public void TennisBall() {}
 
-48. Which of the following is not a possible output of this code, assuming it runs to
-        completion?
+48. Which of the following is not a possible output of this code, assuming it runs to completion?
         package store;
         public class Toy {
         public void play() {
@@ -499,7 +498,10 @@
         doll.play();
         }
         }
-        A. play B. play-play C. play-play-clean D. play-play-clean-clean
+        A. play 
+        B. play-play 
+        C. play-play-clean 
+        D. play-play-clean-clean
         
 49. Which converts a primitive to a wrapper class object without using autoboxing?
         A. Call the asObject() method
@@ -621,8 +623,8 @@ also shows that a private variable is accessible in the same class and that a na
 45. B. The parseInt() methods return a primitive. The valueOf() methods return a wrapper class object. In real code, autoboxing would let you assign the return value to either a
 primitive or wrapper class. In terms of what gets returned directly, Option B is correct.
 
-46. B. On line 9, all three objects have references. The elena and zoe objects have a direct
-reference. The diana object is referenced through the elena object. On line 10, the reference to the diana object is replaced by a reference to the zoe object. Therefore, the diana
+46. B. On line 9, all three objects have references. The elena and zoe objects have a direct reference. The diana object is referenced through the elena object. 
+On line 10, the reference to the diana object is replaced by a reference to the zoe object. Therefore, the diana
 object is eligible to be garbage collected, and Option B is correct.
 47. C. Options A and B are static methods rather than constructors. Option D is a method that happens to have the same name as the class. It is not a constructor because constructors don’t have return types.
 48. A. Remember that garbage collection is not guaranteed to run on demand. If it doesn’t run at all, Option B would be output. If it runs at the requested point, Option C would be
