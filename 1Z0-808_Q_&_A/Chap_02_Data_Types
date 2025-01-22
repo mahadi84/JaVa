@@ -1,6 +1,6 @@
 
 ============================ Chap_02(Data Types) ================================
-2,6,9
+2,6,9,11,13,24,25,26,27,28,37
 
 
 1. Which of the following declarations does not compile?
@@ -95,8 +95,7 @@
         C. p3
         D. p4
         
-12. Which of the following lists of primitive types are presented in order from smallest to
-        largest data type?
+12. Which of the following lists of primitive types are presented in order from smallest to largest data type?
         A. byte, char, float, double
         B. byte, char, double, float
         C. char, byte, float, double
@@ -153,8 +152,8 @@
         C. Long
         D. String
         
-19. Suppose you have the following code. Which of the images best represents the state of the
-        references right before the end of the main method, assuming garbage collection hasn’t run?
+19. Suppose you have the following code. 
+        Which of the images best represents the state of the references right before the end of the main method, assuming garbage collection hasn’t run?
         1: public class Link {
         2: private String name;
         3: private Link next;
@@ -162,7 +161,6 @@
         5: this.name = name;
         6: this.next = next;
         7: }
-        
         8: public void setNext(Link next) {
         9: this.next = next;
         10: }
@@ -284,6 +282,7 @@
         System.out.println("bounce");
         }
         public static void main(String[] slam) {
+                __
         }
         }
         A. TennisBall;
@@ -340,7 +339,7 @@
         D. Three
         
 36. Which of the following can fill in the blanks to make this code compile?
-        d = new (1_000_000.00);
+        d = new __(1_000_000.00);
         A. double, double
         B. double, Double
         C. Double, double
@@ -579,11 +578,11 @@ Therefore, Option C is correct. Note that class names begin with an uppercase le
 24. D. This question is tricky as it appears to be about primitive vs. wrapper classes. Looking closely, there is an underscore right before the decimal point. 
 This is illegal as the underscore in a numeric literal can only appear between two digits.
 25. C. Local variables do not have a default initialization value. If they are referenced before being set to a value, the code does not compile. 
-Therefore, Option C is correct. If the variable was an instance variable, Option B would be correct. Option D is tricky. A local variable will
-compile without an initialization if it isn’t referenced anywhere or it is assigned a value before it is referenced.
+Therefore, Option C is correct. If the variable was an instance variable, Option B would be correct. Option D is tricky. 
+*A local variable will compile without an initialization if it isn’t referenced anywhere or it is assigned a value before it is referenced.
 
-26. C. Since defaultValue is an instance variable, it is automatically initialized to the corresponding value for that type. For double, that value is 0.0. By contrast, it is 0 for int,
-long, and short. Therefore Option C is correct.
+26. C. Since defaultValue is an instance variable, it is automatically initialized to the corresponding value for that type. 
+For double, that value is 0.0. By contrast, it is 0 for int, long, and short. Therefore Option C is correct.
 27. B. Option B is an example of autoboxing. Java will automatically convert from primitive to wrapper class types and vice versa. Option A is incorrect because you can only call methods
 on an object. Option C is incorrect because this method is used for converting to a wrapper class from a String. Option D is incorrect because autoboxing will convert the primitive to
 an object before adding it to the ArrayList.
