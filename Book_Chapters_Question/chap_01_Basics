@@ -260,18 +260,12 @@
     10: two = new Rabbit();
     11: System.gc();
     12: } }
-        A. The Rabbit object from line 3 is first eligible for garbage collection immediately
-        following line 6.
-        B. The Rabbit object from line 3 is first eligible for garbage collection immediately
-        following line 8.
-        C. The Rabbit object from line 3 is first eligible for garbage collection immediately
-        following line 12.
-        D. The Rabbit object from line 4 is first eligible for garbage collection immediately
-        following line 9.
-        E. The Rabbit object from line 4 is first eligible for garbage collection immediately
-        following line 11.
-        F. The Rabbit object from line 4 is first eligible for garbage collection immediately
-        following line 12.
+        A. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 6.
+        B. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 8.
+        C. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 12.
+        D. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 9.
+        E. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 11.
+        F. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 12.
 
 20. What is true about the following code? (Choose all that apply)
     public class Bear {
@@ -335,10 +329,8 @@ because true is a Java reserved word. Option D is not valid because the dot (.) 
 allowed in identifiers. Option E is valid because Java is case sensitive, so Public is not
 a reserved word and therefore a valid identifier. Option F is not valid because the first
 character is not a letter, $, or _.
-
 2. D. Boolean fields initialize to false and references initialize to null, so empty is false
 and brand is null. Brand = null is output.
-
 3. B, D, E. Option A (line 4) compiles because short is an integral type. Option B (line
 5) generates a compiler error because int is an integral type, but 5.6 is a floating-point
 type. Option C (line 6) compiles because it is assigned a String. Options D and E (lines
@@ -361,6 +353,7 @@ in this case—and not those in lower-level packages. Option B is incorrect beca
 cannot use wildcards anyplace other than the end of an import statement. Option E is
 incorrect because you cannot import parts of a class with a regular import statement.
 Option F is incorrect because options C and D do make the code compile.
+
 6. E. The first two imports can be removed because java.lang is automatically imported.
 The second two imports can be removed because Tank and Water are in the same package,
 making the correct answer E. If Tank and Water were in different packages, one of
@@ -384,13 +377,12 @@ varargs are allowed in place of an array. Option B is incorrect because variable
 not allowed to begin with a digit. Option F is incorrect because the argument must be
 an array or varargs. Option F is a perfectly good method. However, it is not one that
 can be run from the command line because it has the wrong parameter type.
-
-
 10. E. Option E is the canonical main() method signature. You need to memorize it.
 Option A is incorrect because the main() method must be public. Options B and F
 are incorrect because the main() method must have a void return type. Option C is
 incorrect because the main() method must be static. Option D is incorrect because the
 main() method must be named main.
+
 11. C, D. Option C is correct because all non-primitive values default to null. Option D is
 correct because float and double primitives default to 0.0. Options B and E are incorrect
 because int primitives default to 0.
@@ -407,6 +399,7 @@ just like variable names and other identifiers.
 This means options A and E are correct. Options B and C are incorrect because the
 underscore is adjacent to the decimal point. Option D is incorrect because the underscore
 is the last character.
+
 16. B, C, D. 0b is the prefix for a binary value and is correct. 0x is the prefix for a hexadecimal
 value. This value can be assigned to many primitive types, including int and
 double, making options C and D correct. Option A is incorrect because 9L is a long
@@ -428,11 +421,10 @@ object from line 4 only has a single reference to it: two. Option D is correct b
 this single reference becomes null on line 9. The Rabbit object declared on line 10
 becomes eligible for garbage collection at the end of the method on line 12. Calling
 System.gc() has no effect on eligibility for garbage collection.
-
-
 20. B, E. Calling System.gc() suggests that Java might wish to run the garbage collector.
 Java is free to ignore the request, making option E correct. finalize() runs if an object
 attempts to be garbage collected, making option B correct.
+
 21. A. While the code on line 3 does compile, it is not a constructor because it has a return
 type. It is a method that happens to have the same name as the class. When the code
 runs, the default constructor is called and count has the default value (0) for an int.
