@@ -386,7 +386,9 @@ For this question, assume that the Broccoli class is in the food.vegetables pack
         import food.fruit.*;
         import java.util.Date;
         public class Grocery {
-        Apple a; Broccoli b; Date c;
+        Apple a; 
+        Broccoli b; 
+        Date c;
         }
         A. 0
         B. 1
