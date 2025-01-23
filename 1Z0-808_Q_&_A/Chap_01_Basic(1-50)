@@ -324,8 +324,7 @@ For this question, assume that the Blackhole class is defined only in the stars 
         C. public static final void main(String[] arguments)
         D. public static void main(String[] arguments)
 
-37. Given the file Magnet.java below, which of the marked lines can you independently insert
-the line public String color; into and still have the code compile?
+37. Given the file Magnet.java below, which of the marked lines can you independently insert the line public String color; into and still have the code compile?
         // line a1
         public class Magnet {
         // line a2
@@ -351,8 +350,7 @@ the line public String color; into and still have the code compile?
         C. .source
         D. .java
 
-40. Given that a Math class exists in both the java.lang and pocket.complex packages, what
-is the result of compiling the following class?
+40. Given that a Math class exists in both the java.lang and pocket.complex packages, what is the result of compiling the following class?
         1: package pocket;
         2: import pocket.complex.*;
         3: import java.util.*;
