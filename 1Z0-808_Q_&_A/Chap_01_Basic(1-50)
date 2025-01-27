@@ -464,9 +464,10 @@ For this question, assume that the Broccoli class is in the food.vegetables pack
         D. It compiles but throws an error at runtime.
 
 49. Given the following class diagram, which Java implementation most closely matches this structure?
-        Book
+        Book{
         + numberOfPages
         + getRating()
+        }
         A. public class Book {
         public int numOfPages;
         B. public class Book {
