@@ -372,7 +372,7 @@ which class would not be automatically accessible within the class without using
         C. dog.Webby
         D. java.lang.Object
 
-42. is the technique of structuring programming data as a unit consisting of attributes, with actions defined on the unit.
+42. __ is the technique of structuring programming data as a unit consisting of attributes, with actions defined on the unit.
         A. Encapsulation
         B. Object orientation
         C. Platform independence
