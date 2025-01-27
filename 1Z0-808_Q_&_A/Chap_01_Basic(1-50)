@@ -11,13 +11,11 @@
         C. private static void start(String[] mydata)
         D. public static final void main(String[] mydata)
 
-2. The following class diagram demonstrates the relationship between Gold and Silver, which extend the Metal class. Assume the attributes are all declared public. 
+2. The following class diagram demonstrates the relationship between Gold and Silver, which extends the Metal class. Assume the attributes are all declared public. 
    Which statement about the diagram is not true?
-        Metal
-        + weight
-        + color
-        Gold Silver
-        + hue + luster
+         Metal{ + weight, + color}
+                Gold { + hue } 
+                Silver{ + luster}
         A. The diagram demonstrates platform independence in Java.
         B. The diagram demonstrates object-oriented design in Java.
         C. The Gold and Silver classes inherit weight and color attributes from the Metal class.
@@ -75,19 +73,20 @@
         package competition;
         public class Robot {
         static String weight = "A lot";
-        /* default */ 
-        double ageMonths = 5, ageDays = 2;
-
+        /* default */  double ageMonths = 5, ageDays = 2;
         private static boolean success = true;
         public void main(String[] args) {
         final String retries = "1";
         // P1
         }
         }
-        Variable Type Number of Variables Accessible at P1
-        Class
-        Instance
-        Local
+        -----------------------------------------------------
+        Variable | Type Number of Variables Accessible at P1
+        -----------------------------------------------------
+        Class        __
+        Instance     __
+        Local        __
+
         A. 2, 0, 1
         B. 2, 2, 1
         C. 1, 0, 1
