@@ -252,7 +252,7 @@
         D. It will not compile without initializing on the declaration line.
         
 26. Of the types double, int, long, and short, how many could fill in the blank to have this code output 0?
-        static defaultValue;
+        static __ defaultValue;
         public static void main(String[] args) {
         System.out.println(defaultValue);
         }
@@ -447,10 +447,9 @@
         C. p[beakLength] = b;
         D. None of the above
         
-45. Fill in the blanks to indicate whether a primitive or wrapper class can be assigned without
-        the compiler using the autoboxing feature.
-        first = Integer.parseInt("5");
-        second = Integer.valueOf("5");
+45. Fill in the blanks to indicate whether a primitive or wrapper class can be assigned without the compiler using the autoboxing feature.
+        __ first = Integer.parseInt("5");
+        __ second = Integer.valueOf("5");
         A. int, int
         B. int, Integer
         C. Integer, int
@@ -545,8 +544,8 @@ If the variable was a local variable, Option C would be correct.
 5. B. In Java, class names begin with an uppercase letter by convention. Then they use lowercase with the exception of new words. Option B follows this convention and is correct.
 Option A follows the convention for variable names. Option C follows the convention for constants. Option D doesn’t follow any Java conventions.
 
-6. C. Objects have instance methods while primitives do not. Since int is a primitive, you cannot call instance methods on it.
-Integer and String are both objects and have instance methods. Therefore, Option C is correct.
+6. C. Objects have instance methods while primitives do not. Since int is a primitive, you cannot call instance methods on it. Integer and String are both objects and have instance methods. 
+Therefore, Option C is correct.
 7. C. Underscores are allowed between any two digits in a numeric literal. Underscores are not allowed at the beginning or end of the literal, making Option C the correct answer.
 8. C. Option A is incorrect because int is a primitive. Option B is incorrect because it is not the name of a class in Java. While Option D is a class in Java, it is not a wrapper class
 because it does not map to a primitive. Therefore, Option C is correct.
