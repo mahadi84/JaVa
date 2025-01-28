@@ -1,0 +1,28 @@
+
+
+Download:
+01. eclipse .exe version
+02. Apache Tomcate server
+
+Install:
+>Eclipse
+>Select "Project Save Destination" Folder
+
+Connect:
+>Eclipse with "Apache Tomcate Server"
+    -Click on "Server" 
+    -Select "Apache" and Select "Latest Tomcat server version" 
+    -Next Browes "Tomcate server extract file that I've already place into C:Program File folder"
+
+Create a Web Project:
+Step:01:
+File>New>Dynamic Web Project>Name the Project>next...
+Step:02:
+Right Click on the project>Configure>Convert to Maven Project>Finish
+
+
+If POP-UP Error:Selection is not within a valid module
+step 1: right click to your project
+Step 2: Go to properties
+Step 3: search project Facets click on that then
+step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your problem will resolved
