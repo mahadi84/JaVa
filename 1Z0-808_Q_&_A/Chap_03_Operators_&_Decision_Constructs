@@ -371,9 +371,12 @@
         
 33. Given the following truth table, the boolean variables p and q, and the expression p ^ q,
         what are the missing values in the truth table, starting with the first column?
-        p = true p = false
-        q = true false true
-        q = false
+        ------------------------------
+                    p = true   |  p = false
+        ------------------------------
+        q = true  |    false   |  true
+        q = false |            |
+        ------------------------------
         A. false and true
         B. false and false
         C. true and true
@@ -392,7 +395,7 @@
         C. The application throws an exception at runtime.
         D. logic is printed.
         
-35. Fill in the blanks: The operators /,*,%, and ++ are listed in the same or increasing level of operator precedence.
+35. Fill in the blanks: The operators +,__,__, and ++ are listed in the same or increasing level of operator precedence.
         A. *, --, /
         B. %, -, *
         C. /, *, %
@@ -485,7 +488,7 @@
         C. down
         D. The code does not compile.
         
-43. Fill in the blanks: The operator is true if either of the operands are true, while the operator flips a boolean value.
+43. Fill in the blanks: The ___ operator is true if either of the operands are true, while the ___ operator flips a boolean value.
         A. +, -
         B. &&, !
         C. |, -
@@ -500,7 +503,7 @@
         C. The code does not compile but would compile if parentheses were added.
         D. None of the above
         
-45. Fill in the blanks: A switch statement can have case statements and default statements.
+45. Fill in the blanks: A switch statement can have ____ case statements and __ default statements.
         A. at most one, at least one
         B. any number of, at most one
         C. at least one, any number of
@@ -525,15 +528,18 @@
         
 48. Given the following truth table, the boolean variables w and z, and the expression w || z,
         what are the missing values in the truth table, starting with the first row?
-        w = true w = false
-        z = true true
-        z = false false
+        -------------------------------
+                  w = true | w = false
+        -------------------------------
+        z = true     true  | 
+        z = false          | false  
+        --------------------------------
         A. false and false
         B. true and false
         C. true and true
         D. false and true
         
-49. Fill in the blanks: The operators –, , , , and % are listed in the same or increasing level of operator precedence.
+49. Fill in the blanks: The operators –,__,__,__, and % are listed in the same or increasing level of operator precedence.
         A. +, /, *
         B. --, -, *
         C. ++, /, *
