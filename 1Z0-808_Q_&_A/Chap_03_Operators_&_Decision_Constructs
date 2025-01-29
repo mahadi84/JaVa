@@ -142,9 +142,13 @@
         D. A case value must match the data type of the switch variable, or be able to be promoted to that type.
         
 14. Given the following truth table, which operator for the boolean expressions x and y corresponds to this relationship?
-        x = true x = false
-        y = true true false
-        y = false false false
+        -------------------------------------
+                   |  x = true  |  x = false
+        -------------------------------------
+        y = true   |   true     |  false
+        -------------------------------------
+        y = false  |   false    |  false
+        -------------------------------------
         A. --
         B. ++
         C. ||
