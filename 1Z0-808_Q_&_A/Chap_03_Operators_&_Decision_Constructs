@@ -299,7 +299,7 @@
         D. The code compiles but throws an exception at runtime.
         
 26. Fill in the blanks: 
-    Given two non-null String objects with reference names apples and oranges, if apples oranges evaluates to true, then apples oranges must also evaluate to true.
+    Given two non-null String objects with reference names apples and oranges, if apples __ oranges evaluates to true, then apples__ oranges must also evaluate to true.
         A. ==, equals()
         B. !=, equals()
         C. equals(), ==
