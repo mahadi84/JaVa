@@ -407,11 +407,9 @@
         C. If both operands of ^ are true, the result is true.
         D. The ^ operator can only be applied to boolean values.
 
-37. Given the following Venn diagram and the variables, x, y, and z, which Java expression
-        most closely represents the filled-in region of the diagram?
-        x
-        z
-        y
+37. Given the following Venn diagram and the variables, x, y, and z, which Java expression most closely represents the filled-in region of the diagram?
+        x        y
+            z
         A. x || z
         B. y || (y && z)
         C. x || y
