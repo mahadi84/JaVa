@@ -775,13 +775,11 @@ againStrings[0] = new StringBuilder(); // DOES NOT COMPILE
 objects[0] = new StringBuilder(); // careful!
 
 ========================== Array =================================
--Fixed-size
--Can not Add/Insert, Edit, and Delete once declared/initialized.
+-Fixed-size -Can not Add/Insert, Edit, and Delete once declared/initialized.
 
 FUNCTIONS:--
 01. length 02. sort() 03. binarySearch()
 
-String[] mammals = {"monkey", "chimp", "donkey"};
 String[] birds = new String[6];
 System.out.println(birds.length);
 
@@ -797,11 +795,11 @@ Arrays.binarySearch(numbers, 2)
 -Can Add/Insert, Edit, and Delete once declared/initialized.
 
 FUNCTIONS: 
-         01. add() 
-         02. get() 03.set() 04. size() and  isEmpty() 
-         05. remove() 06. removeOf()
-         07. clear()  08. contains()
-         09. equals()
+         01. add()       02. get()       
+         03. set()       04. size()
+         05. contains()  06. equals()
+         07. remove()    08. removeOf()
+         09. clear()     10. isEmpty() 
 
 There are 3 ways to create an ArrayList:--
          ArrayList list1 = new ArrayList();
