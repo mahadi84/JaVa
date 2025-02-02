@@ -740,15 +740,15 @@ FUNCTIONS:
                   System.out.println(string.substring(3)); // mals
                   System.out.println(string.substring(string.indexOf('m'))); // mals
                   System.out.println(string.substring(3, 4)); // m
-                  
-         05. toLowerCase() and toUpperCase 
-         06. equals() and equalsIgnoreCase()
+         05. replace() Ex:String result = lowercase.replace('a', 'A');
+         06. contains()
+         07. equals() and equalsIgnoreCase()
                   Ex:
                   System.out.println("abc".equals("ABC")); // false
                   System.out.println("ABC".equals("ABC")); // true
                   System.out.println("abc".equalsIgnoreCase("ABC")); // true
-         07. startsWith() and endsWith() 08. contains() 
-         09. replace() Ex:String result = lowercase.replace('a', 'A'); 
+         08. startsWith() and endsWith()
+         09. toLowerCase() and toUpperCase 
          10. trim()
 
 
