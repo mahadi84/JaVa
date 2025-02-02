@@ -100,7 +100,7 @@
         D. true 2
 
 12. The author of this method forgot to include the data type. Which of the following reference types can fill in the blank to complete this method?
-        public static void secret( mystery) {
+        public static void secret(__ mystery) {
         mystery.add("metal");
         String str = mystery.get(0);
         int num = mystery.length();
@@ -777,7 +777,7 @@ objects[0] = new StringBuilder(); // careful!
 -Fixed-size -Can not Add/Insert, Edit, and Delete once declared/initialized.
 
 FUNCTIONS:--
-01. length 02. sort() 03. binarySearch()
+       01. length 02. sort() 03. binarySearch() 04. date.toArray()
 
 String[] birds = new String[6];
 System.out.println(birds.length);
@@ -799,6 +799,9 @@ FUNCTIONS:
          05. contains()  06. equals()
          07. remove()    08. removeOf()
          09. clear()     10. isEmpty() 
+         11. Arrays.asList()
+                Ex: String[] array = {"Natural History", "Science"};
+                    List<String> museums = Arrays.asList(array);
 
 There are 3 ways to create an ArrayList:--
          ArrayList list1 = new ArrayList();
