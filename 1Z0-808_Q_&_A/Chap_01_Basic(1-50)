@@ -1,4 +1,4 @@
-
+VERY EASY.
 
 ====================Chapter_1(Java Basics) =========================
 
@@ -132,8 +132,8 @@
         C. Packages allow you to limit access to classes, methods, or data from classes outside the  package.
         D. It is not possible to restrict access to objects and methods within a package.
 
-16. Given that the current directory is /user/home, with an application Java file in /user/home/Manager.java that uses the default package, which are the correct commands
-to compile and run the application in Java?
+16. Given that the current directory is /user/home, with an application Java file in /user/home/Manager.java 
+    that uses the default package, which are the correct commands to compile and run the application in Java?
         A. javac Manager
         java Manager
         B. javac Manager.java
@@ -540,9 +540,8 @@ but the reference used on line 7 is to the instance variable with a value of 10.
 variable tomorrow is static. While using an instance reference to access a static variable
 is not recommended, it does not prevent the variable from being read. The result is line 7
 evaluates and prints (20 + 10 + 1) = 31, making C the correct answer.
-22. C. Line 1 is missing the class keyword. Line 2 contains two types for the same variable.
-Line 3 is a valid definition for a method, making C the correct answer. Finally, line 4 contains
-an access modifier, private, after the return type, which is not allowed. In addition, void is an invalid type for variables.
+22. C. Line 1 is missing the class keyword. Line 2 contains two types for the same variable. Line 3 is a valid definition for a method, making C the correct answer. 
+Finally, line 4 contains an access modifier, private, after the return type, which is not allowed. In addition, void is an invalid type for variables.
 23. D. Platform independence is the property of Java that allows it to be run on a variety of different devices.
 24. A. Options B, C, and D are each correct statements about JVMs. Option A is incorrect.
 Not only is it not a statement about JVMs, it is actually false as Java bytecode can often be easily decoded/decompiled.
