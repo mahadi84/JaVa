@@ -725,6 +725,11 @@ methods and the code does not compile.
 ---------------- API(String, StringBuilder, Array, ArrayList) Functions 
 
 ========================== Creating a String ==========================
+ String a = "";
+        a += 2;
+        a += 'c';
+        a += false;
+
 
 FUNCTIONS:
          01. length() 02. charAt() 03. indexOf() 
