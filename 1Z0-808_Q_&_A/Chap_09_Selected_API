@@ -797,7 +797,7 @@ Arrays.binarySearch(numbers, 2)
 FUNCTIONS: 
          01. add()       02. get()       
          03. set()       04. size()
-         05. equals()    06. contains()
+         05. contains()  06. equals()
          07. remove()    08. removeOf()
          09. clear()     10. isEmpty() 
 
