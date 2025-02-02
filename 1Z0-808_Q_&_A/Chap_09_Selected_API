@@ -722,7 +722,7 @@ methods and the code does not compile.
 
 
 
------------------------ API(String, StringBuilder, Array, ArrayList) Functions ----------------------------------
+---------------- API(String, StringBuilder, Array, ArrayList) Functions 
 
 ========================== Creating a String ==========================
 
