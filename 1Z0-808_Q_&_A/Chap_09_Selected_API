@@ -725,11 +725,12 @@ methods and the code does not compile.
 ---------------- API(String, StringBuilder, Array, ArrayList) Functions 
 
 ========================== Creating a String ==========================
- String a = "";
-        a += 2;
-        a += 'c';
-        a += false;
+String a = "";  a += 2;  a += 'c'; a += false; Result: 2cfalse
 
+String s1 = "Computer-";  String s2 = "Science-";   String s3 = s1.concat(s2);
+String s4 = "Portal";     String s5 = s3.concat(s4);
+System.out.println(s5); Result: Computer-Science-Portal
+        
 
 FUNCTIONS:
          01. length() 02. charAt() 03. indexOf() 
