@@ -196,7 +196,7 @@ Expression: boolean result = condition1 && condition2;
         D. None of the above
         
 18. Given the following code snippet, assuming dayOfWeek is an int, what variable type of saturday is not permitted?
-        final saturday = 6;
+        __ final saturday = 6;
         switch(dayOfWeek) {
         default:
         System.out.print("Another Weekday");
