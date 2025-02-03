@@ -239,7 +239,7 @@
         D. class _Outside {}
         
 24. Which of the following can fill in the blanks to make this code compile?
-        d = new (1_000_000_.00);
+        __ d = new (1_000_000_.00);
         A. double, double
         B. double, Double
         C. Double, double
@@ -440,6 +440,7 @@
         public class Penguin {
         private double beakLength;
         public static void setBeakLength(Penguin p, int b) {
+        __
         }
         }
         A. p.beakLength = b;
