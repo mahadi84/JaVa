@@ -1,4 +1,4 @@
-Very Easy Chapter:
+Very Easy.
 
 =====================Chapter 9(Selected Java API) =========================================
 
@@ -35,7 +35,7 @@ Very Easy Chapter:
         D. The code does not compile.
 
 5. How many of the types ArrayList, List, and Object can fill in the blank to produce code that compiles?
-        List frisbees = new ();
+        List frisbees = new __();
         A. None
         B. One
         C. Two
