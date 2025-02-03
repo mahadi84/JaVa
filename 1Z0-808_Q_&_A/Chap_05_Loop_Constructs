@@ -419,8 +419,10 @@ Medium Easy.
         
 41. Fill in the blank so this code compiles and does not cause an infinite loop.
         t: while (true) {
-        f: while(true) {  }
-           }
+        f: while(true) { 
+                ________
+        }
+        }
         A. break;
         B. break f;
         C. break t;
