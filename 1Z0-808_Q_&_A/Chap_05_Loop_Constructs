@@ -205,9 +205,10 @@ Medium Easy.
         break;
         break letters;
         break numbers;
-        letters: for (char ch=ˈaˈ; ch<=ˈzˈ; ch++) {
-        numbers: for (int n=0; n<=10; n++) {
-        System.out.println(ch);
+   ->   letters: for (char ch=ˈaˈ; ch<=ˈzˈ; ch++) {
+  |     numbers: for (int n=0; n<=10; n++) {
+  |     System.out.println(ch);
+  |_____
         }
         }
         A. None
