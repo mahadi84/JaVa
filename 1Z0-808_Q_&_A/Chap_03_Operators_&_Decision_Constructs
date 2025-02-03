@@ -619,13 +619,12 @@ the beginning or end of a statement. Therefore, triceratops–– is always exec
 incorrect. The target of an if-then statement is not evaluated if the boolean test is false.
 Option C is incorrect. While an if-then statement is often used to test whether an object is
 of a particular type in order to cast it, it is not required to cast an object. Option D is correct as an if-then statement may execute a single statement or a block of code {}.
-12. D. For this question, it helps to notice that the second if-then statement is not connected to
-the first if-then statement, as there is no else joining them. When this code executes, the
-first if-then statement outputs Not enough since flair is >= 15 and < 37. The second ifthen statement is then evaluated. 
+12. D. For this question, it helps to notice that the second if-then statement is not connected to the first if-then statement, as there is no else joining them. 
+When this code executes, the first if-then statement outputs Not enough since flair is >= 15 and < 37. The second ifthen statement is then evaluated. 
 Since flair is not 37, the expression Too many is outputted. Since two statements are outputted, Option D, none of the above, is the correct answer.
-13. B. A case value must be a constant expression, such as a literal or final variable, so
-Options A and C are true statements about case values. A case statement may be terminated by a break statement, but it is not required, making Option B the false statement and
-correct answer. Option D is also a true statement about case values.
+13. B. A case value must be a constant expression, such as a literal or final variable, so Options A and C are true statements about case values. 
+A case statement may be terminated by a break statement, but it is not required, making Option B the false statement and correct answer.
+Option D is also a true statement about case values.
 14. D. The question is about boolean operators. Since Options A and B are numeric operators,
 they can be instantly disregarded. The question then simplifies to which boolean expression, && or ||, corresponds to the truth table that only evaluates to true if both operands
 are true. Only the conjunctive logical && operator represents this relationship, making
