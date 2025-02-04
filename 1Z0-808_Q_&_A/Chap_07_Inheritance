@@ -228,9 +228,8 @@
         C. 3,5
         D. The code does not compile.
 
-17. Fill in the blanks: Excluding default and static methods, a(n)
-        can contain both abstract and concrete methods, while a(n)
-        contains only abstract methods.
+17. Fill in the blanks: 
+    Excluding default and static methods, a(n)_____ can contain both abstract and concrete methods, while a(n)____ contains only abstract methods.
         A. concrete class, abstract class
         B. concrete class, interface
         C. interface, abstract class
@@ -240,8 +239,7 @@
         package shapes;
         abstract class Triangle {
         abstract String getDescription();
-        }
-        
+        }        
         class RightTriangle extends Triangle {
         protected String getDescription() { return "rt"; } // g1
         }
@@ -257,23 +255,25 @@
         C. The code does not compile due to line g3.
         D. The code compiles and runs without issue.
 
-19. Given that Short and Integer extend Number, what type can be used to fill in the blank in
-        the class below to allow it to compile?
+19. Given that Short and Integer extend Number, what type can be used to fill in the blank in the class below to allow it to compile?
         package band;
-        interface Horn { public Integer play(); }
-        abstract class Woodwind { public Short play() {return 3;} }
-        public final class Saxophone extends Woodwind implements Horn {
-        public play() {
-        return null;
+        interface Horn { 
+          public Integer play(); 
         }
+        abstract class Woodwind { 
+          public Short play() {return 3;} 
+        }
+        public final class Saxophone extends Woodwind implements Horn {
+          public __ play() {
+              return null;
+          }
         }
         A. Integer
         B. Short
         C. Number
         D. None of the above
 
-20. Fill in the blanks: A class an interface, while a class
-        an abstract class.
+20. Fill in the blanks: A class an interface, while a class an abstract class.
         A. extends, implements
         B. extends, extends
         C. implements, extends
