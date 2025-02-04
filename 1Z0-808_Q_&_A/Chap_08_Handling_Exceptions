@@ -192,8 +192,7 @@ throw vs throws, missing new, ()vs{}, duplicate parameter,Throwable t, implement
         A. Exceptions are often used when things “go wrong” or deviate from the expected path.
         B. An application that throws an exception will terminate.
         C. Some exceptions can be avoided programmatically.
-        D. An application that can properly handle its exception may recover from unexpected
-        problems.
+        D. An application that can properly handle its exception may recover from unexpected problems.
 
 17. What is the output of the following application?
         package harbor;
@@ -835,8 +834,8 @@ since it is unchecked, although allowed by the compiler.
 All of these are handled by the fact that the method declares the checked Exception class in the method signature, which all the exceptions within the class inherit. For this reason,
 the openDrawbridge() method compiles without issue. The call to openDrawbridge() in the main() method also compiles without issue because the main() method declares
 Exception in its signature. For these reasons, the code compiles but a stack trace is printed at runtime, making Option D the correct answer. In case you are wondering, the caller
-would see RuntimeException: Or maybe this one in the stack trace at runtime, since the exception in the finally block replaces the one from the try block. Note that the
-exception in the catch block is never reached because the RuntimeException type declared in the catch block does not handle Exception.
+would see RuntimeException: Or maybe this one in the stack trace at runtime, since the exception in the finally block replaces the one from the try block.
+Note that the exception in the catch block is never reached because the RuntimeException type declared in the catch block does not handle Exception.
 45. C. Both IllegalArgumentException and ClassCastException inherit RuntimeException, but neither is a subclass of the other. For this reason, they can be listed
 in either order, making Option C the correct statement.
 
