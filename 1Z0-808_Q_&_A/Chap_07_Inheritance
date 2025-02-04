@@ -141,13 +141,11 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
 
-12. Given that FileNotFoundException is a subclass of IOException, what is the output of
-        the following application?
+12. Given that FileNotFoundException is a subclass of IOException, what is the output of the following application?
         package edu;
         import java.io.*;
         class School {
-        public int getNumberOfStudentsPerClassroom(String... students)
-        throws IOException {
+        public int getNumberOfStudentsPerClassroom(String... students) throws IOException {
         return 3;
         }
         public int getNumberOfStudentsPerClassroom() throws IOException {
