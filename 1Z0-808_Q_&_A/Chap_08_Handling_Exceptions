@@ -1,9 +1,9 @@
 
 ===================================Chapter_08(Handling Exceptions) ==============================================
 
-9,13,16,17,19,20,21,22,23,24,25,27,28,29,35,38,39,40,44,46,47,48,50= 23
+9,13,16,17,19,20,21,22,24,25,27,35,38,39,40,44,46,47,48,50 = 20
 
-throw vs throws, ()vs{}, duplicate parameter,Throwable t
+throw vs throws, missing new, ()vs{}, duplicate parameter,Throwable t
 
 
 1. What is the result of compiling and executing the following application?
@@ -364,7 +364,7 @@ throw vs throws, ()vs{}, duplicate parameter,Throwable t
         C. Problem?Finished!null
         D. None of the above
 
-29. Fill in the blanks: A try statement has finally block(s) and  catch blocks.
+29. Fill in the blanks: A try statement has finally block(s) ___ and ____ catch blocks.
         A. zero or one, zero or more
         B. one, one or more
         C. zero or one, zero or one
@@ -496,12 +496,10 @@ throw vs throws, ()vs{}, duplicate parameter,Throwable t
 
 39. Which statement about the following exception statement is correct?
         throw new NullPointerException();
-        A. The code where this is called must include a try-catch block that handles this
-        exception.
+        A. The code where this is called must include a try-catch block that handles this  exception.
         B. The method where this is called must declare a compatible exception.
         C. This exception cannot be handled.
-        D. This exception can be handled with a try-catch block or ignored altogether by the
-        surrounding method.
+        D. This exception can be handled with a try-catch block or ignored altogether by the surrounding method.
 
 40. What is the output of the following application?
         package clothing;
@@ -763,8 +761,8 @@ cannot declare any new or broader checked exceptions.
 
 21. B. Checked exceptions must be handled or declared or the program will not compile, while unchecked exceptions can be optionally handled. On the other hand, java.lang.Error
 should never be handled by the application because it often indicates an unrecoverable state in the JVM, such as running out of memory. For these reasons, Option B is the correct answer.
-22. B. The application does not compile, so Option D is incorrect. The checked KnightAttackingException thrown in the try block is handled by the associated catch
-block. The ClassCastException is an unchecked exception, so it is not required to be handled or declared and line q1 compiles without issue. The finally block throws a checked
+22. B. The application does not compile, so Option D is incorrect. The checked KnightAttackingException thrown in the try block is handled by the associated catch block. 
+The ClassCastException is an unchecked exception, so it is not required to be handled or declared and line q1 compiles without issue. The finally block throws a checked
 CastleUnderSiegeException, which is required to be handled or declared by the method, but is not. There is no try-catch around line q2, and the method does not declare a compatible checked exception,
 only an unchecked exception. For this reason, line q2 does not compile, and Option B is the correct answer.
 Lastly, line q3 compiles without issue because the unchecked RuntimeException is not required to be handled or declared by the call in the main() method.
@@ -775,8 +773,8 @@ exception thrown of the first type would match both catch blocks, but only the f
 includes the Exception class, which is a checked exception. For this reason, the checked exception must be handled or declared in the main() method in which it is called.
 While there is a try-catch block in the main() method, it is only for the unchecked NullPointerException. Since Exception is not a subclass of NullPointerException,
 the checked Exception is not properly handled or declared and the code does not compile, making Option C the correct answer.
-25. D. A NullPointerException can be thrown if the value of list is null. Likewise, an ArrayIndexOutOfBoundsException can be thrown if the value of list is an array
-with fewer than 10 elements. Finally, a ClassCastException can be thrown if list is assigned an object that is not of type Boolean[]. For example, the assignment
+25. D. A NullPointerException can be thrown if the value of list is null. Likewise, an ArrayIndexOutOfBoundsException can be thrown if the value of list is an array with fewer than 10 elements.
+Finally, a ClassCastException can be thrown if list is assigned an object that is not of type Boolean[]. For example, the assignment
 list = (Boolean[]) new Object() will compile without issue but throws a ClassCastException at runtime. Therefore, the first three options are possible, making Option D the correct answer.
 
 26. B. A StackOverflowError occurs when a program recurses too deeply into an infinite loop. It is considered an error because the JVM often runs out of memory and cannot
