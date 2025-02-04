@@ -214,8 +214,7 @@
         C. The code does not compile due to line j1.
         D. The code does not compile for another reason.
 
-18. Which of following method signatures would not be allowed in a class implementing the
-        Printer interface?
+18. Which of following method signatures would not be allowed in a class implementing the  Printer interface?
         class PrintException extends Exception {}
         class PaperPrintException extends PrintException {}
         public interface Printer {
@@ -308,9 +307,8 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
 
-25. In the following application, the value of list has been omitted. Assuming the code
-        compiles without issue, which one of the following is not a possible output of executing
-        this class?
+25. In the following application, the value of list has been omitted. 
+    Assuming the code compiles without issue, which one of the following is not a possible output of executing  this class?
         package checkboard;
         public class Attendance {
         private Boolean[] list = // value omitted
@@ -330,9 +328,7 @@
         C. A stack trace for ClassCastException is printed.
         D. None of the above
 
-26. Fill in the blanks: A occurs when a program recurses too deeply
-        into an infinite loop, while a(n) occurs when a reference to a
-        nonexistent object is acted upon.
+26. Fill in the blanks: A occurs when a program recurses too deeply  into an infinite loop, while a(n) occurs when a reference to a nonexistent object is acted upon.
         A. NoClassDefFoundError, StackOverflowError
         B. StackOverflowError, NullPointerException
         C. ClassCastException, IllegalArgumentException
@@ -366,8 +362,7 @@
         C. Problem?Finished!null
         D. None of the above
 
-29. Fill in the blanks: A try statement has finally block(s) and
-        catch blocks.
+29. Fill in the blanks: A try statement has finally block(s) and  catch blocks.
         A. zero or one, zero or more
         B. one, one or more
         C. zero or one, zero or one
@@ -393,8 +388,7 @@
         C. The code does not compile.
         D. The code compiles but throws an exception at runtime.
 
-31. Given a try statement, if both the catch block and the finally block each throw an
-        exception, what does the caller see?
+31. Given a try statement, if both the catch block and the finally block each throw an exception, what does the caller see?
         A. The exception from the catch block
         B. The exception from the finally block
         C. Both the exception from the catch block and the exception from the finally block
@@ -437,8 +431,7 @@
         C. Throwable
         D. RuntimeException
 
-35. In the following application, the values of street and city have been omitted. Which one
-        of the following is a possible output of executing this class?
+35. In the following application, the values of street and city have been omitted. Which one of the following is a possible output of executing this class?
         I. 350 5th Ave - New York
         II. Posted:350 5th Ave - New York
         package registration;
@@ -461,8 +454,7 @@
         C. I and II
         D. None of the above
 
-36. If a try statement has catch blocks for both ClassCastException and RuntimeException,
-        then which of the following statements is correct?
+36. If a try statement has catch blocks for both ClassCastException and RuntimeException, then which of the following statements is correct?
         A. The catch block for ClassCastException must appear before the catch block for
         RuntimeException.
         B. The catch block for RuntimeException must appear before the catch block for
@@ -532,8 +524,7 @@
         C. The application does not produce any output at runtime.
         D. The code does not compile.
 
-41. Given the following application, which type of exception will be printed in the stack trace
-        at runtime?
+41. Given the following application, which type of exception will be printed in the stack trace at runtime?
         package carnival;
         public class WhackAnException {
         public static void main(String... hammer) {
@@ -553,8 +544,7 @@
         C. RuntimeException
         D. The code does not compile.
 
-42. Which of these method signatures is allowed in a class implementing the Outfielder
-        interface?
+42. Which of these method signatures is allowed in a class implementing the Outfielder interface?
         class OutOfBoundsException extends BadCatchException {}
         class BadCatchException extends Exception {}
         public interface Outfielder {
@@ -606,8 +596,7 @@
         C. The code does not compile because of line r3.
         D. The code compiles, but a stack trace is printed at runtime.
 
-45. If a try statement has catch blocks for both IllegalArgumentException and
-        ClassCastException, then which of the following statements is correct?
+45. If a try statement has catch blocks for both IllegalArgumentException and  ClassCastException, then which of the following statements is correct?
         A. The catch block for IllegalArgumentException must appear before the catch block
         for ClassCastException.
         B. The catch block for ClassCastException must appear before the catch block for
@@ -660,15 +649,13 @@
         C. The code does not compile because flipSwitch() is an invalid method override.
         D. The code does not compile for another reason.
 
-48. Given an application that hosts a website, which of the following would most likely result
-        in a java.lang.Error being thrown?
+48. Given an application that hosts a website, which of the following would most likely result in a java.lang.Error being thrown?
         A. Two users try to register an account at the same time.
         B. The application temporarily loses connection to the network.
         C. A user enters their password incorrectly.
         D. The application runs out of memory.
 
-49. Given that FileNotFoundException is a subclass of IOException, what is the output of
-        the following application?
+49. Given that FileNotFoundException is a subclass of IOException, what is the output of the following application?
         package storage;
         import java.io.*;
         public class Backup {
