@@ -3,7 +3,7 @@
 
 9,13,16,17,19,20,21,22,24,25,27,35,38,39,40,44,46,47,48,50 = 20
 
-throw vs throws, missing new, ()vs{}, duplicate parameter,Throwable t
+throw vs throws, missing new, ()vs{}, duplicate parameter,Throwable t, implements vs extends
 
 
 1. What is the result of compiling and executing the following application?
@@ -847,11 +847,12 @@ Fixed! would be printed, making Option A the correct answer.
 47. D. The question is designed to see how closely you pay attention to throw and throws! The try block uses the incorrect keyword, throws, to create an exception. For this reason, the
 code does not compile, and Option D is correct. If throws was changed to throw, then the code would compile without issue, and Option B would be correct.
 48. D. A Java application tends to only throw an Error when the application has entered a final, unrecoverable state. Options A and C are incorrect. These types of errors are common and
-expected in most software applications, and should not cause the application to terminate. Option B uses the word temporarily, meaning the network connection will come back. In this
-case, a regular exception could be used to try to recover from this state. Option D is the correct answer because running out of memory is usually unrecoverable in Java.
+expected in most software applications, and should not cause the application to terminate. Option B uses the word temporarily, meaning the network connection will come back. 
+In this case, a regular exception could be used to try to recover from this state. Option D is the correct answer because running out of memory is usually unrecoverable in Java.
 49. C. While a catch block is permitted to include an embedded try-catch block, the issue here is that the variable name e is already used by the first catch block. In the second catch
 block, it is equivalent to declaring a variable e twice. For this reason, line z1 does not compile, and Option C is the correct answer. If a different variable name was used for either
 catch block, then the code would compile without issue, and Option A would be the correct answer.
+
 50. B. The finally block of the snore() method throws a new checked exception on line x1, but there is no try-catch block around it to handle it, nor does the snore() method declare
 any checked exceptions. For these reasons, line x1 does not compile, and Option B is the correct answer. The rest of the lines of code compile without issue, even line x3 where a
 static method is being accessed using an instance reference. Note that the code inside the try block, if it ran, would produce an ArrayIndexOutOfBoundsException, which would
