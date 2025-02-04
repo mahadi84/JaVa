@@ -620,44 +620,28 @@ mySpeed, and myName variables in the main() method after the call to the slalom(
 
 ========================== Answers =============================================
 
-1. C. The protected modifier allows access by subclasses and members within the same package,
-while the package-private modifier allows access only to members in the same package.
-Therefore, the protected access modifier allows access to everything the package-private
-access modifier, plus subclasses, making Option C the correct answer. Options A, B, and D
+1. C. The protected modifier allows access by subclasses and members within the same package, while the package-private modifier allows access only to members in the same package.
+Therefore, the protected access modifier allows access to everything the package-private access modifier, plus subclasses, making Option C the correct answer. Options A, B, and D
 are incorrect because the first term is a more restrictive access modifier than the second term.
-2. B. The super() statement is used to call a constructor in a parent class, while the this()
-statement is used to call a constructor in the same class, making Option B correct and
+2. B. The super() statement is used to call a constructor in a parent class, while the this() statement is used to call a constructor in the same class, making Option B correct and
 Option A incorrect. Options C and D are incorrect because they are not constructors.
-3. D. The sell() method does not compile because it does not return a value if both of the
-if-then statements’ conditional expressions evaluate to false. While logically, it is true
-that price is either less than 10 or greater than or equal to 10, the compiler does not know
-that. It just knows that if both if-then statements evaluate to false, then it does not have a
+3. D. The sell() method does not compile because it does not return a value if both of the if-then statements’ conditional expressions evaluate to false. While logically, it is true
+that price is either less than 10 or greater than or equal to 10, the compiler does not know that. It just knows that if both if-then statements evaluate to false, then it does not have a
 return value, therefore it does not compile.
-4. D. The three overloaded versions of nested() compile without issue, since each method
-takes a different set of input arguments, making Options B and C incorrect. The code does
-not compile, though, due to the first line of the main() method, making Option A incorrect.
-The no-argument version of the nested() method does not return a value, and trying
+4. D. The three overloaded versions of nested() compile without issue, since each method takes a different set of input arguments, making Options B and C incorrect. The code does
+not compile, though, due to the first line of the main() method, making Option A incorrect. The no-argument version of the nested() method does not return a value, and trying
 to output a void return type in the print() method throws an exception at runtime.
-5. B. Java uses pass-by-value to copy primitives and references of objects into a method. That
-means changes to the primitive value or reference in the method are not carried to the calling
-method. That said, the data within an object can change, just not the original reference
-itself. Therefore, Option B is the correct answer, and Options C and D are incorrect.
+5. B. Java uses pass-by-value to copy primitives and references of objects into a method. That means changes to the primitive value or reference in the method are not carried to the calling
+method. That said, the data within an object can change, just not the original reference itself. Therefore, Option B is the correct answer, and Options C and D are incorrect.
 Option A is not a real term.
 
-6. C. Option A is incorrect because the getter should return a value. Option B is incorrect
-because the setter should take a value. Option D is incorrect because the setter should start
-with set and should not return a value. Option C is a correct setter declaration because it
-takes a value, uses the void return type, and uses the correct naming convention.
-7. B. Options A, C, and D are true statements about calling this() inside a constructor.
-Option B is incorrect because a constructor can only call this() or super() on the first
-line of the constructor, but never both in the same constructor. If both constructors were
-allowed to be called, there would be two separate calls to super(), leading to duplicate initialization
-of parent constructors, since the other constructor referenced by this() would
-also call super() (or be chained to one that eventually calls super()).
-8. B. Option A is incorrect because the public access modifier starts with a lowercase letter.
-Options C and D are incorrect because the return types, void and String, are incompatible
-with the method body that returns an integer value of 10. Option B is correct and has
-package-private access. It also uses a return type of Long that the integer value of 10 can be
+6. C. Option A is incorrect because the getter should return a value. Option B is incorrect because the setter should take a value. Option D is incorrect because the setter should start
+with set and should not return a value. Option C is a correct setter declaration because it takes a value, uses the void return type, and uses the correct naming convention.
+7. B. Options A, C, and D are true statements about calling this() inside a constructor. Option B is incorrect because a constructor can only call this() or super() on the first
+line of the constructor, but never both in the same constructor. If both constructors were allowed to be called, there would be two separate calls to super(), leading to duplicate initialization
+of parent constructors, since the other constructor referenced by this() would also call super() (or be chained to one that eventually calls super()).
+8. B. Option A is incorrect because the public access modifier starts with a lowercase letter. Options C and D are incorrect because the return types, void and String, are incompatible
+with the method body that returns an integer value of 10. Option B is correct and has package-private access. It also uses a return type of Long that the integer value of 10 can be
 easily assigned to without an explicit cast.
 9. C. The only variables always available to all instances of the class are those declared
 static; therefore, Option C is the correct answer. Option A may seem correct, but public
