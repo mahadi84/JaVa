@@ -721,6 +721,7 @@ to a specific instance, but not in the general case. Finally, Option D is incorr
 34. B. The method calculateDistance() requires a return type that can be easily converted to a short value. Options A, C, and D are incorrect because they each use a larger data
 type that requires an explicit cast. Option D also does not compile because the Short constructor requires an explicit cast to convert the value of 4, which is assumed to be an int,
 to a short, as shown in new Short((short)4). Option B is the correct answer since a byte value can be easily promoted to short and returned by the method.
+ ****new Short(4).longValue(), here .longValue() convert Short object as a long primitive type.
 35. C. Overloaded methods have the same name but a different list of parameters, making the first and third statements true. The second statement is false, since overloaded methods can
 have the same or different return types. Therefore, Option C is the correct answer.
 
