@@ -1,4 +1,5 @@
 Very Easy.
+Check hot topics bottom of the page.
 
 =====================Chapter 9(Selected Java API) =========================================
 
@@ -635,7 +636,7 @@ would be Option B.
 
 
 
----------------- API(String, StringBuilder, Array, ArrayList) Functions 
+---------------- HOT TOPICS -----------------------------
 
 ========================== Creating a String ==========================
 String a = "";  a += 2;  a += 'c'; a += false; Result: 2cfalse
