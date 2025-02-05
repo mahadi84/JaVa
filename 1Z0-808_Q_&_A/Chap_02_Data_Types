@@ -638,6 +638,32 @@ could happen regardless of it being unlikely.
 Then the run() method calls the Sand() method, which happens to have the same name as the constructor. This outputs b. Therefore, Option C is correct.
 
 
+======================================= HOT TOPIC ===========================================
+
+-----------------------------------------------------------------------------------------
+Data Type   | Size (bits) |	Default Value     | Range
+-----------------------------------------------------------------------------------------
+byte        |	8       |	0                 | -2^7  to 2^7-1)
+short       |	16      |	0                 | -2^15 to 2^15 - 1 .
+int         |	32	|       0                 | -2^31 to 2^31 - 1.
+long        |	64      |	0                 | -2^63 to 2^63-1
+float       |	32      |	0.0f              | Approximately ±3.4E-38 to ±3.4E+38
+double      |	64      |	0.0d              | Approximately ±1.7E-308 to ±1.7E+308
+char        |	16      |'\u0000'(null character) | 0 to 65,535 (Unicode code points)
+boolean     |	1       |	false             |	true or false
+------------------------------------------------------------------------------------------
+how to convert short to int and vise-versa in java?
+  ->short to int (Widening Conversion)
+                        short myShort = 32767; // Maximum value a short can hold
+                        int myInt = myShort;   // Implicit conversion (widening)
+                        // Explicit cast (not really necessary in this direction, but good to know)
+                        myInt = (int) myShort;
+                        System.out.println(myInt); // Output: 32767 (same result)
+
+ ->int to short (Narrowing Conversion)
+                        int myInt = 65000;  // A value larger than a short can hold
+                        short myShort = (short) myInt; // Explicit cast (narrowing)
+
 
 
 
