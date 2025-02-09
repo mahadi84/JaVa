@@ -642,6 +642,10 @@ Then the run() method calls the Sand() method, which happens to have the same na
 
 ======================================= HOT TOPIC ===========================================
 
+"Number" is an abstract class: (java.lang.Number) that serves as the superclass for all numeric wrapper classes.
+         -Long (and all the other numeric wrapper classes) inherit from the Number class.
+
+
 -----------------------------------------------------------------------------------------
 Data Type   | Size (bits) |	Default Value     | Range
 -----------------------------------------------------------------------------------------
