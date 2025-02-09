@@ -1,12 +1,21 @@
 
 
+
 Game> Football, Cricket, Tenis
-Cloth> Coat,Zipper,Shirt
+Cloth> Coat, Shirt, Zipper
 Travel> Boat, Bus, Plan
 
 System>Computer, compute
-CheckBorad> Attendence, todayCount
+CheckBorad> Attendance, todayCount
 Registration> Address
 
 Gas> Oxygen, Nitrogen
 Castle> castleSeig, knighAttack
+
+
+
+
+
+
+
+-
