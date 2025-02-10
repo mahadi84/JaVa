@@ -692,7 +692,7 @@ objects[0] = new StringBuilder(); // careful!
 -Fixed-size -Can not Add/Insert, Edit, and Delete once declared/initialized.
 
 FUNCTIONS:--
-       01. length 02. sort() 03. binarySearch() 04. date.toArray()
+       01. length 02. Arrays.sort() 03. Arrays.binarySearch()
 
 String[] birds = new String[6];
 System.out.println(birds.length);
@@ -714,6 +714,7 @@ FUNCTIONS:
          05. contains()  06. equals()
          07. remove()    08. removeOf()
          09. clear()     10. isEmpty() 
+         10. data.toArray();
          11. Arrays.asList()
                 Ex: String[] array = {"Natural History", "Science"};
                     List<String> museums = Arrays.asList(array);
