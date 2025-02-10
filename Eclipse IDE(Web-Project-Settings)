@@ -22,12 +22,41 @@ File>New>Dynamic Web Project>Name the Project> Next...
 Step:02:
 Right Click on the project>Configure>Convert to Maven Project>Finish
 
-
-If POP-UP Error: Selection is not within a valid module
+***If POP-UP Error: Selection is not within a valid module
 step 1: right click on your project
 Step 2: Go to properties
 Step 3: search project Facets click on that then
 step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your problem will resolved
+
+
+----- add these <dependencies> before <project> tag into pom.xml------
+
+ <dependencies>  
+      <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+    <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>6.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+    
+      <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+    <dependency>
+        <groupId>jakarta.servlet.jsp.jstl</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        <version>3.0.2</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+    <dependency>
+        <groupId>org.glassfish.web</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        <version>3.0.1</version>
+    </dependency>
+
+
+  </dependencies>
+
 
 
 
