@@ -540,8 +540,7 @@ line 14, the value is reversed, giving us 321 and making Option C correct.
 be run elsewhere in the codebase.
 
 11. D. A StringBuilder is mutable, so the length is two after line 6 completes. The StringBuilder methods return a reference to the same object so you can chain method
-calls. Therefore, line and anotherLine refer to the same object. This means that line
-7 prints true. Then on line 9, both references point to the same object of length 2, and Option D is correct.
+calls. Therefore, line and anotherLine refer to the same object. This means that line 7 prints true. Then on line 9, both references point to the same object of length 2, and Option D is correct.
 12. D. The add() and get() methods are available on ArrayList. However, ArrayList uses size rather than length to get the number of elements. Therefore, Option D is
 correct. If length was changed to size, Option B would compile if put in the blank. Option A still wouldn’t compile in the blank because a cast would be needed to store the value in str.
 13. D. Option A is tricky, but incorrect. While a lambda can have zero parameters, a Predicate cannot. A Predicate is defined as a type mapping to a boolean. Option B is
