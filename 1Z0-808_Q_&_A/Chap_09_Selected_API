@@ -671,7 +671,7 @@ Functions:
          01. length() 02. charAt() 03. indexOf() 04. substring() 
          05. append() 06. insert() (Ex: sb.insert(7, "-");)
          07. delete() and deleteCharAt() Ex: sb.delete(1, 3); sb.deleteCharAt(5); // throws an exception
-         08. reverse() 09. toString()
+         08. reverse() 09. toString()=to get a string representation of an object.
 
 
 There are three ways to construct a StringBuilder:
