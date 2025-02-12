@@ -64,8 +64,7 @@
         D. If String result = "done"; is inserted on line 9, the code will compile.
         E. None of the above changes will make the code compile.
 
-5. Given the following classes, which of the following can independently replace INSERT IMPORTS HERE 
-    to make the code compile? (Choose all that apply)
+5. Given the following classes, which of the following can independently replace INSERT IMPORTS HERE to make the code compile? (Choose all that apply)
     package aquarium;
     public class Tank { }
     package aquarium.jellies;
