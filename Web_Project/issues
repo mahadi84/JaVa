@@ -1,0 +1,16 @@
+
+
+Issue_01:
+NOTEPAD
+"The filename, directory name or volume label syntax is incorrect"
+Solution:
+change browser setting from eclipse:
+Window->Web Browser-> Now select your browser
+
+Issue_02:
+***If POP-UP Error: Selection is not within a valid module
+Solution:
+step 1: right click on your project
+Step 2: Go to properties
+Step 3: search project Facets click on that then
+step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your problem will resolved
