@@ -538,10 +538,8 @@ This makes 30 come before 8. A binary search correctly finds 8 at index 2 and 3A
 It cannot find 4F but notices it should be at index 2. The rule when an item isn’t found is to negate that index and subtract 1.
 Therefore, we get –2–1, which is –3. 
 
-26. A, B, D. Lines 5 and 7 use autoboxing to convert an int to an Integer. Line 6 does
-not because valueOf() returns an Integer. Line 8 does not because null is not an int.
-The code does not compile. However, when the for loop tries to unbox null into an
-int, it fails and throws a NullPointerException.
+26. A, B, D. Lines 5 and 7 use autoboxing to convert an int to an Integer. Line 6 does not because valueOf() returns an Integer. Line 8 does not because null is not an int.
+The code does not compile. However, when the for loop tries to unbox null into an int, it fails and throws a NullPointerException.
 27. B. The first if statement is false because the variables do not point to the same object.
 The second if statement is true because ArrayList implements equality to mean the
 same elements in the same order.
