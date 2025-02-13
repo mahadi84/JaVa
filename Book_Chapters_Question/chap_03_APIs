@@ -532,11 +532,12 @@ prints the first element, which is now –1.
 no asList() method on an array instance. If this code were corrected to compile, the
 answer would be option A.
 
-25. D. After sorting, hex contains [30, 3A, 8, FF]. Remember that numbers sort before
-letters and strings sort alphabetically. This makes 30 come before 8. A binary search
-correctly finds 8 at index 2 and 3A at index 1. It cannot find 4F but notices it should
-be at index 2. The rule when an item isn’t found is to negate that index and subtract 1.
-Therefore, we get –2–1, which is –3.
+25. D. After sorting, hex contains [30, 3A, 8, FF].**If  search contains 4F result will be ["30", "3A", "4F", "8", "FF"].
+Remember that numbers sort before letters and strings sort alphabetically.
+This makes 30 come before 8. A binary search correctly finds 8 at index 2 and 3A at index 1. 
+It cannot find 4F but notices it should be at index 2. The rule when an item isn’t found is to negate that index and subtract 1.
+Therefore, we get –2–1, which is –3. 
+
 26. A, B, D. Lines 5 and 7 use autoboxing to convert an int to an Integer. Line 6 does
 not because valueOf() returns an Integer. Line 8 does not because null is not an int.
 The code does not compile. However, when the for loop tries to unbox null into an
