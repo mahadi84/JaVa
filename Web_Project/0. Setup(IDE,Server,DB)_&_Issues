@@ -83,7 +83,15 @@ NOTEPAD
     Window->Web Browser-> Now select your browser
 
 
-Issue_02: "HttpServletRequest cannot be resolved to a type" in Servlet.java file
+Issue_02: " ServletException cannot be resolved to a type
+            HttpServletResponse cannot be resolved to a type
+            HttpServletRequest cannot be resolved to a type
+          " in Servlet.java file
+Solution:
+    import jakarta.servlet.ServletException;
+    import jakarta.servlet.http.HttpServlet;
+    import jakarta.servlet.http.HttpServletRequest;
+    import jakarta.servlet.http.HttpServletResponse;
 
 
 
