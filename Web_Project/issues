@@ -1,11 +1,6 @@
 
 
-Issue_01:
-NOTEPAD
-"The filename, directory name or volume label syntax is incorrect"
-Solution:
-change browser setting from eclipse:
-Window->Web Browser-> Now select your browser
+
 
 Issue_02:
 ***If POP-UP Error: Selection is not within a valid module
