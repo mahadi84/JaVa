@@ -345,8 +345,7 @@
         D. An exception is thrown.
         E. The code does not compile.
 
-28. Which of the following can be inserted into the blank to create a date of June 21, 2014?
-(Choose all that apply)
+28. Which of the following can be inserted into the blank to create a date of June 21, 2014? (Choose all that apply)
     import java.time.*;
     public class StartOfSummer {
     public static void main(String[] args) {
@@ -543,13 +542,9 @@ The code does not compile. However, when the for loop tries to unbox null into a
 27. B. The first if statement is false because the variables do not point to the same object.
 The second if statement is true because ArrayList implements equality to mean the
 same elements in the same order.
-28. D, F. Options A and B are incorrect because LocalDate does not have a public constructor.
-Option C is incorrect because months start counting with 1 rather than 0.
-Option E is incorrect because it uses the old pre–Java 8 way of counting months, again
-beginning with 0. Options D and F are both correct ways of specifying the desired
-date.
-29. D. A LocalDate does not have a time element. Therefore, it has no method to add
-hours and the code does not compile.
+28. D, F. Options A and B are incorrect because LocalDate does not have a public constructor. Option C is incorrect because months start counting with 1 rather than 0.
+Option E is incorrect because it uses the old pre–Java 8 way of counting months, again beginning with 0. Options D and F are both correct ways of specifying the desired date.
+29. D. A LocalDate does not have a time element. Therefore, it has no method to add hours and the code does not compile.
 
 30. F. Java throws an exception if invalid date values are passed. There is no 40th day in
 April—or any other month for that matter.
@@ -557,5 +552,13 @@ April—or any other month for that matter.
 have their return values ignored, the result is unchanged. Therefore, option B is
 correct.
 32. E. Even though d has both date and time, the formatter only outputs time.
-33. B. Period does not allow chaining. Only the last Period method called counts, so only
-the two years are subtracted.
+33. B. Period does not allow chaining. Only the last Period method called counts, so only the two years are subtracted.
+
+
+
+
+
+
+
+
+-
