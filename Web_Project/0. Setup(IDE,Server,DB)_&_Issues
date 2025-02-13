@@ -2,12 +2,13 @@
 Date: 28 January 2025
 
 
-Download:
+----------------Download:--------------
 01. eclipse .exe version
 02. Apache Tomcat server
+03. MySQL Workbench
 
-Install:
->Eclipse
+-----------------Install:---------------------
+>Eclipse >Run Setup
 >Select "Project Save Destination" Folder
 
 Connect Server:
@@ -16,7 +17,7 @@ Connect Server:
     -Select "Apache" and Select "Latest Tomcat server version" 
     -Next Browse the "Tomcat server **extracted file that I've already placed into C:Program File's folder"
 
-Create a Web Project:
+--------------Create a Web Project:-------------------
 Step:01:
 File>New>Dynamic Web Project>Name the Project> Next...
 Step:02:
@@ -66,11 +67,12 @@ step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your probl
 </dependencies>
 
 
------------------------- How to check whether above dependencies are downloaded ------------------
+------------------------ How to check whether the above dependencies are downloaded ------------------
 Build Path: I can see the dependencies in the Java Build Path. 
 Right-click on your project -> Build Path -> Configure Build Path. 
 Go to the "Libraries" tab. You'll see "Maven Dependencies" listed there.  
 **This shows the dependencies, not the files directly.
+
 
 ========================== Issues =======================================
 Issue_01: While run the code it shows beow error:
