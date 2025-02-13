@@ -10,11 +10,11 @@ Install:
 >Eclipse
 >Select "Project Save Destination" Folder
 
-Connect:
+Connect Server:
 >Eclipse with "Apache Tomcat Server"
     -Click on "Server" 
     -Select "Apache" and Select "Latest Tomcat server version" 
-    -Next Browse the "Tomcat server extract file that I've already placed into C:Program File's folder"
+    -Next Browse the "Tomcat server **extracted file that I've already placed into C:Program File's folder"
 
 Create a Web Project:
 Step:01:
@@ -31,7 +31,7 @@ step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your probl
 
 ------------------------------------------------------------------------------------------------------------------- 
                  add these <dependencies> before <project> tag into pom.xml 
-        that will download all dependencies into Project "Java Resources>Libraries>Maven Dependancies" Folder
+        that will download all dependencies into Project "Java Resources>Libraries>Maven Dependencies" Folder
 --------------------------------------------------------------------------------------------------------------------
 
  <dependencies>
