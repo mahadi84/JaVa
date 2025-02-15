@@ -23,3 +23,22 @@ public class AddServlet extends GenericServlet {
 	}
 
 }
+-------------------------------------------------------
+
+package jdbc.test;
+
+import java.sql.*;
+
+
+public class AccountAO {
+	public static void main(String[] s) {		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/crud","root","Mahadi@123");			  
+			System.out.println(connection);
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		
+	}
+
+}
