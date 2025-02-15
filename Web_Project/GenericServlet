@@ -1,0 +1,25 @@
+package testServlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+
+
+@WebServlet(urlPatterns="/add")
+public class AddServlet extends GenericServlet {
+	@Override
+	public void service(ServletRequest request, ServletResponse respose) throws ServletException, IOException {
+		Long num01= Long.parseLong(request.getParameter("number_01"));
+		Long num02= Long.parseLong(request.getParameter("number_02"));
+		
+		PrintWriter out = respose.getWriter();
+		out.println("The Result is: "+(num01+num02));
+
+	}
+
+}
