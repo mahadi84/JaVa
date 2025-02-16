@@ -2,7 +2,7 @@
 ======================== Chapter 4: Methods and Encapsulation =====================================
 
 ----------------------------------------------------
-          6,7,8,*17,18,22,23,24,25 = 9
+          6,**7,8,*17,18,**22,23,24,25 = 9
 ----------------------------------------------------
 
 
@@ -60,8 +60,7 @@
     D. You can use access modifiers to allow read access to all methods, but not any instance variables.
     E. You can use access modifiers to restrict read access to all classes that begin with the word Test.
 
-7. Given the following my.school.ClassRoom and my.city.School class definitions, which line numbers in main() 
-   generate a compiler error? (Choose all that apply)
+7. Given the following my.school.ClassRoom and my.city.School class definitions, which line numbers in main() generate a compiler error? (Choose all that apply)
     1: package my.school;
     2: public class Classroom {
     3: private int roomNumber;
@@ -94,6 +93,7 @@
     D. Immutability uses package private instance variables.
     E. Immutability uses private instance variables.
     F. Immutability allows setters.
+
 9. Which are methods using JavaBeans naming conventions for accessors and mutators?(Choose all that apply)
     A. public boolean getCanSwim() { return canSwim;}
     B. public boolean canSwim() { return numberWings;}
@@ -397,6 +397,7 @@
         E. tacftacb
         F. The code does not compile.
         G. An exception is thrown.
+
 24. Which of the following will compile when inserted in the following code? (Choose all that apply)
     public class Order3 {
           final String value1 = "1";
@@ -551,22 +552,14 @@ not compile because it does not pass the initial parameter. Options E and F do n
 compile because they do not declare an array properly. It should be new boolean[]
 {true}. Option B creates a vararg array of size 0 and option C creates a vararg array of
 size 1.
-6. D. Option D is correct. This is the common implementation for encapsulation by setting
-all fields to be private and all methods to be public. Option A is incorrect because
-protected access allows everything that package private access allows and additionally
-allows subclasses access. Option B is incorrect because the class is public. This means
-that other classes can see the class. However, they cannot call any of the methods or
-read any of the fields. It is essentially a useless class. Option C is incorrect because
-package private access applies to the whole package. Option E is incorrect because Java
-has no such capability.
-7. B, C, D, F. The two classes are in different packages, which means private access and
-default (package private) access will not compile. Additionally, protected access will
-not compile since School does not inherit from Classroom. Therefore, only line 8 will
-compile because it uses public access.
-8. B, C, E. Encapsulation requires using methods to get and set instance variables so
-other classes are not directly using them. Instance variables must be private for this
-to work. Immutability takes this a step further, allowing only getters, so the instance
-variables do not change state.
+6. D. Option D is correct. This is the common implementation for encapsulation by setting all fields to be private and all methods to be public. Option A is incorrect because
+protected access allows everything that package private access allows and additionally allows subclasses access. Option B is incorrect because the class is public. This means
+that other classes can see the class. However, they cannot call any of the methods or read any of the fields. It is essentially a useless class. Option C is incorrect because
+package private access applies to the whole package. Option E is incorrect because Java has no such capability.
+7. B, C, D, F. The two classes are in different packages, which means private access and default (package private) access will not compile. Additionally, protected access will
+not compile since School does not inherit from Classroom. Therefore, only line 8 will compile because it uses public access.
+8. B, C, E. Encapsulation requires using methods to get and set instance variables so other classes are not directly using them. Instance variables must be private for this to work. 
+Immutability takes this a step further, allowing only getters, so the instance variables do not change state.
 9. C, E. Option A is incorrect because the property is of type boolean and getters must
 begin with is for booleans. Options B and D are incorrect because they don’t follow
 the naming convention of beginning with get/is/set. Options C and E follow normal
@@ -607,19 +600,12 @@ intObjectObject and the correct answer is option E.
 16. B. Since Java is pass-by-value and the variable on line 8 never gets reassigned, it stays
 as 9. In the method square, x starts as 9. y becomes 81 and then x gets set to –1. Line 9
 does set result to 81. However, we are printing out value and that is still 9.
-17. B, D, E. Since Java is pass-by-reference, assigning a new object to a does not change the
-caller. Calling append() does affect the caller because both the method parameter and
-Chapter 4: Methods and Encapsulation 345
-caller have a reference to the same object. Finally, returning a value does pass the reference
-to the caller for assignment to s3.
-18. C, G. Since the main() method is in the same class, it can call private methods in the
-class. this() may only be called as the first line of a constructor. this.variableName
-can be called from any instance method to refer to an instance variable. It cannot be
-called from a static method because there is no instance of the class to refer to. Option
-F is tricky. The default constructor is only written by the compiler if no user-defined
-constructors were provided. this() can only be called from a constructor in the same
-class. Since there can be no user-defined constructors in the class if a default constructor
-was created, it is impossible for option F to be true.
+17. B, D, E. Since Java is pass-by-reference, assigning a new object to a does not change the caller. Calling append() does affect the caller because both the method parameter and
+caller have a reference to the same object. Finally, returning a value does pass the reference to the caller for assignment to s3.
+18. C, G. Since the main() method is in the same class, it can call private methods in the class. this() may only be called as the first line of a constructor. this.variableName
+can be called from any instance method to refer to an instance variable. It cannot be called from a static method because there is no instance of the class to refer to. 
+Option F is tricky. The default constructor is only written by the compiler if no user-defined constructors were provided. this() can only be called from a constructor in the same class. 
+Since there can be no user-defined constructors in the class if a default constructor was created, it is impossible for option F to be true.
 19. A, G. Options B and C don’t compile because the constructor name must match the
 classname. Since Java is case sensitive, these don’t match. Options D, E, and F all compile
 and provide one user-defined constructor. Since a constructor is coded, a default
@@ -638,31 +624,20 @@ Option A sets the constructor parameter to itself, leaving the instance variable
 Option B sets the constructor parameter to the value of the instance variable, making
 them both 0. Option C is correct, setting the instance variable to the value of the constructor
 parameter. Options D and E do not compile.
-22. E. On line 3 of OrderDriver, we refer to Order for the first time. At this point the statics
-in Order get initialized. In this case, the statics are the static declaration of result
-and the static initializer. result is u at this point. On line 4, result is the same
-because the static initialization is only run once. On line 5, we create a new Order,
-which triggers the instance initializers in the order they appear in the file. Now result
-is ucr. Line 6 creates another Order, triggering another set of initializers. Now result
-is ucrcr. Notice how the static is on a different line than the initialization code in
-lines 4–5 of Order. The exam may try to trick you by formatting the code like this to
-confuse you.
-23. A. Line 4 instantiates an Order. Java runs the declarations and instance initializers first
-in the order they appear. This sets value to tacf. Line 5 creates another Order and
-initializes value to tacb. The object on line 5 is stored in the same variable line 4 used.
-This makes the object created on line 4 unreachable. When value is printed, it is the
+22. E. static blocks only execute once per class load,  this happens before any instances of the class are created. On line 3 of OrderDriver, we refer to Order for the first time.
+At this point the statics in Order get initialized. In this case, the statics are the static declaration of result
+and the static initializer. result is u at this point. On line 4, result is the same because the static initialization is only run once. On line 5, we create a new Order,
+which triggers the instance initializers in the order they appear in the file. Now result is ucr. Line 6 creates another Order, triggering another set of initializers. Now result is ucrcr. 
+Notice how the static is on a different line than the initialization code in lines 4–5 of Order. The exam may try to trick you by formatting the code like this to confuse you.
+23. A. Line 4 instantiates an Order. Java runs the declarations and instance initializers first in the order they appear. This sets value to tacf. Line 5 creates another Order and
+initializes value to tacb. The object on line 5 is stored in the same variable line 4 used. This makes the object created on line 4 unreachable. When value is printed, it is the
 instance variable in the object created on line 5.
-24. B, C, E. value1 is a final instance variable. It can only be set once: in the variable declaration,
-an instance initializer, or a constructor. Option A does not compile because
-the final variable was already set in the declaration. value2 is a static variable. Both
-instance and static initializers are able to access static variables, making options B
-and E correct. value3 is an instance variable. Options D and F do not compile because
-a static initializer does not have access to instance variables.
+24. B, C, E. value1 is a final instance variable. It can only be set once: in the variable declaration, an instance initializer, or a constructor. Option A does not compile because
+the final variable was already set in the declaration. value2 is a static variable. Both instance and static initializers are able to access static variables, making options B
+and E correct. value3 is an instance variable. Options D and F do not compile because a static initializer does not have access to instance variables.
 
-25. A, E. The 100 parameter is an int and so calls the matching int constructor. When
-this constructor is removed, Java looks for the next most specific constructor. Java prefers
-autoboxing to varargs, and so chooses the Integer constructor. The 100L parameter
-is a long. Since it can’t be converted into a smaller type, it is autoboxed into a Long
+25. A, E. The 100 parameter is an int and so calls the matching int constructor. When this constructor is removed, Java looks for the next most specific constructor. Java prefers
+autoboxing to varargs, and so chooses the Integer constructor. The 100L parameter is a long. Since it can’t be converted into a smaller type, it is autoboxed into a Long
 and then the constructor for Object is called.
 26. A. This code is correct. Line 8 creates a lambda expression that checks if the age is less
 than 5. Since there is only one parameter and it does not specify a type, the parentheses
