@@ -85,7 +85,27 @@ In essence:
     -The dynamic web project provides the structure for your web application.
     -Maven provides the tools to manage and build that application.
 
-   
+------------------------------servlet vs class in java dynamic project?-----------------
+
+Purpose:
+General Java classes: General-purpose code.
+Servlets: Specifically for handling web requests and responses.   
+
+Lifecycle:
+General Java classes: Standard object lifecycle.
+Servlets: Servlet container-managed lifecycle.   
+
+Web Interaction:
+General Java classes: No inherent web interaction.
+Servlets: Designed for web interaction (HTTP).   
+
+Extending:
+Servlets are java classes that extend the javax.servlet.http.HttpServlet class.
+
+In simpler terms:
+Think of a regular Java class as a tool in your toolbox.
+A servlet is a specialized tool designed specifically for working with web requests.   
+Therefore, while a servlet is a Java class, it has a specialized role and behavior within a Java dynamic web project.
 
 
 ========================== Issues =======================================
