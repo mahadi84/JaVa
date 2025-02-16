@@ -73,8 +73,23 @@ Right-click on your project -> Build Path -> Configure Build Path.
 Go to the "Libraries" tab. You'll see "Maven Dependencies" listed there.  
 **This shows the dependencies, not the files directly.
 
+----------------------- java dynamic project vs mavin project? ---------------------------------------
+How They Relate:
+    -A Java dynamic web project can be managed by Maven.   
+    -In modern Java web development, it's very common to use both together.
+    -You would create a dynamic web project and then use Maven to manage its dependencies and build process.   
+    -Maven helps to standardize the build process of the dynamic web project.   
+    -In newer versions of eclipse, when creating a Dynamic web project, it is very common to create that project as a maven project.
+
+In essence:
+    -The dynamic web project provides the structure for your web application.
+    -Maven provides the tools to manage and build that application.
+
+   
+
 
 ========================== Issues =======================================
+
 Issue_01: While run the code it shows beow error:
 NOTEPAD
 "The filename, directory name or volume label syntax is incorrect"
