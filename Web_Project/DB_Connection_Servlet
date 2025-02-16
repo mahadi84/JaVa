@@ -30,14 +30,12 @@ public class DatabaseCheckServlet extends HttpServlet {
 	        PrintWriter out = response.getWriter();
 
 	        try {
-
 	            ResultSet resultSet = statement.executeQuery("SELECT * from user_info;"); // Simple query
 	            out.println("<html><body>");
 	            while(resultSet.next()){
 	                out.println("<h1>" + resultSet.getString("name") + "</h1>");
 	            } 
 	            out.println("</body></html>");
-
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	            out.println("<html><body>");
