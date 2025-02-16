@@ -1,4 +1,7 @@
-  <modelVersion>4.0.0</modelVersion>
+
+pom = project object model
+
+<modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
   <artifactId>com.example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
