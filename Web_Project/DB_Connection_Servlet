@@ -1,0 +1,73 @@
+**all neccesary import.
+
+@WebServlet("/dbCheck")
+public class DatabaseCheckServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    private Connection connection;
+    private Statement statement;
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load the MySQL driver
+            String url = "jdbc:mysql://localhost:3306/your_database_name"; // Replace with your database URL
+            String user = "your_username"; // Replace with your username
+            String password = "your_password"; // Replace with your password
+            connection = DriverManager.getConnection(url, user, password);
+            statement = connection.createStatement();
+            System.out.println("Database connection established in init().");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            throw new ServletException("Database initialization failed: " + e.getMessage());
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        try {
+
+            ResultSet resultSet = statement.executeQuery("SELECT 'Database Connected' as message;"); // Simple query
+            out.println("<html><body>");
+            if (resultSet.next()) {
+                out.println("<h1>" + resultSet.getString("message") + "</h1>");
+            } else {
+                out.println("<h1>Database Connection Failed</h1>");
+            }
+
+            out.println("</body></html>");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            out.println("<html><body>");
+            out.println("<h1>Database query failed: " + e.getMessage() + "</h1>");
+            out.println("</body></html>");
+
+        }
+    }
+
+    @Override
+    public void destroy() {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+            System.out.println("Database connection closed in destroy().");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error closing database connection: " + e.getMessage());
+        }
+    }
+}
+
+
+
+
+-
