@@ -107,6 +107,20 @@ Think of a regular Java class as a tool in your toolbox.
 A servlet is a specialized tool designed specifically for working with web requests.   
 Therefore, while a servlet is a Java class, it has a specialized role and behavior within a Java dynamic web project.
 
+-------------------------what are dependency in java dynamic project? -------------------
+"Dependencies" refer to external libraries or other pieces of code that your project relies on to function correctly.
+These dependencies provide pre-built functionality that you can use in your own code, saving you from having to write everything from scratch.
+
+External Libraries: These are collections of pre-written Java code packaged in JAR (Java Archive) files.   
+They provide functionalities like:
+    -Database connectivity (e.g., JDBC drivers).
+    -Web frameworks (e.g., Spring, Struts).
+    -Utility functions (e.g., Apache Commons).   
+    -JSON processing (e.g., Jackson, Gson).
+
+   
+
+
 
 ========================== Issues =======================================
 
