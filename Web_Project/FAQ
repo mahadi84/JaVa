@@ -1,0 +1,229 @@
+
+01. Init Parameters
+02. Servlet Context
+03. Prepared Statement
+04. Inter Servlet Communication
+05. Prelnitialization of Servlets
+06. Servlet Listeners
+07. Servlet Filters
+08. Session Management
+09. JSP Basics
+10. JSP Actions
+11. MVC Design Pattern
+12. Creating Custom Tags
+13. JSTL Introduction
+14. Web Security
+15. Connection Pooling
+
+
+
+================================================== FAQ ==================================================
+------------------------ How to check whether the above dependencies are downloaded ------------------
+Build Path: I can see the dependencies in the Java Build Path. 
+Right-click on your project -> Build Path -> Configure Build Path. 
+Go to the "Libraries" tab. You'll see "Maven Dependencies" listed there.  
+**This shows the dependencies, not the files directly.
+
+----------------------- java dynamic project vs mavin project? ---------------------------------------
+How They Relate:
+    -A Java dynamic web project can be managed by Maven.   
+    -In modern Java web development, it's very common to use both together.
+    -You would create a dynamic web project and then use Maven to manage its dependencies and build process.   
+    -Maven helps to standardize the build process of the dynamic web project.   
+    -In newer versions of eclipse, when creating a Dynamic web project, it is very common to create that project as a maven project.
+
+In essence:
+    -The dynamic web project provides the structure for your web application.
+    -Maven provides the tools to manage and build that application.
+
+------------------------------servlet vs class in java dynamic project?-----------------
+
+Purpose:
+General Java classes: General-purpose code.
+Servlets: Specifically for handling web requests and responses.   
+
+Lifecycle:
+General Java classes: Standard object lifecycle.
+Servlets: Servlet container-managed lifecycle.   
+
+Web Interaction:
+General Java classes: No inherent web interaction.
+Servlets: Designed for web interaction (HTTP).   
+
+Extending:
+Servlets are java classes that extend the javax.servlet.http.HttpServlet class.
+
+In simpler terms:
+Think of a regular Java class as a tool in your toolbox.
+A servlet is a specialized tool designed specifically for working with web requests.   
+Therefore, while a servlet is a Java class, it has a specialized role and behavior within a Java dynamic web project.
+
+-------------------------what are dependency in java dynamic project? -------------------
+"Dependencies" refer to external libraries or other pieces of code that your project relies on to function correctly.
+These dependencies provide pre-built functionality that you can use in your own code, saving you from having to write everything from scratch.
+
+External Libraries: These are collections of pre-written Java code packaged in JAR (Java Archive) files.   
+They provide functionalities like:
+    -Database connectivity (e.g., JDBC drivers).
+    -Web frameworks (e.g., Spring, Struts).
+    -Utility functions (e.g., Apache Commons).   
+    -JSON processing (e.g., Jackson, Gson).
+
+   
+
+================= 1. Init Parameters   =================
+- What it is: Initialization parameters are configuration values that can be passed to a servlet or filter when it is initialized.
+- Usage: Defined in the web.xml file or using annotations (@WebInitParam).
+- Example:
+  xml
+  <servlet>
+      <servlet-name>MyServlet</servlet-name>
+      <servlet-class>com.example.MyServlet</servlet-class>
+      <init-param>
+          <param-name>config</param-name>
+          <param-value>value</param-value>
+      </init-param>
+  </servlet>
+  
+- Purpose: Used to configure servlets without hardcoding values in the code.
+
+
+================= 2. Servlet Context   =================
+- What it is: The ServletContext is an object that represents the entire web application. It is shared across all servlets and sessions.
+- Usage: Used to store application-wide data (e.g., database connection, shared resources).
+- Example:
+  java
+  getServletContext().setAttribute("sharedData", data);
+  
+- Purpose: Enables sharing data and resources across the application.
+
+
+================= 3. Prepared Statement   =================
+- What it is: A PreparedStatement is a feature of JDBC (Java Database Connectivity) used to execute parameterized SQL queries.
+- Usage: Prevents SQL injection and improves performance by precompiling SQL queries.
+- Example:
+  java
+  PreparedStatement ps = connection.prepareStatement("SELECT  FROM users WHERE id = ?");
+  ps.setInt(1, userId);
+  ResultSet rs = ps.executeQuery();
+  
+- Purpose: Enhances database interaction in web applications.
+
+
+================= 4. Inter Servlet Communication   =================
+- What it is: A mechanism for servlets to communicate with each other, either by sharing data through the ServletContext, RequestDispatcher, or session attributes.
+- Usage:
+  - Forwarding requests: request.getRequestDispatcher("url").forward(request, response);
+  - Including responses: request.getRequestDispatcher("url").include(request, response);
+- Purpose: Allows collaboration between servlets to handle complex workflows.
+
+
+================= 5. Preinitialization of Servlets   =================
+- What it is: Loading and initializing servlets when the application starts, rather than on the first request.
+- Usage: Configured in web.xml using the <load-on-startup> tag.
+- Example:
+  xml
+  <servlet>
+      <servlet-name>MyServlet</servlet-name>
+      <servlet-class>com.example.MyServlet</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+- Purpose: Reduces response time for the first request.
+
+
+================= 6. Servlet Listeners   =================
+- What it is: Interfaces that listen for specific events in the web application lifecycle (e.g., application startup, session creation).
+- Usage: Implement interfaces like ServletContextListener, HttpSessionListener, etc.
+- Purpose: Used for tasks like initializing resources, tracking sessions, or cleaning up.
+
+
+================= 7. Servlet Filters   =================
+- What it is: Components that intercept requests and responses to perform pre-processing or post-processing tasks.
+- Usage: Implement the Filter interface and configure in web.xml or using @WebFilter.
+- Example:
+  java
+  public class MyFilter implements Filter {
+      public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+          // Pre-processing
+          chain.doFilter(request, response); // Pass to the next filter or servlet
+          // Post-processing
+      }
+  }
+  
+- Purpose: Used for logging, authentication, input validation, etc.
+
+
+================= 8. Session Management   =================
+- What it is: Techniques to manage user sessions, such as tracking user activity across multiple requests.
+- Usage: Use HttpSession to store session-specific data.
+- Example:
+  java
+  HttpSession session = request.getSession();
+  session.setAttribute("user", user);
+  
+- Purpose: Maintains stateful interactions with users.
+
+
+================= 9. JSP Basics   =================
+- What it is: JavaServer Pages (JSP) is a technology used to create dynamic web pages using Java.
+- Usage: Combines HTML with Java code using tags like <% %> or JSTL.
+- Example:
+  jsp
+  <html>
+      <body>
+          <% out.println("Hello, World!"); %>
+      </body>
+  </html>
+  
+- Purpose: Simplifies the creation of dynamic content.
+
+
+================= 10. JSP Actions   =================
+- What it is: Standard actions in JSP that perform specific tasks, such as including other resources or forwarding requests.
+- Usage: Use tags like <jsp:include>, <jsp:forward>, or <jsp:useBean>.
+- Example:
+  jsp
+  <jsp:include page="header.jsp" />
+  
+- Purpose: Enhances JSP functionality.
+
+
+================= 11. MVC Design Pattern   =================
+- What it is: A design pattern that separates an application into three components:
+  - Model: Represents data and business logic.
+  - View: Represents the UI (e.g., JSP).
+  - Controller: Handles user input and updates the model.
+- Usage: Commonly used in frameworks like Spring MVC.
+- Purpose: Promotes clean separation of concerns.
+
+
+================= 12. Creating Custom Tags   =================
+- What it is: Custom JSP tags created to encapsulate reusable functionality.
+- Usage: Define a tag library (TLD) and implement the tag handler class.
+- Purpose: Reduces code duplication and improves maintainability.
+
+
+================= 13. JSTL Introduction   =================
+- What it is: JavaServer Pages Standard Tag Library (JSTL) provides a set of tags for common tasks like looping, conditionals, and formatting.
+- Usage: Include JSTL in your JSP pages.
+- Example:
+  jsp
+  <c:forEach items="${users}" var="user">
+      ${user.name}
+  </c:forEach>
+  
+- Purpose: Simplifies JSP development.
+
+
+================= 14. Web Security   =================
+- What it is: Techniques to secure web applications, such as authentication, authorization, and input validation.
+- Usage: Use frameworks like Spring Security or implement custom security measures.
+- Purpose: Protects against vulnerabilities like SQL injection, XSS, etc.
+
+
+================= 15. Connection Pooling   =================
+- What it is: A technique to reuse database connections instead of creating new ones for each request.
+- Usage: Use libraries like HikariCP or Apache DBCP.
+- Purpose: Improves performance and scalability.
+
