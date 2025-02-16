@@ -94,7 +94,7 @@ Solution:
     import jakarta.servlet.http.HttpServletResponse;
 
 
-Issue_02: "Tomcat server can not run"
+Issue_02: "Server Tomcat v11.0 Server at localhost failed to start."
 Solution: Remove unused Servlet info from web.xml and clean the project(Project>Clean).
 
 
