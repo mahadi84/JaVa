@@ -266,7 +266,7 @@
     public static void main(String[] args) {
     try {
     System.out.println("work real hard");
-    } catch ( e) {
+    } catch (____ e) {
     } catch (RuntimeException e) {
     }
     }
