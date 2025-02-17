@@ -36,9 +36,7 @@ Important Notes:
    * For eclipse 2024, ensure you have the correct java and web development plugins installed.
 
 
-
-
------------------- CODE ------------------------------
+===================================== CODE =======================================
 // pom.xml (Maven dependencies)
 <dependencies>	
     <dependency>
@@ -71,26 +69,41 @@ Important Notes:
 
 
 --------------------------// login.html -----------------------------------------
-<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form action="LoginServlet" method="post">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit" value="Login">
-    </form>
-</body>
-</html>
+<%@ include file="include/header.jsp" %>
+
+<body class="d-flex" style="background-color: #006400;">
+ <!--<div class="container-fluid">-->
+
+<form action="loginServlet" method="POST" class="form-login text-center text-white">
+    <h2 class="mb-3">User Login</h2>    
+    
+    <div id="error-message" style="color: red;">
+        <%
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null) {
+                out.println(errorMessage);
+            }
+        %>
+    </div>  
+    
+    <input name="email" type="email" class="form-control mb-3"  id="email" placeholder="Email Address" required>
+    <input name="password" type="password" class="form-control mb-3" id="password" placeholder="Enter your password" required>
+    <div class="checkbox mb-3">
+      <label for="">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button type="submit" name="submit" class="btn btn-primary w-100">Login</button>
+    <!--btn-block is not working in v5-->
+  </form>
+
+ <!--<div>--> 
+ <%@ include file="include/footer.jsp" %> 
 
 --------------------------// LoginServlet.java--------------------------------
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
     private Connection connection;
 
@@ -98,9 +111,9 @@ public class LoginServlet extends HttpServlet {
     public void init() throws ServletException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/your_database"; // Replace with your database URL
-            String user = "your_username"; // Replace with your database username
-            String password = "your_password"; // Replace with your database password
+            String url = "jdbc:mysql://localhost/crud"; // Replace with your database URL
+            String user = "root"; // Replace with your database username
+            String password = "Mahadi@123"; // Replace with your database password
             connection = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -114,28 +127,28 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         try {
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM user_info WHERE email = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
+            statement.setString(1, email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username); // Set session attribute
+                session.setAttribute("email", email); // Set session attribute
                 response.sendRedirect("welcome.jsp"); // Redirect to welcome page
             } else {
-                out.println("<p style='color:red;'>Invalid username or password.</p>");
-                request.getRequestDispatcher("login.html").include(request, response); // include login page
+            	request.setAttribute("errorMessage", "Invalid username or password.");
+            	request.getRequestDispatcher("index.jsp").include(request, response); // backward to index.jsp
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            out.println("<p style='color:red;'>Database error: " + e.getMessage() + "</p>");
-            request.getRequestDispatcher("login.html").include(request, response);
+            e.printStackTrace();            
+            request.setAttribute("errorMessage", "<p style='color:red;'>Database error: " + e.getMessage() + "</p>");
+        	request.getRequestDispatcher("index.jsp").include(request, response); // backward to index.jsp
         }
     }
 
@@ -155,7 +168,7 @@ public class LoginServlet extends HttpServlet {
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     if (session == null || session.getAttribute("username") == null) {
-        response.sendRedirect("login.html");
+        response.sendRedirect("index.jsp");
         return;
     }
     String username = (String) session.getAttribute("username");
@@ -183,7 +196,7 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Invalidate the session
         }
-        response.sendRedirect("login.html"); // Redirect to login page
+        response.sendRedirect("index.html"); // Redirect to login page
     }
 }
 
