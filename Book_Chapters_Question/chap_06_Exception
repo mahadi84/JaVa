@@ -245,7 +245,9 @@
     interface Roar {
     void roar() throws HasSoreThroatException;
     }
-    class Lion implements Roar {// INSERT CODE HERE  }
+    class Lion implements Roar {
+        // INSERT CODE HERE  
+     }
         A. public void roar(){}
         B. public void roar() throws Exception{}
         C. public void roar() throws HasSoreThroatException{}
