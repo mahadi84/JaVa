@@ -1,12 +1,68 @@
 
 
-Duplicate a line is:  Ctrl + Alt + Down Arrow
-Delete a line: Ctrl+D
+### General Shortcuts
+1. Ctrl + Space: Content Assist (code completion).
+2. Ctrl + Shift + O: Organize imports (fix missing imports).
+3. Ctrl + Shift + T: Open Type (search for a class).
+4. Ctrl + Shift + R: Open Resource (search for a file).
+5. Ctrl + 1: Quick Fix (suggest fixes for errors/warnings).
+6. Ctrl + /: Toggle comment (comment/uncomment selected lines).
+7. Ctrl + D: Delete current line.
+8. Ctrl + Shift + F: Format code.
+9. Ctrl + S: Save current file.
+10. Ctrl + Shift + S: Save all files.
 
-Move a line Up/Down: Alt+Up/Down Arrow
+### Navigation Shortcuts
+1. Ctrl + Click: Go to the declaration of a method, class, or variable.
+2. F3: Go to the declaration of a method, class, or variable.
+3. Alt + Left Arrow: Go back to the previous location.
+4. Alt + Right Arrow: Go forward to the next location.
+5. Ctrl + L: Go to a specific line number.
 
-See suggestion: Ctrl+1
+### Debugging Shortcuts
+1. F5: Step into.
+2. F6: Step over.
+3. F7: Step return.
+4. F8: Resume execution.
+5. Ctrl + Shift + B: Toggle breakpoint.
+6. Ctrl + F11: Run last launched application.
+7. F11: Debug last launched application.
 
+### Maven-Specific Shortcuts
+1. Alt + F5: Update Maven Project.
+2. Ctrl + Alt + N: Run Maven build (custom key binding, may vary).
+3. Right-click on project > Maven > Update Project: Update Maven dependencies.
+
+### Refactoring Shortcuts
+1. Alt + Shift + R: Rename (refactor variable, method, or class name).
+2. Alt + Shift + M: Extract method.
+3. Alt + Shift + L: Extract local variable.
+4. Alt + Shift + I: Inline (inline a method or variable).
+
+### Search Shortcuts
+1. Ctrl + H: Open the search dialog.
+2. Ctrl + G: Find references in workspace.
+3. Ctrl + Shift + G: Search for references to a method or variable.
+
+### View Management
+1. Ctrl + M: Maximize or minimize the current view.
+2. Ctrl + F7: Switch between views (e.g., Package Explorer, Console).
+3. Ctrl + Shift + E: Switch to another editor (open files).
+
+### Code Generation
+1. Alt + Shift + S: Open Source menu (generate getters/setters, constructors, etc.).
+2. Alt + Shift + Z: Surround with (try-catch, loops, etc.).
+
+### Terminal/Console
+1. Ctrl + Alt + Enter: Open or focus on the terminal/console.
+
+
+
+
+
+
+
+-
 
 
 
