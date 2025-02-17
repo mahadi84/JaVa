@@ -167,11 +167,11 @@ public class LoginServlet extends HttpServlet {
 -----------------------------// welcome.jsp ----------------------------
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    if (session == null || session.getAttribute("username") == null) {
+    if (session == null || session.getAttribute("email") == null) {
         response.sendRedirect("index.jsp");
         return;
     }
-    String username = (String) session.getAttribute("username");
+    String email = (String) session.getAttribute("email");
 %>
 <!DOCTYPE html>
 <html>
@@ -179,7 +179,7 @@ public class LoginServlet extends HttpServlet {
 <title>Welcome</title>
 </head>
 <body>
-    <h1>Welcome, <%= username %>!</h1>
+    <h1>Welcome, <%= email %>!</h1>
     <a href="LogoutServlet">Logout</a>
 </body>
 </html>
