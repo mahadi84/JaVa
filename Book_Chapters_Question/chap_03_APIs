@@ -3,7 +3,7 @@
 
 
 -----------------------------------------
-    8,15,18,19,24,25,**26,28,33 = 9
+    8,14,15,18,19,24,*25,*26,28,33 = 10
 -----------------------------------------
 
 1. What is output by the following code? (Choose all that apply)
@@ -481,7 +481,7 @@ and the other comes from building using String operations.
 the ending index. Line 7 adds 0 to total. Line 8 is a problem: Java does not allow the
 indexes to be specified in reverse order and the code throws a StringIndexOutOf-
 BoundsException.
-Chapter 3: Core Java APIs 341
+
 12. A. First, we delete the characters at index 2 until the character one before index 8. At
 this point, 0189 is in numbers. The following line uses method chaining. It appends a
 dash to the end of the characters sequence, resulting in 0189–, and then inserts a plus
