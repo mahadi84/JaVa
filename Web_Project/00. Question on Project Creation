@@ -1,5 +1,25 @@
+Date: 22-Feb-2025
+
+
 
 01.
-"How can I create a Java web application using Servlets to process HTML form requests, 
-connect to a MySQL database, and implement MVC architecture for CRUD operations (e.g., managing employee details like ID, name, and age)?
-Additionally, how can I handle sessions and display success/error messages after form submission in Eclipse IDE?
+How can I create a Java web application using Eclipse IDE that 
+processes an HTML form request using a Servlet, 
+connects to a MySQL database (with automatic connection closure after queries), 
+implements MVC architecture for CRUD operations (e.g., Employee ID, name, age), 
+manages sessions for HTML pages, and displays success or error messages upon form submission?
+
+
+
+
+
+
+
+
+
+
+
+
+-
+
+
