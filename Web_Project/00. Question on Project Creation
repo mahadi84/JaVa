@@ -3,7 +3,7 @@ Date: 22-Feb-2025
 
 
 01.
-How can I create a Java web application using Eclipse IDE that 
+How can I create a Java web application using Eclipse IDE 2024 that 
 processes an HTML form request using a Servlet, 
 connects to a MySQL database (with automatic connection closure after queries), 
 implements MVC architecture for CRUD operations (e.g., Employee ID, name, age), 
