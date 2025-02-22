@@ -1,0 +1,5 @@
+
+01.
+How can I implement a Java Servlet to process an HTML form request, connect to a MySQL database, and use MVC architecture to perform CRUD operations 
+(e.g., for an Employee with attributes like ID, name, and age)? 
+Additionally, how can you manage sessions and display success or error messages after submitting the form? give me java code on this.
