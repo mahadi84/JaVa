@@ -11,9 +11,16 @@ manages sessions for HTML pages, and displays success or error messages upon for
 
 
 02.
-How can I create a simple single-page CRUD (Create, Read, Update, Delete) application 
-using Java Servlets and Eclipse IDE 2024, where all the operations are performed on an HTML page without navigating away from the page? 
-The application should use a MySQL database for storing data and be structured to follow the MVC (Model-View-Controller) pattern.
+How can I develop a single HTML page CRUD (Create, Read, Update, Delete) application using Java in Eclipse IDE (version 2024)? The application should include the following features:
+  -A single HTML page with forms and buttons to perform CRUD operations (e.g., for managing employee records with fields like ID, name, and age).
+  -A Java backend using Servlets to handle HTTP requests (GET, POST) for CRUD operations.
+  -Integration with a MySQL database to store and retrieve data, with automatic connection management (e.g., using try-with-resources to close connections after queries).
+  -Implementation of the MVC (Model-View-Controller) architecture:
+    Model: Java classes to represent the data (e.g., Employee.java) and interact with the database (e.g., EmployeeDAO.java).
+    View: A single HTML page (index.html or index.jsp) to display the form, data table, and success/error messages.
+    Controller: Servlets to process form submissions and manage the flow of data between the view and model.
+  -Use of sessions to display success or error messages after form submissions (e.g., "Employee added successfully" or "Error: Employee not found").
+
 
 
 
