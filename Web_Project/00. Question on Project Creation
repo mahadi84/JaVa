@@ -10,6 +10,12 @@ implements MVC architecture for CRUD operations (e.g., Employee ID, name, age),
 manages sessions for HTML pages, and displays success or error messages upon form submission?
 
 
+02.
+How can I create a simple single-page CRUD (Create, Read, Update, Delete) application 
+using Java Servlets and Eclipse IDE 2024, where all the operations are performed on an HTML page without navigating away from the page? 
+The application should use a MySQL database for storing data and be structured to follow the MVC (Model-View-Controller) pattern.
+
+
 
 
 
