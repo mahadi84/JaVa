@@ -2,7 +2,7 @@ Medium Easy.
 
 ================================== Chapter_05(Using Loop Constructs) ====================================
 
-6,16,21,23,24,26,28,**30, 31,33,34,35,38,39,40,41,43,47,48 = 19
+6,*16,21,*23,*24,26,28,*30,*31,33,34,35,*38,39,*40,41,43,47,48 = 19
 
 
 1. Which type of loop is best known for its boolean condition that controls entry to the loop?
