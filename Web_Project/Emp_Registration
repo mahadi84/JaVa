@@ -1,0 +1,208 @@
+
+============================= Folders =============================
+EmployeeManagement/
+│── src/
+│   ├── controller/      (Servlets)
+│   ├── model/           (Java Beans)
+│   ├── dao/             (Data Access Object)
+│── WebContent/
+│   ├── index.jsp        (Bootstrap 5 Form)
+│   ├── success.jsp      (Success message)
+│   ├── error.jsp        (Error message)
+│   ├── WEB-INF/
+│   │   ├── web.xml      (Deployment Descriptor)
+│── lib/                 (JDBC & Servlet JARs)
+│── sql/                 (Database script)
+
+
+==============================Database==============================
+CREATE DATABASE EmployeeDB;
+USE EmployeeDB;
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    age INT NOT NULL
+);
+
+
+==============================index.jsp==============================
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style/myStyle.css">
+    <title>Bismillah</title>
+  </head>
+-----------------------------header.jsp-----------------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="Include/header.jsp" %>
+   <body class="d-flex">  
+  <form  action="emp" method="post" class="form-login text-center text-white">
+    <h2 class="mb-3">Register Employee</h2>
+   <% if (session.getAttribute("message") != null) { %>
+        <%= session.getAttribute("message") %>
+        <% session.removeAttribute("message"); %>
+    <% } %>
+  
+    <input name="name"  type="text" class="form-control mb-3" placeholder="Employee name" id="name" required>
+    <input name="age"   type="number" class="form-control mb-3" placeholder="Enter age" id="age" required>
+    
+    <button class="btn btn-primary w-100 mt-3" type="submit" name="submit">Login</button>
+    <!--btn-block is not working in v5-->
+  </form>
+
+<%@include file="Include/footer.jsp" %>
+---------------------------footer.jsp-------------------
+      <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+==============================model.Emp.java========================================
+package model;
+
+public class Employee {
+    private int id;
+    private String name;
+    private int age;
+
+    public Employee() {}
+
+    public Employee(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+}
+
+
+==============================dao.DBConnection.java==================================
+package dao;
+import java.sql.*;
+
+public class DBConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/EmployeeDB";
+    private static final String USER = "root";
+    private static final String PASSWORD = "Mahadi@123";
+
+    public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public static void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+==============================dao.EmpDAO.java=========================================
+package dao;
+import model.Employee;
+import java.sql.*;
+
+public class EmployeeDAO {	
+	// Check if name already exists
+    public static boolean nameExists(String name) {
+        String query = "SELECT 1 FROM employees WHERE name = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // Returns true if name exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+	
+	
+    public static boolean insertEmployee(Employee emp) {
+    	 if (nameExists(emp.getName())) {
+             return false; // Prevent duplicate email entry
+         }
+    	
+        String query = "INSERT INTO employees (name, age) VALUES (?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, emp.getName());
+            stmt.setInt(2, emp.getAge());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+
+==============================controller.EmpServlet.java==============================
+package controller;
+
+import java.io.IOException;
+
+import dao.EmployeeDAO;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Employee;
+
+
+@WebServlet("/emp")
+public class EmpServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        int age = Integer.parseInt(request.getParameter("age"));
+
+        Employee emp = new Employee(0, name, age);
+        boolean success = EmployeeDAO.insertEmployee(emp);
+
+        HttpSession session = request.getSession();
+        if (success) {
+            session.setAttribute("message", "<div class=\"text-info mb-3\">Employee added successfully!</div>");
+            response.sendRedirect("index.jsp");
+        }else {
+            session.setAttribute("message", "<div class=\"text-danger mb-3\">Error: Email already exists!</div>");
+            response.sendRedirect("index.jsp");
+        }
+    }
+}
+
