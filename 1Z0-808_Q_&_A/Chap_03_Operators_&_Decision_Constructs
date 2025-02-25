@@ -7,7 +7,7 @@ Not Very easy but EASY. :D
 Expression: boolean result = condition1 && condition2;
   && = Returns true only if both condition1 and condition2 are true.
   || = Returns true if at least one of condition1 or condition2 is true.
-  XOR (^) = Returns true if only one of condition1 or condition2 is true.
+  XOR (^) = Returns true if only one of condition1 or condition2 is true.( If both conditions are true, or both are false, the result is false.)
 
 1. Which of the following variable types is not permitted in a switch statement?
         A. String
