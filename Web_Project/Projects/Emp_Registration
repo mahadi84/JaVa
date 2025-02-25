@@ -162,7 +162,7 @@ import model.Employee;
 import java.sql.*;
 
 public class EmployeeDAO {	
-	// Check if name already exists
+	// Check if email already exists
     public static boolean nameExists(String email) {
         String query = "SELECT 1 FROM employees WHERE email = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -216,8 +216,8 @@ public class EmpServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
+	String name = request.getParameter("name");
+	String email = request.getParameter("email");
         String ageStr = request.getParameter("age");
         String errorMessage = "";
         boolean isValid = true; // Assume valid initially
@@ -270,3 +270,10 @@ public class EmpServlet extends HttpServlet {
 		
     }
 }
+
+
+
+
+
+
+-
