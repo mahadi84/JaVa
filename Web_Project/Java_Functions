@@ -17,6 +17,8 @@ public class EmpServlet extends HttpServlet {}
 
 name == null || name.trim().isEmpty() || !email.contains("@")
 
+${name}
+
 
 
 
