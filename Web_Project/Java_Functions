@@ -2,6 +2,10 @@
 
 <%@ include file="Include\header.jsp" %>
 ${email}
+	<% if (session.getAttribute("message") != null) { %>
+              <%= session.getAttribute("message") %>
+       	      <% session.removeAttribute("message"); %>
+   	<% } %>
 
 @WebServlet("/emp")
 public class EmpServlet extends HttpServlet {
@@ -18,10 +22,21 @@ request.setAttribute("errorMessage", errorMessage);
 request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
-
+!name.matches("[a-zA-Z\\s]+")
 email == null || 
 email.trim().isEmpty() || 
 !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+
+int age = 0;
+try {
+    age = Integer.parseInt(ageStr);
+    if (age <= 20 || age > 30) {
+	throw new NumberFormatException();
+    }
+} catch (NumberFormatException e) {
+    errorMessage += "Invalid age. Must be between 20 to 30.<br>";
+    isValid = false;
+}
 
 
 
