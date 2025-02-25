@@ -1,4 +1,11 @@
 
+Windows/Preference->Keys
+
+Delete current line: Ctrl + D
+Save all files: Ctrl + Shift + S
+comment/uncomment selected lines: Ctrl + /
+fix missing imports: Ctrl + Shift + O
+
 
 ### General Shortcuts
 1. Ctrl + Space: Content Assist (code completion).
