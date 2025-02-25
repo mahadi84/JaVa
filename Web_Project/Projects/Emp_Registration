@@ -216,8 +216,8 @@ public class EmpServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	String name = request.getParameter("name");
-	String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
         String ageStr = request.getParameter("age");
         String errorMessage = "";
         boolean isValid = true; // Assume valid initially
@@ -245,7 +245,6 @@ public class EmpServlet extends HttpServlet {
         }
 		
       
-
         if (isValid) {
         	 Employee emp = new Employee(0, name, email, age);
              boolean success = EmployeeDAO.insertEmployee(emp);
@@ -255,8 +254,12 @@ public class EmpServlet extends HttpServlet {
                  session.setAttribute("message", "<div class=\"text-info mb-3\">Employee added successfully!</div>");
                  response.sendRedirect("index.jsp");
              }else {
-                 session.setAttribute("message", "<div class=\"text-danger mb-3\">Error: Email already exists!</div>");
-                 response.sendRedirect("index.jsp");
+            	 errorMessage += "Error: Email already exists!";                                 
+                 request.setAttribute("name", name); // Return the entered name
+                 request.setAttribute("email", email); //return the entered email
+                 request.setAttribute("age", age); //return the entered age
+                 request.setAttribute("errorMessage", errorMessage);
+                 request.getRequestDispatcher("index.jsp").forward(request, response);
              }
         } else {
             // Validation failed
@@ -270,7 +273,6 @@ public class EmpServlet extends HttpServlet {
 		
     }
 }
-
 
 
 
