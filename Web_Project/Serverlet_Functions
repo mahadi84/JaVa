@@ -1,3 +1,23 @@
 
 
 <%@ include file="header.jsp" %>  <%-- Include the header --%>
+
+int age = Integer.parseInt(request.getParameter("age"));
+HttpSession session = request.getSession();
+
+session.setAttribute("message", "<div class=\"text-info mb-3\">Employee added successfully!</div>");
+response.sendRedirect("index.jsp");
+OR
+request.setAttribute("email", email); //return the entered email
+request.setAttribute("errorMessage", errorMessage);
+request.getRequestDispatcher("index.jsp").forward(request, response);
+
+@WebServlet("/emp")
+public class EmpServlet extends HttpServlet {}
+
+
+
+
+
+
+-
