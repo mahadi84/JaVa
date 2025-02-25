@@ -15,6 +15,8 @@ request.getRequestDispatcher("index.jsp").forward(request, response);
 @WebServlet("/emp")
 public class EmpServlet extends HttpServlet {}
 
+name == null || name.trim().isEmpty() || !email.contains("@")
+
 
 
 
