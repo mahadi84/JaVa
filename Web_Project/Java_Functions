@@ -1,14 +1,15 @@
 
 
-<%@ include file="header.jsp" %>  <%-- Include the header --%>
-${name}
+<%@ include file="Include\header.jsp" %>
+${email}
 
 @WebServlet("/emp")
-public class EmpServlet extends HttpServlet {}
+public class EmpServlet extends HttpServlet {
+  private static final long serialVersionUID = 1L;
+	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-int age = Integer.parseInt(request.getParameter("age"));
+String email = request.getParameter("email");
 HttpSession session = request.getSession();
-
 session.setAttribute("message", "<div class=\"text-info mb-3\">Employee added successfully!</div>");
 response.sendRedirect("index.jsp");
 OR
@@ -18,7 +19,9 @@ request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
 
-name == null || name.trim().isEmpty() || !email.contains("@")
+email == null || 
+email.trim().isEmpty() || 
+!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
 
 
 
