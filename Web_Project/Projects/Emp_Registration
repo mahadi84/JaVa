@@ -89,112 +89,6 @@ CREATE TABLE employees (
   </body>
 </html>
 
-
-
-==============================model.Employee.java========================================
-package model;
-
-public class Employee {
-    private int id;
-    private String name;
-    private String email;
-    private int age;
-
-    public Employee() {}
-
-    public Employee(int id, String name, String email, int age) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.age = age;
-    }
-
-    // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    
-    public String getEmail() {return email;}
-    public void setEmail(String email) {this.email = email;	}
-
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
-}
-
-
-
-==============================dao.DBConnection.java==================================
-package dao;
-import java.sql.*;
-
-public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/EmployeeDB";
-    private static final String USER = "root";
-    private static final String PASSWORD = "Mahadi@123";
-
-    public static Connection getConnection() {
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return conn;
-    }
-
-    public static void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
-        try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (conn != null) conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-==============================dao.EmployeeDAO.java=========================================
-package dao;
-import model.Employee;
-import java.sql.*;
-
-public class EmployeeDAO {	
-	// Check if email already exists
-    public static boolean nameExists(String email) {
-        String query = "SELECT 1 FROM employees WHERE email = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); // Returns true if name exists
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-	
-	
-    public static boolean insertEmployee(Employee emp) {
-    	 if (nameExists(emp.getEmail())) {
-             return false; // Prevent duplicate email entry
-         }
-    	
-        String query = "INSERT INTO employees (name,email,age) VALUES (?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, emp.getName());
-            stmt.setString(2, emp.getEmail());
-            stmt.setInt(3, emp.getAge());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-}
 ==============================controller.EmpServlet.java==============================
 package controller;
 
@@ -273,6 +167,112 @@ public class EmpServlet extends HttpServlet {
 		
     }
 }
+
+==============================dao.EmployeeDAO.java=========================================
+package dao;
+import model.Employee;
+import java.sql.*;
+
+public class EmployeeDAO {	
+	// Check if email already exists
+    public static boolean nameExists(String email) {
+        String query = "SELECT 1 FROM employees WHERE email = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // Returns true if name exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+	
+	
+    public static boolean insertEmployee(Employee emp) {
+    	 if (nameExists(emp.getEmail())) {
+             return false; // Prevent duplicate email entry
+         }
+    	
+        String query = "INSERT INTO employees (name,email,age) VALUES (?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, emp.getName());
+            stmt.setString(2, emp.getEmail());
+            stmt.setInt(3, emp.getAge());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+
+
+==============================dao.DBConnection.java==================================
+package dao;
+import java.sql.*;
+
+public class DBConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/EmployeeDB";
+    private static final String USER = "root";
+    private static final String PASSWORD = "Mahadi@123";
+
+    public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public static void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+==============================model.Employee.java========================================
+package model;
+
+public class Employee {
+    private int id;
+    private String name;
+    private String email;
+    private int age;
+
+    public Employee() {}
+
+    public Employee(int id, String name, String email, int age) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;	}
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+}
+
 
 
 
