@@ -561,10 +561,15 @@ of the array references to it. So far there are two objects: the array itself an
 20. B. As with a one-dimensional array, the braces must be after the type, making alpha and beta illegal declarations. For a multi-dimensional array, the braces are allowed to be before
 and/or after the variable name. They do not need to be in the same place. Therefore, the remaining three are correct, and Option B is correct.
 
-21. B. It shows there are three different arrays of different lengths.
-        blocks[0]: ['a', 'b', 'c']
-        blocks[1]: ['d']
-        blocks[2]: ['e', 'f']
+21. B. It shows there are three different arrays of different lengths.       
+        blocks:
+        +---+---+---+
+        | a | b | c |   // Row 0
+        +---+---+---+
+        | d |   |   |   // Row 1
+        +---+---+---+
+        | e | f |   |   // Row 2
+        +---+---+---+
         --
         blocks[0][0] would give you 'a'.
         blocks[1][0] would give you 'd'.
