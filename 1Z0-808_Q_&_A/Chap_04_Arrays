@@ -561,7 +561,23 @@ of the array references to it. So far there are two objects: the array itself an
 20. B. As with a one-dimensional array, the braces must be after the type, making alpha and beta illegal declarations. For a multi-dimensional array, the braces are allowed to be before
 and/or after the variable name. They do not need to be in the same place. Therefore, the remaining three are correct, and Option B is correct.
 
-21. B. Options A, C and D represent 3x3 2D arrays. Option B best represents the array in the code. It shows there are three different arrays of different lengths.
+21. B. It shows there are three different arrays of different lengths.
+        blocks[0]: ['a', 'b', 'c']
+        blocks[1]: ['d']
+        blocks[2]: ['e', 'f']
+        --
+        blocks[0][0] would give you 'a'.
+        blocks[1][0] would give you 'd'.
+        blocks[2][1] would give you 'f'.
+        --
+        Row Index	Column Index	Value
+                0	        0	a'
+                0	        1	b'
+                0	        2	c'
+                1	        0	d'
+                2	        0	e'
+                2	        1	f'
+
 22. D. names.length is the number of elements in the array. The last valid index in the array is one less than names.length.
     In Java, arrays do not resize automatically. Therefore, the code throws an ArrayIndexOutOfBoundsException.
 23. C. The code days.size() would be correct if this was an ArrayList. Since it is an array, days.length is the correct code. Therefore, the code does not compile, and Option C is the answer.
