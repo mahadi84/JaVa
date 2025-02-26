@@ -609,9 +609,19 @@ Iteration 3: chars becomes ['a', 'a', 'a']. The inner loop runs three times, and
 Iteration 4: chars becomes ['a', 'a', 'a', 'a']. The inner loop runs four times, and count becomes 4 - 4 = 0.
 The loop condition count > 0 is now false, so the loop terminates. Therefore, Option B is correct.
 
-31. A. On the first iteration of the outer loop, i starts out at 10. The inner loop sees that 10 > 3 and subtracts 3, making the 7 the new value of i. Since 7 > 3, we subtract 3 again,
-making i set to 4. Yet again 4 > 3, so i becomes 1. Then k is finally incremented to 1. The outer loop decrements i i, making it 0. The boolean condition sees that 0 is not greater
-than 0. The outer loop ends and 1 is printed out. Therefore, Option A is correct.
+31. A. On the first iteration of the outer loop, 
+        Iteration	i (Start of Loop)	While Loop (i)	i (After While)	k (Before Increment)	k (After Increment)
+        1	                10	        10, 7, 4	1	        0	                1
+        2	                9	        9, 6, 3	        3	        1	                2
+        3	                8	        8, 5, 2	        2	        2	                3
+        4	                7	        7, 4, 1	        1	        3	                4
+        5	                6	        6, 3	        3	        4	                5
+        6	                5	        5, 2	        2	        5	                6
+        7	                4	        4, 1	        1	        6	                7
+        8	                3	        (None)	        3	        7	                8
+        9	                2	        (None)	        2	        8	                9
+        10	                1	        (None)	        1	        9	                10
+
 32. D. Options A and C do not compile as they do not use the correct syntax for a for-each loop. The for-each loop is only able to go through an array in ascending order. It is not
 able to control the order, making Option C incorrect. Therefore, Option D is the answer.
 33. C. Since there are no brackets around the for statement, the loop body is only one line. The break statement is not in the loop. Since break cannot be used at the top level of a
