@@ -1,0 +1,342 @@
+Date: 26-Feb-26
+
+ChtBoat Search:
+create 
+    01. Employee database and table with id, name, email fields
+    02. Controller(a single  servlet to handle create, read, update and delete requests from external HTML form  and will show the result in external HTML table as well)
+    03. DAO 
+    04. Model
+    05. HTML views to insert data and show data to update 
+    06. Database Class 
+for the Java Eclipse web application 
+
+=============================================================================================================
+
+================================ // 1. Database Setup (MySQL Example)================================ 
+
+// Create Database:
+// CREATE DATABASE employee_db;
+
+// Create Table:
+// USE employee_db;
+// CREATE TABLE employees (
+//     id INT AUTO_INCREMENT PRIMARY KEY,
+//     name VARCHAR(255) NOT NULL,
+//     email VARCHAR(255) UNIQUE NOT NULL
+// );
+
+================================// 2. Model (Employee.java)==============================================
+
+package com.example.model;
+
+public class Employee {
+    private int id;
+    private String name;
+    private String email;
+
+    public Employee() {}
+
+    public Employee(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+
+================================ // 3. Database Class (DBConnection.java) ================================
+
+package com.example.db;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection {
+
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/employee_db";
+    private static final String JDBC_USER = "your_mysql_user";
+    private static final String JDBC_PASSWORD = "your_mysql_password";
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load the driver
+            return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("MySQL JDBC Driver not found", e);
+        }
+    }
+}
+
+================================ // 4. DAO (EmployeeDAO.java) ================================
+
+package com.example.dao;
+
+import com.example.model.Employee;
+import com.example.db.DBConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmployeeDAO {
+
+    public void createEmployee(Employee employee) throws SQLException {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "INSERT INTO employees (name, email) VALUES (?, ?)")) {
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, employee.getEmail());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public List<Employee> getAllEmployees() throws SQLException {
+        List<Employee> employees = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employees");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setEmail(resultSet.getString("email"));
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
+
+    public void updateEmployee(Employee employee) throws SQLException {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "UPDATE employees SET name = ?, email = ? WHERE id = ?")) {
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, employee.getEmail());
+            preparedStatement.setInt(3, employee.getId());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void deleteEmployee(int id) throws SQLException {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM employees WHERE id = ?")) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        }
+    }
+}
+
+================================ // 5. Controller (EmployeeServlet.java) ================================
+
+package com.example.controller;
+
+import com.example.dao.EmployeeDAO;
+import com.example.model.Employee;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+@WebServlet("/EmployeeServlet")
+public class EmployeeServlet extends HttpServlet {
+    private EmployeeDAO employeeDAO;
+
+    @Override
+    public void init() throws ServletException {
+        employeeDAO = new EmployeeDAO();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "read";
+        }
+
+        try {
+            switch (action) {
+                case "create":
+                    createEmployee(request, response);
+                    break;
+                case "update":
+                    updateEmployee(request, response);
+                    break;
+                case "delete":
+                    deleteEmployee(request, response);
+                    break;
+                default:
+                    readEmployees(request, response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.getWriter().println("Database error: " + e.getMessage());
+        }
+    }
+
+    private void createEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        employeeDAO.createEmployee(new Employee(0, name, email));
+        readEmployees(request, response);
+    }
+
+    private void readEmployees(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        response.setContentType("text/html");
+        response.sendRedirect("viewEmployees.jsp");
+    }
+
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        employeeDAO.updateEmployee(new Employee(id, name, email));
+        readEmployees(request, response);
+    }
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        employeeDAO.deleteEmployee(id);
+        readEmployees(request, response);
+    }
+}
+
+==================================================// 6. HTML Views (insertEmployee.html, viewEmployees.jsp) ==============================================================
+
+------------------ insertEmployee.html: -------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Employee</title>
+</head>
+<body>
+    <h2>Insert New Employee</h2>
+    <form action="EmployeeServlet" method="post">
+        <input type="hidden" name="action" value="create">
+        Name: <input type="text" name="name"><br>
+        Email: <input type="email" name="email"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="EmployeeServlet">View Employees</a>
+</body>
+</html>
+
+
+-------------------------------------------- viewEmployees.jsp: ------------------------------------------------
+
+<%@ page import="com.example.model.Employee" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.dao.EmployeeDAO" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+    <h2>Employees</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+        <%
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = null;
+            try {
+                employees = employeeDAO.getAllEmployees();
+                if (employees != null && !employees.isEmpty()) {
+                    for (Employee employee : employees) {
+        %>
+        <tr>
+            <td><%= employee.getId() %></td>
+            <td><%= employee.getName() %></td>
+            <td><%= employee.getEmail() %></td>
+            <td>
+                <a href="#" onclick="setUpdateForm(<%= employee.getId() %>, '<%= employee.getName() %>', '<%= employee.getEmail() %>')">Update</a> |
+                <a href="EmployeeServlet?action=delete&id=<%= employee.getId() %>">Delete</a>
+            </td>
+        </tr>
+        <%
+                    }
+                } else { %>
+                    <tr><td colspan="4">No employees found.</td></tr>
+        <%
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                out.println("<tr><td colspan='4'>Error retrieving data: " + e.getMessage() + "</td></tr>");
+            }
+        %>
+    </table>
+    <br>
+    <form action="EmployeeServlet" method="post">
+        <input type="hidden" name="action" id="formAction" value="create">
+        <input type="hidden" name="id" id="formId">
+        Name: <input type="text" name="name" id="formName"><br>
+        Email: <input type="email" name="email" id="formEmail"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        function setUpdateForm(id, name, email) {
+            document.getElementById('formAction').value = 'update';
+            document.getElementById('formId').value = id;
+            document.getElementById('formName').value = name;
+            document.getElementById('formEmail').value = email;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+
+
+
