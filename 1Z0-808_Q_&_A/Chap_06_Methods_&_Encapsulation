@@ -116,13 +116,10 @@ Medium.
         D. rope = 4;
 
 11. Which of the following statements is not true?
-        A. An instance of one class may access an instance of another class’s attributes if it has a
-        reference to the instance and the attributes are declared public.
-        B. An instance of one class may access package-private attributes in a parent class, provided
-        the parent class is not in the same package.
+        A. An instance of one class may access an instance of another class’s attributes if it has a reference to the instance and the attributes are declared public.
+        B. An instance of one class may access package-private attributes in a parent class, provided the parent class is not in the same package.
         C. Two instances of the same class may access each other’s private attributes.
-        D. An instance of one class may access an instance of another class’s attributes if both
-        classes are located in the same package and marked protected.
+        D. An instance of one class may access an instance of another class’s attributes if both classes are located in the same package and marked protected.
 
 12. Given the following class, what should be inserted into the two blanks to ensure the class data is properly encapsulated?
         package storage;
