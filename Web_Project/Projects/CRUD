@@ -44,8 +44,12 @@ CREATE TABLE employees (
 
 
 ------------------------------------ List Emp(list-employees.jsp)---------------------------------
+<%@ page import="model.Employee" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="dao.EmployeeDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,27 +59,45 @@ CREATE TABLE employees (
 <body>
     <h2>Employee List</h2>
     <a href="new-employee.jsp">Add New Employee</a>
+     <h2>Employee List</h2>
     <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="employee" items="${employees}">
-                <tr>
-                    <td><c:out value="${employee.id}" /></td>
-                    <td><c:out value="${employee.name}" /></td>
-                    <td><c:out value="${employee.email}" /></td>
-                    <td>
-                        <a href="EmployeeServlet?action=edit&id=${employee.id}">Edit</a>
-                        <a href="EmployeeServlet?action=delete&id=${employee.id}">Delete</a>
+            <%
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            List<Employee> employees = null;
+            try {
+                employees = employeeDAO.getAllEmployees();
+                if (employees != null && !employees.isEmpty()) {
+                    for (Employee employee : employees) {
+        %>
+            <tr>
+                <td><%= employee.getId() %></td>
+                <td><%= employee.getName() %></td>
+                <td><%= employee.getEmail() %></td>
+                <td>
+                        <a href="emp?action=edit&id=<%=employee.getId() %>">Edit</a>
+                        <a href="emp?action=delete&id=<%=employee.getId()%>">Delete</a>
                     </td>
-                </tr>
-            </c:forEach>
+            </tr>
+             <%
+                    }
+                } else { %>
+                    <tr><td colspan="4">No employees found.</td></tr>
+        <%
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                out.println("<tr><td colspan='4'>Error retrieving data: " + e.getMessage() + "</td></tr>");
+            }
+        %>
         </tbody>
     </table>
 </body>
@@ -263,18 +285,22 @@ public class EmployeeDAO {
         return null;
     }
 
-    public List<Employee> getAllEmployees() throws SQLException {
-        List<Employee> employees = new ArrayList<>();
-        String sql = "SELECT * FROM employees";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            while (rs.next()) {
-                employees.add(new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("email")));
-            }
-        }
-        return employees;
+ public List<Employee> getAllEmployees() throws SQLException {
+    	  List<Employee> employees = new ArrayList<>();
+          try (Connection connection = DBConnection.getConnection();
+               PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employees");
+               ResultSet resultSet = preparedStatement.executeQuery()) {
+              while (resultSet.next()) {
+                  Employee employee = new Employee();
+                  employee.setId(resultSet.getInt("id"));
+                  employee.setName(resultSet.getString("name"));
+                  employee.setEmail(resultSet.getString("email"));
+                  employees.add(employee);
+              }
+          }
+          return employees;
     }
+
 
     public boolean updateEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE employees SET name = ?, email = ? WHERE id = ?";
