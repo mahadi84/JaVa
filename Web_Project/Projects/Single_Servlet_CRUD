@@ -4,11 +4,11 @@ Date: 26-Feb-26
 Search:
 create 
 01. Employee database and table with id, name, email fields
-02. Controller(a single  servlet to handle create, read, update and delete requests from external HTML form  and will show the result in external HTML table as well)
+02. Controller(a single  HTTP Servlet to handle create, read, update and delete requests also prevent duplicate email entry coming from external HTML form  and will show the result into external HTML table as well)
 03. DAO 
 04. Model
 05. HTML views to insert data and show data to update 
-06. Database Class 
+06. Database Connection Class 
 for the Java Eclipse web application 
 
 
