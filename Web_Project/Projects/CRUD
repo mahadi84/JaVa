@@ -2,6 +2,16 @@
 Date: 27-Feb-2025
 
 
+---------------------------------------------
+db.DBConnection
+model.Employee
+dao.EmployeeDAO
+controller.EmployeeServlet
+
+new-employee.jsp (Insert Form)
+list-employees.jsp (Show List of employee)
+edit-employee.jsp
+
 --------------------------------------------------------------------------------------------------
 
 CREATE TABLE employees (
@@ -10,26 +20,28 @@ CREATE TABLE employees (
     email VARCHAR(255) UNIQUE NOT NULL
 );
 
-
------------------------------------- edit-employee.jsp (Edit Form)---------------------------------
+------------------------------------ New Emp(new-employee.jsp) ---------------------------------
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit Employee</title>
+<title>Add Employee</title>
 </head>
 <body>
-    <h2>Edit Employee</h2>
-    <form action="EmployeeServlet?action=update" method="post">
-        <input type="hidden" name="id" value="${employee.id}">
-        Name: <input type="text" name="name" value="${employee.name}" required><br>
-        Email: <input type="email" name="email" value="${employee.email}" required><br>
-        <input type="submit" value="Update">
+    <h2>Add Employee</h2>
+    <% if(request.getAttribute("errorMessage") != null) {%>
+        <p style = "color:red;"><%= request.getAttribute("errorMessage") %></p>
+    <%}%>
+    <form action="EmployeeServlet?action=insert" method="post">
+        Name: <input type="text" name="name" required><br>
+        Email: <input type="email" name="email" required><br>
+        <input type="submit" value="Add">
     </form>
     <a href="EmployeeServlet">Employee List</a>
 </body>
 </html>
+
 
 ------------------------------------ List Emp(list-employees.jsp)---------------------------------
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -68,27 +80,28 @@ CREATE TABLE employees (
     </table>
 </body>
 </html>
------------------------------------- New Emp(new-employee.jsp) ---------------------------------
+
+------------------------------------ edit-employee.jsp (Edit Form)---------------------------------
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Employee</title>
+<title>Edit Employee</title>
 </head>
 <body>
-    <h2>Add Employee</h2>
-    <% if(request.getAttribute("errorMessage") != null) {%>
-        <p style = "color:red;"><%= request.getAttribute("errorMessage") %></p>
-    <%}%>
-    <form action="EmployeeServlet?action=insert" method="post">
-        Name: <input type="text" name="name" required><br>
-        Email: <input type="email" name="email" required><br>
-        <input type="submit" value="Add">
+    <h2>Edit Employee</h2>
+    <form action="EmployeeServlet?action=update" method="post">
+        <input type="hidden" name="id" value="${employee.id}">
+        Name: <input type="text" name="name" value="${employee.name}" required><br>
+        Email: <input type="email" name="email" value="${employee.email}" required><br>
+        <input type="submit" value="Update">
     </form>
     <a href="EmployeeServlet">Employee List</a>
 </body>
 </html>
+
+
 ------------------------------------ Controller Servlet ---------------------------------
 package controller;
 
