@@ -148,8 +148,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "list";
@@ -173,8 +172,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "insert";
@@ -194,23 +192,20 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-    private void listEmployees(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    private void listEmployees(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees();
         request.setAttribute("employees", employees);
         request.getRequestDispatcher("list-employees.jsp").forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Employee employee = employeeDAO.getEmployeeById(id);
         request.setAttribute("employee", employee);
         request.getRequestDispatcher("edit-employee.jsp").forward(request, response);
     }
 
-    private void insertEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    private void insertEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
 
@@ -228,8 +223,7 @@ public class EmployeeServlet extends HttpServlet {
         response.sendRedirect("EmployeeServlet?action=list");
     }
 
-    private void updateEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -239,8 +233,7 @@ public class EmployeeServlet extends HttpServlet {
         response.sendRedirect("EmployeeServlet?action=list");
     }
 
-    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         employeeDAO.deleteEmployee(id);
         response.sendRedirect("EmployeeServlet?action=list");
