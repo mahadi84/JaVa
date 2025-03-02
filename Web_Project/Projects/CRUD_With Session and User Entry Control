@@ -284,8 +284,12 @@ public class EmployeeServlet extends HttpServlet {
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response, String loggedInUser) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
-        employeeDAO.deleteEmployee(id, loggedInUser);
-        request.setAttribute("message", "Employee deleted successfully.");
+        int rowsAffected = employeeDAO.deleteEmployee(id, loggedInUser);
+        if (rowsAffected > 0) {
+            request.setAttribute("message", "Employee deleted successfully.");
+        } else {
+            request.setAttribute("message", "No data deleted."); // The crucial change
+        }
         listEmployees(request, response);
     }
 
@@ -357,13 +361,13 @@ public class EmployeeDAO {
         }
     }
 
-    public void deleteEmployee(int id, String loggedInUser) throws SQLException {
+    public int deleteEmployee(int id, String loggedInUser) throws SQLException {
         String sql = "DELETE FROM employees WHERE id=? AND created_by=?"; // Check created_by
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.setString(2, loggedInUser); // Ensure only the creator can delete
-            pstmt.executeUpdate();
+            return pstmt.executeUpdate(); // Return the number of rows affected
         }
     }
 
