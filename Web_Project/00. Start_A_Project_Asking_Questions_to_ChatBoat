@@ -4,6 +4,20 @@ Date: 22-Feb-2025
 Generate a bootstrap 5 responsive login page with an email as username and password field and green background.
 
 01.
+create  
+ 01. Employee database and table with ID, name, and email fields,  Database Connection Class with close connection automatically once query is done 
+ 02. Controller(a single  HTTP Servlet to handle create, read, update and delete requests 
+     also prevent duplicate email entry coming from external  Bootstrap 5 responsive form, show message "Already exist"  and will show the result into external  Bootstrap 5 responsive table as well) 
+     Also it can delete or update data only who entered it with session and
+     Show "No data updated" if no NEW data to update.
+     only logged-in users can access the crud page.
+ 03. DAO for separating and simplifint the code  
+ 04. Model for business logic
+ 05. Bootstrap 5 responsive form to login, inserting, showing and updating data  
+ for the Java Eclipse web application"
+
+--OR--
+
 create:
 "1. Database Setup: Create an employee database with a table containing fields for ID, name, and email. Include a database connection class that automatically closes the connection after queries.
 2. Controller: Build a single HTTP Servlet to handle create, read, update, and delete (CRUD) requests. Prevent duplicate email entries from an external Bootstrap 5 form and display "Already exists" if a duplicate is detected. Show results in a Bootstrap 5 responsive table. Allow updates or deletions only for the user who entered the data (using sessions). Display "No data updated" if no new data is provided. Restrict CRUD page access to logged-in users.
