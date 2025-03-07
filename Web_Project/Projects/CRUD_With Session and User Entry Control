@@ -9,7 +9,7 @@ create  
      show "No data updated" if no NEW data to update.  
  03. DAO  
  04. Model 
- 05. HTML form to login, inserting, showing and updating data  
+ 05. Bootstrap 5 responsive form to login, inserting, showing and updating data  
  06. Database Connection Class  
  for the Java Eclipse web application
 
