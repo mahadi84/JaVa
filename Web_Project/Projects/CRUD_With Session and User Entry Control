@@ -2,15 +2,15 @@ Date: 3 March 2025
 
 
 create  
- 01. Employee database and table with ID, name, and email fields 
+ 01. Employee database and table with ID, name, and email fields,  Database Connection Class with close connection automatically once query is done 
  02. Controller(a single  HTTP Servlet to handle create, read, update and delete requests 
-     also prevent duplicate email entry coming from external HTML form  and will show the result into external HTML table as well) 
-     also it can only delete or update data who entered it with session and
-     show "No data updated" if no NEW data to update.  
+     also prevent duplicate email entry coming from external  Bootstrap 5 responsive form, show message "Already exist"  and will show the result into external  Bootstrap 5 responsive table as well) 
+     Also it can delete or update data only who entered it with session and
+     Show "No data updated" if no NEW data to update.
+     only logged-in users can access the crud page.
  03. DAO  
  04. Model 
  05. Bootstrap 5 responsive form to login, inserting, showing and updating data  
- 06. Database Connection Class  
  for the Java Eclipse web application
 
 
