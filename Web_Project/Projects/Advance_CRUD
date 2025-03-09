@@ -1,5 +1,20 @@
 
 
+create for the Java Eclipse web application:
+01. SQL QUERY for Employee database and table with ID, name, email, and image fields. And Database Connection Class.
+02. Model
+03. DAO, a single HTTP Servlet as Controller to handle create, read, update, and delete requests for employee with Bootstrap 5 as UI for login, insert, update, and delete data 
+that fulfill the below conditions:
+    -Validate input field and Prevent duplicate email entry. If so, show message "Already exist"
+    -It can delete or update data only who entered it with session
+    -If there is no NEW data to update, show "No data updated".
+    -Only logged-in users can access the crud page.
+Note: All success and error messages will show on respective Bootstrap 5 pages
+
+
+
+
+
 ===================== SQL Query to Create Database and Table ==============================
 CREATE DATABASE EmployeeDB;
 USE EmployeeDB;
@@ -86,6 +101,8 @@ public class Employee {
         this.image = image;
     }
 }
+
+
 ==================================== EmployeeDAO.java ==============================================
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -246,7 +263,6 @@ public class LoginServlet extends HttpServlet {
 
 ==================================== EmployeeServlet.java ==============================================
 import java.io.IOException;
-import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -275,19 +291,41 @@ public class EmployeeServlet extends HttpServlet {
                 String name = request.getParameter("name");
                 String email = request.getParameter("email");
                 byte[] image = request.getPart("image").getInputStream().readAllBytes();
-                Employee newEmployee = new Employee(0, name, email, image);
-                String addResult = employeeDAO.addEmployee(newEmployee);
-                request.setAttribute("message", addResult);
+
+                // Validate input data
+                if (!ValidationUtil.isValidName(name)) {
+                    request.setAttribute("message", "Invalid name. Only alphabets and spaces are allowed.");
+                } else if (!ValidationUtil.isValidEmail(email)) {
+                    request.setAttribute("message", "Invalid email format.");
+                } else if (!ValidationUtil.isValidImage(image)) {
+                    request.setAttribute("message", "Invalid image. Only JPEG or PNG files are allowed.");
+                } else {
+                    Employee newEmployee = new Employee(0, name, email, image);
+                    String addResult = employeeDAO.addEmployee(newEmployee);
+                    request.setAttribute("message", addResult);
+                }
                 break;
+
             case "update":
                 int id = Integer.parseInt(request.getParameter("id"));
                 String updatedName = request.getParameter("name");
                 String updatedEmail = request.getParameter("email");
                 byte[] updatedImage = request.getPart("image").getInputStream().readAllBytes();
-                Employee updatedEmployee = new Employee(id, updatedName, updatedEmail, updatedImage);
-                String updateResult = employeeDAO.updateEmployee(updatedEmployee, loggedInUserEmail);
-                request.setAttribute("message", updateResult);
+
+                // Validate input data
+                if (!ValidationUtil.isValidName(updatedName)) {
+                    request.setAttribute("message", "Invalid name. Only alphabets and spaces are allowed.");
+                } else if (!ValidationUtil.isValidEmail(updatedEmail)) {
+                    request.setAttribute("message", "Invalid email format.");
+                } else if (!ValidationUtil.isValidImage(updatedImage)) {
+                    request.setAttribute("message", "Invalid image. Only JPEG or PNG files are allowed.");
+                } else {
+                    Employee updatedEmployee = new Employee(id, updatedName, updatedEmail, updatedImage);
+                    String updateResult = employeeDAO.updateEmployee(updatedEmployee, loggedInUserEmail);
+                    request.setAttribute("message", updateResult);
+                }
                 break;
+
             case "delete":
                 int deleteId = Integer.parseInt(request.getParameter("id"));
                 String deleteResult = employeeDAO.deleteEmployee(deleteId, loggedInUserEmail);
@@ -296,21 +334,60 @@ public class EmployeeServlet extends HttpServlet {
         }
         request.getRequestDispatcher("crud.jsp").forward(request, response);
     }
+}
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String loggedInUserEmail = (String) session.getAttribute("email");
 
-        if (loggedInUserEmail == null) {
-            response.sendRedirect("login.jsp");
-            return;
+
+=================================== ValidationUtil.java ===========================================================
+public class ValidationUtil {
+
+    // Validate name: Only alphabets and spaces allowed, minimum 2 characters
+    public static boolean isValidName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
         }
+        return name.matches("[a-zA-Z ]{2,}");
+    }
 
-        request.getRequestDispatcher("crud.jsp").forward(request, response);
+    // Validate email: Basic email format validation
+    public static boolean isValidEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        return email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // Validate image: Check if the file is an image (JPEG, PNG, etc.)
+    public static boolean isValidImage(byte[] image) {
+        if (image == null || image.length == 0) {
+            return false;
+        }
+        // Check for common image file signatures
+        return isJPEG(image) || isPNG(image);
+    }
+
+    // Check if the file is a JPEG image
+    private static boolean isJPEG(byte[] image) {
+        return image.length > 2 &&
+               image[0] == (byte) 0xFF &&
+               image[1] == (byte) 0xD8 &&
+               image[2] == (byte) 0xFF;
+    }
+
+    // Check if the file is a PNG image
+    private static boolean isPNG(byte[] image) {
+        return image.length > 8 &&
+               image[0] == (byte) 0x89 &&
+               image[1] == (byte) 0x50 &&
+               image[2] == (byte) 0x4E &&
+               image[3] == (byte) 0x47 &&
+               image[4] == (byte) 0x0D &&
+               image[5] == (byte) 0x0A &&
+               image[6] == (byte) 0x1A &&
+               image[7] == (byte) 0x0A;
     }
 }
+
 
 
 ======================================= login.jsp ===========================================
@@ -329,6 +406,23 @@ public class EmployeeServlet extends HttpServlet {
                 <div class="card">
                     <div class="card-header">Login</div>
                     <div class="card-body">
+
+                        // <c:if test="${not empty message}">
+                        // <div class="alert alert-danger" role="alert">
+                        // ${message}
+                        // </div>
+                        // </c:if>
+                                <%
+                                String message = (String) request.getAttribute("message");
+                                if (message != null && !message.isEmpty()) {
+                                %>
+                                <div class="alert alert-danger" role="alert">
+                                <%= message %>
+                                </div>
+                                <%
+                                }
+                                %>
+
                         <form action="login" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -347,6 +441,8 @@ public class EmployeeServlet extends HttpServlet {
     </div>
 </body>
 </html>
+
+
 ======================================= crud.jsp ===========================================
 <!DOCTYPE html>
 <html lang="en">
@@ -395,6 +491,12 @@ public class EmployeeServlet extends HttpServlet {
     </div>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
