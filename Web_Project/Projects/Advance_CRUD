@@ -1,0 +1,115 @@
+
+create  
+
+ 01. SQL QUERY for Employee database and table with ID, name, email and image fields. And Database Connection Class.
+ 02. Model
+ 03.
+
+
+=========================================== SQL ==================================================
+
+CREATE DATABASE IF NOT EXISTS employee_db;
+
+USE employee_db;
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,  -- Enforces unique emails
+    image VARCHAR(255),  -- Store image path/URL
+    user_id INT, -- Foreign key referencing the users table (for ownership/access control)
+    FOREIGN KEY (user_id) REFERENCES users(id) -- Assuming you have a 'users' table
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL -- Store securely (hashed)
+);
+
+=========================================== Model ==================================================
+public class Employee {
+
+    private int id;
+    private String name;
+    private String email;
+    private String image;
+    private int userId; // Add user_id field
+
+    // Constructors (Important: Include a no-argument constructor)
+    public Employee() {} // No-argument constructor is essential for many frameworks (e.g., Spring)
+
+    public Employee(String name, String email, String image, int userId) {
+        this.name = name;
+        this.email = email;
+        this.image = image;
+        this.userId = userId;
+    }
+
+    // Getters and Setters (for all fields)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    // Optional: Override toString() for debugging/logging
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
+
+    // Optional: Override equals() and hashCode() if you'll be using this object in collections
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return id == employee.id && userId == employee.userId && java.util.Objects.equals(name, employee.name) && java.util.Objects.equals(email, employee.email) && java.util.Objects.equals(image, employee.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(id, name, email, image, userId);
+    }
+}
