@@ -1,9 +1,12 @@
 
-create  
-
- 01. SQL QUERY for Employee database and table with ID, name, email and image fields. And Database Connection Class.
+create for the Java Eclipse web application:
+ 01. SQL QUERY for Employee database and table with ID, name, email, and image fields. And Database Connection Class.
  02. Model
- 03.
+ 03. DAO, a single HTTP Servlet as Controller to handle create, read, update, and delete requests for employee and Bootstrap 5 login form and table to login, insert, update, and delete data
+     -Prevent duplicate email entry. If so, show message "Already exist"
+     -It can delete or update data only who entered it with session
+     -If there is no NEW data to update, show "No data updated".
+     -Only logged-in users can access the crud page.
 
 
 =========================================== SQL ==================================================
@@ -27,7 +30,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL -- Store securely (hashed)
 );
 
-=========================================== Model ==================================================
+=========================================== 02. Model ==================================================
 public class Employee {
 
     private int id;
@@ -113,3 +116,120 @@ public class Employee {
         return java.util.Objects.hash(id, name, email, image, userId);
     }
 }
+
+
+===================================  03. DAO  for CRUD =======================================
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmployeeDAO {
+
+    public boolean isEmailExists(String email) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT COUNT(*) FROM employees WHERE email = ?";
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, email);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    resultSet.next();
+                    return resultSet.getInt(1) > 0;
+                }
+            }
+        })) {
+        }
+        return false;
+    }
+
+    public void createEmployee(Employee employee) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO employees (name, email, image, user_id) VALUES (?, ?, ?, ?)";
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, employee.getName());
+                statement.setString(2, employee.getEmail());
+                statement.setString(3, employee.getImage());
+                statement.setInt(4, employee.getUserId());
+                statement.executeUpdate();
+            }
+        })) {
+        }
+    }
+
+    public List<Employee> getEmployeesByUserId(int userId) throws SQLException, ClassNotFoundException {
+        List<Employee> employees = new ArrayList<>();
+        String sql = "SELECT * FROM employees WHERE user_id = ?";
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, userId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Employee employee = new Employee();
+                        employee.setId(resultSet.getInt("id"));
+                        employee.setName(resultSet.getString("name"));
+                        employee.setEmail(resultSet.getString("email"));
+                        employee.setImage(resultSet.getString("image"));
+                        employee.setUserId(resultSet.getInt("user_id"));
+                        employees.add(employee);
+                    }
+                }
+            }
+        })) {
+        }
+        return employees;
+    }
+
+    public void updateEmployee(Employee employee) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE employees SET name = ?, email = ?, image = ? WHERE id = ? AND user_id = ?";
+        int rowsUpdated = 0;
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, employee.getName());
+                statement.setString(2, employee.getEmail());
+                statement.setString(3, employee.getImage());
+                statement.setInt(4, employee.getId());
+                statement.setInt(5, employee.getUserId());
+                rowsUpdated = statement.executeUpdate();
+            }
+        })) {
+        }
+
+        if (rowsUpdated == 0) {
+            throw new SQLException("No data updated"); // Indicate if no rows were updated
+        }
+    }
+
+    public void deleteEmployee(int id, int userId) throws SQLException, ClassNotFoundException {
+        String sql = "DELETE FROM employees WHERE id = ? AND user_id = ?";
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                statement.setInt(2, userId);
+                statement.executeUpdate();
+            }
+        })) {
+        }
+    }
+
+    public Employee getEmployeeById(int id, int userId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM employees WHERE id = ? AND user_id = ?";
+        try (DBConnection.useConnection(connection -> {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                statement.setInt(2, userId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Employee employee = new Employee();
+                        employee.setId(resultSet.getInt("id"));
+                        employee.setName(resultSet.getString("name"));
+                        employee.setEmail(resultSet.getString("email"));
+                        employee.setImage(resultSet.getString("image"));
+                        employee.setUserId(resultSet.getInt("user_id"));
+                        return employee;
+                    }
+                }
+            }
+        })) {
+        }
+        return null; // Return null if employee not found
+    }
+}
+
