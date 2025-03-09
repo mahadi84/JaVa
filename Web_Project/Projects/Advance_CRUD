@@ -2,12 +2,13 @@
 create for the Java Eclipse web application:
  01. SQL QUERY for Employee database and table with ID, name, email, and image fields. And Database Connection Class.
  02. Model
- 03. DAO, a single HTTP Servlet as Controller to handle create, read, update, and delete requests for employee with Bootstrap 5 login form and table to login, insert, update, and delete data 
-     that full fill the below conditions:
+ 03. DAO, a single HTTP Servlet as Controller to handle create, read, update, and delete requests for employee with Bootstrap 5  as UI for login form and table to login, insert, update, and delete data 
+     that fulfill the below conditions:
      -Prevent duplicate email entry. If so, show message "Already exist"
      -It can delete or update data only who entered it with session
      -If there is no NEW data to update, show "No data updated".
      -Only logged-in users can access the crud page.
+Note: All success and error messages will show on respective Bootstrap 5 pages
 
 
 =========================================== SQL ==================================================
