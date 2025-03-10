@@ -378,8 +378,6 @@ public class LoginServlet extends HttpServlet {
         <div class="alert alert-danger">${errorMessage}</div>
     </c:if>
 
-    
-
     <form action="LoginServlet" method="post"> <%-- Create a LoginServlet --%>
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
