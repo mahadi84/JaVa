@@ -36,7 +36,7 @@ INSERT INTO users (username, password) VALUES
 ('user2', '123'); 
 
 
-================================ // Database Connection Class (db.DBConnection.java) ===================================
+================================  Database Connection Class (db.DBConnection.java) ===================================
 package db;
 
 import java.sql.Connection;
@@ -59,7 +59,7 @@ public class DBConnection {
 }
 
 
-================================= // 02. Model (model.Employee.java) =============================
+=================================  02. Model (model.Employee.java) =============================
 package model;
 
 public class Employee {
