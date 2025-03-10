@@ -465,7 +465,6 @@ public class LoginServlet extends HttpServlet {
     </c:if>
 
    
-
     <form action="EmployeeServlet?action=${empty employee ? 'create' : 'update'}" method="post">
         <input type="hidden" name="id" value="${employee.id}"> <%-- Hidden field for update --%>
         <div class="mb-3">
