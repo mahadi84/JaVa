@@ -5,7 +5,7 @@ create for the Java Eclipse web application:
 02. Model
 03. DAO, a single HTTP Servlet as Controller to handle create, read, update, and delete requests for employee with Bootstrap 5 as UI for login, insert, update, and delete data 
 that fulfill the below conditions:
-    -Validate input field and Prevent duplicate email entry. If so, show message "Already exist"
+    -Validate input field and prevent duplicate email entry. If so, show message "Already exist"
     -It can delete or update data only who entered it with session
     -If there is no NEW data to update, show "No data updated".
     -Only logged-in users can access the crud page.
@@ -34,6 +34,12 @@ CREATE TABLE employees (
 INSERT INTO users (username, password) VALUES
 ('user1', '123'), 
 ('user2', '123'); 
+
+INSERT INTO employees (name, email, image, created_by)
+VALUES ('John Doe', 'john.doe@example.com', 'john.jpg', 1);
+
+INSERT INTO employees (name, email, image, created_by)
+VALUES ('Mahadi', 'm@example.com', 'john.jpg', 2);
 
 
 ================================  Database Connection Class (db.DBConnection.java) ===================================
@@ -84,25 +90,56 @@ public class Employee {
     public void setImage( String image) { this.image = image; }
 
     public int getCreatedBy() {return createdBy; }
-    public void setCreatedBy(int createdBy) { this.createdBy = createdBy; }
-    
+    public void setCreatedBy(int createdBy) { this.createdBy = createdBy; }  
 }
 
+============================  03. input validation class(util.InputValidator.java) ======================================
+package util;
+
+public class InputValidator {
+
+    public static boolean isValidName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        // Add more complex name validation if needed (e.g., regex for allowed characters)
+        return true;
+    }
+
+    public static boolean isValidEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
+    }
+
+    public static boolean isValidImage(String image) {
+        if (image == null || image.trim().isEmpty()) {
+            return false;
+        }
+        // You might want to add more specific image validation (e.g., file extension check)
+        return true;
+    }
+}
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
 package dao;
 
-
-import model.Employee;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Employee;
+
 public class EmployeeDAO {
-    public List<Employee> getAllEmployees(Connection conn) throws SQLException { // Get by user who created
+    public List<Employee> getAllEmployees(Connection conn, int loggedInUserId) throws SQLException { 
         List<Employee> employees = new ArrayList<>();
-        String sql = "SELECT * FROM employees WHERE created_by = ?"; // Or get all if needed
+        String sql = "SELECT * FROM employees WHERE created_by = ?"; 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            //ps.setInt(1, loggedInUserId); // Add this if filtering by user
+            ps.setInt(1, loggedInUserId); // Filter by the logged-in user
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Employee emp = new Employee();
@@ -118,13 +155,18 @@ public class EmployeeDAO {
         return employees;
     }
 
-    public Employee getEmployeeById(Connection conn, int id) throws SQLException { // For update
+    public Employee getEmployeeById(Connection conn, int id) throws SQLException { 
         String sql = "SELECT * FROM employees WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    Employee emp = new Employee(); // ... set all fields.
+                    Employee emp = new Employee();
+                    emp.setId(rs.getInt("id"));
+                    emp.setName(rs.getString("name"));
+                    emp.setEmail(rs.getString("email"));
+                    emp.setImage(rs.getString("image"));
+                    emp.setCreatedBy(rs.getInt("created_by"));
                     return emp;
                 }
             }
@@ -135,27 +177,34 @@ public class EmployeeDAO {
     public void addEmployee(Connection conn, Employee emp) throws SQLException {
         String sql = "INSERT INTO employees (name, email, image, created_by) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            // ... set all parameters.  Get created_by from session.
+            ps.setString(1, emp.getName());
+            ps.setString(2, emp.getEmail());
+            ps.setString(3, emp.getImage());
+            ps.setInt(4, emp.getCreatedBy()); 
             ps.executeUpdate();
         }
     }
 
     public void updateEmployee(Connection conn, Employee emp) throws SQLException {
-        String sql = "UPDATE employees SET name=?, email=?, image=? WHERE id=? AND created_by=?"; // Important: created_by!
+        String sql = "UPDATE employees SET name=?, email=?, image=? WHERE id=? AND created_by=?"; 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-           // ... set all parameters. Get created_by from session.
+            ps.setString(1, emp.getName());
+            ps.setString(2, emp.getEmail());
+            ps.setString(3, emp.getImage());
+            ps.setInt(4, emp.getId());
+            ps.setInt(5, emp.getCreatedBy()); 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated == 0) {
-                throw new SQLException("No data updated"); // Or handle in servlet
+                throw new SQLException("No_data_updated"); 
             }
         }
     }
 
     public void deleteEmployee(Connection conn, int id, int createdBy) throws SQLException {
-        String sql = "DELETE FROM employees WHERE id=? AND created_by=?"; // Important: created_by!
+        String sql = "DELETE FROM employees WHERE id=? AND created_by=?"; 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ps.setInt(2, createdBy); // From session
+            ps.setInt(2, createdBy); 
             ps.executeUpdate();
         }
     }
@@ -183,7 +232,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-// ... other imports
 import dao.EmployeeDAO;
 import db.DBConnection;
 import jakarta.servlet.ServletException;
@@ -193,7 +241,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Employee;
-
+import util.InputValidator;
 
 @WebServlet("/EmployeeServlet")
 public class EmployeeServlet extends HttpServlet {
@@ -206,100 +254,294 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null) { action = "list"; } // Default
-        HttpSession session = request.getSession(false); // Get session, but don't create if it doesn't exist
+        if (action == null) {
+            action = "list";
+        }
 
-        if (session == null || session.getAttribute("userId") == null) { // Check login
+        HttpSession session = request.getSession(false); 
+        if (session == null || session.getAttribute("userId") == null) {
             request.setAttribute("errorMessage", "Please log in to access this page.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
 
         try (Connection conn = DBConnection.getConnection()) {
-            int userId = (int) session.getAttribute("userId"); // Get user ID from session
+            int userId = (int) session.getAttribute("userId");
 
             switch (action) {
                 case "list":
-                    List<Employee> employees = employeeDAO.getAllEmployees(conn);
-                    request.setAttribute("employees", employees);
-                    request.getRequestDispatcher("employee_list.jsp").forward(request, response);
+                    listEmployees(request, response, conn, userId);
                     break;
                 case "create":
-                    // ... Get data from request parameters
-                    Employee newEmployee = new Employee();
-                    // ... set employee fields from parameters
-                    if (employeeDAO.isEmailExists(conn, newEmployee.getEmail())) {
-                        request.setAttribute("errorMessage", "Email already exists.");
-                        request.getRequestDispatcher("employee_form.jsp").forward(request, response); // Redirect to form
-                        return;
-                    }
-                    newEmployee.setCreatedBy(userId); // Set created_by
-                    employeeDAO.addEmployee(conn, newEmployee);
-                    response.sendRedirect("EmployeeServlet?action=list"); // Redirect to list
+                    createEmployee(request, response, conn, userId);
                     break;
                 case "updateForm":
-                    int idToUpdate = Integer.parseInt(request.getParameter("id"));
-                    Employee employeeToUpdate = employeeDAO.getEmployeeById(conn, idToUpdate);
-                    if (employeeToUpdate == null || employeeToUpdate.getCreatedBy() != userId) { // Check ownership
-                        request.setAttribute("errorMessage", "You don't have permission to update this employee.");
-                        request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
-                        return;
-                    }
-                    request.setAttribute("employee", employeeToUpdate);
-                    request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+                    showUpdateForm(request, response, conn, userId);
                     break;
                 case "update":
-                    // ... Get updated data from request parameters
-                    Employee updatedEmployee = new Employee();
-                    // ... set employee fields from parameters
-                    updatedEmployee.setId(Integer.parseInt(request.getParameter("id")));
-                    updatedEmployee.setCreatedBy(userId); // Important: from session!
-                    try {
-                        employeeDAO.updateEmployee(conn, updatedEmployee);
-                        response.sendRedirect("EmployeeServlet?action=list");
-                    } catch (SQLException ex) {
-                        if (ex.getMessage().equals("No data updated")) {
-                            request.setAttribute("errorMessage", "No data updated.");
-                        } else {
-                            request.setAttribute("errorMessage", "Error updating employee: " + ex.getMessage());
-                        }
-                        request.setAttribute("employee", updatedEmployee); // Send back to form with error
-                        request.getRequestDispatcher("employee_form.jsp").forward(request, response);
-                    }
+                    updateEmployee(request, response, conn, userId);
                     break;
                 case "delete":
-                    int idToDelete = Integer.parseInt(request.getParameter("id"));
-                    try {
-                        employeeDAO.deleteEmployee(conn, idToDelete, userId); // Use userId from session
-                        response.sendRedirect("EmployeeServlet?action=list");
-                    } catch (SQLException ex) {
-                        request.setAttribute("errorMessage", "Error deleting employee: " + ex.getMessage());
-                        request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
-                    }
+                    deleteEmployee(request, response, conn, userId);
                     break;
                 default:
                     response.sendRedirect("EmployeeServlet?action=list");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log the error
+            e.printStackTrace(); 
             request.setAttribute("errorMessage", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response); // Create an error page
+            request.getRequestDispatcher("error.jsp").forward(request, response); 
+        }
+    }
+
+    private void listEmployees(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
+    		throws SQLException, ServletException, IOException {
+        List<Employee> employees = employeeDAO.getAllEmployees(conn, userId); // Pass userId here
+        request.setAttribute("employees", employees);
+        request.getRequestDispatcher("employee_list.jsp").forward(request, response);
+    }
+
+    private void createEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+            throws SQLException, ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String image = request.getParameter("image");
+        
+     // Store input values in request attributes
+        request.setAttribute("name", name);
+        request.setAttribute("email", email);
+        request.setAttribute("image", image);      
+        
+     // Check for empty fields
+        if (name == null || name.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Name is required.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (email == null || email.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Email is required.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (image == null || image.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Image URL is required.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+        
+     // Validate inputs
+        if (!InputValidator.isValidName(name)) {
+            request.setAttribute("errorMessage", "Invalid name.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (!InputValidator.isValidEmail(email)) {
+            request.setAttribute("errorMessage", "Invalid email.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (!InputValidator.isValidImage(image)) {
+            request.setAttribute("errorMessage", "Invalid image URL.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+            return;
+        }
+
+        Employee newEmployee = new Employee();
+        newEmployee.setName(name);
+        newEmployee.setEmail(email);
+        newEmployee.setImage(image);
+
+        if (employeeDAO.isEmailExists(conn, newEmployee.getEmail())) {
+            request.setAttribute("errorMessage", "Email already exists.");
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response); 
+            return;
+        }
+
+        newEmployee.setCreatedBy(userId);
+        employeeDAO.addEmployee(conn, newEmployee);
+        response.sendRedirect("EmployeeServlet?action=list"); 
+    }
+
+    private void showUpdateForm(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
+    		throws SQLException, ServletException, IOException {
+        int idToUpdate = Integer.parseInt(request.getParameter("id"));
+        Employee employeeToUpdate = employeeDAO.getEmployeeById(conn, idToUpdate);
+
+        if (employeeToUpdate == null || employeeToUpdate.getCreatedBy() != userId) { 
+            request.setAttribute("errorMessage", "You don't have permission to update this employee.");
+            request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
+            return;
+        }
+
+        request.setAttribute("employee", employeeToUpdate);
+        request.getRequestDispatcher("update_form.jsp").forward(request, response);
+    }
+
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+            throws SQLException, ServletException, IOException {
+//        int id = Integer.parseInt(request.getParameter("id"));
+        
+    	String idParam = request.getParameter("id");
+
+        if (idParam == null || idParam.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Employee ID is missing.");
+            // Repopulate with existing data
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idParam);
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMessage", "Invalid Employee ID.");
+            // Repopulate with existing data
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+        
+        
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String image = request.getParameter("image");
+
+        // Get the existing employee data
+        Employee existingEmployee = employeeDAO.getEmployeeById(conn, id);
+
+     // Check for empty fields first
+        if (name == null || name.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Name is required.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (email == null || email.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Email is required.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (image == null || image.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Image URL is required.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate inputs using InputValidator
+        if (!InputValidator.isValidName(name)) {
+            request.setAttribute("errorMessage", "Invalid name.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (!InputValidator.isValidEmail(email)) {
+            request.setAttribute("errorMessage", "Invalid email.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        if (!InputValidator.isValidImage(image)) {
+            request.setAttribute("errorMessage", "Invalid image URL.");
+            // Repopulate with existing data
+            request.setAttribute("name", existingEmployee.getName());
+            request.setAttribute("email", existingEmployee.getEmail());
+            request.setAttribute("image", existingEmployee.getImage());
+            request.setAttribute("id", idParam); // Repopulate the id
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+
+        Employee updatedEmployee = new Employee();
+        updatedEmployee.setId(id);
+        updatedEmployee.setName(name);
+        updatedEmployee.setEmail(email);
+        updatedEmployee.setImage(image);
+        updatedEmployee.setCreatedBy(userId);
+
+        try {
+            employeeDAO.updateEmployee(conn, updatedEmployee);
+            response.sendRedirect("EmployeeServlet?action=list");
+        } catch (SQLException ex) {
+            if (ex.getMessage().equals("No_data_updated")) {
+                request.setAttribute("errorMessage", "No data updated.");
+                request.setAttribute("employee", updatedEmployee);
+                request.setAttribute("name", updatedEmployee.getName());
+                request.setAttribute("email", updatedEmployee.getEmail());
+                request.setAttribute("image", updatedEmployee.getImage());
+                request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
+                request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            } else {
+                request.setAttribute("errorMessage", "Error updating employee: " + ex.getMessage());
+                request.setAttribute("employee", updatedEmployee);
+                request.setAttribute("name", updatedEmployee.getName());
+                request.setAttribute("email", updatedEmployee.getEmail());
+                request.setAttribute("image", updatedEmployee.getImage());
+                request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
+                request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            }
+        }
+   }
+ 
+    
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
+    		throws SQLException, ServletException, IOException {
+        int idToDelete = Integer.parseInt(request.getParameter("id"));
+
+        try {
+            employeeDAO.deleteEmployee(conn, idToDelete, userId); 
+            response.sendRedirect("EmployeeServlet?action=list");
+        } catch (SQLException ex) {
+            request.setAttribute("errorMessage", "Error deleting employee: " + ex.getMessage());
+            request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
         }
     }
 }
-
-==================================== controller.LoginServlet.java ======================================
+==================================== Servlet (controller.LoginServlet.java) ======================================
 package controller;
 
 import java.io.IOException;
@@ -316,14 +558,42 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("logout".equals(action)) {
+            logout(request, response);
+        } else {
+            login(request, response);
+        }
+    }
+
+    private void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password"); // In real code, you would hash this before comparing
+        String password = request.getParameter("password");
+
+        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Username and password are required.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
 
         try (Connection conn = DBConnection.getConnection()) {
             int userId = authenticateUser(conn, username, password);
@@ -344,22 +614,28 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("login.jsp");
+    }
 
     private int authenticateUser(Connection conn, String username, String password) throws SQLException {
-        String sql = "SELECT id FROM users WHERE username = ? AND password = ?"; // Check username and password
+        String sql = "SELECT id FROM users WHERE username = ? AND password = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, password); // In real code, you would use the HASHED password here
+            ps.setString(2, password);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("id"); // User found, return their ID
+                    return rs.getInt("id");
                 }
             }
         }
-        return -1; // User not found
+        return -1;
     }
 }
-
 
 
 ================================================ login.jsp ==============================
@@ -405,11 +681,11 @@ public class LoginServlet extends HttpServlet {
 		    <form action="LoginServlet" method="post"> <%-- Create a LoginServlet --%>
 		        <div class="mb-3">
 		            <label for="username" class="form-label">Username:</label>
-		            <input type="text" class="form-control" id="username" name="username" required>
+		            <input type="text" class="form-control" id="username" name="username">
 		        </div>
 		        <div class="mb-3">
 		            <label for="password" class="form-label">Password:</label>
-		            <input type="password" class="form-control" id="password" name="password" required>
+		            <input type="password" class="form-control" id="password" name="password">
 		        </div>
 		        <button type="submit" class="btn btn-primary">Login</button>
 		    </form>
@@ -425,8 +701,7 @@ public class LoginServlet extends HttpServlet {
 
 
 
-
-=================================== JSP Pages (employee_list.jsp) ====================================================
+=================================== employee_list.jsp ====================================================
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -436,15 +711,18 @@ public class LoginServlet extends HttpServlet {
 </head>
 <body>
 <div class="container">
+   <br><br>
     <h1>Employee List</h1>
+   <br><br>
 
-     <c:if test="${not empty errorMessage}">
-         <div class="alert alert-danger">${errorMessage}</div>
-     </c:if>
+  <c:if test="${not empty errorMessage}">
+       <div class="alert alert-danger">${errorMessage}</div>
+</c:if>
 
-    <a href="employee_form.jsp" class="btn btn-primary">Add Employee</a> <br><br>
+    <a href="employee_form.jsp" class="btn btn-success">Add Employee</a> |
+    <a href="LoginServlet?action=logout" class="btn btn-primary">Logout</a> <br><br>
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>ID</th>
@@ -476,38 +754,76 @@ public class LoginServlet extends HttpServlet {
 </html>
 
 
-========================== employee_form.jsp (for both create and update) ============================
+
+========================== update_form.jsp ============================
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Form</title>
+    <title>Update Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>${empty employee ? 'Add' : 'Update'} Employee</h1>
+    <h1>Update Employee</h1>
 
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-danger">${errorMessage}</div>
     </c:if>
 
-   
-    <form action="EmployeeServlet?action=${empty employee ? 'create' : 'update'}" method="post">
-        <input type="hidden" name="id" value="${employee.id}"> <%-- Hidden field for update --%>
+    <form action="EmployeeServlet?action=update" method="post">
+       <input type="hidden" name="id" value="${not empty id ? id : employee.id}">
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" value="${employee.name}" required>
+            <input type="text" class="form-control" id="name" name="name" value="${not empty name ? name : employee.name}">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" value="${employee.email}" required>
+            <input type="email" class="form-control" id="email" name="email" value="${not empty email ? email : employee.email}">
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image URL/Path:</label>
-            <input type="text" class="form-control" id="image" name="image" value="${employee.image}">
+            <input type="text" class="form-control" id="image" name="image" value="${not empty image ? image : employee.image}">
         </div>
-        <button type="submit" class="btn btn-primary">${empty employee ? 'Create' : 'Update'}</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="EmployeeServlet?action=list" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+========================== employee_form.jsp ============================
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Create Employee</h1>
+
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger">${errorMessage}</div>
+    </c:if>
+
+    <form action="EmployeeServlet?action=create" method="post">       
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="${not empty name ? name : ''}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" value="${not empty email ? email : ''}">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL/Path:</label>
+            <input type="text" class="form-control" id="image" name="image" value="${not empty image ? image : ''}">
+        </div>
+        <button type="submit" class="btn btn-primary">create</button>
         <a href="EmployeeServlet?action=list" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
