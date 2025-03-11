@@ -96,30 +96,40 @@ public class Employee {
 ============================  03. input validation class(util.InputValidator.java) ======================================
 package util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InputValidator {
+
+    private static final String NAME_REGEX = "^[a-zA-Z\\s'-]{1,50}$"; // Allows letters, spaces, hyphens, and apostrophes
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+    private static final String IMAGE_URL_REGEX = "^(http(s?):\\/\\/)([\\w-]+\\.)+[\\w-]+(\\/[\\w- ;,./?%&=]*)?\\.(jpg|jpeg|png|gif|bmp)$";
 
     public static boolean isValidName(String name) {
         if (name == null || name.trim().isEmpty()) {
             return false;
         }
-        // Add more complex name validation if needed (e.g., regex for allowed characters)
-        return true;
+        Pattern pattern = Pattern.compile(NAME_REGEX);
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
     }
 
     public static boolean isValidEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
             return false;
         }
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return email.matches(emailRegex);
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     public static boolean isValidImage(String image) {
         if (image == null || image.trim().isEmpty()) {
             return false;
         }
-        // You might want to add more specific image validation (e.g., file extension check)
-        return true;
+        Pattern pattern = Pattern.compile(IMAGE_URL_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(image);
+        return matcher.matches();
     }
 }
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
