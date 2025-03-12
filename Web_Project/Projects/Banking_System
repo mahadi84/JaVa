@@ -5,7 +5,7 @@ Customers can:
 -Register with name, email, password and city, after registration customer will get 5 digit account number by which he/she can login
 -Deposit and withdraw money
 -Get a ministatement (last 10 transaction details like: transaction date and time, amount)
-The customer can see his information only, The code must supported IDE eclipse vertion 2024.
+The customer can see his information only, The code must support IDE eclipse vertion 2024.
 
 01. Create database, tables with join and  model 
 02. Create all Servlets with DAOs it needs, with form validation, and Session
@@ -13,7 +13,7 @@ The customer can see his information only, The code must supported IDE eclipse v
 
 
 
-============================================= Projects Structure =================================================
+============================================= Project Structure =================================================
 // Project Structure (Eclipse 2024):
 // - Dynamic Web Project: BankingWebApp
 //   - src/main/java:
