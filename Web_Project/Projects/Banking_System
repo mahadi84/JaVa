@@ -12,7 +12,123 @@ The customer can see his information only, The code must supported IDE eclipse v
 03. Create all UI with Bootstrap 5
 
 
-=================================================================================
+==================================== // SQL Script (bankingdb.sql): =========================================
+/*
+CREATE DATABASE bankingdb;
+USE bankingdb;
+
+CREATE TABLE Customer (
+    accountNumber INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    city VARCHAR(255),
+    balance DOUBLE DEFAULT 0.0
+);
+
+CREATE TABLE Transaction (
+    transactionId INT PRIMARY KEY AUTO_INCREMENT,
+    accountNumber INT,
+    transactionDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    amount DOUBLE,
+    type VARCHAR(20),
+    FOREIGN KEY (accountNumber) REFERENCES Customer(accountNumber)
+);
+*/
+
+================================== // com.banking.webapp.util.DBUtil.java ==========================================
+package com.banking.webapp.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBUtil {
+
+    private static final String URL = "jdbc:mysql://localhost:3306/bankingdb"; // Replace with your DB URL
+    private static final String USER = "root"; // Replace with your DB username
+    private static final String PASSWORD = "password"; // Replace with your DB password
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("MySQL JDBC driver not found", e);
+        }
+    }
+}
+
+================================ // com.banking.webapp.model.Customer.java =================================
+package com.banking.webapp.model;
+
+public class Customer {
+    private int accountNumber;
+    private String name;
+    private String email;
+    private String password;
+    private String city;
+    private double balance;
+
+    // Constructors
+    public Customer() {}
+
+    public Customer(String name, String email, String password, String city) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.city = city;
+    }
+
+    // Getters and setters
+    public int getAccountNumber() { return accountNumber; }
+    public void setAccountNumber(int accountNumber) {  this.accountNumber = accountNumber; }
+
+    public String getName() { return name;}
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() {  return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getCity() { return city;}
+    public void setCity(String city) { this.city = city;}
+
+    public double getBalance() { return balance; }
+    public void setBalance(double balance) { this.balance = balance; }
+}
+
+===============================================// com.banking.webapp.model.Transaction.java ===================================
+package com.banking.webapp.model;
+
+import java.sql.Timestamp;
+
+public class Transaction {
+    private int transactionId;
+    private int accountNumber;
+    private Timestamp transactionDateTime;
+    private double amount;
+    private String type; // "Deposit" or "Withdrawal"
+
+    // Constructors
+    public Transaction() {}
+
+    // Getters and setters
+    public int getTransactionId() {  return transactionId; }
+    public void setTransactionId(int transactionId) { this.transactionId = transactionId; }
+    public int getAccountNumber() { return accountNumber; }
+    public void setAccountNumber(int accountNumber) { this.accountNumber = accountNumber; }
+    public Timestamp getTransactionDateTime() { return transactionDateTime;  }
+    public void setTransactionDateTime(Timestamp transactionDateTime) { this.transactionDateTime = transactionDateTime; }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public String getType() { return type; }
+    public void setType(String type) {this.type = type; }
+}
+
+
 =================================================================================
 =================================================================================
 =================================================================================
