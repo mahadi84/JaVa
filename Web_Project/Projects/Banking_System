@@ -1,0 +1,32 @@
+Date: 12 March 2025
+
+Create a java web app code for a banking system with the following information:
+-database with neccesary tables and join them
+Customer can:
+-register with name, email, password and city, after registration customer will get 5 digit account number by which he/she can login
+-deposit and withdraw money
+-get ministatement (last transaction details like: transaction date and time, ammount)
+Customer can see his own information only, UI as Bootstrap 5,
+code must supported IDE eclipse vertion 2024
+
+
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+=================================================================================
+
+
+
+
+
+
+
+
+
+-
