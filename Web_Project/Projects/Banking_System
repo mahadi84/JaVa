@@ -13,7 +13,7 @@ The customer can see his information only, The code must supported IDE eclipse v
 
 
 
-=============================================  =================================================
+============================================= Projects Structure =================================================
 // Project Structure (Eclipse 2024):
 // - Dynamic Web Project: BankingWebApp
 //   - src/main/java:
