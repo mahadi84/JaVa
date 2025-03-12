@@ -14,34 +14,35 @@ The customer can see his information only, The code must support IDE eclipse ver
 
 
 ============================================= Project Structure =================================================
-// Project Structure (Eclipse 2024):
-// - Dynamic Web Project: BankingWebApp
-//   - src/main/java:
-//     - dao:
-//       - CustomerDAO.java
-//       - TransactionDAO.java
-//     - model:
-//       - Customer.java
-//       - Transaction.java
-//     - servlet:
-//       - RegisterServlet.java
-//       - LoginServlet.java
-//       - DepositServlet.java
-//       - WithdrawServlet.java
-//       - MiniStatementServlet.java
-//       - ProfileServlet.java
-//     - util:
-//       - DBUtil.java
-//   - src/main/webapp:
-//     - register.jsp
-//     - login.jsp
-//     - welcome.jsp
-//     - deposit.jsp
-//     - withdraw.jsp
-//     - ministatement.jsp
-//     - profile.jsp
-//     - WEB-INF:
-//       - web.xml
+ Project Structure (Eclipse 2024):
+ - Dynamic Web Project: BankingWebApp
+   - src/main/java:
+     - dao:
+           - CustomerDAO.java
+           - TransactionDAO.java
+     - model:
+           - Customer.java
+           - Transaction.java
+     - servlet:
+           - RegisterServlet.java
+           - LoginServlet.java
+           - DepositServlet.java
+           - WithdrawServlet.java
+           - MiniStatementServlet.java
+           - ProfileServlet.java
+     - util:
+           - DBUtil.java
+   - src/main/webapp:
+         - register.jsp
+         - login.jsp
+         - welcome.jsp
+         - deposit.jsp
+         - withdraw.jsp
+         - ministatement.jsp
+         - profile.jsp
+     - WEB-INF:
+         - web.xml
+
 
 
 
