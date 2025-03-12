@@ -12,6 +12,39 @@ The customer can see his information only, The code must supported IDE eclipse v
 03. Create all UI with Bootstrap 5
 
 
+
+=============================================  =================================================
+// Project Structure (Eclipse 2024):
+// - Dynamic Web Project: BankingWebApp
+//   - src/main/java:
+//     - com.banking.webapp.dao:
+//       - CustomerDAO.java
+//       - TransactionDAO.java
+//     - com.banking.webapp.model:
+//       - Customer.java
+//       - Transaction.java
+//     - com.banking.webapp.servlet:
+//       - RegisterServlet.java
+//       - LoginServlet.java
+//       - DepositServlet.java
+//       - WithdrawServlet.java
+//       - MiniStatementServlet.java
+//       - ProfileServlet.java
+//     - com.banking.webapp.util:
+//       - DBUtil.java
+//   - src/main/webapp:
+//     - register.jsp
+//     - login.jsp
+//     - welcome.jsp
+//     - deposit.jsp
+//     - withdraw.jsp
+//     - ministatement.jsp
+//     - profile.jsp
+//     - WEB-INF:
+//       - web.xml
+
+
+
 ==================================== // SQL Script (bankingdb.sql): =========================================
 /*
 CREATE DATABASE bankingdb;
@@ -129,15 +162,596 @@ public class Transaction {
 }
 
 
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
-=================================================================================
+
+========================================= // com.banking.webapp.dao.CustomerDAO.java =========================================
+package com.banking.webapp.dao;
+
+import com.banking.webapp.model.Customer;
+import com.banking.webapp.util.DBUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+
+public class CustomerDAO {
+
+    public int registerCustomer(Customer customer) {
+        String SQL = "INSERT INTO Customer (accountNumber, name, email, password, city) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            Random random = new Random();
+            int accountNumber;
+            do {
+                accountNumber = 10000 + random.nextInt(90000); // 5-digit account number
+            } while (accountNumberExists(accountNumber, connection));
+
+            customer.setAccountNumber(accountNumber);
+            preparedStatement.setInt(1, accountNumber);
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setString(3, customer.getEmail());
+            preparedStatement.setString(4, customer.getPassword()); // Hash password here in real app
+            preparedStatement.setString(5, customer.getCity());
+
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    private boolean accountNumberExists(int accountNumber, Connection connection) throws SQLException {
+        String SQL = "SELECT 1 FROM Customer WHERE accountNumber = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, accountNumber);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
+        }
+    }
+
+    public Customer getCustomerByAccountNumber(int accountNumber) {
+        String SQL = "SELECT * FROM Customer WHERE accountNumber = ?";
+        Customer customer = null;
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, accountNumber);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    customer = new Customer();
+                    customer.setAccountNumber(resultSet.getInt("accountNumber"));
+                    customer.setName(resultSet.getString("name"));
+                    customer.setEmail(resultSet.getString("email"));
+                    customer.setPassword(resultSet.getString("password"));
+                    customer.setCity(resultSet.getString("city"));
+                    customer.setBalance(resultSet.getDouble("balance"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    public int updateBalance(int accountNumber, double newBalance) {
+        String SQL = "UPDATE Customer SET balance = ? WHERE accountNumber = ?";
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setDouble(1, newBalance);
+            preparedStatement.setInt(2, accountNumber);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+}
+
+========================================= // com.banking.webapp.dao.TransactionDAO.java =========================================
+package com.banking.webapp.dao;
+
+import com.banking.webapp.model.Transaction;
+import com.banking.webapp.util.DBUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TransactionDAO {
+
+    public int addTransaction(Transaction transaction) {
+        String SQL = "INSERT INTO Transaction (accountNumber, amount, type) VALUES (?, ?, ?)";
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, transaction.getAccountNumber());
+            preparedStatement.setDouble(2, transaction.getAmount());
+            preparedStatement.setString(3, transaction.getType());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public List<Transaction> getMiniStatement(int accountNumber) {
+        String SQL = "SELECT * FROM Transaction WHERE accountNumber = ? ORDER BY transactionDateTime DESC LIMIT 10";
+        List<Transaction> transactions = new ArrayList<>();
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, accountNumber);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Transaction transaction = new Transaction();
+                    transaction.setTransactionId(resultSet.getInt("transactionId"));
+                    transaction.setAccountNumber(resultSet.getInt("accountNumber"));
+                    transaction.setTransactionDateTime(resultSet.getTimestamp("transactionDateTime"));
+                    transaction.setAmount(resultSet.getDouble("amount"));
+                    transaction.setType(resultSet.getString("type"));
+                    transactions.add(transaction);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+}
+
+========================================= // com.banking.webapp.servlet.RegisterServlet.java =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.CustomerDAO;
+import com.banking.webapp.model.Customer;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password"); // Hash this
+        String city = request.getParameter("city");
+
+        if (name == null || name.isEmpty() || email == null || email.isEmpty() || password == null || password.isEmpty() || city == null || city.isEmpty()){
+            request.setAttribute("error","Please fill all fields");
+            request.getRequestDispatcher("register.jsp").forward(request,response);
+            return;
+        }
+        Customer customer = new Customer(name, email, password, city);
+        CustomerDAO customerDAO = new CustomerDAO();
+        int result = customerDAO.registerCustomer(customer);
+
+        if (result > 0) {
+            request.setAttribute("accountNumber", customer.getAccountNumber());
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            request.setAttribute("error", "Registration failed. Email might be already used.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
+    }
+}
+
+
+========================================= // com.banking.webapp.servlet.LoginServlet.java (continued) =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.CustomerDAO;
+import com.banking.webapp.model.Customer;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int accountNumber = Integer.parseInt(request.getParameter("accountNumber"));
+        String password = request.getParameter("password"); // Hash this in real app
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
+
+        if (customer != null && customer.getPassword().equals(password)) { // Never store passwords in plain text!
+            HttpSession session = request.getSession();
+            session.setAttribute("accountNumber", accountNumber);
+            response.sendRedirect("welcome.jsp");
+        } else {
+            request.setAttribute("error", "Invalid account number or password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+    }
+}
+
+========================================= // com.banking.webapp.servlet.DepositServlet.java =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.CustomerDAO;
+import com.banking.webapp.dao.TransactionDAO;
+import com.banking.webapp.model.Customer;
+import com.banking.webapp.model.Transaction;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/deposit")
+public class DepositServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer accountNumber = (Integer) session.getAttribute("accountNumber");
+
+        if (accountNumber == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        double amount = Double.parseDouble(request.getParameter("amount"));
+
+        if (amount <= 0){
+            request.setAttribute("error","Amount must be greater than zero.");
+            request.getRequestDispatcher("deposit.jsp").forward(request,response);
+            return;
+        }
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
+        double newBalance = customer.getBalance() + amount;
+        customerDAO.updateBalance(accountNumber, newBalance);
+
+        Transaction transaction = new Transaction();
+        transaction.setAccountNumber(accountNumber);
+        transaction.setAmount(amount);
+        transaction.setType("Deposit");
+        TransactionDAO transactionDAO = new TransactionDAO();
+        transactionDAO.addTransaction(transaction);
+
+        response.sendRedirect("welcome.jsp");
+    }
+}
+
+========================================= // com.banking.webapp.servlet.WithdrawServlet.java =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.CustomerDAO;
+import com.banking.webapp.dao.TransactionDAO;
+import com.banking.webapp.model.Customer;
+import com.banking.webapp.model.Transaction;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/withdraw")
+public class WithdrawServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer accountNumber = (Integer) session.getAttribute("accountNumber");
+
+        if (accountNumber == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        double amount = Double.parseDouble(request.getParameter("amount"));
+
+        if (amount <= 0){
+            request.setAttribute("error","Amount must be greater than zero.");
+            request.getRequestDispatcher("withdraw.jsp").forward(request,response);
+            return;
+        }
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
+
+        if (customer.getBalance() < amount) {
+            request.setAttribute("error", "Insufficient balance");
+            request.getRequestDispatcher("withdraw.jsp").forward(request, response);
+            return;
+        }
+
+        double newBalance = customer.getBalance() - amount;
+        customerDAO.updateBalance(accountNumber, newBalance);
+
+        Transaction transaction = new Transaction();
+        transaction.setAccountNumber(accountNumber);
+        transaction.setAmount(amount);
+        transaction.setType("Withdrawal");
+        TransactionDAO transactionDAO = new TransactionDAO();
+        transactionDAO.addTransaction(transaction);
+
+        response.sendRedirect("welcome.jsp");
+    }
+}
+
+========================================= // com.banking.webapp.servlet.MiniStatementServlet.java =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.TransactionDAO;
+import com.banking.webapp.model.Transaction;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet("/ministatement")
+public class MiniStatementServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer accountNumber = (Integer) session.getAttribute("accountNumber");
+
+        if (accountNumber == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        TransactionDAO transactionDAO = new TransactionDAO();
+        List<Transaction> transactions = transactionDAO.getMiniStatement(accountNumber);
+
+        request.setAttribute("transactions", transactions);
+        request.getRequestDispatcher("ministatement.jsp").forward(request, response);
+    }
+}
+
+========================================= // com.banking.webapp.servlet.ProfileServlet.java =========================================
+package com.banking.webapp.servlet;
+
+import com.banking.webapp.dao.CustomerDAO;
+import com.banking.webapp.model.Customer;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/profile")
+public class ProfileServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer accountNumber = (Integer) session.getAttribute("accountNumber");
+
+        if (accountNumber == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
+
+        request.setAttribute("customer", customer);
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
+    }
+}
+
+========================================= register.jsp  =========================================
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Register
+                    </div>
+                    <div class="card-body">
+                        <form action="register" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <% if (request.getAttribute("error") != null) { %>
+                                <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
+                            <% } %>
+                            <% if (request.getAttribute("accountNumber") != null) { %>
+                                <div class="alert alert-success mt-3">Registration successful. Your account number is <%= request.getAttribute("accountNumber") %>.</div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+=========================================  login.jsp   ========================================= 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Login
+                    </div>
+                    <div class="card-body">
+                        <form action="login" method="post">
+                            <div class="mb-3">
+                                <label for="accountNumber" class="form-label">Account Number</label>
+                                <input type="number" class="form-control" id="accountNumber" name="accountNumber" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <% if (request.getAttribute("error") != null) { %>
+                                <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+=========================================  welcome.jsp   ========================================= 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    if (session.getAttribute("accountNumber") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Welcome, Account Number: ${sessionScope.accountNumber}</h2>
+        <a href="deposit.jsp" class="btn btn-primary">Deposit</a>
+        <a href="withdraw.jsp" class="btn btn-success">Withdraw</a>
+        <a href="ministatement" class="btn btn-info">Mini Statement</a>
+        <a href="profile" class="btn btn-secondary">Profile</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if (session.getAttribute("accountNumber") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
+
+=========================================  deposit.jsp   ========================================= 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deposit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Deposit
+                    </div>
+                    <div class="card-body">
+                        <form action="deposit" method="post">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="amount" name="amount" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Deposit</button>
+                            <% if (request.getAttribute("error") != null) { %>
+                                <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if (session.getAttribute("accountNumber") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
+
+=========================================  withdraw.jsp   ========================================= 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Withdraw
+                    </div>
+                    <div class="card-body">
+                        <form action="withdraw" method="post">
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="amount" name="amount" required>
+                            </div>
+                            <button type="submit" class="btn btn-success">Withdraw</button>
+                            <% if (request.getAttribute("error") != null) { %>
+                                <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
 
 
 
