@@ -318,6 +318,8 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
+
+//SHOW ALL EMPLOYEES
     private void listEmployees(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
     		throws SQLException, ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees(conn, userId); // Pass userId here
@@ -325,6 +327,8 @@ public class EmployeeServlet extends HttpServlet {
         request.getRequestDispatcher("employee_list.jsp").forward(request, response);
     }
 
+
+//CREATE A NEW EMPLOYESS
     private void createEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
             throws SQLException, ServletException, IOException {
         String name = request.getParameter("name");
@@ -336,8 +340,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("email", email);
         request.setAttribute("image", image);      
         
-    
-        
+     
      // Check for empty fields OR Validate inputs
         if (!InputValidator.isValidName(name)) {
             request.setAttribute("errorMessage", "Empty or Invalid name.");
@@ -373,6 +376,8 @@ public class EmployeeServlet extends HttpServlet {
         response.sendRedirect("EmployeeServlet?action=list"); 
     }
 
+
+//CALL UPDATE FORM
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
     		throws SQLException, ServletException, IOException {
         int idToUpdate = Integer.parseInt(request.getParameter("id"));
@@ -388,9 +393,10 @@ public class EmployeeServlet extends HttpServlet {
         request.getRequestDispatcher("update_form.jsp").forward(request, response);
     }
 
+
+//UPDATE EMPLOYEE
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
             throws SQLException, ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
         
     	String idParam = request.getParameter("id");
 
@@ -412,7 +418,6 @@ public class EmployeeServlet extends HttpServlet {
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
             return;
         }
-        
         
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -520,7 +525,7 @@ public class EmployeeServlet extends HttpServlet {
         }
    }
  
-    
+  // DELETE EMPLOYEE  
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
     		throws SQLException, ServletException, IOException {
         int idToDelete = Integer.parseInt(request.getParameter("id"));
