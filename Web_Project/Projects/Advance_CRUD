@@ -336,40 +336,23 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("email", email);
         request.setAttribute("image", image);      
         
-     // Check for empty fields
-        if (name == null || name.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Name is required.");
-            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
-            return;
-        }
-
-        if (email == null || email.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Email is required.");
-            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
-            return;
-        }
-
-        if (image == null || image.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Image URL is required.");
-            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
-            return;
-        }
+    
         
-     // Validate inputs
+     // Check for empty fields OR Validate inputs
         if (!InputValidator.isValidName(name)) {
-            request.setAttribute("errorMessage", "Invalid name.");
+            request.setAttribute("errorMessage", "Empty or Invalid name.");
             request.getRequestDispatcher("employee_form.jsp").forward(request, response);
             return;
         }
 
         if (!InputValidator.isValidEmail(email)) {
-            request.setAttribute("errorMessage", "Invalid email.");
+            request.setAttribute("errorMessage", "Empty or Invalid email.");
             request.getRequestDispatcher("employee_form.jsp").forward(request, response);
             return;
         }
 
         if (!InputValidator.isValidImage(image)) {
-            request.setAttribute("errorMessage", "Invalid image URL.");
+            request.setAttribute("errorMessage", "Empty or Invalid image URL.");
             request.getRequestDispatcher("employee_form.jsp").forward(request, response);
             return;
         }
