@@ -17,20 +17,20 @@ The customer can see his information only, The code must support IDE eclipse ver
 // Project Structure (Eclipse 2024):
 // - Dynamic Web Project: BankingWebApp
 //   - src/main/java:
-//     - com.banking.webapp.dao:
+//     - dao:
 //       - CustomerDAO.java
 //       - TransactionDAO.java
-//     - com.banking.webapp.model:
+//     - model:
 //       - Customer.java
 //       - Transaction.java
-//     - com.banking.webapp.servlet:
+//     - servlet:
 //       - RegisterServlet.java
 //       - LoginServlet.java
 //       - DepositServlet.java
 //       - WithdrawServlet.java
 //       - MiniStatementServlet.java
 //       - ProfileServlet.java
-//     - com.banking.webapp.util:
+//     - util:
 //       - DBUtil.java
 //   - src/main/webapp:
 //     - register.jsp
@@ -69,8 +69,8 @@ CREATE TABLE Transaction (
 );
 */
 
-================================== // com.banking.webapp.util.DBUtil.java ==========================================
-package com.banking.webapp.util;
+================================== // util.DBUtil.java ==========================================
+package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -92,8 +92,8 @@ public class DBUtil {
     }
 }
 
-================================ // com.banking.webapp.model.Customer.java =================================
-package com.banking.webapp.model;
+================================ // model.Customer.java =================================
+package model;
 
 public class Customer {
     private int accountNumber;
@@ -133,8 +133,8 @@ public class Customer {
     public void setBalance(double balance) { this.balance = balance; }
 }
 
-===============================================// com.banking.webapp.model.Transaction.java ===================================
-package com.banking.webapp.model;
+===============================================// model.Transaction.java ===================================
+package model;
 
 import java.sql.Timestamp;
 
@@ -163,11 +163,11 @@ public class Transaction {
 
 
 
-========================================= // com.banking.webapp.dao.CustomerDAO.java =========================================
-package com.banking.webapp.dao;
+========================================= // dao.CustomerDAO.java =========================================
+package dao;
 
-import com.banking.webapp.model.Customer;
-import com.banking.webapp.util.DBUtil;
+import model.Customer;
+import util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -249,11 +249,11 @@ public class CustomerDAO {
     }
 }
 
-========================================= // com.banking.webapp.dao.TransactionDAO.java =========================================
-package com.banking.webapp.dao;
+========================================= // dao.TransactionDAO.java =========================================
+package dao;
 
-import com.banking.webapp.model.Transaction;
-import com.banking.webapp.util.DBUtil;
+import model.Transaction;
+import util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -303,11 +303,11 @@ public class TransactionDAO {
     }
 }
 
-========================================= // com.banking.webapp.servlet.RegisterServlet.java =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.RegisterServlet.java =========================================
+package servlet;
 
-import com.banking.webapp.dao.CustomerDAO;
-import com.banking.webapp.model.Customer;
+import dao.CustomerDAO;
+import model.Customer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -343,11 +343,11 @@ public class RegisterServlet extends HttpServlet {
 }
 
 
-========================================= // com.banking.webapp.servlet.LoginServlet.java (continued) =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.LoginServlet.java (continued) =========================================
+package servlet;
 
-import com.banking.webapp.dao.CustomerDAO;
-import com.banking.webapp.model.Customer;
+import dao.CustomerDAO;
+import model.Customer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -376,13 +376,13 @@ public class LoginServlet extends HttpServlet {
     }
 }
 
-========================================= // com.banking.webapp.servlet.DepositServlet.java =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.DepositServlet.java =========================================
+package servlet;
 
-import com.banking.webapp.dao.CustomerDAO;
-import com.banking.webapp.dao.TransactionDAO;
-import com.banking.webapp.model.Customer;
-import com.banking.webapp.model.Transaction;
+import dao.CustomerDAO;
+import dao.TransactionDAO;
+import model.Customer;
+import model.Transaction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -426,13 +426,13 @@ public class DepositServlet extends HttpServlet {
     }
 }
 
-========================================= // com.banking.webapp.servlet.WithdrawServlet.java =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.WithdrawServlet.java =========================================
+package servlet;
 
-import com.banking.webapp.dao.CustomerDAO;
-import com.banking.webapp.dao.TransactionDAO;
-import com.banking.webapp.model.Customer;
-import com.banking.webapp.model.Transaction;
+import dao.CustomerDAO;
+import dao.TransactionDAO;
+import model.Customer;
+import model.Transaction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -483,11 +483,11 @@ public class WithdrawServlet extends HttpServlet {
     }
 }
 
-========================================= // com.banking.webapp.servlet.MiniStatementServlet.java =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.MiniStatementServlet.java =========================================
+package servlet;
 
-import com.banking.webapp.dao.TransactionDAO;
-import com.banking.webapp.model.Transaction;
+import dao.TransactionDAO;
+import model.Transaction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -516,11 +516,11 @@ public class MiniStatementServlet extends HttpServlet {
     }
 }
 
-========================================= // com.banking.webapp.servlet.ProfileServlet.java =========================================
-package com.banking.webapp.servlet;
+========================================= // servlet.ProfileServlet.java =========================================
+package servlet;
 
-import com.banking.webapp.dao.CustomerDAO;
-import com.banking.webapp.model.Customer;
+import dao.CustomerDAO;
+import model.Customer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
