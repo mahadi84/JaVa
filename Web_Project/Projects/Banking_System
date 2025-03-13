@@ -31,7 +31,7 @@ The customer can see his information only, The code must support IDE eclipse ver
            - MiniStatementServlet.java
            - ProfileServlet.java
      - util:
-           - DBUtil.java
+           - DBUtil.java //DB Connection Class
    - src/main/webapp:
          - register.jsp
          - login.jsp
@@ -40,6 +40,7 @@ The customer can see his information only, The code must support IDE eclipse ver
          - withdraw.jsp
          - ministatement.jsp
          - profile.jsp
+         - index.jsp
      - WEB-INF:
          - web.xml
 
