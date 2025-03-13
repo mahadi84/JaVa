@@ -661,6 +661,7 @@ public class ProfileServlet extends HttpServlet {
                                 <input type="text" class="form-control" id="city" name="city" value="<%= request.getAttribute("city") != null ? request.getAttribute("city") : "" %>">
                             </div>
                             <button type="submit" class="btn btn-primary">Register</button>
+                            <a href="login.jsp" class="btn btn-success">Login</a>
                             <% if (request.getAttribute("error") != null) { %>
                                 <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
                             <% } %>
@@ -709,6 +710,7 @@ public class ProfileServlet extends HttpServlet {
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
+                            <a href="register.jsp" class="btn btn-success">Register an account</a>
                             <% if (request.getAttribute("error") != null) { %>
                                 <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
                             <% } %>
