@@ -779,6 +779,7 @@ public class ProfileServlet extends HttpServlet {
                                 <input type="number" class="form-control" id="amount" name="amount" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Deposit</button>
+                            <a href="welcome.jsp" class="btn btn-secondary">Back</a>
                             <% if (request.getAttribute("error") != null) { %>
                                 <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
                             <% } %>
@@ -822,6 +823,7 @@ public class ProfileServlet extends HttpServlet {
                                 <input type="number" class="form-control" id="amount" name="amount" required>
                             </div>
                             <button type="submit" class="btn btn-success">Withdraw</button>
+                            <a href="welcome.jsp" class="btn btn-secondary">Back</a>
                             <% if (request.getAttribute("error") != null) { %>
                                 <div class="alert alert-danger mt-3"><%= request.getAttribute("error") %></div>
                             <% } %>
@@ -855,7 +857,7 @@ public class ProfileServlet extends HttpServlet {
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-             <a href="welcome.jsp" class="btn btn-primary">Back</a>
+             <a href="welcome.jsp" class="btn btn-secondary">Back</a>
                 <div class="card">
                     <div class="card-header">
                         Mini Statement
