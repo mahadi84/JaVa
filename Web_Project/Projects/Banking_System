@@ -168,20 +168,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        String password = request.getParameter("password"); // Hash this
+        String password = request.getParameter("password");
         String city = request.getParameter("city");
 
-        if (name == null || name.isEmpty() || email == null || email.isEmpty() || password == null || password.isEmpty() || city == null || city.isEmpty()){
-            request.setAttribute("error","Please fill all fields");
-            request.getRequestDispatcher("register.jsp").forward(request,response);
+        // Validation
+        if (name == null || name.trim().isEmpty()) {
+            request.setAttribute("error", "Name is required.");
+        } else if (!Pattern.matches("^[a-zA-Z\\s]+$", name)) {
+            request.setAttribute("error", "Name can only contain letters and spaces.");
+        } else if (email == null || email.trim().isEmpty()) {
+            request.setAttribute("error", "Email is required.");
+        } else if (!Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
+            request.setAttribute("error", "Invalid email format.");
+        } else if (password == null || password.trim().isEmpty()) {
+            request.setAttribute("error", "Password is required.");
+        } else if (password.length() < 8) {
+            request.setAttribute("error", "Password must be at least 8 characters long.");
+        } else if (city == null || city.trim().isEmpty()) {
+            request.setAttribute("error", "City is required.");
+        } else if (!Pattern.matches("^[a-zA-Z\\s]+$", city)) {
+            request.setAttribute("error", "City name can only contain letters and spaces.");
+        }
+
+        if (request.getAttribute("error") != null) {
+            // Preserve entered data
+            request.setAttribute("name", name);
+            request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            request.setAttribute("city", city);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
+
         Customer customer = new Customer(name, email, password, city);
         CustomerDAO customerDAO = new CustomerDAO();
         int result = customerDAO.registerCustomer(customer);
@@ -191,11 +216,15 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Registration failed. Email might be already used.");
+            // Preserve entered data
+            request.setAttribute("name", name);
+            request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            request.setAttribute("city", city);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
 }
-
 ========================================= // dao.CustomerDAO.java =========================================
 package dao;
 
@@ -567,19 +596,19 @@ public class ProfileServlet extends HttpServlet {
                         <form action="register" method="post">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" value="<%= request.getAttribute("password") != null ? request.getAttribute("password") : "" %>">
                             </div>
                             <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" class="form-control" id="city" name="city" required>
+                                <input type="text" class="form-control" id="city" name="city" value="<%= request.getAttribute("city") != null ? request.getAttribute("city") : "" %>">
                             </div>
                             <button type="submit" class="btn btn-primary">Register</button>
                             <% if (request.getAttribute("error") != null) { %>
