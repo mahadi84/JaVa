@@ -703,7 +703,6 @@ public class ProfileServlet extends HttpServlet {
 
 =========================================  welcome.jsp   ========================================= 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     if (session.getAttribute("accountNumber") == null) {
         response.sendRedirect("login.jsp");
@@ -727,12 +726,6 @@ public class ProfileServlet extends HttpServlet {
 </body>
 </html>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    if (session.getAttribute("accountNumber") == null) {
-        response.sendRedirect("login.jsp");
-    }
-%>
 
 =========================================  deposit.jsp   ========================================= 
 
