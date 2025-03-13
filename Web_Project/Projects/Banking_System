@@ -157,7 +157,44 @@ public class Transaction {
     public void setType(String type) {this.type = type; }
 }
 
+========================================= // servlet.RegisterServlet.java =========================================
+package servlet;
 
+import dao.CustomerDAO;
+import model.Customer;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password"); // Hash this
+        String city = request.getParameter("city");
+
+        if (name == null || name.isEmpty() || email == null || email.isEmpty() || password == null || password.isEmpty() || city == null || city.isEmpty()){
+            request.setAttribute("error","Please fill all fields");
+            request.getRequestDispatcher("register.jsp").forward(request,response);
+            return;
+        }
+        Customer customer = new Customer(name, email, password, city);
+        CustomerDAO customerDAO = new CustomerDAO();
+        int result = customerDAO.registerCustomer(customer);
+
+        if (result > 0) {
+            request.setAttribute("accountNumber", customer.getAccountNumber());
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            request.setAttribute("error", "Registration failed. Email might be already used.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
+    }
+}
 
 ========================================= // dao.CustomerDAO.java =========================================
 package dao;
@@ -245,6 +282,41 @@ public class CustomerDAO {
     }
 }
 
+
+
+========================================= // servlet.LoginServlet.java (continued) =========================================
+package servlet;
+
+import dao.CustomerDAO;
+import model.Customer;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int accountNumber = Integer.parseInt(request.getParameter("accountNumber"));
+        String password = request.getParameter("password"); // Hash this in real app
+
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
+
+        if (customer != null && customer.getPassword().equals(password)) { // Never store passwords in plain text!
+            HttpSession session = request.getSession();
+            session.setAttribute("accountNumber", accountNumber);
+            response.sendRedirect("welcome.jsp");
+        } else {
+            request.setAttribute("error", "Invalid account number or password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+    }
+}
+
 ========================================= // dao.TransactionDAO.java =========================================
 package dao;
 
@@ -299,78 +371,8 @@ public class TransactionDAO {
     }
 }
 
-========================================= // servlet.RegisterServlet.java =========================================
-package servlet;
-
-import dao.CustomerDAO;
-import model.Customer;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password"); // Hash this
-        String city = request.getParameter("city");
-
-        if (name == null || name.isEmpty() || email == null || email.isEmpty() || password == null || password.isEmpty() || city == null || city.isEmpty()){
-            request.setAttribute("error","Please fill all fields");
-            request.getRequestDispatcher("register.jsp").forward(request,response);
-            return;
-        }
-        Customer customer = new Customer(name, email, password, city);
-        CustomerDAO customerDAO = new CustomerDAO();
-        int result = customerDAO.registerCustomer(customer);
-
-        if (result > 0) {
-            request.setAttribute("accountNumber", customer.getAccountNumber());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            request.setAttribute("error", "Registration failed. Email might be already used.");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        }
-    }
-}
 
 
-========================================= // servlet.LoginServlet.java (continued) =========================================
-package servlet;
-
-import dao.CustomerDAO;
-import model.Customer;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int accountNumber = Integer.parseInt(request.getParameter("accountNumber"));
-        String password = request.getParameter("password"); // Hash this in real app
-
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
-
-        if (customer != null && customer.getPassword().equals(password)) { // Never store passwords in plain text!
-            HttpSession session = request.getSession();
-            session.setAttribute("accountNumber", accountNumber);
-            response.sendRedirect("welcome.jsp");
-        } else {
-            request.setAttribute("error", "Invalid account number or password");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-    }
-}
 
 ========================================= // servlet.DepositServlet.java =========================================
 package servlet;
