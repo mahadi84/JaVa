@@ -12,6 +12,7 @@ The customer can see his information only, The code must support IDE eclipse ver
 03. Create all UI with Bootstrap 5
 
 ---------------------------- Things that I've learned ----------------------------
+0> Database and tables with containing fields
 1> Generate 6 digits A/C no. while registering the customer and prevent duplicate entry
 2> Segrigate transaction type(Deposite/Withdraw) while storing/checking Balance
 3> Generate a Ministatement with date, time, amount, and type for the last 10 txn.
