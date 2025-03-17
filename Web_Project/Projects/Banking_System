@@ -590,7 +590,7 @@ public class MiniStatementServlet extends HttpServlet {
         // Fetch current balance
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.getCustomerByAccountNumber(accountNumber);
-        double currentBalance = customer != null ? customer.getBalance() : 0.0;
+        double currentBalance = customer != null ? customer.getBalance() : 0.00;
 
         request.setAttribute("transactions", transactions);
         request.setAttribute("currentBalance", currentBalance); // Add balance as attribute
