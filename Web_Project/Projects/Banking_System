@@ -214,8 +214,8 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        Customer customer = new Customer(name, email, password, city);
-        CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = new Customer(name, email, password, city);    //model
+        CustomerDAO customerDAO = new CustomerDAO();  //Data Access Object for CURD
         try {
             int result = customerDAO.registerCustomer(customer);
 
