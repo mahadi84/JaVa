@@ -196,6 +196,7 @@ public class LoginServlet extends HttpServlet {
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -430,10 +431,10 @@ public class EmployeeServlet extends HttpServlet {
         updatedEmployee.setEmail(email);
         updatedEmployee.setImage(image);
         updatedEmployee.setCreatedBy(userId);
-
+        
         try {
             employeeDAO.updateEmployee(conn, updatedEmployee);
-            response.sendRedirect("EmployeeServlet?action=list");
+            response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+updated+successfully.");
         } catch (SQLException ex) {
             if (ex.getMessage().equals("No_data_updated")) {
                 request.setAttribute("errorMessage", "No data updated.");
@@ -462,14 +463,12 @@ public class EmployeeServlet extends HttpServlet {
 
         try {
             employeeDAO.deleteEmployee(conn, idToDelete, userId); 
-            response.sendRedirect("EmployeeServlet?action=list");
+            response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+deleted+successfully.");
         } catch (SQLException ex) {
-            request.setAttribute("errorMessage", "Error deleting employee: " + ex.getMessage());
-            request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
+        	 response.sendRedirect("EmployeeServlet?action=list&message=failed&text=Error+adding+employee:" + ex.getMessage());
         }
     }
 }
-
 
 
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
