@@ -280,6 +280,14 @@ public class EmployeeServlet extends HttpServlet {
     		throws SQLException, ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees(conn, userId); // Pass userId here
         request.setAttribute("employees", employees);
+        
+        String message = request.getParameter("message");
+        String text = request.getParameter("text");
+
+        if (message != null && !message.isEmpty()) {
+            request.setAttribute("message", message);
+            request.setAttribute("messageText", text);
+        }
         request.getRequestDispatcher("employee_list.jsp").forward(request, response);
     }
 
@@ -314,6 +322,7 @@ public class EmployeeServlet extends HttpServlet {
             return;
         }
         
+
         Employee newEmployee = new Employee();
         newEmployee.setName(name);
         newEmployee.setEmail(email);
@@ -321,13 +330,22 @@ public class EmployeeServlet extends HttpServlet {
 
         if (employeeDAO.isEmailExists(conn, newEmployee.getEmail())) {
             request.setAttribute("errorMessage", "Email already exists.");
+            request.setAttribute("name", name);
+            request.setAttribute("email", email);
+            request.setAttribute("image", image);
             request.getRequestDispatcher("employee_form.jsp").forward(request, response); 
             return;
         }
 
         newEmployee.setCreatedBy(userId);
-        employeeDAO.addEmployee(conn, newEmployee);
-        response.sendRedirect("EmployeeServlet?action=list"); 
+        try {
+            employeeDAO.addEmployee(conn, newEmployee);
+            response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+added+successfully.");
+        } catch (SQLException ex) {
+            response.sendRedirect("EmployeeServlet?action=list&message=failed&text=Error+adding+employee:" + ex.getMessage());
+            // Optionally log the exception: logger.error("Error adding employee", ex);
+        }
+
     }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
@@ -345,7 +363,8 @@ public class EmployeeServlet extends HttpServlet {
         request.getRequestDispatcher("update_form.jsp").forward(request, response);
     }
 
-    private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+  
+ private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
             throws SQLException, ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
         
@@ -369,6 +388,7 @@ public class EmployeeServlet extends HttpServlet {
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
             return;
         }
+        
         
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -449,6 +469,7 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 }
+
 
 
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
