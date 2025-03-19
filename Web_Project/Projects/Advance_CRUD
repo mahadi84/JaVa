@@ -425,6 +425,17 @@ public class EmployeeServlet extends HttpServlet {
             return;
         }
         
+     // Compare old and new data
+        if (existingEmployee.getName().equals(name) && existingEmployee.getEmail().equals(email) && existingEmployee.getImage().equals(image)) {
+            request.setAttribute("errorMessage", "No data to update.");
+            request.setAttribute("name", name);
+            request.setAttribute("email", email);
+            request.setAttribute("image", image);
+            request.setAttribute("id", idParam);
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
+            return;
+        }
+       
         Employee updatedEmployee = new Employee();
         updatedEmployee.setId(id);
         updatedEmployee.setName(name);
@@ -438,21 +449,15 @@ public class EmployeeServlet extends HttpServlet {
         } catch (SQLException ex) {
             if (ex.getMessage().equals("No_data_updated")) {
                 request.setAttribute("errorMessage", "No data updated.");
-                request.setAttribute("employee", updatedEmployee);
-                request.setAttribute("name", updatedEmployee.getName());
-                request.setAttribute("email", updatedEmployee.getEmail());
-                request.setAttribute("image", updatedEmployee.getImage());
-                request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
-                request.getRequestDispatcher("update_form.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorMessage", "Error updating employee: " + ex.getMessage());
-                request.setAttribute("employee", updatedEmployee);
-                request.setAttribute("name", updatedEmployee.getName());
-                request.setAttribute("email", updatedEmployee.getEmail());
-                request.setAttribute("image", updatedEmployee.getImage());
-                request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
-                request.getRequestDispatcher("update_form.jsp").forward(request, response);
             }
+            request.setAttribute("employee", updatedEmployee);
+            request.setAttribute("name", updatedEmployee.getName());
+            request.setAttribute("email", updatedEmployee.getEmail());
+            request.setAttribute("image", updatedEmployee.getImage());
+            request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
+            request.getRequestDispatcher("update_form.jsp").forward(request, response);
         }
    }
  
@@ -469,7 +474,6 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 }
-
 
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
 package dao;
@@ -649,6 +653,12 @@ public class EmployeeDAO {
    <br><br>
     <h1>Employee List</h1>
    <br><br>
+
+ <c:if test="${not empty message}">
+    <div class="${message == 'success' ? 'text-success' : 'text-danger'}">
+        <c:out value="${messageText}"/>
+    </div>
+</c:if>
 
   <c:if test="${not empty errorMessage}">
        <div class="alert alert-danger">${errorMessage}</div>
