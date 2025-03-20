@@ -30,43 +30,6 @@ Step 3: search project Facets click on that then
 step 4: you can see Dynamic Web Module 6.0 ---> change it to 5.0 Then your problem will resolved
 
 
-------------------------------------------------------------------------------------------------------------------- 
-                 add these <dependencies> before <project> tag into pom.xml 
-        that will download all dependencies into Project "Java Resources>Libraries>Maven Dependencies" Folder
---------------------------------------------------------------------------------------------------------------------
-
- <dependencies>
-      <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>9.2.0</version>
-    </dependency>
-    
-      <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
-    <dependency>
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>jakarta.servlet-api</artifactId>
-        <version>6.1.0</version>
-        <scope>provided</scope>
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
-    <dependency>
-        <groupId>jakarta.servlet.jsp.jstl</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-        <version>3.0.2</version>
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
-    <dependency>
-        <groupId>org.glassfish.web</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-        <version>3.0.1</version>
-    </dependency>
-</dependencies>
-
-
 ========================== Issues =======================================
 
 Issue_01: While run the code it shows beow error:
