@@ -1,13 +1,15 @@
 Date: March 20, 2025
 
-51 days(January 28, 2025, to  March 20, 2025)
+First 51 days(January 28, 2025, to  March 20, 2025) progress to learn about web project
+
+
 
 What I have learned:
  -How to setup a Java Environment for developing a web application
  Challenges: 
     -Eclipse version download and setup
     - How to install, connect, and run the Tomcat Server
-    - Knew about MySQL Bench, how to download install, and configure it.
+    - Knew about MySQL Bench, and how to download, install, and configure it.
 -> Maven vs web project
 ->POM and Web.xml file, Why and How it works
 
@@ -15,3 +17,7 @@ What I have learned:
 -DB Connection
 -DAO
 -Model
+
+
+
+-
