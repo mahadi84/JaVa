@@ -12,10 +12,11 @@ Date: 28 January 2025
 >Select "Project Save Destination" Folder
 
 Connect Server:
+>**Extract "Tomcat server" file  into C:Program File's folder"
 >Eclipse with "Apache Tomcat Server"
-    -Click on "Server" 
+    -Click on "Server" bottom of eclipse
     -Select "Apache" and Select "Latest Tomcat server version" 
-    -Next Browse the "Tomcat server **extracted file that I've already placed into C:Program File's folder"
+    -Next Browse the "Tomcat server" **that I've already extracted
 
 --------------Create a Web Project:-------------------
 Step:01:
