@@ -46,10 +46,14 @@ Issue_02: " ServletException cannot be resolved to a type
             HttpServletRequest cannot be resolved to a type
           " in Servlet.java file
 Solution:
+    press Ctrl+Shift+o (for all missing imports)
+    OR 
     import jakarta.servlet.ServletException;
     import jakarta.servlet.http.HttpServlet;
     import jakarta.servlet.http.HttpServletRequest;
     import jakarta.servlet.http.HttpServletResponse;
+
+
 
 
 Issue_02: "Server Tomcat v11.0 Server at localhost failed to start."
