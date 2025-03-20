@@ -20,8 +20,30 @@ How to:
 
 4> Check 
 	-Request: -if it GET/POST
-	-if the action is empty then, OR what if action is list/add/edit form/update/delete
+	-if the action is empty then, OR what if the action is a list/add/edit form/update/delete
 5> Use a Switch statement
+
+============================================= Project Structure =================================================
+ Project Structure (Eclipse 2024):
+ - Dynamic Web Project: Advane_CRUD
+   - src/main/java:
+     - dao:
+           - EmployeeDAO.java
+     - model:
+           - Employeer.java
+     - servlet:
+           - LoginServlet.java
+           - EmployeeServlet.java
+     - db:
+           - DBConnection.java
+   - src/main/webapp:
+         - login.jsp
+         - employee_list.jsp
+         - update_form.jsp
+         - employee_form.jsp
+     - WEB-INF:
+         - web.xml
+
 
 
 ==============================================  01. SQL QUERY and Database Connection Class ========================================================================
