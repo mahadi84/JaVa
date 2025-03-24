@@ -8,6 +8,8 @@ that fulfill the below conditions:
     -Validate input field and prevent duplicate email entries. If so, show the message "Already exist"
     -It can delete or update data only who entered it with the session
     -If there is no NEW data to update, show "No data updated".
+    -I want to upload an image of the employee in a customized folder with a maximum 200KB and only png and jpeg format 
+	and the image is updatable while employee info is updated while customizing
     -Only logged-in users can access the crud page.
 Note: All success and error messages will show on respective Bootstrap 5 pages
 
@@ -235,42 +237,57 @@ public class LoginServlet extends HttpServlet {
 ========================= Servlet (controller.EmployeeServlet.java) =============================
 package controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import dao.EmployeeDAO;
 import db.DBConnection;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import model.Employee;
-import java.util.regex.Pattern;
 
 @WebServlet("/EmployeeServlet")
+@MultipartConfig(maxFileSize = 200 * 1024, // 200KB
+                 location = "/temp") // Temporary location for file upload
 public class EmployeeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private EmployeeDAO employeeDAO;
+    private String uploadDirectory;
 
     @Override
     public void init() throws ServletException {
         employeeDAO = new EmployeeDAO();
+        // Define the upload directory relative to the web application context
+        uploadDirectory = getServletContext().getRealPath("/uploads");
+        File uploadsDir = new File(uploadDirectory);
+        if (!uploadsDir.exists()) {
+            uploadsDir.mkdirs();
+        }
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -281,7 +298,7 @@ public class EmployeeServlet extends HttpServlet {
             action = "list";
         }
 
-        HttpSession session = request.getSession(false); 
+        HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("userId") == null) {
             request.setAttribute("errorMessage", "Please log in to access this page.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -311,17 +328,17 @@ public class EmployeeServlet extends HttpServlet {
                     response.sendRedirect("EmployeeServlet?action=list");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
             request.setAttribute("errorMessage", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 
-    private void listEmployees(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
-    		throws SQLException, ServletException, IOException {
+    private void listEmployees(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+            throws SQLException, ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees(conn, userId); // Pass userId here
         request.setAttribute("employees", employees);
-        
+
         String message = request.getParameter("message");
         String text = request.getParameter("text");
 
@@ -336,45 +353,69 @@ public class EmployeeServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        String image = request.getParameter("image");
-        
+        Part filePart = request.getPart("image"); // Get the uploaded file part
+        String imageName = null;
+
         String errorMessage = null;
 
         if (name == null || name.trim().isEmpty()) {
             errorMessage = "Name is required.";
-        }else if (!Pattern.matches("^[a-zA-Z\\s.]+$", name)) {
-        	errorMessage =  "Name can only contain letters, spaces, and periods.";
+        } else if (!Pattern.matches("^[a-zA-Z\\s.]+$", name)) {
+            errorMessage =  "Name can only contain letters, spaces, and periods.";
         } else if (email == null || email.trim().isEmpty()) {
-        	errorMessage =  "Email is required.";
+            errorMessage =  "Email is required.";
         } else if (!Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
-        	errorMessage =  "Invalid email format.";
-        } else if (image == null || image.trim().isEmpty()) {
-            errorMessage = "Image URL is required.";
-        }else if (!image.toLowerCase().matches("^[a-zA-Z0-9]+\\.(jpeg|jpg|png)$")) {
-            errorMessage = "Image name must end with .jpeg, .jpg, or .png and can only contain letters and number.";
+            errorMessage =  "Invalid email format.";
+        } else if (filePart == null || filePart.getSize() == 0) {
+            errorMessage = "Image file is required.";
+        } else {
+            String contentType = filePart.getContentType();
+            if (contentType == null || (!contentType.equalsIgnoreCase("image/png") && !contentType.equalsIgnoreCase("image/jpeg"))) {
+                errorMessage = "Only PNG and JPEG image formats are allowed.";
+            } else if (filePart.getSize() > 200 * 1024) {
+                errorMessage = "Image file size cannot exceed 200KB.";
+            } else {
+                // Generate a unique file name
+                String submittedFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                String fileExtension = "";
+                int dotIndex = submittedFileName.lastIndexOf('.');
+                if (dotIndex > 0 && dotIndex < submittedFileName.length() - 1) {
+                    fileExtension = submittedFileName.substring(dotIndex);
+                }
+                imageName = "emp_" + System.currentTimeMillis() + "_" + userId + fileExtension;
+                File uploadFile = new File(uploadDirectory, imageName);
+                try (InputStream fileContent = filePart.getInputStream()) {
+                    Files.copy(fileContent, uploadFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    errorMessage = "Error uploading image: " + e.getMessage();
+                    e.printStackTrace();
+                }
+            }
         }
-        
+
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
             request.setAttribute("name", name);
             request.setAttribute("email", email);
-            request.setAttribute("image", image);
             request.getRequestDispatcher("employee_form.jsp").forward(request, response);
             return;
         }
-        
 
         Employee newEmployee = new Employee();
         newEmployee.setName(name);
         newEmployee.setEmail(email);
-        newEmployee.setImage(image);
+        newEmployee.setImage(imageName); // Store the filename in the database
 
         if (employeeDAO.isEmailExists(conn, newEmployee.getEmail())) {
+            // Delete the uploaded file if email already exists
+            if (imageName != null) {
+                File fileToDelete = new File(uploadDirectory, imageName);
+                fileToDelete.delete();
+            }
             request.setAttribute("errorMessage", "Email already exists.");
             request.setAttribute("name", name);
             request.setAttribute("email", email);
-            request.setAttribute("image", image);
-            request.getRequestDispatcher("employee_form.jsp").forward(request, response); 
+            request.getRequestDispatcher("employee_form.jsp").forward(request, response);
             return;
         }
 
@@ -383,18 +424,23 @@ public class EmployeeServlet extends HttpServlet {
             employeeDAO.addEmployee(conn, newEmployee);
             response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+added+successfully.");
         } catch (SQLException ex) {
+            // Delete the uploaded file if database insertion fails
+            if (imageName != null) {
+                File fileToDelete = new File(uploadDirectory, imageName);
+                fileToDelete.delete();
+            }
             response.sendRedirect("EmployeeServlet?action=list&message=failed&text=Error+adding+employee:" + ex.getMessage());
             // Optionally log the exception: logger.error("Error adding employee", ex);
         }
 
     }
 
-    private void showUpdateForm(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
-    		throws SQLException, ServletException, IOException {
+    private void showUpdateForm(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+            throws SQLException, ServletException, IOException {
         int idToUpdate = Integer.parseInt(request.getParameter("id"));
         Employee employeeToUpdate = employeeDAO.getEmployeeById(conn, idToUpdate);
 
-        if (employeeToUpdate == null || employeeToUpdate.getCreatedBy() != userId) { 
+        if (employeeToUpdate == null || employeeToUpdate.getCreatedBy() != userId) {
             request.setAttribute("errorMessage", "You don't have permission to update this employee.");
             request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
             return;
@@ -404,17 +450,13 @@ public class EmployeeServlet extends HttpServlet {
         request.getRequestDispatcher("update_form.jsp").forward(request, response);
     }
 
-  
- private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
             throws SQLException, ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-        
-    	String idParam = request.getParameter("id");
+        String idParam = request.getParameter("id");
 
         if (idParam == null || idParam.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Employee ID is missing.");
-            // Repopulate with existing data
-            request.setAttribute("id", idParam); // Repopulate the id
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
             return;
         }
@@ -424,95 +466,123 @@ public class EmployeeServlet extends HttpServlet {
             id = Integer.parseInt(idParam);
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "Invalid Employee ID.");
-            // Repopulate with existing data
-            request.setAttribute("id", idParam); // Repopulate the id
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
             return;
         }
-        
-        
+
+
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        String image = request.getParameter("image");
+        Part filePart = request.getPart("image"); // Get the uploaded file part
+        String newImageName = null;
 
         // Get the existing employee data
         Employee existingEmployee = employeeDAO.getEmployeeById(conn, id);
+        if (existingEmployee == null || existingEmployee.getCreatedBy() != userId) {
+            request.setAttribute("errorMessage", "You don't have permission to update this employee.");
+            request.getRequestDispatcher("EmployeeServlet?action=list").forward(request, response);
+            return;
+        }
+        String oldImageName = existingEmployee.getImage();
 
-        
         String errorMessage = null;
 
         if (name == null || name.trim().isEmpty()) {
             errorMessage = "Name is required.";
-        }else if (!Pattern.matches("^[a-zA-Z\\s.]+$", name)) {
-        	errorMessage =  "Name can only contain letters, spaces, and periods.";
+        } else if (!Pattern.matches("^[a-zA-Z\\s.]+$", name)) {
+            errorMessage =  "Name can only contain letters, spaces, and periods.";
         } else if (email == null || email.trim().isEmpty()) {
-        	errorMessage =  "Email is required.";
+            errorMessage =  "Email is required.";
         } else if (!Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
-        	errorMessage =  "Invalid email format.";
-        } else if (image == null || image.trim().isEmpty()) {
-            errorMessage = "Image URL is required.";
-        }else if (!image.toLowerCase().matches("^[a-zA-Z0-9]+\\.(jpeg|jpg|png)$")) {
-            errorMessage = "Image name must end with .jpeg, .jpg, or .png and can only contain letters and number.";
+            errorMessage =  "Invalid email format.";
+        } else if (filePart != null && filePart.getSize() > 0) {
+            String contentType = filePart.getContentType();
+            if (contentType == null || (!contentType.equalsIgnoreCase("image/png") && !contentType.equalsIgnoreCase("image/jpeg"))) {
+                errorMessage = "Only PNG and JPEG image formats are allowed.";
+            } else if (filePart.getSize() > 200 * 1024) {
+                errorMessage = "Image file size cannot exceed 200KB.";
+            } else {
+                // Generate a unique file name for the new image
+                String submittedFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                String fileExtension = "";
+                int dotIndex = submittedFileName.lastIndexOf('.');
+                if (dotIndex > 0 && dotIndex < submittedFileName.length() - 1) {
+                    fileExtension = submittedFileName.substring(dotIndex);
+                }
+                newImageName = "emp_" + System.currentTimeMillis() + "_" + userId + fileExtension;
+                File uploadFile = new File(uploadDirectory, newImageName);
+                try (InputStream fileContent = filePart.getInputStream()) {
+                    Files.copy(fileContent, uploadFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    // Delete the old image if a new one is uploaded
+                    if (oldImageName != null && !oldImageName.isEmpty()) {
+                        File oldFile = new File(uploadDirectory, oldImageName);
+                        oldFile.delete();
+                    }
+                } catch (IOException e) {
+                    errorMessage = "Error uploading new image: " + e.getMessage();
+                    e.printStackTrace();
+                    // Revert newImageName to null as upload failed
+                    newImageName = null;
+                }
+            }
         }
-        
+
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
-            request.setAttribute("name", existingEmployee.getName());
-            request.setAttribute("email", existingEmployee.getEmail());
-            request.setAttribute("image", existingEmployee.getImage());
-            request.setAttribute("id", idParam); // Repopulate the id
+            request.setAttribute("employee", existingEmployee); // Repopulate with existing data
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
             return;
         }
-        
-     // Compare old and new data
-        if (existingEmployee.getName().equals(name) && existingEmployee.getEmail().equals(email) && existingEmployee.getImage().equals(image)) {
-            request.setAttribute("errorMessage", "No data to update.");
-            request.setAttribute("name", name);
-            request.setAttribute("email", email);
-            request.setAttribute("image", image);
-            request.setAttribute("id", idParam);
-            request.getRequestDispatcher("update_form.jsp").forward(request, response);
-            return;
-        }
-       
+
         Employee updatedEmployee = new Employee();
         updatedEmployee.setId(id);
         updatedEmployee.setName(name);
         updatedEmployee.setEmail(email);
-        updatedEmployee.setImage(image);
+        // Set the new image name if a new file was uploaded, otherwise keep the old one
+        updatedEmployee.setImage(newImageName != null ? newImageName : oldImageName);
         updatedEmployee.setCreatedBy(userId);
-        
+
         try {
             employeeDAO.updateEmployee(conn, updatedEmployee);
             response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+updated+successfully.");
         } catch (SQLException ex) {
+            // Delete the newly uploaded file if database update fails
+            if (newImageName != null) {
+                File fileToDelete = new File(uploadDirectory, newImageName);
+                fileToDelete.delete();
+            }
             if (ex.getMessage().equals("No_data_updated")) {
                 request.setAttribute("errorMessage", "No data updated.");
             } else {
                 request.setAttribute("errorMessage", "Error updating employee: " + ex.getMessage());
             }
             request.setAttribute("employee", updatedEmployee);
-            request.setAttribute("name", updatedEmployee.getName());
-            request.setAttribute("email", updatedEmployee.getEmail());
-            request.setAttribute("image", updatedEmployee.getImage());
-            request.setAttribute("id", String.valueOf(updatedEmployee.getId()));
             request.getRequestDispatcher("update_form.jsp").forward(request, response);
         }
-   }
- 
-    
-    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId) 
-    		throws SQLException, ServletException, IOException {
+    }
+
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response, Connection conn, int userId)
+            throws SQLException, ServletException, IOException {
         int idToDelete = Integer.parseInt(request.getParameter("id"));
 
+        // Get the employee to delete to retrieve the image name
+        Employee employeeToDelete = employeeDAO.getEmployeeById(conn, idToDelete);
+
         try {
-            employeeDAO.deleteEmployee(conn, idToDelete, userId); 
+            boolean deleted = employeeDAO.deleteEmployee(conn, idToDelete, userId);
+            if (deleted && employeeToDelete != null && employeeToDelete.getImage() != null && !employeeToDelete.getImage().isEmpty()) {
+                // Delete the associated image file
+                File fileToDelete = new File(uploadDirectory, employeeToDelete.getImage());
+                fileToDelete.delete();
+            }
             response.sendRedirect("EmployeeServlet?action=list&message=success&text=Employee+deleted+successfully.");
         } catch (SQLException ex) {
-        	 response.sendRedirect("EmployeeServlet?action=list&message=failed&text=Error+adding+employee:" + ex.getMessage());
+            response.sendRedirect("EmployeeServlet?action=list&message=failed&text=Error+deleting+employee:" + ex.getMessage());
         }
     }
+ 
+    
 }
 
 ============================  03. DAO (dao.EmployeeDAO.java) ======================================
@@ -528,9 +598,9 @@ import java.util.List;
 import model.Employee;
 
 public class EmployeeDAO {
-    public List<Employee> getAllEmployees(Connection conn, int loggedInUserId) throws SQLException { 
+    public List<Employee> getAllEmployees(Connection conn, int loggedInUserId) throws SQLException {
         List<Employee> employees = new ArrayList<>();
-        String sql = "SELECT * FROM employees WHERE created_by = ?"; 
+        String sql = "SELECT id, name, email, image, created_by FROM employees WHERE created_by = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, loggedInUserId); // Filter by the logged-in user
             try (ResultSet rs = ps.executeQuery()) {
@@ -548,8 +618,8 @@ public class EmployeeDAO {
         return employees;
     }
 
-    public Employee getEmployeeById(Connection conn, int id) throws SQLException { 
-        String sql = "SELECT * FROM employees WHERE id = ?";
+    public Employee getEmployeeById(Connection conn, int id) throws SQLException {
+        String sql = "SELECT id, name, email, image, created_by FROM employees WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -573,34 +643,59 @@ public class EmployeeDAO {
             ps.setString(1, emp.getName());
             ps.setString(2, emp.getEmail());
             ps.setString(3, emp.getImage());
-            ps.setInt(4, emp.getCreatedBy()); 
+            ps.setInt(4, emp.getCreatedBy());
             ps.executeUpdate();
         }
     }
 
     public void updateEmployee(Connection conn, Employee emp) throws SQLException {
-        String sql = "UPDATE employees SET name=?, email=?, image=? WHERE id=? AND created_by=?"; 
+        String sql = "UPDATE employees SET name=?, email=?, image=? WHERE id=? AND created_by=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, emp.getName());
             ps.setString(2, emp.getEmail());
             ps.setString(3, emp.getImage());
             ps.setInt(4, emp.getId());
-            ps.setInt(5, emp.getCreatedBy()); 
+            ps.setInt(5, emp.getCreatedBy());
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated == 0) {
-                throw new SQLException("No_data_updated"); 
+                throw new SQLException("No_data_updated");
             }
         }
     }
 
-    public void deleteEmployee(Connection conn, int id, int createdBy) throws SQLException {
-        String sql = "DELETE FROM employees WHERE id=? AND created_by=?"; 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ps.setInt(2, createdBy); 
-            ps.executeUpdate();
+    public boolean deleteEmployee(Connection conn, int id, int createdBy) throws SQLException {
+        // First, retrieve the image filename to delete from the file system
+        String getImageSql = "SELECT image FROM employees WHERE id=? AND created_by=?";
+        String imageNameToDelete = null;
+        try (PreparedStatement getImagePs = conn.prepareStatement(getImageSql)) {
+            getImagePs.setInt(1, id);
+            getImagePs.setInt(2, createdBy);
+            try (ResultSet rs = getImagePs.executeQuery()) {
+                if (rs.next()) {
+                    imageNameToDelete = rs.getString("image");
+                }
+            }
         }
+
+        // Then, delete the employee record
+        String deleteSql = "DELETE FROM employees WHERE id=? AND created_by=?";
+        int rowsDeleted = 0;
+        try (PreparedStatement deletePs = conn.prepareStatement(deleteSql)) {
+            deletePs.setInt(1, id);
+            deletePs.setInt(2, createdBy);
+            rowsDeleted = deletePs.executeUpdate();
+        }
+
+        // Return true if at least one row was deleted, false otherwise
+        return rowsDeleted > 0;
+
+        // Note: The actual file deletion from the file system should be handled in the Servlet.
+        // This DAO only manages the database operation. Returning the imageName might be useful
+        // if you want the Servlet to handle the file deletion explicitly.
+        // You could modify this method to return the imageNameToDelete.
     }
+
+
 
     public boolean isEmailExists(Connection conn, String email) throws SQLException {
         String sql = "SELECT COUNT(*) FROM employees WHERE email = ?";
@@ -615,7 +710,6 @@ public class EmployeeDAO {
         return false;
     }
 }
-
 
 ================================================ login.jsp ==============================
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -690,19 +784,19 @@ public class EmployeeDAO {
 </head>
 <body>
 <div class="container">
-   <br><br>
+    <br><br>
     <h1>Employee List</h1>
-   <br><br>
+    <br><br>
 
- <c:if test="${not empty message}">
-    <div class="${message == 'success' ? 'text-success' : 'text-danger'}">
-        <c:out value="${messageText}"/>
-    </div>
-</c:if>
+    <c:if test="${not empty message}">
+        <div class="${message == 'success' ? 'text-success' : 'text-danger'}">
+            <c:out value="${messageText}"/>
+        </div>
+    </c:if>
 
-  <c:if test="${not empty errorMessage}">
-       <div class="alert alert-danger">${errorMessage}</div>
-</c:if>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger">${errorMessage}</div>
+    </c:if>
 
     <a href="employee_form.jsp" class="btn btn-success">Add Employee</a> |
     <a href="LoginServlet?action=logout" class="btn btn-primary">Logout</a> <br><br>
@@ -730,7 +824,14 @@ public class EmployeeDAO {
                         <td>${employee.id}</td>
                         <td>${employee.name}</td>
                         <td>${employee.email}</td>
-                        <td><img src="${employee.image}" alt="Employee Image" width="50"></td>
+                        <td>
+                            <c:if test="${not empty employee.image}">
+                                <img src="${pageContext.request.contextPath}/uploads/${employee.image}" alt="Image" width="50">
+                            </c:if>
+                            <c:if test="${empty employee.image}">
+                                No Image
+                            </c:if>
+                        </td>
                         <td>
                             <a href="EmployeeServlet?action=updateForm&id=${employee.id}" class="btn btn-sm btn-warning">Update</a>
                             <a href="EmployeeServlet?action=delete&id=${employee.id}" class="btn btn-sm btn-danger">Delete</a>
@@ -763,8 +864,8 @@ public class EmployeeDAO {
         <div class="alert alert-danger">${errorMessage}</div>
     </c:if>
 
-    <form action="EmployeeServlet?action=update" method="post">
-       <input type="hidden" name="id" value="${not empty id ? id : employee.id}">
+    <form action="EmployeeServlet?action=update" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="${not empty id ? id : employee.id}">
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
             <input type="text" class="form-control" id="name" name="name" value="${not empty name ? name : employee.name}">
@@ -773,18 +874,80 @@ public class EmployeeDAO {
             <label for="email" class="form-label">Email:</label>
             <input type="email" class="form-control" id="email" name="email" value="${not empty email ? email : employee.email}">
         </div>
+
         <div class="mb-3">
-            <label for="image" class="form-label">Image URL/Path:</label>
-            <input type="text" class="form-control" id="image" name="image" value="${not empty image ? image : employee.image}">
+            <label class="form-label">Current Image:</label><br>
+            <c:if test="${not empty employee.image}">
+                <img src="${pageContext.request.contextPath}/uploads/${employee.image}" alt="Current Employee Image" width="100">
+            </c:if>
+            <c:if test="${empty employee.image}">
+                No current image.
+            </c:if>
         </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Update Employee Image (PNG or JPEG, max 200KB, leave blank to keep existing):</label>
+              <input type="file" class="form-control" id="image" name="image" accept=".png, .jpeg, .jpg" onchange="validateImageSize(this)">
+			  <img id="imagePreview" src="#" alt="Image Preview" style="display: none;">
+        </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="EmployeeServlet?action=list" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function previewImage(input) {
+        const imagePreview = document.getElementById('imagePreview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+        }
+    }
+    
+  //Image Size Validation on the browser
+    function validateImageSize(input) {
+        const maxSizeKB = 200; // Maximum size in KB
+        const maxSizeBytes = maxSizeKB * 1024;
+        const imagePreview = document.getElementById('imagePreview'); // Assuming you have an image preview element
+
+        if (input.files && input.files[0]) {
+            if (input.files[0].size > maxSizeBytes) {
+                alert(`Image size exceeds the maximum allowed size of ${maxSizeKB}KB. Please choose a smaller image.`);
+                input.value = ''; // Clear the file input
+                imagePreview.src = '#'; // Clear the preview
+                imagePreview.style.display = 'none';
+                return false; // Prevent further processing (optional, as the input is cleared)
+            } else {
+                // Proceed with image preview (if you have it)
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+                return true;
+            }
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+            return true;
+        }
+    }
+</script>
 </body>
-</html>
+</htm
 
 ========================== employee_form.jsp (add new employee) ============================
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -793,6 +956,15 @@ public class EmployeeDAO {
 <head>
     <title>Create Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #imagePreview {
+            max-width: 200px;
+            height: auto;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -802,7 +974,7 @@ public class EmployeeDAO {
         <div class="alert alert-danger">${errorMessage}</div>
     </c:if>
 
-    <form action="EmployeeServlet?action=create" method="post">       
+    <form action="EmployeeServlet?action=create" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
             <input type="text" class="form-control" id="name" name="name" value="${not empty name ? name : ''}">
@@ -812,20 +984,67 @@ public class EmployeeDAO {
             <input type="email" class="form-control" id="email" name="email" value="${not empty email ? email : ''}">
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image URL/Path:</label>
-            <input type="text" class="form-control" id="image" name="image" value="${not empty image ? image : ''}">
+            <label for="image" class="form-label">Employee Image (PNG or JPEG, max 200KB):</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".png, .jpeg, .jpg" onchange="validateImageSize(this)">
+			<img id="imagePreview" src="#" alt="Image Preview" style="display: none;">
         </div>
-        <button type="submit" class="btn btn-primary">create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
         <a href="EmployeeServlet?action=list" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function previewImage(input) {
+        const imagePreview = document.getElementById('imagePreview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+        }
+    }
+  
+    
+    //Image Size Validation on the browser
+    function validateImageSize(input) {
+        const maxSizeKB = 200; // Maximum size in KB
+        const maxSizeBytes = maxSizeKB * 1024;
+        const imagePreview = document.getElementById('imagePreview'); // Assuming you have an image preview element
+
+        if (input.files && input.files[0]) {
+            if (input.files[0].size > maxSizeBytes) {
+                alert(`Image size exceeds the maximum allowed size of ${maxSizeKB}KB. Please choose a smaller image.`);
+                input.value = ''; // Clear the file input
+                imagePreview.src = '#'; // Clear the preview
+                imagePreview.style.display = 'none';
+                return false; // Prevent further processing (optional, as the input is cleared)
+            } else {
+                // Proceed with image preview (if you have it)
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+                return true;
+            }
+        } else {
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+            return true;
+        }
+    }
+</script>
 </body>
 </html>
-
-
-
 
 
 
