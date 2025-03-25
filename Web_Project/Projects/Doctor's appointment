@@ -130,6 +130,32 @@ CREATE TABLE IF NOT EXISTS Admins (
 INSERT INTO Admins (username, password) VALUES ('admin', 'password123');
 
 =============================== Models ====================================
+package model;
+
+public class Admin {
+    private int adminId;
+    private String username;
+    private String password; // In a real application, this should only be the hashed password
+
+    // Default constructor
+    public Admin() { }
+
+    public Admin(int adminId, String username, String password) {
+        this.adminId = adminId;
+        this.username = username;
+        this.password = password;
+    }
+
+    // Getters and setters
+    public int getAdminId() { return adminId;}
+    public void setAdminId(int adminId) {this.adminId = adminId;}
+
+    public String getUsername() {return username;}
+    public void setUsername(String username) { this.username = username;}
+
+    public String getPassword() {return password; }
+    public void setPassword(String password) { this.password = password;}
+}
 ------------------------------ model.Doctor -----------------------------
 package model;
 
