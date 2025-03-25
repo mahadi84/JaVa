@@ -131,7 +131,7 @@ INSERT INTO Admins (username, password) VALUES ('admin', 'password123');
 
 =============================== Models ====================================
 ------------------------------ model.Doctor -----------------------------
-package doctorappointment.model;
+package model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -163,7 +163,7 @@ public class Doctor {
 }
 
 --------------------------model.Patient -----------------------------
-package doctorappointment.model;
+package model;
 
 public class Patient {
     private int patientId;
@@ -196,7 +196,7 @@ public class Patient {
 }
 
 --------------------------model.Appointment -----------------------------
-package doctorappointment.model;
+package model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -242,17 +242,17 @@ public class Appointment {
 }
 ==============================================servlet.AdminLoginServlet.java ========================================
 
-package doctorappointment.controller;
+package controller;
 
-import doctorappointment.dao.AdminDAO;
-import doctorappointment.dao.DoctorDAO;
-import doctorappointment.dao.PatientDAO;
-import doctorappointment.dao.AppointmentDAO;
-import doctorappointment.model.Admin;
-import doctorappointment.model.Doctor;
-import doctorappointment.model.Patient;
-import doctorappointment.model.Appointment;
-import doctorappointment.util.DatabaseConnection;
+import dao.AdminDAO;
+import dao.DoctorDAO;
+import dao.PatientDAO;
+import dao.AppointmentDAO;
+import model.Admin;
+import model.Doctor;
+import model.Patient;
+import model.Appointment;
+import util.DatabaseConnection;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -314,10 +314,10 @@ public class AdminLoginServlet extends HttpServlet {
     }
 }
 ========================================== servlet.DoctorManagementServlet.java ============================================
-package doctorappointment.controller;
+package controller;
 
-import doctorappointment.dao.DoctorDAO;
-import doctorappointment.model.Doctor;
+import dao.DoctorDAO;
+import model.Doctor;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -396,14 +396,14 @@ public class DoctorManagementServlet extends HttpServlet {
     }
 }
 =========================================== servlet.BookAppointmentServlet.java ===========================================
-package doctorappointment.controller;
+package controller;
 
-import doctorappointment.dao.AppointmentDAO;
-import doctorappointment.dao.DoctorDAO;
-import doctorappointment.dao.PatientDAO;
-import doctorappointment.model.Appointment;
-import doctorappointment.model.Doctor;
-import doctorappointment.model.Patient;
+import dao.AppointmentDAO;
+import dao.DoctorDAO;
+import dao.PatientDAO;
+import model.Appointment;
+import model.Doctor;
+import model.Patient;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -500,12 +500,12 @@ public class BookAppointmentServlet extends HttpServlet {
     }
 }
 ======================================= servlet.SearchAppointmentServlet.java ===============================================
-package doctorappointment.controller;
+package controller;
 
-import doctorappointment.dao.AppointmentDAO;
-import doctorappointment.model.Appointment;
-import doctorappointment.model.Doctor;
-import doctorappointment.model.Patient;
+import dao.AppointmentDAO;
+import model.Appointment;
+import model.Doctor;
+import model.Patient;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -565,10 +565,10 @@ public class SearchAppointmentServlet extends HttpServlet {
     }
 }
 =========================================== servlet.AppointmentListServlet.java ===========================================
-package doctorappointment.controller;
+package controller;
 
-import doctorappointment.dao.AppointmentDAO;
-import doctorappointment.model.Appointment;
+import dao.AppointmentDAO;
+import model.Appointment;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -628,7 +628,7 @@ public class AppointmentListServlet extends HttpServlet {
     }
 }
 ==================================== servlet.AdminDashboardServlet.java ==================================================
-package doctorappointment.controller;
+package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -659,10 +659,10 @@ public class AdminDashboardServlet extends HttpServlet {
     }
 }
 =========================================dao.AdminDAO.java=============================================
-package doctorappointment.dao;
+package dao;
 
-import doctorappointment.model.Admin;
-import doctorappointment.util.DatabaseConnection;
+import model.Admin;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -691,10 +691,10 @@ public class AdminDAO {
 
 
 =============================================== dao.DoctorDAO.java =======================================================
-package doctorappointment.dao;
+package dao;
 
-import doctorappointment.model.Doctor;
-import doctorappointment.util.DatabaseConnection;
+import model.Doctor;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -763,10 +763,10 @@ public class DoctorDAO {
     }
 }
 ==================================================== dao.PatientDAO.java ==================================================
-package doctorappointment.dao;
+package dao;
 
-import doctorappointment.model.Patient;
-import doctorappointment.util.DatabaseConnection;
+import model.Patient;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -803,12 +803,12 @@ public class PatientDAO {
     }
 }
 ============================================ dao.AppointmentDAO.java ==========================================================
-package doctorappointment.dao;
+package dao;
 
-import doctorappointment.model.Appointment;
-import doctorappointment.model.Doctor;
-import doctorappointment.model.Patient;
-import doctorappointment.util.DatabaseConnection;
+import model.Appointment;
+import model.Doctor;
+import model.Patient;
+import util.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
