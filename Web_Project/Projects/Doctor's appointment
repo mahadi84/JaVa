@@ -27,52 +27,61 @@ doctor-appointment-app/
 │   │   ├── java/
 │   │   │   └── com/example/doctorappointment/
 │   │   │       ├── controller/
-│   │   │       │   ├── AdminDashboardServlet.java
-│   │   │       │   ├── AdminLoginServlet.java
-│   │   │       │   ├── AppointmentListServlet.java
-│   │   │       │   ├── BookAppointmentServlet.java
-│   │   │       │   ├── DoctorManagementServlet.java
-│   │   │       │   └── SearchAppointmentServlet.java
+│   │   │       │   ├── AdminController.java        // Handles admin-related web requests (login, doctor management, appointment listing).
+│   │   │       │   ├── AdminDashboardServlet.java  // Handles requests for the admin dashboard page.
+│   │   │       │   ├── AdminLoginServlet.java      // Handles admin login functionality.
+│   │   │       │   ├── AppointmentListServlet.java // Handles the display and pagination of appointments for admins.
+│   │   │       │   ├── BookAppointmentServlet.java // Handles public-facing patient registration and appointment booking.
+│   │   │       │   ├── DoctorManagementServlet.java// Handles admin registration and listing of doctors.
+│   │   │       │   └── SearchAppointmentServlet.java// Handles searching for appointments by ID.
 │   │   │       ├── dao/
-│   │   │       │   ├── AdminDAO.java
-│   │   │       │   ├── AppointmentDAO.java
-│   │   │       │   ├── DoctorDAO.java
-│   │   │       │   └── PatientDAO.java
+│   │   │       │   ├── AdminDAO.java               // Data Access Object for the Admins table.
+│   │   │       │   ├── AppointmentDAO.java         // Data Access Object for the Appointments table.
+│   │   │       │   ├── DoctorDAO.java              // Data Access Object for the Doctors table.
+│   │   │       │   └── PatientDAO.java             // Data Access Object for the Patients table.
 │   │   │       ├── model/
-│   │   │       │   ├── Admin.java
-│   │   │       │   ├── Appointment.java
-│   │   │       │   ├── Doctor.java
-│   │   │       │   └── Patient.java
-│   │   │       └── util/
-│   │   │           └── DatabaseConnection.java
+│   │   │       │   ├── Admin.java                  // Represents the Admin entity.
+│   │   │       │   ├── Appointment.java            // Represents the Appointment entity.
+│   │   │       │   ├── Doctor.java                 // Represents the Doctor entity.
+│   │   │       │   └── Patient.java                // Represents the Patient entity.
+│   │   │       ├── util/
+│   │   │       │   └── DatabaseConnection.java     // Utility class for establishing database connections.
+│   │   │       └── security/ (optional, for more advanced security)
+│   │   │           ├── WebSecurityConfig.java      // Configuration for Spring Security (if used).
+│   │   │           └── AdminDetailsService.java    // Implementation for loading admin details (if using Spring Security).
 │   │   ├── resources/
-│   │   │   └── (Optional: Configuration files if using frameworks like Spring)
+│   │   │   ├── application.properties            // Configuration file for Spring Boot (if used).
+│   │   │   └── logback-spring.xml                // Configuration for logging (if used with Spring Boot).
 │   │   └── webapp/
 │   │       ├── WEB-INF/
-│   │       │   └── web.xml (Deployment Descriptor)
-│   │       ├── admin/
-│   │       │   ├── add-doctor.jsp
-│   │       │   ├── dashboard.jsp
-│   │       │   ├── list-appointments.jsp
-│   │       │   ├── list-doctors.jsp
-│   │       │   └── login.jsp
+│   │       │   └── web.xml                       // Deployment descriptor for the web application.
 │   │       ├── css/
-│   │       │   └── style.css (Optional: Your custom CSS)
+│   │       │   └── style.css                     // Custom CSS styles for the application.
 │   │       ├── js/
-│   │       │   └── script.js (Optional: Your custom JavaScript)
-│   │       ├── appointment-details.jsp
-│   │       ├── appointment-success.jsp
-│   │       ├── book-appointment.jsp
-│   │       ├── error.jsp
-│   │       ├── index.jsp (Optional: Welcome page)
-│   │       └── search-appointment.jsp
+│   │       │   └── script.js                     // Custom JavaScript for the application.
+│   │       ├── images/
+│   │       │   └── ...                           // Directory for storing images.
+│   │       ├── admin/
+│   │       │   ├── add-doctor.jsp                // Form for adding a new doctor (admin access).
+│   │       │   ├── dashboard.jsp                 // Admin dashboard landing page.
+│   │       │   ├── list-appointments.jsp         // Page displaying a paginated list of appointments (admin access).
+│   │       │   ├── list-doctors.jsp              // Page displaying a list of registered doctors (admin access).
+│   │       │   └── login.jsp                     // Admin login form.
+│   │       ├── appointment-details.jsp         // Page displaying details of a searched appointment.
+│   │       ├── appointment-success.jsp         // Page displayed after successful appointment booking.
+│   │       ├── book-appointment.jsp            // Public-facing form for booking an appointment.
+│   │       ├── error.jsp                       // Generic error page.
+│   │       └── index.jsp                       // Optional home page for the application.
 │   └── test/
 │       └── java/
 │           └── com/example/doctorappointment/
-│               └── ... (Unit and Integration Tests - You would create these)
-├── pom.xml (Maven Project Object Model)
-
-
+│               ├── controller/
+│               │   └── AdminControllerTest.java    // Unit/Integration tests for AdminController.
+│               ├── dao/
+│               │   └── DoctorDAOTest.java         // Unit/Integration tests for DoctorDAO.
+│               └── service/ (if you had a service layer)
+│                   └── ...
+├── pom.xml                                     // Maven project configuration file (dependencies, build settings).
 
 
 ================================ Database and Table, Database Connection Class, Model ======================================================
