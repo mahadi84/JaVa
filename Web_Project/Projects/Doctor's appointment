@@ -22,37 +22,55 @@ Create: Bootstrap 5 as UI for this
 ------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
 
 doctor-appointment-app/
-
-│   ├── java/
-│   │   └── com/example/doctorappointment/
-│   │       ├── controller/
-    │       │   ├── AdminController.java
-│   │       │   └── PatientController.java
-│   │       ├── model/
-│   │       │   ├── Doctor.java
-│   │       │   ├── Patient.java
-│   │       │   └── Appointment.java
-│   │       ├── repository/
-│   │       │   ├── DoctorRepository.java
-│   │       │   ├── PatientRepository.java
-│   │       │   └── AppointmentRepository.java
-│   │       ├── service/
-│   │       │   ├── AdminService.java
-│   │       │   └── PatientService.java
-│   │       ├── security/ (if using Spring Security)
-│   │       │   ├── WebSecurityConfig.java
-│   │       │   └── AdminDetailsService.java
-│   │       └── util/
-│   │           └── DateTimeUtil.java
-│   ├── resources/
-│   │   ├── application.properties (Spring Boot) or configuration files
-│   │   └── templates/ (Thymeleaf) or WebContent/ (JSP)
-│   └── webapp/
-│       ├── WEB-INF/
-│       │   └── web.xml (if not using Spring Boot)
-│       ├── css/
-│       ├── js/
-│       └── images/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/doctorappointment/
+│   │   │       ├── controller/
+│   │   │       │   ├── AdminDashboardServlet.java
+│   │   │       │   ├── AdminLoginServlet.java
+│   │   │       │   ├── AppointmentListServlet.java
+│   │   │       │   ├── BookAppointmentServlet.java
+│   │   │       │   ├── DoctorManagementServlet.java
+│   │   │       │   └── SearchAppointmentServlet.java
+│   │   │       ├── dao/
+│   │   │       │   ├── AdminDAO.java
+│   │   │       │   ├── AppointmentDAO.java
+│   │   │       │   ├── DoctorDAO.java
+│   │   │       │   └── PatientDAO.java
+│   │   │       ├── model/
+│   │   │       │   ├── Admin.java
+│   │   │       │   ├── Appointment.java
+│   │   │       │   ├── Doctor.java
+│   │   │       │   └── Patient.java
+│   │   │       └── util/
+│   │   │           └── DatabaseConnection.java
+│   │   ├── resources/
+│   │   │   └── (Optional: Configuration files if using frameworks like Spring)
+│   │   └── webapp/
+│   │       ├── WEB-INF/
+│   │       │   └── web.xml (Deployment Descriptor)
+│   │       ├── admin/
+│   │       │   ├── add-doctor.jsp
+│   │       │   ├── dashboard.jsp
+│   │       │   ├── list-appointments.jsp
+│   │       │   ├── list-doctors.jsp
+│   │       │   └── login.jsp
+│   │       ├── css/
+│   │       │   └── style.css (Optional: Your custom CSS)
+│   │       ├── js/
+│   │       │   └── script.js (Optional: Your custom JavaScript)
+│   │       ├── appointment-details.jsp
+│   │       ├── appointment-success.jsp
+│   │       ├── book-appointment.jsp
+│   │       ├── error.jsp
+│   │       ├── index.jsp (Optional: Welcome page)
+│   │       └── search-appointment.jsp
+│   └── test/
+│       └── java/
+│           └── com/example/doctorappointment/
+│               └── ... (Unit and Integration Tests - You would create these)
+├── pom.xml (Maven Project Object Model)
 
 
 
