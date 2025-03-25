@@ -14,15 +14,1527 @@ with the following logic:
 -List 10 appointments per page with dynamic pagination with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, the page can be accessed by Admin only 
 "
 
-Create: SQL for Database and Table, Database Connection Class, Model
-Create: Bootstrap 5 as UI for this
+Create: SQL for Database and Table, Database Connection Class, Modeles
 Create: HttpServlets, DAOs for this 
+Create: Bootstrap 5 as UI for this
 
-======================================================================================
-======================================================================================
-======================================================================================
-======================================================================================
-======================================================================================
-======================================================================================
-======================================================================================
-======================================================================================
+
+------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
+
+doctor-appointment-app/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/doctorappointment/
+│   │   │       ├── controller/
+│   │   │       │   ├── AdminController.java
+│   │   │       │   └── PatientController.java
+│   │   │       ├── model/
+│   │   │       │   ├── Doctor.java
+│   │   │       │   ├── Patient.java
+│   │   │       │   └── Appointment.java
+│   │   │       ├── repository/
+│   │   │       │   ├── DoctorRepository.java
+│   │   │       │   ├── PatientRepository.java
+│   │   │       │   └── AppointmentRepository.java
+│   │   │       ├── service/
+│   │   │       │   ├── AdminService.java
+│   │   │       │   └── PatientService.java
+│   │   │       ├── security/ (if using Spring Security)
+│   │   │       │   ├── WebSecurityConfig.java
+│   │   │       │   └── AdminDetailsService.java
+│   │   │       └── util/
+│   │   │           └── DateTimeUtil.java
+│   │   ├── resources/
+│   │   │   ├── application.properties (Spring Boot) or configuration files
+│   │   │   └── templates/ (Thymeleaf) or WebContent/ (JSP)
+│   │   └── webapp/
+│   │       ├── WEB-INF/
+│   │       │   └── web.xml (if not using Spring Boot)
+│   │       ├── css/
+│   │       ├── js/
+│   │       └── images/
+│   └── test/
+│       └── java/
+│           └── com/example/doctorappointment/
+│               └── ... (Unit and Integration Tests)
+├── pom.xml (Maven) or build.gradle (Gradle)
+
+
+
+================================ Database and Table, Database Connection Class, Model ======================================================
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS doctor_appointment_db;
+
+-- Use the database
+USE doctor_appointment_db;
+
+-- Create Doctors table
+CREATE TABLE IF NOT EXISTS Doctors (
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_name VARCHAR(255) NOT NULL,
+    specialization VARCHAR(255)
+);
+
+-- Create Patients table
+CREATE TABLE IF NOT EXISTS Patients (
+    patient_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INT,
+    gender VARCHAR(50)
+);
+
+-- Create Appointments table
+CREATE TABLE IF NOT EXISTS Appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    appointment_date DATE NOT NULL,
+    time_slot VARCHAR(50) NOT NULL,
+    appointment_booked_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id),
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
+);
+
+-- Sample Admin User (for demonstration - in a real application, handle securely)
+CREATE TABLE IF NOT EXISTS Admins (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL -- Store hashed passwords in a real application
+);
+
+INSERT INTO Admins (username, password) VALUES ('admin', 'password123');
+
+=============================== Models ====================================
+------------------------------ model.Doctor -----------------------------
+package doctorappointment.model;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+public class Doctor {
+    private int doctorId;
+    private String doctorName;
+    private String specialization;
+
+    // Default constructor (required by some frameworks)
+    public Doctor() {
+    }
+
+    public Doctor(int doctorId, String doctorName, String specialization) {
+        this.doctorId = doctorId;
+        this.doctorName = doctorName;
+        this.specialization = specialization;
+    }
+
+    // Getters and setters
+    public int getDoctorId() {return doctorId; }
+    public void setDoctorId(int doctorId) { this.doctorId = doctorId;}
+
+    public String getDoctorName() {return doctorName; }
+    public void setDoctorName(String doctorName) {this.doctorName = doctorName;}
+
+    public String getSpecialization() { return specialization;}
+    public void setSpecialization(String specialization) {this.specialization = specialization;}
+}
+
+--------------------------model.Patient -----------------------------
+package doctorappointment.model;
+
+public class Patient {
+    private int patientId;
+    private String name;
+    private Integer age;
+    private String gender;
+
+    public Patient() {
+    }
+
+    public Patient(int patientId, String name, Integer age, String gender) {
+        this.patientId = patientId;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    // Getters and setters
+    public int getPatientId() { return patientId;}
+    public void setPatientId(int patientId) { this.patientId = patientId;}
+
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+
+    public Integer getAge() { return age;}
+    public void setAge(Integer age) { this.age = age;}
+
+    public String getGender() {return gender;}
+    public void setGender(String gender) {this.gender = gender;}
+}
+
+--------------------------model.Appointment -----------------------------
+package doctorappointment.model;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+public class Appointment {
+    private int appointmentId;
+    private int doctorId;
+    private int patientId;
+    private Date appointmentDate;
+    private String timeSlot;
+    private Timestamp appointmentBookedDate;
+
+    public Appointment() {
+    }
+
+    public Appointment(int appointmentId, int doctorId, int patientId, Date appointmentDate, String timeSlot, Timestamp appointmentBookedDate) {
+        this.appointmentId = appointmentId;
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+        this.appointmentDate = appointmentDate;
+        this.timeSlot = timeSlot;
+        this.appointmentBookedDate = appointmentBookedDate;
+    }
+
+    // Getters and setters
+    public int getAppointmentId() {return appointmentId;}
+    public void setAppointmentId(int appointmentId) { this.appointmentId = appointmentId;}
+
+    public int getDoctorId() {return doctorId;}
+    public void setDoctorId(int doctorId) {this.doctorId = doctorId;}
+
+    public int getPatientId() {return patientId; }
+    public void setPatientId(int patientId) {this.patientId = patientId;}
+
+    public Date getAppointmentDate() { return appointmentDate;}
+    public void setAppointmentDate(Date appointmentDate) {this.appointmentDate = appointmentDate;}
+
+    public String getTimeSlot() {return timeSlot;}
+    public void setTimeSlot(String timeSlot) {this.timeSlot = timeSlot;}
+
+    public Timestamp getAppointmentBookedDate() {return appointmentBookedDate;}
+    public void setAppointmentBookedDate(Timestamp appointmentBookedDate) {this.appointmentBookedDate = appointmentBookedDate;}
+}
+==============================================servlet.AdminLoginServlet.java ========================================
+
+package doctorappointment.controller;
+
+import doctorappointment.dao.AdminDAO;
+import doctorappointment.dao.DoctorDAO;
+import doctorappointment.dao.PatientDAO;
+import doctorappointment.dao.AppointmentDAO;
+import doctorappointment.model.Admin;
+import doctorappointment.model.Doctor;
+import doctorappointment.model.Patient;
+import doctorappointment.model.Appointment;
+import doctorappointment.util.DatabaseConnection;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+@WebServlet("/admin/login")
+public class AdminLoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private AdminDAO adminDAO;
+
+    @Override
+    public void init() throws ServletException {
+        adminDAO = new AdminDAO();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        try {
+            Admin admin = adminDAO.getAdminByUsernameAndPassword(username, password);
+            if (admin != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("isAdminLoggedIn", true);
+                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            } else {
+                request.setAttribute("errorMessage", "Invalid username or password");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/login.jsp"); // Create this JSP
+                dispatcher.forward(request, response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Database error during login");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/login.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isAdminLoggedIn") != null && (boolean) session.getAttribute("isAdminLoggedIn")) {
+            response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/login.jsp"); // Create this JSP
+            dispatcher.forward(request, response);
+        }
+    }
+}
+========================================== servlet.DoctorManagementServlet.java ============================================
+package doctorappointment.controller;
+
+import doctorappointment.dao.DoctorDAO;
+import doctorappointment.model.Doctor;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+@WebServlet("/admin/doctors")
+public class DoctorManagementServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private DoctorDAO doctorDAO;
+
+    @Override
+    public void init() throws ServletException {
+        doctorDAO = new DoctorDAO();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isAdminLoggedIn") != null && (boolean) session.getAttribute("isAdminLoggedIn")) {
+            String action = request.getParameter("action");
+            if (action == null || action.isEmpty()) {
+                listDoctors(request, response);
+            } else if (action.equals("add")) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/add-doctor.jsp"); // Create this JSP
+                dispatcher.forward(request, response);
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/admin/login");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isAdminLoggedIn") != null && (boolean) session.getAttribute("isAdminLoggedIn")) {
+            String action = request.getParameter("action");
+            if (action != null && action.equals("register")) {
+                String doctorName = request.getParameter("doctorName");
+                String specialization = request.getParameter("specialization");
+                Doctor doctor = new Doctor();
+                doctor.setDoctorName(doctorName);
+                doctor.setSpecialization(specialization);
+                try {
+                    doctorDAO.addDoctor(doctor);
+                    response.sendRedirect(request.getContextPath() + "/admin/doctors?success=Doctor+added+successfully");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    request.setAttribute("errorMessage", "Error adding doctor");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/add-doctor.jsp");
+                    dispatcher.forward(request, response);
+                }
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/admin/login");
+        }
+    }
+
+    private void listDoctors(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            List<Doctor> doctors = doctorDAO.getAllDoctors();
+            request.setAttribute("doctors", doctors);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/list-doctors.jsp"); // Create this JSP
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Error retrieving doctors");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/list-doctors.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+}
+=========================================== servlet.BookAppointmentServlet.java ===========================================
+package doctorappointment.controller;
+
+import doctorappointment.dao.AppointmentDAO;
+import doctorappointment.dao.DoctorDAO;
+import doctorappointment.dao.PatientDAO;
+import doctorappointment.model.Appointment;
+import doctorappointment.model.Doctor;
+import doctorappointment.model.Patient;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+@WebServlet("/book-appointment")
+public class BookAppointmentServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private PatientDAO patientDAO;
+    private DoctorDAO doctorDAO;
+    private AppointmentDAO appointmentDAO;
+
+    @Override
+    public void init() throws ServletException {
+        patientDAO = new PatientDAO();
+        doctorDAO = new DoctorDAO();
+        appointmentDAO = new AppointmentDAO();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            List<String> doctorNames = doctorDAO.getAllDoctorNames();
+            request.setAttribute("doctorNames", doctorNames);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp"); // Create this JSP
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Error retrieving doctor names");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp"); // Create this JSP
+            dispatcher.forward(request, response);
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String patientName = request.getParameter("patientName");
+        Integer age = Integer.parseInt(request.getParameter("age"));
+        String gender = request.getParameter("gender");
+        String doctorName = request.getParameter("doctorName");
+        String appointmentDateStr = request.getParameter("appointmentDate");
+        String timeSlot = request.getParameter("timeSlot");
+
+        Patient patient = new Patient();
+        patient.setName(patientName);
+        patient.setAge(age);
+        patient.setGender(gender);
+
+        try {
+            patientDAO.addPatient(patient);
+            int patientId = patientDAO.getLatestPatientId();
+            Doctor doctor = doctorDAO.getDoctorByName(doctorName);
+            if (doctor != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date appointmentDate = new Date(sdf.parse(appointmentDateStr).getTime());
+
+                Appointment appointment = new Appointment();
+                appointment.setDoctorId(doctor.getDoctorId());
+                appointment.setPatientId(patientId);
+                appointment.setAppointmentDate(appointmentDate);
+                appointment.setTimeSlot(timeSlot);
+
+                appointmentDAO.addAppointment(appointment);
+                int appointmentId = appointmentDAO.getLatestAppointmentId();
+
+                request.setAttribute("appointmentId", appointmentId);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment-success.jsp"); // Create this JSP
+                dispatcher.forward(request, response);
+
+            } else {
+                request.setAttribute("errorMessage", "Selected doctor not found");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
+                dispatcher.forward(request, response);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Database error during appointment booking");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
+            dispatcher.forward(request, response);
+        } catch (ParseException e) {
+            request.setAttribute("errorMessage", "Invalid date format");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+}
+======================================= servlet.SearchAppointmentServlet.java ===============================================
+package doctorappointment.controller;
+
+import doctorappointment.dao.AppointmentDAO;
+import doctorappointment.model.Appointment;
+import doctorappointment.model.Doctor;
+import doctorappointment.model.Patient;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+@WebServlet("/search-appointment")
+public class SearchAppointmentServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private AppointmentDAO appointmentDAO;
+
+    @Override
+    public void init() throws ServletException {
+        appointmentDAO = new AppointmentDAO();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String appointmentIdStr = request.getParameter("appointmentId");
+        if (appointmentIdStr != null && !appointmentIdStr.isEmpty()) {
+            try {
+                int appointmentId = Integer.parseInt(appointmentIdStr);
+                Appointment appointment = appointmentDAO.getAppointmentByIdWithDetails(appointmentId);
+                if (appointment != null) {
+                    request.setAttribute("appointment", appointment);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment-details.jsp"); // Create this JSP
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("errorMessage", "Appointment ID not found");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/search-appointment.jsp"); // Create this JSP
+                    dispatcher.forward(request, response);
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("errorMessage", "Invalid Appointment ID format");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/search-appointment.jsp");
+                dispatcher.forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMessage", "Database error during search");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/search-appointment.jsp");
+                dispatcher.forward(request, response);
+            }
+        } else {
+            request.setAttribute("errorMessage", "Please enter an Appointment ID");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/search-appointment.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/search-appointment.jsp"); // Create this JSP
+        dispatcher.forward(request, response);
+    }
+}
+=========================================== servlet.AppointmentListServlet.java ===========================================
+package doctorappointment.controller;
+
+import doctorappointment.dao.AppointmentDAO;
+import doctorappointment.model.Appointment;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+@WebServlet("/admin/appointments")
+public class AppointmentListServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private AppointmentDAO appointmentDAO;
+    private static final int RECORDS_PER_PAGE = 10;
+
+    @Override
+    public void init() throws ServletException {
+        appointmentDAO = new AppointmentDAO();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isAdminLoggedIn") != null && (boolean) session.getAttribute("isAdminLoggedIn")) {
+            String pageStr = request.getParameter("page");
+            int currentPage = (pageStr != null && !pageStr.isEmpty()) ? Integer.parseInt(pageStr) : 1;
+            String searchTerm = request.getParameter("search");
+
+            try {
+                int totalRecords = appointmentDAO.getTotalAppointments(searchTerm);
+                int totalPages = (int) Math.ceil((double) totalRecords / RECORDS_PER_PAGE);
+                int offset = (currentPage - 1) * RECORDS_PER_PAGE;
+
+                List<Appointment> appointments = appointmentDAO.getPaginatedAppointmentsWithDetails(offset, RECORDS_PER_PAGE, searchTerm);
+
+                request.setAttribute("appointments", appointments);
+                request.setAttribute("currentPage", currentPage);
+                request.setAttribute("totalPages", totalPages);
+                request.setAttribute("searchTerm", searchTerm);
+                request.setAttribute("recordsPerPage", RECORDS_PER_PAGE);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/list-appointments.jsp"); // Create this JSP
+                dispatcher.forward(request, response);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMessage", "Error retrieving appointments");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/dashboard.jsp"); // Or an error page
+                dispatcher.forward(request, response);
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/admin/login");
+        }
+    }
+}
+==================================== servlet.AdminDashboardServlet.java ==================================================
+package doctorappointment.controller;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+
+@WebServlet("/admin/dashboard")
+public class AdminDashboardServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isAdminLoggedIn") != null && (boolean) session.getAttribute("isAdminLoggedIn")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/dashboard.jsp"); // Create this JSP
+            dispatcher.forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/admin/login");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+}
+=========================================dao.AdminDAO.java=============================================
+package doctorappointment.dao;
+
+import doctorappointment.model.Admin;
+import doctorappointment.util.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class AdminDAO {
+
+    public Admin getAdminByUsernameAndPassword(String username, String password) throws SQLException {
+        String sql = "SELECT admin_id, username FROM Admins WHERE username = ? AND password = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.setAdminId(resultSet.getInt("admin_id"));
+                admin.setUsername(resultSet.getString("username"));
+                return admin;
+            }
+        }
+        return null;
+    }
+}
+
+
+=============================================== dao.DoctorDAO.java =======================================================
+package doctorappointment.dao;
+
+import doctorappointment.model.Doctor;
+import doctorappointment.util.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DoctorDAO {
+
+    public void addDoctor(Doctor doctor) throws SQLException {
+        String sql = "INSERT INTO Doctors (doctor_name, specialization) VALUES (?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, doctor.getDoctorName());
+            preparedStatement.setString(2, doctor.getSpecialization());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public List<Doctor> getAllDoctors() throws SQLException {
+        List<Doctor> doctors = new ArrayList<>();
+        String sql = "SELECT doctor_id, doctor_name, specialization FROM Doctors";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                Doctor doctor = new Doctor();
+                doctor.setDoctorId(resultSet.getInt("doctor_id"));
+                doctor.setDoctorName(resultSet.getString("doctor_name"));
+                doctor.setSpecialization(resultSet.getString("specialization"));
+                doctors.add(doctor);
+            }
+        }
+        return doctors;
+    }
+
+    public List<String> getAllDoctorNames() throws SQLException {
+        List<String> doctorNames = new ArrayList<>();
+        String sql = "SELECT doctor_name FROM Doctors";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                doctorNames.add(resultSet.getString("doctor_name"));
+            }
+        }
+        return doctorNames;
+    }
+
+    public Doctor getDoctorByName(String name) throws SQLException {
+        String sql = "SELECT doctor_id, doctor_name, specialization FROM Doctors WHERE doctor_name = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Doctor doctor = new Doctor();
+                doctor.setDoctorId(resultSet.getInt("doctor_id"));
+                doctor.setDoctorName(resultSet.getString("doctor_name"));
+                doctor.setSpecialization(resultSet.getString("specialization"));
+                return doctor;
+            }
+        }
+        return null;
+    }
+}
+==================================================== dao.PatientDAO.java ==================================================
+package doctorappointment.dao;
+
+import doctorappointment.model.Patient;
+import doctorappointment.util.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class PatientDAO {
+
+    public void addPatient(Patient patient) throws SQLException {
+        String sql = "INSERT INTO Patients (name, age, gender) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, patient.getName());
+            if (patient.getAge() != null) {
+                preparedStatement.setInt(2, patient.getAge());
+            } else {
+                preparedStatement.setNull(2, java.sql.Types.INTEGER);
+            }
+            preparedStatement.setString(3, patient.getGender());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public int getLatestPatientId() throws SQLException {
+        String sql = "SELECT LAST_INSERT_ID()";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+        return -1; // Or throw an exception if no ID found
+    }
+}
+============================================ dao.AppointmentDAO.java ==========================================================
+package doctorappointment.dao;
+
+import doctorappointment.model.Appointment;
+import doctorappointment.model.Doctor;
+import doctorappointment.model.Patient;
+import doctorappointment.util.DatabaseConnection;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AppointmentDAO {
+
+    public void addAppointment(Appointment appointment) throws SQLException {
+        String sql = "INSERT INTO Appointments (doctor_id, patient_id, appointment_date, time_slot) VALUES (?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, appointment.getDoctorId());
+            preparedStatement.setInt(2, appointment.getPatientId());
+            preparedStatement.setDate(3, appointment.getAppointmentDate());
+            preparedStatement.setString(4, appointment.getTimeSlot());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public int getLatestAppointmentId() throws SQLException {
+        String sql = "SELECT LAST_INSERT_ID()";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+        return -1; // Or throw an exception if no ID found
+    }
+
+    public Appointment getAppointmentByIdWithDetails(int appointmentId) throws SQLException {
+        String sql = "SELECT a.appointment_id, a.appointment_date, a.time_slot, a.appointment_booked_date, " +
+                     "d.doctor_name, p.name AS patient_name " +
+                     "FROM Appointments a " +
+                     "JOIN Doctors d ON a.doctor_id = d.doctor_id " +
+                     "JOIN Patients p ON a.patient_id = p.patient_id " +
+                     "WHERE a.appointment_id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, appointmentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Appointment appointment = new Appointment();
+                appointment.setAppointmentId(resultSet.getInt("appointment_id"));
+                appointment.setAppointmentDate(resultSet.getDate("appointment_date"));
+                appointment.setTimeSlot(resultSet.getString("time_slot"));
+                appointment.setAppointmentBookedDate(resultSet.getTimestamp("appointment_booked_date"));
+
+                Doctor doctor = new Doctor();
+                doctor.setDoctorName(resultSet.getString("doctor_name"));
+                appointment.setDoctor(doctor); // You might want to add a 'doctor' field to the Appointment model
+
+                Patient patient = new Patient();
+                patient.setName(resultSet.getString("patient_name"));
+                appointment.setPatient(patient); // You might want to add a 'patient' field to the Appointment model
+
+                return appointment;
+            }
+        }
+        return null;
+    }
+
+    public int getTotalAppointments(String searchTerm) throws SQLException {
+        StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM Appointments a ")
+                .append("JOIN Doctors d ON a.doctor_id = d.doctor_id ")
+                .append("JOIN Patients p ON a.patient_id = p.patient_id ");
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            sql.append("WHERE d.doctor_name LIKE ? OR p.name LIKE ? OR DATE_FORMAT(a.appointment_date, '%Y-%m-%d') LIKE ? OR DATE_FORMAT(a.appointment_booked_date, '%Y-%m-%d %H:%i:%s') LIKE ? ");
+        }
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
+            if (searchTerm != null && !searchTerm.isEmpty()) {
+                String likeTerm = "%" + searchTerm + "%";
+                preparedStatement.setString(1, likeTerm);
+                preparedStatement.setString(2, likeTerm);
+                preparedStatement.setString(3, likeTerm);
+                preparedStatement.setString(4, likeTerm);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+        return 0;
+    }
+
+    public List<Appointment> getPaginatedAppointmentsWithDetails(int offset, int limit, String searchTerm) throws SQLException {
+        List<Appointment> appointments = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT a.appointment_id, a.appointment_date, a.time_slot, a.appointment_booked_date, ")
+                .append("d.doctor_name, p.name AS patient_name ")
+                .append("FROM Appointments a ")
+                .append("JOIN Doctors d ON a.doctor_id = d.doctor_id ")
+                .append("JOIN Patients p ON a.patient_id = p.patient_id ");
+
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            sql.append("WHERE d.doctor_name LIKE ? OR p.name LIKE ? OR DATE_FORMAT(a.appointment_date, '%Y-%m-%d') LIKE ? OR DATE_FORMAT(a.appointment_booked_date, '%Y-%m-%d %H:%i:%s') LIKE ? ");
+        }
+
+        sql.append("ORDER BY a.appointment_booked_date DESC LIMIT ?, ?");
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
+            int parameterIndex = 1;
+            if (searchTerm != null && !searchTerm.isEmpty()) {
+                String likeTerm = "%" + searchTerm + "%";
+                preparedStatement.setString(parameterIndex++, likeTerm);
+                preparedStatement.setString(parameterIndex++, likeTerm);
+                preparedStatement.setString(parameterIndex++, likeTerm);
+                preparedStatement.setString(parameterIndex++, likeTerm);
+            }
+            preparedStatement.setInt(parameterIndex++, offset);
+            preparedStatement.setInt(parameterIndex++, limit);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Appointment appointment = new Appointment();
+                appointment.setAppointmentId(resultSet.getInt("appointment_id"));
+                appointment.setAppointmentDate(resultSet.getDate("appointment_date"));
+                appointment.setTimeSlot(resultSet.getString("time_slot"));
+                appointment.setAppointmentBookedDate(resultSet.getTimestamp("appointment_booked_date"));
+
+                Doctor doctor = new Doctor();
+                doctor.setDoctorName(resultSet.getString("doctor_name"));
+                appointment.setDoctor(doctor); // Consider adding this to your Appointment model
+
+                Patient patient = new Patient();
+                patient.setName(resultSet.getString("patient_name"));
+                appointment.setPatient(patient); // Consider adding this to your Appointment model
+
+                appointments.add(appointment);
+            }
+        }
+        return appointments;
+    }
+}
+============================================= admin/login.jsp =========================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">Admin Login</h3>
+
+                        <form action="<%=request.getContextPath()%>/admin/login" method="post">
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Username" required />
+                                    <label for="username">Username</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" required />
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+                            <% if (request.getAttribute("errorMessage") != null) { %>
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    <%= request.getAttribute("errorMessage") %>
+                                </div>
+                            <% } %>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+============================================= admin/dashboard.jsp =========================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    if (session.getAttribute("isAdminLoggedIn") == null || !(boolean) session.getAttribute("isAdminLoggedIn")) {
+        response.sendRedirect(request.getContextPath() + "/admin/login");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/dashboard">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/doctors">Manage Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/appointments">View Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p>Use the navigation links above to manage doctors and appointments.</p>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= request.getAttribute("errorMessage") %>
+            </div>
+        <% } %>
+        <% if (request.getAttribute("successMessage") != null) { %>
+            <div class="alert alert-success" role="alert">
+                <%= request.getAttribute("successMessage") %>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+============================================= admin/add-doctor.jsp =========================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    if (session.getAttribute("isAdminLoggedIn") == null || !(boolean) session.getAttribute("isAdminLoggedIn")) {
+        response.sendRedirect(request.getContextPath() + "/admin/login");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Doctor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/dashboard">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/doctors">Manage Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/appointments">View Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Add New Doctor</h2>
+        <form action="<%=request.getContextPath()%>/admin/doctors" method="post">
+            <input type="hidden" name="action" value="register">
+            <div class="mb-3">
+                <label for="doctorName" class="form-label">Doctor Name</label>
+                <input type="text" class="form-control" id="doctorName" name="doctorName" required>
+            </div>
+            <div class="mb-3">
+                <label for="specialization" class="form-label">Specialization</label>
+                <input type="text" class="form-control" id="specialization" name="specialization">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Doctor</button>
+            <a href="<%=request.getContextPath()%>/admin/doctors" class="btn btn-secondary ms-2">Cancel</a>
+            <% if (request.getAttribute("errorMessage") != null) { %>
+                <div class="alert alert-danger mt-3" role="alert">
+                    <%= request.getAttribute("errorMessage") %>
+                </div>
+            <% } %>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+========================================== admin/list-doctors.jsp ============================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    if (session.getAttribute("isAdminLoggedIn") == null || !(boolean) session.getAttribute("isAdminLoggedIn")) {
+        response.sendRedirect(request.getContextPath() + "/admin/login");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Doctors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/dashboard">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/admin/doctors">Manage Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/appointments">View Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Manage Doctors</h2>
+        <a href="<%=request.getContextPath()%>/admin/doctors?action=add" class="btn btn-success mb-3">Add New Doctor</a>
+        <% if (request.getAttribute("success") != null) { %>
+            <div class="alert alert-success" role="alert">
+                <%= request.getAttribute("success") %>
+            </div>
+        <% } %>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= request.getAttribute("errorMessage") %>
+            </div>
+        <% } %>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="doctor" items="${doctors}">
+                    <tr>
+                        <td>${doctor.doctorId}</td>
+                        <td>${doctor.doctorName}</td>
+                        <td>${doctor.specialization}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+========================================== book-appointment.jsp ============================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Book an Appointment</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="<%=request.getContextPath()%>/book-appointment" method="post">
+                            <div class="mb-3">
+                                <label for="patientName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="patientName" name="patientName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="number" class="form-control" id="age" name="age">
+                            </div>
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender" name="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+<label for="doctorName" class="form-label">Select Doctor</label>
+                                <select class="form-select" id="doctorName" name="doctorName" required>
+                                    <option value="">-- Select Doctor --</option>
+                                    <c:forEach var="doctorName" items="${doctorNames}">
+                                        <option value="${doctorName}">${doctorName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="appointmentDate" class="form-label">Appointment Date</label>
+                                <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="timeSlot" class="form-label">Select Time Slot (10am to 6pm)</label>
+                                <select class="form-select" id="timeSlot" name="timeSlot" required>
+                                    <option value="">-- Select Time Slot --</option>
+                                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                                    <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                                    <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                                    <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                                    <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                                    <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                                    <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                                    <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Book Appointment</button>
+                            <% if (request.getAttribute("errorMessage") != null) { %>
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    <%= request.getAttribute("errorMessage") %>
+                                </div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+========================================== appointment-success.jsp ============================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Successful</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white text-center">
+                        <h3 class="mb-0">Appointment Successful!</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="lead">Your appointment has been booked successfully.</p>
+                        <% if (request.getAttribute("appointmentId") != null) { %>
+                            <p class="mt-3">Your Appointment ID is: <strong class="text-primary"><%= request.getAttribute("appointmentId") %></strong></p>
+                            <p>Please use this ID to search for your appointment details.</p>
+                        <% } else { %>
+                            <p class="mt-3">An Appointment ID has been generated. Please note it down.</p>
+                        <% } %>
+                        <a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-primary mt-3">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+============================================== search-appointment.jsp ========================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="mb-0">Search Appointment</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="<%=request.getContextPath()%>/search-appointment" method="post">
+                            <div class="mb-3">
+                                <label for="appointmentId" class="form-label">Enter Appointment ID</label>
+                                <input type="text" class="form-control" id="appointmentId" name="appointmentId" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <% if (request.getAttribute("errorMessage") != null) { %>
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    <%= request.getAttribute("errorMessage") %>
+                                </div>
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+========================================= appointment-details.jsp =============================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light text-center">
+                        <h3 class="mb-0">Appointment Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <c:if test="${appointment != null}">
+                            <p><strong>Appointment ID:</strong> ${appointment.appointmentId}</p>
+                            <p><strong>Doctor Name:</strong> ${appointment.doctor.doctorName}</p>
+                            <p><strong>Patient Name:</strong> ${appointment.patient.name}</p>
+                            <p><strong>Appointment Date:</strong> ${appointment.appointmentDate}</p>
+                            <p><strong>Time Slot:</strong> ${appointment.timeSlot}</p>
+                            <p><strong>Booked On:</strong> ${appointment.appointmentBookedDate}</p>
+                            <a href="<%=request.getContextPath()%>/search-appointment.jsp" class="btn btn-secondary mt-3">Back to Search</a>
+                        </c:if>
+                        <c:if test="${appointment == null}">
+                            <div class="alert alert-warning" role="alert">
+                                Appointment not found.
+                            </div>
+                            <a href="<%=request.getContextPath()%>/search-appointment.jsp" class="btn btn-secondary mt-3">Back to Search</a>
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+
+======================================== admin/list-appointments.jsp ==============================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+    if (session.getAttribute("isAdminLoggedIn") == null || !(boolean) session.getAttribute("isAdminLoggedIn")) {
+        response.sendRedirect(request.getContextPath() + "/admin/login");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Appointments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/dashboard">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/doctors">Manage Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/admin/appointments">View Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>View Appointments</h2>
+        <form class="mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Doctor, Patient, Date" name="search" value="${searchTerm}">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= request.getAttribute("errorMessage") %>
+            </div>
+        <% } %>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Patient Name</th>
+                    <th>Appointment Date</th>
+                    <th>Time Slot</th>
+                    <th>Booked Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="appointment" items="${appointments}">
+                    <tr>
+                        <td>${appointment.doctor.doctorName}</td>
+                        <td>${appointment.patient.name}</td>
+                        <td><fmt:formatDate value="${appointment.appointmentDate}" pattern="yyyy-MM-dd" /></td>
+                        <td>${appointment.timeSlot}</td>
+                        <td><fmt:formatDate value="${appointment.appointmentBookedDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
+        <nav aria-label="Appointment Pagination">
+            <ul class="pagination justify-content-center">
+                <c:if test="${currentPage > 1}">
+                    <li class="page-item">
+                        <a class="page-link" href="<%=request.getContextPath()%>/admin/appointments?page=${currentPage - 1}&search=${searchTerm}">Previous</a>
+                    </li>
+                </c:if>
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <li class="page-item ${currentPage == i ? 'active' : ''}">
+                        <a class="page-link" href="<%=request.getContextPath()%>/admin/appointments?page=${i}&search=${searchTerm}">${i}</a>
+                    </li>
+                </c:forEach>
+                <c:if test="${currentPage < totalPages}">
+                    <li class="page-item">
+                        <a class="page-link" href="<%=request.getContextPath()%>/admin/appointments?page=${currentPage + 1}&search=${searchTerm}">Next</a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
+============================================= error.jsp =========================================================
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h3 class="mb-0">Error</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="lead">An error occurred while processing your request.</p>
+                        <% if (request.getAttribute("errorMessage") != null) { %>
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <%= request.getAttribute("errorMessage") %>
+                            </div>
+                        <% } %>
+                        <a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-secondary mt-3">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/script.js"></script>
+</body>
+</html>
