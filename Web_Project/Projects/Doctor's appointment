@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS Admins (
 INSERT INTO Admins (username, password) VALUES ('admin', 'password123');
 
 =============================== Models ====================================
+
+------------------------------ model.Admin -----------------------------
 package model;
 
 public class Admin {
