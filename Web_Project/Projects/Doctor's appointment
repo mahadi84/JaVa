@@ -26,8 +26,8 @@ doctor-appointment-app/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com/example/doctorappointment/
-│   │   │       ├── controller/
-│   │   │       │   ├── AdminController.java        // Handles admin-related web requests (login, doctor management, appointment listing).
+│   │   │       ├── servlet/
+│   │   │       │   ├── Adminservlet.java        // Handles admin-related web requests (login, doctor management, appointment listing).
 │   │   │       │   ├── AdminDashboardServlet.java  // Handles requests for the admin dashboard page.
 │   │   │       │   ├── AdminLoginServlet.java      // Handles admin login functionality.
 │   │   │       │   ├── AppointmentListServlet.java // Handles the display and pagination of appointments for admins.
@@ -76,8 +76,8 @@ doctor-appointment-app/
 │   └── test/
 │       └── java/
 │           └── com/example/doctorappointment/
-│               ├── controller/
-│               │   └── AdminControllerTest.java    // Unit/Integration tests for AdminController.
+│               ├── servlet/
+│               │   └── AdminservletTest.java    // Unit/Integration tests for Adminservlet.
 │               ├── dao/
 │               │   └── DoctorDAOTest.java         // Unit/Integration tests for DoctorDAO.
 │               └── service/ (if you had a service layer)
@@ -224,7 +224,7 @@ public class Patient {
 }
 
 --------------------------model.Appointment -----------------------------
-package model;
+package com.example.doctorappointment.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -236,41 +236,51 @@ public class Appointment {
     private Date appointmentDate;
     private String timeSlot;
     private Timestamp appointmentBookedDate;
+    private Doctor doctor; // Add this field
+    private Patient patient; // Add this field
 
-    public Appointment() {
-    }
+    public Appointment() { }
 
-    public Appointment(int appointmentId, int doctorId, int patientId, Date appointmentDate, String timeSlot, Timestamp appointmentBookedDate) {
+    public Appointment(int appointmentId, int doctorId, int patientId, Date appointmentDate, String timeSlot, Timestamp appointmentBookedDate, Doctor doctor, Patient patient) {
         this.appointmentId = appointmentId;
         this.doctorId = doctorId;
         this.patientId = patientId;
         this.appointmentDate = appointmentDate;
         this.timeSlot = timeSlot;
         this.appointmentBookedDate = appointmentBookedDate;
+        this.doctor = doctor;
+        this.patient = patient;
     }
 
-    // Getters and setters
-    public int getAppointmentId() {return appointmentId;}
-    public void setAppointmentId(int appointmentId) { this.appointmentId = appointmentId;}
+    // Getters and setters for all fields, including the new ones
+
+    public int getAppointmentId() { return appointmentId; }
+    public void setAppointmentId(int appointmentId) {  this.appointmentId = appointmentId; }
 
     public int getDoctorId() {return doctorId;}
     public void setDoctorId(int doctorId) {this.doctorId = doctorId;}
 
-    public int getPatientId() {return patientId; }
-    public void setPatientId(int patientId) {this.patientId = patientId;}
+    public int getPatientId() { return patientId; }
+    public void setPatientId(int patientId) { this.patientId = patientId; }
 
-    public Date getAppointmentDate() { return appointmentDate;}
-    public void setAppointmentDate(Date appointmentDate) {this.appointmentDate = appointmentDate;}
+    public Date getAppointmentDate() { return appointmentDate; }
+    public void setAppointmentDate(Date appointmentDate) {  this.appointmentDate = appointmentDate; }
 
-    public String getTimeSlot() {return timeSlot;}
-    public void setTimeSlot(String timeSlot) {this.timeSlot = timeSlot;}
+    public String getTimeSlot() {  return timeSlot; }
+    public void setTimeSlot(String timeSlot) {  this.timeSlot = timeSlot; }
 
-    public Timestamp getAppointmentBookedDate() {return appointmentBookedDate;}
-    public void setAppointmentBookedDate(Timestamp appointmentBookedDate) {this.appointmentBookedDate = appointmentBookedDate;}
+    public Timestamp getAppointmentBookedDate() {return appointmentBookedDate; }
+    public void setAppointmentBookedDate(Timestamp appointmentBookedDate) { this.appointmentBookedDate = appointmentBookedDate; }
+
+    public Doctor getDoctor() { return doctor; }
+    public void setDoctor(Doctor doctor) {this.doctor = doctor;}
+
+    public Patient getPatient() { return patient; }
+    public void setPatient(Patient patient) {this.patient = patient; }
 }
 ==============================================servlet.AdminLoginServlet.java ========================================
 
-package controller;
+package servlet;
 
 import dao.AdminDAO;
 import dao.DoctorDAO;
@@ -342,7 +352,7 @@ public class AdminLoginServlet extends HttpServlet {
     }
 }
 ========================================== servlet.DoctorManagementServlet.java ============================================
-package controller;
+package servlet;
 
 import dao.DoctorDAO;
 import model.Doctor;
@@ -424,7 +434,7 @@ public class DoctorManagementServlet extends HttpServlet {
     }
 }
 =========================================== servlet.BookAppointmentServlet.java ===========================================
-package controller;
+package servlet;
 
 import dao.AppointmentDAO;
 import dao.DoctorDAO;
@@ -528,7 +538,7 @@ public class BookAppointmentServlet extends HttpServlet {
     }
 }
 ======================================= servlet.SearchAppointmentServlet.java ===============================================
-package controller;
+package servlet;
 
 import dao.AppointmentDAO;
 import model.Appointment;
@@ -593,7 +603,7 @@ public class SearchAppointmentServlet extends HttpServlet {
     }
 }
 =========================================== servlet.AppointmentListServlet.java ===========================================
-package controller;
+package servlet;
 
 import dao.AppointmentDAO;
 import model.Appointment;
@@ -656,7 +666,7 @@ public class AppointmentListServlet extends HttpServlet {
     }
 }
 ==================================== servlet.AdminDashboardServlet.java ==================================================
-package controller;
+package servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
