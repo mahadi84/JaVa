@@ -22,43 +22,38 @@ Create: Bootstrap 5 as UI for this
 ------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
 
 doctor-appointment-app/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/example/doctorappointment/
-│   │   │       ├── controller/
-│   │   │       │   ├── AdminController.java
-│   │   │       │   └── PatientController.java
-│   │   │       ├── model/
-│   │   │       │   ├── Doctor.java
-│   │   │       │   ├── Patient.java
-│   │   │       │   └── Appointment.java
-│   │   │       ├── repository/
-│   │   │       │   ├── DoctorRepository.java
-│   │   │       │   ├── PatientRepository.java
-│   │   │       │   └── AppointmentRepository.java
-│   │   │       ├── service/
-│   │   │       │   ├── AdminService.java
-│   │   │       │   └── PatientService.java
-│   │   │       ├── security/ (if using Spring Security)
-│   │   │       │   ├── WebSecurityConfig.java
-│   │   │       │   └── AdminDetailsService.java
-│   │   │       └── util/
-│   │   │           └── DateTimeUtil.java
-│   │   ├── resources/
-│   │   │   ├── application.properties (Spring Boot) or configuration files
-│   │   │   └── templates/ (Thymeleaf) or WebContent/ (JSP)
-│   │   └── webapp/
-│   │       ├── WEB-INF/
-│   │       │   └── web.xml (if not using Spring Boot)
-│   │       ├── css/
-│   │       ├── js/
-│   │       └── images/
-│   └── test/
-│       └── java/
-│           └── com/example/doctorappointment/
-│               └── ... (Unit and Integration Tests)
-├── pom.xml (Maven) or build.gradle (Gradle)
+
+│   ├── java/
+│   │   └── com/example/doctorappointment/
+│   │       ├── controller/
+    │       │   ├── AdminController.java
+│   │       │   └── PatientController.java
+│   │       ├── model/
+│   │       │   ├── Doctor.java
+│   │       │   ├── Patient.java
+│   │       │   └── Appointment.java
+│   │       ├── repository/
+│   │       │   ├── DoctorRepository.java
+│   │       │   ├── PatientRepository.java
+│   │       │   └── AppointmentRepository.java
+│   │       ├── service/
+│   │       │   ├── AdminService.java
+│   │       │   └── PatientService.java
+│   │       ├── security/ (if using Spring Security)
+│   │       │   ├── WebSecurityConfig.java
+│   │       │   └── AdminDetailsService.java
+│   │       └── util/
+│   │           └── DateTimeUtil.java
+│   ├── resources/
+│   │   ├── application.properties (Spring Boot) or configuration files
+│   │   └── templates/ (Thymeleaf) or WebContent/ (JSP)
+│   └── webapp/
+│       ├── WEB-INF/
+│       │   └── web.xml (if not using Spring Boot)
+│       ├── css/
+│       ├── js/
+│       └── images/
+
 
 
 
