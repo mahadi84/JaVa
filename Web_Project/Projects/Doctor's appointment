@@ -6,12 +6,12 @@ with the following logic:
 
 "
 -Login into the Admin panel, admin will register doctors' info like doctor_id, doctor_name and specialization,
--A patient will register himself with name age, gender, doctor's name(doctor's ID will be stored in the table), 
-   and  Doctor's visiting date and 8-time slots in a day as an appointment, after a successful appointment patient will see and collect the  Appointment ID with bold text
+-A patient will register himself without login into the website with name age, gender, doctor's name(doctor's ID will be stored in the table), 
+   and  Doctor's visiting date and 8-time slots (10am to 6pm) in a day as an appointment, after a successful appointment patient will see and collect the  Appointment ID with bold text
 
 -Appointment table will store doctor_ID, patient_ID and appoinment_date and Time slote and appointment booked date
 -Anyone can search for an appointment with an appointment ID
--List 10 appointments per page with pagination with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, can be accessed by Admin only 
+-List 10 appointments per page with dynamic pagination with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, the page can be accessed by Admin only 
 "
 
 Create: SQL for Database and Table, Database Connection Class, Model
