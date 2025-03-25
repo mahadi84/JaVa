@@ -71,7 +71,8 @@ doctor-appointment-app/
 │   │       ├── appointment-success.jsp         // Page displayed after successful appointment booking.
 │   │       ├── book-appointment.jsp            // Public-facing form for booking an appointment.
 │   │       ├── error.jsp                       // Generic error page.
-│   │       └── index.jsp                       // Optional home page for the application.
+│   │       ├── index.jsp                       // Optional home page for the application.
+│   │       └── search-appointment.jsp          // Public-facing form for searching appointments by ID.
 │   └── test/
 │       └── java/
 │           └── com/example/doctorappointment/
@@ -82,6 +83,7 @@ doctor-appointment-app/
 │               └── service/ (if you had a service layer)
 │                   └── ...
 ├── pom.xml                                     // Maven project configuration file (dependencies, build settings).
+
 
 
 ================================ Database and Table, Database Connection Class, Model ======================================================
