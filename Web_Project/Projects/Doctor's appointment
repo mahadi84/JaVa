@@ -33,6 +33,8 @@ Create: Bootstrap 5 as UI for this
 -will store the Patient in the table and get the Patient ID to book an appointment in one form submission
 -Prevent concurrent Appointment ID generation issue.
 
+N.B: BookAppointmentServlet and BookAppointmentDAO is major learning hub in this project
+
 
 ------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
 
