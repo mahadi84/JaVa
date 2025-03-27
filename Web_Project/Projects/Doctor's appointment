@@ -31,6 +31,7 @@ Create: Bootstrap 5 as UI for this
 -Age validation
 -Convert date into desired format
 -will store the Patient in the table and get the Patient ID to book an appointment in one form submission
+-Prevent concurrent Appointment ID generation issue.
 
 
 ------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
