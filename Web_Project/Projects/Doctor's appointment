@@ -9,14 +9,28 @@ with the following logic:
 -A patient will register himself without login into the website with name age, gender, doctor's name(doctor's ID will be stored in the table), 
    and  Doctor's visiting date and 8-time slots (10am to 6pm) in a day as an appointment, after a successful appointment patient will see and collect the  Appointment ID with bold text
 
+-Anyone can book an appointment  01. tomorrow or next date, 03. prevent selecting same doctor, same date, with same time slot
 -Appointment table will store doctor_ID, patient_ID and appoinment_date and Time slote and appointment booked date
 -Anyone can search for an appointment with an appointment ID
--List 10 appointments per page with dynamic pagination with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, the page can be accessed by Admin only 
+-List 10 appointments per page with dynamic PAGINATION with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, the page can be accessed by Admin only 
 "
 
 Create: SQL for Database and Table, Database Connection Class, Modeles
 Create: HttpServlets, DAOs for this 
 Create: Bootstrap 5 as UI for this
+
+
+---------------------- What Logic I have learned -----------------------------
+-Book an appointment:  
+   01. tomorrow or after tomorrow, 
+   02. Prevent booking if the appointment already exists for the same doctor, date, and time slot
+-Dynamic PAGINATION
+
+-Dynamic HTML Options select doctor
+-Customize date format datepicker
+-Age validation
+-Convert date into desired format
+-will store the Patient in the table and get the Patient ID to book an appointment in one form submission
 
 
 ------------------------------------------ Project Structure (Maven-based Example): -----------------------------------------
@@ -451,11 +465,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @WebServlet("/book-appointment")
 public class BookAppointmentServlet extends HttpServlet {
@@ -487,37 +505,152 @@ public class BookAppointmentServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String patientName = request.getParameter("patientName");
-        Integer age = Integer.parseInt(request.getParameter("age"));
+        String ageStr = request.getParameter("age");
         String gender = request.getParameter("gender");
         String doctorName = request.getParameter("doctorName");
         String appointmentDateStr = request.getParameter("appointmentDate");
         String timeSlot = request.getParameter("timeSlot");
 
-        Patient patient = new Patient();
-        patient.setName(patientName);
-        patient.setAge(age);
-        patient.setGender(gender);
+        // Store the submitted data to return to the form if validation fails
+        request.setAttribute("patientName", patientName);
+        request.setAttribute("age", ageStr);
+        request.setAttribute("gender", gender);
+        request.setAttribute("doctorName", doctorName);
+        request.setAttribute("appointmentDate", appointmentDateStr);
+        request.setAttribute("timeSlot", timeSlot);
+        request.setAttribute("selectedDoctor", doctorName); // To keep the selected doctor
 
+        List<String> errors = new ArrayList<>();
+
+        // Validate empty fields
+        if (patientName == null || patientName.trim().isEmpty()) {
+            errors.add("Patient Name is required.");
+        }
+        if (ageStr == null || ageStr.trim().isEmpty()) {
+            errors.add("Age is required.");
+        }
+        if (gender == null || gender.trim().isEmpty()) {
+            errors.add("Gender is required.");
+        }
+        if (doctorName == null || doctorName.trim().isEmpty()) {
+            errors.add("Doctor Name is required.");
+        }
+        if (appointmentDateStr == null || appointmentDateStr.trim().isEmpty()) {
+            errors.add("Appointment Date is required.");
+        }
+        if (timeSlot == null || timeSlot.trim().isEmpty()) {
+            errors.add("Time Slot is required.");
+        }
+
+        // Validate name (characters and dot only)
+        if (patientName != null && !patientName.trim().isEmpty() && !Pattern.matches("^[a-zA-Z\\s.]+$", patientName)) {
+            errors.add("Patient Name can only contain letters, spaces, and dots.");
+        }
+
+        // Validate age (only number)
+        int age = -1;
+        if (ageStr != null && !ageStr.trim().isEmpty()) {
+            try {
+                age = Integer.parseInt(ageStr);
+                if (age <= 0 || age < 10) {
+                    errors.add("Age must be more than 10 Years");
+                }
+            } catch (NumberFormatException e) {
+                errors.add("Age must be a number.");
+            }
+        }
+
+        // Validate date format and ensure it's not before tomorrow
+        java.sql.Date appointmentDateSql = null;
+        if (appointmentDateStr != null && !appointmentDateStr.trim().isEmpty()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setLenient(false); // Disallow lenient date parsing
+            try {
+                java.util.Date parsedDate = sdf.parse(appointmentDateStr);
+                appointmentDateSql = new java.sql.Date(parsedDate.getTime()); // Convert to java.sql.Date
+
+                // Get today's date
+                LocalDate today = LocalDate.now();
+                // Get tomorrow's date
+                LocalDate tomorrow = today.plusDays(1);
+                // Convert parsedDate to LocalDate for comparison
+                LocalDate appointmentLocalDate = appointmentDateSql.toLocalDate();
+
+                if (appointmentLocalDate.isBefore(tomorrow)) {
+                    errors.add("Appointment can only be booked for tomorrow or a future date.");
+                }
+
+            } catch (ParseException e) {
+                errors.add("Appointment Date must be in yyyy-MM-dd format.");
+            }
+        }
+
+        // Validate time slot (you might need more specific validation based on your available slots)
+        // A basic check for non-empty is already done. You can add more complex logic here
+        // if you have a specific format or a set of allowed time slots.
+
+        if (!errors.isEmpty()) {
+            request.setAttribute("errors", errors);
+            try {
+                List<String> doctorNames = doctorDAO.getAllDoctorNames();
+                request.setAttribute("doctorNames", doctorNames);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMessage", "Error retrieving doctor names for validation failure.");
+                RequestDispatcher errorDispatcher = request.getRequestDispatcher("/error.jsp");
+                errorDispatcher.forward(request, response);
+                return;
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
+            dispatcher.forward(request, response);
+            return; // Stop further processing if validation fails
+        }
+
+        // If validation passes, proceed with checking for duplicate appointments,
         try {
-            patientDAO.addPatient(patient);
-            int patientId = patientDAO.getLatestPatientId();
             Doctor doctor = doctorDAO.getDoctorByName(doctorName);
             if (doctor != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date appointmentDate = new Date(sdf.parse(appointmentDateStr).getTime());
+                // Check if an appointment already exists for the same doctor, date, and time slot
+                if (appointmentDAO.isAppointmentSlotTaken(doctor.getDoctorId(), appointmentDateSql, timeSlot)) {
+                    errors.add("This time slot is already booked for the selected doctor on this date.");
+                    request.setAttribute("errors", errors);
+                    List<String> doctorNames = doctorDAO.getAllDoctorNames();
+                    request.setAttribute("doctorNames", doctorNames);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
+                    dispatcher.forward(request, response);
+                    return; // Stop further processing if duplicate found
+                }
 
-                Appointment appointment = new Appointment();
-                appointment.setDoctorId(doctor.getDoctorId());
-                appointment.setPatientId(patientId);
-                appointment.setAppointmentDate(appointmentDate);
-                appointment.setTimeSlot(timeSlot);
+                // If no duplicate found, create the patient and appointment
+                Patient patient = new Patient();
+                patient.setName(patientName);
+                patient.setAge(age);
+                patient.setGender(gender);
 
-                appointmentDAO.addAppointment(appointment);
-                int appointmentId = appointmentDAO.getLatestAppointmentId();
+                // Add the patient and get the generated ID
+                int patientId = patientDAO.addPatient(patient);
+                System.out.println("Generated patientId: " + patientId);
 
-                request.setAttribute("appointmentId", appointmentId);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment-success.jsp"); // Create this JSP
-                dispatcher.forward(request, response);
+                if (patientId > 0) {
+                    Appointment appointment = new Appointment();
+                    appointment.setDoctorId(doctor.getDoctorId());
+                    appointment.setPatientId(patientId);
+                    appointment.setAppointmentDate(appointmentDateSql);
+                    appointment.setTimeSlot(timeSlot);
+
+                    // Add the appointment and get the generated ID
+                    int appointmentId = appointmentDAO.addAppointmentAndGetId(appointment);
+                    System.out.println("Generated appointmentId: " + appointmentId);
+
+                    request.setAttribute("appointmentId", appointmentId);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment-success.jsp"); // Create this JSP
+                    dispatcher.forward(request, response);
+
+                } else {
+                    request.setAttribute("errorMessage", "Error creating patient.");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
+                    dispatcher.forward(request, response);
+                }
 
             } else {
                 request.setAttribute("errorMessage", "Selected doctor not found");
@@ -527,12 +660,8 @@ public class BookAppointmentServlet extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Database error during appointment booking");
+            request.setAttribute("errorMessage", "Database error during appointment booking: " + e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
-            dispatcher.forward(request, response);
-        } catch (ParseException e) {
-            request.setAttribute("errorMessage", "Invalid date format");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/book-appointment.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -854,17 +983,52 @@ import java.util.List;
 
 public class AppointmentDAO {
 
-    public void addAppointment(Appointment appointment) throws SQLException {
+    public int addAppointment(Appointment appointment) throws SQLException {
         String sql = "INSERT INTO Appointments (doctor_id, patient_id, appointment_date, time_slot) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, appointment.getDoctorId());
             preparedStatement.setInt(2, appointment.getPatientId());
             preparedStatement.setDate(3, appointment.getAppointmentDate());
             preparedStatement.setString(4, appointment.getTimeSlot());
-            preparedStatement.executeUpdate();
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating appointment failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating appointment failed, no generated key obtained.");
+                }
+            }
         }
     }
+    
+    
+ // In AppointmentDAO.java
+    public boolean isAppointmentSlotTaken(int doctorId, java.sql.Date appointmentDate, String timeSlot) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM appointments WHERE doctor_id = ? AND appointment_date = ? AND time_slot = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); // Assuming you have a method to get a database connection
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, doctorId);
+            preparedStatement.setDate(2, appointmentDate);
+            preparedStatement.setString(3, timeSlot);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
 
     public int getLatestAppointmentId() throws SQLException {
         String sql = "SELECT LAST_INSERT_ID()";
@@ -983,9 +1147,32 @@ public class AppointmentDAO {
         }
         return appointments;
     }
+
+    public int addAppointmentAndGetId(Appointment appointment) throws SQLException {
+        String sql = "INSERT INTO Appointments (doctor_id, patient_id, appointment_date, time_slot) VALUES (?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, appointment.getDoctorId());
+            preparedStatement.setInt(2, appointment.getPatientId());
+            preparedStatement.setDate(3, appointment.getAppointmentDate());
+            preparedStatement.setString(4, appointment.getTimeSlot());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating appointment failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating appointment failed, no generated key obtained.");
+                }
+            }
+        }
+    }
 }
-
-
 
 
 ========================================== index.jsp ===========================================
@@ -1033,6 +1220,7 @@ public class AppointmentDAO {
     <title>Book Appointment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
 <body>
     <div class="container py-5">
@@ -1043,56 +1231,67 @@ public class AppointmentDAO {
                         <h3 class="mb-0">Book an Appointment</h3>
                     </div>
                     <div class="card-body">
+                        <c:if test="${not empty errors}">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    <c:forEach var="error" items="${errors}">
+                                        <li><c:out value="${error}"/></li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
                         <form action="<%=request.getContextPath()%>/book-appointment" method="post">
                             <div class="mb-3">
                                 <label for="patientName" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="patientName" name="patientName" required>
+                                <input type="text" class="form-control" id="patientName" name="patientName" value="${patientName}">
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="age" name="age">
+                                <input type="number" class="form-control" id="age" name="age" value="${age}">
                             </div>
                             <div class="mb-3">
                                 <label for="gender" class="form-label">Gender</label>
                                 <select class="form-select" id="gender" name="gender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male" ${gender == 'Male' ? 'selected' : ''}>Male</option>
+                                    <option value="Female" ${gender == 'Female' ? 'selected' : ''}>Female</option>
+                                    <option value="Other" ${gender == 'Other' ? 'selected' : ''}>Other</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-<label for="doctorName" class="form-label">Select Doctor</label>
-                                <select class="form-select" id="doctorName" name="doctorName" required>
+                                <label for="doctorName" class="form-label">Select Doctor</label>
+                                <select class="form-select" id="doctorName" name="doctorName">
                                     <option value="">-- Select Doctor --</option>
                                     <c:forEach var="doctorName" items="${doctorNames}">
-                                        <option value="${doctorName}">${doctorName}</option>
+                                        <option value="${doctorName}" ${selectedDoctor == doctorName ? 'selected' : ''}>${doctorName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="appointmentDate" class="form-label">Appointment Date</label>
-                                <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+                                <label for="appointmentDate" class="form-label">Appointment Date (yyyy-MM-dd)</label>
+                                <input type="text" class="form-control datepicker" id="appointmentDate" name="appointmentDate" value="${appointmentDate}" placeholder="mm/dd/yyyy">
                             </div>
                             <div class="mb-3">
                                 <label for="timeSlot" class="form-label">Select Time Slot (10am to 6pm)</label>
-                                <select class="form-select" id="timeSlot" name="timeSlot" required>
+                                <select class="form-select" id="timeSlot" name="timeSlot">
                                     <option value="">-- Select Time Slot --</option>
-                                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
-                                    <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
-                                    <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
-                                    <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
-                                    <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
-                                    <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
-                                    <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
-                                    <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                                    <option value="10:00 AM - 11:00 AM" ${timeSlot == '10:00 AM - 11:00 AM' ? 'selected' : ''}>10:00 AM - 11:00 AM</option>
+                                    <option value="11:00 AM - 12:00 PM" ${timeSlot == '11:00 AM - 12:00 PM' ? 'selected' : ''}>11:00 AM - 12:00 PM</option>
+                                    <option value="12:00 PM - 01:00 PM" ${timeSlot == '12:00 PM - 01:00 PM' ? 'selected' : ''}>12:00 PM - 01:00 PM</option>
+                                    <option value="01:00 PM - 02:00 PM" ${timeSlot == '01:00 PM - 02:00 PM' ? 'selected' : ''}>01:00 PM - 02:00 PM</option>
+                                    <option value="02:00 PM - 03:00 PM" ${timeSlot == '02:00 PM - 03:00 PM' ? 'selected' : ''}>02:00 PM - 03:00 PM</option>
+                                    <option value="03:00 PM - 04:00 PM" ${timeSlot == '03:00 PM - 04:00 PM' ? 'selected' : ''}>03:00 PM - 04:00 PM</option>
+                                    <option value="04:00 PM - 05:00 PM" ${timeSlot == '04:00 PM - 05:00 PM' ? 'selected' : ''}>04:00 PM - 05:00 PM</option>
+                                    <option value="05:00 PM - 06:00 PM" ${timeSlot == '05:00 PM - 06:00 PM' ? 'selected' : ''}>05:00 PM - 06:00 PM</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Book Appointment</button>
-                            <% if (request.getAttribute("errorMessage") != null) { %>
+                            <a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-outline-secondary px-4">Home</a>
+                            <c:if test="${not empty errorMessage}">
                                 <div class="alert alert-danger mt-3" role="alert">
-                                    <%= request.getAttribute("errorMessage") %>
+                                    <c:out value="${errorMessage}"/>
                                 </div>
-                            <% } %>
+                            </c:if>
                         </form>
                     </div>
                 </div>
@@ -1102,7 +1301,17 @@ public class AppointmentDAO {
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/script.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
+        });
+    </script>
 </body>
 </html>
 
