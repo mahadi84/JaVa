@@ -13,8 +13,8 @@ Functional Shopping Cart: book as product (image, title, price, quantity). The c
 -involves jQuery to dynamically adjust the cart display and potentially local storage or server-side logic to persist the cart data.
 -After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
 
--Admin dashboard to add and upload products like images, price per quantity, and total quantity. and will check all order list and show details in click
--quantity will be updated once product is sold
+-Admin dashboard to add and upload products like images, price per quantity, total quantity, and publisher name. and will check all the order lists and show details on click
+-quantity will be updated once the product is sold
 -a dynamic UI using Bootstrap 5
 
 
