@@ -16,7 +16,7 @@ Note: All success and error messages will show on respective Bootstrap 5 pages
 ---------------------------- Things that I've learned ----------------------------
 How to:
 1> Separte GET/POST request in LoginServlet
-2> Check: -If the field is having space or empty or null
+2> Validate: -If the field is having space or empty or null
           -If the user exits into the database
 3> Create a session and forward it to other Servlet
 
@@ -26,7 +26,7 @@ How to:
 	- If the action is empty then
 	- Use a Switch statement for what if the action is a list/add/edit form/update/delete
 5> CRUD
-	- Input VALIDATION (Name must be Letter and . only and Email must be right formate)
+	- Input VALIDATION (Name must be Letter and . only and Email must be right format)
 	- Return filed data while filling blank any field while UPDATING
 	- Show the message "No data to update" in Bootstrap file while nothing changes in the UPDATE field
 
