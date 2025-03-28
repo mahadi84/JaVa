@@ -16,6 +16,7 @@ Functional Shopping Cart: book as product (image, title, price, quantity). The c
 -Admin dashboard to add and upload products like images, price per quantity, total quantity, and publisher name. and will check all the order lists and show details on click
 -quantity will be updated once the product is sold
 -a dynamic UI using Bootstrap 5
+-Add CSRF protection
 
 
 
