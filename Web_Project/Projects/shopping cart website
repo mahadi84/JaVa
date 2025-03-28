@@ -1,7 +1,7 @@
 Date: 28-March-2025
 
 
-I want to design a four-menu website with home, a shopping cart for selling six different books at different prices, a Wishlist, and a contact us page.
+I want to design a four-menu website with home, a shopping cart for selling six different books at different prices, a Wishlist, and a contact us page as Java web application that support eclipse version 2024.
 -Homepage contains a paragraph of text
 -The shopping cart page contains 
 Functional Shopping Cart: book as product (image, title, price, quantity). The cart page should clearly display selected items, quantities, prices, and provide options for updating or removing items.
@@ -19,10 +19,15 @@ Functional Shopping Cart: book as product (image, title, price, quantity). The c
 
 
 
-Create: SQL for Database and Table, Database Connection Class, Models
-Create: HttpServlets, DAOs for this 
+Create: SQL for Database and Table, Database Connection Class, Models with separation  ----------------------model.(put model name here)--------------- and no gap in constructor, setter, and getter
+Create: All necessary HttpServlets with package servlet and with separate file name  ----------------------servlet.(put servlet name here)---------------
+Create: All necessary DAOs with separate file name  ----------------------dao.(put dao name here)---------------
 Create: Bootstrap 5 as UI for this
 
 
 
------------------------------------------
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+===============================================================
