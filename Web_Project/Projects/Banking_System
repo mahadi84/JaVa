@@ -17,6 +17,8 @@ The customer can see his information only, The code must support IDE eclipse ver
 2> Segrigate transaction type(Deposite/Withdraw) while storing/checking Balance
 3> Generate a Ministatement with date, time, amount, and type for the last 10 txn.
 
+N.B.: Deposite and Withdraw servlet playing crucial role
+
 
 ============================================= Project Structure =================================================
  Project Structure (Eclipse 2024):
