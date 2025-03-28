@@ -1,8 +1,28 @@
+Date: 28-March-2025
 
-I want to design a three-menus-Website with  home, shopping cart, and contact us pages 
--under the shopping cart menu I will add 3 different books
--also wishlist functionalities when clicking on the heart symbol product will add to the wishlist
--use UI as Bootstrap 5
+
+I want to design a four-menu website with home, a shopping cart for selling six different books at different prices, a Wishlist, and a contact us page.
+-Homepage contains a paragraph of text
+-The shopping cart page contains 
+Functional Shopping Cart: book as product (image, title, price, quantity). The cart page should clearly display selected items, quantities, prices, and provide options for updating or removing items.
+-For reliable order processing, especially if users leave and return, server-side sessions or a database linked to user accounts are recommended.
+-The user will register with name, email, and phone, and a login is required to complete the order
+
+-visually represent the "add to wishlist" functionality (using a font icon like Font Awesome or Bootstrap Icons, or a custom image) and how the jQuery will target and update its state when a user clicks it.
+-also, A server-side wishlist across devices and user accounts functionalities, 
+-involves jQuery to dynamically adjust the cart display and potentially local storage or server-side logic to persist the cart data.
+-After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
+
+-Admin dashboard to add and upload products like images, price per quantity, and total quantity. and will check all order list and show details in click
+-quantity will be updated once product is sold
+-a dynamic UI using Bootstrap 5
+
+
+
+Create: SQL for Database and Table, Database Connection Class, Models
+Create: HttpServlets, DAOs for this 
+Create: Bootstrap 5 as UI for this
+
 
 
 -----------------------------------------
