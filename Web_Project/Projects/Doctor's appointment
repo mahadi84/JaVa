@@ -15,12 +15,12 @@ with the following logic:
 -List 10 appointments per page with dynamic PAGINATION with Doctor's Name, Patient name, Appointment Date, and created/Booked Date with search option, the page can be accessed by Admin only 
 "
 
-Create: SQL for Database and Table, Database Connection Class, Modeles
+Create: SQL for Database and Table, Database Connection Class, Models
 Create: HttpServlets, DAOs for this 
 Create: Bootstrap 5 as UI for this
 
 
----------------------- What Logic I have learned -----------------------------
+---------------------- Logics that I have learned -----------------------------
 -Book an appointment:  
    01. tomorrow or after tomorrow, 
    02. Prevent booking if the appointment already exists for the same doctor, date, and time slot
