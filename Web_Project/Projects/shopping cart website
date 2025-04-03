@@ -16,7 +16,7 @@ Functional Shopping Cart: book as product (image, title, price, quantity). The c
 -After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
 
 -Admin dashboard to add and upload products like images, price per quantity, total quantity, and publisher name. and will check all the order lists and show details on click
--quantity will be updated once the product is sold
+-quantity will be minus once the product is sold, if quantity is empty product can not be selected.
 
 
 
