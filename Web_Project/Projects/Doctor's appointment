@@ -24,7 +24,7 @@ Create: Bootstrap 5 as UI for this
 -Book an appointment:  
    01. tomorrow or after tomorrow, 
    02. Prevent booking if the appointment already exists for the same doctor, date, and time slot
--Dynamic PAGINATION
+-Dynamic SEARCH & PAGINATION
 
 -Dynamic HTML Options select doctor
 -Customize date format datepicker
