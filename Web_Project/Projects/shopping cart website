@@ -6,10 +6,12 @@ I want to design a four-menu website with home, a shopping cart for selling six 
 -The shopping cart page contains 
 Functional Shopping Cart: book as product (image, title, price, quantity). The cart page should clearly display selected items, quantities, prices, and provide options for updating or removing items.
 -For reliable order processing, especially if users leave and return, server-side sessions or a database linked to user accounts are recommended.
+-Cart will be cleared once the order is successfully placed. 
 -The user will register with name, email, and phone, and a login is required to complete the order
 
 -visually represent the "add to wishlist" functionality (using a font icon like Font Awesome or Bootstrap Icons, or a custom image) and how the jQuery will target and update its state when a user clicks it.
 -also, A server-side wishlist across devices and user accounts functionalities, 
+-Any one or all products from the wishlist can be removable, 
 -involves jQuery to dynamically adjust the cart display and potentially local storage or server-side logic to persist the cart data.
 -After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
 
