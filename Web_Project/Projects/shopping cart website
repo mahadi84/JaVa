@@ -22,7 +22,7 @@ Functional Shopping Cart: book as product (image, title, price, quantity). The c
 Create: SQL for Database and Table with CSRF protection, Database Connection Class, Models with separation  ----------------------model.(put model name here)--------------- and no gap in constructor, setter, and getter
 Create: All necessary HttpServlets with CSRF protection with package servlet in a different file with servlet name title and use the try block to close the database connection automatically.
 Create: All necessary DAOs with CSRF protection in a different file
-Create: All necessary Frontend UI with Bootstrap 5, Jquery and Add CSRF protection
+Create: All necessary Frontend UI with Bootstrap 5, Jquery and Add CSRF protection with bootstrap file name.
 
 
 
