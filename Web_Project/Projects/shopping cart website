@@ -31,91 +31,83 @@ Create: All necessary Frontend UI as Bootstrap 5, Jquery and Add CSRF protection
 
 
 
---------------------------------------------------------------------------
+---------------------------------What I have learned-----------------------------------------
 
---------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 
-===============================================================
-your-bookstore/
-├── pom.xml
-└── src/
-    ├── main/
-    │   ├── java/
-    │   │   └── com/yourbookstore/
-    │   │       ├── admin/
-    │   │       │   ├── controller/
-    │   │       │   │   ├── AdminContactController.java // New
-    │   │       │   │   ├── AdminOrderController.java
-    │   │       │   │   └── AdminProductController.java
-    │   │       │   └── service/
-    │   │       │       ├── AdminContactService.java // New
-    │   │       │       ├── AdminOrderService.java
-    │   │       │       └── AdminProductService.java
-    │   │       ├── config/
-    │   │       │   ├── WebMvcConfig.java
-    │   │       │   └── SecurityConfig.java
-    │   │       ├── controller/
-    │   │       │   ├── CartController.java
-    │   │       │   ├── ContactController.java // Updated
-    │   │       │   ├── HomeController.java
-    │   │       │   ├── OrderController.java
-    │   │       │   ├── UserController.java
-    │   │       │   └── WishlistController.java
-    │   │       ├── model/
-    │   │       │   ├── Book.java
-    │   │       │   ├── CartItem.java
-    │   │       │   ├── ContactMessage.java // New
-    │   │       │   ├── Order.java
-    │   │       │   ├── OrderDetail.java
-    │   │       │   ├── User.java
-    │   │       │   └── WishlistItem.java
-    │   │       ├── repository/
-    │   │       │   ├── BookRepository.java
-    │   │       │   ├── CartRepository.java
-    │   │       │   ├── ContactMessageRepository.java // New
-    │   │       │   ├── OrderDetailRepository.java
-    │   │       │   ├── OrderRepository.java
-    │   │       │   ├── UserRepository.java
-    │   │       │   └── WishlistRepository.java
-    │   │       ├── service/
-    │   │       │   ├── BookService.java
-    │   │       │   ├── CartService.java
-    │   │       │   ├── ContactService.java // Updated
-    │   │       │   ├── OrderService.java
-    │   │       │   ├── UserService.java
-    │   │       │   └── WishlistService.java
-    │   │       └── validator/
-    │   │           └── UserRegistrationValidator.java
-    │   └── resources/
-    │       ├── application.properties
-    │       └── templates/
-    │           ├── home.html
-    │           ├── cart.html
-    │           ├── wishlist.html
-    │           ├── contact.html
-    │           ├── register.html
-    │           ├── login.html
-    │           ├── order-success.html
-    │           ├── admin/
-    │           │   ├── dashboard.html
-    │           │   ├── add-product.html
-    │           │   ├── list-orders.html
-    │           │   ├── order-details.html
-    │           │   └── list-contacts.html // New
-    └── webapp/ // If using JSPs
-        ├── WEB-INF/
-        │   ├── web.xml
-        │   └── views/
-        │       ├── home.jsp
-        │       └── ...
-        ├── css/
-        │   ├── style.css
-        │   └── admin.css
-        ├── js/
-        │   ├── script.js
-        │   └── admin.js
-        └── images/
-            └── (book images)
+
+
+
+
+
+====================== File Structure ==========================
+├── yourbookstore/
+│   │   │   │   ├── dao/
+│   │   │   │   │   ├── BookDAO.java
+│   │   │   │   │   ├── CartItemDAO.java
+│   │   │   │   │   ├── ContactMessageDAO.java
+│   │   │   │   │   ├── OrderDAO.java
+│   │   │   │   │   ├── OrderDetailDAO.java
+│   │   │   │   │   ├── UserDAO.java
+│   │   │   │   │   ├── WishlistItemDAO.java
+│   │   │   │   ├── model/
+│   │   │   │   │   ├── Book.java
+│   │   │   │   │   ├── CartItem.java
+│   │   │   │   │   ├── ContactMessage.java
+│   │   │   │   │   ├── Order.java
+│   │   │   │   │   ├── OrderDetail.java
+│   │   │   │   │   ├── User.java
+│   │   │   │   │   ├── WishlistItem.java
+│   │   │   │   ├── servlet/
+│   │   │   │   │   ├── AdminContactServlet.java
+│   │   │   │   │   ├── AdminOrderServlet.java
+│   │   │   │   │   ├── AdminProductServlet.java
+│   │   │   │   │   ├── CartServlet.java
+│   │   │   │   │   ├── ContactUsServlet.java
+│   │   │   │   │   ├── HomeServlet.java
+│   │   │   │   │   ├── LoginServlet.java
+│   │   │   │   │   ├── LogoutServlet.java
+│   │   │   │   │   ├── OrderServlet.java
+│   │   │   │   │   ├── RegisterServlet.java
+│   │   │   │   │   ├── WishlistServlet.java
+│   │   │   │   ├── util/
+│   │   │   │   │   ├── DatabaseConnection.java
+│   │   ├── resources/
+│   │   │   ├── logback.xml 
+│   │   ├── webapp/
+│   │   │   ├── css/
+│   │   │   │   ├── style.css
+│   │   │   ├── images/
+│   │   │   │   ├── book1.jpg
+│   │   │   │   ├── book2.jpg
+│   │   │   │   ├── book3.jpg
+│   │   │   │   ├── book1_thumb.jpg
+│   │   │   │   ├── book2_thumb.jpg
+│   │   │   │   ├── book3_thumb.jpg 
+│   │   │   ├── js/
+│   │   │   │   ├── script.js
+│   │   │   ├── WEB-INF/
+│   │   │   │   ├── web.xml
+│   │   │   ├── jsp/
+│   │   │   │   ├── head.jsp
+│   │   │   │   ├── navbar.jsp
+│   │   │   │   ├── home.jsp
+│   │   │   │   ├── register.jsp
+│   │   │   │   ├── login.jsp
+│   │   │   │   ├── contact.jsp
+│   │   │   │   ├── cart.jsp
+│   │   │   │   ├── wishlist.jsp
+│   │   │   │   ├── order-success.jsp
+│   │   │   │   ├── admin/
+│   │   │   │   │   ├── admin-dashboard.jsp
+│   │   │   │   │   ├── admin-add-product.jsp
+│   │   │   │   │   ├── admin-list-orders.jsp
+│   │   │   │   │   ├── admin-order-details.jsp
+│   │   │   │   │   ├── admin-list-contacts.jsp
+
+
+
+
 
 ========================== SQL ====================================
 
@@ -210,34 +202,82 @@ CREATE TABLE IF NOT EXISTS csrf_tokens (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-========================== DATABASE CONNECTION ====================================
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class DatabaseConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/bookstore_app";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/your_bookstore"; // Replace with your DB URL
+    private static final String DB_USER = "your_user"; // Replace with your DB username
+    private static final String DB_PASSWORD = "your_password"; // Replace with your DB password
+
+    private static Connection connection = null;
+
+    private DatabaseConnection() {} // Private constructor to prevent instantiation
 
     public static Connection getConnection() throws SQLException {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException e) {
-            throw new SQLException("MySQL JDBC driver not found.", e);
+        if (connection == null || connection.isClosed()) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Replace with your DB driver
+                connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            } catch (ClassNotFoundException e) {
+                throw new SQLException("MySQL JDBC driver not found!", e);
+            }
+        }
+        return connection;
+    }
+
+    public static void closeConnection() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+            connection = null;
+        }
+    }
+
+    // --- Basic CSRF Token Management (Illustrative - Frameworks handle this better) ---
+
+    public static String generateCsrfToken(int userId) throws SQLException {
+        String token = UUID.randomUUID().toString();
+        String sql = "INSERT INTO csrf_tokens (token, user_id, expiry) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.setInt(2, userId);
+            pstmt.executeUpdate();
+        }
+        return token;
+    }
+
+    public static boolean isValidCsrfToken(String token, int userId) throws SQLException {
+        String sql = "SELECT * FROM csrf_tokens WHERE token = ? AND user_id = ? AND expiry > NOW()";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.setInt(2, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    public static void removeCsrfToken(String token) throws SQLException {
+        String sql = "DELETE FROM csrf_tokens WHERE token = ?";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.executeUpdate();
         }
     }
 }
 
 
 
-
-========================== MODELS ====================================
------------------------------model.User.java---------------------------
+================================= MODEL ===========================
 
 package model;
+
+import java.sql.Timestamp;
 
 public class User {
     private int id;
@@ -245,19 +285,19 @@ public class User {
     private String email;
     private String phone;
     private String password;
+    private String role;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
-    public User(int id, String name, String email, String phone, String password) {
+    public User(int id, String name, String email, String phone, String password, String role, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.password = password;
-    }
-    public User(String name, String email, String phone, String password) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() { return id; }
@@ -270,69 +310,148 @@ public class User {
     public void setPhone(String phone) { this.phone = phone; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 }
------------------------------model.Book.java---------------------------
 
 package model;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 public class Book {
     private int id;
     private String title;
-    private double price;
-    private int quantity;
+    private BigDecimal price;
+    private String imageUrl;
+    private int totalQuantity;
     private String publisher;
-    private String imagePath;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
-    public Book(int id, String title, double price, int quantity, String publisher, String imagePath) {
+    public Book(int id, String title, BigDecimal price, String imageUrl, int totalQuantity, String publisher, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.quantity = quantity;
+        this.imageUrl = imageUrl;
+        this.totalQuantity = totalQuantity;
         this.publisher = publisher;
-        this.imagePath = imagePath;
-    }
-    public Book(String title, double price, int quantity, String publisher, String imagePath) {
-        this.title = title;
-        this.price = price;
-        this.quantity = quantity;
-        this.publisher = publisher;
-        this.imagePath = imagePath;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public int getTotalQuantity() { return totalQuantity; }
+    public void setTotalQuantity(int totalQuantity) { this.totalQuantity = totalQuantity; }
     public String getPublisher() { return publisher; }
     public void setPublisher(String publisher) { this.publisher = publisher; }
-    public String getImagePath() { return imagePath; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 }
------------------------------model.Order.java---------------------------
+
 
 package model;
 
+import java.sql.Timestamp;
+
+public class CartItem {
+    private int id;
+    private int userId;
+    private int bookId;
+    private int quantity;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private Book book; // Optional: To hold book details for display
+
+    public CartItem(int id, int userId, int bookId, int quantity, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.quantity = quantity;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public int getBookId() { return bookId; }
+    public void setBookId(int bookId) { this.bookId = bookId; }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
+    public Book getBook() { return book; }
+    public void setBook(Book book) { this.book = book; }
+}
+
+package model;
+
+import java.sql.Timestamp;
+
+public class WishlistItem {
+    private int id;
+    private int userId;
+    private int bookId;
+    private Timestamp createdAt;
+    private Book book; // Optional: To hold book details for display
+
+    public WishlistItem(int id, int userId, int bookId, Timestamp createdAt) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.createdAt = createdAt;
+    }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public int getBookId() { return bookId; }
+    public void setBookId(int bookId) { this.bookId = bookId; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Book getBook() { return book; }
+    public void setBook(Book book) { this.book = book; }
+}
+
+
+package model;
+
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Order {
     private int id;
     private int userId;
     private Timestamp orderDate;
-    private double totalAmount;
+    private BigDecimal totalAmount;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
-    public Order(int id, int userId, Timestamp orderDate, double totalAmount) {
+    public Order(int id, int userId, Timestamp orderDate, BigDecimal totalAmount, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.userId = userId;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
-    }
-    public Order(int userId, double totalAmount) {
-        this.userId = userId;
-        this.totalAmount = totalAmount;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() { return id; }
@@ -341,32 +460,32 @@ public class Order {
     public void setUserId(int userId) { this.userId = userId; }
     public Timestamp getOrderDate() { return orderDate; }
     public void setOrderDate(Timestamp orderDate) { this.orderDate = orderDate; }
-    public double getTotalAmount() { return totalAmount; }
-    public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
+    public BigDecimal getTotalAmount() { return totalAmount; }
+    public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 }
------------------------------model.OrderItem.java---------------------------
 
 package model;
 
-public class OrderItem {
+import java.math.BigDecimal;
+
+public class OrderDetail {
     private int id;
     private int orderId;
     private int bookId;
     private int quantity;
-    private double price;
+    private BigDecimal unitPrice;
+    private Book book; // Optional: To hold book details for display
 
-    public OrderItem(int id, int orderId, int bookId, int quantity, double price) {
+    public OrderDetail(int id, int orderId, int bookId, int quantity, BigDecimal unitPrice) {
         this.id = id;
         this.orderId = orderId;
         this.bookId = bookId;
         this.quantity = quantity;
-        this.price = price;
-    }
-    public OrderItem(int orderId, int bookId, int quantity, double price) {
-        this.orderId = orderId;
-        this.bookId = bookId;
-        this.quantity = quantity;
-        this.price = price;
+        this.unitPrice = unitPrice;
     }
 
     public int getId() { return id; }
@@ -377,81 +496,136 @@ public class OrderItem {
     public void setBookId(int bookId) { this.bookId = bookId; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public BigDecimal getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(BigDecimal unitPrice) { this.unitPrice = unitPrice; }
+    public Book getBook() { return book; }
+    public void setBook(Book book) { this.book = book; }
 }
------------------------------model.Wishlist.java---------------------
+
+
 
 package model;
 
-public class Wishlist {
-    private int id;
-    private int userId;
-    private int bookId;
+import java.sql.Timestamp;
 
-    public Wishlist(int id, int userId, int bookId) {
+public class ContactMessage {
+    private int id;
+    private String name;
+    private String email;
+    private String message;
+    private Timestamp createdAt;
+
+    public ContactMessage(int id, String name, String email, String message, Timestamp createdAt) {
         this.id = id;
-        this.userId = userId;
-        this.bookId = bookId;
-    }
-    public Wishlist(int userId, int bookId) {
-        this.userId = userId;
-        this.bookId = bookId;
+        this.name = name;
+        this.email = email;
+        this.message = message;
+        this.createdAt = createdAt;
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
-    public int getBookId() { return bookId; }
-    public void setBookId(int bookId) { this.bookId = bookId; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 }
-========================== SERVLET ====================================
-//---------------------- AuthServlet.java (servlets) --------------------------------
-package servlets;
 
-import dao.UserDao;
-import model.User;
-import util.CSRFTokenManager;
+
+========================== SERVLET =================================
+
+
+------------------------------
+
+package servlet;
+
+import model.Book;
 import util.DatabaseConnection;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@WebServlet(name = "HomeServlet", value = "/home")
+public class HomeServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Book> books = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id, title, price, image_url FROM books LIMIT 6");
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Book book = new Book(rs.getInt("id"), rs.getString("title"), rs.getBigDecimal("price"),
+                                     rs.getString("image_url"), 0, null, null, null); // Quantity and publisher not needed here
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Failed to load books.");
+        }
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        request.setAttribute("books", books);
+        request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Handle any POST requests to the homepage if needed
+        doGet(request, response);
+    }
+}
+------------------------------
+
+package servlet;
+
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.UUID;
 
-@WebServlet(name = "AuthServlet", urlPatterns = {"/register", "/login"})
-public class AuthServlet extends HttpServlet {
+@WebServlet(name = "RegisterServlet", value = "/register")
+public class RegisterServlet extends HttpServlet {
 
-    private UserDao userDao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        userDao = new UserDao();
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
-        if ("/register".equals(action)) {
-            registerUser(request, response);
-        } else if ("/login".equals(action)) {
-            loginUser(request, response);
-        }
-    }
-
-    private void registerUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+    }
 
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String csrfToken = request.getParameter("csrfToken");
+        HttpSession session = request.getSession();
+        String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+        if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
             return;
         }
 
@@ -460,578 +634,666 @@ public class AuthServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
 
-        User user = new User(name, email, phone, password); //Password should be hashed.
+        if (name == null || name.trim().isEmpty() || email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Please fill in all required fields.");
+            request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+            return;
+        }
 
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            userDao.setConnection(connection);
-            userDao.createUser(user);
-            response.sendRedirect("login.jsp");
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)")) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, phone);
+            pstmt.setString(4, password); // In a real app, HASH THE PASSWORD!
+            pstmt.executeUpdate();
+            session.removeAttribute("csrfToken"); // Consume the token
+            response.sendRedirect(request.getContextPath() + "/login?registrationSuccess=true");
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "Registration failed: " + e.getMessage());
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.setAttribute("errorMessage", "Registration failed. Email might already exist.");
+            request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
         }
     }
+}
 
-    private void loginUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
+
+------------------------------
+
+package servlet;
+
+import model.User;
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.UUID;
+
+@WebServlet(name = "LoginServlet", value = "/login")
+public class LoginServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+    }
 
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String csrfToken = request.getParameter("csrfToken");
+        HttpSession session = request.getSession();
+        String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+        if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
             return;
         }
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            userDao.setConnection(connection);
-            User user = userDao.getUserByEmail(email);
-
-            if (user != null && user.getPassword().equals(password)) { //Password should be compared by hash.
-                session.setAttribute("user", user);
-                response.sendRedirect("home.jsp");
-            } else {
-                request.setAttribute("error", "Invalid email or password");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Login failed: " + e.getMessage());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ("/register".equals(request.getServletPath())) {
-            String csrfToken = CSRFTokenManager.generateToken();
-            request.getSession().setAttribute("csrf_token", csrfToken);
-            request.setAttribute("csrf_token", csrfToken);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        } else if ("/login".equals(request.getServletPath())) {
-            String csrfToken = CSRFTokenManager.generateToken();
-            request.getSession().setAttribute("csrf_token", csrfToken);
-            request.setAttribute("csrf_token", csrfToken);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-    }
-
-}
-
-
-// --------------------  CartServlet.java (servlets) -----------------------------------
-package servlets;
-
-import dao.BookDao;
-import model.Book;
-import util.CSRFTokenManager;
-import util.DatabaseConnection;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-@WebServlet(name = "CartServlet", urlPatterns = {"/cart/add", "/cart/remove", "/cart"})
-public class CartServlet extends HttpServlet {
-
-    private BookDao bookDao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        bookDao = new BookDao();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
-        if ("/cart/add".equals(action)) {
-            addToCart(request, response);
-        } else if ("/cart/remove".equals(action)) {
-            removeFromCart(request, response);
-        } else if ("/cart".equals(action)) {
-            displayCart(request,response);
-        }
-    }
-
-    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
-        HttpSession session = request.getSession();
-
-        List<Book> cart = (List<Book>) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new ArrayList<>();
-            session.setAttribute("cart", cart);
-        }
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            bookDao.setConnection(connection);
-            Book book = bookDao.getBookById(bookId);
-            if(book != null){
-                cart.add(book);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        response.sendRedirect("cart.jsp");
-    }
-
-    private void removeFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
-        HttpSession session = request.getSession();
-        List<Book> cart = (List<Book>) session.getAttribute("cart");
-
-        if (cart != null) {
-            cart.removeIf(book -> book.getId() == bookId);
-        }
-        response.sendRedirect("cart.jsp");
-    }
-
-    private void displayCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        request.getRequestDispatcher("cart.jsp").forward(request,response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
-        HttpSession session = request.getSession();
-
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
+        if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Please enter your email and password.");
+            request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
             return;
         }
 
-        doGet(request, response);
-    }
-}
-Java
-
-// --------------------  WishlistServlet.java (servlets) -----------------------------------
-package servlets;
-
-import dao.WishlistDao;
-import model.Wishlist;
-import model.User;
-import util.CSRFTokenManager;
-import util.DatabaseConnection;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-
-@WebServlet(name = "WishlistServlet", urlPatterns = {"/wishlist/add", "/wishlist"})
-public class WishlistServlet extends HttpServlet {
-
-    private WishlistDao wishlistDao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        wishlistDao = new WishlistDao();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
-        if ("/wishlist/add".equals(action)) {
-            addToWishlist(request, response);
-        } else if ("/wishlist".equals(action)) {
-            displayWishlist(request,response);
-        }
-    }
-
-    private void addToWishlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            wishlistDao.setConnection(connection);
-            wishlistDao.addToWishlist(new Wishlist(user.getId(), bookId));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        response.sendRedirect("wishlist.jsp");
-    }
-
-    private void displayWishlist(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        request.getRequestDispatcher("wishlist.jsp").forward(request,response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
-        HttpSession session = request.getSession();
-
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
-            return;
-        }
-
-        doGet(request, response);
-    }
-}
-
-
-
-// ---------------------------------  OrderServlet.java (servlets)  ------------------------------------
-package servlets;
-
-import dao.BookDao;
-import dao.OrderDao;
-import model.Book;
-import model.Order;
-import model.OrderItem;
-import model.User;
-import util.CSRFTokenManager;
-import util.DatabaseConnection;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-
-@WebServlet(name = "OrderServlet", urlPatterns = {"/order"})
-public class OrderServlet extends HttpServlet {
-
-    private OrderDao orderDao;
-    private BookDao bookDao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        orderDao = new OrderDao();
-        bookDao = new BookDao();
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
-        HttpSession session = request.getSession();
-
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
-            return;
-        }
-
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        List<Book> cart = (List<Book>) session.getAttribute("cart");
-        if (cart == null || cart.isEmpty()) {
-            response.sendRedirect("cart.jsp");
-            return;
-        }
-
-        double totalAmount = 0;
-        for (Book book : cart) {
-            totalAmount += book.getPrice();
-        }
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            orderDao.setConnection(connection);
-            bookDao.setConnection(connection);
-
-            Order order = orderDao.createOrder(new Order(user.getId(), totalAmount));
-            if(order != null) {
-                for(Book book : cart){
-                    orderDao.createOrderItem(new OrderItem(order.getId(), book.getId(), 1, book.getPrice()));
-                    int updatedQuantity = bookDao.getBookById(book.getId()).getQuantity() - 1;
-                    bookDao.updateBookQuantity(book.getId(), updatedQuantity);
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id, name, email, role, password FROM users WHERE email = ?")) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // In a real app, compare the provided password with the HASHED password from the database
+                    if (password.equals(rs.getString("password"))) {
+                        User user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"), null, null, rs.getString("role"), null, null);
+                        session.setAttribute("loggedInUser", user);
+                        session.removeAttribute("csrfToken"); // Consume the token
+                        response.sendRedirect(request.getContextPath() + "/home");
+                        return;
+                    }
                 }
+                request.setAttribute("errorMessage", "Invalid email or password.");
+                request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
             }
-
-            session.removeAttribute("cart");
-            response.sendRedirect("home.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "Order placement failed: " + e.getMessage());
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            request.setAttribute("errorMessage", "Login failed. Please try again.");
+            request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = CSRFTokenManager.generateToken();
-        request.getSession().setAttribute("csrf_token", csrfToken);
-        request.setAttribute("csrf_token", csrfToken);
-        request.getRequestDispatcher("cart.jsp").forward(request,response);
     }
 }
 
 
+------------------------------
 
+package servlet;
 
-// ---------------------------------  AdminServlet.java (servlets)  ------------------------------------
-package servlets;
-
-import dao.BookDao;
-import dao.OrderDao;
-import model.Book;
-import model.Order;
-import model.OrderItem;
-import util.CSRFTokenManager;
-import util.DatabaseConnection;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
+import java.util.UUID;
 
-@WebServlet(name = "AdminServlet", urlPatterns = {"/admin/add_product", "/admin/orders", "/admin/order_details"})
-public class AdminServlet extends HttpServlet {
-
-    private BookDao bookDao;
-    private OrderDao orderDao;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        bookDao = new BookDao();
-        orderDao = new OrderDao();
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
-        if ("/admin/add_product".equals(action)) {
-            addProduct(request, response);
-        }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String action = request.getServletPath();
-        if ("/admin/orders".equals(action)) {
-            getOrders(request, response);
-        } else if ("/admin/order_details".equals(action)) {
-            getOrderDetails(request, response);
-        }
-        else {
-            String csrfToken = CSRFTokenManager.generateToken();
-            request.getSession().setAttribute("csrf_token", csrfToken);
-            request.setAttribute("csrf_token", csrfToken);
-            if ("/admin/add_product".equals(action)){
-                request.getRequestDispatcher("admin/add_product.jsp").forward(request, response);
-            }
-            else if ("/admin/orders".equals(action)){
-                request.getRequestDispatcher("admin/order_list.jsp").forward(request, response);
-            }
-            else if ("/admin/order_details".equals(action)){
-                request.getRequestDispatcher("admin/order_details.jsp").forward(request, response);
-            }
-        }
-    }
-
-    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String csrfToken = request.getParameter("csrf_token");
-        HttpSession session = request.getSession();
-
-        if (!CSRFTokenManager.isValidToken(csrfToken, session)) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid CSRF token");
-            return;
-        }
-
-        String title = request.getParameter("title");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String publisher = request.getParameter("publisher");
-        String imagePath = request.getParameter("imagePath");
-
-        Book book = new Book(title, price, quantity, publisher, imagePath);
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            bookDao.setConnection(connection);
-            bookDao.createBook(book);
-            response.sendRedirect("admin/add_product.jsp");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Product addition failed: " + e.getMessage());
-            request.getRequestDispatcher("admin/add_product.jsp").forward(request, response);
-        }
-    }
-
-    private void getOrders(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            orderDao.setConnection(connection);
-            List<Order> orders = orderDao.getAllOrders();
-            request.setAttribute("orders", orders);
-            request.getRequestDispatcher("admin/order_list.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Failed to retrieve orders: " + e.getMessage());
-            request.getRequestDispatcher("admin/order_list.jsp").forward(request, response);
-        }
-    }
-
-    private void getOrderDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int orderId = Integer.parseInt(request.getParameter("orderId"));
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            orderDao.setConnection(connection);
-            List<OrderItem> orderItems = orderDao.getOrderItemsByOrderId(orderId);
-            request.setAttribute("orderItems", orderItems);
-            request.getRequestDispatcher("admin/order_details.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Failed to retrieve order details: " + e.getMessage());
-            request.getRequestDispatcher("admin/order_details.jsp").forward(request, response);
-        }
-    }
-}
-
-// -------------------------- HomeServlet.java (servlets) -----------------------------------
-package servlets;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", value = "/logout")
+public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-    }
-}
-
-
-
-// -------------------------- ContactServlet.java (servlets) -----------------------------------
-package servlets;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-@WebServlet(name = "ContactServlet", urlPatterns = {"/contact"})
-public class ContactServlet extends HttpServlet {
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("contact.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect(request.getContextPath() + "/home");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Handle contact form submission (e.g., send email)
+        doGet(request, response);
+    }
+}
+
+
+
+------------------------------
+
+package servlet;
+
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.UUID;
+
+@WebServlet(name = "ContactUsServlet", value = "/contact")
+public class ContactUsServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        request.getRequestDispatcher("/jsp/contact.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String csrfToken = request.getParameter("csrfToken");
+        HttpSession session = request.getSession();
+        String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+        if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+            return;
+        }
+
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String message = request.getParameter("message");
 
-        // Implement email sending logic here
-        // ...
+        if (name == null || name.trim().isEmpty() || email == null || email.trim().isEmpty() || message == null || message.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Please fill in all fields.");
+            request.getRequestDispatcher("/jsp/contact.jsp").forward(request, response);
+            return;
+        }
 
-        request.setAttribute("message", "Thank you for your message!");
-        request.getRequestDispatcher("contact.jsp").forward(request, response);
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)")) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, message);
+            pstmt.executeUpdate();
+            session.removeAttribute("csrfToken"); // Consume the token
+            request.setAttribute("successMessage", "Your message has been sent successfully!");
+            request.getRequestDispatcher("/jsp/contact.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Failed to send your message. Please try again.");
+            request.getRequestDispatcher("/jsp/contact.jsp").forward(request, response);
+        }
     }
 }
 
 
-=========================== CSRFTokenManager.java (util) ===============================
 
+------------------------------
 
-package util;
+package servlet;
 
-import javax.servlet.http.HttpSession;
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.UUID;
 
-public class CSRFTokenManager {
+@WebServlet(name = "CartServlet", value = "/cart")
+public class CartServlet extends HttpServlet {
 
-    public static String generateToken() {
-        return UUID.randomUUID().toString();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        // Logic to fetch and display cart items would go here
+        request.getRequestDispatcher("/jsp/cart.jsp").forward(request, response);
     }
 
-    public static boolean isValidToken(String token, HttpSession session) {
-        if (token == null || session == null) {
-            return false;
-        }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action != null) {
+            String csrfToken = request.getParameter("csrfToken");
+            HttpSession session = request.getSession();
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
 
-        String sessionToken = (String) session.getAttribute("csrf_token");
-        if (sessionToken == null) {
-            return false;
-        }
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
 
-        return token.equals(sessionToken);
+            switch (action) {
+                // Implement logic for adding, updating, removing cart items here
+                case "add":
+                    // ...
+                    break;
+                case "update":
+                    // ...
+                    break;
+                case "remove":
+                    // ...
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+                    break;
+            }
+            session.removeAttribute("csrfToken"); // Consume the token after a state change
+            response.sendRedirect(request.getContextPath() + "/cart"); // Or redirect as needed
+        } else {
+            doGet(request, response);
+        }
+    }
+}
+
+
+------------------------------
+
+package servlet;
+
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.UUID;
+
+@WebServlet(name = "WishlistServlet", value = "/wishlist")
+public class WishlistServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        // Logic to fetch and display wishlist items would go here
+        request.getRequestDispatcher("/jsp/wishlist.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action != null) {
+            String csrfToken = request.getParameter("csrfToken");
+            HttpSession session = request.getSession();
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
+
+            switch (action) {
+                case "add":
+                    // ... Logic to add to wishlist
+                    break;
+                case "remove":
+                    // ... Logic to remove from wishlist
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+                    break;
+            }session.removeAttribute("csrfToken"); // Consume the token after a state change
+            response.sendRedirect(request.getContextPath() + "/wishlist"); // Or redirect as needed
+        } else {
+            doGet(request, response);
+        }
     }
 }
 
 
 
-========================== DAO ============================================
 
-//----------------------------------- UserDao.java (dao) --------------------------------
+------------------------------
+
+package servlet;
+
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.UUID;
+
+@WebServlet(name = "OrderServlet", value = "/order")
+public class OrderServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        // Logic to display order confirmation or summary before placing order
+        request.getRequestDispatcher("/jsp/order-confirmation.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action != null && action.equals("placeOrder")) {
+            String csrfToken = request.getParameter("csrfToken");
+            HttpSession session = request.getSession(false);
+            if (session == null || session.getAttribute("loggedInUser") == null) {
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            }
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
+
+            // Implement the logic to:
+            // 1. Retrieve cart items from session or database
+            // 2. Create a new order in the database
+            // 3. Create order details for each item
+            // 4. Update book quantities in the database
+            // 5. Clear the user's cart
+            // 6. Store the payment amount
+
+            try (Connection conn = DatabaseConnection.getConnection()) {
+                // Perform transactional operations here
+                // Example:
+                // PreparedStatement orderStmt = conn.prepareStatement("INSERT INTO orders ...");
+                // PreparedStatement orderDetailStmt = conn.prepareStatement("INSERT INTO order_details ...");
+                // PreparedStatement updateBookStmt = conn.prepareStatement("UPDATE books SET total_quantity = total_quantity - ? WHERE id = ?");
+                // ... execute updates and inserts
+
+                session.removeAttribute("csrfToken"); // Consume the token
+                session.removeAttribute("cart"); // Example: Clear cart from session
+                response.sendRedirect(request.getContextPath() + "/order-success");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMessage", "Failed to place your order. Please try again.");
+                request.getRequestDispatcher("/jsp/order-confirmation.jsp").forward(request, response);
+            }
+        } else {
+            doGet(request, response);
+        }
+    }
+}
+
+------------------------------
+
+package servlet;
+
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.UUID;
+
+@WebServlet(name = "AdminProductServlet", value = "/admin/products")
+public class AdminProductServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session == null || session.getAttribute("loggedInUser") == null || !((model.User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login"); // Redirect non-admins
+            return;
+        }
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        // Logic to display add product form or list products
+        request.getRequestDispatcher("/jsp/admin/add-product.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInUser") == null || !((model.User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        String action = request.getParameter("action");
+        if (action != null && action.equals("addProduct")) {
+            String csrfToken = request.getParameter("csrfToken");
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
+
+            String title = request.getParameter("title");
+            String price = request.getParameter("price");
+            String quantity = request.getParameter("quantity");
+            String publisher = request.getParameter("publisher");
+            // Handle image upload here
+
+            if (title == null || title.trim().isEmpty() || price == null || price.trim().isEmpty() || quantity == null || quantity.trim().isEmpty() || publisher == null || publisher.trim().isEmpty()) {
+                request.setAttribute("errorMessage", "Please fill in all product details.");
+                request.getRequestDispatcher("/jsp/admin/add-product.jsp").forward(request, response);
+                return;
+            }
+
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO books (title, price, total_quantity, publisher) VALUES (?, ?, ?, ?)")) {
+                pstmt.setString(1, title);
+                pstmt.setBigDecimal(2, new java.math.BigDecimal(price));
+                pstmt.setInt(3, Integer.parseInt(quantity));
+                pstmt.setString(4, publisher);
+                pstmt.executeUpdate();
+                session.removeAttribute("csrfToken"); // Consume the token
+                request.setAttribute("successMessage", "Product added successfully!");
+                request.getRequestDispatcher("/jsp/admin/add-product.jsp").forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMessage", "Failed to add product. Please try again.");
+                request.getRequestDispatcher("/jsp/admin/add-product.jsp").forward(request, response);
+            }
+        } else {
+            doGet(request, response);
+        }
+    }
+}
+
+
+
+------------------------------
+
+package servlet;
+
+import model.User;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.UUID;
+
+@WebServlet(name = "AdminOrderServlet", value = "/admin/orders")
+public class AdminOrderServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session == null || session.getAttribute("loggedInUser") == null || !((User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+        // Logic to fetch and display a list of orders (with search)
+        request.getRequestDispatcher("/jsp/admin/list-orders.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInUser") == null || !((User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        String action = request.getParameter("action");
+        if (action != null) {
+            String csrfToken = request.getParameter("csrfToken");
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
+
+            switch (action) {
+                case "search":
+                    String orderId = request.getParameter("orderId");
+                    // Logic to search for orders by ID
+                    session.removeAttribute("csrfToken");
+                    request.getRequestDispatcher("/jsp/admin/list-orders.jsp").forward(request, response);
+                    break;
+                // Other admin order actions
+                default:
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+                    break;
+            }
+        } else {
+            doGet(request, response);
+        }
+    }
+}
+
+
+
+------------------------------
+
+package servlet;
+
+import model.ContactMessage;
+import model.User;
+import util.DatabaseConnection;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@WebServlet(name = "AdminContactServlet", value = "/admin/contacts")
+public class AdminContactServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session == null || session.getAttribute("loggedInUser") == null || !((User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        if (session.getAttribute("csrfToken") == null) {
+            session.setAttribute("csrfToken", UUID.randomUUID().toString());
+        }
+
+        List<ContactMessage> messages = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id, name, email, message, created_at FROM contact_messages ORDER BY created_at DESC");
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                ContactMessage message = new ContactMessage(rs.getInt("id"), rs.getString("name"), rs.getString("email"), rs.getString("message"), rs.getTimestamp("created_at"));
+                messages.add(message);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Failed to load contact messages.");
+        }
+
+        request.setAttribute("contactMessages", messages);
+        request.getRequestDispatcher("/jsp/admin/list-contacts.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInUser") == null || !((User) session.getAttribute("loggedInUser")).getRole().equals("admin")) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        String action = request.getParameter("action");
+        if (action != null) {
+            String csrfToken = request.getParameter("csrfToken");
+            String sessionCsrfToken = (String) session.getAttribute("csrfToken");
+
+            if (csrfToken == null || !csrfToken.equals(sessionCsrfToken)) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "CSRF token invalid");
+                return;
+            }
+
+            // Implement any POST actions for contact messages here (e.g., deleting)
+            session.removeAttribute("csrfToken");
+            response.sendRedirect(request.getContextPath() + "/admin/contacts");
+        } else {
+            doGet(request, response);
+        }
+    }
+}
+
+
+
+
+
+
+----------------------========================= DAO ===============================================
+
 package dao;
 
-import models.User;
+import model.User;
+import util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDao {
-
-    private Connection connection;
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public void createUser(User user) throws SQLException {
-        String sql = "INSERT INTO Users (name, email, phone, password) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getPhone());
-            statement.setString(4, user.getPassword()); // Hash the password
-            statement.executeUpdate();
-        }
-    }
+public class UserDAO {
 
     public User getUserByEmail(String email) throws SQLException {
-        String sql = "SELECT * FROM Users WHERE email = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, email);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
+        String sql = "SELECT id, name, email, phone, password, role, created_at, updated_at FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
                     return new User(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("phone"),
-                        resultSet.getString("password")
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("phone"),
+                            rs.getString("password"),
+                            rs.getString("role"),
+                            rs.getTimestamp("created_at"),
+                            rs.getTimestamp("updated_at")
                     );
                 }
                 return null;
@@ -1039,14 +1301,59 @@ public class UserDao {
         }
     }
 
-    // Other user-related database operations
-}
-Java
+    public void registerUser(User user) throws SQLException {
+        String sql = "INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPhone());
+            pstmt.setString(4, user.getPassword()); // Remember to hash the password in the Servlet!
+            pstmt.executeUpdate();
+        }
+    }
 
-//----------------------------------- BookDao.java (dao) --------------------------------
+    // Method for basic CSRF token storage (if you choose this approach)
+    public void storeCsrfToken(String token, int userId) throws SQLException {
+        String sql = "INSERT INTO csrf_tokens (token, user_id, expiry) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.setInt(2, userId);
+            pstmt.executeUpdate();
+        }
+    }
+
+    // Method for basic CSRF token validation (if you choose this approach)
+    public boolean isValidCsrfToken(String token, int userId) throws SQLException {
+        String sql = "SELECT token FROM csrf_tokens WHERE token = ? AND user_id = ? AND expiry > NOW()";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.setInt(2, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    // Method to remove a CSRF token
+    public void removeCsrfToken(String token) throws SQLException {
+        String sql = "DELETE FROM csrf_tokens WHERE token = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, token);
+            pstmt.executeUpdate();
+        }
+    }
+}
+
+----------------------
+
 package dao;
 
-import models.Book;
+import model.Book;
+import util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -1054,27 +1361,48 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDao {
+public class BookDAO {
 
-    private Connection connection;
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public List<Book> getLimitedBooks(int limit) throws SQLException {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT id, title, price, image_url, total_quantity, publisher FROM books LIMIT ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, limit);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    books.add(new Book(
+                            rs.getInt("id"),
+                            rs.getString("title"),
+                            rs.getBigDecimal("price"),
+                            rs.getString("image_url"),
+                            rs.getInt("total_quantity"),
+                            rs.getString("publisher"),
+                            rs.getTimestamp("created_at"),
+                            rs.getTimestamp("updated_at")
+                    ));
+                }
+                return books;
+            }
+        }
     }
 
-    public Book getBookById(int bookId) throws SQLException {
-        String sql = "SELECT * FROM Books WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, bookId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
+    public Book getBookById(int id) throws SQLException {
+        String sql = "SELECT id, title, price, image_url, total_quantity, publisher, created_at, updated_at FROM books WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
                     return new Book(
-                        resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getDouble("price"),
-                        resultSet.getInt("quantity"),
-                        resultSet.getString("publisher"),
-                        resultSet.getString("image_path")
+                            rs.getInt("id"),
+                            rs.getString("title"),
+                            rs.getBigDecimal("price"),
+                            rs.getString("image_url"),
+                            rs.getInt("total_quantity"),
+                            rs.getString("publisher"),
+                            rs.getTimestamp("created_at"),
+                            rs.getTimestamp("updated_at")
                     );
                 }
                 return null;
@@ -1082,343 +1410,473 @@ public class BookDao {
         }
     }
 
-    public void createBook(Book book) throws SQLException {
-        String sql = "INSERT INTO Books (title, price, quantity, publisher, image_path) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, book.getTitle());
-            statement.setDouble(2, book.getPrice());
-            statement.setInt(3, book.getQuantity());
-            statement.setString(4, book.getPublisher());
-            statement.setString(5, book.getImagePath());
-            statement.executeUpdate();
+    public void addBook(Book book) throws SQLException {
+        String sql = "INSERT INTO books (title, price, image_url, total_quantity, publisher) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, book.getTitle());
+            pstmt.setBigDecimal(2, book.getPrice());
+            pstmt.setString(3, book.getImageUrl());
+            pstmt.setInt(4, book.getTotalQuantity());
+            pstmt.setString(5, book.getPublisher());
+            pstmt.executeUpdate();
         }
     }
 
     public void updateBookQuantity(int bookId, int quantity) throws SQLException {
-        String sql = "UPDATE Books SET quantity = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, quantity);
-            statement.setInt(2, bookId);
-            statement.executeUpdate();
+        String sql = "UPDATE books SET total_quantity = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, quantity);
+            pstmt.setInt(2, bookId);
+            pstmt.executeUpdate();
         }
     }
-
-    // Other book-related database operations
 }
-Java
 
-//----------------------------------- OrderDao.java (dao) --------------------------------
+
+----------------------
+
 package dao;
 
-import models.Order;
-import models.OrderItem;
+import model.CartItem;
+import util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDao {
+public class CartItemDAO {
 
-    private Connection connection;
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public Order createOrder(Order order) throws SQLException {
-        String sql = "INSERT INTO Orders (user_id, total_amount) VALUES (?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, order.getUserId());
-            statement.setDouble(2, order.getTotalAmount());
-            statement.executeUpdate();
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    return new Order(
-                        generatedKeys.getInt(1),
-                        order.getUserId(),
-                        Timestamp.valueOf(java.time.LocalDateTime.now()),
-                        order.getTotalAmount()
-                    );
-                } else {
-                    return null;
-                }
-            }
-        }
-    }
-
-    public void createOrderItem(OrderItem orderItem) throws SQLException {
-        String sql = "INSERT INTO OrderItems (order_id, book_id, quantity, price) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, orderItem.getOrderId());
-            statement.setInt(2, orderItem.getBookId());
-            statement.setInt(3, orderItem.getQuantity());
-            statement.setDouble(4, orderItem.getPrice());
-            statement.executeUpdate();
-        }
-    }
-
-    public List<Order> getAllOrders() throws SQLException {
-        String sql = "SELECT * FROM Orders";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            List<Order> orders = new ArrayList<>();
-            while (resultSet.next()) {
-                orders.add(new Order(
-                    resultSet.getInt("id"),
-                    resultSet.getInt("user_id"),
-                    resultSet.getTimestamp("order_date"),
-                    resultSet.getDouble("total_amount")
-                ));
-            }
-            return orders;
-        }
-    }
-
-    public List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
-         String sql = "SELECT * FROM OrderItems WHERE order_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, orderId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                List<OrderItem> orderItems = new ArrayList<>();
-                while (resultSet.next()) {
-                    orderItems.add(new OrderItem(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("order_id"),
-                        resultSet.getInt("book_id"),
-                        resultSet.getInt("quantity"),
-                        resultSet.getDouble("price")
+    public List<CartItem> getCartItemsByUserId(int userId) throws SQLException {
+        List<CartItem> cartItems = new ArrayList<>();
+        String sql = "SELECT id, book_id, quantity, created_at, updated_at FROM cart_items WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    cartItems.add(new CartItem(
+                            rs.getInt("id"),
+                            userId,
+                            rs.getInt("book_id"),
+                            rs.getInt("quantity"),
+                            rs.getTimestamp("created_at"),
+                            rs.getTimestamp("updated_at")
                     ));
                 }
-                return orderItems;
+                return cartItems;
             }
         }
     }
 
-    // Other order-related database operations
-}
-Java
-
-//----------------------------------- WishlistDao.java (dao) --------------------------------
-package dao;
-
-import models.Wishlist;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-public class WishlistDao {
-
-    private Connection connection;
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public void addToWishlist(Wishlist wishlist) throws SQLException {
-        String sql = "INSERT INTO Wishlist (user_id, book_id) VALUES (?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, wishlist.getUserId());
-            statement.setInt(2, wishlist.getBookId());
-            statement.executeUpdate();
+    public CartItem getCartItemByUserAndBook(int userId, int bookId) throws SQLException {
+        String sql = "SELECT id, quantity, created_at, updated_at FROM cart_items WHERE user_id = ? AND book_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new CartItem(
+                            rs.getInt("id"),
+                            userId,
+                            bookId,
+                            rs.getInt("quantity"),
+                            rs.getTimestamp("created_at"),
+                            rs.getTimestamp("updated_at")
+                    );
+                }
+                return null;
+            }
         }
     }
 
-    // Other wishlist-related database operations
+    public void addCartItem(int userId, int bookId, int quantity) throws SQLException {
+        String sql = "INSERT INTO cart_items (user_id, book_id, quantity) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            pstmt.setInt(3, quantity);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void updateCartItemQuantity(int cartItemId, int quantity) throws SQLException {
+        String sql = "UPDATE cart_items SET quantity = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, quantity);
+            pstmt.setInt(2, cartItemId);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void removeCartItem(int cartItemId) throws SQLException {
+        String sql = "DELETE FROM cart_items WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, cartItemId);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void clearCart(int userId) throws SQLException {
+        String sql = "DELETE FROM cart_items WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.executeUpdate();
+        }
+    }
 }
 
-======================= BOOTSTRAP 5 ====================================
+
+----------------------
+
+package dao;
+
+import model.WishlistItem;
+import util.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class WishlistItemDAO {
+
+    public List<WishlistItem> getWishlistItemsByUserId(int userId) throws SQLException {
+        List<WishlistItem> wishlistItems = new ArrayList<>();
+        String sql = "SELECT id, book_id, created_at FROM wishlist_items WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    wishlistItems.add(new WishlistItem(
+                            rs.getInt("id"),
+                            userId,
+                            rs.getInt("book_id"),
+                            rs.getTimestamp("created_at")
+                    ));
+                }
+                return wishlistItems;
+            }
+        }
+    }
+
+    public WishlistItem getWishlistItemByUserAndBook(int userId, int bookId) throws SQLException {
+        String sql = "SELECT id, created_at FROM wishlist_items WHERE user_id = ? AND book_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new WishlistItem(
+                            rs.getInt("id"),
+                            userId,
+                            bookId,
+                            rs.getTimestamp("created_at")
+                    );
+                }
+                return null;
+            }
+        }
+    }
+
+    public void addWishlistItem(int userId, int bookId) throws SQLException {
+        String sql = "INSERT INTO wishlist_items (user_id, book_id) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void removeWishlistItem(int wishlistItemId) throws SQLException {
+        String sql = "DELETE FROM wishlist_items WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, wishlistItemId);
+            pstmt.executeUpdate();
+        }
+    }
+}
 
 
-<%------------------------------ home.jsp -----------------------------------------------%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
-<head>
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+----------------------
+
+package dao;
+
+import model.ContactMessage;
+import util.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactMessageDAO {
+
+    public void addContactMessage(ContactMessage message) throws SQLException {
+        String sql = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, message.getName());
+            pstmt.setString(2, message.getEmail());
+            pstmt.setString(3, message.getMessage());
+            pstmt.executeUpdate();
+        }
+    }
+
+    public List<ContactMessage> getAllContactMessages() throws SQLException {
+        List<ContactMessage> messages = new ArrayList<>();
+        String sql = "SELECT id, name, email, message, created_at FROM contact_messages ORDER BY created_at DESC";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    messages.add(new ContactMessage(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("message"),
+                            rs.getTimestamp("created_at")
+                    ));
+                }
+                return messages;
+            }
+        }
+    }
+}
+
+====================================== jsp Pages ===========================
+webapp/jsp/
+├── home.jsp
+├── register.jsp
+├── login.jsp
+├── contact.jsp
+├── cart.jsp
+├── wishlist.jsp
+├── order-success.jsp
+└── admin/
+    ├---------------------- -------------------    
+    ── admin-dashboard
+    ├---------------------- -------------------    
+    ── admin-add-product
+    ├---------------------- -------------------    
+    ── admin-list-orders
+    └---------------------- -------------------    
+    ── admin-order-details
+    └----------------------── admin-list-contacts.jsp -------------------
+
+
+
+    ----------------------    Common Head Section (head.jsp) ----------------------
+
+
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${pageTitle}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    </head>
+
+
+---------------------- Common Scripts Section (scripts.jsp): ----------------------
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<%= request.getContextPath() %>/js/script.js"></script>
+
+
+---------------------- Common Navigation Bar (navbar.jsp): ----------------------
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="<%= request.getContextPath() %>/home">My Bookstore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/wishlist">Wishlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/contact">Contact Us</a>
+                </li>
+                <% if (session.getAttribute("loggedInUser") != null && ((com.yourbookstore.model.User) session.getAttribute("loggedInUser")).getRole().equals("admin")) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                            <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/products">Manage Products</a></li>
+                            <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/orders">View Orders</a></li>
+                            <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/contacts">View Messages</a></li>
+                        </ul>
+                    </li>
+                <% } %>
+            </ul>
+            <ul class="navbar-nav">
+                <% if (session.getAttribute("loggedInUser") == null) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= request.getContextPath() %>/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= request.getContextPath() %>/register">Register</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, <%= ((com.yourbookstore.model.User) session.getAttribute("loggedInUser")).getName() %></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<%= request.getContextPath() %>/logout">Logout</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+---------------------- 1. home.jsp: ----------------------
+
+
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Home"); %>
 <body>
+    <%@ include file="navbar.jsp" %>
+
     <div class="container mt-5">
         <h1>Welcome to Our Bookstore</h1>
-        <p>Explore our wide range of books and find your next favorite read.</p>
-        <a href="cart" class="btn btn-primary">View Cart</a>
-        <a href="wishlist" class="btn btn-secondary">View Wishlist</a>
-        <a href="contact" class="btn btn-info">Contact Us</a>
-        <% if (session.getAttribute("user") == null) { %>
-            <a href="login" class="btn btn-success">Login</a>
-            <a href="register" class="btn btn-warning">Register</a>
-        <% } else { %>
-            <a href="/admin/orders" class="btn btn-danger">Admin Panel</a>
+        <p>This is a paragraph of text on the homepage of our amazing online bookstore. Browse our selection of six fantastic books!</p>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <%-- Example book listings - Replace with dynamic data from your servlet --%>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="<%= request.getContextPath() %>/images/book1.jpg" class="card-img-top" alt="Book 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Book Title 1</h5>
+                        <p class="card-text">$19.99</p>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-book-id="1">Add to Cart</button>
+                        <button class="btn btn-outline-secondary btn-sm add-to-wishlist" data-book-id="1">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="<%= request.getContextPath() %>/images/book2.jpg" class="card-img-top" alt="Book 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Book Title 2</h5>
+                        <p class="card-text">$24.50</p>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-book-id="2">Add to Cart</button>
+                        <button class="btn btn-outline-secondary btn-sm add-to-wishlist" data-book-id="2">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="<%= request.getContextPath() %>/images/book3.jpg" class="card-img-top" alt="Book 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Book Title 3</h5>
+                        <p class="card-text">$15.75</p>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-book-id="3">Add to Cart</button>
+                        <button class="btn btn-outline-secondary btn-sm add-to-wishlist" data-book-id="3">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <%-- Add more book listings here (up to six) --%>
+        </div>
+    </div>
+
+    <%@ include file="scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            $('.add-to-wishlist').on('click', function() {
+                var bookId = $(this).data('book-id');
+                var icon = $(this).find('i');
+                $.post('<%= request.getContextPath() %>/wishlist', { action: 'add', bookId: bookId, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'added') {
+                        icon.removeClass('bi-heart').addClass('bi-heart-fill');
+                    } else if (response === 'removed') {
+                        icon.removeClass('bi-heart-fill').addClass('bi-heart');
+                    } else if (response === 'login') {
+                        window.location.href = '<%= request.getContextPath() %>/login';
+                    }
+                });
+            });
+
+            $('.add-to-cart').on('click', function() {
+                var bookId = $(this).data('book-id');
+                $.post('<%= request.getContextPath() %>/cart', { action: 'add', bookId: bookId, quantity: 1, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'added') {
+                        alert('Book added to cart!');
+                    } else if (response === 'login') {
+                        window.location.href = '<%= request.getContextPath() %>/login';
+                    } else if (response === 'unavailable') {
+                        alert('This book is currently unavailable.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+---------------------- 2. register.jsp: ----------------------
+
+
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Register"); %>
+<body>
+    <%@ include file="navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Register</h2>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger"><%= request.getAttribute("errorMessage") %></div>
         <% } %>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-
-
-<%------------------------------ cart.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Shopping Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Shopping Cart</h1>
-        <c:if test="${not empty sessionScope.cart}">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${sessionScope.cart}" var="book">
-                        <tr>
-                            <td>${book.title}</td>
-                            <td>${book.price}</td>
-                            <td>
-                                <a href="cart/remove?bookId=${book.id}" class="btn btn-danger btn-sm">Remove</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <form action="order" method="post">
-                <input type="hidden" name="csrf_token" value="${csrf_token}">
-                <button type="submit" class="btn btn-success">Place Order</button>
-            </form>
-        </c:if>
-        <c:if test="${empty sessionScope.cart}">
-            <p>Your cart is empty.</p>
-        </c:if>
-
-        <a href="home" class="btn btn-secondary">Continue Shopping</a>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-
-
-<%------------------------------ wishlist.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Wishlist</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Wishlist</h1>
-        <c:if test="${not empty sessionScope.user}">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${sessionScope.user.wishlist}" var="book">
-                        <tr>
-                            <td>${book.title}</td>
-                            <td>${book.price}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
-        <c:if test="${empty sessionScope.user}">
-            <p>Please log in to view your wishlist.</p>
-        </c:if>
-        <a href="home" class="btn btn-secondary">Continue Shopping</a>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-
-
-<%------------------------------ contact.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Contact Us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Contact Us</h1>
-        <form action="contact" method="post">
+        <form action="<%= request.getContextPath() %>/register" method="post" class="mt-3">
+            <input type="hidden" name="csrfToken" value="<%= request.getSession().getAttribute("csrfToken") %>">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <p>${message}</p>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-
-
-<%------------------------------ register.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Register</h1>
-        <form action="register" method="post">
-            <input type="hidden" name="csrf_token" value="${csrf_token}">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone">
+                <input type="tel" class="form-control" id="phone" name="phone">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -1426,31 +1884,33 @@ public class WishlistDao {
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
-        <p style="color: red;">${error}</p>
+        <p class="mt-3">Already have an account? <a href="<%= request.getContextPath() %>/login">Login</a></p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%@ include file="scripts.jsp" %>
 </body>
 </html>
+3. login.jsp:
 
+Java
 
-
-
-<%------------------------------ login.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Login"); %>
 <body>
+    <%@ include file="navbar.jsp" %>
+
     <div class="container mt-5">
-        <h1>Login</h1>
-        <form action="login" method="post">
-            <input type="hidden" name="csrf_token" value="${csrf_token}">
+        <h2>Login</h2>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger"><%= request.getAttribute("errorMessage") %></div>
+        <% } %>
+        <% if (request.getParameter("registrationSuccess") != null && request.getParameter("registrationSuccess").equals("true")) { %>
+            <div class="alert alert-success">Registration successful! You can now log in.</div>
+        <% } %>
+        <form action="<%= request.getContextPath() %>/login" method="post" class="mt-3">
+            <input type="hidden" name="csrfToken" value="<%= request.getSession().getAttribute("csrfToken") %>">
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
@@ -1459,72 +1919,386 @@ public class WishlistDao {
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
-        <p style="color: red;">${error}</p>
+        <p class="mt-3">Don't have an account? <a href="<%= request.getContextPath() %>/register">Register</a></p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%@ include file="scripts.jsp" %>
 </body>
 </html>
 
+---------------------- 4. contact.jsp: ----------------------
 
 
-
-<%------------------------------ add_product.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Add Product</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Contact Us"); %>
 <body>
-<div class="container mt-5">
-    <h1>Add Product</h1>
-    <form action="/admin/add_product" method="post">
-        <input type="hidden" name="csrf_token" value="${csrf_token}">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="price" required>
-        </div>
-        <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" required>
-        </div>
-        <div class="mb-3">
-            <label for="publisher" class="form-label">Publisher</label>
-            <input type="text" class="form-control" id="publisher" name="publisher">
-        </div>
-        <div class="mb-3">
-            <label for="imagePath" class="form-label">Image Path</label>
-            <input type="text" class="form-control" id="imagePath" name="imagePath">
-        </div>
-        <button type="submit" class="btn btn-primary">Add Product</button>
-    </form>
-    <p style="color: red;">${error}</p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <%@ include file="navbar.jsp" %>
 
-
-
-
-<%------------------------------ order_list.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Order List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
     <div class="container mt-5">
-        <h1>Order List</h1>
+        <h2>Contact Us</h2>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger"><%= request.getAttribute("errorMessage") %></div>
+        <% } %>
+        <% if (request.getAttribute("successMessage") != null) { %>
+            <div class="alert alert-success"><%= request.getAttribute("successMessage") %></div>
+        <% } %>
+        <form action="<%= request.getContextPath() %>/contact" method="post" class="mt-3">
+            <input type="hidden" name="csrfToken" value="<%= request.getSession().getAttribute("csrfToken") %>">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+
+    <%@ include file="scripts.jsp" %>
+</body>
+</html>
+
+
+---------------------- 5. cart.jsp: ----------------------
+
+
+
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Shopping Cart"); %>
+<body>
+    <%@ include file="navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Shopping Cart</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <%-- Cart items will be loaded here dynamically using JSTL or script --%>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Total:</strong></td>
+                    <td id="cart-total">$0.00</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-end">
+                        <button class="btn btn-success" id="checkout-btn">Proceed to Checkout</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <p id="empty-cart-message" style="display:none;">Your cart is empty. <a href="<%= request.getContextPath() %>/home">Continue shopping</a></p>
+    </div>
+
+    <%@ include file="scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            function loadCartItems() {
+                $.get('<%= request.getContextPath() %>/cart?action=view', function(data) {
+                    $('#cart-items').html('');
+                    var total = 0;
+                    if (data && data.length > 0) {
+                        $('#empty-cart-message').hide();
+                        $.each(data, function(i, item) {
+                            var row = `
+                                <tr>
+                                    <td><img src="<%= request.getContextPath() %>/<span class="math-inline">\{item\.book\.imageUrl\}" alt\="</span>{item.book.title}" width="50"></td>
+                                    <td><span class="math-inline">\{item\.book\.title\}</td\>
+<td\></span>${item.book.price.toFixed(2)}</td>
+                                    <td>
+                                        <input type="number" class="form-control form-control -sm quantity-input" value="${item.quantity}" min="1" data-item-id="${item.id}">
+                                    </td>
+                                    <td class="item-total">$${(item.book.price * item.quantity).toFixed(2)}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm remove-from-cart" data-item-id="${item.id}">Remove</button>
+                                    </td>
+                                </tr>
+                            `;
+                            $('#cart-items').append(row);
+                            total += item.book.price * item.quantity;
+                        });
+                        $('#cart-total').text('$' + total.toFixed(2));
+                    } else {
+                        $('#empty-cart-message').show();
+                        $('#cart-total').text('$0.00');
+                    }
+                }, 'json');
+            }
+
+            loadCartItems();
+
+            $('#cart-items').on('change', '.quantity-input', function() {
+                var itemId = $(this).data('item-id');
+                var quantity = $(this).val();
+                var row = $(this).closest('tr');
+                var price = parseFloat(row.find('td:nth-child(3)').text().replace('$', ''));
+                var itemTotalElement = row.find('.item-total');
+
+                $.post('<%= request.getContextPath() %>/cart', { action: 'update', itemId: itemId, quantity: quantity, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'updated') {
+                        itemTotalElement.text('$' + (price * quantity).toFixed(2));
+                        loadCartItems(); // Reload to update total
+                    } else if (response === 'invalid-quantity') {
+                        alert('Invalid quantity.');
+                        $(this).val(row.data('original-quantity')); // Revert to previous
+                    }
+                });
+            }).on('focus', '.quantity-input', function() {
+                $(this).data('original-quantity', $(this).val());
+            });
+
+            $('#cart-items').on('click', '.remove-from-cart', function() {
+                var itemId = $(this).data('item-id');
+                var rowToRemove = $(this).closest('tr');
+                $.post('<%= request.getContextPath() %>/cart', { action: 'remove', itemId: itemId, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'removed') {
+                        rowToRemove.remove();
+                        loadCartItems(); // Reload to update total
+                    }
+                });
+            });
+
+            $('#checkout-btn').on('click', function() {
+                window.location.href = '<%= request.getContextPath() %>/order';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+----------------------6. wishlist.jsp: ----------------------
+
+
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Wishlist"); %>
+<body>
+    <%@ include file="navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Wishlist</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="wishlist-items">
+            <%-- Wishlist items will be loaded here dynamically using JSTL or script --%>
+        </div>
+        <p id="empty-wishlist-message" style="display:none;">Your wishlist is empty. <a href="<%= request.getContextPath() %>/home">Browse books</a></p>
+    </div>
+
+    <%@ include file="scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            function loadWishlistItems() {
+                $.get('<%= request.getContextPath() %>/wishlist?action=view', function(data) {
+                    $('#wishlist-items').html('');
+                    if (data && data.length > 0) {
+                        $('#empty-wishlist-message').hide();
+                        $.each(data, function(i, item) {
+                            var col = `
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <img src="<%= request.getContextPath() %>/${item.book.imageUrl}" class="card-img-top" alt="${item.book.title}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.book.title}</h5>
+                                            <p class="card-text">$${item.book.price.toFixed(2)}</p>
+                                            <button class="btn btn-primary btn-sm add-to-cart" data-book-id="${item.book.id}">Add to Cart</button>
+                                            <button class="btn btn-outline-danger btn-sm remove-from-wishlist" data-item-id="${item.id}">
+                                                <i class="bi bi-heart-fill"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $('#wishlist-items').append(col);
+                        });
+                    } else {
+                        $('#empty-wishlist-message').show();
+                    }
+                }, 'json');
+            }
+
+            loadWishlistItems();
+
+            $('#wishlist-items').on('click', '.remove-from-wishlist', function() {
+                var itemId = $(this).data('item-id');
+                var colToRemove = $(this).closest('.col');
+                $.post('<%= request.getContextPath() %>/wishlist', { action: 'remove', itemId: itemId, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'removed') {
+                        colToRemove.remove();
+                        loadWishlistItems();
+                    }
+                });
+            });
+
+            $('#wishlist-items').on('click', '.add-to-cart', function() {
+                var bookId = $(this).data('book-id');
+                $.post('<%= request.getContextPath() %>/cart', { action: 'add', bookId: bookId, quantity: 1, csrfToken: '<%= request.getSession().getAttribute("csrfToken") %>' }, function(response) {
+                    if (response === 'added') {
+                        alert('Book added to cart!');
+                    } else if (response === 'login') {
+                        window.location.href = '<%= request.getContextPath() %>/login';
+                    } else if (response === 'unavailable') {
+                        alert('This book is currently unavailable.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+7. order-success.jsp:
+
+Java
+
+<%@ include file="head.jsp" %>
+<% request.setAttribute("pageTitle", "Order Successful"); %>
+<body>
+    <%@ include file="navbar.jsp" %>
+
+    <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Order Placed Successfully!</h4>
+            <p>Thank you for your order. You will receive a confirmation email shortly.</p>
+            <hr>
+            <p class="mb-0"><a href="<%= request.getContextPath() %>/home">Continue Shopping</a></p>
+        </div>
+    </div>
+
+    <%@ include file="scripts.jsp" %>
+</body>
+</html>
+Admin Panel UI Files (within webapp/jsp/admin/):
+
+
+
+----------------------8. admin-dashboard.jsp: -------------------
+
+
+
+<%@ include file="../head.jsp" %>
+<% request.setAttribute("pageTitle", "Admin Dashboard"); %>
+<body>
+    <%@ include file="../navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Admin Dashboard</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Products</div>
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="<%= request.getContextPath() %>/admin/products" class="btn btn-link">Manage Products</a></h4>
+                        <p class="card-text">Add, edit, and view book products.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Orders</div>
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="<%= request.getContextPath() %>/admin/orders" class="btn btn-link">View Orders</a></h4>
+                        <p class="card-text">View and manage customer orders.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Messages</div>
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="<%= request.getContextPath() %>/admin/contacts" class="btn btn-link">View Contact Messages</a></h4>
+                        <p class="card-text">Read messages sent through the contact us page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%@ include file="../scripts.jsp" %>
+</body>
+</html>
+
+
+----------------------9. admin-add-product.jsp: -------------------
+
+
+
+<%@ include file="../head.jsp" %>
+<% request.setAttribute("pageTitle", "Add Product"); %>
+<body>
+    <%@ include file="../navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Add New Product</h2>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger"><%= request.getAttribute("errorMessage") %></div>
+        <% } %>
+        <% if (request.getAttribute("successMessage") != null) { %>
+            <div class="alert alert-success"><%= request.getAttribute("successMessage") %></div>
+        <% } %>
+        <form action="<%= request.getContextPath() %>/admin/products" method="post" enctype="multipart/form-data" class="mt-3">
+            <input type="hidden" name="csrfToken" value="<%= request.getSession().getAttribute("csrfToken") %>">
+            <input type="hidden" name="action" value="addProduct">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price per Quantity</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+            </div>
+            <div class="mb-3">
+                <label for="totalQuantity" class="form-label">Total Quantity</label>
+                <input type="number" class="form-control" id="totalQuantity" name="totalQuantity" required>
+            </div>
+            <div class="mb-3">
+                <label for="publisher" class="form-label">Publisher Name</label>
+                <input type="text" class="form-control" id="publisher" name="publisher">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Product Image</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+        <a href="<%= request.getContextPath() %>/admin/products" class="btn btn-secondary mt-3">Back to Product List</a>
+    </div>
+
+    <%@ include file="../scripts.jsp" %>
+</body>
+</html>
+
+
+1----------------------0. admin-list-orders.jsp: -------------------
+
+
+
+<%@ include file="../head.jsp" %>
+<% request.setAttribute("pageTitle", "View Orders"); %>
+<body>
+    <%@ include file="../navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Order List</h2>
+        <form action="<%= request.getContextPath() %>/admin/orders" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Order ID" name="orderId">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -1532,64 +2306,234 @@ public class WishlistDao {
                     <th>User ID</th>
                     <th>Order Date</th>
                     <th>Total Amount</th>
-                    <th>Details</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <c:forEach items="${orders}" var="order">
+            <tbody id="order-list">
+                <%-- Order data will be loaded here dynamically using JSTL or script --%>
+                <%-- Example using JSTL (requires JSTL dependency in your project) --%>
+                <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+                <c:forEach var="order" items="${requestScope.orders}">
                     <tr>
-                        <td>${order.id}</td>
-                        <td>${order.userId}</td>
-                        <td>${order.orderDate}</td>
-                        <td>${order.totalAmount}</td>
-                        <td>
-                            <a href="/admin/order_details?orderId=${order.id}" class="btn btn-primary btn-sm">View Details</a>
-                        </td>
+                        <td><c:out value="${order.id}"/></td>
+                        <td><c:out value="${order.userId}"/></td>
+                        <td><c:out value="${order.orderDate}"/></td>
+                        <td>$<c:out value="${order.totalAmount}"/></td>
+                        <td><a href="<%= request.getContextPath() %>/admin/orders?action=details&orderId=${order.id}" class="btn btn-sm btn-info">Details</a></td>
                     </tr>
                 </c:forEach>
+                <c:if test="${empty requestScope.orders}">
+                    <tr><td colspan="5">No orders found.</td></tr>
+                </c:if> --%>
             </tbody>
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%@ include file="../scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            function loadOrders(searchOrderId) {
+                var url = '<%= request.getContextPath() %>/admin/orders?action=list';
+                if (searchOrderId) {
+                    url += '&orderId=' + searchOrderId;
+                }
+                $.get(url, function(data) {
+                    $('#order-list').html('');
+                    if (data && data.length > 0) {
+                        $.each(data, function(i, order) {
+                            var row = `
+                                <tr>
+                                    <td>${order.id}</td>
+                                    <td>${order.userId}</td>
+                                    <td>${new Date(order.orderDate).toLocaleDateString()} ${new Date(order.orderDate).toLocaleTimeString()}</td>
+                                    <td>$${order.totalAmount.toFixed(2)}</td>
+                                    <td><a href="<%= request.getContextPath() %>/admin/orders?action=details&orderId=${order.id}" class="btn btn-sm btn-info">Details</a></td>
+                                </tr>
+                            `;
+                            $('#order-list').append(row);
+                        });
+                    } else {
+                        $('#order-list').append('<tr><td colspan="5">No orders found.</td></tr>');
+                    }
+                }, 'json');
+            }
+
+            // Load orders on page load (you might want to handle initial search)
+            loadOrders($('#orderId').val());
+
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+                loadOrders($('input[name="orderId"]').val());
+            });
+        });
+    </script>
 </body>
-ml>
+</html>
+
+
+1----------------------1. admin-order-details.jsp: -------------------
 
 
 
-<%------------------------------ order_details.jsp -----------------------------------------------%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Order Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<%@ include file="../head.jsp" %>
+<% request.setAttribute("pageTitle", "Order Details"); %>
 <body>
+    <%@ include file="../navbar.jsp" %>
+
     <div class="container mt-5">
-        <h1>Order Details</h1>
+        <h2>Order Details</h2>
+        <% if (request.getAttribute("order") != null) { %>
+            <% com.yourbookstore.model.Order order = (com.yourbookstore.model.Order) request.getAttribute("order"); %>
+            <h3>Order ID: <%= order.getId() %></h3>
+            <p>Order Date: <%= order.getOrderDate() %></p>
+            <p>User ID: <%= order.getUserId() %></p>
+            <h4>Order Items:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="order-details">
+                    <%-- Order details will be loaded here dynamically using JSTL or script --%>
+                    <%-- Example using JSTL --%>
+                    <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+                    <c:forEach var="detail" items="<span class="math-inline">\{requestScope\.orderDetails\}"\>
+<tr\>
+<td\><c\:out value\="</span>{detail.book.title}"/></td>
+                            <td><c:out value="<span class="math-inline">\{detail\.quantity\}"/\></td\>
+<td\></span><c:out value="<span class="math-inline">\{detail\.unitPrice\}"/\></td\>
+<td\></span><c:out value="<span class="math-inline">\{detail\.quantity \* detail\.unitPrice\}"/\></td\>
+</tr\>
+</c\:forEach\>
+<c\:if test\="</span>{empty requestScope.orderDetails}">
+                        <tr><td colspan="4">No items in this order.</td></tr>
+                    </c:if> --%>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Order Total:</strong></td>
+                        <td>$<%= order.getTotalAmount() %></td>
+                    </tr>
+                </tfoot>
+            </table>  <% } else { %>
+            <div class="alert alert-warning">Order not found.</div>
+        <% } %>
+        <a href="<%= request.getContextPath() %>/admin/orders" class="btn btn-secondary mt-3">Back to Order List</a>
+    </div>
+
+    <%@ include file="../scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            function loadOrderDetails(orderId) {
+                $.get('<%= request.getContextPath() %>/admin/orders?action=getDetails&orderId=' + orderId, function(data) {
+                    $('#order-details').html('');
+                    if (data && data.length > 0) {
+                        $.each(data, function(i, detail) {
+                            var row = `
+                                <tr>
+                                    <td>${detail.book.title}</td>
+                                    <td>${detail.quantity}</td>
+                                    <td>$${detail.unitPrice.toFixed(2)}</td>
+                                    <td>$${(detail.quantity * detail.unitPrice).toFixed(2)}</td>
+                                </tr>
+                            `;
+                            $('#order-details').append(row);
+                        });
+                    } else {
+                        $('#order-details').append('<tr><td colspan="4">No items in this order.</td></tr>');
+                    }
+                }, 'json');
+            }
+
+            // Get orderId from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            if (orderId) {
+                loadOrderDetails(orderId);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+1----------------------2. admin-list-contacts.jsp: -----------------
+
+<%@ include file="../head.jsp" %>
+<% request.setAttribute("pageTitle", "Contact Messages"); %>
+<body>
+    <%@ include file="../navbar.jsp" %>
+
+    <div class="container mt-5">
+        <h2>Contact Messages</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Book ID</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Sent On</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${orderItems}" var="item">
+                <%-- Contact messages will be loaded here dynamically using JSTL or script --%>
+                <%-- Example using JSTL --%>
+                <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+                <c:forEach var="message" items="${requestScope.contactMessages}">
                     <tr>
-                        <td>${item.bookId}</td>
-                        <td>${item.quantity}</td>
-                        <td>${item.price}</td>
+                        <td><c:out value="${message.name}"/></td>
+                        <td><c:out value="${message.email}"/></td>
+                        <td><c:out value="${message.message}"/></td>
+                        <td><c:out value="${message.createdAt}"/></td>
                     </tr>
                 </c:forEach>
+                <c:if test="${empty requestScope.contactMessages}">
+                    <tr><td colspan="4">No contact messages found.</td></tr>
+                </c:if> --%>
             </tbody>
         </table>
-        <a href="/admin/orders" class="btn btn-secondary">Back to Orders</a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%@ include file="../scripts.jsp" %>
+    <script>
+        $(document).ready(function() {
+            function loadContactMessages() {
+                $.get('<%= request.getContextPath() %>/admin/contacts?action=list', function(data) {
+                    $('tbody').html('');
+                    if (data && data.length > 0) {
+                        $.each(data, function(i, message) {
+                            var row = `
+                                <tr>
+                                    <td>${message.name}</td>
+                                    <td>${message.email}</td>
+                                    <td>${message.message}</td>
+                                    <td>${new Date(message.createdAt).toLocaleString()}</td>
+                                </tr>
+                            `;
+                            $('tbody').append(row);
+                        });
+                    } else {
+                        $('tbody').append('<tr><td colspan="4">No contact messages found.</td></tr>');
+                    }
+                }, 'json');
+            }
+
+            loadContactMessages();
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+-
