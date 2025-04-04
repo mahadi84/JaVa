@@ -112,8 +112,8 @@ Create: All necessary Frontend UI as Bootstrap 5, Jquery and Add CSRF protection
 ========================== SQL ====================================
 
 -- Database: your_bookstore (You can change this)
-CREATE DATABASE IF NOT EXISTS your_bookstore;
-USE your_bookstore;
+CREATE DATABASE IF NOT EXISTS ecomm_bookstore;
+USE ecomm_bookstore;
 
 -- Table: users
 CREATE TABLE IF NOT EXISTS users (
@@ -201,6 +201,9 @@ CREATE TABLE IF NOT EXISTS csrf_tokens (
     expiry TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+
+========================================= DatabaseConnection ==========================
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -2529,7 +2532,6 @@ Admin Panel UI Files (within webapp/admin/):
     </script>
 </body>
 </html>
-
 
 
 
