@@ -1,23 +1,26 @@
 Date: 28-March-2025
 
 
-I want to design a four-menu website with home, a shopping cart for selling six different books at different prices, a Wishlist, and a contact us page as Java web application that support eclipse version 2024.
--Homepage contains a paragraph of text
--The shopping cart page contains 
-Functional Shopping Cart: book as product (image, title, price, quantity). The cart page should clearly display selected items, quantities, prices, and provide options for updating or removing items.
--For reliable order processing, especially if users leave and return, server-side sessions or a database linked to user accounts are recommended.
--Cart will be cleared once the order is successfully placed. 
--The user will register with name, email, and phone, and a login is required to complete the order
+I want to design an advanced Java e-commerce website,  aiming for a robust and well-structured application suitable for Eclipse 2024,
+With the following logic:
 
--visually represent the "add to wishlist" functionality (using a font icon like Font Awesome or Bootstrap Icons, or a custom image) and how the jQuery will target and update its state when a user clicks it.
--also, A server-side wishlist across devices and user accounts functionalities, 
--Any one or all products from the wishlist can be removable, 
+"
+-Homepage contains a paragraph of text
+-Admin panel to add and upload products with images, price per quantity, total quantity, and publisher name. It will check all the orders as a list with a search option with order ID and show order details on click
+-Admins can only see the message sent through the Contact Us page.
+
+-The shopping cart page contains 
+Functional Shopping Cart: 6 books as products (image, title, price, quantity). The cart page should display selected items, quantities, prices, and provide options for updating or removing items using jQuery.
+-Server-side sessions or a database linked to user accounts are recommended for reliable order processing, especially if users leave and return.
 -involves jQuery to dynamically adjust the cart display and potentially local storage or server-side logic to persist the cart data.
+-Cart will be cleared once the order is successfully placed. 
+-Quantity will be minus once the product is sold. If the quantity is empty product can not be selected.
+-The user will register with name, email, and phone, and a login is required to complete the order
 -After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
 
--Admin dashboard to add and upload products like images, price per quantity, total quantity, and publisher name. and will check all the order lists and show details on click
--quantity will be minus once the product is sold, if quantity is empty product can not be selected.
-
+-visually represent the "add to wishlist" functionality (using a font icon like Font Awesome or Bootstrap Icons, or a custom image) and how the jQuery will target and update its state when a user clicks it.
+-also, A server-side wishlist across devices and user accounts functionalities with features like products from the wishlist can be removed, 
+"
 
 
 
@@ -33,121 +36,179 @@ Create: All necessary Frontend UI with Bootstrap 5, Jquery and Add CSRF protecti
 --------------------------------------------------------------------------
 
 ===============================================================
-```
-YourWebApp/
-├── src/main/java/             (Java source code)
-│   └── com/yourcompany/
-│       ├── dao/                (Data Access Objects for database interaction)
-│       │   ├── BookDao.java    (Handles Book table operations)
-│       │   ├── OrderDao.java   (Handles Order and OrderItem table operations)
-│       │   ├── UserDao.java    (Handles User table operations)
-│       │   └── WishlistDao.java (Handles Wishlist table operations)
-│       ├── models/             (Java classes representing data entities)
-│       │   ├── Book.java       (Book data model)
-│       │   ├── Order.java      (Order data model)
-│       │   ├── OrderItem.java  (OrderItem data model)
-│       │   ├── User.java       (User data model)
-│       │   └── Wishlist.java   (Wishlist data model)
-│       ├── servlets/           (Java servlets for handling HTTP requests)
-│       │   ├── AdminServlet.java (Handles admin-related requests)
-│       │   ├── AuthServlet.java  (Handles user registration and login)
-│       │   ├── CartServlet.java  (Handles shopping cart operations)
-│       │   ├── ContactServlet.java (Handles contact form submissions)
-│       │   ├── HomeServlet.java  (Handles the home page)
-│       │   ├── OrderServlet.java (Handles order placement)
-│       │   └── WishlistServlet.java (Handles wishlist operations)
-│       └── util/               (Utility classes)
-│           ├── CSRFTokenManager.java (Manages CSRF token generation and validation)
-│           └── DatabaseConnection.java (Manages database connections)
-├── src/main/resources/        (Configuration files)
-│   └── application.properties   (Database configuration, application settings)
-├── src/main/webapp/           (Web application resources)
-│   ├── WEB-INF/              (Web application configuration)
-│   │   ├── lib/              (JAR libraries, like JSTL, database drivers)
-│   │   ├── web.xml           (Web application deployment descriptor)
-│   │   └── views/            (JSP files for web pages)
-│   │       ├── admin/        (Admin specific JSP files)
-│   │       │   ├── add_product.jsp     (Form to add new products)
-│   │       │   ├── order_details.jsp   (Displays details of a specific order)
-│   │       │   └── order_list.jsp      (Displays a list of all orders)
-│   │       ├── cart.jsp        (Shopping cart page)
-│   │       ├── contact.jsp     (Contact form page)
-│   │       ├── home.jsp        (Home page)
-│   │       ├── login.jsp       (Login form page)
-│   │       ├── register.jsp    (Registration form page)
-│   │       └── wishlist.jsp    (Wishlist page)
-│   ├── css/                  (CSS files)
-│   │   └── style.css         (Optional CSS file for styling)
-│   ├── images/               (Image files)
-│   │   ├── book1.jpg        (Example book image)
-│   │   ├── book2.jpg        (Example book image)
-│   │   └── ...
-│   └── js/                   (JavaScript/jQuery files)
-│       └── script.js        (Optional JavaScript/jQuery file for interactivity)
-
-
+your-bookstore/
+├── pom.xml
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/yourbookstore/
+    │   │       ├── admin/
+    │   │       │   ├── controller/
+    │   │       │   │   ├── AdminContactController.java // New
+    │   │       │   │   ├── AdminOrderController.java
+    │   │       │   │   └── AdminProductController.java
+    │   │       │   └── service/
+    │   │       │       ├── AdminContactService.java // New
+    │   │       │       ├── AdminOrderService.java
+    │   │       │       └── AdminProductService.java
+    │   │       ├── config/
+    │   │       │   ├── WebMvcConfig.java
+    │   │       │   └── SecurityConfig.java
+    │   │       ├── controller/
+    │   │       │   ├── CartController.java
+    │   │       │   ├── ContactController.java // Updated
+    │   │       │   ├── HomeController.java
+    │   │       │   ├── OrderController.java
+    │   │       │   ├── UserController.java
+    │   │       │   └── WishlistController.java
+    │   │       ├── model/
+    │   │       │   ├── Book.java
+    │   │       │   ├── CartItem.java
+    │   │       │   ├── ContactMessage.java // New
+    │   │       │   ├── Order.java
+    │   │       │   ├── OrderDetail.java
+    │   │       │   ├── User.java
+    │   │       │   └── WishlistItem.java
+    │   │       ├── repository/
+    │   │       │   ├── BookRepository.java
+    │   │       │   ├── CartRepository.java
+    │   │       │   ├── ContactMessageRepository.java // New
+    │   │       │   ├── OrderDetailRepository.java
+    │   │       │   ├── OrderRepository.java
+    │   │       │   ├── UserRepository.java
+    │   │       │   └── WishlistRepository.java
+    │   │       ├── service/
+    │   │       │   ├── BookService.java
+    │   │       │   ├── CartService.java
+    │   │       │   ├── ContactService.java // Updated
+    │   │       │   ├── OrderService.java
+    │   │       │   ├── UserService.java
+    │   │       │   └── WishlistService.java
+    │   │       └── validator/
+    │   │           └── UserRegistrationValidator.java
+    │   └── resources/
+    │       ├── application.properties
+    │       └── templates/
+    │           ├── home.html
+    │           ├── cart.html
+    │           ├── wishlist.html
+    │           ├── contact.html
+    │           ├── register.html
+    │           ├── login.html
+    │           ├── order-success.html
+    │           ├── admin/
+    │           │   ├── dashboard.html
+    │           │   ├── add-product.html
+    │           │   ├── list-orders.html
+    │           │   ├── order-details.html
+    │           │   └── list-contacts.html // New
+    └── webapp/ // If using JSPs
+        ├── WEB-INF/
+        │   ├── web.xml
+        │   └── views/
+        │       ├── home.jsp
+        │       └── ...
+        ├── css/
+        │   ├── style.css
+        │   └── admin.css
+        ├── js/
+        │   ├── script.js
+        │   └── admin.js
+        └── images/
+            └── (book images)
 
 ========================== SQL ====================================
 
--- Database Creation (MySQL Example)
-CREATE DATABASE bookstore_app;
-USE bookstore_app;
+-- Database: your_bookstore (You can change this)
+CREATE DATABASE IF NOT EXISTS your_bookstore;
+USE your_bookstore;
 
--- Users Table
-CREATE TABLE Users (
+-- Table: users
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(20),
-    password VARCHAR(255) NOT NULL -- Store hashed passwords
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Books Table
-CREATE TABLE Books (
+-- Table: books
+CREATE TABLE IF NOT EXISTS books (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    quantity INT NOT NULL,
+    image_url VARCHAR(255),
+    total_quantity INT UNSIGNED NOT NULL DEFAULT 0,
     publisher VARCHAR(255),
-    image_path VARCHAR(255)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Orders Table
-CREATE TABLE Orders (
+-- Table: cart_items
+CREATE TABLE IF NOT EXISTS cart_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity INT UNSIGNED NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_book (user_id, book_id)
+);
+
+-- Table: wishlist_items
+CREATE TABLE IF NOT EXISTS wishlist_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_book (user_id, book_id)
+);
+
+-- Table: orders
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    total_amount DECIMAL(10, 2),
-    FOREIGN KEY (user_id) REFERENCES Users(id)
+    total_amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- OrderItems Table
-CREATE TABLE OrderItems (
+-- Table: order_details
+CREATE TABLE IF NOT EXISTS order_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    book_id INT,
-    quantity INT,
-    price DECIMAL(10, 2),
-    FOREIGN KEY (order_id) REFERENCES Orders(id),
-    FOREIGN KEY (book_id) REFERENCES Books(id)
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity INT UNSIGNED NOT NULL,
+    unit_price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE RESTRICT
 );
 
--- Wishlist Table
-CREATE TABLE Wishlist (
+-- Table: contact_messages
+CREATE TABLE IF NOT EXISTS contact_messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    book_id INT,
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (book_id) REFERENCES Books(id)
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- CSRF Token Storage (Example)
-CREATE TABLE CSRF_Tokens (
+-- Table: csrf_tokens (For basic CSRF protection if not using a framework)
+CREATE TABLE IF NOT EXISTS csrf_tokens (
     token VARCHAR(255) PRIMARY KEY,
     user_id INT,
-    expiry_time TIMESTAMP
+    expiry TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
 
 ========================== DATABASE CONNECTION ====================================
 import java.sql.Connection;
