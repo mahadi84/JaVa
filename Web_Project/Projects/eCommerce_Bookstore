@@ -5,18 +5,20 @@ I want to design an advanced Java e-commerce website,  aiming for a robust and 
 With the following logic:
 
 "
--Homepage contains a paragraph of text
--Admin panel to add and upload products with images, price per quantity, total quantity, and publisher name. It will check all the orders as a list with a search option with order ID and show order details on click
--Admins can only see the message sent through the Contact Us page.
+-The index page, as the home page, contains a paragraph of text
+-Admin panel to add products with  uploading images, price per quantity, total quantity, and publisher name. It will check all the orders as a list with a search option with order ID and show order details on click
+-Admin can edit the product that has already been uploaded
+-Admins can only see the messages as a list, sent through the Contact Us page.
 
 -The shopping cart page contains 
 Functional Shopping Cart: 6 books as products (image, title, price, quantity). The cart page should display selected items, quantities, prices, and provide options for updating or removing items using jQuery.
 -Server-side sessions or a database linked to user accounts are recommended for reliable order processing, especially if users leave and return.
 -involves jQuery to dynamically adjust the cart display and potentially local storage or server-side logic to persist the cart data.
+-The cart will show "No product added yet" if the cart is empty, but if any user clicks on the Cart menu
 -Cart will be cleared once the order is successfully placed. 
 -Quantity will be minus once the product is sold. If the quantity is empty product can not be selected.
 -The user will register with name, email, and phone, and a login is required to complete the order
--After successful purchase/order payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
+-After a successful purchase/order, the payment amount will be stored in the table. Payment gateway is not recommended now, I will implement it later
 
 -visually represent the "add to wishlist" functionality (using a font icon like Font Awesome or Bootstrap Icons, or a custom image) and how the jQuery will target and update its state when a user clicks it.
 -also, A server-side wishlist across devices and user accounts functionalities with features like products from the wishlist can be removed, 
