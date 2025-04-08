@@ -1,0 +1,3595 @@
+
+
+
+=======================DATABASE and TABLE =================================
+
+
+-- Create the database (if it doesn't exist)
+CREATE DATABASE IF NOT EXISTS `ecommerce_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Use the created database
+USE `ecommerce_db`;
+
+-- Table for Users (Customers and Admins)
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(150) NOT NULL UNIQUE,
+  `phone` VARCHAR(20) NOT NULL,
+  `password_hash` VARCHAR(255) NOT NULL, -- Store hashed passwords only!
+  `role` ENUM('CUSTOMER', 'ADMIN') NOT NULL DEFAULT 'CUSTOMER',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table for Products (Books)
+CREATE TABLE IF NOT EXISTS `products` (
+  `product_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `description` TEXT, -- Optional, but good practice
+  `price` DECIMAL(10, 2) NOT NULL, -- Price per unit
+  `quantity` INT NOT NULL,         -- Total available quantity
+  `image_path` VARCHAR(255),      -- Path to the uploaded image file
+  `publisher_name` VARCHAR(100),
+  `is_active` BOOLEAN DEFAULT TRUE, -- To easily enable/disable products
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table for Orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,
+  `total_amount` DECIMAL(12, 2) NOT NULL, -- Total amount paid for the order
+  `order_status` ENUM('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED') NOT NULL DEFAULT 'PENDING',
+  `order_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `shipping_address` TEXT, -- Can be expanded into separate address fields/table if needed
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE -- If user deleted, delete their orders
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table for Order Items (linking products to orders)
+-- Stores details of each product within an order
+CREATE TABLE IF NOT EXISTS `order_items` (
+  `order_item_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `order_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `quantity` INT NOT NULL,
+  `price_at_purchase` DECIMAL(10, 2) NOT NULL, -- Store price at the time of order
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`) ON DELETE CASCADE,
+   -- Prevent deleting product if it's part of an order history? Or set to NULL? Using RESTRICT for safety.
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`product_id`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table for Wishlist Items
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `wishlist_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `added_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`product_id`) ON DELETE CASCADE,
+  UNIQUE KEY `user_product_unique` (`user_id`, `product_id`) -- Prevent adding same product multiple times per user
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Table for Contact Us Messages
+CREATE TABLE IF NOT EXISTS `contact_messages` (
+  `message_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `sender_name` VARCHAR(100) NOT NULL,
+  `sender_email` VARCHAR(150) NOT NULL,
+  `subject` VARCHAR(255),
+  `message` TEXT NOT NULL,
+  `received_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `is_read` BOOLEAN DEFAULT FALSE -- For admin tracking
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- (Optional) Seed an Admin User - !! CHANGE PASSWORD IN REAL APP !!
+-- Use a strong hashing algorithm (like BCrypt) in your Java code to generate the hash
+-- Example using a placeholder hash - Replace this!
+
+-Plain Text Password: password123
+-INSERT INTO `users` (`name`, `email`, `phone`, `password_hash`, `role`) VALUES
+-('Test User', 'test@example.com', '1234567890', '$2a$10$oVbJrn9Yn/818i/W6o7tU.W/4yqfX9uKx.L/zQz5m89.1qYx2nQGa', 'ADMIN')
+-ON DUPLICATE KEY UPDATE name=name;
+
+-- (Optional) Seed some Product Data
+-- INSERT INTO `products` (`title`, `description`, `price`, `quantity`, `image_path`, `publisher_name`) VALUES
+-- ('The Hitchhiker\'s Guide to the Galaxy', 'A hilarious sci-fi adventure.', 12.99, 50, 'images/hitchhiker.jpg', 'Pan Books'),
+-- ('Pride and Prejudice', 'A classic romance novel.', 9.50, 30, 'images/pride.jpg', 'T. Egerton'),
+-- ('1984', 'A dystopian masterpiece.', 11.25, 40, 'images/1984.jpg', 'Secker & Warburg'),
+-- ('To Kill a Mockingbird', 'A powerful story about justice and prejudice.', 10.00, 60, 'images/mockingbird.jpg', 'J. B. Lippincott & Co.'),
+-- ('The Great Gatsby', 'An iconic novel of the Jazz Age.', 8.75, 25, 'images/gatsby.jpg', 'Charles Scribner\'s Sons'),
+-- ('Moby Dick', 'The epic tale of Captain Ahab\'s obsession.', 13.50, 15, 'images/mobydick.jpg', 'Harper & Brothers')
+-- ON DUPLICATE KEY UPDATE title=title; -- Avoid error if products already exist
+
+
+================================ util.DatabaseConnector Class ========================================
+package util; // Adjust package name as needed
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseConnector {
+
+    // --- IMPORTANT: Replace with your actual DB details ---
+    // Consider using a properties file or environment variables for security
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/ecommerce_db?useSSL=false&serverTimezone=UTC";
+    private static final String DB_USER = "your_db_username";
+    private static final String DB_PASSWORD = "your_db_password";
+    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver"; // For MySQL 8+
+
+    private static Connection connection = null;
+
+    // Static block to load the driver once
+    static {
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.err.println("ERROR: Failed to load JDBC Driver. Ensure the driver JAR is in the classpath.");
+            e.printStackTrace(); // Or use a proper logger
+            throw new RuntimeException("Failed to load JDBC driver", e);
+        }
+    }
+
+    /**
+     * Gets a connection to the database.
+     * Note: In a real application, use a connection pool (e.g., HikariCP, c3p0)
+     * for better performance and resource management. This basic example
+     * provides a single connection instance (not ideal for concurrent use).
+     *
+     * @return A Connection object or null if connection fails.
+     */
+    public static Connection getConnection() {
+         // Basic singleton approach (Consider pooling for production)
+        try {
+             // Check if connection is closed or null
+            if (connection == null || connection.isClosed()) {
+                 // Synchronize to prevent multiple threads creating connection simultaneously
+                 synchronized (DatabaseConnector.class) {
+                    if (connection == null || connection.isClosed()) {
+                        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                        System.out.println("Database connection established."); // Use Logger in real app
+                    }
+                 }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERROR: Failed to connect to the database.");
+            e.printStackTrace(); // Or use a proper logger
+             // Optionally return null or throw a custom exception
+             return null;
+        }
+        return connection;
+    }
+
+    /**
+     * Closes the current database connection if it's open.
+     * Call this during application shutdown.
+     */
+    public static void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                 synchronized (DatabaseConnector.class) { // Match synchronization
+                    if (connection != null && !connection.isClosed()) {
+                        connection.close();
+                        connection = null; // Reset the static variable
+                        System.out.println("Database connection closed."); // Use Logger in real app
+                    }
+                 }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERROR: Failed to close the database connection.");
+            e.printStackTrace(); // Or use a proper logger
+        }
+    }
+
+    // Optional: Main method for quick connection testing
+    public static void main(String[] args) {
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn != null) {
+            System.out.println("Successfully connected to the database!");
+            DatabaseConnector.closeConnection();
+        } else {
+            System.out.println("Failed to connect to the database.");
+        }
+    }
+}
+
+
+
+========================================= util.CsrfTokenUtil ===================================
+package util; // Adjust package name
+
+import java.security.SecureRandom;
+import java.util.Base64;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+public class CsrfTokenUtil {
+
+    private static final String CSRF_TOKEN_SESSION_ATTR = "csrfToken";
+    private static final String CSRF_TOKEN_PARAM_ATTR = "csrfToken";
+    private static final SecureRandom random = new SecureRandom();
+
+    // Generates a secure random token
+    public static String generateToken() {
+        byte[] bytes = new byte[32];
+        random.nextBytes(bytes);
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+    }
+
+    // Stores a new token in the session and returns it
+    public static String storeToken(HttpServletRequest request) {
+        HttpSession session = request.getSession(); // Creates session if needed
+        String token = generateToken();
+        session.setAttribute(CSRF_TOKEN_SESSION_ATTR, token);
+        return token;
+    }
+
+    // Validates the token from the request against the one in the session
+    public static boolean isValid(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Don't create session if not exists
+        String sessionToken = (session != null) ? (String) session.getAttribute(CSRF_TOKEN_SESSION_ATTR) : null;
+        String requestToken = request.getParameter(CSRF_TOKEN_PARAM_ATTR);
+
+        if (sessionToken == null || requestToken == null || requestToken.isEmpty()) {
+            System.err.println("CSRF Validation Failed: Token missing from session or request.");
+            return false;
+        }
+
+        boolean valid = sessionToken.equals(requestToken);
+        if (!valid) {
+             System.err.println("CSRF Validation Failed: Token mismatch.");
+             System.err.println(" > Session Token: " + sessionToken); // Log carefully in real app
+             System.err.println(" > Request Token: " + requestToken);
+        } else {
+             // Optional: Invalidate token after first use for stricter security (Single Use Token)
+             // session.removeAttribute(CSRF_TOKEN_SESSION_ATTR);
+        }
+        return valid;
+    }
+
+    // Makes the current session token available as a request attribute for JSPs
+     public static void setTokenAttribute(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String token = (String) session.getAttribute(CSRF_TOKEN_SESSION_ATTR);
+            if (token != null) {
+                 request.setAttribute(CSRF_TOKEN_PARAM_ATTR, token); // Make accessible to JSP via ${csrfToken}
+            } else {
+                // If no token exists, generate and store one now for the upcoming form
+                token = storeToken(request);
+                request.setAttribute(CSRF_TOKEN_PARAM_ATTR, token);
+            }
+        } else {
+            // Handle case where session doesn't exist if needed,
+            // maybe generate token anyway if it's for a public form needing protection
+            token = storeToken(request);
+            request.setAttribute(CSRF_TOKEN_PARAM_ATTR, token);
+        }
+    }
+}
+
+
+
+
+
+
+============================= MODELS=======================================
+
+
+---------------------------- model.User -----------------------------
+
+
+package model; // Adjust package name
+
+import java.sql.Timestamp;
+
+public class User {
+    private int userId;
+    private String name;
+    private String email;
+    private String phone;
+    private String passwordHash; // Only store the hash
+    private String role; // e.g., "CUSTOMER", "ADMIN"
+    private Timestamp createdAt;
+
+    // Constructor(s)
+    public User(int userId, String name, String email, String phone, String passwordHash, String role, Timestamp createdAt) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.passwordHash = passwordHash;
+        this.role = role;
+        this.createdAt = createdAt;
+    }
+
+    // Often useful to have a constructor without ID (for creating new users)
+    public User(String name, String email, String phone, String passwordHash, String role) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.passwordHash = passwordHash;
+        this.role = role;
+        // userId and createdAt will be set by the database or DAO layer
+    }
+
+     // Default constructor (sometimes needed by frameworks)
+    public User() {}
+
+
+    // Getters
+    public int getUserId() { return userId; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public String getPhone() { return phone; }
+    public String getPasswordHash() { return passwordHash; }
+    public String getRole() { return role; }
+    public Timestamp getCreatedAt() { return createdAt; }
+
+    // Setters
+    public void setUserId(int userId) { this.userId = userId; }
+    public void setName(String name) { this.name = name; }
+    public void setEmail(String email) { this.email = email; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+    public void setRole(String role) { this.role = role; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+
+    @Override
+    public String toString() {
+        return "User{" +
+               "userId=" + userId +
+               ", name='" + name + '\'' +
+               ", email='" + email + '\'' +
+               ", phone='" + phone + '\'' +
+               // Avoid logging password hash!
+               ", role='" + role + '\'' +
+               ", createdAt=" + createdAt +
+               '}';
+    }
+}
+
+
+---------------------------- model.Product -----------------------------
+
+
+package model; // Adjust package name
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
+public class Product {
+    private int productId;
+    private String title;
+    private String description;
+    private BigDecimal price;
+    private int quantity;
+    private String imagePath;
+    private String publisherName;
+    private boolean active;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    // Constructor(s)
+    public Product(int productId, String title, String description, BigDecimal price, int quantity, String imagePath, String publisherName, boolean active, Timestamp createdAt, Timestamp updatedAt) {
+        this.productId = productId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.imagePath = imagePath;
+        this.publisherName = publisherName;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+     // Constructor without IDs/timestamps (for creating new products)
+    public Product(String title, String description, BigDecimal price, int quantity, String imagePath, String publisherName, boolean active) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.imagePath = imagePath;
+        this.publisherName = publisherName;
+        this.active = active;
+     }
+
+    // Default constructor
+    public Product() {}
+
+    // Getters
+    public int getProductId() { return productId; }
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public BigDecimal getPrice() { return price; }
+    public int getQuantity() { return quantity; }
+    public String getImagePath() { return imagePath; }
+    public String getPublisherName() { return publisherName; }
+    public boolean isActive() { return active; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+
+    // Setters
+    public void setProductId(int productId) { this.productId = productId; }
+    public void setTitle(String title) { this.title = title; }
+    public void setDescription(String description) { this.description = description; }
+    public void setPrice(BigDecimal price) { this.price = price; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public void setPublisherName(String publisherName) { this.publisherName = publisherName; }
+    public void setActive(boolean active) { this.active = active; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
+
+     @Override
+    public String toString() {
+        return "Product{" +
+               "productId=" + productId +
+               ", title='" + title + '\'' +
+               ", price=" + price +
+               ", quantity=" + quantity +
+               ", publisherName='" + publisherName + '\'' +
+               ", active=" + active +
+               '}';
+    }
+}
+
+
+---------------------------- model.Order -----------------------------
+
+
+package model; // Adjust package name
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.List; // To potentially hold OrderItems
+
+public class Order {
+    private int orderId;
+    private int userId;
+    private BigDecimal totalAmount;
+    private String orderStatus; // e.g., "PENDING", "COMPLETED"
+    private Timestamp orderDate;
+    private String shippingAddress;
+    // Optional: You might want to load associated OrderItems here
+    // private List<OrderItem> items;
+
+    // Constructor(s)
+    public Order(int orderId, int userId, BigDecimal totalAmount, String orderStatus, Timestamp orderDate, String shippingAddress) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.totalAmount = totalAmount;
+        this.orderStatus = orderStatus;
+        this.orderDate = orderDate;
+        this.shippingAddress = shippingAddress;
+    }
+
+    // Constructor for creating new orders (ID/Date set by DB)
+     public Order(int userId, BigDecimal totalAmount, String orderStatus, String shippingAddress) {
+        this.userId = userId;
+        this.totalAmount = totalAmount;
+        this.orderStatus = orderStatus;
+        this.shippingAddress = shippingAddress;
+    }
+
+    // Default constructor
+    public Order() {}
+
+    // Getters
+    public int getOrderId() { return orderId; }
+    public int getUserId() { return userId; }
+    public BigDecimal getTotalAmount() { return totalAmount; }
+    public String getOrderStatus() { return orderStatus; }
+    public Timestamp getOrderDate() { return orderDate; }
+    public String getShippingAddress() { return shippingAddress; }
+    // public List<OrderItem> getItems() { return items; }
+
+    // Setters
+    public void setOrderId(int orderId) { this.orderId = orderId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
+    public void setOrderStatus(String orderStatus) { this.orderStatus = orderStatus; }
+    public void setOrderDate(Timestamp orderDate) { this.orderDate = orderDate; }
+    public void setShippingAddress(String shippingAddress) { this.shippingAddress = shippingAddress; }
+    // public void setItems(List<OrderItem> items) { this.items = items; }
+
+     @Override
+    public String toString() {
+        return "Order{" +
+               "orderId=" + orderId +
+               ", userId=" + userId +
+               ", totalAmount=" + totalAmount +
+               ", orderStatus='" + orderStatus + '\'' +
+               ", orderDate=" + orderDate +
+               '}';
+    }
+}
+
+
+---------------------------- model.OrderItem -----------------------------
+
+
+package model; // Adjust package name
+
+import java.math.BigDecimal;
+
+public class OrderItem {
+    private int orderItemId;
+    private int orderId;
+    private int productId;
+    private int quantity;
+    private BigDecimal priceAtPurchase;
+     // Optional: Include Product details if needed frequently
+     // private Product product;
+
+    // Constructor(s)
+    public OrderItem(int orderItemId, int orderId, int productId, int quantity, BigDecimal priceAtPurchase) {
+        this.orderItemId = orderItemId;
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.priceAtPurchase = priceAtPurchase;
+    }
+
+    // Constructor for creating new items (ID set by DB)
+     public OrderItem(int orderId, int productId, int quantity, BigDecimal priceAtPurchase) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.priceAtPurchase = priceAtPurchase;
+    }
+
+    // Default constructor
+    public OrderItem() {}
+
+    // Getters
+    public int getOrderItemId() { return orderItemId; }
+    public int getOrderId() { return orderId; }
+    public int getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+    public BigDecimal getPriceAtPurchase() { return priceAtPurchase; }
+    // public Product getProduct() { return product; }
+
+    // Setters
+    public void setOrderItemId(int orderItemId) { this.orderItemId = orderItemId; }
+    public void setOrderId(int orderId) { this.orderId = orderId; }
+    public void setProductId(int productId) { this.productId = productId; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setPriceAtPurchase(BigDecimal priceAtPurchase) { this.priceAtPurchase = priceAtPurchase; }
+    // public void setProduct(Product product) { this.product = product; }
+
+     @Override
+    public String toString() {
+        return "OrderItem{" +
+               "orderItemId=" + orderItemId +
+               ", orderId=" + orderId +
+               ", productId=" + productId +
+               ", quantity=" + quantity +
+               ", priceAtPurchase=" + priceAtPurchase +
+               '}';
+    }
+}
+
+
+---------------------------- model.WishlistItem -----------------------------
+
+
+package model; // Adjust package name
+
+import java.sql.Timestamp;
+
+public class WishlistItem {
+    private int wishlistItemId; // Using wishlist_id from DB as primary key
+    private int userId;
+    private int productId;
+    private Timestamp addedAt;
+    // Optional: Include Product details if needed frequently
+    // private Product product;
+
+    // Constructor(s)
+    public WishlistItem(int wishlistItemId, int userId, int productId, Timestamp addedAt) {
+        this.wishlistItemId = wishlistItemId;
+        this.userId = userId;
+        this.productId = productId;
+        this.addedAt = addedAt;
+    }
+
+     // Constructor for creating new items (ID/Timestamp set by DB)
+    public WishlistItem(int userId, int productId) {
+        this.userId = userId;
+        this.productId = productId;
+    }
+
+    // Default constructor
+    public WishlistItem() {}
+
+    // Getters
+    public int getWishlistItemId() { return wishlistItemId; }
+    public int getUserId() { return userId; }
+    public int getProductId() { return productId; }
+    public Timestamp getAddedAt() { return addedAt; }
+    // public Product getProduct() { return product; }
+
+    // Setters
+    public void setWishlistItemId(int wishlistItemId) { this.wishlistItemId = wishlistItemId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public void setProductId(int productId) { this.productId = productId; }
+    public void setAddedAt(Timestamp addedAt) { this.addedAt = addedAt; }
+    // public void setProduct(Product product) { this.product = product; }
+
+     @Override
+    public String toString() {
+        return "WishlistItem{" +
+               "wishlistItemId=" + wishlistItemId +
+               ", userId=" + userId +
+               ", productId=" + productId +
+               ", addedAt=" + addedAt +
+               '}';
+    }
+}
+
+
+---------------------------- model.ContactMessage -----------------------------
+
+
+package model; // Adjust package name
+
+import java.sql.Timestamp;
+
+public class ContactMessage {
+    private int messageId;
+    private String senderName;
+    private String senderEmail;
+    private String subject;
+    private String message;
+    private Timestamp receivedAt;
+    private boolean isRead;
+
+    // Constructor(s)
+    public ContactMessage(int messageId, String senderName, String senderEmail, String subject, String message, Timestamp receivedAt, boolean isRead) {
+        this.messageId = messageId;
+        this.senderName = senderName;
+        this.senderEmail = senderEmail;
+        this.subject = subject;
+        this.message = message;
+        this.receivedAt = receivedAt;
+        this.isRead = isRead;
+    }
+
+     // Constructor for creating new messages (ID/Timestamp set by DB)
+    public ContactMessage(String senderName, String senderEmail, String subject, String message) {
+       this.senderName = senderName;
+       this.senderEmail = senderEmail;
+       this.subject = subject;
+       this.message = message;
+       // isRead defaults to false in DB
+    }
+
+    // Default constructor
+    public ContactMessage() {}
+
+    // Getters
+    public int getMessageId() { return messageId; }
+    public String getSenderName() { return senderName; }
+    public String getSenderEmail() { return senderEmail; }
+    public String getSubject() { return subject; }
+    public String getMessage() { return message; }
+    public Timestamp getReceivedAt() { return receivedAt; }
+    public boolean isRead() { return isRead; }
+
+    // Setters
+    public void setMessageId(int messageId) { this.messageId = messageId; }
+    public void setSenderName(String senderName) { this.senderName = senderName; }
+    public void setSenderEmail(String senderEmail) { this.senderEmail = senderEmail; }
+    public void setSubject(String subject) { this.subject = subject; }
+    public void setMessage(String message) { this.message = message; }
+    public void setReceivedAt(Timestamp receivedAt) { this.receivedAt = receivedAt; }
+    public void setRead(boolean read) { isRead = read; }
+
+     @Override
+    public String toString() {
+        return "ContactMessage{" +
+               "messageId=" + messageId +
+               ", senderName='" + senderName + '\'' +
+               ", senderEmail='" + senderEmail + '\'' +
+               ", subject='" + subject + '\'' +
+               ", receivedAt=" + receivedAt +
+               ", isRead=" + isRead +
+               '}';
+    }
+}
+
+
+
+========================================= SERVLET =====================================
+
+
+
+----------------------------------- servlet/HomeServlet.java ---------------------------------------------------------
+
+
+package servlet; // Adjust package name
+
+import java.io.IOException;
+import java.sql.Connection; // Only needed if doing direct DB access here, prefer DAO
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Product; // Import necessary models
+import util.DatabaseConnector; // Import connector
+// Import DAO classes if used
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet(name = "HomeServlet", urlPatterns = {"", "/home"}) // Maps to root and /home
+public class HomeServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Example: Fetch a few products for the home page
+        List<Product> featuredProducts = new ArrayList<>();
+        String sql = "SELECT product_id, title, price, image_path FROM products WHERE is_active = TRUE LIMIT 6"; // Example query
+
+        /*
+         * IMPORTANT: Using the provided DatabaseConnector.
+         * DO NOT use try-with-resources on the Connection itself if using the
+         * basic singleton connector from the previous example. Use a Connection Pool
+         * in real applications for safe try-with-resources on connections.
+         */
+        Connection conn = DatabaseConnector.getConnection(); // Get the shared connection
+
+        if (conn != null) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setProductId(rs.getInt("product_id"));
+                    product.setTitle(rs.getString("title"));
+                    product.setPrice(rs.getBigDecimal("price"));
+                    product.setImagePath(rs.getString("image_path"));
+                    featuredProducts.add(product);
+                }
+            } catch (SQLException e) {
+                System.err.println("SQL Error fetching featured products: " + e.getMessage());
+                // Handle error appropriately, maybe log and show an error message
+                throw new ServletException("Database error fetching products", e);
+            }
+            // Note: Connection is NOT closed here when using the basic singleton connector.
+        } else {
+             throw new ServletException("Database connection is unavailable.");
+        }
+
+
+        request.setAttribute("featuredProducts", featuredProducts); // Make data available to JSP
+        request.setAttribute("pageTitle", "Welcome to Our Bookstore!"); // Example title
+        request.setAttribute("homePageText", "Your introductory paragraph goes here. Browse our amazing collection of books!"); // Example text
+
+        // Forward to the index/home JSP page
+        request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+    }
+}
+
+
+----------------------------------- servlet/AdminDashboardServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(name = "AdminDashboardServlet", urlPatterns = {"/admin/dashboard"})
+public class AdminDashboardServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login"); // Redirect non-admins
+            return;
+        }
+        // --------------------------
+
+        // Optionally load some summary data (e.g., order count, message count) via DAO
+        // request.setAttribute("orderCount", orderDAO.getCount());
+        // request.setAttribute("messageCount", messageDAO.getUnreadCount());
+
+        request.setAttribute("pageTitle", "Admin Dashboard");
+        request.getRequestDispatcher("/WEB-INF/view/admin/dashboard.jsp").forward(request, response);
+    }
+}
+
+
+----------------------------------- servlet/AdminProductListServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.List; // Assuming DAO returns a List
+import model.Product; // Import model
+// Import DAO
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+
+@WebServlet(name = "AdminProductListServlet", urlPatterns = {"/admin/products"})
+public class AdminProductListServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ProductDAO productDAO; // Inject or instantiate DAO
+
+    @Override
+    public void init() throws ServletException {
+        // productDAO = new ProductDAOImpl(); // Initialize DAO
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+         HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        try {
+            // List<Product> productList = productDAO.getAllProducts(); // TODO: Use DAO
+            List<Product> productList = new ArrayList<>(); // Placeholder
+             // Add dummy data or fetch real data using try-with-resources for PreparedStatement/ResultSet
+            request.setAttribute("products", productList);
+            request.setAttribute("pageTitle", "Manage Products");
+            request.getRequestDispatcher("/WEB-INF/view/admin/productList.jsp").forward(request, response);
+        } catch (Exception e) { // Catch specific DAO exceptions
+            throw new ServletException("Error retrieving product list", e);
+        }
+    }
+}
+
+
+----------------------------------- servlet/AdminAddProductServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import model.Product; // Import model
+import util.CsrfTokenUtil; // Import CSRF Util
+// Import DAO
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+
+@WebServlet(name = "AdminAddProductServlet", urlPatterns = {"/admin/products/add"})
+@MultipartConfig( // Required for file uploads
+    fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+    maxFileSize = 1024 * 1024 * 10,      // 10 MB
+    maxRequestSize = 1024 * 1024 * 15    // 15 MB
+)
+public class AdminAddProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ProductDAO productDAO; // Inject or instantiate DAO
+    private static final String UPLOAD_DIR = "uploads/images/products"; // Relative path to store images
+
+     @Override
+    public void init() throws ServletException {
+        // productDAO = new ProductDAOImpl(); // Initialize DAO
+    }
+
+
+    // Display the form to add a new product
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        // Generate and set CSRF token for the form
+        CsrfTokenUtil.setTokenAttribute(request);
+
+        request.setAttribute("pageTitle", "Add New Product");
+        request.getRequestDispatcher("/WEB-INF/view/admin/addProduct.jsp").forward(request, response);
+    }
+
+    // Process the submitted form to add the product
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+         HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+            return;
+        }
+        // --------------------------
+
+        // --- CSRF Token Validation ---
+        if (!CsrfTokenUtil.isValid(request)) {
+            session.setAttribute("errorMessage", "Invalid request (CSRF validation failed). Please try again.");
+             response.sendRedirect(request.getContextPath() + "/admin/products/add"); // Redirect back to form
+            return;
+        }
+        // ---------------------------
+
+        try {
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            BigDecimal price = new BigDecimal(request.getParameter("price"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            String publisherName = request.getParameter("publisherName");
+            Part filePart = request.getPart("imageFile"); // Corresponds to <input type="file" name="imageFile">
+            String imagePath = null;
+
+            // --- Handle File Upload ---
+            if (filePart != null && filePart.getSize() > 0) {
+                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // Sanitize
+                 // Ensure unique filename if necessary (e.g., append timestamp or UUID)
+                 // String uniqueFileName = System.currentTimeMillis() + "_" + fileName;
+
+                 // Get absolute path to uploads directory
+                 String applicationPath = request.getServletContext().getRealPath("");
+                 String uploadFilePath = applicationPath + java.io.File.separator + UPLOAD_DIR;
+
+                 // Create directory if it doesn't exist
+                 java.io.File uploadDir = new java.io.File(uploadFilePath);
+                 if (!uploadDir.exists()) {
+                    uploadDir.mkdirs();
+                 }
+
+                // Define the path for the stored file
+                String filePath = uploadFilePath + java.io.File.separator + fileName;
+                imagePath = UPLOAD_DIR + "/" + fileName; // Store relative path in DB
+
+                // Save the file
+                try (InputStream fileContent = filePart.getInputStream()) {
+                     Files.copy(fileContent, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+                     System.out.println("File uploaded successfully to: " + filePath); // Use logger
+                } catch (IOException e) {
+                    // Handle file saving error
+                    System.err.println("File upload failed: " + e.getMessage());
+                    session.setAttribute("errorMessage", "Failed to upload image: " + e.getMessage());
+                    response.sendRedirect(request.getContextPath() + "/admin/products/add");
+                    return; // Stop processing
+                 }
+            }
+            // ---------------------------
+
+
+            // Create Product object (without ID initially)
+            Product product = new Product(title, description, price, quantity, imagePath, publisherName, true); // Assuming active=true by default
+
+            // TODO: Use DAO to save the product
+            // boolean success = productDAO.addProduct(product);
+            boolean success = true; // Placeholder
+
+            if (success) {
+                session.setAttribute("successMessage", "Product '" + title + "' added successfully!");
+                response.sendRedirect(request.getContextPath() + "/admin/products"); // Redirect to product list
+            } else {
+                session.setAttribute("errorMessage", "Failed to add product. Please check the data.");
+                 // Optionally re-populate form fields if redirecting back
+                CsrfTokenUtil.setTokenAttribute(request); // Regenerate token for the form
+                request.getRequestDispatcher("/WEB-INF/view/admin/addProduct.jsp").forward(request, response);
+            }
+
+        } catch (NumberFormatException e) {
+             session.setAttribute("errorMessage", "Invalid number format for price or quantity.");
+             CsrfTokenUtil.setTokenAttribute(request);
+             request.getRequestDispatcher("/WEB-INF/view/admin/addProduct.jsp").forward(request, response);
+        } catch (Exception e) { // Catch DAO or other exceptions
+             System.err.println("Error adding product: " + e.getMessage());
+             session.setAttribute("errorMessage", "An unexpected error occurred: " + e.getMessage());
+             CsrfTokenUtil.setTokenAttribute(request);
+             request.getRequestDispatcher("/WEB-INF/view/admin/addProduct.jsp").forward(request, response);
+        }
+    }
+}
+
+
+----------------------------------- servlet/AdminEditProductServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+// Other imports similar to AddProductServlet (File handling, DAO, CSRF etc.)
+
+import model.Product;
+import util.CsrfTokenUtil;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+@WebServlet(name = "AdminEditProductServlet", urlPatterns = {"/admin/products/edit"})
+@MultipartConfig(...) // Add MultipartConfig same as AddProductServlet
+public class AdminEditProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ProductDAO productDAO;
+     private static final String UPLOAD_DIR = "uploads/images/products"; // Consistent path
+
+     @Override
+    public void init() throws ServletException {
+        // productDAO = new ProductDAOImpl();
+    }
+
+    // Display the form to edit an existing product
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        String productIdStr = request.getParameter("id");
+        if (productIdStr == null || productIdStr.isEmpty()) {
+             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Product ID is required.");
+             return;
+        }
+
+        try {
+            int productId = Integer.parseInt(productIdStr);
+            // Product product = productDAO.getProductById(productId); // TODO: Use DAO
+             Product product = null; // Placeholder - Fetch product details
+            // --- Placeholder Data ---
+             if (productId == 1) { // Example
+                product = new Product(1, "Sample Book Title", "Description...", new BigDecimal("19.99"), 10, "images/sample.jpg", "Pub Name", true, null, null);
+             }
+            // -----------------------
+
+
+            if (product != null) {
+                request.setAttribute("product", product);
+                request.setAttribute("pageTitle", "Edit Product: " + product.getTitle());
+                // Generate and set CSRF token for the form
+                CsrfTokenUtil.setTokenAttribute(request);
+                request.getRequestDispatcher("/WEB-INF/view/admin/editProduct.jsp").forward(request, response);
+            } else {
+                 session.setAttribute("errorMessage", "Product with ID " + productId + " not found.");
+                 response.sendRedirect(request.getContextPath() + "/admin/products");
+            }
+        } catch (NumberFormatException e) {
+             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Product ID format.");
+        } catch (Exception e) { // Catch DAO exceptions
+             throw new ServletException("Error retrieving product for edit", e);
+        }
+    }
+
+    // Process the submitted form to update the product
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+            return;
+        }
+        // --------------------------
+
+        // --- CSRF Token Validation ---
+        if (!CsrfTokenUtil.isValid(request)) {
+             session.setAttribute("errorMessage", "Invalid request (CSRF validation failed). Please try again.");
+             // Redirect back to edit form might be tricky without ID, consider redirect to list
+             response.sendRedirect(request.getContextPath() + "/admin/products");
+            return;
+        }
+        // ---------------------------
+
+        String productIdStr = request.getParameter("productId"); // Hidden field in the form
+
+        try {
+            int productId = Integer.parseInt(productIdStr);
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            BigDecimal price = new BigDecimal(request.getParameter("price"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            String publisherName = request.getParameter("publisherName");
+            boolean isActive = "on".equalsIgnoreCase(request.getParameter("isActive")); // Checkbox value
+            Part filePart = request.getPart("imageFile");
+            String imagePath = request.getParameter("existingImagePath"); // Get current path if not uploading new
+
+             // --- Handle File Upload (if new file provided) ---
+             if (filePart != null && filePart.getSize() > 0) {
+                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                 String applicationPath = request.getServletContext().getRealPath("");
+                 String uploadFilePath = applicationPath + java.io.File.separator + UPLOAD_DIR;
+                 java.io.File uploadDir = new java.io.File(uploadFilePath);
+                 if (!uploadDir.exists()) uploadDir.mkdirs();
+
+                 String filePath = uploadFilePath + java.io.File.separator + fileName;
+                 imagePath = UPLOAD_DIR + "/" + fileName; // Update relative path
+
+                try (InputStream fileContent = filePart.getInputStream()) {
+                    Files.copy(fileContent, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("File updated successfully to: " + filePath);
+                    // Optional: Delete the old image file if it's different and no longer needed
+                } catch (IOException e) {
+                     System.err.println("File upload failed during edit: " + e.getMessage());
+                     session.setAttribute("errorMessage", "Failed to upload new image: " + e.getMessage());
+                     // Redirect back to edit form with the ID
+                     response.sendRedirect(request.getContextPath() + "/admin/products/edit?id=" + productId);
+                     return;
+                 }
+             }
+             // ---------------------------
+
+
+            // Create Product object with updated details
+            // Note: You might fetch the existing product first to preserve create date etc.
+            Product product = new Product();
+            product.setProductId(productId);
+            product.setTitle(title);
+            product.setDescription(description);
+            product.setPrice(price);
+            product.setQuantity(quantity);
+            product.setPublisherName(publisherName);
+            product.setImagePath(imagePath);
+            product.setActive(isActive);
+            // product.setUpdatedAt(new Timestamp(System.currentTimeMillis())); // DAO might handle this
+
+            // TODO: Use DAO to update the product
+            // boolean success = productDAO.updateProduct(product);
+            boolean success = true; // Placeholder
+
+            if (success) {
+                session.setAttribute("successMessage", "Product '" + title + "' updated successfully!");
+                response.sendRedirect(request.getContextPath() + "/admin/products"); // Redirect to product list
+            } else {
+                session.setAttribute("errorMessage", "Failed to update product.");
+                // Re-populate form for correction
+                request.setAttribute("product", product); // Pass back the attempted data
+                CsrfTokenUtil.setTokenAttribute(request); // Regenerate token
+                 request.setAttribute("pageTitle", "Edit Product: " + product.getTitle());
+                request.getRequestDispatcher("/WEB-INF/view/admin/editProduct.jsp").forward(request, response);
+            }
+
+        } catch (NumberFormatException e) {
+             session.setAttribute("errorMessage", "Invalid number format for ID, price, or quantity.");
+             response.sendRedirect(request.getContextPath() + "/admin/products/edit?id=" + productIdStr); // Redirect back
+        } catch (Exception e) { // Catch DAO or other exceptions
+            System.err.println("Error updating product: " + e.getMessage());
+             session.setAttribute("errorMessage", "An unexpected error occurred: " + e.getMessage());
+             response.sendRedirect(request.getContextPath() + "/admin/products/edit?id=" + productIdStr); // Redirect back
+        }
+    }
+}
+
+
+----------------------------------- servlet/AdminOrderListServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Order; // Import model
+// Import DAO
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(name = "AdminOrderListServlet", urlPatterns = {"/admin/orders"})
+public class AdminOrderListServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private OrderDAO orderDAO;
+
+     @Override
+    public void init() throws ServletException {
+        // orderDAO = new OrderDAOImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        String searchId = request.getParameter("searchId");
+        List<Order> orderList = new ArrayList<>(); // Placeholder
+
+        try {
+            if (searchId != null && !searchId.trim().isEmpty()) {
+                // TODO: Use DAO to find order by ID
+                // Order order = orderDAO.getOrderById(Integer.parseInt(searchId));
+                // if (order != null) orderList.add(order);
+                 request.setAttribute("searchTerm", searchId);
+            } else {
+                 // TODO: Use DAO to get all orders (possibly paginated)
+                 // orderList = orderDAO.getAllOrders();
+            }
+
+            request.setAttribute("orders", orderList);
+            request.setAttribute("pageTitle", "Manage Orders");
+            request.getRequestDispatcher("/WEB-INF/view/admin/orderList.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+             request.setAttribute("errorMessage", "Invalid Order ID format for search.");
+             request.setAttribute("orders", orderList); // Send empty list back
+             request.getRequestDispatcher("/WEB-INF/view/admin/orderList.jsp").forward(request, response);
+        } catch (Exception e) { // Catch DAO exceptions
+             throw new ServletException("Error retrieving order list", e);
+        }
+    }
+}
+
+
+----------------------------------- servlet/AdminOrderDetailServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.List; // For order items
+import model.Order;
+import model.OrderItem;
+// Import DAOs
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(name = "AdminOrderDetailServlet", urlPatterns = {"/admin/orders/detail"})
+public class AdminOrderDetailServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private OrderDAO orderDAO;
+    // private OrderItemDAO orderItemDAO;
+
+     @Override
+    public void init() throws ServletException {
+        // Initialize DAOs
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        String orderIdStr = request.getParameter("id");
+         if (orderIdStr == null || orderIdStr.isEmpty()) {
+             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Order ID is required.");
+             return;
+         }
+
+        try {
+            int orderId = Integer.parseInt(orderIdStr);
+            // TODO: Use DAO to get order details
+            // Order order = orderDAO.getOrderById(orderId);
+            // TODO: Use DAO to get items for this order
+            // List<OrderItem> items = orderItemDAO.getItemsByOrderId(orderId);
+            Order order = null; // Placeholder
+            List<OrderItem> items = new ArrayList<>(); // Placeholder
+
+             if (order != null) {
+                 request.setAttribute("order", order);
+                 request.setAttribute("items", items);
+                 request.setAttribute("pageTitle", "Order Details #" + order.getOrderId());
+                 request.getRequestDispatcher("/WEB-INF/view/admin/orderDetail.jsp").forward(request, response);
+             } else {
+                 session.setAttribute("errorMessage", "Order with ID " + orderId + " not found.");
+                 response.sendRedirect(request.getContextPath() + "/admin/orders");
+             }
+
+        } catch (NumberFormatException e) {
+             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Order ID format.");
+        } catch (Exception e) { // Catch DAO exceptions
+             throw new ServletException("Error retrieving order details", e);
+        }
+    }
+}
+
+
+----------------------------------- servlet/AdminMessageListServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import model.ContactMessage; // Import model
+// Import DAO
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(name = "AdminMessageListServlet", urlPatterns = {"/admin/messages"})
+public class AdminMessageListServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ContactMessageDAO messageDAO;
+
+     @Override
+    public void init() throws ServletException {
+         // messageDAO = new ContactMessageDAOImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // --- Authorization Check ---
+         HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        // --------------------------
+
+        try {
+            // TODO: Use DAO to get all messages (or maybe unread first)
+            // List<ContactMessage> messages = messageDAO.getAllMessages();
+             List<ContactMessage> messages = new ArrayList<>(); // Placeholder
+
+            request.setAttribute("messages", messages);
+            request.setAttribute("pageTitle", "Contact Messages");
+            request.getRequestDispatcher("/WEB-INF/view/admin/messageList.jsp").forward(request, response);
+
+        } catch (Exception e) { // Catch DAO exceptions
+            throw new ServletException("Error retrieving messages", e);
+        }
+    }
+
+    // Optional: Add doPost to handle marking messages as read
+     @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // --- Authorization Check ---
+        HttpSession session = request.getSession(false);
+        if (session == null || !"ADMIN".equals(session.getAttribute("userRole"))) {
+             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
+            return;
+        }
+        // --------------------------
+
+        // Simple CSRF check needed if this is a real form submission
+        // if (!CsrfTokenUtil.isValid(request)) { ... handle error ... }
+
+        String action = request.getParameter("action");
+        String messageIdStr = request.getParameter("messageId");
+
+        if ("markRead".equals(action) && messageIdStr != null) {
+            try {
+                int messageId = Integer.parseInt(messageIdStr);
+                // TODO: Use DAO to update message status
+                // boolean success = messageDAO.markAsRead(messageId);
+                // if (!success) { request.setAttribute("errorMessage", "Could not mark message as read."); }
+             } catch (NumberFormatException e) {
+                 request.setAttribute("errorMessage", "Invalid message ID.");
+             } catch (Exception e) {
+                 request.setAttribute("errorMessage", "Error updating message status: " + e.getMessage());
+             }
+        }
+         // Redirect back to the message list to show updated status
+         response.sendRedirect(request.getContextPath() + "/admin/messages");
+
+        // Or, if doing it via AJAX, send back JSON response instead of redirect/forward
+    }
+
+}
+
+
+----------------------------------- servlet/ProductServlet.java (Customer view) ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Product;
+// Import DAO
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet(name = "ProductServlet", urlPatterns = {"/products"})
+public class ProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ProductDAO productDAO;
+
+     @Override
+    public void init() throws ServletException {
+        // productDAO = new ProductDAOImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Check if requesting a specific product detail or the list
+        String productIdStr = request.getParameter("id");
+
+        try {
+            if (productIdStr != null && !productIdStr.isEmpty()) {
+                 // --- Display Product Detail ---
+                 int productId = Integer.parseInt(productIdStr);
+                 // Product product = productDAO.getProductById(productId); // TODO: Use DAO
+                 Product product = null; // Placeholder
+
+                 if (product != null && product.isActive()) {
+                     request.setAttribute("product", product);
+                     request.setAttribute("pageTitle", product.getTitle()); // Set page title
+                     request.getRequestDispatcher("/WEB-INF/view/productDetail.jsp").forward(request, response);
+                 } else {
+                     request.setAttribute("errorMessage", "Product not found or unavailable.");
+                     request.getRequestDispatcher("/WEB-INF/view/productList.jsp").forward(request, response); // Show list with error
+                 }
+
+            } else {
+                 // --- Display Product List ---
+                 // List<Product> productList = productDAO.getActiveProducts(); // TODO: Use DAO
+                  List<Product> productList = new ArrayList<>(); // Placeholder
+
+                 request.setAttribute("products", productList);
+                 request.setAttribute("pageTitle", "Our Products"); // Set page title
+                 request.getRequestDispatcher("/WEB-INF/view/productList.jsp").forward(request, response);
+            }
+        } catch (NumberFormatException e) {
+             request.setAttribute("errorMessage", "Invalid product ID.");
+             request.getRequestDispatcher("/WEB-INF/view/productList.jsp").forward(request, response);
+        } catch (Exception e) { // Catch DAO exceptions
+             throw new ServletException("Error retrieving products", e);
+        }
+    }
+}
+
+
+----------------------------------- servlet/CartServlet.java (View and manage cart) ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.math.BigDecimal; // Needed if calculating total here
+import java.util.Map; // Assuming cart is stored as Map<Integer, Integer> productId -> quantity
+
+import model.Product; // To potentially display product details
+// Import DAO/Cart Service
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.HashMap; // For example cart
+
+@WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
+public class CartServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    // private ProductDAO productDAO; // Needed to get product details for cart items
+
+     @Override
+    public void init() throws ServletException {
+        // productDAO = new ProductDAOImpl();
+    }
+
+    // Display the cart page
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        // Retrieve cart from session (or DB if persistent)
+        // Example: Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+        Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+
+
+        if (cart == null || cart.isEmpty()) {
+            request.setAttribute("isEmpty", true);
+        } else {
+             request.setAttribute("isEmpty", false);
+            // Fetch product details for items in cart
+            // Map<Product, Integer> detailedCart = new HashMap<>();
+            // BigDecimal total = BigDecimal.ZERO;
+            // try {
+            //     for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+            //         Product product = productDAO.getProductById(entry.getKey());
+            //         if (product != null) {
+            //             detailedCart.put(product, entry.getValue());
+            //             total = total.add(product.getPrice().multiply(new BigDecimal(entry.getValue())));
+            //         }
+            //     }
+            // } catch (Exception e) { throw new ServletException("Error loading cart details", e); }
+            // request.setAttribute("detailedCart", detailedCart);
+            // request.setAttribute("cartTotal", total);
+
+             // --- Placeholder for demonstration without DAO ---
+             Map<String, Object> detailedCartPlaceholder = new HashMap<>();
+             if(cart != null && !cart.isEmpty()){
+                 detailedCartPlaceholder.put("Item 1 (ID: " + cart.keySet().iterator().next() + ")", Map.of("quantity", cart.values().iterator().next(), "price", new BigDecimal("10.99"), "title", "Sample Book"));
+                 request.setAttribute("cartTotal", new BigDecimal("10.99").multiply(new BigDecimal(cart.values().iterator().next())));
+             }
+             request.setAttribute("detailedCartPlaceholder", detailedCartPlaceholder); // Use this in JSP for now
+             // -------------------------------------------------
+
+        }
+
+        request.setAttribute("pageTitle", "Shopping Cart");
+        request.getRequestDispatcher("/WEB-INF/view/cart.jsp").forward(request, response);
+    }
+
+    // This servlet might also handle POST requests for updating/removing items,
+    // especially if not using separate servlets like UpdateCartServlet/RemoveFromCartServlet.
+    // These actions often use AJAX (jQuery) calling specific URLs/Servlets.
+}
+
+
+----------------------------------- servlet/AddToCartServlet.java ---------------------------------------------------------
+
+
+package servlet;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+// Import DAO to check product availability
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(name = "AddToCartServlet", urlPatterns = {"/addToCart"})
+public class AddToCartServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+     // private ProductDAO productDAO;
+
+     @Override
+    public void init() throws ServletException {
+         // productDAO = new ProductDAOImpl();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        // Retrieve cart from session
+        Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<>();
+        }
+
+        String productIdStr = request.getParameter("productId");
+        String quantityStr = request.getParameter("quantity");
+
+        try {
+            int productId = Integer.parseInt(productIdStr);
+            int quantity = (quantityStr != null) ? Integer.parseInt(quantityStr) : 1; // Default to 1 if not specified
+
+            if (quantity <= 0) {
+                 // Handle error - invalid quantity
+                 response.sendRedirect(request.getHeader("Referer")); // Go back to previous page
+                 return;
+            }
+
+             // TODO: Check if product exists and has sufficient quantity using ProductDAO
+             // Product product = productDAO.getProductById(productId);
+             // if (product == null || !product.isActive() || product.getQuantity() < quantity) {
+             //      session.setAttribute("cartError", "Product not available or insufficient stock.");
+             //      response.sendRedirect(request.getHeader("Referer"));
+             //      return;
+             // }
+             boolean productAvailable = true; // Placeholder
+             if (!productAvailable) {
+                 session.setAttribute("cartError", "Product not available or insufficient stock.");
+                 response.sendRedirect(request.getHeader("Referer")); // Or specific product page
+                 return;
+             }
+
+
+            // Add/Update product in cart
+            cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
+            session.setAttribute("cart", cart); // Save updated cart back to session
+            session.setAttribute("cartMessage", "Product added to cart!"); // Feedback message
+
+            // Redirect to cart page or back to product page
+             response.sendRedirect(request.getContextPath() + "/cart");
+            // Or redirect back: response.sendRedirect(request.getHeader("Referer"));
+
+
+        } catch (NumberFormatException e) {
+             session.setAttribute("cartError", "Invalid product ID or quantity.");
+             response.sendRedirect(request.getHeader("Referer")); // Go back
+        } catch (Exception e) { // Catch DAO exceptions
+             session.setAttribute("cartError", "Error adding product to cart: " + e.getMessage());
+             response.sendRedirect(request.getHeader("Referer")); // Go back
+        }
+    }
+}
+
+
+
+======================================= DAOs ====================================
+
+
+--------------------------------------- dao/UserDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.User;
+import java.util.Optional; // Using Optional for better handling of 'not found'
+
+public interface UserDAO {
+
+    /**
+     * Adds a new user to the database.
+     * Assumes password has already been hashed.
+     * @param user The User object to add (without ID).
+     * @return The generated user ID if successful, -1 otherwise.
+     */
+    int addUser(User user);
+
+    /**
+     * Retrieves a user by their ID.
+     * @param userId The ID of the user.
+     * @return An Optional containing the User if found, otherwise Optional.empty().
+     */
+    Optional<User> getUserById(int userId);
+
+    /**
+     * Retrieves a user by their email address.
+     * @param email The email of the user.
+     * @return An Optional containing the User if found, otherwise Optional.empty().
+     */
+    Optional<User> getUserByEmail(String email);
+
+    /**
+     * Updates an existing user's information (excluding password for safety, handle separately).
+     * @param user The User object with updated details (must have correct userId).
+     * @return true if update was successful, false otherwise.
+     */
+    boolean updateUser(User user);
+
+    /**
+     * Updates a user's password hash.
+     * @param userId The ID of the user to update.
+     * @param newPasswordHash The new hashed password.
+     * @return true if update was successful, false otherwise.
+     */
+    boolean updateUserPassword(int userId, String newPasswordHash);
+
+
+    /**
+     * Deletes a user from the database.
+     * @param userId The ID of the user to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    boolean deleteUser(int userId);
+
+    // No validateLogin here - validation logic (checking hash) often sits better in a Service layer
+    // or can be done by fetching user by email and then comparing hash in the servlet/service.
+}
+
+
+--------------------------------------- dao/ProductDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.Product;
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductDAO {
+
+    /**
+     * Adds a new product to the database.
+     * @param product The Product object to add (without ID).
+     * @return The generated product ID if successful, -1 otherwise.
+     */
+    int addProduct(Product product);
+
+    /**
+     * Retrieves a product by its ID.
+     * @param productId The ID of the product.
+     * @return An Optional containing the Product if found, otherwise Optional.empty().
+     */
+    Optional<Product> getProductById(int productId);
+
+    /**
+     * Retrieves all products (active and inactive). Useful for admin panel.
+     * @return A List of all Products.
+     */
+    List<Product> getAllProducts();
+
+    /**
+     * Retrieves all active products. Useful for customer view.
+     * @return A List of active Products.
+     */
+    List<Product> getActiveProducts();
+
+    /**
+     * Updates an existing product's details.
+     * @param product The Product object with updated details (must have correct productId).
+     * @return true if update was successful, false otherwise.
+     */
+    boolean updateProduct(Product product);
+
+     /**
+     * Updates the quantity of a specific product. Can be used for inventory changes or order processing.
+     * Use negative quantityChange to decrease stock.
+     * IMPORTANT: Implement checks to prevent quantity going below zero if necessary.
+     * @param productId The ID of the product to update.
+     * @param quantityChange The amount to change the quantity by (positive to increase, negative to decrease).
+     * @return true if update was successful, false otherwise.
+     */
+    boolean updateProductQuantity(int productId, int quantityChange);
+
+    /**
+     * Deletes a product from the database (or marks as inactive).
+     * Consider implications for existing orders (FK constraint might prevent deletion).
+     * Maybe implement soft delete (mark as inactive) instead.
+     * @param productId The ID of the product to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    boolean deleteProduct(int productId); // Or boolean deactivateProduct(int productId);
+}
+
+
+--------------------------------------- dao/OrderDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.Order;
+import model.OrderItem;
+import java.util.List;
+import java.util.Optional;
+
+public interface OrderDAO {
+
+    /**
+     * Creates a new order and its associated items within a transaction.
+     * Decreases product stock quantity.
+     * @param order The Order object (without ID).
+     * @param items A List of OrderItem objects associated with this order.
+     * @return The generated order ID if successful, -1 otherwise.
+     */
+    int createOrder(Order order, List<OrderItem> items);
+
+    /**
+     * Retrieves an order by its ID.
+     * @param orderId The ID of the order.
+     * @return An Optional containing the Order if found, otherwise Optional.empty().
+     */
+    Optional<Order> getOrderById(int orderId);
+
+    /**
+     * Retrieves all orders placed by a specific user.
+     * @param userId The ID of the user.
+     * @return A List of Orders for the user.
+     */
+    List<Order> getOrdersByUserId(int userId);
+
+    /**
+     * Retrieves all orders. Useful for admin panel. (Consider pagination for large datasets).
+     * @return A List of all Orders.
+     */
+    List<Order> getAllOrders();
+
+     /**
+     * Retrieves orders matching a specific status.
+     * @param status The order status (e.g., "PENDING", "COMPLETED").
+     * @return A List of Orders with the specified status.
+     */
+    List<Order> getOrdersByStatus(String status);
+
+
+    /**
+     * Updates the status of an existing order.
+     * @param orderId The ID of the order to update.
+     * @param status The new status string (e.g., "PROCESSING", "COMPLETED", "CANCELLED").
+     * @return true if update was successful, false otherwise.
+     */
+    boolean updateOrderStatus(int orderId, String status);
+
+    // Deleting orders might not be desirable, maybe just cancelling them.
+    // boolean deleteOrder(int orderId);
+}
+
+
+--------------------------------------- dao/OrderItemDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.OrderItem;
+import java.sql.Connection; // Needed if operations are part of an external transaction
+import java.sql.SQLException;
+import java.util.List;
+
+public interface OrderItemDAO {
+
+    /**
+     * Adds a single order item to the database.
+     * Usually called within the OrderDAO.createOrder transaction.
+     * Requires the Connection object from the transaction.
+     * @param item The OrderItem object to add.
+     * @param connection The active database connection (part of the transaction).
+     * @return true if successful, false otherwise.
+     * @throws SQLException if a database error occurs.
+     */
+    boolean addOrderItem(OrderItem item, Connection connection) throws SQLException;
+
+    /**
+     * Retrieves all items associated with a specific order.
+     * @param orderId The ID of the order.
+     * @return A List of OrderItems for the given order.
+     */
+    List<OrderItem> getItemsByOrderId(int orderId);
+
+    // Update/Delete for order items might be complex depending on business rules (e.g., refunds)
+}
+
+
+--------------------------------------- dao/WishlistDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.WishlistItem;
+import java.util.List;
+
+public interface WishlistDAO {
+
+    /**
+     * Adds a product to a user's wishlist.
+     * Handles potential unique constraint violations gracefully.
+     * @param item The WishlistItem containing userId and productId.
+     * @return true if item was added successfully, false otherwise (e.g., already exists).
+     */
+    boolean addToWishlist(WishlistItem item);
+
+    /**
+     * Removes a product from a user's wishlist.
+     * @param userId The ID of the user.
+     * @param productId The ID of the product.
+     * @return true if removal was successful, false otherwise (e.g., item not found).
+     */
+    boolean removeFromWishlist(int userId, int productId);
+
+    /**
+     * Retrieves all wishlist items for a specific user.
+     * Often requires joining with Products table to get product details.
+     * @param userId The ID of the user.
+     * @return A List of WishlistItems (or potentially a List of Products).
+     */
+    List<WishlistItem> getWishlistByUserId(int userId); // Consider returning List<Product> directly
+
+    /**
+     * Checks if a specific product is already in a user's wishlist.
+     * @param userId The ID of the user.
+     * @param productId The ID of the product.
+     * @return true if the product is in the user's wishlist, false otherwise.
+     */
+    boolean isProductInWishlist(int userId, int productId);
+}
+
+
+--------------------------------------- dao/ContactMessageDAO.java -------------------------------------------------
+
+
+package dao;
+
+import model.ContactMessage;
+import java.util.List;
+import java.util.Optional;
+
+public interface ContactMessageDAO {
+
+    /**
+     * Adds a new contact message to the database.
+     * @param message The ContactMessage object to add.
+     * @return true if successful, false otherwise.
+     */
+    boolean addMessage(ContactMessage message);
+
+    /**
+     * Retrieves a message by its ID.
+     * @param messageId The ID of the message.
+     * @return An Optional containing the ContactMessage if found, otherwise Optional.empty().
+     */
+    Optional<ContactMessage> getMessageById(int messageId);
+
+    /**
+     * Retrieves all contact messages, usually ordered by date descending.
+     * @return A List of all ContactMessages.
+     */
+    List<ContactMessage> getAllMessages();
+
+     /**
+     * Retrieves only unread messages.
+     * @return A List of unread ContactMessages.
+     */
+    List<ContactMessage> getUnreadMessages();
+
+    /**
+     * Marks a specific message as read.
+     * @param messageId The ID of the message to mark as read.
+     * @return true if update was successful, false otherwise.
+     */
+    boolean markAsRead(int messageId);
+
+    /**
+     * Deletes a message from the database.
+     * @param messageId The ID of the message to delete.
+     * @return true if deletion was successful, false otherwise.
+     */
+    boolean deleteMessage(int messageId);
+}
+
+
+
+
+--------------------------------------- dao/UserDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.User;
+import util.DatabaseConnector;
+import java.sql.*;
+import java.util.Optional;
+
+// TODO: Implement proper password hashing (e.g., using BCrypt)
+// import org.mindrot.jbcrypt.BCrypt; // Example library
+
+public class UserDAOImpl implements UserDAO {
+
+    // IMPORTANT: Use try-with-resources ONLY for PreparedStatement and ResultSet
+    // with the basic DatabaseConnector. Connection is managed globally/pooled.
+
+    @Override
+    public int addUser(User user) {
+        String sql = "INSERT INTO users (name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?)";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return -1;
+
+        // Use Statement.RETURN_GENERATED_KEYS to get the auto-incremented ID
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPhone());
+            pstmt.setString(4, user.getPasswordHash()); // Ensure hash is passed
+            pstmt.setString(5, user.getRole());
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getInt(1); // Return the new user_id
+                    }
+                }
+            }
+            return -1; // Indicate failure
+        } catch (SQLException e) {
+            System.err.println("Error adding user: " + e.getMessage());
+            // Log exception properly
+            return -1;
+        }
+    }
+
+    @Override
+    public Optional<User> getUserById(int userId) {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return Optional.empty();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToUser(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting user by ID: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> getUserByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return Optional.empty();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToUser(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting user by email: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        String sql = "UPDATE users SET name = ?, email = ?, phone = ?, role = ? WHERE user_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPhone());
+            pstmt.setString(4, user.getRole());
+            pstmt.setInt(5, user.getUserId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updating user: " + e.getMessage());
+            return false;
+        }
+    }
+
+     @Override
+    public boolean updateUserPassword(int userId, String newPasswordHash) {
+         String sql = "UPDATE users SET password_hash = ? WHERE user_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newPasswordHash); // Store the hash
+            pstmt.setInt(2, userId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updating user password: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+    @Override
+    public boolean deleteUser(int userId) {
+        String sql = "DELETE FROM users WHERE user_id = ?";
+         Connection conn = DatabaseConnector.getConnection();
+          if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+             System.err.println("Error deleting user: " + e.getMessage());
+            // Check for constraint violations if needed
+            return false;
+        }
+    }
+
+    // Helper method to map ResultSet row to User object
+    private User mapRowToUser(ResultSet rs) throws SQLException {
+        return new User(
+                rs.getInt("user_id"),
+                rs.getString("name"),
+                rs.getString("email"),
+                rs.getString("phone"),
+                rs.getString("password_hash"),
+                rs.getString("role"),
+                rs.getTimestamp("created_at")
+        );
+    }
+}
+
+
+--------------------------------------- dao/ProductDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.Product;
+import util.DatabaseConnector;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class ProductDAOImpl implements ProductDAO {
+
+    @Override
+    public int addProduct(Product product) {
+        String sql = "INSERT INTO products (title, description, price, quantity, image_path, publisher_name, is_active) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return -1;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, product.getTitle());
+            pstmt.setString(2, product.getDescription());
+            pstmt.setBigDecimal(3, product.getPrice());
+            pstmt.setInt(4, product.getQuantity());
+            pstmt.setString(5, product.getImagePath());
+            pstmt.setString(6, product.getPublisherName());
+            pstmt.setBoolean(7, product.isActive());
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getInt(1); // Return new product_id
+                    }
+                }
+            }
+             return -1;
+        } catch (SQLException e) {
+            System.err.println("Error adding product: " + e.getMessage());
+            return -1;
+        }
+    }
+
+    @Override
+    public Optional<Product> getProductById(int productId) {
+        String sql = "SELECT * FROM products WHERE product_id = ?";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return Optional.empty();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, productId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToProduct(rs));
+                }
+            }
+        } catch (SQLException e) {
+             System.err.println("Error getting product by ID: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM products ORDER BY title";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return products; // Return empty list
+
+        try (Statement stmt = conn.createStatement(); // Simple statement ok if no params
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                products.add(mapRowToProduct(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting all products: " + e.getMessage());
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> getActiveProducts() {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM products WHERE is_active = TRUE ORDER BY title";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return products;
+
+        // Using PreparedStatement even without params is slightly safer practice
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(mapRowToProduct(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting active products: " + e.getMessage());
+        }
+        return products;
+    }
+
+    @Override
+    public boolean updateProduct(Product product) {
+         String sql = "UPDATE products SET title = ?, description = ?, price = ?, quantity = ?, " +
+                      "image_path = ?, publisher_name = ?, is_active = ? WHERE product_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, product.getTitle());
+            pstmt.setString(2, product.getDescription());
+            pstmt.setBigDecimal(3, product.getPrice());
+            pstmt.setInt(4, product.getQuantity());
+            pstmt.setString(5, product.getImagePath());
+            pstmt.setString(6, product.getPublisherName());
+            pstmt.setBoolean(7, product.isActive());
+            pstmt.setInt(8, product.getProductId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+             System.err.println("Error updating product: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateProductQuantity(int productId, int quantityChange) {
+         // IMPORTANT: Check current quantity first to prevent going negative if needed
+         // This simple version just applies the change. Add pre-check logic if required.
+         String sql = "UPDATE products SET quantity = quantity + ? WHERE product_id = ?";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return false;
+
+         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, quantityChange);
+            pstmt.setInt(2, productId);
+            // Add check: WHERE quantity + ? >= 0 if you cannot have negative stock
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updating product quantity: " + e.getMessage());
+            return false;
+        }
+    }
+
+     // Implementation for Hard Delete
+    @Override
+    public boolean deleteProduct(int productId) {
+         String sql = "DELETE FROM products WHERE product_id = ?";
+         Connection conn = DatabaseConnector.getConnection();
+          if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, productId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            // Foreign key constraint violation likely if product is in order_items
+             System.err.println("Error deleting product (check FK constraints): " + e.getMessage());
+            return false;
+        }
+    }
+
+    /* // Implementation for Soft Delete (alternative)
+    // @Override
+    public boolean deactivateProduct(int productId) {
+        String sql = "UPDATE products SET is_active = FALSE WHERE product_id = ?";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return false;
+         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             pstmt.setInt(1, productId);
+             return pstmt.executeUpdate() > 0;
+         } catch (SQLException e) {
+             System.err.println("Error deactivating product: " + e.getMessage());
+             return false;
+         }
+    }
+    */
+
+
+    private Product mapRowToProduct(ResultSet rs) throws SQLException {
+         return new Product(
+                rs.getInt("product_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getBigDecimal("price"),
+                rs.getInt("quantity"),
+                rs.getString("image_path"),
+                rs.getString("publisher_name"),
+                rs.getBoolean("is_active"),
+                rs.getTimestamp("created_at"),
+                rs.getTimestamp("updated_at")
+         );
+    }
+}
+
+
+--------------------------------------- dao/OrderDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.Order;
+import model.OrderItem;
+import util.DatabaseConnector;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class OrderDAOImpl implements OrderDAO {
+
+    private OrderItemDAO orderItemDAO = new OrderItemDAOImpl(); // Inject or instantiate
+    private ProductDAO productDAO = new ProductDAOImpl(); // Needed for stock update
+
+    @Override
+    public int createOrder(Order order, List<OrderItem> items) {
+        String insertOrderSQL = "INSERT INTO orders (user_id, total_amount, order_status, shipping_address) VALUES (?, ?, ?, ?)";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return -1;
+
+        int orderId = -1;
+
+        try {
+            // --- Start Transaction ---
+            conn.setAutoCommit(false);
+
+            // 1. Insert the Order record
+            try (PreparedStatement orderPstmt = conn.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS)) {
+                orderPstmt.setInt(1, order.getUserId());
+                orderPstmt.setBigDecimal(2, order.getTotalAmount());
+                orderPstmt.setString(3, order.getOrderStatus());
+                orderPstmt.setString(4, order.getShippingAddress());
+
+                int affectedRows = orderPstmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Creating order failed, no rows affected.");
+                }
+
+                // Get the generated Order ID
+                try (ResultSet generatedKeys = orderPstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        orderId = generatedKeys.getInt(1);
+                    } else {
+                        throw new SQLException("Creating order failed, no ID obtained.");
+                    }
+                }
+            }
+
+            // 2. Insert Order Items and Update Stock
+            for (OrderItem item : items) {
+                item.setOrderId(orderId); // Set the obtained orderId for the item
+                // Add the item using the SAME connection
+                if (!orderItemDAO.addOrderItem(item, conn)) {
+                     throw new SQLException("Failed to add order item: " + item.getProductId());
+                }
+
+                // Update product stock (decrease quantity) using the SAME connection (part of transaction)
+                 // Optional: Add check if update fails due to insufficient stock BEFORE adding item
+                boolean stockUpdated = productDAO.updateProductQuantity(item.getProductId(), -item.getQuantity());
+                // We need ProductDAO.updateProductQuantity to also use the passed connection
+                // Or we modify it here to use the connection:
+                // boolean stockUpdated = updateStock(item.getProductId(), -item.getQuantity(), conn);
+                if (!stockUpdated) {
+                    throw new SQLException("Failed to update stock for product ID: " + item.getProductId());
+                }
+
+            }
+
+            // --- Commit Transaction ---
+            conn.commit();
+            return orderId;
+
+        } catch (SQLException e) {
+            System.err.println("Transaction failed! Rolling back order creation: " + e.getMessage());
+            try {
+                if (conn != null) {
+                    conn.rollback(); // Rollback on error
+                }
+            } catch (SQLException ex) {
+                 System.err.println("Error during rollback: " + ex.getMessage());
+            }
+            return -1; // Indicate failure
+        } finally {
+            try {
+                 if (conn != null) {
+                    conn.setAutoCommit(true); // Reset auto-commit
+                    // DO NOT CLOSE the connection if using the shared connector
+                 }
+            } catch (SQLException ex) {
+                 System.err.println("Error resetting auto-commit: " + ex.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public Optional<Order> getOrderById(int orderId) {
+        String sql = "SELECT * FROM orders WHERE order_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return Optional.empty();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, orderId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToOrder(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting order by ID: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Order> getOrdersByUserId(int userId) {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return orders;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    orders.add(mapRowToOrder(rs));
+                }
+            }
+        } catch (SQLException e) {
+             System.err.println("Error getting orders by user ID: " + e.getMessage());
+        }
+        return orders;
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM orders ORDER BY order_date DESC";
+         Connection conn = DatabaseConnector.getConnection();
+         if (conn == null) return orders;
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                orders.add(mapRowToOrder(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting all orders: " + e.getMessage());
+        }
+        return orders;
+    }
+
+
+    @Override
+    public List<Order> getOrdersByStatus(String status) {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM orders WHERE order_status = ? ORDER BY order_date DESC";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return orders;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    orders.add(mapRowToOrder(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting orders by status: " + e.getMessage());
+        }
+        return orders;
+    }
+
+
+    @Override
+    public boolean updateOrderStatus(int orderId, String status) {
+        String sql = "UPDATE orders SET order_status = ? WHERE order_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, orderId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updating order status: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private Order mapRowToOrder(ResultSet rs) throws SQLException {
+        Order order = new Order();
+        order.setOrderId(rs.getInt("order_id"));
+        order.setUserId(rs.getInt("user_id"));
+        order.setTotalAmount(rs.getBigDecimal("total_amount"));
+        order.setOrderStatus(rs.getString("order_status"));
+        order.setOrderDate(rs.getTimestamp("order_date"));
+        order.setShippingAddress(rs.getString("shipping_address"));
+        return order;
+    }
+
+    // Helper to update stock using the transaction's connection (Example)
+    private boolean updateStock(int productId, int quantityChange, Connection conn) throws SQLException {
+         String sql = "UPDATE products SET quantity = quantity + ? WHERE product_id = ? AND quantity + ? >= 0"; // Prevent negative stock
+         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, quantityChange);
+            pstmt.setInt(2, productId);
+            pstmt.setInt(3, quantityChange); // For the check condition
+            return pstmt.executeUpdate() > 0;
+        }
+        // No catch here, let it propagate to rollback transaction if fails
+    }
+
+}
+
+
+--------------------------------------- dao/OrderItemDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.OrderItem;
+import util.DatabaseConnector; // Only needed if NOT using passed connection
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderItemDAOImpl implements OrderItemDAO {
+
+    // This method MUST use the connection passed from OrderDAO.createOrder's transaction
+    @Override
+    public boolean addOrderItem(OrderItem item, Connection connection) throws SQLException {
+        if (connection == null) {
+             throw new SQLException("Connection cannot be null for transactional operation.");
+        }
+        String sql = "INSERT INTO order_items (order_id, product_id, quantity, price_at_purchase) VALUES (?, ?, ?, ?)";
+
+        // Use the PASSED connection, DO NOT get a new one from DatabaseConnector here
+        // DO NOT close the PreparedStatement or Connection here, it's managed by the caller (OrderDAO)
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+             pstmt.setInt(1, item.getOrderId());
+             pstmt.setInt(2, item.getProductId());
+             pstmt.setInt(3, item.getQuantity());
+             pstmt.setBigDecimal(4, item.getPriceAtPurchase());
+             int affectedRows = pstmt.executeUpdate();
+             return affectedRows > 0;
+        }
+        // Let SQLException propagate up to OrderDAO to trigger rollback
+    }
+
+    @Override
+    public List<OrderItem> getItemsByOrderId(int orderId) {
+        List<OrderItem> items = new ArrayList<>();
+        String sql = "SELECT * FROM order_items WHERE order_id = ?";
+        // Okay to get a connection here as it's a read-only operation outside a transaction
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return items;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, orderId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    items.add(mapRowToOrderItem(rs));
+                }
+            }
+        } catch (SQLException e) {
+             System.err.println("Error getting order items by order ID: " + e.getMessage());
+        }
+        return items;
+    }
+
+    private OrderItem mapRowToOrderItem(ResultSet rs) throws SQLException {
+        OrderItem item = new OrderItem();
+        item.setOrderItemId(rs.getInt("order_item_id"));
+        item.setOrderId(rs.getInt("order_id"));
+        item.setProductId(rs.getInt("product_id"));
+        item.setQuantity(rs.getInt("quantity"));
+        item.setPriceAtPurchase(rs.getBigDecimal("price_at_purchase"));
+        return item;
+    }
+}
+
+
+
+--------------------------------------- dao/WishlistDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.WishlistItem;
+import util.DatabaseConnector;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class WishlistDAOImpl implements WishlistDAO {
+
+    @Override
+    public boolean addToWishlist(WishlistItem item) {
+        String sql = "INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, item.getUserId());
+            pstmt.setInt(2, item.getProductId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            // This likely means the (user_id, product_id) combination already exists (unique constraint)
+            System.err.println("Item already in wishlist or FK constraint failed: " + e.getMessage());
+            return false; // Indicate item was not added (as it likely already exists)
+        } catch (SQLException e) {
+            System.err.println("Error adding to wishlist: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeFromWishlist(int userId, int productId) {
+        String sql = "DELETE FROM wishlist WHERE user_id = ? AND product_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, productId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error removing from wishlist: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public List<WishlistItem> getWishlistByUserId(int userId) {
+        List<WishlistItem> wishlist = new ArrayList<>();
+        // Note: To get full Product details, you'd JOIN with the products table:
+        // String sql = "SELECT w.*, p.title, p.price /* etc */ FROM wishlist w JOIN products p ON w.product_id = p.product_id WHERE w.user_id = ?";
+        String sql = "SELECT * FROM wishlist WHERE user_id = ? ORDER BY added_at DESC";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return wishlist;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    wishlist.add(mapRowToWishlistItem(rs));
+                    // If joining, you would map to a Product object or a combined WishlistProduct object
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting wishlist by user ID: " + e.getMessage());
+        }
+        return wishlist;
+    }
+
+    @Override
+    public boolean isProductInWishlist(int userId, int productId) {
+        String sql = "SELECT COUNT(*) FROM wishlist WHERE user_id = ? AND product_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, productId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0; // Check if count is greater than 0
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking if product is in wishlist: " + e.getMessage());
+        }
+        return false;
+    }
+
+    private WishlistItem mapRowToWishlistItem(ResultSet rs) throws SQLException {
+        WishlistItem item = new WishlistItem();
+        item.setWishlistItemId(rs.getInt("wishlist_id"));
+        item.setUserId(rs.getInt("user_id"));
+        item.setProductId(rs.getInt("product_id"));
+        item.setAddedAt(rs.getTimestamp("added_at"));
+        return item;
+    }
+}
+
+
+--------------------------------------- dao/ContactMessageDAOImpl.java -------------------------------------------------
+
+
+package dao;
+
+import model.ContactMessage;
+import util.DatabaseConnector;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class ContactMessageDAOImpl implements ContactMessageDAO {
+
+    @Override
+    public boolean addMessage(ContactMessage message) {
+        String sql = "INSERT INTO contact_messages (sender_name, sender_email, subject, message) VALUES (?, ?, ?, ?)";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, message.getSenderName());
+            pstmt.setString(2, message.getSenderEmail());
+            pstmt.setString(3, message.getSubject());
+            pstmt.setString(4, message.getMessage());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error adding contact message: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public Optional<ContactMessage> getMessageById(int messageId) {
+        String sql = "SELECT * FROM contact_messages WHERE message_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return Optional.empty();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, messageId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToContactMessage(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting message by ID: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<ContactMessage> getAllMessages() {
+        List<ContactMessage> messages = new ArrayList<>();
+        String sql = "SELECT * FROM contact_messages ORDER BY received_at DESC";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return messages;
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                messages.add(mapRowToContactMessage(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting all messages: " + e.getMessage());
+        }
+        return messages;
+    }
+
+    @Override
+    public List<ContactMessage> getUnreadMessages() {
+        List<ContactMessage> messages = new ArrayList<>();
+        String sql = "SELECT * FROM contact_messages WHERE is_read = FALSE ORDER BY received_at DESC";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return messages;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); // PreparedStatement safe even without params
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                messages.add(mapRowToContactMessage(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting unread messages: " + e.getMessage());
+        }
+        return messages;
+    }
+
+    @Override
+    public boolean markAsRead(int messageId) {
+        String sql = "UPDATE contact_messages SET is_read = TRUE WHERE message_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, messageId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error marking message as read: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteMessage(int messageId) {
+        String sql = "DELETE FROM contact_messages WHERE message_id = ?";
+        Connection conn = DatabaseConnector.getConnection();
+        if (conn == null) return false;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, messageId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error deleting message: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private ContactMessage mapRowToContactMessage(ResultSet rs) throws SQLException {
+        ContactMessage msg = new ContactMessage();
+        msg.setMessageId(rs.getInt("message_id"));
+        msg.setSenderName(rs.getString("sender_name"));
+        msg.setSenderEmail(rs.getString("sender_email"));
+        msg.setSubject(rs.getString("subject"));
+        msg.setMessage(rs.getString("message"));
+        msg.setReceivedAt(rs.getTimestamp("received_at"));
+        msg.setRead(rs.getBoolean("is_read"));
+        return msg;
+    }
+}
+
+
+
+======================================== JSP Files ===========================================
+Okay, let's create the frontend UI structure using JSP, Bootstrap 5, and jQuery, incorporating CSRF protection.
+
+This will involve creating several JSP files, typically placed within the webapp directory (or src/main/webapp in a Maven project structure), often organized into subfolders like WEB-INF/view/ for security (preventing direct access) and WEB-INF/view/admin/ for admin pages. Common elements like headers and footers are often put in WEB-INF/view/common/.
+
+Prerequisites:
+
+JSTL Library: Ensure you have the JSTL library JAR(s) (e.g., jakarta.servlet.jsp.jstl-api-*.jar and jakarta.servlet.jsp.jstl-*.jar or equivalents for your server like taglibs-standard-impl-*.jar and taglibs-standard-spec-*.jar) in your project's WEB-INF/lib directory or included via your build tool (Maven/Gradle).
+Servlets: Assumes your Servlets are correctly set up to:
+Forward requests to these JSP pages.
+Set necessary data as request attributes (e.g., request.setAttribute("products", productList)).
+Set the CSRF token in the request scope for forms: request.setAttribute("csrfToken", sessionCsrfToken).
+
+
+----------------------------- 1. Common Header (/WEB-INF/view/common/header.jsp) --------------------------------------------
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%-- JSTL Core --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> <%-- JSTL Formatting (for currency etc.) --%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><c:out value="${not empty pageTitle ? pageTitle : 'My E-Commerce Site'}"/></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+
+    <style>
+        /* Basic styles for wishlist icon */
+        .wishlist-icon {
+            cursor: pointer;
+            color: #ccc; /* Default grey */
+            font-size: 1.5rem;
+        }
+        .wishlist-icon.active {
+            color: #dc3545; /* Bootstrap danger red when active */
+        }
+        body { padding-top: 56px; } /* Adjust body padding if using fixed-top navbar */
+        .footer { background-color: #f8f9fa; padding: 1rem 0; margin-top: 2rem; }
+        .product-card img { max-height: 200px; object-fit: contain; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/home">BookStore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                </li>
+                 <c:if test="${sessionScope.userRole == 'ADMIN'}">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Admin Panel
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                          <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/dashboard">Dashboard</a></li>
+                          <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/products">Manage Products</a></li>
+                          <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/orders">Manage Orders</a></li>
+                          <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/messages">View Messages</a></li>
+                        </ul>
+                      </li>
+                 </c:if>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                 <li class="nav-item">
+                     <a class="nav-link" href="${pageContext.request.contextPath}/cart">
+                         <i class="fas fa-shopping-cart"></i> Cart
+                         <%-- Optional: Display item count --%>
+                         <c:if test="${not empty sessionScope.cart && sessionScope.cart.size() > 0}">
+                             <span class="badge bg-danger ms-1">${sessionScope.cart.size()}</span>
+                         </c:if>
+                     </a>
+                 </li>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.userName}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <c:out value="${sessionScope.userName}"/>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">My Account</a></li> <%-- TODO: Link to account page --%>
+                                <li><a class="dropdown-item" href="#">Order History</a></li> <%-- TODO: Link to order history page --%>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="${pageContext.request.contextPath}/logout" method="post" class="d-inline">
+                                         <%-- CSRF Token for Logout POST request --%>
+                                        <input type="hidden" name="csrfToken" value="${csrfToken}" />
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/register">Register</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4"> <%-- Main content container starts here --%>
+    <%-- Display feedback messages passed from Servlets --%>
+    <c:if test="${not empty sessionScope.successMessage}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <c:out value="${sessionScope.successMessage}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <c:remove var="successMessage" scope="session"/> <%-- Remove after displaying --%>
+    </c:if>
+    <c:if test="${not empty sessionScope.errorMessage}">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <c:out value="${sessionScope.errorMessage}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <c:remove var="errorMessage" scope="session"/> <%-- Remove after displaying --%>
+    </c:if>
+     <c:if test="${not empty sessionScope.cartMessage}">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <c:out value="${sessionScope.cartMessage}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <c:remove var="cartMessage" scope="session"/> <%-- Remove after displaying --%>
+    </c:if>
+      <c:if test="${not empty sessionScope.cartError}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <c:out value="${sessionScope.cartError}"/>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <c:remove var="cartError" scope="session"/> <%-- Remove after displaying --%>
+    </c:if>
+
+
+----------------------------- 2. Common Footer (/WEB-INF/view/common/footer.jsp) --------------------------------------------
+
+</div> <%-- Ends the main content container from header.jsp --%>
+
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container text-center">
+    <span class="text-muted">© <fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy"/> Your BookStore Name. All rights reserved.</span>
+     <p class="text-muted small">Current Time: <fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd HH:mm:ss z"/> </p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/js/script.js"></script>
+
+<script>
+// Basic Wishlist Toggle Example (more robust implementation needed for AJAX)
+$(function() { // Shorthand for $(document).ready()
+    $('.wishlist-icon').on('click', function() {
+        var $icon = $(this);
+        var productId = $icon.data('product-id'); // Assuming you add data-product-id attribute to the icon
+        var isActive = $icon.hasClass('active');
+        var url = isActive
+                    ? '${pageContext.request.contextPath}/removeFromWishlist' // URL to remove servlet
+                    : '${pageContext.request.contextPath}/addToWishlist';    // URL to add servlet
+
+        console.log((isActive ? 'Removing from' : 'Adding to') + ' wishlist, Product ID: ' + productId);
+
+        // !!! IMPORTANT: This is a basic toggle simulation.
+        // For actual functionality:
+        // 1. Use AJAX ($.post) to send the productId and CSRF token to the correct servlet (addToWishlist or removeFromWishlist).
+        // 2. The servlet should handle the request (check login, add/remove from DB via DAO).
+        // 3. On AJAX success, THEN toggle the class ($icon.toggleClass('active')).
+        // 4. Handle AJAX errors appropriately.
+        // 5. CSRF token needs to be included in the AJAX POST data. You might fetch it from a hidden input or a meta tag.
+
+        // --- AJAX Example Structure (Requires CSRF handling) ---
+        /*
+        var csrfToken = $('input[name="csrfToken"]').val(); // Assuming a hidden token exists on the page
+        if (!csrfToken) { // Or get from a global JS variable set on page load
+             console.error('CSRF Token not found!');
+             // Maybe fetch it first if not readily available?
+             return;
+        }
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                productId: productId,
+                csrfToken: csrfToken // Send CSRF token with the request
+            },
+            success: function(response) {
+                // Check response from server if necessary
+                console.log('Wishlist action successful for product ' + productId);
+                $icon.toggleClass('active'); // Toggle icon visually on success
+                // Maybe update a wishlist count display elsewhere?
+            },
+            error: function(xhr, status, error) {
+                console.error('Wishlist action failed:', status, error);
+                // Optionally show an error message to the user
+                alert('Could not update wishlist. Please try again.');
+            }
+        });
+        */
+
+        // --- Basic Visual Toggle (Remove this line when using AJAX) ---
+         $icon.toggleClass('active');
+         alert('Wishlist icon toggled (visual only). Implement AJAX call for real functionality.');
+         //------------------------------------------------------------
+
+    });
+
+    // Add other common jQuery functions here if needed
+});
+</script>
+
+</body>
+</html>
+
+
+----------------------------- 3. Home Page (/WEB-INF/view/index.jsp) --------------------------------------------
+
+<jsp:include page="common/header.jsp" />
+
+<%-- Use pageTitle set in servlet, or provide default --%>
+<c:set var="pageTitle" value="Welcome!" scope="request"/>
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Your E-Commerce Bookstore</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+          <%-- Text set in HomeServlet --%>
+          <c:out value="${not empty homePageText ? homePageText : 'Find your next great read with us. Explore our curated collection of books.'}"/>
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="${pageContext.request.contextPath}/products" type="button" class="btn btn-primary btn-lg px-4 gap-3">Browse Products</a>
+        <a href="${pageContext.request.contextPath}/register" type="button" class="btn btn-outline-secondary btn-lg px-4">Register Now</a>
+      </div>
+    </div>
+</div>
+
+<%-- Example: Display Featured Products (passed from HomeServlet) --%>
+<c:if test="${not empty featuredProducts}">
+    <div class="container px-4 py-5" id="featured-products">
+        <h2 class="pb-2 border-bottom text-center">Featured Books</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+             <c:forEach var="product" items="${featuredProducts}">
+                 <div class="col">
+                     <div class="card h-100 product-card">
+                         <a href="${pageContext.request.contextPath}/products?id=${product.productId}">
+                             <img src="${pageContext.request.contextPath}/${not empty product.imagePath ? product.imagePath : 'images/placeholder.png'}" class="card-img-top" alt="${product.title}">
+                         </a>
+                         <div class="card-body d-flex flex-column">
+                             <h5 class="card-title"><c:out value="${product.title}"/></h5>
+                             <%-- <p class="card-text flex-grow-1"><c:out value="${product.shortDescription}"/></p> --%> <%-- Add shortDesc if needed --%>
+                             <p class="card-text fw-bold"><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$"/></p> <%-- Adjust currency --%>
+                         </div>
+                         <div class="card-footer bg-transparent border-top-0 text-center">
+                             <form action="${pageContext.request.contextPath}/addToCart" method="post" class="d-inline">
+                                 <input type="hidden" name="productId" value="${product.productId}" />
+                                 <input type="hidden" name="quantity" value="1" />
+                                 <%-- CSRF Token is needed for POST to addToCart --%>
+                                 <input type="hidden" name="csrfToken" value="${csrfToken}" />
+                                 <button type="submit" class="btn btn-sm btn-success">
+                                     <i class="fas fa-cart-plus"></i> Add to Cart
+                                 </button>
+                             </form>
+                              <%-- Wishlist Icon (basic structure) - Requires login ideally --%>
+                             <c:if test="${not empty sessionScope.userName}">
+                                <i class="fas fa-heart wishlist-icon ms-2" data-product-id="${product.productId}" title="Add to Wishlist"></i>
+                                 <%-- TODO: Check if product is already in wishlist (via attribute from servlet) and add 'active' class if needed --%>
+                             </c:if>
+                         </div>
+                     </div>
+                 </div>
+             </c:forEach>
+        </div>
+    </div>
+</c:if>
+
+
+<jsp:include page="common/footer.jsp" />
+
+
+----------------------------- 4. Cart Page (/WEB-INF/view/cart.jsp) --------------------------------------------
+
+<jsp:include page="common/header.jsp" />
+
+<c:set var="pageTitle" value="Shopping Cart" scope="request"/>
+
+<div class="container my-4">
+    <h2>Your Shopping Cart</h2>
+
+    <c:choose>
+        <c:when test="${isEmpty}">
+             <div class="alert alert-info text-center mt-4">
+                 No product added yet. <a href="${pageContext.request.contextPath}/products" class="alert-link">Continue Shopping</a>.
+             </div>
+        </c:when>
+        <c:otherwise>
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <%-- ======================================================= --%>
+                         <%-- ==    REAL IMPLEMENTATION USING DAO AND DETAILED CART == --%>
+                         <%-- ======================================================= --%>
+                        <%--
+                        <c:forEach var="entry" items="${detailedCart}"> <%-- detailedCart is Map<Product, Integer> --%>
+                            <%-- <c:set var="product" value="${entry.key}"/> --%>
+                            <%-- <c:set var="quantity" value="${entry.value}"/> --%>
+                            <%-- <tr class="cart-item" data-product-id="${product.productId}"> --%>
+                                <%-- <td><img src="${pageContext.request.contextPath}/${not empty product.imagePath ? product.imagePath : 'images/placeholder.png'}" alt="${product.title}" style="width: 50px; height:auto;"></td> --%>
+                                <%-- <td><a href="${pageContext.request.contextPath}/products?id=${product.productId}"><c:out value="${product.title}"/></a></td> --%>
+                                <%-- <td class="item-price"><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$"/></td> --%>
+                                <%-- <td> --%>
+                                    <%-- Form for quantity update (or use AJAX buttons) --%>
+                                    <%-- <form action="${pageContext.request.contextPath}/updateCart" method="post" class="d-inline update-cart-form"> --%>
+                                        <%-- <input type="hidden" name="productId" value="${product.productId}"> --%>
+                                        <%-- <input type="hidden" name="csrfToken" value="${csrfToken}" /> --%>
+                                        <%-- <input type="number" name="quantity" value="${quantity}" min="1" max="${product.quantity}" class="form-control form-control-sm quantity-input" style="width: 70px;"> --%>
+                                        <%-- Optional: Add update button or trigger on change --%>
+                                    <%-- </form> --%>
+                                <%-- </td> --%>
+                                <%-- <td class="item-subtotal"><fmt:formatNumber value="${product.price * quantity}" type="currency" currencySymbol="$"/></td> --%>
+                                <%-- <td> --%>
+                                    <%-- Form for removing item --%>
+                                    <%-- <form action="${pageContext.request.contextPath}/removeFromCart" method="post" class="d-inline remove-cart-form"> --%>
+                                        <%-- <input type="hidden" name="productId" value="${product.productId}"> --%>
+                                        <%-- <input type="hidden" name="csrfToken" value="${csrfToken}" /> --%>
+                                        <%-- <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button> --%>
+                                    <%-- </form> --%>
+                                <%-- </td> --%>
+                            <%-- </tr> --%>
+                        <%-- </c:forEach> --%>
+                        <%-- ======================================================= --%>
+
+
+                         <%-- ======================================================= --%>
+                         <%-- ==         PLACEHOLDER IMPLEMENTATION               == --%>
+                         <%-- == (Using detailedCartPlaceholder from CartServlet) == --%>
+                         <%-- ======================================================= --%>
+                         <c:forEach var="entry" items="${detailedCartPlaceholder}">
+                              <c:set var="itemDetails" value="${entry.value}"/> <%-- itemDetails is Map<String, Object> --%>
+                              <tr>
+                                <td><img src="${pageContext.request.contextPath}/images/placeholder.png" alt="Placeholder" style="width: 50px; height:auto;"></td>
+                                <td><c:out value="${itemDetails.title}"/></td>
+                                <td><fmt:formatNumber value="${itemDetails.price}" type="currency" currencySymbol="$"/></td>
+                                <td>
+                                     <input type="number" value="${itemDetails.quantity}" min="1" class="form-control form-control-sm quantity-input" style="width: 70px;" disabled> <%-- Placeholder quantity --%>
+                                </td>
+                                <td><fmt:formatNumber value="${itemDetails.price * itemDetails.quantity}" type="currency" currencySymbol="$"/></td>
+                                <td><button class="btn btn-sm btn-danger" disabled><i class="fas fa-trash"></i></button></td> <%-- Placeholder remove --%>
+                              </tr>
+                         </c:forEach>
+                         <%-- ======================================================= --%>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                             <td colspan="4" class="text-end fw-bold">Total:</td>
+                             <td colspan="2" class="fw-bold cart-total">
+                                 <fmt:formatNumber value="${cartTotal}" type="currency" currencySymbol="$"/>
+                             </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
+                <a href="${pageContext.request.contextPath}/products" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.userName}">
+                         <%-- Checkout button (form POST recommended for CSRF) --%>
+                         <form action="${pageContext.request.contextPath}/checkout" method="get"> <%-- GET to show checkout page --%>
+                            <%-- If checkout needed CSRF immediately, add hidden input & change method to POST --%>
+                            <%-- <input type="hidden" name="csrfToken" value="${csrfToken}" /> --%>
+                             <button type="submit" class="btn btn-primary">
+                                Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                             </button>
+                         </form>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/login?redirect=cart" class="btn btn-warning">Login to Checkout</a>
+                        <%-- Pass redirect parameter so login page knows where to send user back --%>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
+        </c:otherwise>
+    </c:choose>
+</div>
+
+<%-- Add jQuery for cart updates (Quantity change, Remove button) --%>
+<script>
+$(function() {
+    // --- Quantity Update ---
+    // Example: Update subtotal/total visually on quantity change
+    $('.quantity-input').on('change', function() {
+        var $input = $(this);
+        var $row = $input.closest('.cart-item'); // Find parent row
+        var productId = $row.data('product-id');
+        var newQuantity = parseInt($input.val());
+        var price = parseFloat($row.find('.item-price').text().replace(/[^0-9.]/g, '')); // Extract price
+
+        if (isNaN(newQuantity) || newQuantity < 1) {
+            // Handle invalid input, maybe reset to previous value or 1
+            $input.val(1); // Example reset
+            newQuantity = 1;
+        }
+        // TODO: Check against max available quantity if needed (product.quantity)
+
+        // Update subtotal for this row
+        var subtotal = price * newQuantity;
+        $row.find('.item-subtotal').text( '$' + subtotal.toFixed(2) ); // Update display
+
+        // Update overall cart total
+        updateCartTotal();
+
+        // !!! IMPORTANT: Send this update to the server via AJAX !!!
+        // Use $.post to call UpdateCartServlet with productId, newQuantity, and csrfToken
+        // Update server-side session/DB cart. Handle success/error.
+         console.log("Quantity changed for " + productId + " to " + newQuantity + ". Need AJAX call.");
+         alert("Quantity update requires AJAX call to UpdateCartServlet.");
+
+    });
+
+    // --- Remove Item ---
+    // Example: Handle form submission for removal
+     $('.remove-cart-form').on('submit', function(e) {
+         if (!confirm('Are you sure you want to remove this item from your cart?')) {
+             e.preventDefault(); // Prevent form submission if user cancels
+         }
+         // Form will submit via POST with CSRF token to RemoveFromCartServlet
+     });
+
+
+    // --- Function to Recalculate Total ---
+    function updateCartTotal() {
+        var total = 0;
+        $('.cart-item').each(function() {
+            var subtotalText = $(this).find('.item-subtotal').text();
+            var subtotalValue = parseFloat(subtotalText.replace(/[^0-9.]/g, ''));
+            if (!isNaN(subtotalValue)) {
+                total += subtotalValue;
+            }
+        });
+        $('.cart-total').text( '$' + total.toFixed(2) );
+    }
+
+});
+</script>
+
+<jsp:include page="common/footer.jsp" />
+
+
+----------------------------- 5. Login Page (/WEB-INF/view/login.jsp) --------------------------------------------
+
+<jsp:include page="common/header.jsp" />
+
+<c:set var="pageTitle" value="Login" scope="request"/>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4>Login</h4>
+                </div>
+                <div class="card-body">
+                    <form action="${pageContext.request.contextPath}/login" method="post">
+                         <%-- CSRF Token is essential for login forms --%>
+                         <input type="hidden" name="csrfToken" value="${csrfToken}" />
+
+                         <%-- Hidden field for redirect target (if any) --%>
+                         <c:if test="${not empty param.redirect}">
+                             <input type="hidden" name="redirect" value="<c:out value='${param.redirect}'/>" />
+                         </c:if>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <%-- Optional: Remember me checkbox --%>
+                        <%-- <div class="mb-3 form-check"> --%>
+                            <%-- <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe"> --%>
+                            <%-- <label class="form-check-label" for="rememberMe">Remember me</label> --%>
+                        <%-- </div> --%>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Don't have an account? <a href="${pageContext.request.contextPath}/register">Register here</a></p>
+                        <%-- Optional: Forgot password link --%>
+                        <%-- <p><a href="#">Forgot password?</a></p> --%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<jsp:include page="common/footer.jsp" />
+
+
+----------------------------- 6. Registration Page (/WEB-INF/view/register.jsp) --------------------------------------------
+
+<jsp:include page="common/header.jsp" />
+
+<c:set var="pageTitle" value="Register" scope="request"/>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4>Create Account</h4>
+                </div>
+                <div class="card-body">
+                    <form action="${pageContext.request.contextPath}/register" method="post" id="registerForm">
+                         <%-- CSRF Token is essential for registration --%>
+                         <input type="hidden" name="csrfToken" value="${csrfToken}" />
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                         <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                         <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                             <div id="passwordHelpBlock" class="form-text">
+                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji. (Adjust requirements as needed)
+                            </div>
+                        </div>
+                         <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                    </form>
+                     <div class="mt-3 text-center">
+                        <p>Already have an account? <a href="${pageContext.request.contextPath}/login">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Basic client-side validation example
+$(function() {
+    $('#registerForm').on('submit', function(e) {
+        var password = $('#password').val();
+        var confirmPassword = $('#confirmPassword').val();
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            e.preventDefault(); // Stop form submission
+            $('#confirmPassword').focus(); // Focus the field
+            return false;
+        }
+        // Add more complex password strength validation if needed
+        // Example: if (password.length < 8) { alert('Password too short!'); e.preventDefault(); return false; }
+    });
+});
+</script>
+
+<jsp:include page="common/footer.jsp" />
+
+
+----------------------------- 7. Admin Product Add Page (/WEB-INF/view/admin/addProduct.jsp) --------------------------------------------
+
+<jsp:include page="../common/header.jsp" /> <%-- Note the relative path --%>
+
+<c:set var="pageTitle" value="Admin - Add Product" scope="request"/>
+
+<div class="container my-4">
+    <h2>Add New Product</h2>
+    <hr>
+
+     <form action="${pageContext.request.contextPath}/admin/products/add" method="post" enctype="multipart/form-data">
+        <%-- CSRF Token is essential --%>
+        <input type="hidden" name="csrfToken" value="${csrfToken}" />
+
+        <div class="row g-3">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Product Title <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                 <div class="mb-3">
+                    <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span> <%-- Adjust currency symbol --%>
+                        <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required>
+                    </div>
+                 </div>
+                 <div class="mb-3">
+                    <label for="quantity" class="form-label">Total Quantity <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" min="0" required>
+                 </div>
+                 <div class="mb-3">
+                    <label for="publisherName" class="form-label">Publisher Name</label>
+                    <input type="text" class="form-control" id="publisherName" name="publisherName">
+                 </div>
+                 <div class="mb-3">
+                     <label for="imageFile" class="form-label">Product Image</label>
+                     <input class="form-control" type="file" id="imageFile" name="imageFile" accept="image/png, image/jpeg, image/gif">
+                 </div>
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="isActive" name="isActive" value="on" checked>
+                    <label class="form-check-label" for="isActive">
+                      Product is Active
+                    </label>
+                 </div>
+            </div>
+        </div>
+
+         <hr>
+        <div class="d-flex justify-content-end">
+             <a href="${pageContext.request.contextPath}/admin/products" class="btn btn-secondary me-2">Cancel</a>
+             <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+     </form>
+
+</div>
+
+<jsp:include page="../common/footer.jsp" />
+
+
+
+
+============================Notes:
+
+Admin Pages: Create similar JSP files for other admin functionalities (editProduct.jsp, productList.jsp, orderList.jsp, orderDetail.jsp, messageList.jsp) using Bootstrap tables, forms, cards, etc., 
+and JSTL to display data passed from the corresponding admin servlets. Always include the CSRF token in forms.
+
+Product/Wishlist Pages: Use the structure shown in index.jsp (Bootstrap Cards) for productList.jsp. productDetail.jsp would show more details for a single product. wishlist.jsp would list items similar to the cart.
+Checkout/Confirmation: checkout.jsp would typically contain forms for shipping/billing addresses (if not saved to user profile) and a summary before final submission. orderConfirmation.jsp shows a success message and order details after placing the order.
+
+jQuery AJAX: The examples show basic jQuery setup. For dynamic cart/wishlist updates without page reloads, you need to implement $.ajax calls that send data (including the csrfToken) to dedicated Servlets (or specific actions within existing Servlets) and handle the JSON response to update the UI.
+CSS/JS: Create style.css and script.js in your webapp/css and webapp/js folders for custom styles and JavaScript logic beyond the basics.
+Security: Remember that the WEB-INF directory prevents direct browser access to JSPs, which is good practice. Servlets control access and forward requests. Implement proper authorization checks in Servlets to protect admin pages and user-specific data.
+Error Handling: Include more robust display of validation errors (e.g., highlighting fields, showing specific error messages next to inputs) passed back from the servlets.
+Have Gemini write a document or code that you can edit
+
+
+
+
+
+
+
