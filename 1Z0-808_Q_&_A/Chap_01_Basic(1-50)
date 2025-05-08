@@ -184,20 +184,20 @@ VERY EASY.
         7: System.out.print(today + tolls.tomorrow + tolls.yesterday);
         8: }
         9: }
-        A. The code does not compile due to line 6.
-        B. The code does not compile due to line 7.
-        C. 31
-        D. 61
+                A. The code does not compile due to line 6.
+                B. The code does not compile due to line 7.
+                C. 31
+                D. 61
 
 22. Given the following class definition, which is the only line that does not contain a compilation error?
         1: public ThisClassDoesNotCompile {
         2: double int count;
         3: void errors() {}
         4: static void private limit; }
-        A. Line 1
-        B. Line 2
-        C. Line 3
-        D. Line 4
+                A. Line 1
+                B. Line 2
+                C. Line 3
+                D. Line 4
 
 23. Which of the following features allows a Java class to be run on a wide variety of computers and devices?
         A. Encapsulation
