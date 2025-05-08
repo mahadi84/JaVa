@@ -647,7 +647,7 @@ to execute a Java class. Option C is the only correct answer, as the JVM does re
 
 This chapter covers fundamental Java concepts including:
 - Java syntax basics (entry point methods, file structure, comments)
-- Object-oriented programming principles
+- Object-oriented programming principles(e.g.IPEA)
 - Variables and scope
 - Packages and imports
 - Compilation and execution
