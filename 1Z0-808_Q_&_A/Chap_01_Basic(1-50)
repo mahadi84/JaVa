@@ -81,11 +81,11 @@ VERY EASY.
         }
         }
         -----------------------------------------------------
-        Variable | Type Number of Variables Accessible at P1
+        Variable Type | Number of Variables Accessible at P1
         -----------------------------------------------------
-        Class        __
-        Instance     __
-        Local        __
+        Class          __
+        Instance       __
+        Local          __
 
         A. 2, 0, 1
         B. 2, 2, 1
