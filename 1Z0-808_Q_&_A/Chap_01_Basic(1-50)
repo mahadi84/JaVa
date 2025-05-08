@@ -627,6 +627,7 @@ therefore, Option A is the correct answer.
 45. D. The code compiles and runs without issue, so Option A is incorrect. The question involves understanding the value and scope of each variable at the print() statement. 
 The variables feet and tracks are locally scoped and set to 4 and 15, respectively, ignoring the value of tracks of 5 in the instance of the class. Finally, the static variable s.wheels has
 a value of 1. The result is the combined value is 20, making Option D the correct answer.
+
 46. B. First off, the color variable defined in the instance and set to red is ignored in the method printColor() as local scope overrides instance scope, so Option A is incorrect.
 The value of color passed to the printColor() method is blue, but that is lost by the assignment to purple, making Option B the correct answer and Option C incorrect.
 Option D is incorrect as the code compiles and runs without issue.
