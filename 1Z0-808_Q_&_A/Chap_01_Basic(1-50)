@@ -272,9 +272,9 @@ For this question, assume that the Blackhole class is defined only in the stars 
         D. Java allows direct access to objects in memory.
 
 32. Given the following code, what values inserted in order into the blank lines, allow the code to compile?
-        agent;
-        public Banker {
-        private static getMaxWithdrawal() {
+        _ agent;
+        public _ Banker {
+        private static _ getMaxWithdrawal() {
         return 10;
         }
         }
