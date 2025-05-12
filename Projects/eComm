@@ -1,0 +1,12 @@
+Date: 12 May-2025
+
+
+Create a responsive single page  ecommarce website with menu( home, products, cart icon) for products using this uploaded logo(color and font) with bootstrap 5
+
+Add  product and its price, add and minus counter with live update into cart and add cart icon instead of menu and show product counter 
+while click on add product button and use jquery to do so.
+
+
+Create a product details modal page and add a to cart button to it, when the customer clicks on the product image, the product details page pops up
+
+Add a success message that appears when a product is added to the cart and then fades out.
