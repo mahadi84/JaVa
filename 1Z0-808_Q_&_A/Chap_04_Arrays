@@ -648,7 +648,7 @@ This chapter covers essential Java concepts related to:
 - Varargs (variable arguments) syntax and behavior
 - Multidimensional arrays
 - Array searching and sorting
-- Common array operations and pitfalls
+- Common array operations and pitfalls(ফাঁদ)
 
 ## Key Concepts to Master
 
