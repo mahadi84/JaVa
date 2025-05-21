@@ -65,7 +65,8 @@ This chapter covers essential Java concepts related to:
 ### 2. Varargs
 - Syntax: `methodName(Type... paramName)`
 - Treated as an array within the method
-- Must be the last parameter in method signature
+- Must be the last parameter in method signature [এর কারণ হলো, ভ্যারআর্গস মূলত একটি পরিবর্তনশীল সংখ্যক আর্গুমেন্ট গ্রহণ করে। 
+  যদি এটি শেষ প্যারামিটার না হয়, তাহলে কম্পাইলারের পক্ষে বোঝা কঠিন হবে যে কখন ভ্যারআর্গসের জন্য আর্গুমেন্ট শেষ হচ্ছে এবং পরবর্তী প্যারামিটারের জন্য শুরু হচ্ছে।]
 - Can be called with individual arguments or array
 
 ### 3. Multidimensional Arrays
