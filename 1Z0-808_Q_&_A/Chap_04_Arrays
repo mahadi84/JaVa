@@ -654,10 +654,8 @@ Pay special attention to syntax variations, multidimensional array structures, a
         D. The output is not defined.
         
 48. Which of the following statements are true?
-        I. You can always change a method signature from call(String[] arg) to
-        call(String... arg) without causing a compiler error in the calling code.
-        II. You can always change a method signature from call(String... arg) to
-        call(String[] arg) without causing a compiler error in the existing code.
+        I. You can always change a method signature from call(String[] arg) to call(String... arg) without causing a compiler error in the calling code.
+        II. You can always change a method signature from call(String... arg) to call(String[] arg) without causing a compiler error in the existing code.
         A. I
         B. II
         C. Both I and II
