@@ -59,17 +59,11 @@ This chapter covers essential Java loop constructs including:
 
 ### 3. Important Syntax Rules
 - All segments in traditional for loop are optional:
-  ```java
   for(;;) {}  // Valid infinite loop
-  ```
 - Enhanced for loop syntax:
-  ```java
   for(Type var : collection) {}
-  ```
 - do-while requires semicolon after condition:
-  ```java
   do {} while(condition);
-  ```
 
 ## Exam Preparation Strategy
 
