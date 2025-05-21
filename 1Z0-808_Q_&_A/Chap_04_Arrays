@@ -72,6 +72,31 @@ This chapter covers essential Java concepts related to:
 ### 3. Multidimensional Arrays
 - Arrays of arrays (not true matrices)
 - Can be irregular (subarrays of different lengths)
+              int[][] my2DArray = new int[3][]; // ৩টি সারির একটি অ্যারে তৈরি করছি, তবে কলামের সংখ্যা এখনো নির্দিষ্ট করিনি              
+             
+            // প্রথম সারিতে ২টি উপাদান
+              my2DArray[0] = new int[2];
+              my2DArray[0][0] = 10;
+              my2DArray[0][1] = 20;              
+             
+          // দ্বিতীয় সারিতে ৩টি উপাদান
+              my2DArray[1] = new int[3];
+              my2DArray[1][0] = 30;
+              my2DArray[1][1] = 40;
+              my2DArray[1][2] = 50; 
+
+          // তৃতীয় সারিতে ১টি উপাদান
+              my2DArray[2] = new int[1];
+              my2DArray[2][0] = 60;
+
+              // এখন my2DArray দেখতে কেমন:
+              // [
+              //   [10, 20],
+              //   [30, 40, 50],
+              //   [60]
+              // ]
+
+
 - Declaration syntax variations:
   - `int[][] arr`
   - `int[] arr[]`
