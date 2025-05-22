@@ -50,7 +50,7 @@ This chapter covers essential Java loop constructs including:
 | while           | Boolean condition controls entry     | Before first iteration | 0                  |
 | do-while        | Boolean condition controls repetition| After first iteration  | 1                  |
 | traditional for | Counter-based with 3 segments        | Before each iteration  | 0                  |
-| enhanced for    | Iterates through collections/arrays  | Implicit               | 0                  |
+| enhanced for    | Iterates through collections/arrays  | Implicit(অন্তর্নিহিত)     | 0                  |
 
 ### 2. Loop Control Statements
 - break: Exits the current loop immediately
