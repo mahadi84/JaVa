@@ -45,12 +45,12 @@ This chapter covers essential Java loop constructs including:
 
 ### 1. Loop Types and Characteristics
 
-| Loop Type       | Key Feature                          | When Condition Checked | Minimum Executions |
-|-----------------|--------------------------------------|------------------------|--------------------|
-| while           | Boolean condition controls entry     | Before first iteration | 0                  |
-| do-while        | Boolean condition controls repetition| After first iteration  | 1                  |
-| traditional for | Counter-based with 3 segments        | Before each iteration  | 0                  |
-| enhanced for    | Iterates through collections/arrays  | Implicit(অন্তর্নিহিত)     | 0                  |
+| লুপের ধরণ       | মূল বৈশিষ্ট্য                           | কখন শর্ত পরীক্ষা করা হয় | সর্বনিম্ন কতবার চলবে |
+|-----------------|-------------------------------------|------------------------|--------------------|
+| while           | বুলিয়ান শর্ত প্রবেশের নিয়ন্ত্রণ করে        | প্রথম পুনরাবৃত্তির আগে     | ০                  |
+| do-while        | বুলিয়ান শর্ত পুনরাবৃত্তি নিয়ন্ত্রণ করে       | প্রথম পুনরাবৃত্তির পরে      | ১                  |
+| Traditional for | ৩টি অংশ সহ কাউন্টার-ভিত্তিক          | প্রতিটি পুনরাবৃত্তির আগে    | ০                  |
+| Enhanced for    | কালেকশন/অ্যারের মাধ্যমে পুনরাবৃত্তি করে | অন্তর্নিহিত                | ০                  |
 
 ### 2. Loop Control Statements
 - break: Exits the current loop immediately
