@@ -40,7 +40,64 @@ Software Bug হলো এমন কিছু ভুল বা অপ্রত�
 * "আপনি কি মনে করেন জাভার মৌলিক বিষয়গুলো শেখা ব্যাংকিং ডোমেইনে নতুন কোনো প্রযুক্তি বা সুযোগ অনুসন্ধানে আপনাকে সাহায্য করতে পারে?"
 * "জাভার একটি বিশাল ইকোসিস্টেম এবং কমিউনিটি রয়েছে। এর মৌলিক বিষয়গুলো জানা কি সেই রিসোর্সগুলো আরও ভালোভাবে ব্যবহার করতে সাহায্য করবে?"
 
+============================================================================================
+This chapter covers fundamental Java concepts including:
+-১৯৯১, Company: Sun Microsystems, Founder:James Gosling, Mike Sheridan এবং Patrick Naughton,  Project: Green Team, প্রাথমিক লক্ষ্য: এমন একটি ভাষা তৈরি করা যা বিভিন্ন ইলেকট্রনিক ডিভাইসে ব্যবহার করা যাবে।
+-১৯৯২, Languag Name: Oak(ওক গাছের নামানুসারে),
+-১৯৯৪,  Oak to Java(নামটি ইন্দোনেশিয়ার জাভা কফি থেকে)
+-WORA -"Write Once, Run Anywhere" 
 
+- Java syntax basics (entry point methods, file structure, comments)
+- Object-oriented programming principles(e.g.IPEA)
+- Variables and scope 
+- Packages and imports (PIC)
+- Compilation and execution
+- JVM fundamentals
+
+## How to Understand and Answer These Questions Effectively
+
+1. Understand the Java entry point method:
+   - The valid main method signature must be `public static void main(String[] args)` or its variants
+   - Know that `String[] args` can be written as `String args[]` or `String... args`
+
+2. Master object-oriented concepts:
+   - Inheritance (subclasses inherit superclass attributes/methods)
+   - Encapsulation (private instance variables)
+   - Polymorphism (objects taking multiple forms)
+
+3. Learn Java file structure:
+   - .java source files vs .class bytecode files
+   - Package declarations must come first
+   - Import statements come next
+   - Only one public class per file allowed
+
+4. Understand variable scope:
+   - Class/static variables (accessible throughout class)
+   - Instance variables (accessible in non-static methods)
+   - Local variables (limited to their block)
+
+5. Know compilation and execution:
+   - `javac` compiles .java to .class
+   - `java` executes .class files
+   - JVM makes Java platform independent
+
+## Exam Answering Strategy
+
+1. Read questions carefully - many questions test subtle syntax differences
+2. Eliminate obviously wrong answers first
+3. Watch for tricky scope questions - local vs instance vs class variables
+4. Remember default imports - java.lang is always imported
+5. Pay attention to access modifiers - private, public, protected, default
+
+## Key Concepts to Review
+
+- Valid Java identifiers and naming conventions
+- Primitive types vs reference types
+- Method overloading (not overriding)
+- The difference between compilation errors and runtime exceptions
+- How packages organize code and control access
+
+By focusing on these core concepts and practicing similar questions, you'll be well prepared to answer these exam questions successfully.
 
 
 ====================Chapter_1(Java Basics) =========================
@@ -689,58 +746,7 @@ to execute a Java class. Option C is the only correct answer, as the JVM does re
 
 =================================== # Chapter Summary and Exam Preparation Guide ===================================
 
-This chapter covers fundamental Java concepts including:
-- Java syntax basics (entry point methods, file structure, comments)
-- Object-oriented programming principles(e.g.IPEA)
-- Variables and scope 
-- Packages and imports (PIC)
-- Compilation and execution
-- JVM fundamentals
 
-## How to Understand and Answer These Questions Effectively
-
-1. Understand the Java entry point method:
-   - The valid main method signature must be `public static void main(String[] args)` or its variants
-   - Know that `String[] args` can be written as `String args[]` or `String... args`
-
-2. Master object-oriented concepts:
-   - Inheritance (subclasses inherit superclass attributes/methods)
-   - Encapsulation (private instance variables)
-   - Polymorphism (objects taking multiple forms)
-
-3. Learn Java file structure:
-   - .java source files vs .class bytecode files
-   - Package declarations must come first
-   - Import statements come next
-   - Only one public class per file allowed
-
-4. Understand variable scope:
-   - Class/static variables (accessible throughout class)
-   - Instance variables (accessible in non-static methods)
-   - Local variables (limited to their block)
-
-5. Know compilation and execution:
-   - `javac` compiles .java to .class
-   - `java` executes .class files
-   - JVM makes Java platform independent
-
-## Exam Answering Strategy
-
-1. Read questions carefully - many questions test subtle syntax differences
-2. Eliminate obviously wrong answers first
-3. Watch for tricky scope questions - local vs instance vs class variables
-4. Remember default imports - java.lang is always imported
-5. Pay attention to access modifiers - private, public, protected, default
-
-## Key Concepts to Review
-
-- Valid Java identifiers and naming conventions
-- Primitive types vs reference types
-- Method overloading (not overriding)
-- The difference between compilation errors and runtime exceptions
-- How packages organize code and control access
-
-By focusing on these core concepts and practicing similar questions, you'll be well prepared to answer these exam questions successfully.
 
 
 
