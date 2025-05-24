@@ -92,7 +92,14 @@ This chapter covers essential Java concepts related to:
 ### 3. Multidimensional Arrays
 - Arrays of arrays (not true matrices)
 - Can be irregular (subarrays of different lengths)
-              int[][] my2DArray = new int[3][]; // ৩টি সারির একটি অ্যারে তৈরি করছি, তবে কলামের সংখ্যা এখনো নির্দিষ্ট করিনি              
+             - new int[3][],  What is it? 
+                যখন আপনি একটি দ্বি-মাত্রিক অ্যারে তৈরি করতে চান যার Row সংখ্যা নির্দিষ্ট, কিন্তু প্রতিটি সারির column সংখ্যা ভিন্ন হতে পারে। আপনি পরবর্তীতে প্রতিটি সারির জন্য আলাদাভাবে কলামের আকার নির্ধারণ করতে পারেন|
+                  int[][] my2DArray = new int[3][]; // প্রথম row আকার ৩, দ্বিতীয় column অনির্ধারিত
+                      my2DArray[0] = new int[5]; // প্রথম সারিতে ৫টি কলাম
+                      my2DArray[1] = new int[2]; // দ্বিতীয় সারিতে ২টি কলাম
+                      my2DArray[2] = new int[8]; // তৃতীয় সারিতে ৮টি কলাম
+              
+          int[][] my2DArray = new int[3][]; // ৩টি সারির একটি অ্যারে তৈরি করছি, তবে কলামের সংখ্যা এখনো নির্দিষ্ট করিনি  
              
             // প্রথম সারিতে ২টি উপাদান
               my2DArray[0] = new int[2];
