@@ -65,7 +65,7 @@ This chapter covers essential Java concepts related to:
   - `new type[]{val1, val2}` (inline initialization)
   - `new type[row][column]` (students[0][1] মানে ১ম সারির ২য় ছাত্র। এখানে প্রথম [] সারির নম্বর এবং দ্বিতীয় [] কলামের নম্বর ধারণ করছে।)
   - `new type[][][]` (Example_01: building[1][2][0] মানে ২য় তলার ৩য় ফ্ল্যাটের ১ম কক্ষ। এখানে প্রথম [] তলার নম্বর, দ্বিতীয় [] ফ্ল্যাটের নম্বর এবং তৃতীয় [] কক্ষের নম্বর ধারণ করছে।)
-                    Example_01:
+                    Example_02_More details:
                     row[0] = new String[2][]; // প্রথম তলায় ২টি ফ্ল্যাটে, কক্ষের সংখ্যা এখনো নির্দিষ্ট করিনি |
                     // প্রথম তলার প্রথম ফ্ল্যাটের ৩টি কক্ষ
                     row[0][0] = new String[3];
