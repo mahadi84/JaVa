@@ -63,6 +63,8 @@ This chapter covers essential Java concepts related to:
 - Initialization: 
   - `new type[size]` (elements get default values)
   - `new type[]{val1, val2}` (inline initialization)
+  - `new type[row][column]` (students[0][1] মানে ১ম সারির ২য় ছাত্র। এখানে প্রথম [] সারির নম্বর এবং দ্বিতীয় [] কলামের নম্বর ধারণ করছে।)
+  - `new type[row][column][floor]` (building[1][2][0] মানে ২য় তলার ৩য় ফ্ল্যাটের ১ম কক্ষ। এখানে প্রথম [] তলার নম্বর, দ্বিতীয় [] ফ্ল্যাটের নম্বর এবং তৃতীয় [] কক্ষের নম্বর ধারণ করছে।)
 - Properties:
   - Fixed size after creation
   - Zero-based indexing
