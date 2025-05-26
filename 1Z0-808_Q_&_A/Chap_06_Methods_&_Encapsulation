@@ -272,61 +272,8 @@ By mastering these concepts and practicing similar questions, you'll be well-pre
         C. public void sing(String... keys, String... pitches)
         D. public void sing(String... notes, String melodies)
 
-15. Given the following application, which diagram best represents the state of the mySkier,
-mySpeed, and myName variables in the main() method after the call to the slalom() method?
-        package slopes;
-        public class Ski {
-        private int age = 18;
-        private static void slalom(Ski racer, int[] speed, String name) {
-        racer.age = 18;
-        name = "Wendy";
-        speed = new int[1];
-        speed[0] = 11;
-        racer = null;
-        }
-        public static void main(String... mountain) {
-        final Ski mySkier = new Ski();
-        mySkier.age = 16;
-        final int[] mySpeed = new int[1];
-        final String myName = "Rosie";
-        slalom(mySkier,mySpeed,myName);
-        }
-        }
-        A.
-        mySkier null
-        myName
-        mySpeed
-        int[]
-        "Rosie"
-        18
-        B.
-        age: 18
-        Ski
-        mySkier
-        myName
-        mySpeed
-        int[]
-        11
-        "Wendy"
-        C.
-        age: 18
-        Ski
-        mySkier
-        myName
-        mySpeed
-        int[]
-        0
-        "Rosie"
-        D.
-        age: 16
-        Ski
-        mySkier
-        myName
-        mySpeed
-        int[]
-        "Wendy"
-        0
-
+15. Given the following application, which diagram best represents the state of the mySkier,mySpeed, and myName variables in the main() method after the call to the slalom() method?
+       *** GitHub does not support Diagram.
 
 16. Given the class below, which method signature could be successfully added to the class as an overloaded version of the findAverage() method?
         public class Calculations {
