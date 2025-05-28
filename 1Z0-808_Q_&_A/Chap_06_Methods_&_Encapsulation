@@ -704,50 +704,51 @@ By mastering these concepts and practicing similar questions, you'll be well-pre
              তবে রেফারেন্স পরিবর্তন করলে বাইরের রেফারেন্স অপরিবর্তিত থাকে।
          *** জাভা সব ডেটা টাইপের জন্যই pass-by-value ব্যবহার করে। রেফারেন্স টাইপের ক্ষেত্রে পাঠানো "ভ্যালু" হলো মেমরি অ্যাড্রেস, তাই অবজেক্টের স্টেট পরিবর্তনের আচরণ pass-by-reference এর মতো মনে হতে পারে।
 
-         // প্রিমিটিভ ডেটা টাইপের জন্য পাস-বাই-ভ্যালুর উদাহরণ
-          public static void changePrimitive(int salary) {
-              System.out.println("মেথডের ভেতরে salary এর আগের মান: " + salary);
-              salary = 60000; // salary এর মান পরিবর্তন করা হচ্ছে
-              System.out.println("মেথডের ভেতরে salary এর পরের মান: " + salary);
-          }
-      
-          // রেফারেন্স টাইপের জন্য পাস-বাই-ভ্যালুর উদাহরণ (রেফারেন্সের মান কপি হয়)
-          public static void changeObjectProperty(House house) {
-              System.out.println("মেথডের ভেতরে House অবজেক্টের আগের নাম: " + house.name);
-              House.name = "Ibrahimpur"; // House রেফারেন্স ব্যবহার করে মূল অবজেক্টের প্রপার্টি পরিবর্তন করা হচ্ছে
-              System.out.println("মেথডের ভেতরে House অবজেক্টের পরের নাম: " + house.name);
-          }
+       public class PassByValueReference {
 
-          public static void main(String[] args) {                
-                 int salary = 50000;  // প্রিমিটিভ ডেটা টাইপের উদাহরণ
-                 System.out.println("মেথড কল করার আগে salary এর মান: " + salary); [***will print: 50000]
-                 changePrimitive(salary);
-                 System.out.println("মেথড কল করার পরে salary এর মান: " + salary); [***will print: 50000]
-         
-                 // রেফারেন্স টাইপের উদাহরণ (অবজেক্টের প্রপার্টি পরিবর্তন)
-                 House myRentalHouseAddress = new House("Janata_Housing");
-                 System.out.println("মেথড কল করার আগে myRentalHouseAddress এর নাম: " + myRentalHouseAddress.name); [**will print Janata_Housing]
-                 changeObjectProperty(myRentalHouseAddress);
-                 System.out.println("মেথড কল করার পরে myRentalHouseAddress এর নাম: " + myRentalHouseAddress.name); [** will print Ibrahimpur]
-           }
-            ----
-            class House {
-                String name;
-            
-                public House(String name) {
-                    this.name = name;
-                }
-            }
-            ------------------Output -----------------------------------
-            মেথড কল করার আগে salary এর মান: 50000
-            মেথডের ভেতরে salary এর আগের মান: 50000
-           ** মেথডের ভেতরে salary এর পরের মান: 60000
-           ** মেথড কল করার পরে salary এর মান: 50000
-            --------------------
-            মেথড কল করার আগে myRentalHouseAddress এর নাম: Janata_Housing
-            মেথডের ভেতরে House অবজেক্টের আগের নাম: Janata_Housing
-            ** মেথডের ভেতরে House অবজেক্টের পরের নাম: Ibrahimpur
-            ** মেথড কল করার পরে myRentalHouseAddress এর নাম: Ibrahimpur
+    // প্রিমিটিভ ডেটা টাইপের উদাহরণ
+    public static void changeInt(int num) {
+        System.out.println("changeInt মেথডের ভেতরে num এর আগের মান: " + num);
+        num = 100;
+        System.out.println("changeInt মেথডের ভেতরে num এর পরের মান: " + num);
+    }
+
+    // রেফারেন্স ডেটা টাইপের উদাহরণ (অ্যারে)
+    public static void changeArray(int[] arr) {
+        System.out.println("changeArray মেথডের ভেতরে arr[0] এর আগের মান: " + arr[0]);
+        arr[0] = 500;
+        System.out.println("changeArray মেথডের ভেতরে arr[0] এর পরের মান: " + arr[0]);
+        arr = new int[]{1, 2, 3}; // নতুন রেফারেন্স অ্যাসাইন করা হচ্ছে (বাইরের ভেরিয়েবলে প্রভাব ফেলবে না)
+        System.out.println("changeArray মেথডের ভেতরে arr এর নতুন রেফারেন্সের arr[0]: " + arr[0]);
+    }
+
+    public static void main(String[] args) {
+        // প্রিমিটিভ ডেটা টাইপের ব্যবহার
+        int number = 50;
+        System.out.println("main মেথডে number এর আগের মান: " + number); 
+        changeInt(number);
+        System.out.println("main মেথডে number এর পরের মান: " + number);
+        System.out.println(); // একটি খালি লাইন
+
+        // রেফারেন্স ডেটা টাইপের ব্যবহার (অ্যারে)
+        int[] numbers = {100, 200, 300};
+        System.out.println("main মেথডে numbers[0] এর আগের মান: " + numbers[0]);
+        changeArray(numbers);
+        System.out.println("main মেথডে numbers[0] এর পরের মান: " + numbers[0]);
+    }
+}
+       ------------------ আউটপুট: ----------------------------
+      
+      main মেথডে number এর আগের মান: 50
+      changeInt মেথডের ভেতরে num এর আগের মান: 50
+      changeInt মেথডের ভেতরে num এর পরের মান: 100
+      main মেথডে number এর পরের মান: 50
+      
+      main মেথডে numbers[0] এর আগের মান: 100
+      changeArray মেথডের ভেতরে arr[0] এর আগের মান: 100
+      changeArray মেথডের ভেতরে arr[0] এর পরের মান: 500
+      changeArray মেথডের ভেতরে arr এর নতুন রেফারেন্সের arr[0]: 1
+      main মেথডে numbers[0] এর পরের মান: 500
 
 
         --------------------
