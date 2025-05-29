@@ -43,7 +43,7 @@ This chapter covers essential Java concepts including:
 ### 1. Inheritance Basics
 - extends keyword for class inheritance
 - Single inheritance limitation (one direct parent class)
-- super keyword to access parent members
+- super/this keyword to access parent members
 - Constructor chaining rules (super() must be first line)
 
 ### 2. Polymorphism
@@ -91,6 +91,20 @@ class Dog extends Animal {
 স্ট্যাটিক মেথড----- |	সমর্থিত	                            | Java 8 থেকে সমর্থিত
 -------------------------------------------------------------------------------------------------------------|
 
+ Abstract Class vs Interface:
+   - Use abstract class for shared implementation
+      -যদি বিভিন্ন ক্লাসের মধ্যে কিছু কোড শেয়ার করতে চাই এবং একটি "is-a" সম্পর্ক বিদ্যমান থাকে (যেমন SavingsAccount হল একটি Account), তবে অ্যাবস্ট্রাক্ট ক্লাস ব্যবহার করবো।
+         ব্যাংকিং উদাহরণ: ধরুন, Account নামে একটি অ্যাবস্ট্রাক্ট ক্লাস আছে।
+              বিভিন্ন ধরনের অ্যাকাউন্ট (যেমন SavingsAccount, CurrentAccount) কিছু সাধারণ বৈশিষ্ট্য শেয়ার করে, যেমন অ্যাকাউন্ট নম্বর, ব্যালেন্স এবং কিছু সাধারণ কাজ, যেমন deposit() এবং withdraw()। 
+              deposit() এর মতো সাধারণ কাজের একটি ডিফল্ট ইমপ্লিমেন্টেশন Account ক্লাসে থাকতে পারে, যেখানে calculateInterest() এর মতো কাজ প্রতিটি অ্যাকাউন্টের জন্য আলাদাভাবে হিসাব করা হবে, 
+              তাই এটি Account ক্লাসে একটি অ্যাবস্ট্রাক্ট মেথড হিসেবে ঘোষণা করা হতে পারে এবং SavingsAccount ক্লাসে এর নিজস্ব ইমপ্লিমেন্টেশন থাকবে।
+   - Use interface for common behavior contracts 
+      -যদি বিভিন্ন অ্যাসম্পর্কিত ক্লাসের জন্য কিছু নির্দিষ্ট আচরণ বাস্তবায়নের একটি চুক্তি তৈরি করতে চাই  এবং "can-do" বা "has-a ability to" ধরনের সম্পর্ক বোঝাতে চাই , তবে ইন্টারফেস ব্যবহার করবো।
+         ব্যাংকিং উদাহরণ:
+         Transferable ইন্টারফেসে transfer(Account recipient, double amount) নামে একটি অ্যাবস্ট্রাক্ট মেথড ঘোষণা করা আছে। 
+         SavingsAccount এবং CurrentAccount উভয় ক্লাসকেই এই transfer() মেথডের নিজস্ব বাস্তবায়ন প্রদান করতে পারবো।
+         অন্যান্য ক্লাস, যেমন LoanAccount, হয়তো অর্থ স্থানান্তরের ক্ষমতা রাখে না, তাই তারা এই ইন্টারফেসটি ইমপ্লিমেন্ট করবে না।
+
 
 ### 4. Method Design
 -ওভারলোডিং: একই নাম, ভিন্ন প্যারামিটার
@@ -127,34 +141,13 @@ class Dog extends Animal {
    - Overriding: Instance methods, runtime polymorphism
    - Hiding: Static methods, compile-time resolution
 
-2. Abstract Class vs Interface:
-   - Use abstract class for shared implementation
-      -যদি বিভিন্ন ক্লাসের মধ্যে কিছু কোড শেয়ার করতে চাই এবং একটি "is-a" সম্পর্ক বিদ্যমান থাকে (যেমন SavingsAccount হল একটি Account), তবে অ্যাবস্ট্রাক্ট ক্লাস ব্যবহার করবো।
-         ব্যাংকিং উদাহরণ: ধরুন, Account নামে একটি অ্যাবস্ট্রাক্ট ক্লাস আছে।
-              বিভিন্ন ধরনের অ্যাকাউন্ট (যেমন SavingsAccount, CurrentAccount) কিছু সাধারণ বৈশিষ্ট্য শেয়ার করে, যেমন অ্যাকাউন্ট নম্বর, ব্যালেন্স এবং কিছু সাধারণ কাজ, যেমন deposit() এবং withdraw()। 
-              deposit() এর মতো সাধারণ কাজের একটি ডিফল্ট ইমপ্লিমেন্টেশন Account ক্লাসে থাকতে পারে, যেখানে calculateInterest() এর মতো কাজ প্রতিটি অ্যাকাউন্টের জন্য আলাদাভাবে হিসাব করা হবে, 
-              তাই এটি Account ক্লাসে একটি অ্যাবস্ট্রাক্ট মেথড হিসেবে ঘোষণা করা হতে পারে এবং SavingsAccount ক্লাসে এর নিজস্ব ইমপ্লিমেন্টেশন থাকবে।
-   - Use interface for common behavior contracts 
-      -যদি বিভিন্ন অ্যাসম্পর্কিত ক্লাসের জন্য কিছু নির্দিষ্ট আচরণ বাস্তবায়নের একটি চুক্তি তৈরি করতে চাই  এবং "can-do" বা "has-a ability to" ধরনের সম্পর্ক বোঝাতে চাই , তবে ইন্টারফেস ব্যবহার করবো।
-         ব্যাংকিং উদাহরণ:
-         Transferable ইন্টারফেসে transfer(Account recipient, double amount) নামে একটি অ্যাবস্ট্রাক্ট মেথড ঘোষণা করা আছে। 
-         SavingsAccount এবং CurrentAccount উভয় ক্লাসকেই এই transfer() মেথডের নিজস্ব বাস্তবায়ন প্রদান করতে পারবো।
-         অন্যান্য ক্লাস, যেমন LoanAccount, হয়তো অর্থ স্থানান্তরের ক্ষমতা রাখে না, তাই তারা এই ইন্টারফেসটি ইমপ্লিমেন্ট করবে না।
-
-3. Variable Access:
+2. Variable Access:
    - Variables are never overridden (only hidden)
    - Access determined by reference type
 
-4. Constructor Rules:
+3. Constructor Rules:
    - Implicit super() if no constructor defined
    - Must explicitly call super() if parent has no no-arg constructor
-
-By mastering these concepts and practicing similar questions, you'll be well-prepared for exam questions on Java inheritance and polymorphism. Pay special attention to:
-- Method override rules and exceptions
-- Polymorphic method invocation
-- Interface and abstract class design
-- Proper use of super and this keywords
-- Reference vs object type behavior
 
 
 
