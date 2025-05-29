@@ -56,24 +56,24 @@ This chapter covers essential Java concepts including:
 - Variable hiding (not polymorphism)
 
 
-কোভেরিয়েন্ট রিটার্ন টাইপ:
+Covariant Return type(কোভেরিয়েন্ট রিটার্ন টাইপ):
 যখন একটি সাবক্লাসের একটি মেথড তার প্যারেন্ট ক্লাসের একই নামের মেথডকে ওভাররাইড করে, 
 তখন সাবক্লাসের মেথডটি প্যারেন্ট ক্লাসের মেথডের রিটার্ন টাইপের চেয়ে আরও নির্দিষ্ট (সাবটাইপ) রিটার্ন টাইপ দিতে পারে। একেই কোভেরিয়েন্ট রিটার্ন টাইপ বলে।
 
 উদাহরণ:
-ধরা যাক, Animal ক্লাসের getপ্রাণী() মেথড Animal রিটার্ন করে। Dog হলো Animal এর সাবক্লাস। Dog ক্লাসে getপ্রাণী() মেথডটিকে ওভাররাইড করে Dog রিটার্ন করতে পারে।
+ধরা যাক, Animal ক্লাসের getAnimal() মেথড Animal রিটার্ন করে। Dog হলো Animal এর সাবক্লাস। Dog ক্লাসে getAnimal() মেথডটিকে ওভাররাইড করে Dog রিটার্ন করতে পারে।
 class Animal {
-    public Animal getপ্রাণী() {
+    public Animal getAnimal() {
         return new Animal();
     }
 }
 class Dog extends Animal {
     @Override
-    public Dog getপ্রাণী() { // কোভেরিয়েন্ট রিটার্ন টাইপ: Dog, যা Animal এর সাবটাইপ
+    public Dog getAnimal() { // কোভেরিয়েন্ট রিটার্ন টাইপ: Dog, যা Animal এর সাবটাইপ
         return new Dog();
     }
 }
-এই উদাহরণে, Dog ক্লাসের getপ্রাণী() মেথড Animal এর পরিবর্তে Dog রিটার্ন করছে, যা একটি কোভেরিয়েন্ট রিটার্ন টাইপের উদাহরণ। 
+এই উদাহরণে, Dog ক্লাসের getAnimal() মেথড Animal এর পরিবর্তে Dog রিটার্ন করছে, যা একটি কোভেরিয়েন্ট রিটার্ন টাইপের উদাহরণ। 
 এর ফলে কোড আরও টাইপ-নিরাপদ হয় এবং অপ্রয়োজনীয় কাস্টিংয়ের প্রয়োজন হয় না।
 
 
