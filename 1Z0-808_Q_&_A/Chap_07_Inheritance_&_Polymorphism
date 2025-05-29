@@ -57,15 +57,6 @@ This chapter covers essential Java concepts including:
 
 ### 3. Abstract Classes vs Interfaces
 
-| Feature          | Abstract Class               | Interface                          |
-|------------------|------------------------------|------------------------------------|
-| Instantiation    | Cannot be instantiated       | Cannot be instantiated             |
-| Methods          | Can have concrete/abstract   | All methods public & abstract (pre-Java 8) |
-| Variables        | Any access modifier          | Implicitly public static final     |
-| Inheritance      | Single class inheritance     | Multiple interface implementation  |
-| Default Methods  | N/A                          | Supported since Java 8             |
-| Static Methods   | Supported                    | Supported since Java 8             |
-
 বৈশিষ্ট্য------------|----------	অ্যাবস্ট্রাক্ট ক্লাস	--------------|------------------ ইন্টারফেস------------------------|
 -----------------|--------------------------------------|------------------------------------------------------
 ইনস্ট্যানসিয়েট করা--| 	ইনস্ট্যানসিয়েট করা যায় না              | 	ইনস্ট্যানসিয়েট করা যায় না
@@ -77,13 +68,11 @@ This chapter covers essential Java concepts including:
 -------------------------------------------------------------------------------------------------------------|
 
 
-
-
 ### 4. Method Design
-- Overloading: Same name, different parameters
-- Overriding: Replacement of inherited method
-- Hiding: Static methods with same signature
-- Default methods in interfaces (must be overridden if conflict exists)
+-ওভারলোডিং: একই নাম, ভিন্ন প্যারামিটার
+-ওভাররাইডিং: উত্তরাধিকার সূত্রে প্রাপ্ত মেথডের প্রতিস্থাপন
+-হাইডিং: একই সিগনেচারের স্ট্যাটিক মেথড
+-ইন্টারফেসে ডিফল্ট মেথড (যদি কোনো দ্বন্দ্ব থাকে তবে অবশ্যই ওভাররাইড করতে হবে)
 
 ## Exam Preparation Strategy
 
