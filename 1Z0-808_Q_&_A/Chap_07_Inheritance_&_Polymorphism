@@ -3,8 +3,8 @@ Medium.
 *** যদি আমি Inheritance না জানি, তাহলে আমি কী কী সমস্যার সম্মুখীন হব? Inheritance-এর সুবিধা, অসুবিধা কী কী?
 *** "is-a" vs "has-a", কম্পোজিশন/অ্যাগ্রিগেশন/লুজ কাপলিং (Composition/Aggregation/loose cupling) কী?
 *** পলিউমরফিজম কী এবং ইনহেরিটেন্সের সাথে এর সম্পর্ক কী?
-*** মেথড ওভাররাইডিং (method overriding) এবং মেথড ওভারলোডিং (method overloading) ইনহেরিটেন্সের সাথে কীভাবে সম্পর্কিত এবং ব্যাংকিং অ্যাপ্লিকেশনের ডেভেলপমেন্টে এদের ব্যবহার কী?
 *** Abstract ক্লাস এবং Interface কখন কোনটা ব্যবহার করব?
+*** মেথড ওভাররাইডিং (method overriding) এবং মেথড ওভারলোডিং (method overloading) ইনহেরিটেন্সের সাথে কীভাবে সম্পর্কিত এবং ব্যাংকিং অ্যাপ্লিকেশনের ডেভেলপমেন্টে এদের ব্যবহার কী?
 
  Web: https://github.com/mahadi84/Learning-A-Programming/blob/main/OOP_What_%26_Why_%3F
 
