@@ -67,17 +67,19 @@ This chapter covers essential Java concepts including:
 
 02. কোনো কন্সট্রাক্টর ডিফাইন করা না থাকলে শুধুমাত্র ডিফল্ট কন্সট্রাক্টর super() সরবরাহ করা হয়:
 যদি কোনো ক্লাসে আপনি কোনো কন্সট্রাক্টর তৈরি না করেন, তবে জাভা কম্পাইলার স্বয়ংক্রিয়ভাবে একটি ডিফল্ট (নো-আর্গুমেন্ট) কন্সট্রাক্টর তৈরি করে দেয়। 
-তবে, যদি আপনি ক্লাসে একটিও কন্সট্রাক্টর ডিফাইন করেন (আর্গুমেন্ট থাকুক বা না থাকুক), তাহলে ডিফল্ট কন্সট্রাক্টর আর স্বয়ংক্রিয়ভাবে তৈরি হবে না।
+**তবে, যদি আপনি ক্লাসে একটিও কন্সট্রাক্টর ডিফাইন করেন (আর্গুমেন্ট থাকুক বা না থাকুক), তাহলে ডিফল্ট কন্সট্রাক্টর আর স্বয়ংক্রিয়ভাবে তৈরি হবে না।
 
 03. প্রথম লাইন অবশ্যই `this()` অথবা `super()` হতে হবে (উহ্য `super()` যদি বাদ দেওয়া হয়) :
 একটি কন্সট্রাক্টরের প্রথম স্টেটমেন্টটি অবশ্যই `this()` (একই ক্লাসের অন্য কন্সট্রাক্টরকে কল করার জন্য) অথবা `super()` (সুপারক্লাসের কন্সট্রাক্টরকে কল করার জন্য) হতে হবে। 
 যদি আপনি স্পষ্টভাবে `super()` কল না করেন, তবে জাভা কম্পাইলার স্বয়ংক্রিয়ভাবে একটি নো-আর্গুমেন্ট `super()` কল যোগ করে দেয়। 
-এর মানে হলো, যদি সুপারক্লাসে কোনো ডিফল্ট কন্সট্রাক্টর না থাকে, তবে আপনি `super()` বাদ দিলে কম্পাইল-টাইম এরর হবে।
+**এর মানে হলো, যদি সুপারক্লাসে কোনো ডিফল্ট কন্সট্রাক্টর না থাকে, তবে আপনি `super()` বাদ দিলে কম্পাইল-টাইম এরর হবে।
 
 04. স্ট্যাটিক, ফাইনাল অথবা অ্যাবস্ট্রাক্ট হতে পারবে না :
 কন্সট্রাক্টর কখনো `static`, `final`, অথবা `abstract` মডিফায়ার ব্যবহার করে ডিক্লেয়ার করা যায় না। এর কারণ হলো, কন্সট্রাক্টর বিশেষভাবে অবজেক্ট তৈরির সময় ইনিশিয়ালাইজেশনের জন্য ব্যবহৃত হয়। 
 `static` মেম্বার ক্লাসের সাথে সম্পর্কিত, কোনো নির্দিষ্ট অবজেক্টের সাথে নয়। `final` মানে অপরিবর্তনীয়, কিন্তু কন্সট্রাক্টরের কাজ হলো অবজেক্টের প্রাথমিক অবস্থা নির্ধারণ করা। 
 `abstract` ক্লাস বা মেথডকে বোঝায় যার কোনো সম্পূর্ণ বাস্তবায়ন নেই, কিন্তু কন্সট্রাক্টরকে অবশ্যই অবজেক্ট তৈরির সময় নির্বাহিত হতে হবে।
+
+05.জাভার নিয়ম অনুযায়ী, আপনি একই কন্সট্রাক্টরে দুটোই (super() এবং this()) একসাথে ব্যবহার করতে পারবেন না।
 
 
 ### 4. Method Overloading
@@ -210,12 +212,9 @@ By mastering these concepts and practicing similar questions, you'll be well-pre
 
 7. Which of the following statements about calling this() in a constructor is not true?
         A. If this() is used, it must be the first line of the constructor.
-        B. If super() and this() are both used in the same constructor, super() must appear
-        on the line immediately after this().
-        C. If arguments are provided to this(), then there must be a constructor in the class able
-        to take those arguments.
-        D. If the no-argument this() is called, then the class must explicitly implement the
-        no-argument constructor.
+        B. If super() and this() are both used in the same constructor, super() must appear on the line immediately after this().
+        C. If arguments are provided to this(), then there must be a constructor in the class able to take those arguments.
+        D. If the no-argument this() is called, then the class must explicitly implement the no-argument constructor.
 
 8. Which of the following can fill in the blank to make the class compile?
         package ai;
