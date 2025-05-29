@@ -136,9 +136,9 @@ class Dog extends Animal {
               তাই এটি Account ক্লাসে একটি অ্যাবস্ট্রাক্ট মেথড হিসেবে ঘোষণা করা হতে পারে এবং SavingsAccount ক্লাসে এর নিজস্ব ইমপ্লিমেন্টেশন থাকবে।
    - Use interface for common behavior contracts 
       -যদি বিভিন্ন অ্যাসম্পর্কিত ক্লাসের জন্য কিছু নির্দিষ্ট আচরণ বাস্তবায়নের একটি চুক্তি তৈরি করতে চাই  এবং "can-do" বা "has-a ability to" ধরনের সম্পর্ক বোঝাতে চাই , তবে ইন্টারফেস ব্যবহার করবো।
-         ব্যাংকিং উদাহরণ: ধরুন, Transferable নামে একটি ইন্টারফেস আছে। যে অ্যাকাউন্টগুলো অর্থ স্থানান্তর করার ক্ষমতা রাখে (যেমন SavingsAccount, CurrentAccount), তারা এই ইন্টারফেসটি ইমপ্লিমেন্ট করতে পারে। 
-         Transferable ইন্টারফেসে transfer(Account recipient, double amount) নামে একটি অ্যাবস্ট্রাক্ট মেথড ঘোষণা করা থাকবে। 
-         SavingsAccount এবং CurrentAccount উভয় ক্লাসকেই এই transfer() মেথডের নিজস্ব বাস্তবায়ন প্রদান করতে হবে। 
+         ব্যাংকিং উদাহরণ:
+         Transferable ইন্টারফেসে transfer(Account recipient, double amount) নামে একটি অ্যাবস্ট্রাক্ট মেথড ঘোষণা করা আছে। 
+         SavingsAccount এবং CurrentAccount উভয় ক্লাসকেই এই transfer() মেথডের নিজস্ব বাস্তবায়ন প্রদান করতে পারবো।
          অন্যান্য ক্লাস, যেমন LoanAccount, হয়তো অর্থ স্থানান্তরের ক্ষমতা রাখে না, তাই তারা এই ইন্টারফেসটি ইমপ্লিমেন্ট করবে না।
 
 3. Variable Access:
