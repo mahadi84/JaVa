@@ -280,17 +280,14 @@ INTERFACE:
 
 10. Which of the following statements about overriding a method is incorrect?
         A. The return types must be covariant.
-        B. The access modifier of the method in the child class must be the same or broader than
-        the method in the superclass.
-        C. A checked exception thrown by the method in the parent class must be thrown by the
-        method in the child class.
-        D. A checked exception thrown by a method in the child class must be the same or
-        narrower than the exception thrown by the method in the parent class.
-        11. What is the output of the following application?
+        B. The access modifier of the method in the child class must be the same or broader than the method in the superclass.
+        C. A checked exception thrown by the method in the parent class must be thrown by the method in the child class.
+        D. A checked exception thrown by a method in the child class must be the same or narrower than the exception thrown by the method in the parent class.
+
+11. What is the output of the following application?
         package machines;
         class Computer {
-        protected final int process() { return 5; }
-        
+        protected final int process() { return 5; }        
         }
         public class Laptop extends Computer {
         public final int process() { return 3; }
