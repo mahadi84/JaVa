@@ -165,7 +165,7 @@ INTERFACE:
 
 
 ========================Chapter_07(Working with Inheritance) =================
-1,6,7,14,15,19
+1,6,7,14,15,19,29
 
 1,9,12,14,17,*18,*19,21,*23,26,27,*29,31,*32,*35,37,*40,*44,46,*48=19
 
@@ -549,7 +549,7 @@ INTERFACE:
         C. 13245
         D. The code does not compile.
 
-28. Fill in the blank: Overloaded and overridden methods always have .
+28. Fill in the blank: Overloaded and overridden methods always have ___.
         A. the same parameter list
         B. different return types
         C. the same method name
@@ -581,10 +581,8 @@ INTERFACE:
         C. The code does not compile for a different reason.
         D. The code compiles but throws a ClassCastException at runtime.
 
-30. Fill in the blanks: A class that defines an instance variable with the same name as a variable
-        in the parent class is referred to as a variable, while a class that
-        defines a static method with the same signature as a static method in a parent class is
-        referred to as a method.
+30. Fill in the blanks: A class that defines an instance variable with the same name as a variable in the parent class is referred to as __ a variable, while a class that
+        defines a static method with the same signature as a static method in a parent class is referred to as __ a method.
         A. hiding, overriding
         B. overriding, hiding
         C. hiding, hiding
