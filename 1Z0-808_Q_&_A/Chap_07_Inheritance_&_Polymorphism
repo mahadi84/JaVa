@@ -435,7 +435,7 @@ INTERFACE:
         C. Number
         D. None of the above
 
-20. Fill in the blanks: A class an interface, while a class an abstract class.
+20. Fill in the blanks: A class __ an interface, while a class __ an abstract class.
         A. extends, implements
         B. extends, extends
         C. implements, extends
