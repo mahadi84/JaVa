@@ -33,6 +33,13 @@ This chapter covers essential Java concepts including:
 - super/this keyword to access parent members
 - Constructor chaining rules (super() must be first line)
 
+## Exam Preparation Strategy
+1. Inheritance Analysis:
+   - Trace constructor execution order
+   - Identify valid/invalid method overrides
+   - Determine access to inherited members
+
+
 ### 2. Polymorphism
 - Reference type vs object type
 - Method overriding rules:
@@ -41,6 +48,14 @@ This chapter covers essential Java concepts including:
   - Access modifier must be same or broader
   - Exception restrictions (narrower or same)
 - Variable hiding (not polymorphism)
+
+## Exam Preparation Strategy
+2. Polymorphism Scenarios:
+   - Predict method binding at runtime
+   - Understand reference vs object types
+   - Recognize invalid casting attempts
+
+
 
 
 Covariant Return type(কোভেরিয়েন্ট রিটার্ন টাইপ):
@@ -128,26 +143,19 @@ INTERFACE:
 
 ## Exam Preparation Strategy
 
-1. Inheritance Analysis:
-   - Trace constructor execution order
-   - Identify valid/invalid method overrides
-   - Determine access to inherited members
-
-2. Polymorphism Scenarios:
-   - Predict method binding at runtime
-   - Understand reference vs object types
-   - Recognize invalid casting attempts
-
 3. Abstract/Interface Implementation:
    - Spot missing method implementations
    - Resolve default method conflicts
    - Validate interface method modifiers
+
+
 
 4. Common Pitfalls:
    - Forgetting super() in constructors
    - Confusing overriding with overloading
    - Mixing static and instance method hiding
    - Ignoring exception rules in overrides
+
 
 ## Key Differences to Remember
 
