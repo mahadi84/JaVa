@@ -150,13 +150,6 @@ INTERFACE:
 
 
 
-4. Common Pitfalls:
-   - Forgetting super() in constructors
-   - Confusing overriding with overloading
-   - Mixing static and instance method hiding
-   - Ignoring exception rules in overrides
-
-
 ## Key Differences to Remember
 
 1. Overriding vs Hiding:
@@ -171,6 +164,11 @@ INTERFACE:
    **Check previous chapter
 
 
+4. Common Pitfalls:
+   - Forgetting super() in constructors
+   - Confusing overriding with overloading
+   - Mixing static and instance method hiding
+   - Ignoring exception rules in overrides
 
 
 
