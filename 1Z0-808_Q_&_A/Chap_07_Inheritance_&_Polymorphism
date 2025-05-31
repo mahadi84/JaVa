@@ -160,8 +160,7 @@ INTERFACE:
    - Access determined by reference type
 
 3. Constructor Rules:
-   - Implicit super() if no constructor defined
-   - Must explicitly call super() if parent has no no-arg constructor
+   **Check previous chapter
 
 
 
