@@ -150,12 +150,11 @@ This chapter covers essential Java concepts including:
 ## Key Concepts to Master
 
 ### 1. Exception Hierarchy
-
-Throwable( হলো জাভাতে সমস্ত ত্রুটি এবং ব্যতিক্রমের মূল শ্রেণী।)
-├── Error (unchecked)
-└── Exception
-    ├── RuntimeException (unchecked)
-    └── Other Exceptions (checked)
+      Throwable( হলো জাভাতে সমস্ত ত্রুটি এবং ব্যতিক্রমের মূল শ্রেণী।)
+      ├── Error (unchecked)
+      └── Exception
+          ├── RuntimeException (unchecked)
+          └── Other Exceptions (checked)
 
 ### 2. Exception Handling Blocks
 - try: Contains code that might throw exceptions
