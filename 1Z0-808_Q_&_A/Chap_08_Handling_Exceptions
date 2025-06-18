@@ -191,11 +191,6 @@ This chapter covers essential Java concepts including:
    - Check method override compatibility
    - Verify exception declaration requirements
 
-4. Common Pitfalls:
-   - Forgetting to handle checked exceptions
-   - Incorrect catch block ordering
-   - Assuming finally blocks always complete
-   - Overriding method exception mismatches
 
 ## Key Differences to Remember
 
@@ -208,6 +203,12 @@ This chapter covers essential Java concepts including:
    - Doesn't run if JVM crashes
    - Exception in finally supersedes try/catch exceptions
 
+
+### Common Pitfalls:
+   - Forgetting to handle checked exceptions
+   - Incorrect catch block ordering
+   - Assuming finally blocks always complete
+   - Overriding method exception mismatches
 
 
 
