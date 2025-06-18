@@ -20,6 +20,112 @@ Check hot topics bottom of the page.
 ৭.  গ্রাহকের তথ্য সংরক্ষণ ও পুনরুদ্ধার:  java.util প্যাকেজের কালেকশন এপিআই (Collections API) এই কাজটিকে অনেক সহজ করে তোলে।
 
 
+===============================================================================================================  
+                        # Chapter Summary: Java Strings, Collections, and Functional Programming 
+=============================================================================================================== 
+
+This chapter covers essential Java concepts including:
+- String manipulation and immutability
+- StringBuilder vs String
+- Java Collections Framework
+- Lambda expressions and functional interfaces
+- Java Date/Time API
+
+## Key Concepts to Master
+
+### 1. String Fundamentals
+- Immutability: Strings cannot be changed after creation
+- String Pool: Reuses string literals to save memory
+- Key Methods:
+  - `length()`, `charAt()`, `substring()`
+  - `indexOf()`, `startsWith()`, `endsWith()`
+  - `replace()`, `trim()`, `concat()`
+
+### 2. StringBuilder
+- Mutable alternative to String
+- Key Methods:
+  - `append()`, `insert()`, `delete()`
+  - `reverse()`, `replace()`
+- More efficient for multiple modifications
+
+### 3. Collections Framework
+- List: Ordered collection (ArrayList, LinkedList)
+- Set: Unique elements (HashSet, TreeSet)
+- Map: Key-value pairs (HashMap, TreeMap)
+- Common Operations:
+  - `add()`, `remove()`, `get()`, `contains()`
+  - `size()`, `isEmpty()`, `clear()`
+
+### 4. Functional Programming
+- Lambda Expressions: `(parameters) -> expression`
+- Functional Interfaces:
+  - `Predicate<T>`: `boolean test(T t)`
+  - `Consumer<T>`: `void accept(T t)`
+  - `Function<T,R>`: `R apply(T t)`
+- Method references (`System.out::println`)
+
+### 5. Date/Time API (java.time)
+- LocalDate: Date without time
+- LocalTime: Time without date
+- LocalDateTime: Date and time
+- Period: Date-based amount of time
+- Immutable and thread-safe
+
+## Exam Preparation Strategy
+
+1. String Operations:
+   - Predict output of string manipulations
+   - Understand immutability consequences
+   - Know when to use StringBuilder
+
+2. Collection Usage:
+   - Proper initialization and modification
+   - Common method behaviors
+   - Capacity vs size differences
+
+3. Lambda Expressions:
+   - Valid syntax forms
+   - Functional interface matching
+   - Method reference conversions
+
+4. Date/Time API:
+   - Immutability patterns
+   - Period calculations
+   - DateTimeFormatter usage
+
+5. Common Pitfalls:
+   - String vs StringBuilder performance
+   - Collection index boundaries
+   - Lambda syntax errors
+   - Date/Time immutability
+
+## Key Differences to Remember
+
+1. String vs StringBuilder:
+   - String: Immutable, thread-safe, better for constants
+   - StringBuilder: Mutable, better for modifications
+
+2. ArrayList Capacity:
+   - Initial capacity is optimization hint
+   - Size is actual element count
+
+3. Lambda Syntax:
+   - Parentheses optional for single parameter
+   - Braces and return required for multiple statements
+   - Type inference available
+
+4. Date/Time Classes:
+   - LocalDate: year/month/day
+   - LocalTime: hour/minute/second/nano
+   - LocalDateTime: combines date and time
+
+By mastering these concepts and practicing similar questions, you'll be well-prepared for exam questions on Java strings, collections, and functional programming. Pay special attention to:
+- String immutability consequences
+- Proper collection usage patterns
+- Lambda expression syntax variations
+- Date/Time API immutability
+
+
 
 
 
@@ -538,6 +644,84 @@ Check hot topics bottom of the page.
 
 ================================ Answers =============================
 
+1. C, 2.D, 3.D, 4.B, 5.B, 6.C, 7.C, 8.A, 9.C, 10.D,
+11.D, 12.D, 13.D, 14.A, 15.D, 16.A, 17.A, 18.A, 19.A, 20.C,
+21.A, 22.D, 23.D, 24.B, 25.B, 26.D, 27.A, 28.C, 29.B, 30.D,
+31.D, 32.B, 33.A, 34.B, 35.C, 36.C, 37.B, 38.B, 39.C, 40.C,
+41.D, 42.B, 43.C, 44.C, 45.D, 46.D, 47.C, 48.D, 49.C, 50.C
+
+১. গ. বিকল্প ক ভুল কারণ `StringBuilder` একাধিক থ্রেড সমর্থন করে না। আসলে, থ্রেডগুলো OCA-তে অন্তর্ভুক্তও নয়, যা আপনার জন্য একটি সূত্র হওয়া উচিত যে এই উত্তরটি ভুল! পরীক্ষার জন্য আপনার এটি জানার দরকার নেই, তবে `StringBuffer` একাধিক থ্রেড সমর্থন করে। বিকল্প খ ভুল কারণ `==` রেফারেন্স তুলনা করে, মান নয়। বিকল্প ঘ ভুল কারণ `String` এবং `StringBuilder` উভয়ই ভাষা এবং এনকোডিং সমর্থন করে। বিকল্প গ সঠিক এবং `StringBuilder` ব্যবহারের প্রধান কারণ। `String` প্রায়শই কিছু নির্দিষ্ট মেথড যেমন `concat()` কল করার সময় একটি নতুন অবজেক্ট তৈরি করে। `StringBuilder` `append()` এর মতো অপারেশনগুলোকে অপ্টিমাইজ করে কারণ এটি পরিবর্তনযোগ্য।
+২. ঘ. একটি `String` সরাসরি কনস্ট্রাক্টর কল না করে একটি লিটারাল ব্যবহার করে তৈরি করা যেতে পারে, যা বিকল্প ক-কে ভুল করে। `String` পুনঃব্যবহারের জন্য একটি স্ট্রিং পুল বিদ্যমান, যা বিকল্প খ-কে ভুল করে। একটি `String` `final` এবং `immutable`, যা বিকল্প গ-কে ভুল এবং বিকল্প ঘ-কে সঠিক করে।
+৩. ঘ. এই প্রশ্নটি পরীক্ষা করছে যে আপনি মেথড চেইনিং কীভাবে কাজ করে তা বোঝেন কিনা। বিকল্প ক একটি খালি `StringBuilder` তৈরি করে এবং তারপর `clown`-এর পাঁচটি অক্ষর এতে যোগ করে। বিকল্প খ কেবল কনস্ট্রাক্টর কল করার সময় `clown` তৈরি করে। অবশেষে, বিকল্প গ একই মান তৈরি করে, কেবল দুটি অংশে। অতএব, বিকল্প ঘ সঠিক।
+৪. খ. যেহেতু `StringBuilder` পরিবর্তনযোগ্য, `append()` এর প্রতিটি কল মানটিতে যোগ করে। `print()` কল করার সময়, `toString()` স্বয়ংক্রিয়ভাবে কল হয় এবং 333 806 1601 আউটপুট হয়। অতএব, বিকল্প খ সঠিক।
+
+৫. খ. `List` একটি ইন্টারফেস, ক্লাস নয়। এটি ইনস্ট্যানশিয়েট করা যায় না। যদিও `Object` একটি কংক্রিট ক্লাস, এটি `List` ইন্টারফেস প্রয়োগ করে না তাই এটি `frisbees`-এ অ্যাসাইন করা যায় না। উল্লেখ্য যে, আপনি যদি একটি সুস্পষ্ট কাস্ট যোগ করেন, তবে এটি কম্পাইল হবে এবং রানটাইমে একটি ব্যতিক্রম ছুঁড়ে দেবে। তিনটি বিকল্পের মধ্যে, কেবল `ArrayList`-ই ফাঁকা স্থান পূরণ করতে পারে, তাই বিকল্প খ সঠিক।
+৬. গ. একটি `ArrayList` স্বয়ংক্রিয়ভাবে উপাদানগুলোকে সাজায় না। এটি কেবল সেগুলোকে ক্রমানুসারে মনে রাখে। যেহেতু জাভা শূন্য-ভিত্তিক সূচক ব্যবহার করে, বিকল্প গ সঠিক।
+৭. গ. কনস্ট্রাক্টর কল করা এবং তারপর `insert()` মেথড চেইনিং-এর একটি উদাহরণ। তবে, `sb.length()` কলটি একটি সমস্যা। `sb` রেফারেন্সটি চেইন্ড কলগুলো সম্পূর্ণ না হওয়া পর্যন্ত বিদ্যমান থাকে না। এটি একটি আলাদা লাইনে আছে বলেই রেফারেন্সটি কখন তৈরি হয় তা পরিবর্তন হয় না। যেহেতু কোডটি কম্পাইল করে না, বিকল্প গ সঠিক।
+৮. ক. যদিও `ArrayList` একটি উপাদানের প্রাথমিক ক্ষমতা দিয়ে ঘোষণা করা হয়, তবে আরও উপাদান যোগ করার সাথে সাথে এটি প্রসারিত হতে পারে। `add()` মেথডের তিনটি কলই `ArrayList`-এর শেষে একটি উপাদান যোগ করে। `remove()` মেথড কলটি সূচক ২-এর উপাদানটিকে মুছে দেয়, যা Art। অতএব, বিকল্প ক সঠিক।
+৯. গ. লাইন ১২-তে, `StringBuilder`-এর মান ১২। লাইন ১৩-তে, এটি ১২৩ হয়। যেহেতু `StringBuilder` পরিবর্তনযোগ্য, একই রেফারেন্সে ফলাফল সংরক্ষণ করা অপ্রয়োজনীয়। তারপর লাইন ১৪-তে, মানটি উল্টানো হয়, যা আমাদের ৩২১ দেয় এবং বিকল্প গ-কে সঠিক করে।
+১০. ঘ. বিকল্প ক ভুল কারণ এটি অটোবক্সিং বর্ণনা করে। বিকল্প খ এবং গ জাভাতে সম্ভব নয়। বিকল্প ঘ সঠিক কারণ এটি ল্যাম্বডা বর্ণনা করে। ল্যাম্বডাগুলো স্থগিত এক্সিকিউশন ব্যবহার করে এবং কোডবেসের অন্য কোথাও চালানো যেতে পারে।
+
+১১. ঘ. একটি `StringBuilder` পরিবর্তনযোগ্য, তাই লাইন ৬ সম্পূর্ণ হওয়ার পরে দৈর্ঘ্য দুই হয়। `StringBuilder` মেথডগুলো একই অবজেক্টের একটি রেফারেন্স ফেরত দেয় যাতে আপনি মেথড কলগুলো চেইন করতে পারেন। অতএব, `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে। এর মানে হল লাইন ৭ `true` প্রিন্ট করে। তারপর লাইন ৯-তে, উভয় রেফারেন্স দৈর্ঘ্য ২-এর একই অবজেক্টকে নির্দেশ করে এবং বিকল্প ঘ সঠিক।
+১২. ঘ. `add()` এবং `get()` মেথডগুলো `ArrayList`-এ উপলব্ধ। তবে, `ArrayList` উপাদানগুলোর সংখ্যা পেতে `length` এর পরিবর্তে `size` ব্যবহার করে। অতএব, বিকল্প ঘ সঠিক। যদি `length`-কে `size`-এ পরিবর্তন করা হতো, তাহলে ফাঁকা স্থানে রাখলে বিকল্প খ কম্পাইল হতো। বিকল্প ক ফাঁকা স্থানে এখনও কম্পাইল হতো না কারণ মানটিকে `str`-এ সংরক্ষণ করার জন্য একটি কাস্ট প্রয়োজন হতো।
+১৩. ঘ. বিকল্প ক চতুর, কিন্তু ভুল। যদিও একটি ল্যাম্বডার শূন্য প্যারামিটার থাকতে পারে, একটি `Predicate`-এর থাকতে পারে না। একটি `Predicate`-কে একটি `boolean`-এ ম্যাপ করা একটি টাইপ হিসাবে সংজ্ঞায়িত করা হয়। বিকল্প খ স্পষ্টতই ভুল কারণ `->` একটি ল্যাম্বডার অংশগুলোকে আলাদা করে। বিকল্প গ এবং ঘ একই রকম। বিকল্প গ ভুল কারণ `return` কেবল তখন অনুমতিপ্রাপ্ত যখন বন্ধনীগুলো উপস্থিত থাকে। বিকল্প ঘ সঠিক।
+১৪. ক. লাইন ২০-২২ দুটি উপাদান সহ একটি `ArrayList` তৈরি করে। লাইন ২৩ দ্বিতীয়টিকে একটি নতুন মান দিয়ে প্রতিস্থাপন করে। এখন `chars` হল `[a, c]`। তারপর লাইন ২৪ প্রথম উপাদানটিকে সরিয়ে দেয়, যা কেবল `[c]` তৈরি করে। বিকল্প ক সঠিক কারণ কেবল একটি উপাদান আছে, তবে এটি `b` মান নয়।
+
+১৫. ঘ. ধূর্ত প্রশ্ন। `String` ক্লাসে কোনো `reverse` মেথড নেই। `StringBuilder` ক্লাসে একটি আছে। অতএব, কোডটি কম্পাইল করে না এবং বিকল্প ঘ সঠিক।
+১৬. ক. কেবলমাত্র একটি প্যারামিটার দিয়ে একটি ল্যাম্বডা তৈরি করার সময়, কয়েকটি ভিন্নতা রয়েছে। `pred1` পদ্ধতিটি সবচেয়ে সংক্ষিপ্ত উপায় দেখায়, যেখানে টাইপ বাদ দেওয়া হয় এবং বন্ধনী বাদ দেওয়া হয়। `pred2` পদ্ধতিটি অনুরূপ, তবে এতে বন্ধনী অন্তর্ভুক্ত থাকে। উভয়ই বৈধ। `pred4` পদ্ধতিটি বন্ধনী এবং টাইপ উভয়ই নির্দিষ্ট করে দীর্ঘ উপায়। যে একটি কম্পাইল করে না তা হল `pred3`। টাইপ অন্তর্ভুক্ত করা হলে বন্ধনীগুলো আবশ্যক।
+১৭. ক. এটি একটি ল্যাম্বডা ব্যবহার করে কোডের একটি সঠিক উদাহরণ। ইন্টারফেসটিতে একটি একক অ্যাবস্ট্রাক্ট মেথড রয়েছে। ল্যাম্বডাটি সঠিকভাবে একটি `double` প্যারামিটার গ্রহণ করে এবং একটি `boolean` ফেরত দেয়। এটি ইন্টারফেসের সাথে মিলে যায়। ল্যাম্বডা সিনট্যাক্স সঠিক। যেহেতু ৪৫ ৫ এর চেয়ে বড়, বিকল্প ক সঠিক।
+১৮. ক. যেহেতু `String` অপরিবর্তনীয়, `concat()` এর প্রতিটি কল একটি নতুন অবজেক্টকে নতুন মান দিয়ে ফেরত দেয়। তবে, সেই ফেরত মানটি উপেক্ষা করা হয় এবং `teams` ভেরিয়েবলের মান কখনও পরিবর্তিত হয় না। অতএব এটি ৬৯৪ থাকে এবং বিকল্প ক সঠিক।
+১৯. ক. `ArrayList` ক্লাসটি `java.util` প্যাকেজে রয়েছে, যা I-কে সঠিক করে। `LocalDate` ক্লাসটি `java.time` প্যাকেজে রয়েছে, যা II-কে ভুল করে। `String` ক্লাসটি `java.lang` প্যাকেজে রয়েছে, যার অর্থ আপনি কোনো `import` টাইপ না করেই এটি ব্যবহার করতে পারেন, যা III-কে ভুল করে। অতএব, বিকল্প ক সঠিক।
+২০. গ. বিকল্প ক সহজ এবং `radical robots` আউটপুট দেয়। বিকল্প খ একটি জটিল পদ্ধতিতে একই কাজ করে। প্রথমে বিকল্প খ প্রথম অক্ষরের পরে সমস্ত অক্ষর মুছে ফেলে। আসলে ১০০ অক্ষর মুছে ফেলার মতো নেই তা কোনো ব্যাপার না। তারপর এটি `obots` যোগ করে শেষে, যা বিল্ডারটিকে `robots` ধারণ করে। অবশেষে, এটি স্ট্রিংয়ের অবশিষ্ট অংশটি প্রথম সূচকের ঠিক পরে সন্নিবেশ করায়। এটি কল্পনা করা কঠিন হলে প্রবাহটি আঁকার চেষ্টা করুন। বিকল্প ঘ `StringBuilder`-এর শেষের ঠিক পরে `robots` সন্নিবেশ করে একই মান তৈরি করে। বিকল্প গ কাছাকাছি, তবে এতে একটি অফ-বাই-ওয়ান ত্রুটি রয়েছে। এটি স্পেসের পরে না হয়ে `l` অক্ষরের পরে `robots` সন্নিবেশ করায়। এর ফলে `radicalrobots` এর পরে একটি স্পেস থাকে। বিকল্প গ অন্যদের থেকে ভিন্ন এবং সঠিক উত্তর।
+
+২১. ক. যেহেতু আমরা একটি অ্যারে থেকে তালিকা তৈরি করছি, এটি একটি নির্দিষ্ট আকারের। আমরা উপাদান পরিবর্তন করার অনুমতিপ্রাপ্ত। এই কোডের শেষে, `museums` হল `[Art, Science]`। অতএব, এটি Art ধারণ করে এবং বিকল্প ক সঠিক।
+২২. ঘ. যদি `String` "deabc" হয় তবে বিকল্প ক এবং খ সত্য নয়। যদি `String` "abcde" হয় তবে বিকল্প গ সত্য নয়। বিকল্প ঘ সকল ক্ষেত্রে সত্য।
+২৩. ঘ. লাইন ২৫ কম্পাইল করে না। একটি `ArrayList`-এ, উপাদানগুলোর সংখ্যা পেতে `size` মেথড ব্যবহার করা হয়। `length()` মেথড একটি `String` বা `StringBuilder`-এর জন্য ব্যবহৃত হয়।
+২৪. খ. `toString()` মেথড কলটি জিনিসগুলোকে সংকুচিত করতে সাহায্য করে না কারণ সমস্ত জাভা অবজেক্টে সেই মেথড উপলব্ধ। অন্য দুটি মেথড বেশি সহায়ক। `String` এই তিনটির মধ্যে একমাত্র টাইপ যার `startsWith()` মেথড রয়েছে, যা বিকল্প খ-কে সঠিক করে। `String`-এর এখানে ঘোষিত `replace()` মেথডটিও রয়েছে। আপনি যদি পুরো API মুখস্ত করে থাকেন, তাহলে আপনি হয়তো জানবেন যে `StringBuilder`-এরও একটি `replace()` মেথড আছে, তবে এতে দুটি প্যারামিটারের পরিবর্তে তিনটি প্যারামিটার প্রয়োজন। অনুগ্রহ করে সেই স্তরের বিস্তারিতভাবে API মুখস্ত করবেন না। আমরা আমাদের অধ্যয়ন নির্দেশিকাতে আপনার যা জানা দরকার তা অন্তর্ভুক্ত করেছি। আপনার যদি এই বাইরের জ্ঞান থাকে, তবে প্রশ্নগুলোতে অতিরিক্ত পড়ার বিষয়ে সতর্ক থাকুন!
+২৫. খ. `<>` কে ডায়মন্ড অপারেটর বলা হয়। এখানে, এটি একই ঘোষণার জন্য জেনেরিক টাইপ দুবার পুনরাবৃত্তি এড়াতে একটি শর্টকাট হিসাবে কাজ করে। এক্সপ্রেশনের ডানদিকে, এটি একটি সুবিধাজনক শর্টকাট। জাভার এখনও বাম দিকে টাইপ প্রয়োজন যাতে কিছু অনুমান করার থাকে। চিত্রে, P অবস্থানটি বাম দিক এবং Q অবস্থানটি ডান দিক। অতএব, বিকল্প খ সঠিক।
+
+২৬. ঘ. ল্যাম্বডার টাইপ `Predicate`-এ ঘোষিত জেনেরিকের সাথে মিলতে হবে। এই ক্ষেত্রে, এটি `String`। অতএব, বিকল্প ক এবং খ ভুল। যদিও বিকল্প গ সঠিক টাইপের, এটি `s` ভেরিয়েবলটি ব্যবহার করে, যা `main()` মেথড প্যারামিটার থেকে ইতিমধ্যেই ব্যবহৃত হচ্ছে। অতএব, এর কোনটিই সঠিক নয় এবং বিকল্প ঘ হল উত্তর।
+২৭. ক. একটি `String` অপরিবর্তনীয় তাই লাইন ৬-এ একটি ভিন্ন অবজেক্ট ফেরত দেওয়া হয়। লাইন ৬ সম্পূর্ণ হওয়ার পরে `anotherLine` নির্দেশিত অবজেক্টের দৈর্ঘ্য ২ হয়। তবে, মূল `line` রেফারেন্স এখনও দৈর্ঘ্য ১-এর একটি অবজেক্টকে নির্দেশ করে। অতএব, বিকল্প ক সঠিক।
+২৮. গ. যদিও একটি `Predicate`-এর একটি জেনেরিক টাইপ থাকা সাধারণ, তবে এটি প্রয়োজন হয় না। যখন জেনেরিকটি বাদ দেওয়া হয়, তখন এটিকে `Object` টাইপের একটি `Predicate` হিসাবে বিবেচনা করা হয়। যেহেতু `startsWith()` `Object`-এ বিদ্যমান নেই, প্রথম লাইনটি কম্পাইল করে না এবং বিকল্প গ সঠিক।
+২৯. খ. `LocalDate` কেবল তারিখ অংশ অন্তর্ভুক্ত করে, সময় অংশ নয়। `LocalTimeStamp` নামে কোনো ক্লাস নেই। অন্য দুটি, `LocalDateTime` এবং `LocalTime`, উভয়ই সময় উপাদান অন্তর্ভুক্ত করে, যা বিকল্প খ-কে সঠিক করে।
+৩০. ঘ. লাইন ৪ দৈর্ঘ্য ৫-এর একটি `String` তৈরি করে। যেহেতু `String` অপরিবর্তনীয়, লাইন ৫ মান ১ সহ একটি নতুন `String` তৈরি করে এবং এটি `builder`-এ অ্যাসাইন করে। মনে রাখবেন যে জাভাতে সূচকগুলো ০ থেকে শুরু হয়, তাই `substring()` মেথডটি পঞ্চম উপাদান থেকে শেষ পর্যন্ত মানগুলো নিচ্ছে। যেহেতু প্রথম উপাদানটি শেষ উপাদান, সেখানে কেবল একটি অক্ষর রয়েছে। তারপর লাইন ৬ দ্বিতীয় সূচকযুক্ত উপাদানটি পুনরুদ্ধার করার চেষ্টা করে। যেহেতু কেবল একটি উপাদান রয়েছে, এটি একটি `StringIndexOutOfBoundsException` দেয় এবং বিকল্প ঘ সঠিক।
+
+৩১. ঘ. আপনি যখন বন্ধনী ব্যবহার করেন, তখন ল্যাম্বডা কম্পাইল হওয়ার জন্য `return` কীওয়ার্ড এবং সেমিকোলন উভয়ই প্রয়োজন, যা বিকল্প ঘ-কে সঠিক করে।
+৩২. খ. জাভা ৮ তারিখ এবং সময় ক্লাসগুলো অপরিবর্তনীয়। `plusDays` মেথডটি ক্রিসমাস ইভ (২৪শে ডিসেম্বর) উপস্থাপনকারী একটি `LocalDate` অবজেক্ট ফেরত দেয়। তবে, এই ফেরত মানটি উপেক্ষা করা হয়। `xmas` ভেরিয়েবলটি এখনও আসল মানটি উপস্থাপন করে, তাই বিকল্প খ সঠিক।
+৩৩. ক. লাইন ৩ একটি খালি `StringBuilder` তৈরি করে। লাইন ৪ এতে তিনটি অক্ষর যোগ করে। লাইন ৫ প্রথম অক্ষরটি মুছে ফেলে, যার ফলে `ed` হয়। লাইন ৬ পজিশন ১ থেকে শুরু করে পজিশন ২ এর ঠিক আগে অক্ষরগুলো মুছে ফেলে, যা সূচক ১-এর অক্ষরটি মুছে দেয়, যা `d`। একমাত্র অক্ষর বাকি থাকে `e`, তাই বিকল্প ক সঠিক।
+৩৪. খ. যদিও একটি `Predicate`-এর একটি জেনেরিক টাইপ থাকা সাধারণ, তবে এটি প্রয়োজন হয় না। যখন জেনেরিকটি বাদ দেওয়া হয়, তখন এটিকে `Object` টাইপের একটি `Predicate` হিসাবে বিবেচনা করা হয়। যেহেতু `equals()` মেথডটি `Object`-এ বিদ্যমান, এটি ঠিক আছে। বিকল্প খ সঠিক কারণ `Predicate` `false` হিসাবে পরীক্ষা করে।
+
+৩৫. গ. জাভাতে, বেশিরভাগ জিনিস শূন্য-ভিত্তিক সূচক ব্যবহার করে, যার মধ্যে অ্যারে এবং একটি `String` অন্তর্ভুক্ত। জাভা ৮ থেকে মাসগুলো এই প্রথার ব্যতিক্রম। এটি উত্তরকে বিকল্প গ বা ঘ করে তোলে। তবে, `LocalTime`-এ তারিখ ক্ষেত্র থাকে না, তাই এটি অবশ্যই বিকল্প গ হতে হবে।
+৩৬. গ. `Predicate` একটি ইন্টারফেস যার একটি মেথড আছে। মেথডের স্বাক্ষর হল `boolean test(T t)`। বিকল্প গ হল উত্তর কারণ মেথডটি দুটি প্যারামিটারের পরিবর্তে একটি প্যারামিটার গ্রহণ করে।
+৩৭. খ. এখানে সতর্ক থাকুন। `Period` ক্লাসটি `period` ফেরত দিতে একটি স্ট্যাটিক হেল্পার মেথড ব্যবহার করে। এটি মেথড কলগুলো চেইন করে না, তাই `period1` কেবল তিন দিন উপস্থাপন করে। যেহেতু তিন দিন ১০ দিনের চেয়ে কম, `period2` বড় এবং বিকল্প খ সঠিক।
+৩৮. খ. কোডটি ১লা জানুয়ারি ২০১৭ তারিখ এবং এক দিনের একটি সময়কাল সঠিকভাবে তৈরি করে শুরু হয়। তারপর এটি স্পষ্টভাবে মাস, তারপর দিন, তারপর বছর হিসাবে বিন্যাস সংজ্ঞায়িত করে। অবশেষে, কোডটি এক দিন বিয়োগ করে, যা আমাদের ৩১শে ডিসেম্বর ২০১৬-এর বিন্যাসিত সংস্করণ দেয়।
+৩৯. গ. `trim()` মেথডটি সমস্ত অগ্রণী এবং অনুসারী সাদা স্থান সরানো সহ একটি `String` ফেরত দেয়। এই প্রশ্নে, এটি সাত-অক্ষরের `String`: ":) - (:"। বিকল্প ক এবং খ ভুল কারণ তারা `happy`-তে প্রথম ফাঁকা স্থানটি সরায় না। বিকল্প ঘ ভুল কারণ এটি `happy`-তে শেষ অক্ষরটি সরায় না। অতএব, বিকল্প গ সঠিক।
+৪০. গ. `Period` ক্লাসটি অপরিবর্তনীয় অবজেক্ট তৈরি করে এবং সাধারণত `LocalDate` বা `LocalDateTime` অবজেক্ট থেকে যোগ/বিয়োগ করতে ব্যবহৃত হয়। এটি দিন, সপ্তাহ, মাস বা বছরের সময়কাল তৈরি করতে দেয়। যেহেতু এটি সময়ের জন্য ব্যবহার করা যায় না, বিকল্প গ হল উত্তর।
+
+৪১. ঘ. লাইন ৪ দৈর্ঘ্য ৫-এর একটি `StringBuilder` তৈরি করে। `substring()` মেথড `StringBuilder`-এর দিকে মনোযোগ দিন। এটি `321` মান সহ একটি `String` ফেরত দেয়। এটি `StringBuilder` নিজেই পরিবর্তন করে না। তারপর লাইন ৬ সেই অপরিবর্তিত মান থেকে দ্বিতীয় সূচকযুক্ত উপাদানটি পুনরুদ্ধার করছে, যা `4`। অতএব, বিকল্প ঘ সঠিক।
+৪২. খ. এটি চতুর। `ArrayList`-এ দুটি `remove()` মেথড উপলব্ধ। একটি সূচক দ্বারা একটি উপাদান সরায় এবং একটি `int` প্যারামিটার নেয়। অন্যটি মান দ্বারা একটি উপাদান সরায়। জেনেরিকগুলোর কারণে, এই উদাহরণে এটি একটি `Integer` প্যারামিটার নেয়। যেহেতু `int` প্রিমিটিভটি একটি ভাল মিল, সূচক ২-এর উপাদানটি সরানো হয়, যা ১-এর মান। অতএব, বিকল্প খ সঠিক।
+৪৩. গ. `ArrayList`-এর একটি `size()` মেথড আছে `length()` মেথড না হয়ে, যা বিকল্প ক-কে ভুল করে। `charAt()` এবং `length()` মেথডগুলো `String` এবং `StringBuilder` উভয় ক্ষেত্রেই ঘোষিত। তবে, `insert()` মেথডটি কেবল একটি `StringBuilder`-এ ঘোষিত এবং একটি `String`-এ নয়। অতএব, বিকল্প গ সঠিক।
+৪৪. গ. `minusNanos` এবং `plusNanos` হল উপলব্ধ ক্ষুদ্রতম একক, যা বিকল্প গ-কে সঠিক করে। বিকল্প ঘ ভুল কারণ `LocalTime` এত সূক্ষ্ম নয়। উল্লেখ্য যে আপনি অনেক ন্যানোসেকেন্ড যোগ করে মিলিসেকেন্ড যোগ করতে পারলেও, এর জন্য কোনো মেথড নেই। একটি মিলিসেকেন্ডও একটি ন্যানোসেকেন্ডের চেয়ে বড়। অবশেষে, `LocalTime` অপরিবর্তনীয় এই তথ্য দ্বারা বিভ্রান্ত হবেন না। আপনি এখনও সময় যোগ করতে পারেন; এটি কেবল একটি ভিন্ন অবজেক্ট হিসাবে ফেরত আসে।
+
+৪৫. ঘ. একটি ফরম্যাটার অবজেক্ট তৈরি করার সময়, মনে রাখবেন যে `MM` মাসকে বোঝায় যখন `mm` মিনিটকে বোঝায়। যেহেতু একটি `LocalDate` অবজেক্টে কোনো মিনিট সংজ্ঞায়িত করা হয় না, কোডটি একটি `UnsupportedTemporalTypeException` ছুঁড়ে দেয়। আপনার ব্যতিক্রমের নামটি জানার প্রয়োজন নেই, তবে একটি ব্যতিক্রম ছুঁড়ে দেওয়া হয় তা আপনার জানা দরকার।
+৪৬. ঘ. `replace()` মেথডের দুটি স্বাক্ষর রয়েছে। একটি দুটি `char` প্যারামিটার নেয়। অন্য স্বাক্ষরটি একটি `CharSequence` নেয়। `String` এবং `StringBuilder` উভয়ই এই ইন্টারফেসটি প্রয়োগ করে। এটি তিনটি বিকল্পকে সঠিক করে এবং বিকল্প ঘ সঠিক।
+৪৭. গ. ডেটা টাইপগুলোতে মনোযোগ দিন। `print()` মেথডটি `String` অবজেক্টের একটি তালিকা ধরে লুপ করছে। তবে, `Predicate` একটি `Integer` আশা করে। যেহেতু এগুলো মেলে না, `if` স্টেটমেন্টটি কম্পাইল করে না।
+৪৮. ঘ. লাইন ১২ একটি খালি `ArrayList` তৈরি করে। যদিও অ্যাসাইনমেন্ট অপারেটরের কেবল বাম দিকে জেনেরিক ব্যবহার করার সুপারিশ করা হয় না, তবে এটি অনুমোদিত। এটি কেবল একটি সতর্কতা দেয়। লাইন ১৩ এবং ১৪ দুটি উপাদান যোগ করে। লাইন ১৫ একটি খালি `ArrayList`-এ রিসেট করে। লাইন ১৬ একটি উপাদান যোগ করে, তাই এখন আমাদের দৈর্ঘ্য ১-এর একটি `ArrayList` আছে। লাইন ১৭ সূচক ১-এর উপাদানটি সরানোর চেষ্টা করে। যেহেতু জাভা শূন্য-ভিত্তিক সূচক ব্যবহার করে, সেখানে কোনো উপাদান নেই এবং কোডটি একটি `IndexOutOfBoundsException` ছুঁড়ে দেয়।
+৪৯. গ. `witch`-এর ঘোষণা ভুল। এটি একটি `char`-কে একটি `String` ভেরিয়েবল রেফারেন্সে সংরক্ষণ করার চেষ্টা করে। এটি কম্পাইল করে না, যা বিকল্প গ-কে সঠিক করে। যদি এটি ঠিক করা হতো, তবে উত্তরটি বিকল্প খ হতো।
+৫০. গ. জাভা ৮ তারিখ এবং সময় ক্লাসগুলো অপরিবর্তনীয়। এর অর্থ হল সেগুলোতে সেটার মেথড থাকে না এবং কোডটি কম্পাইল করে না।"
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. C. Option A is incorrect because StringBuilder does not support multiple threads. In fact, threads aren’t even covered on the OCA, which should be your clue that this answer
 is wrong! You don’t need to know this for the exam, but StringBuffer supports multiple threads. Option B is incorrect because == compares references, not values. Option D is
 incorrect because both String and StringBuilder support languages and encodings. Option C is correct and the primary reason to use StringBuilder. String often creates a
@@ -747,110 +931,9 @@ There are 3 ways to create an ArrayList:--
 
 
 
-===============================================================================================================  
-                        # Chapter Summary: Java Strings, Collections, and Functional Programming 
-=============================================================================================================== 
 
-This chapter covers essential Java concepts including:
-- String manipulation and immutability
-- StringBuilder vs String
-- Java Collections Framework
-- Lambda expressions and functional interfaces
-- Java Date/Time API
 
-## Key Concepts to Master
 
-### 1. String Fundamentals
-- Immutability: Strings cannot be changed after creation
-- String Pool: Reuses string literals to save memory
-- Key Methods:
-  - `length()`, `charAt()`, `substring()`
-  - `indexOf()`, `startsWith()`, `endsWith()`
-  - `replace()`, `trim()`, `concat()`
-
-### 2. StringBuilder
-- Mutable alternative to String
-- Key Methods:
-  - `append()`, `insert()`, `delete()`
-  - `reverse()`, `replace()`
-- More efficient for multiple modifications
-
-### 3. Collections Framework
-- List: Ordered collection (ArrayList, LinkedList)
-- Set: Unique elements (HashSet, TreeSet)
-- Map: Key-value pairs (HashMap, TreeMap)
-- Common Operations:
-  - `add()`, `remove()`, `get()`, `contains()`
-  - `size()`, `isEmpty()`, `clear()`
-
-### 4. Functional Programming
-- Lambda Expressions: `(parameters) -> expression`
-- Functional Interfaces:
-  - `Predicate<T>`: `boolean test(T t)`
-  - `Consumer<T>`: `void accept(T t)`
-  - `Function<T,R>`: `R apply(T t)`
-- Method references (`System.out::println`)
-
-### 5. Date/Time API (java.time)
-- LocalDate: Date without time
-- LocalTime: Time without date
-- LocalDateTime: Date and time
-- Period: Date-based amount of time
-- Immutable and thread-safe
-
-## Exam Preparation Strategy
-
-1. String Operations:
-   - Predict output of string manipulations
-   - Understand immutability consequences
-   - Know when to use StringBuilder
-
-2. Collection Usage:
-   - Proper initialization and modification
-   - Common method behaviors
-   - Capacity vs size differences
-
-3. Lambda Expressions:
-   - Valid syntax forms
-   - Functional interface matching
-   - Method reference conversions
-
-4. Date/Time API:
-   - Immutability patterns
-   - Period calculations
-   - DateTimeFormatter usage
-
-5. Common Pitfalls:
-   - String vs StringBuilder performance
-   - Collection index boundaries
-   - Lambda syntax errors
-   - Date/Time immutability
-
-## Key Differences to Remember
-
-1. String vs StringBuilder:
-   - String: Immutable, thread-safe, better for constants
-   - StringBuilder: Mutable, better for modifications
-
-2. ArrayList Capacity:
-   - Initial capacity is optimization hint
-   - Size is actual element count
-
-3. Lambda Syntax:
-   - Parentheses optional for single parameter
-   - Braces and return required for multiple statements
-   - Type inference available
-
-4. Date/Time Classes:
-   - LocalDate: year/month/day
-   - LocalTime: hour/minute/second/nano
-   - LocalDateTime: combines date and time
-
-By mastering these concepts and practicing similar questions, you'll be well-prepared for exam questions on Java strings, collections, and functional programming. Pay special attention to:
-- String immutability consequences
-- Proper collection usage patterns
-- Lambda expression syntax variations
-- Date/Time API immutability
 
 
 
