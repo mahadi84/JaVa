@@ -471,7 +471,7 @@ implements vs extends exception, must declare or handle Unchecked/Compiletime ex
         C. The code does not compile because of line g3.
         D. None of the above
 
-21. Fill in the blanks: A program must handle or declare but should never handle.
+21. Fill in the blanks:  A program must handle or declare __ but __ should never handle.
         A. java.lang.Error, unchecked exceptions
         B. checked exceptions, java.lang.Error
         C. java.lang.Throwable, java.lang.Error
