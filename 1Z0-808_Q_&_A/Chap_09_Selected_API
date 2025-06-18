@@ -34,6 +34,11 @@ This chapter covers essential Java concepts including:
 ## Key Concepts to Master
 
 ### 1. String Fundamentals
+ String Operations:
+   - Predict output of string manipulations
+   - Understand immutability consequences
+   - Know when to use StringBuilder
+
 - Immutability: Strings cannot be changed after creation
 - String Pool: Reuses string literals to save memory
 - Key Methods:
@@ -49,6 +54,11 @@ This chapter covers essential Java concepts including:
 - More efficient for multiple modifications
 
 ### 3. Collections Framework
+Collection Usage:
+   - Proper initialization and modification
+   - Common method behaviors
+   - Capacity vs size differences
+
 - List: Ordered collection (ArrayList, LinkedList)
 - Set: Unique elements (HashSet, TreeSet)
 - Map: Key-value pairs (HashMap, TreeMap)
@@ -57,6 +67,11 @@ This chapter covers essential Java concepts including:
   - `size()`, `isEmpty()`, `clear()`
 
 ### 4. Functional Programming
+Lambda Expressions:
+   - Valid syntax forms
+   - Functional interface matching
+   - Method reference conversions
+
 - Lambda Expressions: `(parameters) -> expression`
 - Functional Interfaces:
   - `Predicate<T>`: `boolean test(T t)`
@@ -65,39 +80,17 @@ This chapter covers essential Java concepts including:
 - Method references (`System.out::println`)
 
 ### 5. Date/Time API (java.time)
+ Date/Time API:
+   - Immutability patterns
+   - Period calculations
+   - DateTimeFormatter usage
+
 - LocalDate: Date without time
 - LocalTime: Time without date
 - LocalDateTime: Date and time
 - Period: Date-based amount of time
 - Immutable and thread-safe
 
-## Exam Preparation Strategy
-
-1. String Operations:
-   - Predict output of string manipulations
-   - Understand immutability consequences
-   - Know when to use StringBuilder
-
-2. Collection Usage:
-   - Proper initialization and modification
-   - Common method behaviors
-   - Capacity vs size differences
-
-3. Lambda Expressions:
-   - Valid syntax forms
-   - Functional interface matching
-   - Method reference conversions
-
-4. Date/Time API:
-   - Immutability patterns
-   - Period calculations
-   - DateTimeFormatter usage
-
-5. Common Pitfalls:
-   - String vs StringBuilder performance
-   - Collection index boundaries
-   - Lambda syntax errors
-   - Date/Time immutability
 
 ## Key Differences to Remember
 
@@ -119,14 +112,12 @@ This chapter covers essential Java concepts including:
    - LocalTime: hour/minute/second/nano
    - LocalDateTime: combines date and time
 
-By mastering these concepts and practicing similar questions, you'll be well-prepared for exam questions on Java strings, collections, and functional programming. Pay special attention to:
-- String immutability consequences
-- Proper collection usage patterns
-- Lambda expression syntax variations
-- Date/Time API immutability
 
-
-
+## Common Pitfalls:
+   - String vs StringBuilder performance
+   - Collection index boundaries
+   - Lambda syntax errors
+   - Date/Time immutability
 
 
 =====================Chapter 9(Selected Java API) =========================================
