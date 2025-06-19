@@ -550,7 +550,7 @@ implements vs extends exception, must declare or handle Unchecked/Compiletime ex
         C. A stack trace for ClassCastException is printed.
         D. None of the above
 
-26. Fill in the blanks: A occurs when a program recurses too deeply  into an infinite loop, while a(n) occurs when a reference to a nonexistent object is acted upon.
+26. Fill in the blanks: ___A occurs when a program recurses too deeply  into an infinite loop, while a(n) __ occurs when a reference to a nonexistent object is acted upon.
         A. NoClassDefFoundError, StackOverflowError
         B. StackOverflowError, NullPointerException
         C. ClassCastException, IllegalArgumentException
