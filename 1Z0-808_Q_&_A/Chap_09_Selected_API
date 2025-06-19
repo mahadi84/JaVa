@@ -52,6 +52,31 @@ Check hot topics bottom of the page.
        `toArray()` হলো জাভার `Collection` ইন্টারফেসের একটি মেথড। এটি একটি কালেকশন (যেমন, `ArrayList`, `Set` ইত্যাদি) থেকে উপাদানগুলোকে একটি অ্যারেতে রূপান্তর করতে ব্যবহৃত হয়।
        এটি সাধারণত কোনো কালেকশনের ডেটা নিয়ে অ্যারেভিত্তিক অপারেশনের জন্য ব্যবহার করা হয়।
 
+   .toString() মেথড
+   জাভাতে .toString() মেথডটি হলো java.lang.Object ক্লাসের একটি মৌলিক (fundamental) মেথড। 
+   যেহেতু জাভার প্রতিটি ক্লাস (আপনার নিজের তৈরি ক্লাস সহ) পরোক্ষভাবে Object ক্লাসকে এক্সটেন্ড (extend) করে, তাই প্রতিটি অবজেক্টের কাছে .toString() মেথডটি উত্তরাধিকার সূত্রে (inherited) থাকে।   
+   .toString() মেথডের উদ্দেশ্য:
+   এই মেথডের প্রধান উদ্দেশ্য হলো একটি অবজেক্টের একটি টেক্সচুয়াল রিপ্রেজেন্টেশন (textual representation) বা পাঠ্যগত উপস্থাপনা প্রদান করা। সহজ কথায়, এটি একটি অবজেক্টকে মানুষের বোঝার উপযোগী একটি স্ট্রিং (String) এ রূপান্তর করে।   
+      class Student {
+          String name;   int rollNumber;  String className;
+          // কনস্ট্রাক্টর
+          public Student(String name, int rollNumber, String className) { this.name = name;  this.rollNumber = rollNumber; this.className = className;  }
+         
+          @Override // .toString() মেথডটি ওভাররাইড করা হয়েছে
+          public String toString() {return "ছাত্রের নাম: " + name + ", রোল নম্বর: " + rollNumber + ", ক্লাস: " + className;  }
+      }
+      
+            public class ToStringExample {
+                public static void main(String[] args) {
+                    Student student1 = new Student("আরিফ", 101, "দশম শ্রেণী");      
+                    // .toString() মেথডটি স্বয়ংক্রিয়ভাবে কল হবে যখন আপনি একটি অবজেক্ট প্রিন্ট করবেন
+                    System.out.println(student1); // আউটপুট: ছাত্রের নাম: আরিফ, রোল নম্বর: 101, ক্লাস: দশম শ্রেণী      
+                    // আপনি সরাসরিও .toString() কল করতে পারেন
+                    String studentDetails = student1.toString();
+                    System.out.println("স্ট্রিং আকারে ছাত্রের তথ্য: " + studentDetails);
+                }
+            }
+
    Predicate:
       Predicate হলো জাভা ৮ (Java 8)-এর ফাংশনাল ইন্টারফেসগুলোর (Functional Interfaces) মধ্যে একটি। এটি java.util.function প্যাকেজে অবস্থিত।
       সহজ কথায়, একটি Predicate হলো একটি ফাংশন যা একটি আর্গুমেন্ট (ইনপুট) নেয় এবং একটি boolean মান (true বা false) প্রদান করে। এটি মূলত কোনো শর্ত (condition) যাচাই করার জন্য ব্যবহৃত হয়।
