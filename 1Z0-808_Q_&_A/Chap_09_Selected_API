@@ -5,7 +5,7 @@ Check hot topics bottom of the page.
 
 
 ========================== প্রশ্ন ========================================
-   - জাভা এপিআই-এর মূল উদ্দেশ্য কী: String, StringBuilder(),  ArrayList(), List, asList(), toArray(), Predicate<String>, LocalDate, LocalDateTime, Period, DateTimeFormatter
+   - জাভা এপিআই-এর মূল উদ্দেশ্য কী: String, StringBuilder(),  ArrayList(), List, asList(), toArray(), toString(), Predicate, LocalDate, LocalDateTime, Period, DateTimeFormatter
 
 
 এপিআই ছাড়া কঠিন হবে-
