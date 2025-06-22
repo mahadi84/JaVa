@@ -263,8 +263,30 @@ Lambda Expressions:
 
 3. Lambda Syntax:
    - Parentheses optional for single parameter
+            (String s) -> System.out.println(s);    // With parentheses (always works)
+            s -> System.out.println(s);             // Without parentheses (valid for a single parameter if type is inferred)
    - Braces and return required for multiple statements
+               (int a, int b) -> a + b;    // Single statement (no braces or return needed, it's implicit)
+               (int a, int b) -> {         // Multiple statements (braces are required, and 'return' is required for a return value)
+                   int sum = a + b;
+                   System.out.println("Calculating sum: " + sum);
+                   return sum;
+               };
    - Type inference available
+               (a, b) -> a + b; // Type inference for parameters (compiler infers 'a' and 'b' are int based on context)
+               interface MathOperation {      // Example with a functional interface
+                   int operate(int a, int b);
+               }
+               
+               public class LambdaExamples {
+                   public static void main(String[] args) {
+                       // Here, the compiler infers the types of 'a' and 'b' for the lambda
+                       // because MathOperation's operate method specifies 'int' parameters.
+                       MathOperation addition = (a, b) -> a + b;
+                       System.out.println("2 + 3 = " + addition.operate(2, 3));
+                   }
+               }
+
 
 4. Date/Time Classes:
    - LocalDate: year/month/day
