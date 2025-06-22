@@ -276,14 +276,11 @@ Lambda Expressions:
                (a, b) -> a + b; // Type inference for parameters (compiler infers 'a' and 'b' are int based on context)
                interface MathOperation {      // Example with a functional interface
                    int operate(int a, int b);
-               }
-               
+               }               
                public class LambdaExamples {
-                   public static void main(String[] args) {
-                       // Here, the compiler infers the types of 'a' and 'b' for the lambda
-                       // because MathOperation's operate method specifies 'int' parameters.
-                       MathOperation addition = (a, b) -> a + b;
-                       System.out.println("2 + 3 = " + addition.operate(2, 3));
+                   public static void main(String[] args) {                       
+                       MathOperation addition = (a, b) -> a + b;                 // Here, the compiler infers the types of 'a' and 'b' for the lambda
+                       System.out.println("2 + 3 = " + addition.operate(2, 3));  // because MathOperation's operate method specifies 'int' parameters.
                    }
                }
 
