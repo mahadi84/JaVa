@@ -207,7 +207,7 @@ This chapter covers essential Java concepts including:
 
 ### 2. StringBuilder
 - Mutable alternative to String
-- Key Methods: -AIDRR
+- Key Methods: -AID_RR
   - `append()`, `insert()`, `delete()`
   - `reverse()`, `replace()`
 - More efficient for multiple modifications
@@ -221,7 +221,7 @@ Collection Usage:
 - List: Ordered collection (ArrayList, LinkedList)
 - Set: Unique elements (HashSet, TreeSet)
 - Map: Key-value pairs (HashMap, TreeMap)
-- Common Operations: -GRAC CIS
+- Common Operations: -GRAS_ICC
   - `add()`, `remove()`, `get()`, `contains()`
   - `size()`, `isEmpty()`, `clear()`
 
