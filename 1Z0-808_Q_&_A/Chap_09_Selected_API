@@ -200,7 +200,7 @@ This chapter covers essential Java concepts including:
 
 - Immutability: Strings cannot be changed after creation
 - String Pool: Reuses string literals to save memory
-- Key Methods:
+- Key Methods: SISTER_LCC
   - `length()`, `charAt()`, `substring()`
   - `indexOf()`, `startsWith()`, `endsWith()`
   - `replace()`, `trim()`, `concat()`
