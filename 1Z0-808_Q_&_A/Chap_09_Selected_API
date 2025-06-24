@@ -525,9 +525,8 @@ Lambda Expressions:
         C. 2
         D. None of the above
 
-24. The author of this method forgot to include the data type. Which of the following reference
-        types can fill in the blank to complete this method?
-        public static void secret( mystery) {
+24. The author of this method forgot to include the data type. Which of the following reference types can fill in the blank to complete this method?
+        public static void secret(__ mystery) {
         mystery = mystery.replace("1", "8");
         mystery.startsWith("paper");
         String s = mystery.toString();
