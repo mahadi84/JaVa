@@ -194,7 +194,7 @@ This chapter covers essential Java concepts including:
 
 ### 1. String Fundamentals
  String Operations:
-   - Predict output of string manipulations
+   - Predict output of string manipulations - SAM, Boolean
    - Understand immutability consequences
    - Know when to use StringBuilder
 
@@ -207,7 +207,7 @@ This chapter covers essential Java concepts including:
 
 ### 2. StringBuilder
 - Mutable alternative to String
-- Key Methods: -AID_RR
+- Key Methods: -AID2_RR
   - `append()`, `insert()`, `delete()`
   - `reverse()`, `replace()`
 - More efficient for multiple modifications
