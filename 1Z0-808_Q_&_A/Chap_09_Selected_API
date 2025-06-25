@@ -250,6 +250,10 @@ Lambda Expressions:
 - Period: Date-based amount of time
 - Immutable and thread-safe
 
+Period period = Period.ofDays(1);
+DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+System.out.print(format.format(newYears.minus(period)));
+
 
 ## Key Differences to Remember
 
@@ -300,7 +304,7 @@ Lambda Expressions:
 
 =====================Chapter 9(Selected Java API) =========================================
 
-2,5,7,9,11,12,13,14,16,17,19,20,26,27,28,30
+2,5,7,9,11,12,13,14,16,17,19,20,26,27,28,30,31,33,34,36,37,38,40
 
 
 3,5,7,11,12,15,16,*19,21,25,26,27,*28,
@@ -672,7 +676,7 @@ Lambda Expressions:
 39. Which of the following can fill in the blank so the following code prints true?
         String happy = " :) - (: ";
         String really = happy.trim();
-        String question = ;
+        String question = __ ;
         System.out.println(really.equals(question));
         A. happy.substring(0, happy.length() - 1)
         B. happy.substring(0, happy.length())
