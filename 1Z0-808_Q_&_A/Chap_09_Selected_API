@@ -200,14 +200,16 @@ This chapter covers essential Java concepts including:
 
 - Immutability: Strings cannot be changed after creation
 - String Pool: Reuses string literals to save memory
-- Key Methods: SISTER_LCC
+- Key Methods: LC_SISTER_C
   - `length()`, `charAt()`, `substring()`
   - `indexOf()`, `startsWith()`, `endsWith()`
   - `replace()`, `trim()`, `concat()`
 
 ### 2. StringBuilder
 - Mutable alternative to String
-- Key Methods: -AID2_RR
+- Key Methods: -LC_SIR_AID2_R
+  - `length()`, `charAt()`, `substring()`
+  - `indexOf()`, +
   - `append()`, `insert()`, `delete()`
   - `reverse()`, `replace()`
 - More efficient for multiple modifications
