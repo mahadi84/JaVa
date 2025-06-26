@@ -83,7 +83,7 @@ Check hot topics bottom of the page.
                       }
                   }
 
-   Predicate(): (Method) প্রধান উদ্দেশ্য হলো-  filtering, data validation এবং শর্তভিত্তিক লজিক প্রয়োগের জন্য খুব শক্তিশালী একটি টুল হিসেবে কাজ করে।
+   Predicate(): (On Argument Method) প্রধান উদ্দেশ্য হলো-  filtering, data validation এবং শর্তভিত্তিক লজিক প্রয়োগের জন্য খুব শক্তিশালী একটি টুল হিসেবে কাজ করে।
                 - এটি java.util.function প্যাকেজে অবস্থিত।
                 - সহজ কথায়, একটি Predicate হলো একটি ফাংশন যা একটি আর্গুমেন্ট (ইনপুট) নেয় এবং একটি boolean মান (true বা false) প্রদান করে।
                 - এটি আপনার কোডকে আরও সংক্ষিপ্ত, পঠনযোগ্য (readable) এবং মডুলার (modular) করে তোলে।
