@@ -194,7 +194,7 @@ This chapter covers essential Java concepts including:
 
 ### 1. String Fundamentals
  String Operations:
-   - Predict output of string manipulations - SAM, Boolean
+   - Predict output of string manipulations 
    - Understand immutability consequences
    - Know when to use StringBuilder
 
@@ -229,10 +229,15 @@ Collection Usage:
 
 ### 4. Functional Programming
 Lambda Expressions:
-   - Valid syntax forms
-   - Functional interface matching
-   - Method reference conversions
-
+   - Valid syntax forms - 
+      BOTH Predicate<Integer> ip = i -> i != 0;  
+      IS i -> { return i != 0; } CORRET
+        Predicate<String> pred1 = s -> false;
+        Predicate<String> pred3 = String s -> false;
+        Predicate<String> pred4 = (String s) -> false;
+      
+    - Method reference conversions
+       Remember: Interface with SAM=Single Abstract Method, buit-in test() function, Boolean Return type
 - Lambda Expressions: `(parameters) -> expression`
 - Functional Interfaces:
   - `Predicate<T>`: `boolean test(T t)`
@@ -246,10 +251,8 @@ Lambda Expressions:
    - Period calculations
    - DateTimeFormatter usage
 
-- LocalDate: Date without time
-- LocalTime: Time without date
-- LocalDateTime: Date and time
-- Period: Date-based amount of time
+- LocalDate: Date without time - LocalTime: Time without date
+- LocalDateTime: Date and time - Period: Date-based amount of time
 - Immutable and thread-safe
 
 Period period = Period.ofDays(1);
