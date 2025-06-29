@@ -100,6 +100,9 @@ This chapter covers essential Java concepts including:
         
                 // AutoUnboxing/ Unboxing (Wrapper to Primitive)
                 int newPrimitiveInt = wrapperInt; // Integer to int
+             Or int newPrimtiveInt= wrapperInt.intValue(10);
+             Or int newPrimtiveInt= new Integer(10);
+             Or int first = Integer.parseInt("10");
                 char newPrimitiveChar = wrapperChar; // Character to char
         
                 // Explicit conversion (old way, still valid)
