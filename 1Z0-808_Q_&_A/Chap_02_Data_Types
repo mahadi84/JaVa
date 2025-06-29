@@ -55,13 +55,10 @@ This chapter covers essential Java concepts including:
 
 ### 1. Variable Declarations
 - Multiple variables can be declared on one line (but must be same type)
-- Local variables must be initialized before use (no default values)
+- Local variables must be initialized/parameterised before use (no default values)
 - Instance variables get default values (0, false, null)
 - Valid variable names: start with letter/underscore/$ (not number), case-sensitive
-
-    Declaration Patterns:
    - Spot invalid declarations (mixed types, invalid names)
-   - Understand default values for different variable types
    - Know where variables can be accessed (scope rules)
 
 ### 2. Primitive Types and Wrappers
@@ -74,12 +71,8 @@ This chapter covers essential Java concepts including:
 - `new` keyword creates objects
 - Objects become eligible for garbage collection when unreachable
 - `finalize()` method (deprecated) runs before GC but timing unpredictable
-- Constructor basics: same name as class, no return type
+- Constructor basics: same name as class, no return type, all access modifier usable
 
-### 4. Initialization Order
-1. Static variables and initializers (class loading)
-2. Instance variables and initializers
-3. Constructors
 
 ## Exam Preparation Strategy
 
@@ -112,7 +105,7 @@ This chapter covers essential Java concepts including:
                 }
 
 
-2. Object Lifecycle:
+2. Object Lifecycle and Initialization Order:
    - Identify when objects become eligible for GC
             -সহজ কথায়, যখন কোনো ভেরিয়েবল বা ডেটা স্ট্রাকচার সেই অবজেক্টটিকে আর "ধরে" থাকে না, তখন সেটিকে GC দ্বারা মেমরি থেকে সরানো যেতে পারে।
         প্রধান পরিস্থিতি যেখানে অবজেক্ট GC-এর জন্য যোগ্য হয়:
