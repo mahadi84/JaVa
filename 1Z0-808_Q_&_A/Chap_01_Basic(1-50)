@@ -116,8 +116,8 @@ By focusing on these core concepts and practicing similar questions, you'll be w
 2. The following class diagram demonstrates the relationship between Gold and Silver, which extends the Metal class. Assume the attributes are all declared public. 
    Which statement about the diagram is not true?
          Metal{ + weight, + color}
-                Gold { + hue } 
-                Silver{ + luster}
+                Gold extends Metal { + hue } 
+                Silver extends Metal{ + luster}
         A. The diagram demonstrates platform independence in Java.
         B. The diagram demonstrates object-oriented design in Java.
         C. The Gold and Silver classes inherit weight and color attributes from the Metal class.
