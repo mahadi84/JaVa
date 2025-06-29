@@ -88,6 +88,29 @@ This chapter covers essential Java concepts including:
    - Know method calling limitations (primitives vs objects)
    - Understand autoboxing behavior
 
+    public class ConversionExample {
+            public static void main(String[] args) {
+                // Primitive types
+                int primitiveInt = 10;
+                char primitiveChar = 'A';
+        
+                // Autoboxing/Boxing   (Primitive to Wrapper)
+                Integer wrapperInt = primitiveInt; // int to Integer
+                Character wrapperChar = primitiveChar; // char to Character
+        
+                // AutoUnboxing/ Unboxing (Wrapper to Primitive)
+                int newPrimitiveInt = wrapperInt; // Integer to int
+                char newPrimitiveChar = wrapperChar; // Character to char
+        
+                // Explicit conversion (old way, still valid)
+                Integer explicitWrapperInt = Integer.valueOf(50); // Explicit boxing
+                int explicitPrimitiveInt = explicitWrapperInt.intValue(); // Explicit unboxing
+                }
+    }
+
+
+
+
 3. Object Lifecycle:
    - Identify when objects become eligible for GC
    - Understand constructor basics
