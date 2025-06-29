@@ -59,6 +59,11 @@ This chapter covers essential Java concepts including:
 - Instance variables get default values (0, false, null)
 - Valid variable names: start with letter/underscore/$ (not number), case-sensitive
 
+    Declaration Patterns:
+   - Spot invalid declarations (mixed types, invalid names)
+   - Understand default values for different variable types
+   - Know where variables can be accessed (scope rules)
+
 ### 2. Primitive Types and Wrappers
 - 8 primitive types: byte, short, int, long, float, double, char, boolean
 - Wrapper classes: Byte, Short, Integer, Long, Float, Double, Character, Boolean
@@ -78,12 +83,7 @@ This chapter covers essential Java concepts including:
 
 ## Exam Preparation Strategy
 
-1. Variable Declaration Patterns:
-   - Spot invalid declarations (mixed types, invalid names)
-   - Understand default values for different variable types
-   - Know where variables can be accessed (scope rules)
-
-2. Primitive vs Wrapper:
+1.  Primitive vs Wrapper:
    - Recognize valid conversions
    - Know method calling limitations (primitives vs objects)
    - Understand autoboxing behavior
@@ -114,7 +114,7 @@ This chapter covers essential Java concepts including:
 
 
 
-3. Object Lifecycle:
+2. Object Lifecycle:
    - Identify when objects become eligible for GC
             -সহজ কথায়, যখন কোনো ভেরিয়েবল বা ডেটা স্ট্রাকচার সেই অবজেক্টটিকে আর "ধরে" থাকে না, তখন সেটিকে GC দ্বারা মেমরি থেকে সরানো যেতে পারে।
         প্রধান পরিস্থিতি যেখানে অবজেক্ট GC-এর জন্য যোগ্য হয়:
@@ -132,7 +132,7 @@ This chapter covers essential Java concepts including:
             -কারেন্ট ক্লাসের ইনস্ট্যান্স মেম্বার: এরপর বর্তমান ক্লাসের ইনস্ট্যান্স ভেরিয়েবল এবং ইনস্ট্যান্স ইনিশিয়ালাইজার ব্লকগুলো ইনিশিয়েলাইজ হয়, তাদের ঘোষণার ক্রম অনুযায়ী।
             -কারেন্ট ক্লাসের কনস্ট্রাকটর: পরিশেষে, বর্তমান ক্লাসের কনস্ট্রাকটর এক্সিকিউট হয়।
 
-4. Code Analysis:
+3. Code Analysis:
    - Practice tracing code execution
    - Watch for common pitfalls (uninitialized variables, etc.)
    - Learn to identify compilation errors vs runtime behavior
