@@ -94,7 +94,7 @@ This chapter covers essential Java concepts including:
                 int primitiveInt = 10;
                 char primitiveChar = 'A';
         
-                // Autoboxing/Boxing   (Primitive to Wrapper)
+                // AutoBoxing/Boxing   (Primitive to Wrapper)
                 Integer wrapperInt = primitiveInt; // int to Integer
                 Character wrapperChar = primitiveChar; // char to Character
         
