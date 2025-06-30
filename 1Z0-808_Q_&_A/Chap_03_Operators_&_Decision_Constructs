@@ -30,7 +30,7 @@ This chapter covers essential Java concepts related to:
 - if-then-else: Executes blocks conditionally (no required else)
 - switch: Works with byte, short, char, int, String, enums (** NOT long/double)
   - case values must be compile-time constants
-  - break prevents fall-through
+  - break prevents fall-through ( `switch` স্টেটমেন্টে কোনো `break` স্টেটমেন্ট নেই ? সমস্ত `case` স্টেটমেন্ট execute করা হবে।)
   - default is optional and can be placed anywhere
 
 #### 2. Operators ####
