@@ -135,10 +135,6 @@ By mastering these concepts and practicing similar questions, you'll be well-pre
 
  2,5,6,*9,*10,11,12,*13,*14,*15,16,*17,18,*19,20,23,24,26,27,29,30,*33,*36,37,40,43,44,46,*48,*49=30
 
-Expression: boolean result = condition1 && condition2;
-  && = Returns true only if both condition1 and condition2 are true.
-  || = Returns true if at least one of condition1 or condition2 is true.
-  XOR (^) = Returns true if only one of condition1 or condition2 is true.( If both conditions are true, or both are false, the result is false.)
 
 1. Which of the following variable types is not permitted in a switch statement?
         A. String
