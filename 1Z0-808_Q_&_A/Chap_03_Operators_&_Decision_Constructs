@@ -61,7 +61,13 @@ This chapter covers essential Java concepts related to:
             | (Logical OR - লজিক্যাল অর): উভয় অপারেন্ডই (operand1 এবং operand2) সবসময় মূল্যায়ন করা হয়, এমনকি যদি প্রথম অপারেন্ডের ফলস্বরূপ ফলাফল নিশ্চিত হয়।
                                           eX: boolean resultOr = (a > 3) | (b == 0); // (true) | (true) -> true
             সাধারণত, পারফরম্যান্স এবং ত্রুটি এড়ানোর জন্য শর্ট-সার্কিট অপারেটরগুলোই বেশি ব্যবহৃত হয়। নন-শর্ট-সার্কিট অপারেটরগুলো বিটওয়াইজ অপারেশন (bitwise operations) হিসেবেও ব্যবহৃত হয়।
-  - XOR (^) - true when operands differ
+   ## XOR (^): (caret) চিহ্ন
+          eX: এই অপারেটরটি তখনই true রিটার্ন করে যখন এর উভয় দিকের অপারেন্ডের মান ভিন্ন হয়। যদি উভয় অপারেন্ডের মান একই হয় (true এবং true অথবা false এবং false), তাহলে এটি false রিটার্ন করবে।
+              boolean condition1 = true;
+              boolean condition2 = false;
+                 // যদি condition1 এবং condition2 ভিন্ন হয়, তাহলে result হবে true।
+                 boolean result1 = condition1 ^ condition2; // true ^ false -> true // আউটপুট: true
+
 
 - Increment/decrement: 
   - Pre (++x): প্রথমে ভেরিয়েবলের মান 1 বাড়ায়, তারপর বর্ধিত মানটি রিটার্ন করে। Ex: int x=5; y = ++x;  আউটপুট: x=6; y=6;
