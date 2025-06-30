@@ -40,6 +40,7 @@ This chapter covers essential Java concepts related to:
    গুরুত্বপূর্ণ বিষয়:
    -টারনারি অপারেটর কোডকে সংক্ষিপ্ত করে তোলে, তবে অতিরিক্ত ব্যবহার কোডকে পড়তে কঠিন করে তুলতে পারে, বিশেষ করে যখন শর্তগুলি জটিল হয়।
    -valueIfTrue এবং valueIfFalse এর ডেটা টাইপ একই অথবা সামঞ্জস্যপূর্ণ (compatible) হতে হবে।
+      gradeValue = (score > 90) ? 4.0 : 3.0; // 4.0 (double), 3.0 (double)  // যদি একটি int হয়, যেমন (score > 90) ? 4.0 : 3, তাহলে 3 স্বয়ংক্রিয়ভাবে double এ convert হবে।
 
 ### 3. Logical and arithmetic operators
   - Short-circuit (&&, ||) vs non-short-circuit (&, |)
