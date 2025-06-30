@@ -37,6 +37,8 @@ This chapter covers essential Java concepts related to:
 
 ### 2. Operators
 - Ternary (? :): Compact if-else replacement (must return compatible types)
+
+### 3. Logical and arithmetic operators
 - Logical:
   - Short-circuit (&&, ||) vs non-short-circuit (&, |)
              int a = 5;  int b = 0;
