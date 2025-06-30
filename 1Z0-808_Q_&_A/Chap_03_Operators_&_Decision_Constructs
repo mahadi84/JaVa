@@ -271,7 +271,7 @@ Highest to lowest:
         D. The code compiles but throws an exception at runtime.
         
 16. Fill in the blanks: 
-        The operator increases the value of a variable by 1 and returns the new value, while the operator decreases the value of a variable by 1 and returns the original value.
+        __ The operator increases the value of a variable by 1 and returns the new value, while __ the operator decreases the value of a variable by 1 and returns the original value.
         A. pre-increment [++v], pre-decrement [--v]
         B. pre-increment [++v], post-decrement [v--]
         C. post-increment [v++], pre-decrement [--v]
