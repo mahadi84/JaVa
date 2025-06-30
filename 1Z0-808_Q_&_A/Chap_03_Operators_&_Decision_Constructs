@@ -30,7 +30,7 @@ This chapter covers essential Java concepts related to:
 
 ### 1. Control Flow Statements
 - if-then-else: Executes blocks conditionally (no required else)
-- switch: Works with byte, short, char, int, String, enums (not long/double)
+- switch: Works with byte, short, char, int, String, enums (** NOT long/double)
   - case values must be compile-time constants
   - break prevents fall-through
   - default is optional and can be placed anywhere
@@ -47,7 +47,7 @@ This chapter covers essential Java concepts related to:
          data = (isText) ? "হ্যালো ওয়ার্ল্ড" : 123; //যেহেতু String এবং Integer উভয়ই Object ক্লাসকে ইনহেরিট করে (বাস্তবে Object তাদের প্যারেন্ট ক্লাস), তাই এই অ্যাসাইনমেন্ট সামঞ্জস্যপূর্ণ।
 
 ### 3. Logical and arithmetic operators
-       ## Short-circuit (&&, ||) vs non-short-circuit (&, |)
+       ## Short-circuit (&&, ||) vs non-short-circuit (&, |) *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
              int a = 5;  int b = 0;
          && (Logical AND - লজিক্যাল অ্যান্ড): যদি প্রথম অপারেন্ড (operand1) false হয়, তাহলে দ্বিতীয় অপারেন্ড (operand2) আর মূল্যায়ন করা হয় না, কারণ ফলাফল নিশ্চিতভাবে false হবে।
                                            eX: if ((a < 5) && (b != 0)) { // (5 < 5) is false, so (b != 0) is skipped
