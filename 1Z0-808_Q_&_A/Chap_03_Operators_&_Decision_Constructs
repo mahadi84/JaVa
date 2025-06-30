@@ -70,16 +70,16 @@ This chapter covers essential Java concepts related to:
 ### 5. Operator Precedence
 - Arithmetic: +, -, *, /, % (modulus)
 Highest to lowest:
-1. Postfix (x++, x--)
-2. Unary (++x, --x, !, ~)
-3. Multiplicative (, /, %)
-4. Additive (+, -)
-5. Relational (<, >, <=, >=, instanceof)
-6. Equality (==, !=)
-7. Logical AND (&&)
-8. Logical OR (||)
-9. Ternary (? :)
-10. Assignment (=, +=, etc.)
+      1. Postfix (x++, x--)
+      2. Unary (++x, --x, !, ~)
+      3. Multiplicative (, /, %)
+      4. Additive (+, -)
+      5. Relational (<, >, <=, >=, instanceof)
+      6. Equality (==, !=)
+      7. Logical AND (&&)
+      8. Logical OR (||)
+      9. Ternary (? :)
+      10. Assignment (=, +=, etc.)
 
 ## Exam Preparation Strategy
 
@@ -89,7 +89,7 @@ Highest to lowest:
    - Recognize invalid switch variable types
 
 2. Operator Behavior:
-   - Predict output of expressions with multiple operators
+   - Predict the output of expressions with multiple operators
    - Understand short-circuit evaluation
    - Know increment/decrement timing
 
