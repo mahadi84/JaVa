@@ -37,9 +37,11 @@ This chapter covers essential Java concepts related to:
 
 ### 2. Operators
 - Ternary (? :): Compact if-else replacement (must return compatible types)
+   গুরুত্বপূর্ণ বিষয়:
+   -টারনারি অপারেটর কোডকে সংক্ষিপ্ত করে তোলে, তবে অতিরিক্ত ব্যবহার কোডকে পড়তে কঠিন করে তুলতে পারে, বিশেষ করে যখন শর্তগুলি জটিল হয়।
+   -valueIfTrue এবং valueIfFalse এর ডেটা টাইপ একই অথবা সামঞ্জস্যপূর্ণ (compatible) হতে হবে।
 
 ### 3. Logical and arithmetic operators
-- Logical:
   - Short-circuit (&&, ||) vs non-short-circuit (&, |)
              int a = 5;  int b = 0;
          && (Logical AND - লজিক্যাল অ্যান্ড): যদি প্রথম অপারেন্ড (operand1) false হয়, তাহলে দ্বিতীয় অপারেন্ড (operand2) আর মূল্যায়ন করা হয় না, কারণ ফলাফল নিশ্চিতভাবে false হবে।
@@ -54,18 +56,19 @@ This chapter covers essential Java concepts related to:
                                           eX: boolean resultOr = (a > 3) | (b == 0); // (true) | (true) -> true
             সাধারণত, পারফরম্যান্স এবং ত্রুটি এড়ানোর জন্য শর্ট-সার্কিট অপারেটরগুলোই বেশি ব্যবহৃত হয়। নন-শর্ট-সার্কিট অপারেটরগুলো বিটওয়াইজ অপারেশন (bitwise operations) হিসেবেও ব্যবহৃত হয়।
   - XOR (^) - true when operands differ
-- Arithmetic: +, -, *, /, % (modulus)
+
 - Increment/decrement: 
   - Pre (++x): প্রথমে ভেরিয়েবলের মান 1 বাড়ায়, তারপর বর্ধিত মানটি রিটার্ন করে। Ex: int x=5; y = ++x;  আউটপুট: x=6; y=6;
   - Post (x++): প্রথমে ভেরিয়েবলের বর্তমান মান রিটার্ন করে, তারপর ভেরিয়েবলের মান 1 বাড়ায়। Ex: int x=5; int y = x++;(x এর বর্তমান মান 5, যা y তে অ্যাসাইন হবে। তারপর x এর মান 6 হবে।) আউটপুট: x=6; y=5;
 
 
-### 3. Object Comparison
+### 4. Object Comparison
 - ==: Compares references (memory location)
 - equals(): Compares content/values (must be overridden properly)
 - String literals vs new String() behavior
 
-### 4. Operator Precedence
+### 5. Operator Precedence
+- Arithmetic: +, -, *, /, % (modulus)
 Highest to lowest:
 1. Postfix (x++, x--)
 2. Unary (++x, --x, !, ~)
