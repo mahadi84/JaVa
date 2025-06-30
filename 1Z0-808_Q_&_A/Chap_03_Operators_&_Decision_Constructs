@@ -522,7 +522,7 @@ Highest to lowest:
         public class Kansas {
         public static void main(String[] args) {
         int colorOfRainbow = 10;
-        red = 5;
+        __ red = 5;
         switch(colorOfRainbow) {
         default:
         System.out.print("Home");
