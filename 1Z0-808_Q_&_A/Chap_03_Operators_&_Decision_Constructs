@@ -33,7 +33,7 @@ This chapter covers essential Java concepts related to:
   - break prevents fall-through ( `switch` স্টেটমেন্টে কোনো `break` স্টেটমেন্ট নেই ? সমস্ত `case` স্টেটমেন্ট execute করা হবে।)
   - default is optional and can be placed anywhere
 
-#### 2. Operators ####
+#### 2. Ternary Operator ####
 - Ternary (? :): Compact if-else replacement (must return compatible types)
    গুরুত্বপূর্ণ বিষয়:
    -টারনারি অপারেটর কোডকে সংক্ষিপ্ত করে তোলে, তবে অতিরিক্ত ব্যবহার কোডকে পড়তে কঠিন করে তুলতে পারে, বিশেষ করে যখন শর্তগুলি জটিল হয়।
@@ -44,7 +44,7 @@ This chapter covers essential Java concepts related to:
          Object data; // Object একটি জেনেরিক ক্লাস যা অন্য যেকোনো অবজেক্টকে ধারণ করতে পারে।
          data = (isText) ? "হ্যালো ওয়ার্ল্ড" : 123; //যেহেতু String এবং Integer উভয়ই Object ক্লাসকে ইনহেরিট করে (বাস্তবে Object তাদের প্যারেন্ট ক্লাস), তাই এই অ্যাসাইনমেন্ট সামঞ্জস্যপূর্ণ।
 
-#### 3. Logical and arithmetic operators ####
+#### 3. Logical and Bitwise operators ####
       ### Short-circuit (&&, ||) vs non-short-circuit (&, |) *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
              int a = 5;  int b = 0;
          && (Logical AND - লজিক্যাল অ্যান্ড): -`&&` অপারেটর শুধুমাত্র তখনই এক্সপ্রেশনের ডান দিকটি নির্বাহ করে যদি এক্সপ্রেশনের বাম দিকটি সত্য হয়। 
@@ -54,7 +54,7 @@ This chapter covers essential Java concepts related to:
                                           eX: if ((a > 3) || (b / a == 0)) { // (5 > 3) is true, so (b / a == 0) is skipped
          এদেরকে "শর্ট-সার্কিট" বলা হয় কারণ প্রয়োজনে এরা দ্বিতীয় অংশটি এড়িয়ে যেতে পারে, যা পারফরম্যান্সের জন্য ভালো এবং NullPointerException এর মতো ত্রুটি এড়াতে সাহায্য করে।
             
-      ### NON-SHORT-CIRCUIT(&(AND) =যদি দুটি বিটই 1 হয়, তাহলে ফলাফল বিট 1 হবে; অন্যথায় 0 হবে।), |(OR) = যদি দুটি বিটের মধ্যে অন্তত একটি 1 হয়, তাহলে ফলাফল বিট 1 হবে; অন্যথায় 0 হবে|)
+      ### NON-SHORT-CIRCUIT/Biswise(&(AND) =যদি দুটি বিটই 1 হয়, তাহলে ফলাফল বিট 1 হবে; অন্যথায় 0 হবে।), |(OR) = যদি দুটি বিটের মধ্যে অন্তত একটি 1 হয়, তাহলে ফলাফল বিট 1 হবে; অন্যথায় 0 হবে|)
             & (Logical AND - লজিক্যাল অ্যান্ড): উভয় অপারেন্ডই (operand1 এবং operand2) সবসময় মূল্যায়ন করা হয়, এমনকি যদি প্রথম অপারেন্ডের ফলস্বরূপ ফলাফল নিশ্চিত হয়।
                                           eX: boolean resultAnd = (a < 5) & (b == 0); // (false) & (true) -> false
             | (Logical OR - লজিক্যাল অর): উভয় অপারেন্ডই (operand1 এবং operand2) সবসময় মূল্যায়ন করা হয়, এমনকি যদি প্রথম অপারেন্ডের ফলস্বরূপ ফলাফল নিশ্চিত হয়।
