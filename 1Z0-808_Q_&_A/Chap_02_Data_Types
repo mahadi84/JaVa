@@ -45,11 +45,11 @@ how to convert short to int and vise-versa in java?
 ======================================= # Chapter Summary: Java Fundamentals - Variables, Data Types, and Object Basics =======================================
 
 This chapter covers essential Java concepts including:
-- Variable declarations and initialization
-- Primitive types and wrapper classes
-- Object creation and garbage collection
-- Scope and initialization of variables
-- Basic class structure and constructors
+1. - Variable declarations and initialization
+2. - Primitive types and wrapper classes
+3. - Object creation and garbage collection
+4. - Scope and initialization of variables
+5. - Basic class structure and constructors
 
 ## Key Concepts to Master
 
