@@ -154,11 +154,18 @@ This chapter covers essential Java concepts related to:
    - Identify valid varargs syntax
    - Understand how to access varargs parameters
    - Know calling conventions (individual args vs array)
+     - Varargs vs Array Parameters:
+     - Varargs more flexible in calling
+     - Array parameters more explicit
 
-4. Multidimensional Arrays:
+
+4. Multidimensional Arrays & Primitive Arrays vs Object Arrays:
    - Visualize array structures
    - Understand irregular arrays
    - Properly access nested elements
+       - Primitive Arrays vs Object Arrays:
+       - Primitives get default values (0, false)
+       - Object elements initialized to null
 
 5. Common Pitfalls:
    - ArrayIndexOutOfBoundsException
@@ -172,15 +179,7 @@ This chapter covers essential Java concepts related to:
    - == compares references
    - Arrays.equals() compares contents
 
-2. Varargs vs Array Parameters:
-   - Varargs more flexible in calling
-   - Array parameters more explicit
-
-3. Primitive Arrays vs Object Arrays:
-   - Primitives get default values (0, false)
-   - Object elements initialized to null
-
-4. Binary Search Behavior:
+2. Binary Search Behavior:
    - Returns positive index if found
    - Returns negative value if not found
    - Undefined results if array not sorted
