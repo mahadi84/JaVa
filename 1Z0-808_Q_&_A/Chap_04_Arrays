@@ -29,7 +29,7 @@ Very Easy.
 
 This chapter covers essential Java concepts related to:
 1. - Array Fundamentals(Array declaration, initialization, and usage)
-2. - Varargs (variable arguments) syntax and behavior
+2. - Varargs (variable arguments) syntax and behavior, Varargs vs Array Parameters
 3. - Multidimensional, Primitive And Object Arrays
 4. - Array Operations & searching and sortingBehavior
 5. - Key Differences to Remember
