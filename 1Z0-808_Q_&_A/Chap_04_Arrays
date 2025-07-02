@@ -33,12 +33,8 @@ This chapter covers essential Java concepts related to:
 3. - Multidimensional, Primitive And Object Arrays
 4. - Array Operations(searching and sorting Behavior)
 5. - Key Differences to Remember (== vs equals() for array comparison)
-## Common Pitfalls
+   - Common Pitfall(ফাঁদ)s
 
-
-- Common array operations and pitfall(ফাঁদ)s
-
-## Key Concepts to Master
 
 ### 1. Array Fundamentals
 - Declaration: Multiple valid syntaxes (type[] name or type name[])
