@@ -49,12 +49,12 @@ This chapter covers fundamental Java concepts including:
 
 
 
-- Java syntax basics (entry point methods, file structure, comments)
-- Object-oriented programming principles(e.g.IPEA)
-- Variables and scope 
-- Packages and imports (PIC)
-- Compilation and execution
-- JVM fundamentals
+1. - Java syntax basics (entry point methods, file structure, comments)
+2. - Object-oriented programming principles(e.g.IPEA)
+3. - Variables and scope 
+4. - Packages and imports (PIC)
+5. - Compilation and execution
+6. - JVM fundamentals
 
 ## How to Understand and Answer These Questions Effectively
 
