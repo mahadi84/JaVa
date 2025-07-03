@@ -118,11 +118,11 @@ Check hot topics bottom of the page.
 =============================================================================================================== 
 
 This chapter covers essential Java concepts, including:
-- String manipulation and immutability
-- StringBuilder vs String
-- Java Collections Framework
-- Lambda expressions and functional interfaces
-- Java Date/Time API
+1. - String manipulation and immutability
+2. - StringBuilder vs String
+3. - Java Collections Framework
+4. - Lambda expressions and functional interfaces
+5. - Java Date/Time API
 
 ## Key Concepts to Master
 
