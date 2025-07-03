@@ -28,13 +28,13 @@ Medium.
 ==============================================================================================================
 
 This chapter covers essential Java concepts including:
-- Access modifiers (public, protected, package-private, private)
-- Encapsulation principles
-- Method overloading and signatures
-- Constructors and constructor chaining
-- Static vs instance members
-- JavaBean conventions
-- Variable scope and final keyword
+1. - Access modifiers (public, protected, package-private, private)
+2. - Encapsulation principles
+3. - Method overloading and signatures
+4. - Constructors and constructor chaining
+5. - Static vs instance members
+6. - JavaBean conventions
+7. - Variable scope and final keyword
 
 ## Key Concepts to Master
 
