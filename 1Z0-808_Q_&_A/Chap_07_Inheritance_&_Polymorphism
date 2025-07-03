@@ -18,12 +18,12 @@ Medium.
 
 ============================================================================
 This chapter covers essential Java concepts including:
-- Class inheritance and polymorphism
-- Abstract classes and interfaces
-- Method overriding and overloading
-- Access modifiers in inheritance
-- Constructor chaining
-- Casting and reference types
+1. - Class inheritance and polymorphism
+2. - Abstract classes and interfaces
+3. - Method overriding and overloading
+4. - Access modifiers in inheritance
+5. - Constructor chaining
+6. - Casting and reference types
 
 ## Key Concepts to Master
 
