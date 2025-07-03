@@ -19,12 +19,19 @@ Medium Easy.
 
 ==========================================================================================================
 This chapter covers essential Java loop constructs including:
-- while loops
-- do-while loops
-- traditional for loops
-- enhanced for-each loops
-- Loop control statements (break and continue)
-- Nested loops and labeled loops
+1. - while loops
+2. - do-while loops
+3. - traditional for loops
+4. - enhanced for-each loops
+5. - Loop control statements (break and continue)
+6. - Nested loops and labeled loops
+
+## Key Differences to Remember
+1. while vs do-while:
+2. Traditional for vs Enhanced for:
+3. break vs continue:
+4. Labeled Control:
+
 
 ## Key Concepts to Master
 
