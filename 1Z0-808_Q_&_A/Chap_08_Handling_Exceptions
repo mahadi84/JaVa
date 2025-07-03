@@ -146,11 +146,11 @@ VirtualMachineError: JVM-এর অভ্যন্তরীণ ত্রুট�
 =================================================================================================================================
 
 This chapter covers essential Java concepts including:
-- Exception types (checked vs unchecked)
-- Try-catch-finally blocks
-- Exception propagation
-- Custom exceptions
-- Best practices for exception handling
+1. - Exception types (checked vs unchecked)
+2. - Try-catch-finally blocks
+3. - Exception propagation
+4. - Custom exceptions
+5. - Best practices for exception handling
 
 ## Key Concepts to Master
 
