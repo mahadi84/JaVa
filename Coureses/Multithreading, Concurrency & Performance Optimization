@@ -1,0 +1,72 @@
+- Introduction
+  - Motivation & Operating Systems fundamentals - Part 1
+  - Operating Systems Fundamentals - Part 2
+  - Threading and Operating Systems Fundamentals Quiz
+- Threading Fundamentals - Thread Creation
+  - Tips about Coding Lectures and Debugging Instructions
+  - Threads Creation - Part 1, Threading Overview & Debugging
+  - Threads Creation - Part 2, Thread Inheritance
+  - Thread Creation - Quiz
+  - Thread Creation - MultiExecutor
+  - Thread Creation - MultiExecutor - Solution
+- Threading Fundamentals - Thread Coordination
+  - Thread Termination & Daemon Threads
+  - Thread Termination & Daemon Threads
+  - Thread Joiner
+  - Multithreaded Calculation
+  - Multithreaded Calculation - Solution
+- Performance Optimization
+  - Introduction to Performance & Optimizing for Latency - Part 1
+  - Optimizing for Latency Part 2 - Image Processing
+  - Optimizing for Performance Part 3 - Color Spaces, Extraction & Manipulation
+  - Optimizing for Throughput Part 1
+  - Optimizing for Throughput Part 2 - HTTP server + Jmeter
+  - Performance Optimization
+- Data Sharing between Threads
+  - Stack & Heap Memory Regions
+  - Stack & Heap Memory Regions
+  - Resource Sharing & Introduction to Critical Sections
+- The Concurrency Challenges & Solutions
+  - Critical Section & Synchronization
+  - Critical Section & Synchronization
+  - Atomic Operations, Volatile & Metrics practical example
+  - Atomic Operations, Volatile & Metrics practical example
+  - Min - Max Metrics
+  - Min - Max Metrics - Solution
+  - Race Conditions & Data Races
+  - Data Races
+  - Locking Strategies & Deadlocks
+  - Locking Strategies & Deadlocks
+- Advanced Locking
+  - ReentrantLock Part 1 - tryLock and Interruptible Lock
+  - ReentrantLock Part 2 - User Interface Application example
+  - ReentrantLock
+  - Reentrant Read Write Lock & Database Implementation
+  - Read Write Lock
+  - Product Reviews Service
+  - Product Reviews Service - Solution
+- Inter-Thread Communication
+  - Semaphore - Scalable Producer Consumer implementation
+  - Semaphore - Barrier
+  - Condition Variable - All purpose, Inter-Thread Communication
+  - Objects as Condition Variables - wait(), notify() and notifyAll()
+  - CyclicBarrier.java
+  - Simple CountDownLatch
+  - Simple CountDownLatch - Solution
+- Lock-Free Algorithms, Data-Structures & Techniques
+  - Introduction to Non-blocking, Lock Free operations
+  - Atomic Integer & Lock Free E-Commerce
+  - Performance impact comparison of Lock-Free High Performance Data Structure
+  - Lock-Free Algorithms, Data-structures & techniques
+- Threading Models for High Performance IO
+  - Introduction to Blocking IO
+  - Thread Per Task - Thread Per Request Model
+  - Asyncrhonous, Non-Blocking IO with Thread Pool Model
+  - Threading Models for High Performance IO - Quiz
+- Virtual Threads and High-Performance IO
+  - Introduction to Virtual Threads
+  - Inter-Thread Communication with Virtual Threads
+  - Virtual Threads Best Practices
+  - Virtual Threads and High Performance IO
+- Distributed Systems, Big Data & Performance
+  - Bonus Lecture - Keep Learning
