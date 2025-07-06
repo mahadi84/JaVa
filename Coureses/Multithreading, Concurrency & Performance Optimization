@@ -1,6 +1,8 @@
 - Introduction
-  > What is Thread
-  > The Objective of Threading
+   > Overview of Thread? প্যারালালিজম (Parallelism) বনাম  কনকারেন্সি (Concurrency)  |
+   > The Objective of Threading in java programming
+   > What is the relation between Thread and Operating System/Thread অপারেটিং সিস্টেমের ভূমিকা (OS Role)?
+   > প্রসেস বনাম থ্রেড (Processes vs.Threads) - OS এর দৃষ্টিকোণ থেকে
 - Threading Fundamentals - Thread Creation
   - Tips about Coding Lectures and Debugging Instructions
   - Threads Creation - Part 1, Threading Overview & Debugging
