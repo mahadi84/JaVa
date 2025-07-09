@@ -187,11 +187,12 @@ public class ThrowExample {
 =================================================================================================================================
 
 This chapter covers essential Java concepts including:
-1. - Exception types (checked vs unchecked)
-2. - Try-catch-finally blocks
-3. - Exception propagation
-4. - Custom exceptions
-5. - Best practices for exception handling
+1. - Exception Hierarchy
+2. - Exception types (checked vs unchecked)
+3. - Exception Handling Blocks (Try-catch-finally blocks, throws, throw)
+4. - Exception propagation
+5. - Custom exceptions
+6. - Best practices for exception handling
 
 ## Key Concepts to Master
 
@@ -202,18 +203,36 @@ This chapter covers essential Java concepts including:
           ├── RuntimeException (unchecked)
           └── Other Exceptions (checked)
 
-### 2. Exception Handling Blocks
+### 2. Exception types (checked vs unchecked)
+- Checked exceptions must be handled or declared
+- Unchecked exceptions (RuntimeException/Error) don't require handling
+- Finally blocks execute even if catch block throws exception
+- Multiple catch blocks must be ordered from most specific to most general
+     Checked vs Unchecked Exceptions:
+        - Checked: Must be handled/declared (compile-time enforcement)
+        - Unchecked: No handling requirement (RuntimeException/Error)
+
+### 3. Exception Handling Blocks (Try-catch-finally blocks, throws, throw)
 - try: Contains code that might throw exceptions
 - catch: Handles specific exception types
 - finally: Always executes (except System.exit() or JVM crash)
 **একটি try ব্লকের সাথে এক বা একাধিক catch ব্লক থাকতে পারে অথবা একটি finally ব্লক থাকতে পারে অথবা উভয়ই থাকতে পারে। তবে try ব্লক একা থাকতে পারে না।
 ** finally ব্লক এমন কোড ধারণ করে যা try ব্লকের কোড সফলভাবে এক্সিকিউট হোক বা কোনো ব্যতিক্রম ঘটুক এবং তা ধরা হোক বা না হোক, সর্বদা এক্সিকিউট হবে।
+    Finally Block Special Cases:
+     - Doesn't run if System.exit() called
+     - Doesn't run if JVM crashes
+     - Exception in finally supersedes try/catch exceptions
 
-### 3. Key Rules
-- Checked exceptions must be handled or declared
-- Unchecked exceptions (RuntimeException/Error) don't require handling
-- Finally blocks execute even if catch block throws exception
-- Multiple catch blocks must be ordered from most specific to most general
+ @ ** `try-catch-resource` কখন ব্যবহার করবেন:
+ যখন আপনার এমন রিসোর্স (যেমন ফাইল, নেটওয়ার্ক কানেকশন, ডেটাবেস কানেকশন) ব্যবহার করার প্রয়োজন হয় যা ব্যবহারের পর অবশ্যই বন্ধ (close) করা উচিত। 
+ `try-catch-resource` স্বয়ংক্রিয়ভাবে রিসোর্স বন্ধ করার বিষয়টি নিশ্চিত করে, এমনকি এক্সেপশন ঘটলেও। এটি জাভা ৭ থেকে চালু হয়েছে এবং `finally` ব্লকে ম্যানুয়ালি `close()` কল করার প্রয়োজনীয়তা দূর করে, যা কোডকে পরিষ্কার ও নিরাপদ রাখে।
+ @ ** `throws` কখন ব্যবহার করবেন:
+যখন আপনার মেথডটি একটি চেকড এক্সেপশন (যেমন `IOException`, `SQLException`, `ClassNotFoundException`) তৈরি করতে পারে, কিন্তু আপনি সেই মেথডের ভেতরেই এক্সেপশনটি হ্যান্ডেল করতে চান না। 
+বরং, আপনি চান যে মেথডটি যেখান থেকে কল করা হচ্ছে (calling method), সেখানে এক্সেপশনটি হ্যান্ডেল করার দায়িত্ব চাপিয়ে দিতে। এটি মেথডের সিগন্যাচারে (method signature) ব্যবহার করা হয়।
+ @ **  `throw` কখন ব্যবহার করবেন:
+যখন আপনি সক্রিয়ভাবে (explicitly) একটি এক্সেপশন তৈরি এবং থ্রো করতে চান। এটি সাধারণত কিছু শর্ত পূরণ না হলে প্রোগ্রামকে একটি ত্রুটিপূর্ণ অবস্থায় নিয়ে যেতে ব্যবহার করা হয়, অথবা যখন আপনি একটি কাস্টম এক্সেপশন তৈরি করেন। 
+`throw` কীওয়ার্ডটি একটি মেথডের বডির (body) ভেতরে ব্যবহার করা হয়।
+
 
 ### 4. Exception Propagation
 - Exceptions propagate up call stack until caught
@@ -236,18 +255,6 @@ This chapter covers essential Java concepts including:
    - Validate catch block ordering
    - Check method override compatibility
    - Verify exception declaration requirements
-
-
-## Key Differences to Remember
-
-1. Checked vs Unchecked Exceptions:
-   - Checked: Must be handled/declared (compile-time enforcement)
-   - Unchecked: No handling requirement (RuntimeException/Error)
-
-2. Finally Block Special Cases:
-   - Doesn't run if System.exit() called
-   - Doesn't run if JVM crashes
-   - Exception in finally supersedes try/catch exceptions
 
 
 ### Common Pitfalls:
