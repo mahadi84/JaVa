@@ -146,7 +146,7 @@ This chapter covers essential Java concepts, including:
 
 ### 2. StringBuilder
 - Mutable alternative to String
-- Key Methods: -LC_SIR_AID2_R
+- Key Methods: -LC_SIR_AID_2R
   - `length()`, `charAt()`, `substring()`
   - `indexOf()`, +
   - `append()`, `insert()`, `delete()`
