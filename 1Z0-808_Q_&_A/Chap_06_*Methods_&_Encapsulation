@@ -31,10 +31,9 @@ This chapter covers essential Java concepts including:
 1. - Access modifiers (public, protected, package-private, private)
 2. - Encapsulation principles
 3. - Method overloading and signatures
-4. - Constructors and constructor chaining
+4. - Constructors and constructor chaining(this vs this(), super vs super())
 5. - Static vs instance members
-6. - JavaBean conventions
-7. - Variable scope and final keyword
+6. - Variable scope, final keyword, and hiding variable and method
 
 ## Key Concepts to Master
 
@@ -46,6 +45,11 @@ This chapter covers essential Java concepts including:
 | protected       | ✓     | ✓       | ✓        | ✗     |
 | package-private | ✓     | ✓       | ✗        | ✗     |
 | private         | ✓     | ✗       | ✗        | ✗     |
+-----------------------------------------------------------
+Access Modifier Scenarios:
+   - Determine visibility in different package/subclass situations
+   - Identify proper encapsulation techniques
+   - Recognize invalid access combinations
 
 ### 2. Encapsulation Principles
 - Use private fields with public getters/setters
@@ -61,6 +65,10 @@ This chapter covers essential Java concepts including:
 - Must explicitly call super() if parent has no no-arg constructor
 - First line must be this() or super() (implicit super() if omitted)
 - Cannot be static, final or abstract
+Constructor Analysis:
+   - Trace constructor chaining
+   - Identify implicit super() calls
+   - Spot constructor syntax errors
 
 01. `this()` এবং `super()` এর মাধ্যমে কন্সট্রাক্টর চেইনিং: 
 একটি ক্লাসের মধ্যে এক কন্সট্রাক্টর থেকে অন্য কন্সট্রাক্টরকে কল করার প্রক্রিয়াকে কন্সট্রাক্টর চেইনিং বলে।
@@ -90,45 +98,33 @@ This chapter covers essential Java concepts including:
 যদি আপনি এটি না করেন, অথবা যদি আপনি শুধু super() (নো-আর্গুমেন্ট) কল করেন এবং প্যারেন্ট ক্লাসে সেই ধরনের কোনো কন্সট্রাক্টর না থাকে, তাহলে কম্পাইল-টাইম এরর (compile-time error) হবে।
 
 
-
-### 4. Method Overloading
+### 4. Method Signature Evaluation & Overloading:
+   - Validate overloaded methods
+   - Identify valid JavaBean methods
+   - Recognize varargs usage
+Overloading:
 - Same method name
 - Different parameter lists (type, number, or order)
 - Return type not considered for overloading
 - Varargs can be used in overloading
 
-### 5. Static Members
+
+### 5. Static Members & Static vs Instance:
 - Belong to the class, not instances
 - Can be accessed via class name
 - Static methods cannot access instance variables
 - Static imports allow direct access to static members
-
-## Exam Preparation Strategy
-
-1. Access Modifier Scenarios:
-   - Determine visibility in different package/subclass situations
-   - Identify proper encapsulation techniques
-   - Recognize invalid access combinations
-
-2. Constructor Analysis:
-   - Trace constructor chaining
-   - Identify implicit super() calls
-   - Spot constructor syntax errors
-
-3. Method Signature Evaluation:
-   - Validate overloaded methods
-   - Identify valid JavaBean methods
-   - Recognize varargs usage
-
-4. Static vs Instance:
+Static vs Instance:
    - Proper static member access
    - Identify invalid static/instance mixing
    - Understand static initialization
 
-5. Final Keyword Usage:
+
+### 6.  Variable scope, final keyword, and hiding variable and method
    - Final variables (must be initialized)
    - Final methods (cannot be overridden)
    - Final classes (cannot be extended)
+-private modifiers hide variable and method in child class
 
 ## Common Pitfalls to Avoid
 
@@ -139,12 +135,6 @@ This chapter covers essential Java concepts including:
 5. Accessing instance members from static context
 6. Mixing up pass-by-value behavior for primitives vs object references
 
-By mastering these concepts and practicing similar questions, you'll be well-prepared for exam questions on Java class design and encapsulation. Pay special attention to:
-- Proper access modifier selection
-- Constructor chaining rules
-- Method overloading requirements
-- Static context limitations
-- Final variable constraints
 
 
 
