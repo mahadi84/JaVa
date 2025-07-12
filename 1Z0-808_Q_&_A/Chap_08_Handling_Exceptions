@@ -187,10 +187,10 @@ public class ThrowExample {
 =================================================================================================================================
 
 This chapter covers essential Java concepts including:
-1. - Exception Hierarchy
-2. - Exception types (checked vs unchecked)
-3. - Exception Handling Blocks (Try-catch-finally blocks, throws, throw)
-4. - Exception propagation
+1. - Exception Hierarchy (mother of all exceptions)
+2. - Exception types (checked vs unchecked)(compile time vs runtime exception)
+3. - Exception Handling Blocks (Try-catch-finally blocks, throw vs throws)
+4. - Exception propagation -must handled exception are ?
 5. - Custom exceptions
 6. - Best practices for exception handling
 
