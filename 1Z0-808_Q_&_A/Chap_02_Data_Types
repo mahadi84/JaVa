@@ -46,7 +46,7 @@ how to convert short to int and vise-versa in java?
 
 This chapter covers essential Java concepts including:
 1. - Variable declarations and initialization
-2. - Primitive types and wrapper classes
+2. - Primitive Data types, Reference Data types and why wrapper classes?
 3. - Object creation and garbage collection
 4. - Scope and initialization of variables
 5. - Basic class structure and constructors
@@ -54,16 +54,20 @@ This chapter covers essential Java concepts including:
 ## Key Concepts to Master
 
 ### 1. Variable Declarations
+- Valid variable names: start with letter/underscore/$ (not number), case-sensitive
 - Multiple variables can be declared on one line (but must be same type)
 - Local variables must be initialized/parameterised before use (no default values)
 - Instance variables get default values (0, false, null)
-- Valid variable names: start with letter/underscore/$ (not number), case-sensitive
+- An instance "final" variable must be initialized either at the point of declaration or within every constructor of the class.
+- A static "final" variable (which acts as a class-level constant) must be initialized either at the point of declaration or within a static initialization block.
    - Spot invalid declarations (mixed types, invalid names)
    - Know where variables can be accessed (scope rules)
 
+
 ### 2. Primitive Types and Wrappers
 - 8 primitive types: byte, short, int, long, float, double, char, boolean
-- Wrapper classes: Byte, Short, Integer, Long, Float, Double, Character, Boolean
+- Wrapper classes: to treat  primitive values as objects. Collections(List, ArrayList, HashMap, HashSet, LinkedList) ) and APIs 
+            Ex: Byte, Short, Integer, Long, Float, Double, Character, Boolean
 - Autoboxing automatically converts between primitives and wrappers
 - Special cases: char → Character, int → Integer
 
