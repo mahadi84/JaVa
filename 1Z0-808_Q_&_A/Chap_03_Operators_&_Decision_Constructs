@@ -20,7 +20,7 @@ Not Very easy but EASY. :D
 
 =======================================================================================================
 This chapter covers essential Java concepts related to:
-1. - Conditional statements (if-then, switch)
+1. - Conditional statements (if-then, switch-case,default,final,constant,literal,break)
 2. - Ternary operators
 3. - Logical and Bitwise operators
 4. - Operator precedence
