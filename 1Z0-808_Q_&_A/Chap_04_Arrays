@@ -28,15 +28,15 @@ Very Easy.
 ========================== # Chapter Summary: Arrays and Varargs in Java ==========================
 
 This chapter covers essential Java concepts related to:
-1. - Array Fundamentals(Array declaration, initialization, and usage)
+1. - Array Fundamentals(Array declaration, initialization, and usage, Size vs Index)
 2. - Varargs (variable arguments) syntax and behavior, Varargs vs Array Parameters
-3. - Multidimensional, Primitive And Object Arrays
+3. - Multidimensional(row,column, floor, flat, room), Primitive And Object Arrays
 4. - Array Operations(searching and sorting Behavior)
 5. - Key Differences to Remember (== vs equals() for array comparison)
    - Common Pitfall(ফাঁদ)s
 
 
-### 1. Array Fundamentals
+### 1. Array Fundamentals(Array declaration, initialization, and usage, Size vs Index)
 - Declaration: Multiple valid syntaxes (type[] name or type name[])
 - Recognize all valid declaration syntaxes
 - Spot invalid array declarations
