@@ -49,7 +49,7 @@ This chapter covers fundamental Java concepts including:
 
 
 
-1. - Java syntax basics (entry point methods, file structure, comments)
+1. - Java syntax basics (entry point methods, file structure, comments, .java vs .class, javac vs java)
 2. - Object-oriented programming principles(e.g.IPEA)
 3. - Variables and scope 
 4. - Packages and imports (PIC)
@@ -81,7 +81,7 @@ This chapter covers fundamental Java concepts including:
 5. Know compilation and execution:
    - `javac` compiles .java to .class
    - `java` executes .class files
-   - JVM makes Java platform independent
+   - JVM makes Java platform independent and bytecode to machine instruction
 
 ## Exam Answering Strategy
 
