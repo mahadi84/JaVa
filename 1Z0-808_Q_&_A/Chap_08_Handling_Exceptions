@@ -212,7 +212,7 @@ This chapter covers essential Java concepts including:
         - Checked: Must be handled/declared (compile-time enforcement)
         - Unchecked: No handling requirement (RuntimeException/Error)
 
-### 3. Exception Handling Blocks (Try-catch-finally blocks, throws, throw)
+### 3. Exception Handling Blocks (Try-catch-resource, finally blocks, throws, throw)
 - try: Contains code that might throw exceptions
 - catch: Handles specific exception types
 - finally: Always executes (except System.exit() or JVM crash)
@@ -234,30 +234,23 @@ This chapter covers essential Java concepts including:
 `throw` কীওয়ার্ডটি একটি মেথডের বডির (body) ভেতরে ব্যবহার করা হয়।
 
 
-### 4. Exception Propagation
+### 4. Exception Propagation Exception Type Identification & Handling Rules:
 - Exceptions propagate up call stack until caught
 - Method can declare exceptions it might throw (throws clause)
 - Overridden methods can't throw broader checked exceptions than parent
 
-## Exam Preparation Strategy
-
-1. Exception Type Identification:
+Exception Type Identification:
    - Recognize checked vs unchecked exceptions
    - Understand inheritance relationships
    - Know which exceptions require handling
-
-2. Try-Catch-Finally Flow:
-   - Trace execution paths
-   - Predict output based on exception scenarios
-   - Understand finally block behavior
-
-3. Exception Handling Rules:
+Handling Rules:
    - Validate catch block ordering
    - Check method override compatibility
    - Verify exception declaration requirements
 
 
-### Common Pitfalls:
+
+#### Common Pitfalls:
    - Forgetting to handle checked exceptions
    - Incorrect catch block ordering
    - Assuming finally blocks always complete
