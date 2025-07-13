@@ -153,7 +153,12 @@ This chapter covers essential Java concepts, including:
   - `reverse()`, `replace()`
 - More efficient for multiple modifications
 
-### 3. Collections Framework
+
+####String vs StringBuilder:
+   - String: Immutable, thread-safe, better for constants
+   - StringBuilder: Mutable, better for modifications
+
+### 3. Collections Framework (Like:ArrayList )
 Collection Usage:
    - Proper initialization and modification
    - Common method behaviors
@@ -166,53 +171,18 @@ Collection Usage:
   - `add()`, `remove()`, `get()`, `contains()`
   - `size()`, set(1, 'c') `isEmpty()`, `clear()`
 
+ArrayList Capacity:
+   - Initial capacity is optimization hint
+   - Size is actual element count
+
+
 ### 4. Functional Programming
 Lambda Expressions:
    - Valid syntax forms       
    - Method reference conversions
        Remember: Interface with SAM=Single Abstract Method, buit-in test() function, Boolean Return type
 - Lambda Expressions: `(parameters) -> expression`
-- Functional Interfaces:
-  - `Predicate<T>`: `boolean test(T t)`
-  - `Consumer<T>`: `void accept(T t)`
-  - `Function<T,R>`: `R apply(T t)`
-- Method references (`System.out::println`)
-
-### 5. Date/Time API (java.time)
- Date/Time API:
-   - Immutability patterns
-   - Period calculations
-   - DateTimeFormatter usage
-
-- LocalDate: Date without time - LocalTime: Time without date
-- LocalDateTime: Date and time - Period: Date-based amount of time
-- Immutable and thread-safe
-
-LocalDateTime বর্তমান_সময় = LocalDateTime.now();
-LocalDate আজ = LocalDate.now(); // আজকের তারিখ
-LocalDateTime এখন = LocalDateTime.now(); // বর্তমান তারিখ ও সময়
- LocalDate তারিখ১ = LocalDate.of(2024, 1, 1);
- DateTimeFormatter ফরমেটার = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-
-Period period = Period.ofDays(1);
-DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-System.out.print(format.format(newYears.minus(period)));
-
-
-.now(); .of(); .ofPattern(); .offDays()
-
-## Key Differences to Remember
-
-1. String vs StringBuilder:
-   - String: Immutable, thread-safe, better for constants
-   - StringBuilder: Mutable, better for modifications
-
-2. ArrayList Capacity:
-   - Initial capacity is optimization hint
-   - Size is actual element count
-
-3. Lambda Syntax:
+Lambda Syntax:
       List<String> fruits = new ArrayList<>();
         fruits.add("Apple");
         fruits.add("Banana");
@@ -231,16 +201,43 @@ System.out.print(format.format(newYears.minus(period)));
         Predicate<String> pred4 = (String s) -> false;
 
    - Type inference available
-               
+- Functional Interfaces:
+  - `Predicate<T>`: `boolean test(T t)`
+  - `Consumer<T>`: `void accept(T t)`
+  - `Function<T,R>`: `R apply(T t)`
+- Method references (`System.out::println`)
 
 
-4. Date/Time Classes:
+### 5. Date/Time API (java.time)
+
+Date/Time Classes:
    - LocalDate: year/month/day
    - LocalTime: hour/minute/second/nano
    - LocalDateTime: combines date and time
 
+Date/Time API:
+   - Immutability patterns
+   - Period calculations
+   - DateTimeFormatter usage
 
-## Common Pitfalls:
+- LocalDate: Date without time - LocalTime: Time without date
+- LocalDateTime: Date and time - Period: Date-based amount of time
+- Immutable and thread-safe
+
+LocalDateTime বর্তমান_সময় = LocalDateTime.now();
+LocalDate আজ = LocalDate.now(); // আজকের তারিখ
+LocalDateTime এখন = LocalDateTime.now(); // বর্তমান তারিখ ও সময়
+ LocalDate তারিখ১ = LocalDate.of(2024, 1, 1);
+ DateTimeFormatter ফরমেটার = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+Period period = Period.ofDays(1);
+DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+System.out.print(format.format(newYears.minus(period)));
+
+.now(); .of(); .ofPattern(); .offDays(); 
+
+
+##### Common Pitfalls:
    - String vs StringBuilder performance
    - Collection index boundaries
    - Lambda syntax errors
