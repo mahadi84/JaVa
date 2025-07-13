@@ -153,7 +153,6 @@ This chapter covers essential Java concepts, including:
   - `reverse()`, `replace()`
 - More efficient for multiple modifications
 
-
 ####String vs StringBuilder:
    - String: Immutable, thread-safe, better for constants
    - StringBuilder: Mutable, better for modifications
@@ -190,17 +189,14 @@ Lambda Syntax:
            System.out.println("\n--- Iterating with forEach (Lambda) ---");  // This is a common way to loop through elements without a traditional for-loop.
            fruits.forEach(fruit -> System.out.println("Fruit: " + fruit));   // The lambda `fruit -> System.out.println("Fruit: " + fruit)`
 
-
    - Parentheses optional for single parameter
-            (String s) -> System.out.println(s);    // With parentheses (always works)
-            s -> System.out.println(s);             // Without parentheses (valid for a single parameter if type is inferred)
+             Predicate<String> pred1 (String s) -> System.out.println(s);    // With parentheses (always works)
+             Predicate<String> pred1 String s -> System.out.println(s);      // Without parentheses ( works)
+             Predicate<String> pred1 s -> System.out.println(s);             // Without parentheses (valid for a single parameter if type is inferred)
    - Braces and return required for multiple statements 
-        BOTH Predicate<Integer> ip = i -> i != 0; IS i -> { return i != 0; } CORRECT
-        Predicate<String> pred1 = s -> false;
-        Predicate<String> pred3 = String s -> false;
-        Predicate<String> pred4 = (String s) -> false;
-
-   - Type inference available
+        BOTH Predicate<Integer> ip = i -> i != 0; 
+        IS i -> { return i != 0; } CORRECT
+       - Type inference available
 - Functional Interfaces:
   - `Predicate<T>`: `boolean test(T t)`
   - `Consumer<T>`: `void accept(T t)`
@@ -235,6 +231,10 @@ DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 System.out.print(format.format(newYears.minus(period)));
 
 .now(); .of(); .ofPattern(); .offDays(); 
+
+*** Period" সরাসরি Java-এর java.time.Period ক্লাসে মিনিটের সাথে কাজ করে না। 
+    Period ক্লাসটি বছর, মাস এবং দিনের মতো সময়কাল উপস্থাপন করে। 
+   মিনিটের মতো ছোট এককগুলি পরিচালনা করার জন্য java.time.Duration ক্লাসটি ব্যবহার করা হয়।
 
 
 ##### Common Pitfalls:
