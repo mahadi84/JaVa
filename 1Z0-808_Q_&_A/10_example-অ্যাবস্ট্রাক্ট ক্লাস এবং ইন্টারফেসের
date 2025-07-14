@@ -1,0 +1,293 @@
+-----
+
+এখানে জাভার একটি উদাহরণ দেওয়া হলো যেখানে মেথড, মেথড সিগনেচার, এনক্যাপসুলেশন, কল-বাই-ভ্যালু, ইনহেরিটেন্স, পলিমরফিজম (ওভাররাইডিং), অ্যাবস্ট্রাক্ট ক্লাস এবং ইন্টারফেসের ধারণাগুলো সংক্ষেপে তুলে ধরা হয়েছে।
+
+## জাভাতে ব্যাংকিং সিস্টেমের উদাহরণ
+
+এই উদাহরণে আমরা `Account` (অ্যাকাউন্ট) এবং `Customer` (গ্রাহক) ধারণা ব্যবহার করব, যেখানে বিভিন্ন ধরনের অ্যাকাউন্ট (যেমন `SavingsAccount`) থাকবে।
+
+
+import java.util.UUID; // ইউনিক আইডি তৈরির জন্য
+
+// ১. ইন্টারফেস (Interface): লেনদেনযোগ্য (Transactable) অবজেক্টের জন্য একটি চুক্তি
+interface Transactable {
+    void deposit(double amount); // টাকা জমা দেওয়ার মেথড
+    void withdraw(double amount); // টাকা তোলার মেথড
+}
+
+// ২. অ্যাবস্ট্রাক্ট ক্লাস (Abstract Class): সাধারণ অ্যাকাউন্টের বৈশিষ্ট্য
+abstract class Account implements Transactable {
+    // এনক্যাপসুলেশন: ডেটা প্রাইভেট রাখা হয়েছে
+    private String accountNumber;
+    private double balance;
+    private String accountHolderName;
+
+    // কনস্ট্রাক্টর
+    public Account(String accountHolderName, double initialBalance) {
+        // একটি ইউনিক অ্যাকাউন্ট নম্বর তৈরি করা হচ্ছে
+        this.accountNumber = UUID.randomUUID().toString().substring(0, 8);
+        if (initialBalance >= 0) {
+            this.balance = initialBalance;
+        } else {
+            this.balance = 0;
+            System.out.println("প্রাথমিক ব্যালেন্স নেগেটিভ হতে পারে না। ০ সেট করা হলো।");
+        }
+        this.accountHolderName = accountHolderName;
+        System.out.println("অ্যাকাউন্ট তৈরি হয়েছে: " + this.accountNumber + " (" + this.accountHolderName + ")");
+    }
+
+    // মেথড (গেটার): অ্যাকাউন্ট নম্বর পড়ার জন্য
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    // মেথড (গেটার): ব্যালেন্স পড়ার জন্য
+    public double getBalance() {
+        return balance;
+    }
+
+    // মেথড (গেটার): অ্যাকাউন্ট হোল্ডারের নাম পড়ার জন্য
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
+
+    // এনক্যাপসুলেশনের জন্য ব্যালেন্স সেট করার প্রটেক্টেড মেথড
+    // যাতে শুধুমাত্র চাইল্ড ক্লাস এবং একই প্যাকেজের ক্লাস এটি ব্যবহার করতে পারে
+    protected void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    // অ্যাবস্ট্রাক্ট মেথড: প্রতিটি অ্যাকাউন্টের সুদ গণনা ভিন্ন হতে পারে
+    public abstract void calculateInterest();
+
+    // ইন্টারফেসের মেথডগুলোর বাস্তবায়ন
+    @Override
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(getAccountHolderName() + " এর অ্যাকাউন্টে " + amount + " টাকা জমা হয়েছে। নতুন ব্যালেন্স: " + balance);
+        } else {
+            System.out.println("জমার পরিমাণ অবশ্যই ধনাত্মক হতে হবে।");
+        }
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            System.out.println(getAccountHolderName() + " এর অ্যাকাউন্ট থেকে " + amount + " টাকা তোলা হয়েছে। নতুন ব্যালেন্স: " + balance);
+        } else if (amount <= 0) {
+            System.out.println("তোলার পরিমাণ অবশ্যই ধনাত্মক হতে হবে।");
+        } else {
+            System.out.println(getAccountHolderName() + ": অপর্যাপ্ত ব্যালেন্স। বর্তমান ব্যালেন্স: " + balance);
+        }
+    }
+
+    // মেথড: অ্যাকাউন্ট তথ্য প্রদর্শনের জন্য
+    public void displayAccountInfo() {
+        System.out.println("অ্যাকাউন্ট নম্বর: " + accountNumber);
+        System.out.println("হোল্ডারের নাম: " + accountHolderName);
+        System.out.println("বর্তমান ব্যালেন্স: " + balance + " টাকা");
+    }
+}
+
+// ৩. ইনহেরিটেন্স (Inheritance) এবং মেথড ওভাররাইডিং
+// SavingsAccount ক্লাস Account থেকে ইনহেরিট করছে
+class SavingsAccount extends Account {
+    private double interestRate; // সঞ্চয় অ্যাকাউন্টের সুদের হার
+
+    // কনস্ট্রাক্টর
+    public SavingsAccount(String accountHolderName, double initialBalance, double interestRate) {
+        super(accountHolderName, initialBalance); // প্যারেন্ট ক্লাসের কনস্ট্রাক্টরকে কল
+        if (interestRate > 0) {
+            this.interestRate = interestRate;
+        } else {
+            this.interestRate = 0.01; // ডিফল্ট সুদ হার
+            System.out.println("সুদের হার নেগেটিভ হতে পারে না। ডিফল্ট ০.০১ সেট করা হলো।");
+        }
+    }
+
+    // মেথড ওভাররাইডিং: Account ক্লাসের calculateInterest() মেথডকে বাস্তবায়ন করা হয়েছে
+    @Override
+    public void calculateInterest() {
+        double interest = getBalance()  interestRate;
+        setBalance(getBalance() + interest); // ব্যালেন্সে সুদ যোগ
+        System.out.println("সুদ গণনা করা হয়েছে: " + interest + " টাকা। নতুন ব্যালেন্স: " + getBalance());
+    }
+
+    // মেথড ওভারলোডিং: withdraw() এর একটি ওভারলোড করা সংস্করণ
+    public void withdraw(double amount, boolean allowOverdraft) {
+        if (allowOverdraft) {
+            // এখানে ওভারড্রাফটের লজিক থাকবে, সহজ রাখার জন্য এটি বাস্তবায়ন করা হলো না।
+            // যেমন, একটি নির্দিষ্ট সীমা পর্যন্ত ব্যালেন্স নেগেটিভ হতে পারে।
+            System.out.println("ওভারড্রাফট সহ তোলার চেষ্টা করা হয়েছে। এই ফিচার এখনও সমর্থিত নয়।");
+        } else {
+            // নিয়মিত withdraw মেথড কল করা হচ্ছে
+            super.withdraw(amount); // প্যারেন্ট ক্লাসের withdraw() মেথড কল
+        }
+    }
+}
+
+// ৪. কাস্টমার ক্লাস (Composition/Aggregation - "has-a" সম্পর্ক)
+// একটি কাস্টমারের একাধিক অ্যাকাউন্ট থাকতে পারে
+class Customer {
+    private String customerId;
+    private String name;
+    private Account[] accounts; // কাস্টমারের অ্যাকাউন্টগুলোর অ্যারে
+    private int accountCount;
+    private static final int MAX_ACCOUNTS = 3; // সর্বোচ্চ অ্যাকাউন্টের সংখ্যা
+
+    public Customer(String name) {
+        this.customerId = UUID.randomUUID().toString().substring(0, 6);
+        this.name = name;
+        this.accounts = new Account[MAX_ACCOUNTS]; // 3টি অ্যাকাউন্টের জন্য জায়গা
+        this.accountCount = 0;
+        System.out.println("\nনতুন গ্রাহক তৈরি হয়েছে: " + name + " (ID: " + customerId + ")");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void addAccount(Account account) {
+        if (accountCount < MAX_ACCOUNTS) {
+            accounts[accountCount] = account;
+            accountCount++;
+            System.out.println(account.getAccountHolderName() + " এর জন্য অ্যাকাউন্ট " + account.getAccountNumber() + " যোগ করা হয়েছে।");
+        } else {
+            System.out.println(getName() + ": সর্বোচ্চ সংখ্যক অ্যাকাউন্ট তৈরি হয়ে গেছে।");
+        }
+    }
+
+    public void displayCustomerAccounts() {
+        System.out.println("\n--- " + getName() + " এর সকল অ্যাকাউন্ট ---");
+        if (accountCount == 0) {
+            System.out.println("কোনো অ্যাকাউন্ট নেই।");
+            return;
+        }
+        for (int i = 0; i < accountCount; i++) {
+            if (accounts[i] != null) {
+                accounts[i].displayAccountInfo(); // পলিমরফিক কল
+                System.out.println("--------------------");
+            }
+        }
+    }
+}
+
+
+// ৫. প্রধান ক্লাস (Main Class)
+public class BankingSystemDemo {
+
+    // কল-বাই-ভ্যালু উদাহরণ: এখানে অবজেক্ট রেফারেন্সের একটি কপি পাস করা হয়
+    public static void processTransaction(Transactable account, double amount, String type) {
+        System.out.println("\n--- লেনদেন প্রক্রিয়া চলছে ---");
+        if (type.equals("deposit")) {
+            account.deposit(amount);
+        } else if (type.equals("withdraw")) {
+            account.withdraw(amount);
+        } else {
+            System.out.println("অবৈধ লেনদেনের ধরন।");
+        }
+        // এখানে 'account' রেফারেন্সের কপি ব্যবহার করা হয়েছে, আসল অবজেক্টের স্টেট পরিবর্তিত হয়েছে
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("### ব্যাংকিং সিস্টেম ডেমো শুরু ###\n");
+
+        // কাস্টমার তৈরি
+        Customer customer1 = new Customer("আরিফ আহমেদ");
+
+        // অ্যাকাউন্ট তৈরি (SavingsAccount এর কনস্ট্রাক্টর Animal এর কনস্ট্রাক্টরকে super() করে কল করছে)
+        SavingsAccount arifSavings = new SavingsAccount("আরিফ আহমেদ", 1000.0, 0.05);
+
+        // কাস্টমারের সাথে অ্যাকাউন্ট যোগ করা
+        customer1.addAccount(arifSavings);
+
+        System.out.println("\n--- লেনদেন ---");
+        // এনক্যাপসুলেশনের ব্যবহার: সরাসরি ব্যালেন্স পরিবর্তন করা সম্ভব নয়
+        // arifSavings.balance = 5000; // error: balance private
+
+        arifSavings.deposit(500.0); // টাকা জমা
+        arifSavings.withdraw(200.0); // টাকা তোলা
+        arifSavings.withdraw(1500.0); // অপর্যাপ্ত ব্যালেন্স
+
+        // মেথড ওভারলোডিং ব্যবহার
+        arifSavings.withdraw(100.0, true); // ওভারলোড করা মেথড
+
+        // সুদের গণনা (ওভাররাইড করা মেথড)
+        arifSavings.calculateInterest();
+
+        System.out.println("\n--- পলিমরফিজম ---");
+        // Transactable ইন্টারফেসের রেফারেন্স ব্যবহার করে
+        Transactable currentTransactionAccount = arifSavings;
+        currentTransactionAccount.deposit(100.0); // SavingsAccount এর deposit() কল হবে
+        currentTransactionAccount.withdraw(50.0); // SavingsAccount এর withdraw() কল হবে
+
+        // Account অ্যাবস্ট্রাক্ট ক্লাসের রেফারেন্স ব্যবহার করে
+        Account genericAccount = new SavingsAccount("ফাহিম হাসান", 5000.0, 0.03);
+        genericAccount.displayAccountInfo();
+        genericAccount.calculateInterest(); // SavingsAccount এর calculateInterest() কল হবে
+
+        System.out.println("\n--- Call-By-Value (অবজেক্ট রেফারেন্সের কপি) ---");
+        processTransaction(arifSavings, 100.0, "deposit");
+        System.out.println("লেনদেনের পর Arif এর ব্যালেন্স (main থেকে): " + arifSavings.getBalance());
+
+
+        customer1.displayCustomerAccounts(); // কাস্টমারের অ্যাকাউন্ট প্রদর্শন
+
+        System.out.println("\n### ব্যাংকিং সিস্টেম ডেমো শেষ ###");
+    }
+}
+```
+
+-----
+
+### এই উদাহরণে যে OOP ধারণাগুলো কভার করা হয়েছে:
+
+1.  এনক্যাপসুলেশন (Encapsulation):
+       `Account` ক্লাসে `accountNumber`, `balance`, এবং `accountHolderName` ভেরিয়েবলগুলো `private` ঘোষণা করা হয়েছে।
+       এগুলো অ্যাক্সেস এবং পরিবর্তন করার জন্য `public` গেটার মেথড (`getAccountNumber()`, `getBalance()`, `getAccountHolderName()`) এবং সেট করার জন্য `deposit()`, `withdraw()` মেথড ব্যবহার করা হয়েছে। `setBalance()` একটি `protected` মেথড, যা ইনহেরিটেন্সের মাধ্যমে নিয়ন্ত্রিত অ্যাক্সেস নিশ্চিত করে।
+
+2.  ইনহেরিটেন্স (Inheritance):
+       `SavingsAccount` ক্লাসটি `Account` ক্লাসকে `extends` করে। এর অর্থ হলো `SavingsAccount` ক্লাস `Account` ক্লাসের সব পাবলিক ও প্রটেক্টেড বৈশিষ্ট্য এবং আচরণ উত্তরাধিকার সূত্রে পেয়েছে।
+       `super(accountHolderName, initialBalance);` ব্যবহার করে প্যারেন্ট ক্লাসের কনস্ট্রাক্টর কল করা হয়েছে।
+
+3.  পলিমরফিজম (Polymorphism):
+       মেথড ওভাররাইডিং (Method Overriding): `SavingsAccount` ক্লাস `Account` ক্লাসের `calculateInterest()` অ্যাবস্ট্রাক্ট মেথডকে ওভাররাইড করে তার নিজস্ব বাস্তবায়ন দিয়েছে।
+       রানটাইম পলিমরফিজম:
+           `Transactable currentTransactionAccount = arifSavings;` : এখানে একটি ইন্টারফেস রেফারেন্স `arifSavings` (SavingsAccount অবজেক্ট) কে নির্দেশ করছে। `currentTransactionAccount.deposit()` কল করলে `SavingsAccount` এর `deposit()` মেথড কল হয়।
+           `Account genericAccount = new SavingsAccount("ফাহিম হাসান", 5000.0, 0.03);`: এখানে একটি অ্যাবস্ট্রাক্ট ক্লাস রেফারেন্স `genericAccount` একটি `SavingsAccount` অবজেক্টকে নির্দেশ করছে। `genericAccount.calculateInterest()` কল করলে `SavingsAccount` এর `calculateInterest()` মেথডটি কার্যকর হয়।
+
+4.  অ্যাবস্ট্রাক্ট ক্লাস (Abstract Class):
+       `Account` ক্লাসকে `abstract` ঘোষণা করা হয়েছে। এর মানে হলো `Account` ক্লাসের সরাসরি কোনো অবজেক্ট তৈরি করা যাবে না। এটি একটি বেস ক্লাস হিসেবে কাজ করে, যা অন্যান্য অ্যাকাউন্ট টাইপের জন্য একটি সাধারণ কাঠামো প্রদান করে।
+       এটিতে একটি অ্যাবস্ট্রাক্ট মেথড (`calculateInterest()`) আছে, যার কোনো বডি নেই এবং এটি অবশ্যই তার সাবক্লাস দ্বারা বাস্তবায়িত হতে হবে।
+
+5.  ইন্টারফেস (Interface):
+       `Transactable` ইন্টারফেসটি `deposit()` এবং `withdraw()` মেথড ঘোষণা করে, যা যেকোনো লেনদেনযোগ্য অবজেক্টের জন্য একটি চুক্তি তৈরি করে।
+       `Account` ক্লাস এই `Transactable` ইন্টারফেসটিকে `implements` করে, যার অর্থ `Account` ক্লাসটি `deposit()` এবং `withdraw()` মেথডগুলো বাস্তবায়ন করতে বাধ্য।
+
+6.  "is-a" vs "has-a" সম্পর্ক:
+       "is-a": `SavingsAccount` is-a `Account` (ইনহেরিটেন্স)।
+       "has-a": `Customer` has-a `Account` (কম্পোজিশন/অ্যাগ্রিগেশন)। `Customer` ক্লাসে `accounts` নামে একটি অ্যারে আছে যা `Account` অবজেক্ট ধারণ করে। `Customer` ছাড়া অ্যাকাউন্ট থাকতে পারে, তাই এটি একটি অ্যাগ্রিগেশন সম্পর্ক।
+
+7.  মেথড সিগনেচার:
+       `deposit(double amount)` এবং `withdraw(double amount)` মেথডগুলোর নিজস্ব সিগনেচার আছে।
+       `SavingsAccount` ক্লাসে `withdraw(double amount)` মেথডকে ওভাররাইড করা হয়েছে।
+       `SavingsAccount` ক্লাসে `withdraw(double amount, boolean allowOverdraft)` একটি ওভারলোড করা মেথড। এই দুটি `withdraw` মেথডের সিগনেচার ভিন্ন।
+
+8.  কল-বাই-ভ্যালু (Call-By-Value):
+       `processTransaction` মেথডটি যখন একটি `Transactable` অবজেক্ট এবং `double` ভ্যালু প্যারামিটার হিসেবে নেয়, তখন সেই অবজেক্ট রেফারেন্সের একটি কপি এবং `double` ভ্যালুর একটি কপি পাস করা হয়।
+       মেথডের ভিতরে রেফারেন্সের কপির মাধ্যমে মূল অবজেক্টের স্টেট (`balance`) পরিবর্তিত হয়, কিন্তু `main` মেথডে থাকা `arifSavings` ভেরিয়েবলের রেফারেন্স নিজেই পরিবর্তিত হয় না।
+
+এই উদাহরণটি আপনাকে ব্যাংকিং সিস্টেমের একটি ছোট মডেলের মাধ্যমে জাভার গুরুত্বপূর্ণ OOP ধারণাগুলোর ব্যবহারিক প্রয়োগ দেখতে সাহায্য করবে।
+
+
+
+
+
+
+
+
+
+-
