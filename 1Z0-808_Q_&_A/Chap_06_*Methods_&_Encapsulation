@@ -1,7 +1,7 @@
 Medium.
 
 *** মেথড কী? একটি মেথড সিগনেচার কী? 
-*** মেথড না থাকলে কী সমস্যা হতো/মেথড কেন ব্যবহার করি?
+*** মেথড না থাকলে কী সমস্যা হতো/মেথড কেন ব্যবহার করি? আমরা এটি নিয়ে কেন মাথা ঘামাই?
 ** যদি এনক্যাপসুলেশন না থাকে, তাহলে আমি কী কী সমস্যার সম্মুখীন হব?
 
 ** যদি Constructor vs Method এবং Call-By-Value সম্পর্কে না জানি, তাহলে আমি কী ধরনের সমস্যার সম্মুখীন হব?
@@ -31,7 +31,10 @@ Medium.
 মেথড না থাকলে কোড অনেক দীর্ঘ এবং অগোছালো হয়ে যেত, কারণ একই কাজ বারবার লিখতে হতো। 
 এতে কোড বোঝা, কোনো ভুল খুঁজে বের করা এবং পরিবর্তন করা খুবই কঠিন হয়ে পড়তো।
 
-যদি এনক্যাপসুলেশন না থাকে, তাহলে আমি কী কী সমস্যার সম্মুখীন হব?
+যদি এনক্যাপসুলেশন না থাকে, তাহলে আমি কী কী সমস্যার সম্মুখীন হব? আমরা এটি নিয়ে কেন মাথা ঘামাই?
+-কারণ ডিফল্ট (প্যাকেজ প্রাইভেট) অ্যাক্সেস থাকায়, প্যাকেজের যেকোনো parent  ক্লাস-  numberEggs ভেরিয়েবলটিকে সরাসরি পরিবর্তন করতে পারে। 
+এর ফলে, আমার নিজের ক্লাসের মধ্যে কী মান সেট হচ্ছে, তার ওপর আমার আর কোনো নিয়ন্ত্রণ থাকে না।
+
 এনক্যাপসুলেশন না থাকলে আমার কোডের ডেটা নিরাপত্তা কমে যাবে, কারণ ক্লাসের অভ্যন্তরীণ ডেটা সরাসরি বাইরে থেকে পরিবর্তন করা যেতে পারে, যা অপ্রত্যাশিত ত্রুটি ঘটাতে পারে। 
 এছাড়া, কোড রক্ষণাবেক্ষণ করা কঠিন হয়ে পড়বে, কারণ যেকোনো অভ্যন্তরীণ পরিবর্তনে সিস্টেমের অন্যান্য অংশে প্রভাব পড়ার ঝুঁকি থাকবে।
 
@@ -80,6 +83,7 @@ Constructor Analysis:
    - Trace constructor chaining
    - Identify implicit super() calls
    - Spot constructor syntax errors
+ ** When Java sees the new keyword, it allocates memory for the new object. Java also looks for a constructor and calls it.
 
 01. `this()` এবং `super()` এর মাধ্যমে কন্সট্রাক্টর চেইনিং: 
 একটি ক্লাসের মধ্যে এক কন্সট্রাক্টর থেকে অন্য কন্সট্রাক্টরকে কল করার প্রক্রিয়াকে কন্সট্রাক্টর চেইনিং বলে।
@@ -113,6 +117,10 @@ Constructor Analysis:
    - Validate overloaded methods
    - Identify valid JavaBean methods
    - Recognize varargs usage
+         public void walk1() { }
+         public void 2walk() { } // DOES NOT COMPILE
+         public void walk4(int a; int b) { } // DOES NOT COMPILE
+         public void walk5(int a, int b) { }
 Overloading:
 - Same method name
 - Different parameter lists (type, number, or order)
