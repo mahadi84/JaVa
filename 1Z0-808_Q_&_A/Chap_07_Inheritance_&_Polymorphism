@@ -7,6 +7,7 @@ Medium.
 *** পলিউমরফিজম কী এবং ইনহেরিটেন্সের সাথে এর সম্পর্ক কী?
 *** Abstract ক্লাস এবং Interface কী, কখন কোনটা ব্যবহার করব?
 *** মেথড ওভাররাইডিং (method overriding) এবং মেথড ওভারলোডিং (method overloading)কখন কোনটা ব্যবহার করব?
+   Or জাভাতে মেথড ওভাররাইডিং (Method Overriding) এবং মেথড ওভারলোডিং (Method Overloading) এর নিয়মগুলো  কী কী?
 *** Covariant Return type(কোভেরিয়েন্ট রিটার্ন টাইপ) কী?
 
  Web: https://github.com/mahadi84/Learning-A-Programming/blob/main/OOP_What_%26_Why_%3F
@@ -84,8 +85,34 @@ Declaration------------------|------- abstract class MyAbstractClass {}    | int
 
 
 ## মেথড ওভাররাইডিং (method overriding) এবং মেথড ওভারলোডিং (method overloading) কখন কোনটা ব্যবহার করব?
-মেথড ওভাররাইডিং ব্যবহার করা হয় যখন একটি চাইল্ড ক্লাস প্যারেন্ট ক্লাসের কোনো মেথডের আচরণ পরিবর্তন করে তার নিজস্ব বাস্তবায়ন দিতে চায়। 
-অন্যদিকে, মেথড ওভারলোডিং ব্যবহার করা হয় যখন একই নামের একাধিক মেথড থাকে কিন্তু তাদের প্যারামিটার তালিকা ভিন্ন হয়, যা একই ফাংশনের বিভিন্ন ইনপুট সংস্করণ প্রদান করে।
+জাভাতে মেথড ওভাররাইডিং (Method Overriding) এবং মেথড ওভারলোডিং (Method Overloading) এর নিয়মগুলো নিচে বাংলায় দেওয়া হলো:
+
+## মেথড ওভাররাইডিং (Method Overriding) এর নিয়মাবলী
+মেথড ওভাররাইডিং ঘটে যখন একটি সাবক্লাস (child class) তার সুপারক্লাস (parent class) থেকে উত্তরাধিকারসূত্রে পাওয়া একটি মেথডের নিজস্ব বাস্তবায়ন (implementation) প্রদান করে। এর কিছু সুনির্দিষ্ট নিয়ম আছে:
+
+১. মেথড সিগনেচার: সাবক্লাসের ওভাররাইড করা মেথডের নাম, প্যারামিটারের সংখ্যা, প্যারামিটারের ডেটা টাইপ এবং প্যারামিটারের ক্রম সুপারক্লাসের মেথডের মতো অবশ্যই একই হতে হবে।
+২. রিটার্ন টাইপ: ওভাররাইড করা মেথডের রিটার্ন টাইপ অবশ্যই সুপারক্লাসের মেথডের রিটার্ন টাইপ অথবা তার একটি সাবটাইপ (covariant return type) হতে হবে।
+৩. অ্যাক্সেস মডিফায়ার (Access Modifier): ওভাররাইড করা মেথডের অ্যাক্সেস মডিফায়ার সুপারক্লাসের মেথডের অ্যাক্সেস মডিফায়ারের চেয়ে কম সীমাবদ্ধ (less restrictive) হতে পারে না। উদাহরণস্বরূপ, যদি প্যারেন্ট মেথড `protected` হয়, তবে চাইল্ড মেথড `public` হতে পারে কিন্তু `private` হতে পারবে না।
+৪. এক্সেপশন (Exceptions): ওভাররাইড করা মেথড সুপারক্লাসের মেথড দ্বারা ঘোষিত (declared) এক্সেপশনগুলোর চেয়ে কম বা একই ধরনের এক্সেপশন ছুঁড়তে পারে, অথবা কোনো এক্সেপশন নাও ছুঁড়তে পারে। এটি নতুন বা ব্রডার (broader) চেকেড এক্সেপশন ছুঁড়তে পারবে না। আনচেকড এক্সেপশনের ক্ষেত্রে এই নিয়ম প্রযোজ্য নয়।
+৫. `final` মেথড: `final` হিসেবে ঘোষিত কোনো মেথডকে ওভাররাইড করা যায় না।
+৬. `static` মেথড: `static` মেথড ওভাররাইড করা যায় না। যদি সাবক্লাসে একই সিগনেচার সহ একটি `static` মেথড থাকে, তবে এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
+৭. `private` মেথড: `private` মেথড ওভাররাইড করা যায় না কারণ সেগুলো কেবল তাদের নিজেদের ক্লাসের মধ্যেই দৃশ্যমান।
+৮. কনস্ট্রাক্টর: কনস্ট্রাক্টর ওভাররাইড করা যায় না।
+
+## মেথড ওভারলোডিং (Method Overloading) এর নিয়মাবলী
+মেথড ওভারলোডিং ঘটে যখন একটি ক্লাসের মধ্যে একই নামের একাধিক মেথড থাকে, কিন্তু তাদের প্যারামিটার তালিকা ভিন্ন হয়। এর নিয়মগুলো হলো:
+
+১. মেথডের নাম: ওভারলোড করা মেথডগুলোর নাম অবশ্যই একই হতে হবে।
+২. প্যারামিটার তালিকা: মেথডগুলোর প্যারামিটার তালিকা ভিন্ন হতে হবে। এই ভিন্নতা নিচের যেকোনো একটির মাধ্যমে হতে পারে:
+     প্যারামিটারের সংখ্যা (Number of parameters): যেমন: `add(int a, int b)` এবং `add(int a, int b, int c)`।
+     প্যারামিটারের ডেটা টাইপ (Data type of parameters): যেমন: `add(int a, int b)` এবং `add(double a, double b)`।
+     প্যারামিটারের ক্রম (Order of parameters): যেমন: `print(int a, String b)` এবং `print(String b, int a)`।
+৩. রিটার্ন টাইপ: ওভারলোডিংয়ের জন্য রিটার্ন টাইপ একই হতে পারে বা ভিন্নও হতে পারে। রিটার্ন টাইপ একা মেথড ওভারলোডিং নির্ধারণ করে না।
+৪. অ্যাক্সেস মডিফায়ার: অ্যাক্সেস মডিফায়ার একই হতে পারে বা ভিন্নও হতে পারে। এটি ওভারলোডিংয়ের জন্য কোনো বাধা নয়।
+৫. এক্সেপশন: মেথড দ্বারা ঘোষিত এক্সেপশন একই হতে পারে বা ভিন্নও হতে পারে। এটি ওভারলোডিংয়ের জন্য কোনো বাধা নয়।
+৬. `static` মেথড: `static` মেথডও ওভারলোড করা যায়।
+৭. `final` মেথড: `final` মেথডও ওভারলোড করা যায়।
+
 
 ## Covariant Return type(কোভেরিয়েন্ট রিটার্ন টাইপ):
 যখন একটি সাবক্লাসের একটি মেথড তার প্যারেন্ট ক্লাসের একই নামের মেথডকে ওভাররাইড করে, 
@@ -118,7 +145,6 @@ This chapter covers essential Java concepts including:
 5. - Constructor chaining
 6. - Casting and reference types
 
-## Key Concepts to Master
 
 ### 1. Inheritance Basics & Analysis
 - extends keyword for class inheritance
@@ -129,7 +155,6 @@ Inheritance Analysis:
    - Trace constructor execution order
    - Identify valid/invalid method overrides
    - Determine access to inherited members
-
 
 ### 2. Polymorphism & Scenarios:
 - Reference type vs object type
@@ -143,7 +168,6 @@ Polymorphism Scenarios:
    - Predict method binding at runtime
    - Understand reference vs object types
    - Recognize invalid casting attempts
-
 
 ### 3. Abstract Classes vs Interfaces
 Abstract/Interface Implementation:
@@ -161,24 +185,17 @@ Abstract/Interface Implementation:
 -রেফারেন্স টাইপ (Reference Type): এটি ভেরিয়েবলটি ডিক্লেয়ার করার সময় নির্দিষ্ট করা হয়। এটি নির্ধারণ করে যে রেফারেন্স ভেরিয়েবলের মাধ্যমে কোন মেথড এবং ফিল্ড অ্যাক্সেস করা যাবে। রেফারেন্স টাইপ হয় একটি ক্লাস, একটি ইন্টারফেস, অথবা একটি অ্যারে টাইপ হতে পারে।
 -অবজেক্ট টাইপ (Object Type): এটি রানটাইমে তৈরি হওয়া অবজেক্টের প্রকৃত ক্লাস। new কীওয়ার্ড ব্যবহার করে যখন একটি অবজেক্ট তৈরি করা হয়, তখন তার একটি নির্দিষ্ট ক্লাস থাকে, সেটাই তার অবজেক্ট টাইপ।
 
-
-
-
-4. Variable Access & Overriding vs Hiding:
+### 5. Variable Access & Overriding vs Hiding:
  - Variables are never overridden (only hidden)
  - Access determined by reference type
    - Overriding: Instance methods, runtime polymorphism
    - Hiding: Static methods, compile-time resolution
-
-
-
 
 ##### Common Pitfalls:
    - Forgetting super() in constructors
    - Confusing overriding with overloading
    - Mixing static and instance method hiding
    - Ignoring exception rules in overrides
-
 
 
 
