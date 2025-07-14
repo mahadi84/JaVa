@@ -233,6 +233,11 @@ This chapter covers essential Java concepts including:
 যখন আপনি সক্রিয়ভাবে (explicitly) একটি এক্সেপশন তৈরি এবং থ্রো করতে চান। এটি সাধারণত কিছু শর্ত পূরণ না হলে প্রোগ্রামকে একটি ত্রুটিপূর্ণ অবস্থায় নিয়ে যেতে ব্যবহার করা হয়, অথবা যখন আপনি একটি কাস্টম এক্সেপশন তৈরি করেন। 
 `throw` কীওয়ার্ডটি একটি মেথডের বডির (body) ভেতরে ব্যবহার করা হয়।
 
+@ এরর (Error): java.lang.Error। 
+OutOfMemoryError: JVM-এর জন্য প্রয়োজনীয় মেমরি (memory) ফুরিয়ে গেলে ঘটে।
+StackOverflowError: মেথড কলগুলো স্ট্যাকের (stack) ধারণক্ষমতা অতিক্রম করলে ঘটে, যেমন অসীম রিকার্শন (infinite recursion)।
+VirtualMachineError: JVM-এর অভ্যন্তরীণ ত্রুটি।
+
 
 ### 4. Exception Propagation Exception Type Identification & Handling Rules:
 - Exceptions propagate up call stack until caught
@@ -247,8 +252,6 @@ Handling Rules:
    - Validate catch block ordering
    - Check method override compatibility
    - Verify exception declaration requirements
-
-
 
 #### Common Pitfalls:
    - Forgetting to handle checked exceptions
