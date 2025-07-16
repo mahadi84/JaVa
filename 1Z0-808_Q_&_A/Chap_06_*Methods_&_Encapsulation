@@ -55,6 +55,8 @@ Medium.
 ## Call-By-Reference কী?
          - Array Data- can be modified after they are passed to a method as an argument. (Pass_by_Reference)
          - A change made to the data within an object passed to a method is reflected in the calling  method.
+                 ** সহজ করে বললে, যখন আপনি একটি অবজেক্টকে কোনো মেথডে পাঠান, আপনি আসলে অবজেক্টটিকেই পাঠান না, বরং অবজেক্টটি মেমরিতে যেখানে আছে, তার একটি ঠিকানা (reference) পাঠান। 
+                  মেথড যখন ওই ঠিকানা ব্যবহার করে অবজেক্টের ভেতরের ডেটা পরিবর্তন করে, তখন মূল অবজেক্টের ডেটাই পরিবর্তিত হয়, যা কলিং মেথড থেকেও দেখা যায়।
 
 ==============================================================================================================
 
