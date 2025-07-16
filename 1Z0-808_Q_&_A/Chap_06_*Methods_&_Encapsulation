@@ -79,9 +79,13 @@ Access Modifier Scenarios:
    - Recognize invalid access combinations
 
 ### 2. Encapsulation Principles
-- Use private fields with public getters/setters
 - Protect class invariants
 - Hide implementation details
+- Promote usability by other developers.
+- Maintain class data integrity of data elements.
+- Prevent users from modifying the internal attributes of a class.
+
+- Use private fields with public getters/setters
 - Follow JavaBean naming conventions:
   - getX()/isX() for getters
   - setX() for setters
