@@ -79,11 +79,12 @@ Access Modifier Scenarios:
    - Recognize invalid access combinations
 
 ### 2. Encapsulation Advantage and Principles
-- Protect class invariants/ক্লাস ইনভেরিয়েন্ট রক্ষা করুন।
-- Hide implementation details/বাস্তবায়নের বিবরণ লুকান।
-- Promote usability by other developers./অন্যান্য ডেভেলপারদের দ্বারা ব্যবহারযোগ্যতা বাড়ান।
-- Maintain class data integrity of data elements./ডেটা উপাদানগুলির ক্লাসের ডেটা অখণ্ডতা বজায় রাখুন।
+Advantage:
 - Prevent users from modifying the internal attributes of a class./ব্যবহারকারীদের একটি ক্লাসের অভ্যন্তরীণ বৈশিষ্ট্য পরিবর্তন করা থেকে বিরত রাখুন।
+- Hide implementation details/বাস্তবায়নের বিবরণ লুকান।
+- Maintain class data integrity of data elements./ডেটা উপাদানগুলির ক্লাসের ডেটা অখণ্ডতা বজায় রাখুন।
+- Protect class invariants/ক্লাস ইনভেরিয়েন্ট রক্ষা করুন।
+- Promote usability by other developers./অন্যান্য ডেভেলপারদের দ্বারা ব্যবহারযোগ্যতা বাড়ান।
 Principles:
 - Use private fields with public getters/setters
 - Follow JavaBean naming conventions:
