@@ -180,7 +180,10 @@ Static vs Instance:
 5. Accessing instance members from static context
 6. Mixing up pass-by-value behavior for primitives vs object references
 
-
+// Calling not-static function without this/creating obj is OK if instant to instant
+// Void(Return type) also works without Return-Type
+public void nested() { nested(2,true); } 
+public int nested(int level, boolean height) { return nested(level); } 
 
 
 
