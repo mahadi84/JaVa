@@ -175,6 +175,8 @@ Static vs Instance:
 public void nested() { nested(2,true); }  //Does not run(will catch error into Main()). A function Must have Return-Type and return-keyword. 
 public int nested(int level, boolean height) { return nested(level); } 
 
+*** Array Data- can be modified after they are passed to a method as an argument. (Pass_by_Reference)
+
 
 
 =========================== Chapter_6(Working with Methods and Encapsulation) =================================
