@@ -6,7 +6,7 @@ Medium.
 *** মেথড না থাকলে কী সমস্যা হতো/মেথড কেন ব্যবহার করি? 
 *** যদি এনক্যাপসুলেশন না থাকে, তাহলে আমি কী কী সমস্যার সম্মুখীন হব? আমরা এটি নিয়ে কেন মাথা ঘামাই?
 
-*** Call-By-Value কী?
+*** Call-By-Value and Call-By-Reference কী?
 *** OOP এর ক্ষেত্রে, "ইনস্ট্যান্স" (Instance) শব্দটির অর্থ কী?
          -"ইনস্ট্যান্স" (Instance) শব্দটি দ্বারা একটি ক্লাস (class) থেকে তৈরি করা একটি নির্দিষ্ট অবজেক্টকে বোঝায়।
 
@@ -33,7 +33,7 @@ Medium.
 আমার কোডের ডেটা নিরাপত্তা কমে যাবে, কারণ ক্লাসের অভ্যন্তরীণ ডেটা সরাসরি বাইরে থেকে পরিবর্তন করা যেতে পারে, যা অপ্রত্যাশিত ত্রুটি ঘটাতে পারে। 
 এছাড়া, কোড রক্ষণাবেক্ষণ করা কঠিন হয়ে পড়বে, কারণ যেকোনো অভ্যন্তরীণ পরিবর্তনে সিস্টেমের অন্যান্য অংশে প্রভাব পড়ার ঝুঁকি থাকবে।
 
-## Call-By-Value কী?
+## Call-By-Value and Call-By-Reference কী?
 জাভাতে কল-বাই-ভ্যালু (Call-By-Value) বলতে বোঝায় যে যখন আপনি একটি মেথডে কোনো ভেরিয়েবল পাস করেন, তখন সেই ভেরিয়েবলের আসল মানটির একটি কপি মেথডের প্যারামিটারে পাঠানো হয়, আসল ভেরিয়েবলটি নয়। 
 এর মানে হলো, মেথডের ভিতরে সেই কপির পরিবর্তন করা হলেও মূল ভেরিয়েবলের মানের কোনো পরিবর্তন হয় না।
     উদাহরণে:
@@ -52,6 +52,9 @@ Medium.
       }
 এই উদাহরণে, increment মেথডে originalValue-এর মান (10) এর একটি কপি পাঠানো হয়। মেথডের ভিতরে সেই কপির মান 11 করা হলেও, main মেথডে originalValue-এর আসল মান 10-ই থেকে যায়। এটিই জাভাতে কল-বাই-ভ্যালু।
 
+## Call-By-Reference কী?
+         - Array Data- can be modified after they are passed to a method as an argument. (Pass_by_Reference)
+         - A change made to the data within an object passed to a method is reflected in the calling  method.
 
 ==============================================================================================================
 
@@ -180,7 +183,6 @@ Static vs Instance:
 public void nested() { nested(2,true); }  //Does not run(will catch error into Main()). A function Must have Return-Type and return-keyword. 
 public int nested(int level, boolean height) { return nested(level); } 
 
-*** Array Data- can be modified after they are passed to a method as an argument. (Pass_by_Reference)
 
 
 
