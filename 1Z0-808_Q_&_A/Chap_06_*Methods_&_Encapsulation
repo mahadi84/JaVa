@@ -245,7 +245,7 @@ public int nested(int level, boolean height) { return nested(level); }
         C. It does not compile because of line g2.
         D. It does not compile for some other reason.
 
-5. Fill in the blank: Java uses to send data into a method.
+5. Fill in the blank: __ Java uses to send data into a method.
         A. pass-by-null
         B. pass-by-value
         C. both pass-by-value and pass-by-reference
