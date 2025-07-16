@@ -725,13 +725,14 @@ public int nested(int level, boolean height) { return nested(level); }
                 public void withdrawal(int amountInCents) {}
                 public void deposit(int amountInCents) {}
         }
+
         package employee;
         // INSERT CODE HERE
         public class Teller {
-        public void processAccount(int depositSlip, int withdrawalSlip) {
-        withdrawal(withdrawalSlip);
-        deposit(depositSlip);
-        }
+              public void processAccount(int depositSlip, int withdrawalSlip) {
+                     withdrawal(withdrawalSlip);
+                     deposit(depositSlip);
+              }
         }
         A. import static commerce.Bank.*;
         B. static import commerce.Bank.*;
@@ -740,6 +741,12 @@ public int nested(int level, boolean height) { return nested(level); }
 
 
 ===================================================== Answers =============================================
+4-D,*5-B,11-B,13-C,17-D
+18-A,21-C,22-D,27-B,28-C
+32-B,34-B,36-C,37-D,*39-A
+46-A,48-A,50-D
+
+
 1, C, 2, B, 3, D, 4, D, 5, B, 
 6, C, 7, B, 8, B, 9, C, 10, A, 
 
