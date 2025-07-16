@@ -157,9 +157,14 @@ Static vs Instance:
 
 
 ### 6.  Variable scope, final keyword, and hiding variable and method
-   - Final variables (must be initialized)
-   - Final methods (cannot be overridden)
    - Final classes (cannot be extended)
+   - Final methods (cannot be overridden)
+   - Final variables (must be initialized)
+   - Final parameter (its value cannot be changed within the method.) 
+                public final static int finish(final int score) { //final parameter score      
+                 final int result = score++ < 5 ? 2 : win; //score++ value cannot be changed
+                 return result+=win;
+                }
 -private modifiers hide variable and method in child class
 
 ## Common Pitfalls to Avoid
