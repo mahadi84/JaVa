@@ -172,11 +172,14 @@ Constructor Analysis:
          public void 2walk() { } // DOES NOT COMPILE
          public void walk4(int a; int b) { } // DOES NOT COMPILE
          public void walk5(int a, int b) { }
+
 Overloading:
-- Same method name
+- Same method name is must
 - Different parameter lists (type, number, or order)
-- Return type not considered for overloading
+- Access Modifier, Return type, Exception not considered for overloading
 - Varargs can be used in overloading
+- `static` মেথড: `static` মেথডও ওভারলোড করা যায়।
+- `final` মেথড: `final` মেথডও ওভারলোড করা যায়।
 
 
 ### 5. Static Members & Static vs Instance:
