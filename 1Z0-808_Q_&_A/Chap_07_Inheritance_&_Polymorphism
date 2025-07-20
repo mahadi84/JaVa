@@ -204,7 +204,7 @@ This chapter covers essential Java concepts including:
 3. - Method overriding and overloading
 4. - Access modifiers in inheritance
 5. - Constructor chaining
-6. - Casting and reference types
+6. - Casting(class to interface and interface to class) and reference types
 
 
 ### 1. Inheritance Basics & Analysis
