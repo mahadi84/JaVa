@@ -317,8 +317,7 @@ Abstract/Interface Implementation:
         C. All primitives and objects inherit a set of methods.
         D. Inheritance allows you to write methods that reference themselves.
 
-5. Given the class declaration below, which value cannot be inserted into the blank line that
-        would allow the code to compile?
+5. Given the class declaration below, which value cannot be inserted into the blank line that  would allow the code to compile?
         package mammal;
         interface Pet {}
         public class Canine implements Pet {
@@ -331,10 +330,9 @@ Abstract/Interface Implementation:
         C. Canine
         D. Object
 
-6. Imagine you are working with another team to build an application. You are developing
-        code that uses a class that the other team has not finished writing yet. Which element of
-        Java would best facilitate this development, allowing easy integration once the other team’s
-        code is complete?
+6. Imagine you are working with another team to build an application. 
+   You are developing code that uses a class that the other team has not finished writing yet.
+   Which element of Java would best facilitate this development, allowing easy integration once the other team’s code is complete?
         A. An abstract class
         B. An interface
         C. static methods
