@@ -230,7 +230,7 @@ Period period = Period.ofDays(1);
 DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 System.out.print(format.format(newYears.minus(period)));
 
-.now(); .of(); .ofPattern(); .ofDays(); 
+.now(); .of(); .ofPattern(); .ofDays(); minus() 
 
 *** Period" সরাসরি Java-এর java.time.Period ক্লাসে মিনিটের সাথে কাজ করে না। 
     Period ক্লাসটি বছর, মাস এবং দিনের মতো সময়কাল উপস্থাপন করে। 
