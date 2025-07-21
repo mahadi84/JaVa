@@ -242,6 +242,10 @@ System.out.print(format.format(newYears.minus(period)));
    - Lambda syntax errors
    - Date/Time immutability
    - .now(); .of(); .ofPattern(); .ofDays(); minus() 
+   - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
+   - length vs length()
+   - parameter as char, String and StringBuilder()
+   - Predicate p = p.startWith(); test(); p.equal();
 
 
 =====================Chapter 9(Selected Java API) =========================================
