@@ -259,6 +259,7 @@ Handling Rules:
    - Assuming finally blocks always complete
    - Overriding method exception mismatches
    - {}=()
+   -  throw new Exception(); -must handle with try-catch
 
 
 
