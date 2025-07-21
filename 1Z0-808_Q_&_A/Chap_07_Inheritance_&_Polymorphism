@@ -257,9 +257,17 @@ Abstract/Interface Implementation:
 
 ##### Common Pitfalls:
    - Forgetting super() in constructors
-   - Confusing overriding with overloading
    - Mixing static and instance method hiding
+   - calling private instance from child class
+   - Confusing overriding with overloading
    - Ignoring exception rules in overrides
+   - An overriding rule: 
+         - for a method exists in both interfaces
+         - covariant, super class as return type
+         - Number, Long as return type ex: public __ mname()
+   - double d= 1; /is ok?
+   - Abstract can not be private and package-private.
+
 
 
 
