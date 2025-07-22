@@ -274,7 +274,7 @@ Abstract/Interface Implementation:
         তবে একটি কম্পাইলার এরর দেখা দেয়, যদি না ক্লাসটি মেথডটিকে ওভাররাইড করে।
    - জাভা মেথডগুলিকে ওভাররাইড করার অনুমতি দেয়, তবে ভেরিয়েবলগুলিকে নয়|
    - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
-   - Two casting is allowed -(A)(B)new D()
+   - Two casting is allowed -Interface_Name i= (A)(B)new D()
    - Rule: An abstract class is NOT bound to implement abstract methods when it extends another abstract class or interface in Java.
    - Rule: If an abstract class implements an interface, it is NOT required to implement all of the interface's abstract methods. It can choose to implement some, none, or all of them.
    - Rule: -Concrete Class extends Abstract Class	MUST implement all inherited abstract methods.
