@@ -260,8 +260,8 @@ Abstract/Interface Implementation:
    - Mixing static and instance method hiding
    - calling private instance from child class
    - Confusing overriding with overloading
-   - পলিমরফিজমের কারণে,যখন কোন method (car.drive();) কল করা হয়, তখন জাভা রানটাইম এনভায়রনমেন্ট দেখে যে car আসলে কোন ধরণের অবজেক্টকে রেফার করছে parent/child। 
-      তার অবজেক্টের মাধ্যমে মেথডগুলো দেখানো হবে|
+   - পলিমরফিজমের কারণে,যখন কোন method (car.drive();) কল করা হয়, তখন জাভা রানটাইম এনভায়রনমেন্ট দেখে যে car আসলে কোন ধরণের (new) অবজেক্টকে রেফার করছে parent/child। 
+      তার অবজেক্টের মাধ্যমে মেথডগুলো কল করা হয়|
    - Ignoring exception rules in overrides
    - An overriding rule: 
          - for a method exists in both interfaces
@@ -269,6 +269,7 @@ Abstract/Interface Implementation:
          - Number, Long as return type ex: public __ mname()
    - double d= 1; /is ok?
    - Abstract can not be private and package-private.
+   - Integer, Short-এর সাবটাইপ নয়। Short, Integer-এর সাবটাইপ নয়। যারা উভয়ই Number ক্লাসকে এক্সটেন্ড করে।
 
 
 
