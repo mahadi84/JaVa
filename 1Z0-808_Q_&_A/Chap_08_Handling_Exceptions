@@ -259,6 +259,9 @@ Handling Rules:
    - Assuming finally blocks always complete
    - Overriding method exception mismatches
    - new keyword missing/() throw-s missing/ new throws/ {} missing
+   - If an exception occurs, does the code compile?
+   - if try (checked exception) does not match any catch block
+   - if  "throws exception" is not handled properly
 
 
 
