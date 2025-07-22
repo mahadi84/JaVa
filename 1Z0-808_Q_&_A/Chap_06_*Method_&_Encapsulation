@@ -208,18 +208,21 @@ Static vs Instance:
                 }
 -private modifiers hide variable and method in child class
 
+
 ## Common Pitfalls to Avoid
 
 1. Assuming default access is "protected" - it's actually package-private
-2. Forgetting super()/this() must be first constructor line
+2. Forgetting super()/this() must be first constructor line. Is super() allowed in parent class.
 3. Confusing method overloading with overriding
-4. Trying to modify final variables after initialization
+4. Trying to modify final variables after initialization -(final int a) a++, -final Object obj;
 5. Accessing instance members from static context
 6. Mixing up pass-by-value behavior for primitives vs object references
+7. Changing Vs Reassigning object value effect in calling method as parameter(StringBuilder sb)
+8. Calling Class with Package name new.sky.Class_Name().variable_name
+9. no non-arg in Parent and child, in parent but not in child and vise-versa
+10. if no return mentioned in method in void return type where error shows in void or main()
+11. Sequence of access modi. keyword ex: final class A or class final A and same for variable
 
-// Calling not-static function without this/creating obj is Ok for instant to instant method
-public void nested() { nested(2,true); }  //Does not run(will catch error into Main()). A function Must have Return-Type and return-keyword. 
-public int nested(int level, boolean height) { return nested(level); } 
 
 
 
