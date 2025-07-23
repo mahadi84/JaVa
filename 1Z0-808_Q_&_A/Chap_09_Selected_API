@@ -242,12 +242,12 @@ System.out.print(format.format(newYears.minus(period)));
    - Collection index boundaries -ArrayList() vs array() vs List()
    - CL_SISTER_C, CL_SIR_AID_2R, GRASS_ICC
    - Lambda syntax errors -why lambda?
-   - Date/Time immutability
-   - .now(); .of(); .ofPattern(); .ofDays(); minus() 
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
    - length vs length()
    - parameter as char, String and StringBuilder()
    - Predicate p = test(); p.equal();
+   - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
+   - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
    - 7th position is l count like array: new StringBuilder("radical ").insert(7, "robots")
    - add robots after radical's free space : new StringBuilder("radical ").insert(sb.length(), "robots")
    - StringBuilder line = new StringBuilder("-");
@@ -269,9 +269,9 @@ System.out.print(format.format(newYears.minus(period)));
                     if (p.test(num))
                     System.out.println(num);
                     }
-  - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
-  - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
 
+   - Date/Time immutability. Period does not support method chaining.
+   - .now(); .of(); .ofPattern(); .ofDays(); minus() 
 
 
 =====================Chapter 9(Selected Java API) =========================================
