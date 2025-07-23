@@ -254,6 +254,11 @@ Handling Rules:
    - Verify exception declaration requirements
 
 #### Common Pitfalls:
+   - java.lang.Exception/Error
+   - Object (Root of all classes)
+         +-- Throwable (Base class for all errors and exceptions)
+               +-- Error (Serious, usually unrecoverable problems)
+               +-- Exception (Conditions an application might want to catch)
    - when to use what and how? try-catch-resource vs. throw vs. throws
    - Forgetting to handle checked (throw new Exception()) exceptions with try-catch
    - if "throws exception" is not handled properly
@@ -267,6 +272,7 @@ Handling Rules:
    - Does the code compile?
         -If a checked/unchecked exception occurs but is not handled properly
         -if a try (for checked exception) does not match any catch block
+   
 
 
 
