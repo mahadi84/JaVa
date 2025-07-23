@@ -255,13 +255,14 @@ Handling Rules:
 
 #### Common Pitfalls:
    - Forgetting to handle checked (throw new Exception()) exceptions with try-catch
+   - if  "throws exception" is not handled properly
    - Incorrect catch block ordering
    - Assuming finally blocks always complete
    - Overriding method exception mismatches
-   - new keyword missing/() throw-s missing/ new throws/ {} missing
-   - If an exception occurs, does the code compile?
-   - if try (checked exception) does not match any catch block
-   - if  "throws exception" is not handled properly
+   - new keyword missing/() throw-s missing/ new throws/ {} missing 
+   - Does the code compile?
+        -If a checked/unchecked exception occurs but is not handled properly
+        -if a try (for checked exception) does not match any catch block
 
 
 
