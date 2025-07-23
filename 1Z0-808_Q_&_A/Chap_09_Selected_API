@@ -251,15 +251,12 @@ System.out.print(format.format(newYears.minus(period)));
    - 7th position is l count like array: new StringBuilder("radical ").insert(7, "robots")
    - add robots after radical's free space : new StringBuilder("radical ").insert(sb.length(), "robots")
    - StringBuilder line = new StringBuilder("-");
-         StringBuilder anotherLine = line.append("-");
-         System.out.print(line == anotherLine);
-         `StringBuilder` মেথডগুলো একই অবজেক্টের একটি রেফারেন্স ফেরত দেয় যাতে আপনি মেথড কলগুলো চেইন করতে পারেন। 
-              অতএব, `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে।
+      StringBuilder anotherLine = line.append("-"); // `StringBuilder`মেথডগুলো একই অবজেক্টের একটি রেফারেন্স ফেরত দেয় যাতে আপনি মেথড কলগুলো চেইন করতে পারেন। 
+         System.out.print(line == anotherLine); //`line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে।
 
     - String line = new String("-");
-      String anotherLine = line.concat("-");
-      System.out.print(line == anotherLine);
-      `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে না।
+       String anotherLine = line.concat("-");
+         System.out.print(line == anotherLine);//  `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে না, নতুন অবজেক্ট তৈরি করে।
     
    - compile can catch this type of error:
             -startWith()function does not work with Arraylist() ex: Predicate dash = c -> c.startsWith("-"); 
@@ -272,8 +269,8 @@ System.out.print(format.format(newYears.minus(period)));
                     if (p.test(num))
                     System.out.println(num);
                     }
-  - Predicate<String> pred2= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
-  - Predicate<String> pred3= (s) -> System.out.println(s);           // Without parentheses (valid for a single parameter if type is inferred)
+  - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
+  - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
 
 
 
