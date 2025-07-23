@@ -257,10 +257,11 @@ Handling Rules:
    - when to use what and how? try-catch-resource vs. throw vs. throws
    - Forgetting to handle checked (throw new Exception()) exceptions with try-catch
    - if "throws exception" is not handled properly
-   - Incorrect catch block ordering (try must 1, catch 1/many, finally 0/1)
+   - Incorrect catch block ordering(try-catch-finally) 
+   - try block always must have 1/many-catch, 0/1-finally
    - Assuming finally blocks always complete? If it contains a checked Exception, like throw new Exception()?
    - Overriding method exception mismatches
-   - missing new keyword /s in () throws/ {} /**new throw(s)
+   - missing 'new' keyword /'s' in () throws/{} in any blocks /**new throw(s)
    - duplicate parameter, implements vs extends exception,
    - Throwable t, throw e, System.exit(0);
    - Does the code compile?
