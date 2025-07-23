@@ -190,9 +190,10 @@ Lambda Syntax:
            fruits.forEach(fruit -> System.out.println("Fruit: " + fruit));   // The lambda `fruit -> System.out.println("Fruit: " + fruit)`
 
    - Parentheses optional for single parameter
-             Predicate<String> pred1 (String s) -> System.out.println(s);    // With parentheses (always works)
-             Predicate<String> pred1 String s -> System.out.println(s);      // Without parentheses ( works)
-             Predicate<String> pred1 s -> System.out.println(s);             // Without parentheses (valid for a single parameter if type is inferred)
+             Predicate<String> pred1= (String s) -> System.out.println(s);    // With parentheses (always works)
+             Predicate<String> pred2= String s -> System.out.println(s);      // Without parentheses ( does not works)
+             Predicate<String> pred3= s -> System.out.println(s);             // Without parentheses (valid for a single parameter if type is inferred)
+             Predicate<String> pred3= (s) -> System.out.println(s);             // With parentheses (valid for a single parameter if type is inferred)
    - Braces and return required for multiple statements 
         BOTH Predicate<Integer> ip = i -> i != 0; 
         IS i -> { return i != 0; } CORRECT
@@ -246,7 +247,34 @@ System.out.print(format.format(newYears.minus(period)));
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
    - length vs length()
    - parameter as char, String and StringBuilder()
-   - Predicate p = p.startWith(); test(); p.equal();
+   - Predicate p = test(); p.equal();
+   - 7th position is l count like array: new StringBuilder("radical ").insert(7, "robots")
+   - add robots after radical's free space : new StringBuilder("radical ").insert(sb.length(), "robots")
+   - StringBuilder line = new StringBuilder("-");
+         StringBuilder anotherLine = line.append("-");
+         System.out.print(line == anotherLine);
+         `StringBuilder` মেথডগুলো একই অবজেক্টের একটি রেফারেন্স ফেরত দেয় যাতে আপনি মেথড কলগুলো চেইন করতে পারেন। 
+              অতএব, `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে।
+
+    - String line = new String("-");
+      String anotherLine = line.concat("-");
+      System.out.print(line == anotherLine);
+      `line` এবং `anotherLine` একই অবজেক্টকে নির্দেশ করে না।
+    
+   - compile can catch this type of error:
+            -startWith()function does not work with Arraylist() ex: Predicate dash = c -> c.startsWith("-"); 
+            -data type error string vs Integer
+               ex:list.add("5");
+                    print(list, e -> e < 0);
+                    }
+                    public static void print(List<String> list, Predicate<Integer> p) {
+                    for (String num : list)
+                    if (p.test(num))
+                    System.out.println(num);
+                    }
+  - Predicate<String> pred2= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
+  - Predicate<String> pred3= (s) -> System.out.println(s);           // Without parentheses (valid for a single parameter if type is inferred)
+
 
 
 =====================Chapter 9(Selected Java API) =========================================
@@ -765,8 +793,9 @@ System.out.print(format.format(newYears.minus(period)));
 
 
 ================================ Answers =============================
-2-D,5-B,7-C,9-C,11-D,12-D,13-D,14-A,16-A,17-A,19-A,20-C,26-D,27-A,28-C,
-30-D,31-D,33-A,34-B,36-C,37-B,38-B,40-C,41-D,43-C,46-D,47-C,48-D
+2-D,5-B,7-C,9-C,11-D,12-D,13-D,14-A,16-A,17-A,19-A,20-C,
+26-D,27-A,28-C,30-D,31-D,33-A,34-B,36-C,37-B,38-B,40-C,
+41-D,43-C,46-D,47-C,48-D
 
 
 
