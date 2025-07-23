@@ -260,7 +260,9 @@ Handling Rules:
    - Incorrect catch block ordering (try must 1, catch 1/many, finally 0/1)
    - Assuming finally blocks always complete? If it contains a checked Exception, like throw new Exception()?
    - Overriding method exception mismatches
-   - new keyword missing/() throw-s missing/ new throws/ {} missing 
+   - missing new keyword /() throw-s/ {} /**new throw(s)
+   - duplicate parameter, implements vs extends exception,
+   - Throwable t, throw e, System.exit(0);
    - Does the code compile?
         -If a checked/unchecked exception occurs but is not handled properly
         -if a try (for checked exception) does not match any catch block
@@ -273,8 +275,7 @@ Handling Rules:
 
 9,13,16,*17,19,20,21,22,*24,25,*27,35,38,39,*40,*44,46,47,48,50 = 20
 
-throw vs throws, missing new, ()vs{}, duplicate parameter, Throwable t, throw e, System.exit(0);
-implements vs extends exception, must declare or handle Unchecked/Compiletime exception.
+
 
 
 1. What is the result of compiling and executing the following application?
