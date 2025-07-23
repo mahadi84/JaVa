@@ -206,19 +206,24 @@ Static vs Instance:
                  final int result = score++ < 5 ? 2 : win; //score++ value cannot be changed
                  return result+=win;
                 }
--private modifiers hide variable and method in child class
+- private modifiers hide variables and methods in the child class
 
 
 ## Common Pitfalls to Avoid
 
 1. Assuming default access is "protected" - it's actually package-private
-2. Forgetting super()/this() must be first constructor line. Is super() allowed in the parent class's Constructor?
+2. Forgetting super()/this() must be first constructor line. 
+      -super() vs super.
+      -Is super() allowed in the parent class's Constructor?
 3. Confusing method overloading with overriding
-4. Trying to modify final variables after initialization -(final int a) a++, -final Object obj; -final value set with setA() will work?
-5. Accessing instance members from static context
-6. Mixing up pass-by-value behavior for primitives vs object references
+4. Trying to modify final variables after initialization 
+      -final in parameter, meaning (final int a) a++, 
+      -final before reference variable, meaning -final Object obj; 
+      -final value set with setA() will work in encapsulation?
+5. Accessing instance members from a static context or a private variable from a child class
+6. Mixing up pass-by-value and pass-by-reference behavior for primitives vs object references
 7. Changing Vs Reassigning object value effect in calling method as parameter(StringBuilder sb)
-8. Calling Class with Package name new.sky.Class_Name(3).variable_name but NO constructor will it work?
+8. Calling Class with Package name new.sky.Class_Name(3).variable_name but NO constructor to receive value will it work?
 9. No non-arg in Parent and child, in parent but not in child, and vice-versa
 10. If no return is mentioned in the method in a void return type, where does the error show in void or main()
 11. Sequence of access modifier keyword, ex: final class A or class final A, and the same for a variable
