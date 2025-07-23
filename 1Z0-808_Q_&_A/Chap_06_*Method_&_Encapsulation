@@ -228,6 +228,7 @@ Static vs Instance:
 10. If no return is mentioned in the method in a void return type, where does the error show in VOID or psv main()
 11. Sequence of access modifier keyword, 
       ex: final class A or class final A, and the same for a variable, final int a or final public int a?
+12. Can a class be private or protected? ex: protected class A or private class A
 
 
 
