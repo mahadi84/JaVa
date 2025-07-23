@@ -212,7 +212,7 @@ Static vs Instance:
 ## Common Pitfalls to Avoid
 
 1. Assuming default access is "protected" - it's actually package-private
-2. Forgetting super()/this() must be first constructor line. Is super() allowed in the parent class?
+2. Forgetting super()/this() must be first constructor line. Is super() allowed in the parent class's Constructor?
 3. Confusing method overloading with overriding
 4. Trying to modify final variables after initialization -(final int a) a++, -final Object obj; -final value set with setA() will work?
 5. Accessing instance members from static context
