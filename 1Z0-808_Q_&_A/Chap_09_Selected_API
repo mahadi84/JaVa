@@ -238,7 +238,7 @@ System.out.print(format.format(newYears.minus(period)));
 
 ##### Common Pitfalls:
    - String vs StringBuilder
-   - Collection index boundaries ArrayList() vs List()
+   - Collection index boundaries -ArrayList() vs array() vs List()
    - CL_SISTER_C, CL_SIR_AID_2R, GRASS_ICC
    - Lambda syntax errors -why lambda?
    - Date/Time immutability
