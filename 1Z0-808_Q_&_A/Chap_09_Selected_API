@@ -237,9 +237,9 @@ System.out.print(format.format(newYears.minus(period)));
 
 
 ##### Common Pitfalls:
-   - String vs StringBuilder performance
-   - Collection index boundaries
-   - Lambda syntax errors
+   - String vs StringBuilder
+   - Collection index boundaries ArrayList() vs List()
+   - Lambda syntax errors -why lambda?
    - Date/Time immutability
    - .now(); .of(); .ofPattern(); .ofDays(); minus() 
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
