@@ -146,7 +146,7 @@ This chapter covers essential Java concepts, including:
 
 ### 2. StringBuilder
 - Mutable alternative to String
-- Key Methods: -CL_SI(2)R_AID
+- Key Methods: -CL_SIR_AID_R
   - `length()`, `charAt()`, `substring()`
   - `indexOf()`, +
   - `append()`, `insert()`, `delete()`
@@ -240,11 +240,11 @@ System.out.print(format.format(newYears.minus(period)));
 ##### Common Pitfalls:
    - String vs StringBuilder
    - Collection index boundaries -ArrayList() vs array() vs List()
-   - CL_SISTER_C, CL_SI(2)R_AID, GRASS_ICC
+   - CL_SISTER_C, CL_SIR_AID_R, GRASS_ICC
    - Lambda syntax errors -why lambda?
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
    - length vs length()
-   - parameter as char, String and StringBuilder()
+   - parameter as char, String, and StringBuilder()
    - Predicate p = test(); p.equal();
    - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
    - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
