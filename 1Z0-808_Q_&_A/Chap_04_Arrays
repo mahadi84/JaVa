@@ -559,10 +559,11 @@ This chapter covers essential Java concepts related to:
         
 34. How do you access the array element with the value of "z"?        
         dimensions
-        "one"  "two"  "three"    
-        "x"     "p"   "x"
-        "y"           "y"
-                      "z"
+        "one"  "two"  "three"
+        ----------------------
+        "x"   |  "p" |  "x"
+        "y"   |      |  "y"
+              |      |  "z"
         A. dimensions["three"][2]
         B. dimensions["three"][3]
         C. dimensions[2][2]
