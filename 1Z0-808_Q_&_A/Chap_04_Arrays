@@ -209,8 +209,8 @@ This chapter covers essential Java concepts related to:
       - Returns index if found
       - Returns (-(insertion point) - 1) if not found
    - Confusing array length field with String length()
-   - `new type[size]` (elements get default values)
-   - `new type[]{val1, val2}` (inline initialization)
+   - `new type[size]` (elements get default values)  array declare first and used later.
+   - `new type[]{val1, val2}` (inline initialization) no need to declare size
    - `new type[row][column]` (int students[][] = new int[0][1] মানে ১ম সারির ২য় ছাত্র। new int[1][] column can be add later। )
    - `new type[][][]` (Example_01: building[1][2][0] মানে ২য় তলার ৩য় ফ্ল্যাটের ১ম কক্ষ।)
 
