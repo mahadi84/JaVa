@@ -99,9 +99,32 @@ This chapter covers essential Java loop constructs including:
    - Modifying loop variables incorrectly
    - Off-by-one errors in loop conditions
     - Loop initialization and termination conditions
-    - Proper use of loop control statements
+    - Proper use of loop control statements (break vs continue)
+        break:যখন আপনি একটি নির্দিষ্ট শর্ত পূরণ হলে লুপ থেকে সম্পূর্ণভাবে বের হয়ে যেতে চান।
+                উদাহরণস্বরূপ, যদি আপনি একটি অ্যারের মধ্যে কোনো একটি নির্দিষ্ট উপাদান খুঁজছেন এবং সেটি পেয়ে যাওয়ার পর আর অ্যারের বাকি অংশ চেক করার প্রয়োজন নেই, তখন break ব্যবহার করতে পারেন।
+        continue: -লুপের বর্তমান পুনরাবৃত্তি (current iteration) বাদ দিয়ে পরের পুনরাবৃত্তিতে চলে যায়।
+                  -লুপের কিছু নির্দিষ্ট শর্তের জন্য কোডের একটি অংশ কার্যকর করতে চান না, কিন্তু লুপটি সম্পূর্ণভাবে বন্ধ করতে চান না।
+                    উদাহরণস্বরূপ, যদি আপনি 1 থেকে 10 পর্যন্ত সংখ্যা প্রিন্ট করতে চান, কিন্তু জোড় সংখ্যাগুলো বাদ দিতে চান, তখন continue ব্যবহার করতে পারেন।  
     - Behavior differences between loop types
     - Common syntax mistakes
+    - for(;;) {}  // Valid infinite loop
+    - for(Type var : collection) {} //Enhanced for loop syntax:
+    - do {} while(condition); //do-while requires semicolon after condition
+    - Key Differences to Remember
+         - while vs do-while
+         - Traditional for vs Enhanced for
+     - Convert between while and for loops
+     - Understand limitations of enhanced for (no index access)
+    Labeled Control:
+        -এক ধরনের স্টেটমেন্টকে যেখানে আপনি break বা continue কীওয়ার্ডের সাথে একটি লেবেল (Label) ব্যবহার করেন। 
+        কখন Labeled Control ব্যবহার করবেন?
+        -নেস্টেড লুপের (এক লুপের মধ্যে আরেক লুপ) জটিল পরিস্থিতিতে লুপের ফ্লো নিয়ন্ত্রণ করার জন্য | নেস্টেড লুপের, একটি নির্দিষ্ট লুপকে টার্গেট করে break বা continue করতে পারেন, শুধুমাত্র সবচেয়ে ভেতরের লুপকে নয়।
+        -যখন একাধিক if স্টেটমেন্ট বা ফ্লাগ ভেরিয়েবল ব্যবহার করে লুপের ফ্লো নিয়ন্ত্রণ করা কঠিন হয়ে পড়ে।
+        উদাহরণ:
+            labelName: for (initialization; condition; increment/decrement) {
+             // লুপের ভেতরের কোড
+            }
+
 
 
 
