@@ -340,7 +340,7 @@ This chapter covers essential Java loop constructs including:
         D. None of the above
         
         
-23. How many of these statements can be inserted after the println to have the code flow follow the arrow in this diagram?
+23. How many of these statements can be inserted after the System.out.println(ch) to have the code flow follow the arrow in this diagram?
         break;
         break letters;
         break numbers;
