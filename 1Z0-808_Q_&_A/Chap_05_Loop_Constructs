@@ -114,7 +114,7 @@ This chapter covers essential Java loop constructs including:
     - Behavior differences between loop types
     - Common syntax mistakes
     - for(;;) {}  // Valid infinite loop
-    - for(Type var : collection) {} //Enhanced for loop syntax:
+    - for(Type var : collection) {} //used in Array and ArrayList(). -Enhanced for loop syntax:
     - do {} while(condition); //do-while requires semicolon after condition
     - Key Differences to Remember
          - while vs do-while
