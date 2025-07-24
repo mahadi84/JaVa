@@ -258,7 +258,7 @@ Handling Rules:
    - Object (Root of all classes)
          +-- Throwable (Base class for all errors and exceptions)
                +-- Error (Serious, usually unrecoverable problems)
-               +-- Exception (Conditions an application might want to catch)
+               +-- Exception (Conditions an application might want to catch) +--Checked(compile time, MUST handaled with try-catch) +--+--UnChecked(run time)
    - when to use what and how? try-catch-resource vs. throw vs. throws
    - Forgetting to handle checked (throw new Exception()) exceptions with try-catch
    - if "throws exception" is not handled properly
