@@ -91,6 +91,7 @@ Highest to lowest:
 1. Assuming == compares object content - it compares references
 2. Forgetting break in switch statements - causes fall-through
 3. Mixing types in ternary operations - both branches must be compatible
+     -System.out.print(leaders + followers < 10 ? "Too few" : "Too many"); //work withuot any issue
 4. Ignoring operator precedence - use parentheses when unsure
 5. Using assignment (=) instead of equality (==) in conditions
 6. Applying operators to incompatible types (e.g., boolean with arithmetic)
@@ -105,12 +106,24 @@ Highest to lowest:
   - break prevents fall-through ( `switch` স্টেটমেন্টে কোনো `break` স্টেটমেন্ট নেই ? সমস্ত `case` স্টেটমেন্ট execute করা হবে।)
 9. Pre-Increment (++x): First, it increases the value of the variable by 1, then it returns the new, incremented value.
 10. Post-Increment (x++): First, it returns the variable's current value, then it increases the value of the variable by 1.
-11. boolean process = candidateA == null || candidateA.intValue() < 10;
-     boolean value = candidateA && candidateB;
-12. &(AND Operator) vs &&(Logical AND,  Short-circuit)=2true |(OR) vs ||(Logical OR)=any 1true, , ^(bitwise Ex-OR)=oposite ভিন্ন হয়, তাহলে result হবে true|
+
+- &(AND Operator) vs &&(Logical AND,  Short-circuit)=2true |(OR) vs ||(Logical OR)=any 1true, , ^(bitwise Ex-OR)=oposite ভিন্ন হয়, তাহলে result হবে true|
       *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
-13. int leaders = 10 * (2 + (1 + 2 / 5)); //why result 30
-     System.out.print(leaders + followers < 10 ? "Too few" : "Too many"); //work withuot any issue
+- int leaders = 10 * (2 + (1 + 2 / 5)); //why result 30
+- Long Logical(AND and OR) operator use:
+       public static void main(String... data) {
+              if(data.length>=1 && (data[0].equals("sound") || data[0].equals ("logic")) && data.length<2) { //is it possible
+              System.out.print(data[0]);
+              }
+       public static void main(String... weather) {
+               System.out.print(weather[0]!=null && weather[0].equals("sunny") && !false ? "Go Outside" : "Stay Inside");
+              }
+
+   - if-else statement new idea to write:
+       public String runTest(boolean spinner, boolean roller) {
+           if(spinner = roller) return "up";
+           else return roller ? "down" : "middle";
+           }
 
 
 
