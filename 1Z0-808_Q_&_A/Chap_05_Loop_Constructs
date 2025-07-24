@@ -94,7 +94,6 @@ This chapter covers essential Java loop constructs including:
    - Labels must precede the loop declaration
 
 ##### Common Pitfalls:
-   - Missing semicolon in do-while
    - Using == instead of equals() in String comparisons
    - Modifying loop variables incorrectly
    - Off-by-one errors in loop conditions
