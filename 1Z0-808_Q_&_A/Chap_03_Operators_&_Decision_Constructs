@@ -107,7 +107,8 @@ Highest to lowest:
 10. Post-Increment (x++): First, it returns the variable's current value, then it increases the value of the variable by 1.
 11. boolean process = candidateA == null || candidateA.intValue() < 10;
      boolean value = candidateA && candidateB;
-12. |(OR) vs ||(Ex-OR), &(AND) vs &&(Ex-OR), ^(Ex-)
+12. &(AND) vs &&(Logical AND,  Short-circuit)=2true |(OR) vs ||(Ex-OR)=1true, , ^(Ex-)=oposite ভিন্ন হয়, তাহলে result হবে true|
+      *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
 13. int leaders = 10 * (2 + (1 + 2 / 5)); //why result 30
      System.out.print(leaders + followers < 10 ? "Too few" : "Too many"); //work withuot any issue
 
