@@ -220,14 +220,14 @@ This chapter covers essential Java concepts related to:
                   String bear [] = new String[] {};
           	  Integer[] lotto = new Integer[4];
           
-        -What is 'a', 'd', 'e' position here?
+        -What is 'a', 'd', 'e' row/column here?
                char[][] blocks = new char[][] { { 'a', 'b', 'c' }, { 'd' }, { 'e', 'f' } };           
           
         -output?
                   String[][] listing = new String[][] { { "Book" }, { "Game", "29.99" } };
                   System.out.println(listing.length + " " + listing[0].length);
           
-          -data can be inserted this way?
+          -data can be inserted in  this way?
            public static void addStationName(String[] names) {
                   names[names.length] = "Times Square";  //try to insert value to last array index that not allowed
                   } 
@@ -237,13 +237,13 @@ This chapter covers essential Java concepts related to:
           	static int[][] game = new int[6][6];        
                    game[3][3] = 6;
                    Object[] obj = game;
-                   obj[3] = "X"; // এই লাইনে একটি ArrayStoreException runtime exception ঘটবে।   এর কারণ হলো obj[3] আসলে game অ্যারের চতুর্থ সারি (int[]) কে নির্দেশ করছে। 
+                   obj[3] = "X"; //  compile ok but এই লাইনে একটি ArrayStoreException runtime exception ঘটবে।   এর কারণ হলো obj[3] আসলে game অ্যারের চতুর্থ সারি (int[]) কে নির্দেশ করছে। 
            
           -output?
                   String[] os = new String[] { "Mac", "Linux", "Windows" };
                   Arrays.sort(os);
                   System.out.println(Arrays.binarySearch(os, "RedHat"));
-          	       -String result = Arrays.binarySearch(os, os[0]); //if os[0] requires string to search
+          	       -String result = Arrays.binarySearch(os, os[0]); //if os[0] requires direct string data to search/not direct argument/array
                   -System.out.println(Arrays.toString(os) //does it compile, why? yes, it will show []      
           -output?
                   String[] days = new String[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
