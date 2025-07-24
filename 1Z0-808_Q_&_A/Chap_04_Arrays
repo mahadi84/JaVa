@@ -199,13 +199,15 @@ This chapter covers essential Java concepts related to:
 
 
 ########### Common Pitfalls:
+   - First/Last elements checking (0 to length-1)
+   - Understand array length vs String length()
    - Varargs vs Array Parameters
    - ArrayIndexOutOfBoundsException if no data is found with the array index 
    - NullPointerException with object arrays
    - == vs Arrays.equals() for array comparison:
    - Forgetting to sort before binarySearch
-   - Returns index if found
-   - Returns (-(insertion point) - 1) if not found
+      - Returns index if found
+      - Returns (-(insertion point) - 1) if not found
    - Confusing array length field with String length()
    - `new type[size]` (elements get default values)
    - `new type[]{val1, val2}` (inline initialization)
