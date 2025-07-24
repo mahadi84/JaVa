@@ -96,7 +96,14 @@ This chapter covers essential Java loop constructs including:
 ##### Common Pitfalls:
    - Using == instead of equals() in String comparisons
    - Modifying loop variables incorrectly
-   - Off-by-one errors in loop conditions
+   - Off-by-one errors in loop conditions (লুপের প্রকৃত পুনরাবৃত্তির সংখ্যা বা প্রক্রিয়াকৃত উপাদানের সংখ্যা আপনার উদ্দেশ্যপ্রণোদিত সংখ্যার চেয়ে ঠিক এক ইউনিট কম বা বেশি হয়।)
+             উদাহরণ:
+            -int[] myArray = {10, 20, 30, 40, 50};// উদ্দেশ্য: সমস্ত উপাদান প্রিন্ট করা (0 থেকে 4)
+              // ভুল (6 বার লুপ চলবে, i=5 এ ত্রুটি):
+              for (int i = 0; i <= myArray.length; i++) { // myArray.length হলো 5  ( এক ইউনিট বেশি লুপ চালানো):
+                   System.out.println(myArray[i]); // যখন i 5 হবে, ArrayIndexOutOfBoundsException দেবে
+              for (int i = 0; i < myArray.length-1; i++) { // myArray.length - 1 হলো 4  ( এক ইউনিট কম লুপ চালানো):
+                   System.out.println(myArray[i]); // ইনডেক্স 0, 1, 2, 3 প্রিন্ট করবে। myArray[4] বাদ পড়বে।
     - Loop initialization and termination conditions
     - Proper use of loop control statements (break vs continue)
         break:যখন আপনি একটি নির্দিষ্ট শর্ত পূরণ হলে লুপ থেকে সম্পূর্ণভাবে বের হয়ে যেতে চান।
