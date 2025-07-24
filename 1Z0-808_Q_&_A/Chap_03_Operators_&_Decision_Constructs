@@ -113,16 +113,16 @@ Highest to lowest:
 - &(AND Operator) vs &&(Logical AND,  Short-circuit)=2true |(OR) vs ||(Logical OR)=any 1true, , ^(bitwise Ex-OR)=oposite ভিন্ন হয়, তাহলে result হবে true|
       *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
 - Long Logical(AND and OR) operator use:
-       public static void main(String... data) {
+       -public static void main(String... data) {
               if(data.length>=1 && (data[0].equals("sound") || data[0].equals ("logic")) && data.length<2) { //is it possible
               System.out.print(data[0]);
               }
-       public static void main(String... weather) {
+       -public static void main(String... weather) {
                System.out.print(weather[0]!=null && weather[0].equals("sunny") && !false ? "Go Outside" : "Stay Inside");
               }
 
 - if-else statement new idea to write:
-       public String runTest(boolean spinner, boolean roller) {
+       -public String runTest(boolean spinner, boolean roller) {
            if(spinner = roller) return "up";
            else return roller ? "down" : "middle";
            }
