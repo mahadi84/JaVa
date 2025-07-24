@@ -215,6 +215,45 @@ This chapter covers essential Java concepts related to:
    - `new type[][][]` (Example_01: building[1][2][0] মানে ২য় তলার ৩য় ফ্ল্যাটের ১ম কক্ষ।)
 
 
+          -legal declarations?
+                  String lion [] = new String[] {"lion"};
+                  String bear [] = new String[] {};
+          	  Integer[] lotto = new Integer[4];
+          
+        -What is 'a', 'd', 'e' position here?
+               char[][] blocks = new char[][] { { 'a', 'b', 'c' }, { 'd' }, { 'e', 'f' } };           
+          
+        -output?
+                  String[][] listing = new String[][] { { "Book" }, { "Game", "29.99" } };
+                  System.out.println(listing.length + " " + listing[0].length);
+          
+          -data can be inserted this way?
+           public static void addStationName(String[] names) {
+                  names[names.length] = "Times Square";  //try to insert value to last array index that not allowed
+                  } 
+          
+          
+          -result of running the following program?
+          	static int[][] game = new int[6][6];        
+                   game[3][3] = 6;
+                   Object[] obj = game;
+                   obj[3] = "X"; // এই লাইনে একটি ArrayStoreException runtime exception ঘটবে।   এর কারণ হলো obj[3] আসলে game অ্যারের চতুর্থ সারি (int[]) কে নির্দেশ করছে। 
+           
+          -output?
+                  String[] os = new String[] { "Mac", "Linux", "Windows" };
+                  Arrays.sort(os);
+                  System.out.println(Arrays.binarySearch(os, "RedHat"));
+          	       -String result = Arrays.binarySearch(os, os[0]); //if os[0] requires string to search
+                  -System.out.println(Arrays.toString(os) //does it compile, why? yes, it will show []      
+          -output?
+                  String[] days = new String[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+                  for (int i = 1; i <= days.length; i++) //লুপটি `data.length` এ শেষ হওয়া ত্রুটির কারণ, কারণ `<` অপারেটরের পরিবর্তে `<=` অপারেটর ব্যবহার করা হয়েছে।
+                  System.out.println(days[i]);
+          
+
+
+
+
 ---
 
 
@@ -828,10 +867,13 @@ This chapter covers essential Java concepts related to:
 ৩০. বি. অ্যারের ইনডেক্স শূন্য থেকে শুরু হয়। `FirstName` ক্লাসের নাম, কোনো আর্গুমেন্ট নয়। সুতরাং, প্রথম আর্গুমেন্ট হল `Wolfie`, এবং অপশন বি সঠিক।
 
 ৩১. সি. প্রোগ্রামের নাম `Count` এবং দুটি আর্গুমেন্ট রয়েছে। সুতরাং, প্রোগ্রামটি 2 আউটপুট করে এবং অপশন সি সঠিক।
-৩২. বি. এই ক্লাসটি দুটি আর্গুমেন্ট দিয়ে কল করা হয়েছে। প্রথমটি (`seed`) `one` ভেরিয়েবলে সংরক্ষণ করা হয়। তারপরে অ্যারেটি সর্ট করা হয়, যা বাইনারি সার্চের পূর্বশর্ত পূরণ করে। বাইনারি সার্চ 1 ফেরত দেয় কারণ `seed` সর্টেড অ্যারের দ্বিতীয় উপাদান এবং জাভা শূন্য-ভিত্তিক ইনডেক্স ব্যবহার করে। অপশন বি সঠিক।
+৩২. বি. এই ক্লাসটি দুটি আর্গুমেন্ট দিয়ে কল করা হয়েছে। প্রথমটি (`seed`) `one` ভেরিয়েবলে সংরক্ষণ করা হয়। তারপরে অ্যারেটি সর্ট করা হয়, যা বাইনারি সার্চের পূর্বশর্ত পূরণ করে। 
+        বাইনারি সার্চ 1 ফেরত দেয় কারণ `seed` সর্টেড অ্যারের দ্বিতীয় উপাদান এবং জাভা শূন্য-ভিত্তিক ইনডেক্স ব্যবহার করে। অপশন বি সঠিক।
 ৩৩. ডি. অপশন এ এবং বি দেখায় যে ব্র্যাকেট ভেরিয়েবলের নামের আগে বা পরে থাকতে পারে এবং একই অ্যারে তৈরি করে। অপশন সি দুটি দৈর্ঘ্যের ১ টি অ্যারে দিয়ে দীর্ঘ উপায়ে একই অ্যারে নির্দিষ্ট করে। অপশন ডি উত্তর কারণ এটি অন্যদের থেকে আলাদা। এটি পরিবর্তে দৈর্ঘ্যের ১ টি অ্যারে নির্দিষ্ট করে যেখানে সেই উপাদানটির দৈর্ঘ্য ২।
 ৩৪. সি. অ্যারেতে স্ট্রিং নয়, সংখ্যা ব্যবহার করে ইনডেক্স করা হয়, তাই অপশন এ এবং বি ভুল। যেহেতু অ্যারের ইনডেক্স শূন্য-ভিত্তিক, তাই অপশন সি উত্তর।
-৩৫. ডি. জাভাতে, অ্যারে ০ থেকে ইনডেক্স করা শুরু হয়। লুপটি ১ থেকে শুরু হওয়া অস্বাভাবিক হলেও, এটি কোনো ত্রুটির কারণ নয়। তবে, লুপটি `data.length` এ শেষ হওয়া ত্রুটির কারণ, কারণ `<` অপারেটরের পরিবর্তে `<=` অপারেটর ব্যবহার করা হয়েছে। শেষ লুপ ইনডেক্স ৬, ৭ নয়। লুপের শেষ ইটারেশনে, কোডটি একটি `ArrayIndexOutOfBoundsException` নিক্ষেপ করে। সুতরাং, অপশন ডি সঠিক।
+৩৫. ডি. জাভাতে, অ্যারে ০ থেকে ইনডেক্স করা শুরু হয়। লুপটি ১ থেকে শুরু হওয়া অস্বাভাবিক হলেও, এটি কোনো ত্রুটির কারণ নয়। 
+         তবে, লুপটি `data.length` এ শেষ হওয়া ত্রুটির কারণ, কারণ `<` অপারেটরের পরিবর্তে `<=` অপারেটর ব্যবহার করা হয়েছে। শেষ লুপ ইনডেক্স ৬, ৭ নয়। 
+         লুপের শেষ ইটারেশনে, কোডটি একটি `ArrayIndexOutOfBoundsException` নিক্ষেপ করে। সুতরাং, অপশন ডি সঠিক।
 
 ৩৬. সি. অ্যারের ইনডেক্স শূন্য থেকে শুরু হয়। `FirstName` ক্লাসের নাম, কোনো আর্গুমেন্ট নয়। প্রথম এবং একমাত্র আর্গুমেন্ট হল `Wolfie`। দ্বিতীয় কোনো আর্গুমেন্ট নেই, তাই অপশন সি সঠিক।
 ৩৭. ডি. এই কোডটি সঠিক। `r1` লাইনটি সঠিকভাবে একটি 2D অ্যারে তৈরি করে। পরবর্তী তিনটি লাইন সঠিকভাবে একটি অ্যারে উপাদানে একটি মান নির্ধারণ করে। `r3` লাইনটি সঠিকভাবে পরপর 3 আউটপুট করে\!
