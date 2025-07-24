@@ -131,7 +131,58 @@ This chapter covers essential Java loop constructs including:
              // লুপের ভেতরের কোড
             }
 
-
+       - Which type of loop has a boolean condition that is first checked after a single iteration through the loop?        
+       - Without increment/decrement, will it iterate?
+          for (int type = 0; type < bottles.size();) {
+                System.out.print(bottles.get(type) + ",");
+                break;
+                }
+        
+        - will it print a-z?
+          for (char ch=ˈaˈ; ch<=ˈzˈ; ch++) {
+          System.out.print(ch);
+          }
+        
+        -How many of these statements can be inserted after the System.out.println(ch) to have the code flow follow the arrow in this diagram?        
+                break;
+                break letters;
+                break numbers;        	  -
+        -how many of these statements can be inserted after the println to have the code flow follow the arrow in the diagram?
+         	  continue;
+                continue letters;
+                continue numbers;
+        
+           ->   letters: for (char ch=ˈaˈ; ch<=ˈzˈ; ch++) {
+          |     numbers: for (int n=0; n<=10; n++) {
+          |     System.out.println(ch);
+           --------
+                }
+                }
+        
+        - output?
+           int count = 10;
+                List<Character> chars = new ArrayList<>();
+                do {
+                chars.add('a');
+                for (Character x : chars) count -=1;
+                } while (count > 0);
+                System.out.println(chars.size());
+        
+        - Output?
+                String tie = null;
+                while (tie == null);   /যেহেতু লুপটির একটি খালি বডি আছে (সেমিকোলনের কারণে), প্রোগ্রামটি অবিরতভাবে এই খালি স্টেটমেন্টটি কার্যকর করতে থাকবে যতক্ষণ পর্যন্ত tie null থাকে।(এটি হ্যাং বা ফ্রিজ হয়ে আছে বলে মনে হবে)।
+        		tie="Abc";     
+                System.out.print(tie);
+        
+        - does it work like Electric Switch?
+        	  boolean baloonInflated = false;
+                do {
+                if (!baloonInflated) {
+                baloonInflated = true;
+                System.out.print("inflate-");
+                }
+                } while (baloonInflated); //প্রোগ্রামটি "inflate-" একবার প্রিন্ট করবে এবং (baloonInflated = true থাকবে) তারপর একটি অসীম লুপে প্রবেশ করবে।
+                System.out.println("done");
 
 
 
@@ -809,9 +860,11 @@ Export to Sheets
 ৪৫. বি. ইনিশিয়ালাইজার, যা alpha, প্রথমে রান করে। তারপর জাভা লুপের নির্বাহ শুরু করা উচিত কিনা তা দেখার জন্য শর্ত, যা beta, পরীক্ষা করে। তারপর লুপের বডি, যা delta, রান করে। লুপের নির্বাহের পরে, আপডেটার, যা gamma, রান করে। তারপর লুপের শর্ত, যা beta, আবার পরীক্ষা করা হয়। সুতরাং, অপশন বি সঠিক।
 
 ৪৬. সি. অপশন এ পুনরাবৃত্তিতে পাঁচটি ইনডেক্সের মাধ্যমে যায়: 0, 1, 2, 3 এবং 4। অপশন বি ও পাঁচটি ইনডেক্সের মাধ্যমে যায়: 1, 2, 3,4 এবং 5। অপশন ডি ও 0 থেকে 4 পর্যন্ত পাঁচটি পুনরাবৃত্তির মাধ্যমে যায়। তবে, অপশন সি ছয়টি পুনরাবৃত্তির মাধ্যমে যায় যেহেতু লুপের শর্ত লুপের শেষে থাকে। সুতরাং এটি অন্যদের মতো নয় এবং অপশন সি উত্তর।
-৪৭. ডি. লুপের শর্ত প্রথমবার পরীক্ষা করার সময়, tie ভেরিয়েবলটি null থাকে। তবে, শর্তের ঠিক পরে সেমিকোলন থাকার কারণে লুপের বডি খালি থাকে। এর মানে হল লুপের শর্তটি চলতে থাকে tie সেট করার কোনো সুযোগ ছাড়াই। সুতরাং, এটি একটি অসীম লুপ এবং অপশন ডি সঠিক।
+৪৭. ডি. লুপের শর্ত প্রথমবার পরীক্ষা করার সময়, tie ভেরিয়েবলটি null থাকে। তবে, শর্তের ঠিক পরে সেমিকোলন থাকার কারণে লুপের বডি খালি থাকে। 
+        এর মানে হল লুপের শর্তটি চলতে থাকে tie সেট করার কোনো সুযোগ ছাড়াই। সুতরাং, এটি একটি অসীম লুপ এবং অপশন ডি সঠিক।
 ৪৮. সি. প্রবাহ ট্র্যাক করার জন্য সময় নষ্ট করার আগে মৌলিক ত্রুটিগুলো সন্ধান করতে ভুলবেন না। এই ক্ষেত্রে, লুপের লেবেলটি for কীওয়ার্ড ব্যবহার করার চেষ্টা করছে। এটি অনুমোদিত নয়, তাই কোডটি কম্পাইল হবে না। যদি লেবেলটি বৈধ হত, তবে অপশন এ সঠিক হত।
-৪৯. ডি. লুপের প্রথম পুনরাবৃত্তিতে, if স্টেটমেন্ট inflate- প্রিন্ট করে নির্বাহ করে। তারপর লুপের শর্ত পরীক্ষা করা হয়। baloonInflated ভেরিয়েবলটি true, তাই লুপের শর্ত true এবং লুপ চলতে থাকে। if স্টেটমেন্ট আর রান করে না, তবে ভেরিয়েবলটি আর কখনো তার অবস্থা পরিবর্তন করে না, তাই লুপটি শেষ হয় না।
+৪৯. ডি. লুপের প্রথম পুনরাবৃত্তিতে, if স্টেটমেন্ট inflate- প্রিন্ট করে নির্বাহ করে। তারপর লুপের শর্ত পরীক্ষা করা হয়। baloonInflated ভেরিয়েবলটি true, তাই লুপের শর্ত true এবং লুপ চলতে থাকে। 
+        if স্টেটমেন্ট আর রান করে না, তবে ভেরিয়েবলটি আর কখনো তার অবস্থা পরিবর্তন করে না, তাই লুপটি শেষ হয় না।
 ৫০. বি. একটি for লুপে, টাইপটি কেবল একবার নির্দিষ্ট করার অনুমতি দেওয়া হয়। কমা একাধিক ভেরিয়েবলকে আলাদা করে কারণ তারা একই স্টেটমেন্টের অংশ। সুতরাং, অপশন বি সঠিক।
 
 
