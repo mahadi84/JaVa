@@ -99,7 +99,7 @@ Highest to lowest:
 7. Know increment/decrement timing
 
 8. switch (alternative of if-then), : 
-  - switch: Works with byte, short, char, int, String, enums (** NOT long/double/float)
+  - switch: Works with byte/Byte, short/Short, char/Charecter, int/Integer, String, enums (** NOT long/double/float)
    ## জাভার `switch` স্টেটমেন্টে `case` মানের শর্তাবলী
     * 0/many "case" can contain a switch statement.
     * Constant:`case` স্টেটমেন্টের মান ধ্রুবক(final x =10;), বা লিটারেলস (Literals): case 1:, case 'a':, case "hello":, case true:, case null: । যা কম্পাইল করার সময়ই জানা যায়(compile-time constants ) |
@@ -117,7 +117,7 @@ Highest to lowest:
       *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
 - Long Logical(AND and OR) operator use:
        -public static void main(String... data) {
-              if(data.length>=1 && (data[0].equals("sound") || data[0].equals ("logic")) && data.length<2) { //is it possible
+              if(data.length>=1 && (data[0].equals("sound") || data[0].equals("logic")) && data.length<2) { //is it possible
               System.out.print(data[0]);
               }
        -public static void main(String... weather) {
