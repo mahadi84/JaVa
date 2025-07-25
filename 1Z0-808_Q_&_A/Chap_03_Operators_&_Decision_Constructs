@@ -98,19 +98,22 @@ Highest to lowest:
 6. Applying operators to incompatible types (e.g., boolean with arithmetic)
 7. Know increment/decrement timing
 
-8. switch-case alternative of  if-then, 
-  - switch: Works with byte, short, char, int, String, enums (** NOT long/double)
-  - case values must be compile-time constants 
-      -`case` স্টেটমেন্টের মান ধ্রুবক(final), বা  একটি লিটারেল(literal) মান, ভেরিয়েবল হতে হবে।
-      - প্রতিটি case লেবেল একটি কন্সট্যান্ট (constant) মান হতে হবে। ভেরিয়েবল (variable) ব্যবহার করা যাবে না। যেমন, case 1: বা case "Apple": বৈধ, কিন্তু case x: (যেখানে x একটি ভেরিয়েবল) অবৈধ।
-      - ডুপ্লিকেট case মান অনুমোদিত নয়: একই switch স্টেটমেন্টের মধ্যে দুটি case লেবেলের একই মান থাকতে পারবে না। যেমন, case 1: এবং আবার case 1: লেখা যাবে না।
-  - default is optional and can be placed anywhere
+8. switch (alternative of if-then), : 
+  - switch: Works with byte, short, char, int, String, enums (** NOT long/double/float)
+   ## জাভার `switch` স্টেটমেন্টে `case` মানের শর্তাবলী
+    * 0/many "case" can contain a switch statement.
+    * Constant:`case` স্টেটমেন্টের মান ধ্রুবক(final x =10;), বা লিটারেলস (Literals): case 1:, case 'a':, case "hello":, case true:, case null: । যা কম্পাইল করার সময়ই জানা যায়(compile-time constants ) |
+    * টাইপ মিল (Type Match): এর টাইপ অবশ্যই `switch` এক্সপ্রেশনের টাইপের সাথে সামঞ্জস্যপূর্ণ হতে হবে (যেমন: `int`, `String`, `enum`)। enum Day { MONDAY, TUESDAY } case MONDAY: // এটি বৈধ
+    * Unique: একই `switch` স্টেটমেন্টের মধ্যে ডুপ্লিকেট case মান অনুমোদিত নয়। যেমন, case 1: এবং আবার case 1: লেখা যাবে না।
+    * ভেরিয়েবল বা রানটাইম মান নয় (No Variables/Runtime Values):** আপনি নন-`final` ভেরিয়েবল, মেথড কল, বা এমন কিছু ব্যবহার করতে পারবেন না যার মান প্রোগ্রাম চলার সময় নির্ধারিত হয়।
+  
+  - default is optional(0/max:1) and can be placed anywhere, IT DOES NOT COMPARE/TAKE ANY VALUE LIKE CASE
   - break prevents fall-through ( `switch` স্টেটমেন্টে কোনো `break` স্টেটমেন্ট নেই ? সমস্ত `case` স্টেটমেন্ট execute করা হবে।)
 
 9. Pre-Increment (++x): First, it increases the value of the variable by 1, then it returns the new, incremented value.
    Post-Increment (x++): First, it returns the variable's current value, then it increases the value of the variable by 1.
 
-- &(AND Operator) vs &&(Logical AND,  Short-circuit)=2true |(OR) vs ||(Logical OR)=any 1true, , ^(bitwise Ex-OR)=oposite ভিন্ন হয়, তাহলে result হবে true|
+- &(AND Operator) vs &&(Logical AND,  Short-circuit)= 2-TRUE |(OR) vs ||(Logical OR)=any 1-TRUE, , ^(bitwise Ex-OR)=oposite VALUE (ex true ^ false)হয়, তাহলে result হবে true|
       *** শুধুমাত্র বুলিয়ান (boolean) টাইপের অপারেন্ডের সাথে কাজ করে | আপনি দুটি Integer অবজেক্টের উপর সরাসরি && অপারেটর ব্যবহার করতে পারবেন না। 
 - Long Logical(AND and OR) operator use:
        -public static void main(String... data) {
