@@ -102,10 +102,13 @@ Highest to lowest:
   - switch: Works with byte/Byte, short/Short, char/Charecter, int/Integer, String, enums (** NOT long/double/float)
    ## জাভার `switch` স্টেটমেন্টে `case` মানের শর্তাবলী
     * 0/many "case" can contain a switch statement.
-    * Constant:`case` স্টেটমেন্টের মান ধ্রুবক(final x =10;), বা লিটারেলস (Literals): case 1:, case 'a':, case "hello":, case true:, case null: । যা কম্পাইল করার সময়ই জানা যায়(compile-time constants ) |
+    * Constant:`case` স্টেটমেন্টের মান ধ্রুবক(final x =10;), বা [***]লিটারেলস (Literals): case 1:, case 'a':, case "hello":, case true:, case null: । যা কম্পাইল করার সময়ই জানা যায়(compile-time constants ) |
     * টাইপ মিল (Type Match): এর টাইপ অবশ্যই `switch` এক্সপ্রেশনের টাইপের সাথে সামঞ্জস্যপূর্ণ হতে হবে (যেমন: `int`, `String`, `enum`)। enum Day { MONDAY, TUESDAY } case MONDAY: // এটি বৈধ
     * Unique: একই `switch` স্টেটমেন্টের মধ্যে ডুপ্লিকেট case মান অনুমোদিত নয়। যেমন, case 1: এবং আবার case 1: লেখা যাবে না।
     * ভেরিয়েবল বা রানটাইম মান নয় (No Variables/Runtime Values):** আপনি নন-`final` ভেরিয়েবল, মেথড কল, বা এমন কিছু ব্যবহার করতে পারবেন না যার মান প্রোগ্রাম চলার সময় নির্ধারিত হয়।
+
+[***]Literals (লিটারেলস) হলো প্রোগ্রামিং কোডে সরাসরি ব্যবহৃত নির্দিষ্ট, অপরিবর্তনশীল মান। এগুলি ডেটার নির্দিষ্ট ধরনকে (যেমন: সংখ্যা, অক্ষর, স্ট্রিং, বুলিয়ান) প্রকাশ করে। 
+     -সহজ কথায়, যখন আপনি কোডে কোনো মান (যেমন: case 21:, case "hello":, case true:, case null:) সরাসরি লেখেন, সেটিই একটি Literal।
   
   - default is optional(0/max:1) and can be placed anywhere, IT DOES NOT COMPARE/TAKE ANY VALUE LIKE CASE
   - break prevents fall-through ( `switch` স্টেটমেন্টে কোনো `break` স্টেটমেন্ট নেই ? সমস্ত `case` স্টেটমেন্ট execute করা হবে।)
