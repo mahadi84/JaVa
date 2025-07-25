@@ -136,11 +136,11 @@ This chapter covers essential Java concepts including:
 
 ## জাভার সাধারণ কিছু ভুল (Pitfalls) যা মনে রাখা দরকার:
 
-1. - Variable declarations and initialization
-2. - Primitive Data types, Reference Data types and why wrapper classes?
-3. - Object creation and garbage collection
-4. - Scope and initialization of variables
-5. - Basic class structure and constructors
+- Variable declarations and initialization
+- Primitive Data types, Reference Data types and why wrapper classes?
+- Object creation and garbage collection
+- Scope and initialization of variables
+- Basic class structure and constructors
 
 ### ১. ভেরিয়েবল ঘোষণা (Declaration) এবং ইনিশিয়ালাইজেশন (Initialization)
 * বিভিন্ন টাইপের ভেরিয়েবল একই লাইনে: আপনি একই লাইনে বিভিন্ন টাইপের ভেরিয়েবল ঘোষণা করতে পারবেন না (যেমন: `int x, double y;` এটি ভুল)।
