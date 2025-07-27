@@ -36,41 +36,33 @@ C. static public void Main(String [] args)
 D. public void main(String [] args) 
 E. protected static void main(String [] args) 
 
-**Position of static and public can be changed but return type must come just before the method name.
-
 
 5.    What will be the result if Test class is executed by below command? java Test 10
 public class Test {
     public static void main(String[] args) {
     System.out.println(“ONE”);
-    }
-    
+    }    
     public static void main(Integer[] args) {
     System.out.println(“TWO”);
-    }
-    
+    }    
     public static void main(byte [] args) {
     System.out.println(“THREE”);
     }
 }
-**Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.
-  Output will always be ONE.
+
 
   
   6. Consider below code of main.java file:
   package main;
-  
+
   public class main {
-  static String main = “ONE”;
-  
+  static String main = “ONE”;  
   public main() {
   System.out.println(“TWO”);
-  }
-  
+  }  
   public static void main(String [] args) {
   main();
-  }
-  
+  }  
   public static void main() {
   System.out.println(main);
   }
@@ -85,8 +77,6 @@ public class Test {
   
   How many of the above statements is/are true?
 
-  ***Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
-  Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
 
 
   
@@ -95,20 +85,17 @@ public class Test {
   public static void main(String [] args) {
   System.out.println(“A”);
   }
-  }
-  
+  }  
   class B {
   public static void main(String [] args) {
   System.out.println(“B”);
   }
-  }
-  
+  }  
   class C {
   public static void main(String [] args) {
   System.out.println(“C”);
   }
-  }
-  
+  }  
   class D {
   public static void main(String [] args) {
   System.out.println(“D”);
@@ -122,3 +109,118 @@ public class Test {
    C-To print C on to the console, execute below commands: javac Test.java java C
    D-Test.java file is not a valid java file as it doesn't contain code for class Test
    E-Test.java file will compile successfully but expected output is not possible
+
+
+8. Given code of Test.java file:
+public class Test {
+public static void main(String[] args) {
+args[1] = “Day!”;
+System.out.println(args[0] + ” ” + args[1]);
+}
+}
+
+And the commands:
+javac Test.java
+java Test Good
+
+What is the result?
+
+
+9.Consider codes of 3 java files:
+//Planet.java
+package com.skillcertprokhattry.galaxy;
+
+public class Planet {
+String name;
+public Planet(String name) {
+this.name = name;
+}
+
+public String toString() {
+return “Planet: ” + name;
+}
+}
+
+//Creator.java
+package com.skillcertprokhattry.oca;
+
+public class Creator {
+public static Planet create() {
+return new Planet(“Earth”);
+}
+}
+
+//TestCreator.java
+package com.skillcertprokhattry.oca.test;
+
+public class TestCreator {
+public static void main(String[] args) {
+System.out.println(Creator.create());
+}
+}
+
+And below options:1
+Add below import statement in Creator.java file:
+import com.skillcertprokhattry.galaxy.Planet;
+
+2
+Add below import statement in Creator.java file:
+import com.skillcertprokhattry.oca.test.TestCreator;
+
+3
+Add below import statement in TestCreator.java file:
+import com.skillcertprokhattry.oca.Creator;
+
+4
+Add below import statement in TestCreator.java file:
+import com.skillcertprokhattry.galaxy.Planet;
+
+Which of the above options needs to be done so that on executing TestCreator class, “Planet: Earth” is printed on to the console?
+Please note: Unnecessary imports are not allowed.
+
+
+10. What will be the result of compiling and executing Test class?
+package com.skillcertpro.oca;
+public class Test {
+public static void main(String[] args) {
+byte b1 = (byte) (127 + 21);
+System.out.println(b1);
+}
+}
+choose: 148 Or Compilation error  Or-108 Or -128?
+
+11. What will be the result of compiling and executing TestStudent class?
+//TestStudent.java
+package com.skillcertpro.oca;
+
+class Student {
+String name;
+int age;
+boolean result;
+double height;
+}
+
+public class TestStudent {
+public static void main(String[] args) {
+Student stud = new Student();
+System.out.println(stud.name + stud.height + stud.result + stud.age);
+}
+}
+
+
+1.Ans: Welcome Guest!
+2.Ans: Yes
+3.Ans: com.exam.oca package
+4.Ans: Position of static and public can be changed but return type must come just before the method name.
+5.Ans: Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.  Output will always be ONE.
+6.Ans:  Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
+       Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
+
+7.Ans: C
+8.Ans: args[1] = “Day!”; is trying to access 2nd array element at index 1, which is not available and hence an exception is thrown at runtime.
+9.Ans:  1 & 3 only
+10.Ans:  -127 + 21 = 148 = 00000000 00000000 00000000 10010100 
+	 -Above binary number is positive, as left most bit is 0. 
+	 -Same binary number after type-casting to byte: 10010100, negative number as left most bit is 1. 
+	 =10010100 = -108.
+11.Ans: null0false0
