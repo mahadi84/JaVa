@@ -221,7 +221,7 @@ ArrayList Capacity:
             - `Supplier<T>`: আউটপুট দেয়, ইনপুট নেয় না
             
             ## উদাহরণ: `Predicate`
-            import java.util.function.Predicate;
+            import java.util.function.Predicate; 
             
             public class Main {
                 public static void main(String[] args) {
@@ -256,11 +256,6 @@ Lambda Syntax:
         BOTH Predicate<Integer> ip = i -> i != 0; 
         IS i -> { return i != 0; } CORRECT
        - Type inference available
-- Functional Interfaces:
-  - `Predicate<T>`: `boolean test(T t)`
-  - `Consumer<T>`: `void accept(T t)`
-  - `Function<T,R>`: `R apply(T t)`
-- Method references (`System.out::println`)
 
 
 ### 5. Date/Time API (java.time)
@@ -303,7 +298,9 @@ System.out.print(format.format(newYears.minus(period)));
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
    - length vs length()
    - parameter as char, String, and StringBuilder()
-   - What is a Functional Interface? Create/Instantiate/call it?
+   - java.util.function -import java.util.function.Predicate; 
+   - What is a Functional Interface? How to create, Instantiate, and call it?
+   - Function<T,R> Vs Predicate<T> Vs Consumer<T> Vs Supplier<T>
    - Predicate p = test(); p.equal();
    - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
    - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
