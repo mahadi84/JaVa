@@ -300,7 +300,8 @@ System.out.print(format.format(newYears.minus(period)));
    - length vs length()
    - parameter as char, String, and StringBuilder()
    - java.util.function -import java.util.function.Predicate; 
-   - What is a Functional Interface? How to create, Instantiate, and call it?
+   - What is a Functional Interface? 
+      - interface Runnable { void run(); }  (how to create an object that implements this interface)
    - Function<T,R> Vs Predicate<T> Vs Consumer<T> Vs Supplier<T>
    - Predicate p = test(); p.equal();
    - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
