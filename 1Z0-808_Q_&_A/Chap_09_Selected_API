@@ -303,7 +303,7 @@ System.out.print(format.format(newYears.minus(period)));
    - subString(4) vs delete(4), subString(4,5) vs delete(4,5)
    - length vs length()
    - parameter as char, String, and StringBuilder()
-   - What is a Functional Interface? Create one and call/use it?
+   - What is a Functional Interface? Create/Instantiate/call it?
    - Predicate p = test(); p.equal();
    - Predicate<String> pred1= String s -> System.out.println(s);    // Without parentheses like this ( does not works)
    - Predicate<String> pred2= (s) -> System.out.println(s);          // With parentheses (valid for a single parameter)
