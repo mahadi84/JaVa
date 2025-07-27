@@ -195,10 +195,10 @@ ArrayList Capacity:
                         String toString(); // এটি Object থেকে উত্তরাধিকারসূত্রে প্রাপ্ত একটি অ্যাবস্ট্রাক্ট মেথড, কিন্তু এটি একক অ্যাবস্ট্রাক্ট মেথডের নিয়মের বিরুদ্ধে যায় না
                   }
             
-            ## ২. ল্যামডা এক্সপ্রেশন() ব্যবহার করে ইমপ্লিমেন্টেশন:
+            ## ২. ল্যামডা এক্সপ্রেশন ব্যবহার করে ইমপ্লিমেন্টেশন:
                   public class Main { //**can be implemented the interface in a class without "implemens" keyword
                       public static void main(String[] args) {
-                          Calculator add = (x, y) -> x + y;   // যোগ (+)   
+                          *Calculator add = **(x, y) -> x + y;   // যোগ (+)    //* interface as reference type  "add" is ref-type-variable **lambda expression
                           add.defaultMethod();   // ডিফল্ট মেথড কল করে
                           Calculator divide = (x, y) -> y != 0 ? x / y : 0;    // ভাগ (/)            
                           // রেজাল্ট প্রিন্ট
