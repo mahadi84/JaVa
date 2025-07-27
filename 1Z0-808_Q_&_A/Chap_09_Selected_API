@@ -258,6 +258,8 @@ Lambda Syntax:
 
 ### 5. Date/Time API (java.time)
 
+Instant currentInstant = Instant.now();
+
 Date/Time Classes:
    - LocalDate: year/month/day
    - LocalTime: hour/minute/second/nano
@@ -333,7 +335,8 @@ System.out.print(format.format(newYears.minus(period)));
         }
 
    - Date/Time immutability. Period does not support method chaining.
-   - .now(); .of(); .ofPattern(); .ofDays(); ofWeeks(); minus(); plus()
+   - .now();  Instant.now(); .of(); .parse(); .ofPattern(); .ofDays(); ofWeeks(); minus(); plus()
+
    -  StringBuilder sb = new StringBuilder("radical").insert(sb.length(), "robots");
    - StringBuilder b = new StringBuilder("12");
         b = b.append("3");
