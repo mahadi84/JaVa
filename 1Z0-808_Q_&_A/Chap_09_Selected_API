@@ -179,29 +179,62 @@ ArrayList Capacity:
 
 
 ### 4. Functional Programming
-Functional interface: ফাংশনাল ইন্টারফেসের মূল নিয়ম হলো এতে ঠিক একটি অ্যাবস্ট্রাক্ট মেথড থাকতে হবে। 
-                     একমাত্র অ্যাবস্ট্রাক্ট মেথডটি ছাড়াও অন্যান্য মেথড থাকতে পারে | 
-                     তবে, এই অন্যান্য মেথডগুলো অবশ্যই (ডিফল্ট, স্ট্যাটিক বা Object ক্লাসের মেথড(toString())) হতে হবে| কারণ সেগুলো অ্যাবস্ট্রাক্ট মেথড নয়।
-            উদাহরণ:
+            ## ফাংশনাল ইন্টারফেস কী? (What is a Functional Interface?)
+            -জাভাতে ফাংশনাল ইন্টারফেস হলো এমন একটি ইন্টারফেস যাতে শুধুমাত্র একটি অ্যাবস্ট্রাক্ট মেথড (abstract method) থাকে। 
+            -ডিফল্ট (default) বা স্ট্যাটিক (static) মেথড থাকতে পারে (অসীম সংখ্যক)।
+            -এটি ল্যামডা এক্সপ্রেশন (Lambda Expression) ব্যবহারের ভিত্তি হিসেবে কাজ করে। +
+            -ফাংশনাল ইন্টারফেস চিহ্নিত করতে `@FunctionalInterface` অ্যানোটেশন ব্যবহার করা হয় (ঐচ্ছিক, কিন্তু সুপারিশকৃত)।
+            -`java.lang.Object` ক্লাসের পাবলিক মেথড (যেমন `toString()`, `equals()`) থাকলে তা অ্যাবস্ট্রাক্ট মেথড হিসেবে গণ্য হয় না।
+            
+            ## উদাহরণ (Example)
+            ## ১. ফাংশনাল ইন্টারফেস তৈরি:
             @FunctionalInterface
-            interface MyFunctionalInterface {
-                void singleAbstractMethod(); // এটিই একমাত্র অ্যাবস্ট্রাক্ট মেথড            
-                default void defaultMethod() {   System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি ডিফল্ট মেথড।"); }            
-                static void staticMethod() { System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি স্ট্যাটিক মেথড।"); }            
-                @Override
-                String toString(); // এটি Object থেকে উত্তরাধিকারসূত্রে প্রাপ্ত একটি অ্যাবস্ট্রাক্ট মেথড, কিন্তু এটি একক অ্যাবস্ট্রাক্ট মেথডের নিয়মের বিরুদ্ধে যায় না
-
+            interface Calculator {
+                int calculate(int a, int b); // একমাত্র অ্যাবস্ট্রাক্ট মেথড
+                 default void defaultMethod() {   System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি ডিফল্ট মেথড।"); }            
+                 static void staticMethod() { System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি স্ট্যাটিক মেথড।"); }            
+                  @Override
+                  String toString(); // এটি Object থেকে উত্তরাধিকারসূত্রে প্রাপ্ত একটি অ্যাবস্ট্রাক্ট মেথড, কিন্তু এটি একক অ্যাবস্ট্রাক্ট মেথডের নিয়মের বিরুদ্ধে যায় না
             }
-                  public class FunctionalInterfaceWithOtherMethods {
-                      public static void main(String[] args) {
-                          এখানে আমরা ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে singleAbstractMethod() এর ইমপ্লিমেন্টেশন দিচ্ছি
-                          MyFunctionalInterface myInstance = () -> System.out.println("একমাত্র অ্যাবস্ট্রাক্ট মেথডটি ইমপ্লিমেন্ট করা হয়েছে।");                           
-                          myInstance.singleAbstractMethod(); // ইমপ্লিমেন্ট করা অ্যাবস্ট্রাক্ট মেথড কল করে
-                          myInstance.defaultMethod();         // ডিফল্ট মেথড কল করে
-                          MyFunctionalInterface.staticMethod(); // স্ট্যাটিক মেথড কল করে                           
-                          System.out.println(myInstance.toString()); // উত্তরাধিকারসূত্রে প্রাপ্ত Object মেথড কল করে (ওভাররাইড না হলে ডিফল্ট ইমপ্লিমেন্টেশন)
-                      }
-                  }
+            
+            ## ২. ল্যামডা এক্সপ্রেশন ব্যবহার করে ইমপ্লিমেন্টেশন:java
+            public class Main {
+                public static void main(String[] args) {
+                    Calculator add = (x, y) -> x + y;   // যোগ (+)   
+                    add.defaultMethod();   // ডিফল্ট মেথড কল করে
+                    Calculator divide = (x, y) -> y != 0 ? x / y : 0;    // ভাগ (/)            
+                    // রেজাল্ট প্রিন্ট
+                    System.out.println("10 + 5 = " + add.calculate(10, 5));   // আউটপুট:15// ইমপ্লিমেন্ট করা অ্যাবস্ট্রাক্ট মেথড কল করে
+                    System.out.println("10 / 5 = " + divide.calculate(10, 5));   // আউটপুট:2 // ইমপ্লিমেন্ট করা অ্যাবস্ট্রাক্ট মেথড কল করে
+                }
+            } 
+            ## ব্যাখ্যা:
+            1. `Calculator` ইন্টারফেসে শুধু `calculate()` মেথডটি অ্যাবস্ট্রাক্ট।
+            2. ল্যামডা এক্সপ্রেশন `(x, y) -> x + y` দ্বারা `calculate()` মেথড ইমপ্লিমেন্ট করা হয়েছে।
+            3. প্রতিটি অপারেশন (+, /) আলাদা ল্যামডা এক্সপ্রেশন দ্বারা সংজ্ঞায়িত।
+            
+            ## জাভার বিল্ট-ইন ফাংশনাল ইন্টারফেস:
+            জাভা ৮-এর `java.util.function` প্যাকেজে পূর্বনির্ধারিত ফাংশনাল ইন্টারফেস আছে:
+            - `Function<T,R>`: ইনপুট `T`, আউটপুট `R`
+            - `Predicate<T>`: শর্ত চেক করে `boolean` রিটার্ন করে
+            - `Consumer<T>`: ইনপুট নেয়, কিছু রিটার্ন করে না
+            - `Supplier<T>`: আউটপুট দেয়, ইনপুট নেয় না
+            
+            ## উদাহরণ: `Predicate`
+            import java.util.function.Predicate;
+            
+            public class Main {
+                public static void main(String[] args) {
+                    Predicate<Integer> isEven = num -> num % 2 == 0;
+                    System.out.println("১০ জোড়? " + isEven.test(10)); // true
+                    System.out.println("১৫ জোড়? " + isEven.test(15)); // false
+                }
+            }
+            
+            ## কেন ফাংশনাল ইন্টারফেস গুরুত্বপূর্ণ?
+            - ল্যামডা এক্সপ্রেশন ব্যবহার সহজ করে।
+            - কোড সংক্ষিপ্ত ও পঠনযোগ্য করে।
+            - ফাংশনাল প্রোগ্রামিং স্টাইল (যেমন: স্ট্রীম API) চালু করে।
 Lambda Expressions:
    - Valid syntax forms       
    - Method reference conversions
