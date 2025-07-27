@@ -1,0 +1,124 @@
+
+
+1. Consider below code:
+//Guest.java
+class Message {
+public static void main(String [] args) {
+System.out.println(“Welcome ” + args[0] + “!”);
+}
+}
+
+public class Guest {
+public static void main(String [] args) {
+Message.main(args);
+}
+}
+And the commands:
+javac Guest.java
+java Guest James Gosling
+What is the result?
+
+2. Does this compile? System.out.println(“Hello”);;;;;;;;;
+3. the correct package declaration to declare Test class in com.exam.oca package?
+
+4. For the class Test, which options, if used to replace /*INSERT*/, will print “Hurrah! I passed…” on to the console? Select ALL that apply.
+package com.skillcertpro.oca;
+
+public class Test {
+/*INSERT*/ {
+System.out.println(“Hurrah! I passed…”);
+}
+}
+
+A.static public void main(String [] args) 
+B. public static void main(String [] a) 
+C. static public void Main(String [] args) 
+D. public void main(String [] args) 
+E. protected static void main(String [] args) 
+
+**Position of static and public can be changed but return type must come just before the method name.
+
+
+5.    What will be the result if Test class is executed by below command? java Test 10
+public class Test {
+    public static void main(String[] args) {
+    System.out.println(“ONE”);
+    }
+    
+    public static void main(Integer[] args) {
+    System.out.println(“TWO”);
+    }
+    
+    public static void main(byte [] args) {
+    System.out.println(“THREE”);
+    }
+}
+**Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.
+  Output will always be ONE.
+
+  
+  6. Consider below code of main.java file:
+  package main;
+  
+  public class main {
+  static String main = “ONE”;
+  
+  public main() {
+  System.out.println(“TWO”);
+  }
+  
+  public static void main(String [] args) {
+  main();
+  }
+  
+  public static void main() {
+  System.out.println(main);
+  }
+  }
+  
+  Also consider below statements:
+  1. Code doesn’t compile
+  2. Code compiles successfully
+  3. Only ONE will be printed to the console
+  4. Only TWO will be printed to the console
+  5. Both ONE and TWO will be printed to the console
+  
+  How many of the above statements is/are true?
+
+  ***Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
+  Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
+
+
+  
+  7. Given code of Test.java file:
+  class A {
+  public static void main(String [] args) {
+  System.out.println(“A”);
+  }
+  }
+  
+  class B {
+  public static void main(String [] args) {
+  System.out.println(“B”);
+  }
+  }
+  
+  class C {
+  public static void main(String [] args) {
+  System.out.println(“C”);
+  }
+  }
+  
+  class D {
+  public static void main(String [] args) {
+  System.out.println(“D”);
+  }
+  }
+  
+  Which of the following options is correct?
+  
+   A-To print C on to the console, execute below commands: javac Test.java java Test
+   B-To print C on to the console, execute below commands: javac C.java java C
+   C-To print C on to the console, execute below commands: javac Test.java java C
+   D-Test.java file is not a valid java file as it doesn't contain code for class Test
+   E-Test.java file will compile successfully but expected output is not possible
