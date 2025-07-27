@@ -3,7 +3,7 @@
 1. Consider below code:
 //Guest.java
 class Message {
-public static void main(String [] args) {
+public static void main(String [] args) { //**or without public
 System.out.println(“Welcome ” + args[0] + “!”);
 }
 }
