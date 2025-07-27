@@ -179,6 +179,29 @@ ArrayList Capacity:
 
 
 ### 4. Functional Programming
+Functional interface: ফাংশনাল ইন্টারফেসের মূল নিয়ম হলো এতে ঠিক একটি অ্যাবস্ট্রাক্ট মেথড থাকতে হবে। 
+                     একমাত্র অ্যাবস্ট্রাক্ট মেথডটি ছাড়াও অন্যান্য মেথড থাকতে পারে | 
+                     তবে, এই অন্যান্য মেথডগুলো অবশ্যই (ডিফল্ট, স্ট্যাটিক বা Object ক্লাসের মেথড(toString())) হতে হবে| কারণ সেগুলো অ্যাবস্ট্রাক্ট মেথড নয়।
+            উদাহরণ:
+            @FunctionalInterface
+            interface MyFunctionalInterface {
+                void singleAbstractMethod(); // এটিই একমাত্র অ্যাবস্ট্রাক্ট মেথড            
+                default void defaultMethod() {   System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি ডিফল্ট মেথড।"); }            
+                static void staticMethod() { System.out.println("এটি ফাংশনাল ইন্টারফেসের একটি স্ট্যাটিক মেথড।"); }            
+                @Override
+                String toString(); // এটি Object থেকে উত্তরাধিকারসূত্রে প্রাপ্ত একটি অ্যাবস্ট্রাক্ট মেথড, কিন্তু এটি একক অ্যাবস্ট্রাক্ট মেথডের নিয়মের বিরুদ্ধে যায় না
+
+            }
+                  public class FunctionalInterfaceWithOtherMethods {
+                      public static void main(String[] args) {
+                          এখানে আমরা ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে singleAbstractMethod() এর ইমপ্লিমেন্টেশন দিচ্ছি
+                          MyFunctionalInterface myInstance = () -> System.out.println("একমাত্র অ্যাবস্ট্রাক্ট মেথডটি ইমপ্লিমেন্ট করা হয়েছে।");                           
+                          myInstance.singleAbstractMethod(); // ইমপ্লিমেন্ট করা অ্যাবস্ট্রাক্ট মেথড কল করে
+                          myInstance.defaultMethod();         // ডিফল্ট মেথড কল করে
+                          MyFunctionalInterface.staticMethod(); // স্ট্যাটিক মেথড কল করে                           
+                          System.out.println(myInstance.toString()); // উত্তরাধিকারসূত্রে প্রাপ্ত Object মেথড কল করে (ওভাররাইড না হলে ডিফল্ট ইমপ্লিমেন্টেশন)
+                      }
+                  }
 Lambda Expressions:
    - Valid syntax forms       
    - Method reference conversions
@@ -191,7 +214,6 @@ Lambda Syntax:
         System.out.println("Original List: " + fruits);              
            System.out.println("\n--- Iterating with forEach (Lambda) ---");  // This is a common way to loop through elements without a traditional for-loop.
            fruits.forEach(fruit -> System.out.println("Fruit: " + fruit));   // The lambda `fruit -> System.out.println("Fruit: " + fruit)`
-
    - Parentheses optional for single parameter
              Predicate<String> pred1= (String s) -> System.out.println(s);    // With parentheses (always works)
              Predicate<String> pred2= String s -> System.out.println(s);      // Without parentheses ( does not works)
@@ -282,7 +304,7 @@ System.out.print(format.format(newYears.minus(period)));
         }
 
    - Date/Time immutability. Period does not support method chaining.
-   - .now(); .of(); .ofPattern(); .ofDays(); minus() 
+   - .now(); .of(); .ofPattern(); .ofDays(); ofWeeks(); minus(); plus()
    -  StringBuilder sb = new StringBuilder("radical").insert(sb.length(), "robots");
    - StringBuilder b = new StringBuilder("12");
         b = b.append("3");
