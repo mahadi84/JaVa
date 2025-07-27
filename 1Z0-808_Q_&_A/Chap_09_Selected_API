@@ -276,6 +276,7 @@ Date/Time API:
 
 LocalDateTime বর্তমান_সময় = LocalDateTime.now();
 LocalDate আজ = LocalDate.now(); // আজকের তারিখ
+LocalDate tomorrow = LocalDate.plusDays(1); 
 LocalDateTime এখন = LocalDateTime.now(); // বর্তমান তারিখ ও সময়
  LocalDate তারিখ১ = LocalDate.of(2024, 1, 1);
  DateTimeFormatter ফরমেটার = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -335,7 +336,9 @@ System.out.print(format.format(newYears.minus(period)));
         }
 
    - Date/Time immutability. Period does not support method chaining.
-   - .now();  Instant.now(); .of(); .parse(); .ofPattern(); .ofDays(); ofWeeks(); minus(); plus()
+   - .now();  Instant.now(); .of(); .parse(); .ofPattern(); .ofDays(); ofWeeks(); ofMonths(); ofYears(); 
+      .plusDays(); .minusDays(); .plusWeeks(); .plusYears();  
+      .minus(); .plus()//.plus(TemporalAmount amount) .minus(TemporalAmount amount)
 
    -  StringBuilder sb = new StringBuilder("radical").insert(sb.length(), "robots");
    - StringBuilder b = new StringBuilder("12");
