@@ -1,0 +1,513 @@
+
+
+1. //Guest.java
+    class Message {
+    public static void main(String [] args) { //**or without public
+    System.out.println(“Welcome ” + args[0] + “!”);
+    }
+    }
+
+    public class Guest {
+    public static void main(String [] args) {
+    Message.main(args);
+    }
+    }
+    And the commands:
+    javac Guest.java
+    java Guest James Gosling
+What is the result?
+
+2. Does this compile? System.out.println(“Hello”);;;;;;;;;
+3. the correct package declaration to declare Test class in com.exam.oca package?
+
+4. For the class Test, which options, if used to replace /*INSERT*/, will print “Hurrah! I passed…” on to the console? Select ALL that apply.
+      public class Test {
+      /*INSERT*/ {
+      System.out.println(“Hurrah! I passed…”);
+      }
+      }
+
+      A.static public void main(String [] args) 
+      B. public static void main(String [] a) 
+      C. static public void Main(String [] args) 
+      D. public void main(String [] args) 
+      E. protected static void main(String [] args) 
+
+
+5.  What will be the result if Test class is executed by below command? java Test 10
+      public class Test {
+          public static void main(String[] args) {
+          System.out.println(“ONE”);
+          }    
+          public static void main(Integer[] args) {
+          System.out.println(“TWO”);
+          }    
+          public static void main(byte [] args) {
+          System.out.println(“THREE”);
+          }
+      }
+
+
+  
+  6. Consider below code of main.java file:
+        package main;
+
+        public class main {
+        static String main = “ONE”;  
+        public main() {
+        System.out.println(“TWO”);
+        }  
+        public static void main(String [] args) {
+        main();
+        }  
+        public static void main() {
+        System.out.println(main);
+        }
+        }
+        
+        Also consider below statements:
+        1. Code doesn’t compile
+        2. Code compiles successfully
+        3. Only ONE will be printed to the console
+        4. Only TWO will be printed to the console
+        5. Both ONE and TWO will be printed to the console
+  
+  How many of the above statements is/are true?
+
+
+
+  
+  7. Given code of Test.java file:
+      class A {
+      public static void main(String [] args) {
+      System.out.println(“A”);
+      }
+      }  
+      class B {
+      public static void main(String [] args) {
+      System.out.println(“B”);
+      }
+      }  
+      class C {
+      public static void main(String [] args) {
+      System.out.println(“C”);
+      }
+      }  
+      class D {
+      public static void main(String [] args) {
+      System.out.println(“D”);
+      }
+      }
+  
+  Which of the following options is correct?
+  
+   A-To print C on to the console, execute below commands: javac Test.java java Test
+   B-To print C on to the console, execute below commands: javac C.java java C
+   C-To print C on to the console, execute below commands: javac Test.java java C
+   D-Test.java file is not a valid java file as it doesn't contain code for class Test
+   E-Test.java file will compile successfully but expected output is not possible
+
+
+8. Given code of Test.java file:
+    public class Test {
+    public static void main(String[] args) {
+    args[1] = “Day!”;
+    System.out.println(args[0] + ” ” + args[1]);
+    }
+    }
+
+    And the commands:
+    javac Test.java
+    java Test Good
+
+    What is the result?
+
+
+9.Consider codes of 3 java files:
+    //Planet.java
+    package com.skillcertprokhattry.galaxy;
+
+    public class Planet {
+    String name;
+    public Planet(String name) {
+    this.name = name;
+    }
+
+    public String toString() {
+    return “Planet: ” + name;
+    }
+    }
+
+    //Creator.java
+    package com.skillcertprokhattry.oca;
+
+    public class Creator {
+    public static Planet create() {
+    return new Planet(“Earth”);
+    }
+    }
+
+    //TestCreator.java
+    package com.skillcertprokhattry.oca.test;
+
+    public class TestCreator {
+    public static void main(String[] args) {
+    System.out.println(Creator.create());
+    }
+    }
+
+    And below options:1
+    Add below import statement in Creator.java file:
+    import com.skillcertprokhattry.galaxy.Planet;
+    And below options:2
+    Add below import statement in Creator.java file:
+    import com.skillcertprokhattry.oca.test.TestCreator;
+    And below options:3
+    Add below import statement in TestCreator.java file:
+    import com.skillcertprokhattry.oca.Creator;
+    And below options:4
+    Add below import statement in TestCreator.java file:
+    import com.skillcertprokhattry.galaxy.Planet;
+
+    Which of the above options needs to be done so that on executing TestCreator class, “Planet: Earth” is printed on to the console?
+    Please note: Unnecessary imports are not allowed.
+
+
+10. What will be the result of compiling and executing Test class?
+    package com.skillcertpro.oca;
+    public class Test {
+    public static void main(String[] args) {
+    byte b1 = (byte) (127 + 21);
+    System.out.println(b1);
+    }
+    }
+    choose: 148 Or Compilation error  Or-108 Or -128?
+
+    11. What will be the result of compiling and executing TestStudent class?
+    //TestStudent.java
+    package com.skillcertpro.oca;
+
+    class Student {
+    String name;
+    int age;
+    boolean result;
+    double height;
+    }
+
+    public class TestStudent {
+    public static void main(String[] args) {
+    Student stud = new Student();
+    System.out.println(stud.name + stud.height + stud.result + stud.age);
+    }
+    }
+    12. public class Pen {
+    public static void main(String[] args) {
+    Pen p1 = new Pen(); //Line 1
+    Pen p2 = new Pen(); //Line 2
+    p1 = p2; //Line 3
+    p1 = null; //Line 4
+    }
+    }
+    When is the Pen object, created at Line 1 eligible for Garbage Collection?
+
+
+13. How many objects of Pen class are eligible for Garbage Collection at Line 4?
+
+    class Pen {}
+
+    public class TestPen {
+    public static void main(String[] args) {
+    new Pen(); //Line 1
+    Pen p = new Pen(); // Line 2
+    change(p); //Line 3
+    System.out.println(“About to end.”); //Line 4
+    }
+
+    public static void change(Pen pen) { //Line 5
+    pen = new Pen(); //Line 6
+    }
+    }
+
+14. Wrapper classes are defined in which of the following package?
+15. What will be the result of compiling and executing Test class?
+    public class Test {
+    char var1;
+    double var2;
+    float var3;
+
+    public static void main(String[] args) {
+    Test obj = new Test();
+    System.out.println(“>” + obj.var1);
+    System.out.println(“>” + obj.var2);
+    System.out.println(“>” + obj.var3);
+    }
+    }
+
+16.class Point {
+    int x;
+    int y;
+    void assign(int x, int y) {
+    x = this.x;
+    this.y = y;
+    }
+
+    public String toString() {
+    return “Point(” + x + “, ” + y + “)”;
+    }
+    }
+
+    public class Test {
+    public static void main(String[] args) {
+    Point p1 = new Point();
+    p1.x = 10;
+    p1.y = 20;
+    Point p2 = new Point();
+    p2.assign(p1.x, p1.y);
+    System.out.println(p1.toString() + “;” + p2.toString());
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+17.public class Counter {
+    int count;
+    private static void increment(Counter counter) {
+    counter.count++;
+    }
+
+    public static void main(String [] args) {
+    Counter c1 = new Counter();
+    Counter c2 = c1;
+    Counter c3 = null;
+    c2.count = 1000;
+    increment(c2);
+    }
+    }
+    On executing Counter class, how many Counter objects are created in the memory?
+
+18.public class Test {
+    public static void main(String[] args) {
+    Boolean b1 = new Boolean(“tRuE”);
+    Boolean b2 = new Boolean(“fAlSe”);
+    Boolean b3 = new Boolean(“abc”);
+    Boolean b4 = null;
+    System.out.println(b1 + “:” + b2 + “:” + b3 + “:” + b4);
+    }
+    }
+
+19.What will be the result of compiling and executing Test class?
+
+    public class Test {
+    private static void add(double d1, double d2) {
+    System.out.println(“double version: ” + (d1 + d2));
+    }
+
+    private static void add(Double d1, Double d2) {
+    System.out.println(“Double version: ” + (d1 + d2));
+    }
+
+    public static void main(String[] args) {
+    add(10.0, null);
+    }
+
+    }
+20. What will be the result of compiling and executing Test class?
+
+    public class Test {
+    public static void main(String[] args) {
+    Boolean [] arr = new Boolean[2];
+    System.out.println(arr[0] + “:” + arr[1]);
+    }
+    }
+
+    21. What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    Double [] arr = new Double[2];
+    System.out.println(arr[0] + arr[1]);
+    }
+    }
+
+
+22. What will be the result of compiling and executing Test class?
+    public class Test {
+    static Boolean[] arr = new Boolean[1];
+    public static void main(String[] args) {
+    if(arr[0]) {
+    System.out.println(true);
+    } else {
+    System.out.println(false);
+    }
+    }
+    }
+
+23. What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    Boolean b = new Boolean(“tRUe”);
+    switch(b) {
+    case true:
+    System.out.println(“ONE”);
+    case false:
+    System.out.println(“TWO”);
+    default:
+    System.out.println(“THREE”);
+    }
+    }
+    }
+
+24. public class Test {
+    public static void main(String[] args) {
+    char c = ‘Z’;
+    long l = 100_00l;
+    int i = 9_2;
+    float f = 2.02f;
+    double d = 10_0.35d;
+    l = c + i;
+    f = c * l * i * f;
+    f = l + i + c;
+    i = (int)d;
+    f = (long)d;
+    }
+    }
+    Does above code compile successfully?
+
+
+25.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    String [] arr = {“abc”, “TrUe”, “false”, null, “FALSE”};
+    for(String s : arr) {
+    System.out.print(Boolean.valueOf(s) ? “T” : “F”);
+    }
+    }
+    }
+
+26.public class Test {
+    public static void main(String[] args) {
+    char c1 = ‘a’; //ASCII code of ‘a’ is 97
+    int i1 = c1; //Line n1
+    System.out.println(i1); //Line n2
+    }
+    }
+
+    What is the result of compiling and executing Test class?
+
+
+27. int x = 5____0;
+    int y = ____50;
+    int z = 50____;
+    float f = 123.76_86f;
+    double d = 1_2_3_4;
+    How many statements are legal?
+
+28.Range of short data type is from -32768 to 32767
+    Which of the following code segments, written inside main method will compile successfully?
+    Select ALL that apply.
+      A-short s1 = 10;
+      B-short s2 = 32768;
+      C-final int i3 = 10; short s3 = i3;
+      D-final int i4 = 40000; short s4 = i4;
+      E-final int i5 = 10; short s5 = i5 + 100;
+      F-final int m = 25000; final int n = 25000; short s6 = m + n;
+
+29. What will be the result of compiling and executing DivModTest class?
+    public class DivModTest {
+    public static void main(String[] args) {
+    System.out.println( 23 / 2.0 );
+    System.out.println( 23 % 2.0 );
+    }
+    }
+
+30.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int a = 7;
+    boolean res = a++ == 7 && ++a == 9 || a++ == 9;
+    System.out.println(“a = ” + a);
+    System.out.println(“res = ” + res);
+    }
+    }
+
+31.What will be the result of compiling and executing the Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int grade = 75;
+    if(grade > 60)
+    System.out.println(“Congratulations”);
+    System.out.println(“You passed”);
+    else
+    System.out.println(“You failed”);
+    }
+    }
+
+
+
+------------------------------------------------- Answers ---------------------------------------------------------
+1.Ans: Welcome Guest!
+2.Ans: Yes
+3.Ans: com.exam.oca package
+4.Ans: Position of static and public can be changed but return type must come just before the method name.
+5.Ans: Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.  Output will always be ONE.
+6.Ans:  Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
+       Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
+
+7.Ans: C
+8.Ans: args[1] = “Day!”; is trying to access 2nd array element at index 1, which is not available and hence an exception is thrown at runtime.
+9.Ans:  1 & 3 only
+10.Ans:  -127 + 21 = 148 = 00000000 00000000 00000000 10010100 
+	 -Above binary number is positive, as left most bit is 0. 
+	 -Same binary number after type-casting to byte: 10010100, negative number as left most bit is 1. 
+	 =10010100 = -108.
+11.Ans: null0false0
+12.Ans: after line 3
+13.Ans: লাইন ৪: System.out.println(“About to end.”);
+	এই মুহূর্তে:
+	লাইন ১ এ তৈরি করা Pen অবজেক্টটি গার্বেজ কালেকশনের জন্য যোগ্য (এটি কখনই রেফারেন্স করা হয়নি)।
+	লাইন ৬ এ তৈরি করা Pen অবজেক্টটি (change মেথডের ভিতরে) গার্বেজ কালেকশনের জন্য যোগ্য (change মেথডটি সম্পূর্ণ হয়েছে এবং এর লোকাল ভেরিয়েবল pen স্কোপের বাইরে)।
+	লাইন ২ এ তৈরি করা Pen অবজেক্টটি এখনও main মেথডের p ভেরিয়েবল দ্বারা অ্যাক্সেসযোগ্য।
+	অতএব, লাইন ৪ এ ২টি Pen ক্লাসের অবজেক্ট গার্বেজ কালেকশনের জন্য যোগ্য।
+14.Ans: java.lang
+15.Ans: >  >0.0 >0.0
+16.Ans: Point(10, 20);Point(0, 20)  **x=this.x(default value of x 0)
+	public String toString() { //works return type fine as int in the text file
+	return “Point(” + x + “, ” + y + “)”;
+	}
+
+17.Ans: -Counter c1 = new Counter();এই লাইনটি মেমরিতে প্রথম Counter অবজেক্টটি তৈরি করে। এই অবজেক্টের রেফারেন্স c1 ভেরিয়েবলে সংরক্ষণ করা হয়।
+	-Counter c3 = null; এই লাইনটি একটি Counter রেফারেন্স ভেরিয়েবল c3 ঘোষণা করে এবং এটিকে null এ ইনিশিয়ালাইজ করে। এটি কোনো Counter অবজেক্ট তৈরি করে না।
+	-increment(c2);এই লাইনটি increment মেথডকে কল করে, c2 রেফারেন্সটি পাস করে। increment মেথডের ভিতরে, counter.count++ আবার একই Counter অবজেক্টের count ফিল্ডকে পরিবর্তন করে।            	 এই মেথড কলের সময় কোনো নতুন অবজেক্ট তৈরি হয় না।
+	-main মেথডের পুরো এক্সিকিউশনের সময়, শুধুমাত্র একটি new Counter() কল করা হয়েছে। অতএব, মেমরিতে শুধুমাত্র একটি Counter অবজেক্ট তৈরি হয়।	
+18.Ans: Boolean class code uses equalsIgnoreCase method to validate the passed String, so if passed String is “true” (‘t’, ‘r’, ‘u’ and ‘e’ can be in any case), 
+        then boolean value stored in Boolean object is true otherwise false.
+        b1 stores true, b2 stores false, b3 stores false and as b4 is of reference type, hence it can store null as well.
+        Output is: true:false:false:null
+19.Ans: throws NullPointerException.
+	add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type. So to match the method call, 10.0 is 	converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
+	But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); .
+20.Ans: output null:null is printed
+	Array elements are initialized to their default values.
+	arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null.
+21.Ans: method throws NullPointerExceptio
+	-hence both the array elements are initialized to null.
+	-To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
+	-As arr[0] and arr[1] are null hence calling doubleValue().
+22.Ans:NullPointerException is thrown at runtime
+      -All the array elements are initialized to their default values. arr is of Boolean type (reference type), so arr[0] is initialized to null.
+      -if expression works with Boolean type variable, so “if(arr[0])” doesn’t cause compilation error but java runtime extracts the boolean value stored in arr[0] and it   	uses booleanValue() method.
+	arr[0].booleanValue() means booleanValue() method is invoked on null reference and hence NullPointerException is thrown at runtime.
+
+23.Ans: switch does not accept Boolean, long, float, double
+24.Ans: Yes, the above code compiles successfully.
+25.Ans:  FTFFF
+26.Ans: 97.( it prints char value and if int type value is passed, it prints int value.As i1 is of int type)
+27.Ans: Three 5_0 and other two
+28. A,C,E
+29.As floating point numbers are used in the expression, hence result should be in floating point number.
+	Correct result is:23 / 2.0 = 11.5  and 23 % 2.0 = 1.0
+30.  a = 9 res = true
+31. Compilation error(There should not be anything between if-else block)
+
+
+
+
+-
