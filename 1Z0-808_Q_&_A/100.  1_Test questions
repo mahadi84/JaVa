@@ -162,16 +162,13 @@ System.out.println(Creator.create());
 And below options:1
 Add below import statement in Creator.java file:
 import com.skillcertprokhattry.galaxy.Planet;
-
-2
+And below options:2
 Add below import statement in Creator.java file:
 import com.skillcertprokhattry.oca.test.TestCreator;
-
-3
+And below options:3
 Add below import statement in TestCreator.java file:
 import com.skillcertprokhattry.oca.Creator;
-
-4
+And below options:4
 Add below import statement in TestCreator.java file:
 import com.skillcertprokhattry.galaxy.Planet;
 
@@ -207,7 +204,7 @@ System.out.println(stud.name + stud.height + stud.result + stud.age);
 }
 }
 
-
+------------------------------------------------- Answers ---------------------------------------------------------
 1.Ans: Welcome Guest!
 2.Ans: Yes
 3.Ans: com.exam.oca package
