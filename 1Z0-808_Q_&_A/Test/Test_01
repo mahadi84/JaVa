@@ -200,21 +200,19 @@ What is the result?
     When is the Pen object, created at Line 1 eligible for Garbage Collection?
 
 
-13. How many objects of Pen class are eligible for Garbage Collection at Line 4?
-    
-class Pen {}
+13. How many objects of Pen class are eligible for Garbage Collection at Line 4?    
+   class Pen {} // একটি সরল ক্লাস যেখানে স্পষ্টভাবে কোনো ফিল্ড বা মেথড সংজ্ঞায়িত করা হয়নি।
     public class TestPen {
-    public static void main(String[] args) {
-    new Pen(); //Line 1
-    Pen p = new Pen(); // Line 2
-    change(p); //Line 3
-    System.out.println(“About to end.”); //Line 4
-    }
-
-    public static void change(Pen pen) { //Line 5
-    pen = new Pen(); //Line 6
-    }
-    }
+	    public static void main(String[] args) {
+	        new Pen();          //লাইন ১
+	        Pen p = new Pen();  //লাইন ২
+	        change(p);          //লাইন ৩
+	        System.out.println("About to end."); //লাইন ৪
+	    }
+	    public static void change(Pen pen) { //লাইন ৫
+	        pen = new Pen();    //লাইন ৬
+	    }
+     }
 
 14. Wrapper classes are defined in which of the following package?
 15. What will be the result of compiling and executing Test class?
@@ -457,8 +455,8 @@ class Pen {}
 13.Ans: লাইন ৪: System.out.println(“About to end.”);
 	এই মুহূর্তে:
 	লাইন ১: এ তৈরি করা Pen অবজেক্টটি গার্বেজ কালেকশনের জন্য যোগ্য (এটি কখনই রেফারেন্স করা হয়নি)।
-	লাইন ৬: এ তৈরি করা Pen অবজেক্টটি (change মেথডের ভিতরে) গার্বেজ কালেকশনের জন্য যোগ্য (change মেথডটি সম্পূর্ণ হয়েছে এবং এর লোকাল ভেরিয়েবল pen স্কোপের বাইরে)। 
-                change(p); (লাইন ৩) কলটি সম্পূর্ণ হয়ে যায়, তখন জাভা এই মেথডের ভিতরের সমস্ত লোকাল ভেরিয়েবল মেমরি থেকে সরিয়ে দেয়।
+	লাইন ৩: change(p);  কলটি সম্পূর্ণ হয়ে যায়, তখন জাভা এই মেথডের ভিতরের সমস্ত লোকাল ভেরিয়েবল মেমরি থেকে সরিয়ে দেয়।
+		 -এ তৈরি করা Pen অবজেক্টটি (change মেথডের ভিতরে, লাইন 6) গার্বেজ কালেকশনের জন্য যোগ্য (change মেথডটি সম্পূর্ণ হয়েছে এবং এর লোকাল ভেরিয়েবল pen স্কোপের বাইরে)। 
 	লাইন ২: এ তৈরি করা Pen অবজেক্টটি এখনও main মেথডের p ভেরিয়েবল দ্বারা অ্যাক্সেসযোগ্য।
 	অতএব, লাইন ৪ এ ২টি Pen ক্লাসের অবজেক্ট গার্বেজ কালেকশনের জন্য যোগ্য।
 14.Ans: java.lang
