@@ -525,7 +525,7 @@ System.out.println(a);
      -Compilation error.
      -5 3 2 1
 
-34.public class Test {
+34. public class Test {
     public static void main(String[] args) {
     String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
     /*INSERT*/
@@ -539,7 +539,7 @@ System.out.println(a);
      -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
      -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
 
-     34. public class Test {
+35. public class Test {
     public static void main(String[] args) {
     int [] arr = {2, 1, 0};
     for(int i : arr) {
@@ -702,20 +702,41 @@ Explanation: `continue` skips `sum += start`, but `start` never increments, caus
 Output: 3
 Explanation: Loop runs for `i = 0, 1, 2`, then exits when `i = 3`.
 
-### Question 33  
-Correct Options:  
-- `for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length; j++) System.out.print(fruits[i][j] + " ");`  
-- `for(String[] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");`  
-Explanation: These options correctly iterate and print all elements.
+### Question 33
+Output: 5 4
+Explanation:
+1. The outer `do-while` loop sets `i = 5`
+2. The inner `while` loop:
+   - Prints `i--` (prints 5, then decrements to 4)
+   - Checks `if (i == 4)` and executes `break outer`, terminating both loops
+3. Correction to options: None of the given options are correct. The actual output is `5 4`.
 
-### Question 34  
+
+### Question 34
+Correct Options:
+1. `for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length; j++) System.out.print(fruits[i][j] + " ");`
+4. `for(String[] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");`
+
+Explanation:
+- The array is `{{"apple","mango"}, {"orange","grape"}}`
+- Option 1: Correctly iterates through all indices (0,0 → 0,1 → 1,0 → 1,1)
+- Option 4: Enhanced for-loop correctly accesses all elements
+- Options 2-3: Incorrect because:
+  - They start from index 1, missing "apple" and "orange"
+  - Option 2 will throw `ArrayIndexOutOfBoundsException` (using `<=`)
+
+
+### Question 35
 Output: 0 1 2
-Explanation: `arr[i]` for `i = 2, 1, 0` prints `arr[2] = 0`, `arr[1] = 1`, `arr[0] = 2`.
+Explanation:
+1. The array is `{2, 1, 0}`
+2. The for-each loop iterates with `i` taking values `2`, `1`, `0`:
+   - `arr[2]` → `0`
+   - `arr[1]` → `1`
+   - `arr[0]` → `2`
+3. Correction to options: The correct output is `0 1 2` (second option).
 
-### Summary of Key Concepts:  
-- Switch Statements: Fall-through behavior, `default` case, and `break`.  
-- Loops: `for`, `while`, `do-while`, and infinite loops.  
-- Arrays: Indexing, assignment, and multi-dimensional arrays.  
-- Operators: Post-increment (`a++`), pre-increment (`++a`), ternary operator, and logical operators.  
-- Compilation Errors: Invalid syntax, unreachable code, and type mismatches.  
+Key Notes:
+- No compilation error or exception occurs
+- The loop accesses valid indices because the array values themselves are valid indices
 
