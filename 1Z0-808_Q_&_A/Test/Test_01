@@ -449,7 +449,7 @@ What is the result?
 	 -Same binary number after type-casting to byte: 10010100, negative number as left most bit is 1. 
 	 =10010100 = -108.
 
-11.Ans: null0false0
+11.Ans: null0.0false0
 12.Ans: after line 3
 13.Ans: লাইন ৪: System.out.println(“About to end.”);
 	এই মুহূর্তে:
