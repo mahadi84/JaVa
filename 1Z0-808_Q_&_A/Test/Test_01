@@ -292,6 +292,7 @@ What is the result?
 	    	add(10.0, null);
 	    }
     }
+
 20. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -308,7 +309,6 @@ What is the result?
     }
     }
 
-
 22. What will be the result of compiling and executing Test class?
     public class Test {
     static Boolean[] arr = new Boolean[1];
@@ -323,17 +323,17 @@ What is the result?
 
 23. What will be the result of compiling and executing Test class?
     public class Test {
-    public static void main(String[] args) {
-    Boolean b = new Boolean(“tRUe”);
-    switch(b) {
-    case true:
-    System.out.println(“ONE”);
-    case false:
-    System.out.println(“TWO”);
-    default:
-    System.out.println(“THREE”);
-    }
-    }
+	    public static void main(String[] args) {
+		    Boolean b = new Boolean(“tRUe”);
+		    switch(b) {
+		    case true:
+		    System.out.println(“ONE”);
+		    case false:
+		    System.out.println(“TWO”);
+		    default:
+		    System.out.println(“THREE”);
+		    }
+	    }
     }
 
 24. public class Test {
@@ -343,11 +343,11 @@ What is the result?
     int i = 9_2;
     float f = 2.02f;
     double d = 10_0.35d;
-    l = c + i;
-    f = c * l * i * f;
-    f = l + i + c;
-    i = (int)d;
-    f = (long)d;
+	    l = c + i;
+	    f = c * l * i * f;
+	    f = l + i + c;
+	    i = (int)d;
+	    f = (long)d;
     }
     }
     Does above code compile successfully?
@@ -355,12 +355,12 @@ What is the result?
 
 25.What will be the result of compiling and executing Test class?
     public class Test {
-    public static void main(String[] args) {
-    String [] arr = {“abc”, “TrUe”, “false”, null, “FALSE”};
-    for(String s : arr) {
-    System.out.print(Boolean.valueOf(s) ? “T” : “F”);
-    }
-    }
+	    public static void main(String[] args) {
+		String [] arr = {“abc”, “TrUe”, “false”, null, “FALSE”};
+		    for(String s : arr) {
+		    System.out.print(Boolean.valueOf(s) ? “T” : “F”);
+	            }
+     	     }
     }
 
 26.public class Test {
@@ -370,7 +370,6 @@ What is the result?
     System.out.println(i1); //Line n2
     }
     }
-
     What is the result of compiling and executing Test class?
 
 
@@ -381,7 +380,7 @@ What is the result?
     double d = 1_2_3_4;
     How many statements are legal?
 
-28.Range of short data type is from -32768 to 32767
+28. Range of short data type is from -32768 to 32767
     Which of the following code segments, written inside main method will compile successfully?
     Select ALL that apply.
       A-short s1 = 10;
@@ -399,7 +398,7 @@ What is the result?
     }
     }
 
-30.What will be the result of compiling and executing Test class?
+30. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
     int a = 7;
@@ -409,7 +408,7 @@ What is the result?
     }
     }
 
-31.What will be the result of compiling and executing the Test class?
+31. What will be the result of compiling and executing the Test class?
     public class Test {
     public static void main(String[] args) {
     int grade = 75;
@@ -430,9 +429,10 @@ What is the result?
 4.Ans: -Position of static and public can be changed but return type must come just before the method name. 
        -The JVM requires the main method to be static so it can be called without an instance of the class. The results are A and B.
 5.Ans: Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.  Output will always be ONE.
+
+
 6.Ans:  Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
        Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
-
 7.Ans: C
 8.Ans: args[1] = “Day!”; is trying to access 2nd array element at index 1, which is not available and hence an exception is thrown(java.lang.ArrayIndexOutOfBoundsException) at runtime. 
 9.Ans:  1 & 3 only
@@ -440,6 +440,7 @@ What is the result?
 	 -Above binary number is positive, as left most bit is 0. 
 	 -Same binary number after type-casting to byte: 10010100, negative number as left most bit is 1. 
 	 =10010100 = -108.
+
 
 11.Ans: null0.0false0
 12.Ans: লাইন ১ এ তৈরি Pen অবজেক্টটি , 
@@ -456,16 +457,15 @@ What is the result?
 	অতএব, লাইন ৪ এ ২টি Pen ক্লাসের অবজেক্ট গার্বেজ কালেকশনের জন্য যোগ্য।
 14.Ans: java.lang
 15.Ans: >  >0.0 >0.0
+
 16.Ans: Point(10, 20);Point(0, 20)  **x=this.x(default value of x 0)
 	public String toString() {
 	return “Point(” + x + “, ” + y + “)”;  //works return type fine as int in the text file
 	}
-
 17.Ans: -Counter c1 = new Counter();এই লাইনটি মেমরিতে প্রথম Counter অবজেক্টটি তৈরি করে। এই অবজেক্টের রেফারেন্স c1 ভেরিয়েবলে সংরক্ষণ করা হয়।
 	-Counter c3 = null; এই লাইনটি একটি Counter রেফারেন্স ভেরিয়েবল c3 ঘোষণা করে এবং এটিকে null এ ইনিশিয়ালাইজ করে। এটি কোনো Counter অবজেক্ট তৈরি করে না।
 	-increment(c2);এই লাইনটি increment মেথডকে কল করে, c2 রেফারেন্সটি পাস করে। increment মেথডের ভিতরে, counter.count++ আবার একই Counter অবজেক্টের count ফিল্ডকে পরিবর্তন করে। এই মেথড কলের সময় কোনো নতুন অবজেক্ট তৈরি হয় না।
 	-main মেথডের পুরো এক্সিকিউশনের সময়, শুধুমাত্র একটি new Counter() কল করা হয়েছে। অতএব, মেমরিতে শুধুমাত্র একটি Counter অবজেক্ট তৈরি হয়।
-
 18.Ans: Boolean class code uses equalsIgnoreCase method to validate the passed String, so if passed String is “true” (‘t’, ‘r’, ‘u’ and ‘e’ can be in any case), 
         then boolean value stored in Boolean object is true otherwise false.
         b1 stores true, b2 stores false, b3 stores false and as b4 is of reference type, hence it can store null as well.
@@ -475,25 +475,37 @@ What is the result?
 	But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); throws NullPointerException..
 20.Ans: Array elements are initialized to their default values.
 	arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
-21.Ans: method throws NullPointerExceptio
-	-hence both the array elements are initialized to null.
-	-To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
-	-As arr[0] and arr[1] are null hence calling doubleValue().
-22.Ans:NullPointerException is thrown at runtime
-      -All the array elements are initialized to their default values. arr is of Boolean type (reference type), so arr[0] is initialized to null.
-      -if expression works with Boolean type variable, so “if(arr[0])” doesn’t cause compilation error but java runtime extracts the boolean value stored in arr[0] and it   	uses booleanValue() method.
-	arr[0].booleanValue() means booleanValue() method is invoked on null reference and hence NullPointerException is thrown at runtime.
 
+
+21.Ans: hence both the array elements are initialized to null.
+	-To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
+	-As arr[0] and arr[1] are null hence calling doubleValue(). The method throws NullPointerException.
+22.Ans: All the array elements are initialized to their default values. arr is of Boolean type (reference type), so arr[0] is initialized to null.
+       -if expression works with Boolean type variable, so “if(arr[0])” doesn’t cause compilation error but java runtime extracts the boolean value stored in arr[0] and it uses booleanValue() method.
+	arr[0].booleanValue() means booleanValue() method is invoked on null reference and hence NullPointerException is thrown at runtime.
 23.Ans: switch does not accept Boolean, long, float, double
-24.Ans: Yes, the above code compiles successfully.
-25.Ans:  FTFFF
+24.Ans: যখন আপনি বিভিন্ন নিউমেরিক টাইপের ভেরিয়েবল একসাথে কোনো গাণিতিক অপারেশনে (যেমন গুণ) ব্যবহার করেন, 
+       তখন জাভা স্বয়ংক্রিয়ভাবে ছোট টাইপের ডেটাকে বড় টাইপের ডেটাতে রূপান্তর (type promotion) করে যাতে কোনো ডেটা লস না হয়। 
+      এই প্রক্রিয়াটিকে "Widening Primitive Conversion" বলা হয়।
+	       এখানে আপনার ভেরিয়েবলগুলো এবং তাদের টাইপগুলো হলো:
+		c (char): 'Z' এর ASCII মান, যা একটি পূর্ণসংখ্যা (integer value)।
+	        l (long): 100_00l (যা 10000L এর সমান)।
+		i (int): 9_2 (যা 92 এর সমান)।
+		f (float): 2.02f।
+	Yes, the above code compiles successfully.
+25.Ans:	চূড়ান্ত আউটপুট: F (abc) + T (TrUe) + F (false) + F (null) + F (FALSE) = FTFFF
+	গুরুত্বপূর্ণ নোট:
+	-Boolean.valueOf() মেথডটি কেস-ইনসেনসিটিভ, তাই "TrUe" বা "TRUE" সবই true হিসেবে বিবেচিত হয়।
+	-null বা অবৈধ স্ট্রিং ("abc", "false" ইত্যাদি) সবসময় false রিটার্ন করে।
+	-কোনো রানটাইম এরর (যেমন NullPointerException) হবে না, কারণ Boolean.valueOf(null) সুরক্ষিতভাবে false হ্যান্ডেল করে।
+
+
 26.Ans: 97.( it prints char value and if int type value is passed, it prints int value.As i1 is of int type)
 27.Ans: Three 5_0 and other two
-28. A,C,E
-29.As floating point numbers are used in the expression, hence result should be in floating point number.
-	Correct result is:23 / 2.0 = 11.5  and 23 % 2.0 = 1.0
-30.  a = 9 res = true
-31. Compilation error(There should not be anything between if-else block)
+28.Ans: A,C,E
+29.Ans: As floating point numbers are used in the expression, hence result should be in floating point number. Correct result is:23 / 2.0 = 11.5  and 23 % 2.0 = 1.0
+30.Ans: a = 9 res = true
+31.Ans: Compilation error(There should not be anything between if-else block)
 
 
 
