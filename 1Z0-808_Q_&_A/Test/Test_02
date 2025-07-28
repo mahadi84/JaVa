@@ -1,0 +1,591 @@
+
+1.What will be the output of compiling and executing the Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int x = 2;
+    switch (x) {
+    default:
+    System.out.println(“Still no idea what x is”);
+    case 2:
+    System.out.println(“x is equal to 2”);
+    break;
+2.What will be the output of compiling and executing the Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int a = 5;
+    int x = 10;
+    switch(x) {
+    case 10:
+    a *= 2;
+    case 20:
+    a *= 3;
+    case 30:
+    a *= 4;
+    }
+    System.out.println(a);
+    }
+    }
+3.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    byte var = 100;
+    switch(var) {
+    case 100:
+    System.out.println(“var is 100”);
+    break;
+    case 200:
+    System.out.println(“var is 200”);
+    break;
+    default:
+    System.out.println(“In default”);
+    }
+    }
+    }
+4. What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    String fruit = “mango”;
+    switch (fruit) {
+    default:
+    System.out.println(“ANY FRUIT WILL DO”);
+    case “Apple”:
+    System.out.println(“APPLE”);
+    case “Mango”:
+    System.out.println(“MANGO”);
+    case “Banana”:
+    System.out.println(“BANANA”);
+    break;
+    }
+    }
+    }
+5. What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    String fruit = new String(new char[] {‘M’, ‘a’, ‘n’, ‘g’, ‘o’});
+    switch (fruit) {
+    default:
+    System.out.println(“ANY FRUIT WILL DO”);
+    case “Apple”:
+    System.out.println(“APPLE”);
+    case “Mango”:
+    System.out.println(“MANGO”);
+    case “Banana”:
+    System.out.println(“BANANA”);
+    break;
+    }
+    }
+    }
+6.For the class Test, which options, if used to replace /*INSERT*/, will print TEN on to the console? Select 4 options.
+    public class Test {
+    public static void main(String[] args) {
+    /*INSERT*/
+    switch(var) {
+    case 10:
+    System.out.println(“TEN”);
+    break;
+    default:
+    System.out.println(“DEFAULT”);
+    }
+    }
+    }
+
+7.For the class Test, which option, if used to replace /*INSERT*/, will print “Lucky no. 7” on to the console?
+    public class Test {
+        public static void main(String[] args) {
+        /*INSERT*/
+    switch(var) {
+        case ‘7’:
+    System.out.println(“Lucky no. 7”);
+    break;
+    default:
+    System.out.println(“DEFAULT”);
+    }
+    }
+    }
+     A. int var = 7; 
+     B. Integer var = 7; 
+     C. int var = '7'; 
+     D. None of the other options
+8. What will be the result of compiling and executing Test class?
+    import java.time.LocalTime;
+    public class Test {
+    public static void main(String[] args) {
+    LocalTime time = LocalTime.of(16, 40);
+    String amPm = time.getHour() >= 12 ? (time.getHour() == 12) ? “PM” : “AM”;
+    System.out.println(amPm);
+    }
+    }
+9.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String [] args) {
+    int a = 100;
+    System.out.println(-a++);
+    }
+    }
+    
+    a.Compilation error
+    b.-100
+    c.-101
+    d. 99
+10. What will be the result of compiling and executing Test class?
+package com.skillcertpro.oca;
+
+public class Test {
+public static void main(String [] args) {
+int a = 2;
+boolean res = false;
+res = a++ == 2 || –a == 2 && –a == 2;
+System.out.println(a);
+}
+}
+
+ a.2
+ b.3
+ c.1
+ d.Compilation error
+
+11.What will be the result of compiling and executing Test class? 
+    public class Test {
+    public static void main(String [] args) {
+    int a = 3;
+    System.out.println(a++ == 3 || –a == 3 && –a == 3);
+    }
+    }
+    a.TRUE
+    b.FALSE
+    c. Compilation error
+12. What will be the result of compiling and executing Test class? 
+    public class Test {
+    public static void main(String [] args) {
+    int a = 3;
+    m(++a, a++);
+    System.out.println(a);
+    }
+
+    private static void m(int i, int j) {
+    i++;
+    j–;
+    }
+    }
+
+    a.4
+    b.5
+    c.6
+    d.3
+
+13.Consider below code of Test.java file:
+        public class Test {
+        public static void main(String [] args) {
+        boolean status = true;
+        System.out.println(status = false || status = true | status = false);
+        System.out.println(status);
+        }
+        }
+
+        What will be the result of compiling and executing Test class?
+
+        a.TRUE FALSE
+        b.FALSE TRUE
+        c.TRUE TRUE
+        d.FALSE FALSE
+        e.Compilation error
+14.Consider below code snippet:
+    int i = 10;
+    System.out.println(i > 3 != false);
+    What is the result?
+
+15.Consider below code of Test.java file:
+    public class Test {
+    public static void main(String [] args) {
+    boolean flag1 = true;
+    boolean flag2 = false;
+    boolean flag3 = true;
+    boolean flag4 = false;
+
+    System.out.println(!flag1 == flag2 != flag3 == !flag4); //Line n1
+    System.out.println(flag1 = flag2 != flag3 == !flag4); //Line n2
+    }
+    }
+
+    What will be the result of compiling and executing Test class?
+
+16. Consider below code of Test.java file:
+    public class Test {
+    public static void main(String[] args) {
+    int score = 30; // Line n1
+    char grade = ‘F’; // Line n2
+    if (50 <= score < 60) // Line n3 grade = 'D'; else if (60 <= score < 70) // Line n4 grade = 'C'; else if (70 <= score < 80) // Line n5 grade = 'B'; else if (score >= 80)
+    grade = ‘A’;
+    System.out.println(grade);
+    }
+    }
+     Compilation error
+    a.A
+    b.B
+    c.C
+    c.D
+
+    What is the result of compiling and executing Test class?
+
+17.What will be the result of compiling and executing Test class?
+public class Test {
+public static void main(String[] args) {
+char [][] arr = {
+{‘A’, ‘B’, ‘C’},
+{‘D’, ‘E’, ‘F’},
+{‘G’, ‘H’, ‘I’}
+};
+
+for(int i = 0; i < arr.length; i++) { for(int j = 0; j < arr[i].length; j++) { System.out.print(arr[i][1]); } System.out.println(); } } }
+
+ ABC DEF GHI
+ BBB EEE HHH
+ AAA DDD GGG
+ CCC FFF III
+
+18.What will be the result of compiling and executing Test class?
+public class Test {
+public static void main(String[] args) {
+int [] arr1 = {5, 10, 15};
+int [] arr2 = {‘A’, ‘B’};
+arr1 = arr2;
+System.out.println(arr1.length + arr2.length);
+}
+}
+
+ Compilation error
+ An exception is thrown at runtime
+ 0
+ 4
+ 6
+ 5
+
+19.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int [] arr1 = {1, 2, 3};
+    char [] arr2 = {‘A’, ‘B’}; //ASCII code of ‘A’ is 65, ‘B’ is 66
+    arr1 = arr2;
+    for(int i = 0; i < arr1.length; i++) { System.out.print(arr1[i] + " "); } } }
+
+    1 2 2003
+    A B
+    65 66
+    Compilation error
+20.What will be the result of compiling and executing Test class?
+public class Test {
+public static void main(String[] args) {
+String [] arr = new String[1];
+System.out.println(arr[0].isEmpty());
+}
+}
+
+ TRUE
+ FALSE
+ NullPointerException is thrown at runtime
+ ArrayIndexOutOfBoundsException is thrown at runtime
+
+21.Given code:
+package com.skillcertpro.oca;
+
+public class Test {
+public static void main(String[] args) {
+String [] arr = {“I”, “N”, “S”, “E”, “R”, “T”};
+for(/*INSERT*/) {
+if (n % 2 == 0) {
+continue;
+}
+System.out.print(arr[n]); //Line n1
+}
+}
+}
+
+And below options:
+1. int n = 0; n < arr.length; n += 1 2. int n = 0; n <= arr.length; n += 1 3. int n = 1; n < arr.length; n += 2 4. int n = 1; n <= arr.length; n += 2 How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
+    Only one option
+    Only two options
+    Only three options
+    All four options
+    None of the other options
+
+22.public class Test {
+    public static void main(String[] args) {
+    int [] arr = {1, 2, 3, 4, 5};
+    int x = 0;
+    for(/*INSERT*/) {
+    x += arr[n];
+    }
+    System.out.println(x);
+    }
+    }
+    Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
+
+    int n = 0; n < arr.length; n++ 
+    int n = 0; n < arr.length; n += 2 
+    int n = 3; n < arr.length; n++ 
+    int n = 1; n < arr.length - 1; n++ 
+    int n = 1; n < arr.length; n += 2 
+
+23.What will be the result of compiling and executing Test class?
+        public class Test {
+        public static void main(String[] args) {
+        String [] arr = {“A”, “B”, “C”, “D”};
+        arr[0] = arr[1];
+        arr[1] = “E”;
+        for(String s : arr) {
+        System.out.print(s + ” “);
+        }
+        }
+        }
+        Compilation error
+        An exception is thrown at runtime
+        B E C D
+        E E C D
+        A E C D
+24.Consider below code of Test.java file:
+    public class Test {
+    public static void main(String[] args) {
+    String arr1 [], arr2, arr3 = null; //Line n1
+    arr1 = new String[2];
+    arr1[0] = “A”;
+    arr1[1] = “B”;
+    arr2 = arr3 = arr1; //Line n2
+    log(arr2); //Line n3
+    }
+
+    private static void log(String… vals) {
+    for(String s : vals)
+    System.out.print(s);
+    }
+    }
+
+    What will be the result of compiling and executing Test class?
+
+    Line n1 causes compilation error
+    Line n2 causes compilation error
+    Line n3 causes compilation error
+    It executes successfully and prints AB on to the console
+    It executes successfully and prints BA on to the console
+    It executes successfully and prints A on to the console
+
+25.public class Test {
+    public static void main(String[] args) {
+    int [] arr = {10, 20, 30}; //Line n1
+    int i = 0;
+    arr[i++] = arr[++i] = 40; //Line n2
+    for(int x : arr)
+    System.out.println(x);
+    }
+    }
+
+    What will be the result of compiling and executing Test class?
+
+    Compilation error at Line n2
+    An exception is thrown by Line n2
+    10 20 30
+    10 40 30
+    40 40 30
+    40 20 40
+
+26.public class Test {
+    public static void main(String[] args) {
+    int var = 3;
+    String [][] arr = new String[–var][var++]; //Line n1
+    arr[1][1] = “X”; //Line n2
+    arr[1][2] = “Y”; //Line n3
+    for(String [] arr1 : arr) {
+    for(String s : arr1) {
+    if(s != null)
+    System.out.print(s);
+    }
+    }
+    }
+    }
+
+    What will be the result of compiling and executing Test class?
+    It causes compilation error at single statement
+    It causes compilation error at multiple statements
+    It throws an exception at runtime
+    It prints XY on to the console and program terminates successfully
+    It prints XY on to the console and program terminates abruptly
+
+27.public class Test {
+public static void main(String[] args) {
+int[][] arr = new int[x][y]; //Line n1
+arr[1][4] = 100;
+arr[6][6] = 200;
+arr[3][6] = 300;
+}
+}
+
+And below combination of x and y values:
+1. x = 6, y = 6
+2. x = 2, y = 5
+3. x = 4, y = 7
+4. x = 7, y = 7
+5. x = 8, y = 8
+6. x = 0, y = 0
+7. x = -1, y = -1
+
+How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java file compiles successfully?
+
+ All 7 pairs
+ 6 pairs
+ 5 pairs
+ 4 pairs
+ 3 pairs
+ 2 pairs
+
+28.public class Test {
+    public static void main(String[] args) {
+    final boolean flag = false;
+    while(flag) {
+    System.out.println(“Good Morning!”);
+    }
+    }
+    }
+
+    Program compiles and executes successfully but produces no output
+    Compilation error
+    Infinite loop
+    It will print "Good Morning!" once
+
+29.Which of the following statement is correct for below code?
+    public class Test {
+    public static void main(String[] args) {
+    final boolean flag;
+    flag = false;
+    while(flag) {
+    System.out.println(“Good Morning!”);
+    }
+    }
+    }
+
+30.public class Test {
+public static void main(String[] args) {
+do {
+System.out.println(100);
+} while (true);
+
+System.out.println(“Bye”);
+}
+}
+
+ a.Compiles successfully and prints "Bye"
+ b.Compiles successfully and prints 100 in infinite loop
+ c.Unreachable code compilation error
+ d.100
+ e.Bye
+
+ 31.public class Test {
+public static void main(String[] args) {
+int start = 1;
+int sum = 0;
+do {
+if(start % 2 == 0) {
+continue;
+}
+sum += start;
+} while(++start <= 10); System.out.println(sum); } }
+
+ 25
+ 55
+ Compilation error
+ 24
+
+ 32. public class Test {
+public static void main(String[] args) {
+int i;
+for(i=0; i<=2; i++){} System.out.println(i); } }
+
+ 0
+ 2
+ 3
+ Compilation error
+
+ 32.public class Test {
+public static void main(String[] args) {
+int i;
+outer:
+do {
+i = 5;
+inner:
+while (true) {
+System.out.println(i–);
+if (i == 4) {
+break outer;
+}
+}
+} while (true);
+}
+}
+
+ Prints 5 in an infinite loop.
+ Prints 5 once.
+ Compilation error.
+ 5 3 2 1
+
+ 33.public class Test {
+public static void main(String[] args) {
+String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
+/*INSERT*/
+}
+}
+For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
+Select ALL that apply.
+
+ for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
+
+ 34. public class Test {
+public static void main(String[] args) {
+int [] arr = {2, 1, 0};
+for(int i : arr) {
+System.out.println(arr[i]);
+}
+}
+}
+
+ 2 1 0
+ 0 1 2
+ Compilation error
+ ArrayIndexOutOfBoundsException is thrown at runtime
+
+----------------
+
+
+1.ans: x is equal to 2
+2.ans: 120
+3.ans: byte range is from -128 to 127. But in case expression [case 200], 200 is outside byte range and hence compilation error.
+4.ans: ডিফল্টে কোনো ব্রেক স্টেটমেন্ট না থাকায়, নিয়ন্ত্রণ ফল-থ্রুতে প্রবেশ করে এবং ব্রেক; না পাওয়া পর্যন্ত অথবা সুইচ ব্লক শেষ না হওয়া পর্যন্ত বাকি ব্লকগুলি কার্যকর করে।
+        সুতরাং, এই ক্ষেত্রে, এটি একে একে APPLE, MANGO, BANANA প্রিন্ট করে এবং ব্রেক; স্টেটমেন্ট সুইচ ব্লক থেকে নিয়ন্ত্রণ বাইরে নিয়ে যায়। এরপর মেইন মেথড শেষ হয় এবং প্রোগ্রাম সফলভাবে বন্ধ হয়।
+5.ans: MANGO BANANA
+6.ans: byte var = 10;Short var = 10; Integer var = 10; char var = 10; ***char uses 16 bits (2 Bytes) and its range is 0 to 65535 (no signed bit reserved) so it can easily store value 10. 
+7.ans: C. int var = '7';
+        -এখানে var একটি int টাইপের ভেরিয়েবল। যখন একটি ক্যারেক্টার লিটারেল ('7') একটি int ভেরিয়েবলে অ্যাসাইন করা হয়, তখন এর ASCII/Unicode মান অ্যাসাইন হয়। '7' এর ASCII মান হলো ৫৫।
+        -সুতরাং, var এর মান হবে ৫৫। switch(var) মানে switch(55)। case '7' মানে case 55। এক্ষেত্রে ৫৫ এবং ৫৫ মিলে যাবে এবং "Lucky no. 7" প্রিন্ট হবে।
+8.ans: কম্পাইল এবং এক্সিকিউশন সফল হবে, এবং কনসোলে AM প্রিন্ট হবে।
+9.ans: এখন, বিয়োগ চিহ্ন (-) অপারেটরটি a থেকে নেওয়া 100 মানটির উপর প্রয়োগ করা হবে। ফলে, এক্সপ্রেশনটির চূড়ান্ত মান হবে -100।
+10.ans: b.3
+11.ans:    a.TRUE
+12.ans:
+13.ans:
+14.ans:
+15.ans:
+16.ans:
+17.ans:
+18.ans:
+19.ans:
+20.ans:
+21.ans:
+22.ans:
+23.ans:
+24.ans:
+25.ans:
+26.ans:
+27.ans:
+28.ans:
+29.ans:
+30.ans:
