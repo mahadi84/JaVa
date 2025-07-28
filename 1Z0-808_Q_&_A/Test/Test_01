@@ -446,7 +446,7 @@ What is the result?
 1.Ans: Welcome Guest! (Message (Message.main()) ক্লাসের static main মেথডটিকে কল করছেন। এটি জাভাতে static মেথড কল করার সঠিক সিনট্যাক্স। ক্লাসের static main মেথডটিকে কল করছেন। এটি জাভাতে static মেথড কল করার সঠিক সিনট্যাক্স।)
 2.Ans: Yes
 3.Ans: com.exam.oca package
-4.Ans: Position of static and public can be changed but return type must come just before the method name.
+4.Ans: A,B (Position of static and public can be changed but return type must come just before the method name. The JVM requires the main method to be static so it can be called without an instance of the class.)
 5.Ans: Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.  Output will always be ONE.
 6.Ans:  Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
        Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
