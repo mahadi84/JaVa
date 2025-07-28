@@ -117,18 +117,16 @@ What is the result?
     javac Test.java
     java Test Good
 
-    Does it compile? What is the result?
+    Does it compile?  This is how, can we assign the value of an array? What is the result?
 
-9.Consider codes of 3 java files:
+9. Consider the codes of 3 Java files:
     //Planet.java
     package com.skillcertprokhattry.galaxy;
-
     public class Planet {
     String name;
     public Planet(String name) {
     this.name = name;
     }
-
     public String toString() {
     return “Planet: ” + name;
     }
@@ -136,7 +134,6 @@ What is the result?
 
     //Creator.java
     package com.skillcertprokhattry.oca;
-
     public class Creator {
     public static Planet create() {
     return new Planet(“Earth”);
@@ -145,7 +142,6 @@ What is the result?
 
     //TestCreator.java
     package com.skillcertprokhattry.oca.test;
-
     public class TestCreator {
     public static void main(String[] args) {
     System.out.println(Creator.create());
@@ -170,19 +166,16 @@ What is the result?
 
 
 10. What will be the result of compiling and executing Test class?
-    package com.skillcertpro.oca;
     public class Test {
-    public static void main(String[] args) {
-    byte b1 = (byte) (127 + 21);
-    System.out.println(b1);
-    }
+	    public static void main(String[] args) {
+	      byte b1 = (byte) (127 + 21);
+	      System.out.println(b1);
+	    }
     }
     choose: 148 Or Compilation error  Or-108 Or -128?
 
-    11. What will be the result of compiling and executing TestStudent class?
+11. What will be the result of compiling and executing TestStudent class?
     //TestStudent.java
-    package com.skillcertpro.oca;
-
     class Student {
     String name;
     int age;
@@ -196,7 +189,8 @@ What is the result?
     System.out.println(stud.name + stud.height + stud.result + stud.age);
     }
     }
-    12. public class Pen {
+
+12. public class Pen {
     public static void main(String[] args) {
     Pen p1 = new Pen(); //Line 1
     Pen p2 = new Pen(); //Line 2
