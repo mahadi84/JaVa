@@ -443,7 +443,7 @@ What is the result?
 
 
 ------------------------------------------------- Answers ---------------------------------------------------------
-1.Ans: Welcome Guest!
+1.Ans: Welcome Guest! (Message (Message.main()) ক্লাসের static main মেথডটিকে কল করছেন। এটি জাভাতে static মেথড কল করার সঠিক সিনট্যাক্স। ক্লাসের static main মেথডটিকে কল করছেন। এটি জাভাতে static মেথড কল করার সঠিক সিনট্যাক্স।)
 2.Ans: Yes
 3.Ans: com.exam.oca package
 4.Ans: Position of static and public can be changed but return type must come just before the method name.
