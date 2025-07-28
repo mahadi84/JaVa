@@ -228,325 +228,325 @@ System.out.println(a);
     What is the result of compiling and executing Test class?
 
 17.What will be the result of compiling and executing Test class?
-public class Test {
-public static void main(String[] args) {
-char [][] arr = {
-{‘A’, ‘B’, ‘C’},
-{‘D’, ‘E’, ‘F’},
-{‘G’, ‘H’, ‘I’}
-};
+    public class Test {
+    public static void main(String[] args) {
+    char [][] arr = {
+    {‘A’, ‘B’, ‘C’},
+    {‘D’, ‘E’, ‘F’},
+    {‘G’, ‘H’, ‘I’}
+    };
 
-for(int i = 0; i < arr.length; i++) { for(int j = 0; j < arr[i].length; j++) { System.out.print(arr[i][1]); } System.out.println(); } } }
+    for(int i = 0; i < arr.length; i++) { for(int j = 0; j < arr[i].length; j++) { System.out.print(arr[i][1]); } System.out.println(); } } }
 
- -ABC DEF GHI
- -BBB EEE HHH
- -AAA DDD GGG
- -CCC FFF III
+     -ABC DEF GHI
+     -BBB EEE HHH
+     -AAA DDD GGG
+     -CCC FFF III
 
 18.What will be the result of compiling and executing Test class?
-public class Test {
-public static void main(String[] args) {
-int [] arr1 = {5, 10, 15};
-int [] arr2 = {‘A’, ‘B’};
-arr1 = arr2;
-System.out.println(arr1.length + arr2.length);
-}
-}
+    public class Test {
+    public static void main(String[] args) {
+    int [] arr1 = {5, 10, 15};
+    int [] arr2 = {‘A’, ‘B’};
+    arr1 = arr2;
+    System.out.println(arr1.length + arr2.length);
+    }
+    }
 
- Compilation error
- An exception is thrown at runtime
-- 0
-- 4
-- 6
-- 5
+     Compilation error
+     An exception is thrown at runtime
+    - 0
+    - 4
+    - 6
+    - 5
 
 19.What will be the result of compiling and executing Test class?
-    public class Test {
-    public static void main(String[] args) {
-    int [] arr1 = {1, 2, 3};
-    char [] arr2 = {‘A’, ‘B’}; //ASCII code of ‘A’ is 65, ‘B’ is 66
-    arr1 = arr2;
-    for(int i = 0; i < arr1.length; i++) { System.out.print(arr1[i] + " "); } } }
-
-    -1 2 2003
-    -A B
-    -65 66
-    -Compilation error
-20.What will be the result of compiling and executing Test class?
-public class Test {
-public static void main(String[] args) {
-String [] arr = new String[1];
-System.out.println(arr[0].isEmpty());
-}
-}
-
- -TRUE
- -FALSE
- -NullPointerException is thrown at runtime
- -ArrayIndexOutOfBoundsException is thrown at runtime
-
-21.Given code:
-package com.skillcertpro.oca;
-
-public class Test {
-public static void main(String[] args) {
-String [] arr = {“I”, “N”, “S”, “E”, “R”, “T”};
-for(/*INSERT*/) {
-if (n % 2 == 0) {
-continue;
-}
-System.out.print(arr[n]); //Line n1
-}
-}
-}
-
-And below options:
-1. int n = 0; n < arr.length; n += 1 2. int n = 0; n <= arr.length; n += 1 3. int n = 1; n < arr.length; n += 2 4. int n = 1; n <= arr.length; n += 2 How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
-    -Only one option
-    -Only two options
-    -Only three options
-    -All four options
-    -None of the other options
-
-22.public class Test {
-    public static void main(String[] args) {
-    int [] arr = {1, 2, 3, 4, 5};
-    int x = 0;
-    for(/*INSERT*/) {
-    x += arr[n];
-    }
-    System.out.println(x);
-    }
-    }
-    Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
-
-    -int n = 0; n < arr.length; n++ 
-    -int n = 0; n < arr.length; n += 2 
-    -int n = 3; n < arr.length; n++ 
-    -int n = 1; n < arr.length - 1; n++ 
-    -int n = 1; n < arr.length; n += 2 
-
-23.What will be the result of compiling and executing Test class?
         public class Test {
         public static void main(String[] args) {
-        String [] arr = {“A”, “B”, “C”, “D”};
-        arr[0] = arr[1];
-        arr[1] = “E”;
-        for(String s : arr) {
-        System.out.print(s + ” “);
-        }
-        }
-        }
+        int [] arr1 = {1, 2, 3};
+        char [] arr2 = {‘A’, ‘B’}; //ASCII code of ‘A’ is 65, ‘B’ is 66
+        arr1 = arr2;
+        for(int i = 0; i < arr1.length; i++) { System.out.print(arr1[i] + " "); } } }
+
+        -1 2 2003
+        -A B
+        -65 66
         -Compilation error
-        -An exception is thrown at runtime
-        -B E C D
-        -E E C D
-        -A E C D
-24.Consider below code of Test.java file:
+20.What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
-    String arr1 [], arr2, arr3 = null; //Line n1
-    arr1 = new String[2];
-    arr1[0] = “A”;
-    arr1[1] = “B”;
-    arr2 = arr3 = arr1; //Line n2
-    log(arr2); //Line n3
-    }
-
-    private static void log(String… vals) {
-    for(String s : vals)
-    System.out.print(s);
+    String [] arr = new String[1];
+    System.out.println(arr[0].isEmpty());
     }
     }
 
-    What will be the result of compiling and executing Test class?
+     -TRUE
+     -FALSE
+     -NullPointerException is thrown at runtime
+     -ArrayIndexOutOfBoundsException is thrown at runtime
 
-    -Line n1 causes compilation error
-    -Line n2 causes compilation error
-    -Line n3 causes compilation error
-    -It executes successfully and prints AB on to the console
-    -It executes successfully and prints BA on to the console
-    -It executes successfully and prints A on to the console
+21.Given code:
+    package com.skillcertpro.oca;
+
+    public class Test {
+    public static void main(String[] args) {
+    String [] arr = {“I”, “N”, “S”, “E”, “R”, “T”};
+    for(/*INSERT*/) {
+    if (n % 2 == 0) {
+    continue;
+    }
+    System.out.print(arr[n]); //Line n1
+    }
+    }
+    }
+
+    And below options:
+    1. int n = 0; n < arr.length; n += 1 2. int n = 0; n <= arr.length; n += 1 3. int n = 1; n < arr.length; n += 2 4. int n = 1; n <= arr.length; n += 2 How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
+        -Only one option
+        -Only two options
+        -Only three options
+        -All four options
+        -None of the other options
+
+22.public class Test {
+        public static void main(String[] args) {
+        int [] arr = {1, 2, 3, 4, 5};
+        int x = 0;
+        for(/*INSERT*/) {
+        x += arr[n];
+        }
+        System.out.println(x);
+        }
+        }
+        Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
+
+        -int n = 0; n < arr.length; n++ 
+        -int n = 0; n < arr.length; n += 2 
+        -int n = 3; n < arr.length; n++ 
+        -int n = 1; n < arr.length - 1; n++ 
+        -int n = 1; n < arr.length; n += 2 
+
+23.What will be the result of compiling and executing Test class?
+            public class Test {
+            public static void main(String[] args) {
+            String [] arr = {“A”, “B”, “C”, “D”};
+            arr[0] = arr[1];
+            arr[1] = “E”;
+            for(String s : arr) {
+            System.out.print(s + ” “);
+            }
+            }
+            }
+            -Compilation error
+            -An exception is thrown at runtime
+            -B E C D
+            -E E C D
+            -A E C D
+            der below code of Test.java file:
+        public class Test {
+        public static void main(String[] args) {
+        String arr1 [], arr2, arr3 = null; //Line n1
+        arr1 = new String[2];
+        arr1[0] = “A”;
+        arr1[1] = “B”;
+        arr2 = arr3 = arr1; //Line n2
+        log(arr2); //Line n3
+        }
+
+        private static void log(String… vals) {
+        for(String s : vals)
+        System.out.print(s);
+        }
+        }
+
+        What will be the result of compiling and executing Test class?
+
+        -Line n1 causes compilation error
+        -Line n2 causes compilation error
+        -Line n3 causes compilation error
+        -It executes successfully and prints AB on to the console
+        -It executes successfully and prints BA on to the console
+        -It executes successfully and prints A on to the console
 
 25.public class Test {
-    public static void main(String[] args) {
-    int [] arr = {10, 20, 30}; //Line n1
-    int i = 0;
-    arr[i++] = arr[++i] = 40; //Line n2
-    for(int x : arr)
-    System.out.println(x);
-    }
-    }
+        public static void main(String[] args) {
+        int [] arr = {10, 20, 30}; //Line n1
+        int i = 0;
+        arr[i++] = arr[++i] = 40; //Line n2
+        for(int x : arr)
+        System.out.println(x);
+        }
+        }
 
-    What will be the result of compiling and executing Test class?
+        What will be the result of compiling and executing Test class?
 
-    -Compilation error at Line n2
-    -An exception is thrown by Line n2
-    -10 20 30
-    -10 40 30
-    -40 40 30
-    -40 20 40
+        -Compilation error at Line n2
+        -An exception is thrown by Line n2
+        -10 20 30
+        -10 40 30
+        -40 40 30
+        -40 20 40
 
 26.public class Test {
-    public static void main(String[] args) {
-    int var = 3;
-    String [][] arr = new String[–var][var++]; //Line n1
-    arr[1][1] = “X”; //Line n2
-    arr[1][2] = “Y”; //Line n3
-    for(String [] arr1 : arr) {
-    for(String s : arr1) {
-    if(s != null)
-    System.out.print(s);
-    }
-    }
-    }
-    }
+        public static void main(String[] args) {
+        int var = 3;
+        String [][] arr = new String[–var][var++]; //Line n1
+        arr[1][1] = “X”; //Line n2
+        arr[1][2] = “Y”; //Line n3
+        for(String [] arr1 : arr) {
+        for(String s : arr1) {
+        if(s != null)
+        System.out.print(s);
+        }
+        }
+        }
+        }
 
-    What will be the result of compiling and executing Test class?
-    -It causes compilation error at single statement
-    -It causes compilation error at multiple statements
-    -It throws an exception at runtime
-    -It prints XY on to the console and program terminates successfully
-    -It prints XY on to the console and program terminates abruptly
+        What will be the result of compiling and executing Test class?
+        -It causes compilation error at single statement
+        -It causes compilation error at multiple statements
+        -It throws an exception at runtime
+        -It prints XY on to the console and program terminates successfully
+        -It prints XY on to the console and program terminates abruptly
 
 27.public class Test {
-public static void main(String[] args) {
-int[][] arr = new int[x][y]; //Line n1
-arr[1][4] = 100;
-arr[6][6] = 200;
-arr[3][6] = 300;
-}
-}
+    public static void main(String[] args) {
+    int[][] arr = new int[x][y]; //Line n1
+    arr[1][4] = 100;
+    arr[6][6] = 200;
+    arr[3][6] = 300;
+    }
+    }
 
-And below combination of x and y values:
-1. x = 6, y = 6
-2. x = 2, y = 5
-3. x = 4, y = 7
-4. x = 7, y = 7
-5. x = 8, y = 8
-6. x = 0, y = 0
-7. x = -1, y = -1
+    And below combination of x and y values:
+    1. x = 6, y = 6
+    2. x = 2, y = 5
+    3. x = 4, y = 7
+    4. x = 7, y = 7
+    5. x = 8, y = 8
+    6. x = 0, y = 0
+    7. x = -1, y = -1
 
-How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java file compiles successfully?
+    How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java file compiles successfully?
 
- All 7 pairs
- 6 pairs
- 5 pairs
- 4 pairs
- 3 pairs
- 2 pairs
+     All 7 pairs
+     6 pairs
+     5 pairs
+     4 pairs
+     3 pairs
+     2 pairs
 
 28.public class Test {
-    public static void main(String[] args) {
-    final boolean flag = false;
-    while(flag) {
-    System.out.println(“Good Morning!”);
-    }
-    }
-    }
+        public static void main(String[] args) {
+        final boolean flag = false;
+        while(flag) {
+        System.out.println(“Good Morning!”);
+        }
+        }
+        }
 
-    -Program compiles and executes successfully but produces no output
-    -Compilation error
-    -Infinite loop
-    -It will print "Good Morning!" once
+        -Program compiles and executes successfully but produces no output
+        -Compilation error
+        -Infinite loop
+        -It will print "Good Morning!" once
 
 29.Which of the following statement is correct for below code?
-    public class Test {
-    public static void main(String[] args) {
-    final boolean flag;
-    flag = false;
-    while(flag) {
-    System.out.println(“Good Morning!”);
-    }
-    }
-    }
+        public class Test {
+        public static void main(String[] args) {
+        final boolean flag;
+        flag = false;
+        while(flag) {
+        System.out.println(“Good Morning!”);
+        }
+        }
+        }
 
 30.public class Test {
-public static void main(String[] args) {
-do {
-System.out.println(100);
-} while (true);
+    public static void main(String[] args) {
+    do {
+    System.out.println(100);
+    } while (true);
 
-System.out.println(“Bye”);
-}
-}
+    System.out.println(“Bye”);
+    }
+    }
 
- a.Compiles successfully and prints "Bye"
- b.Compiles successfully and prints 100 in infinite loop
- c.Unreachable code compilation error
- d.100
- e.Bye
+     a.Compiles successfully and prints "Bye"
+     b.Compiles successfully and prints 100 in infinite loop
+     c.Unreachable code compilation error
+     d.100
+     e.Bye
 
- 31.public class Test {
-public static void main(String[] args) {
-int start = 1;
-int sum = 0;
-do {
-if(start % 2 == 0) {
-continue;
-}
-sum += start;
-} while(++start <= 10); System.out.println(sum); } }
+31.public class Test {
+    public static void main(String[] args) {
+    int start = 1;
+    int sum = 0;
+    do {
+    if(start % 2 == 0) {
+    continue;
+    }
+    sum += start;
+    } while(++start <= 10); System.out.println(sum); } }
 
- -25
- -55
- -Compilation error
- -24
+     -25
+     -55
+     -Compilation error
+     -24
 
- 32. public class Test {
-public static void main(String[] args) {
-int i;
-for(i=0; i<=2; i++){} System.out.println(i); } }
+32. public class Test {
+    public static void main(String[] args) {
+    int i;
+    for(i=0; i<=2; i++){} System.out.println(i); } }
 
-- 0
-- 2
-- 3
-- Compilation error
+    - 0
+    - 2
+    - 3
+    - Compilation error
 
- 32.public class Test {
-public static void main(String[] args) {
-int i;
-outer:
-do {
-i = 5;
-inner:
-while (true) {
-System.out.println(i–);
-if (i == 4) {
-break outer;
-}
-}
-} while (true);
-}
-}
+33.public class Test {
+    public static void main(String[] args) {
+    int i;
+    outer:
+    do {
+    i = 5;
+    inner:
+    while (true) {
+    System.out.println(i–);
+    if (i == 4) {
+    break outer;
+    }
+    }
+    } while (true);
+    }
+    }
 
- -Prints 5 in an infinite loop.
- -Prints 5 once.
- -Compilation error.
- -5 3 2 1
+     -Prints 5 in an infinite loop.
+     -Prints 5 once.
+     -Compilation error.
+     -5 3 2 1
 
- 33.public class Test {
-public static void main(String[] args) {
-String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
-/*INSERT*/
-}
-}
-For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
-Select ALL that apply.
+34.public class Test {
+    public static void main(String[] args) {
+    String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
+    /*INSERT*/
+    }
+    }
+    For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
+    Select ALL that apply.
 
- -for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- -for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
+     -for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
 
- 34. public class Test {
-public static void main(String[] args) {
-int [] arr = {2, 1, 0};
-for(int i : arr) {
-System.out.println(arr[i]);
-}
-}
-}
+     34. public class Test {
+    public static void main(String[] args) {
+    int [] arr = {2, 1, 0};
+    for(int i : arr) {
+    System.out.println(arr[i]);
+    }
+    }
+    }
 
  -2 1 0
  -0 1 2
