@@ -462,14 +462,15 @@ What is the result?
 14.Ans: java.lang
 15.Ans: >  >0.0 >0.0
 16.Ans: Point(10, 20);Point(0, 20)  **x=this.x(default value of x 0)
-	public String toString() { //works return type fine as int in the text file
-	return “Point(” + x + “, ” + y + “)”;
+	public String toString() {
+	return “Point(” + x + “, ” + y + “)”;  //works return type fine as int in the text file
 	}
 
 17.Ans: -Counter c1 = new Counter();এই লাইনটি মেমরিতে প্রথম Counter অবজেক্টটি তৈরি করে। এই অবজেক্টের রেফারেন্স c1 ভেরিয়েবলে সংরক্ষণ করা হয়।
 	-Counter c3 = null; এই লাইনটি একটি Counter রেফারেন্স ভেরিয়েবল c3 ঘোষণা করে এবং এটিকে null এ ইনিশিয়ালাইজ করে। এটি কোনো Counter অবজেক্ট তৈরি করে না।
-	-increment(c2);এই লাইনটি increment মেথডকে কল করে, c2 রেফারেন্সটি পাস করে। increment মেথডের ভিতরে, counter.count++ আবার একই Counter অবজেক্টের count ফিল্ডকে পরিবর্তন করে।            	 এই মেথড কলের সময় কোনো নতুন অবজেক্ট তৈরি হয় না।
-	-main মেথডের পুরো এক্সিকিউশনের সময়, শুধুমাত্র একটি new Counter() কল করা হয়েছে। অতএব, মেমরিতে শুধুমাত্র একটি Counter অবজেক্ট তৈরি হয়।	
+	-increment(c2);এই লাইনটি increment মেথডকে কল করে, c2 রেফারেন্সটি পাস করে। increment মেথডের ভিতরে, counter.count++ আবার একই Counter অবজেক্টের count ফিল্ডকে পরিবর্তন করে। এই মেথড কলের সময় কোনো নতুন অবজেক্ট তৈরি হয় না।
+	-main মেথডের পুরো এক্সিকিউশনের সময়, শুধুমাত্র একটি new Counter() কল করা হয়েছে। অতএব, মেমরিতে শুধুমাত্র একটি Counter অবজেক্ট তৈরি হয়।
+
 18.Ans: Boolean class code uses equalsIgnoreCase method to validate the passed String, so if passed String is “true” (‘t’, ‘r’, ‘u’ and ‘e’ can be in any case), 
         then boolean value stored in Boolean object is true otherwise false.
         b1 stores true, b2 stores false, b3 stores false and as b4 is of reference type, hence it can store null as well.
