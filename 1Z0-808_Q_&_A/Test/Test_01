@@ -201,9 +201,8 @@ What is the result?
 
 
 13. How many objects of Pen class are eligible for Garbage Collection at Line 4?
-
-    class Pen {}
-
+    
+class Pen {}
     public class TestPen {
     public static void main(String[] args) {
     new Pen(); //Line 1
@@ -450,7 +449,11 @@ What is the result?
 	 =10010100 = -108.
 
 11.Ans: null0.0false0
-12.Ans: after line 3
+12.Ans: লাইন ১ এ তৈরি Pen অবজেক্টটি , 
+	-p1 = p2; //লাইন ৩ এ স্টেটমেন্টটি এক্সিকিউট হওয়ার সাথে সাথে গার্বেজ কালেকশনের জন্য যোগ্য হয়ে ওঠে।
+	-p1 = null; // লাইন ৪
+	* এর মানে হল, p1 আর কোনো Pen অবজেক্টকে নির্দেশ করছে না।
+	* অবজেক্ট B এখনও p2 এর মাধ্যমে অ্যাক্সেসযোগ্য। অবজেক্ট A এর GC এর যোগ্যতা লাইন ৩ থেকে অপরিবর্তিত থাকে।
 13.Ans: লাইন ৪: System.out.println(“About to end.”);
 	এই মুহূর্তে:
 	লাইন ১ এ তৈরি করা Pen অবজেক্টটি গার্বেজ কালেকশনের জন্য যোগ্য (এটি কখনই রেফারেন্স করা হয়নি)।
