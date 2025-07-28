@@ -238,10 +238,10 @@ char [][] arr = {
 
 for(int i = 0; i < arr.length; i++) { for(int j = 0; j < arr[i].length; j++) { System.out.print(arr[i][1]); } System.out.println(); } } }
 
- ABC DEF GHI
- BBB EEE HHH
- AAA DDD GGG
- CCC FFF III
+ -ABC DEF GHI
+ -BBB EEE HHH
+ -AAA DDD GGG
+ -CCC FFF III
 
 18.What will be the result of compiling and executing Test class?
 public class Test {
@@ -255,10 +255,10 @@ System.out.println(arr1.length + arr2.length);
 
  Compilation error
  An exception is thrown at runtime
- 0
- 4
- 6
- 5
+- 0
+- 4
+- 6
+- 5
 
 19.What will be the result of compiling and executing Test class?
     public class Test {
@@ -268,10 +268,10 @@ System.out.println(arr1.length + arr2.length);
     arr1 = arr2;
     for(int i = 0; i < arr1.length; i++) { System.out.print(arr1[i] + " "); } } }
 
-    1 2 2003
-    A B
-    65 66
-    Compilation error
+    -1 2 2003
+    -A B
+    -65 66
+    -Compilation error
 20.What will be the result of compiling and executing Test class?
 public class Test {
 public static void main(String[] args) {
@@ -280,10 +280,10 @@ System.out.println(arr[0].isEmpty());
 }
 }
 
- TRUE
- FALSE
- NullPointerException is thrown at runtime
- ArrayIndexOutOfBoundsException is thrown at runtime
+ -TRUE
+ -FALSE
+ -NullPointerException is thrown at runtime
+ -ArrayIndexOutOfBoundsException is thrown at runtime
 
 21.Given code:
 package com.skillcertpro.oca;
@@ -302,11 +302,11 @@ System.out.print(arr[n]); //Line n1
 
 And below options:
 1. int n = 0; n < arr.length; n += 1 2. int n = 0; n <= arr.length; n += 1 3. int n = 1; n < arr.length; n += 2 4. int n = 1; n <= arr.length; n += 2 How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
-    Only one option
-    Only two options
-    Only three options
-    All four options
-    None of the other options
+    -Only one option
+    -Only two options
+    -Only three options
+    -All four options
+    -None of the other options
 
 22.public class Test {
     public static void main(String[] args) {
@@ -320,11 +320,11 @@ And below options:
     }
     Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
 
-    int n = 0; n < arr.length; n++ 
-    int n = 0; n < arr.length; n += 2 
-    int n = 3; n < arr.length; n++ 
-    int n = 1; n < arr.length - 1; n++ 
-    int n = 1; n < arr.length; n += 2 
+    -int n = 0; n < arr.length; n++ 
+    -int n = 0; n < arr.length; n += 2 
+    -int n = 3; n < arr.length; n++ 
+    -int n = 1; n < arr.length - 1; n++ 
+    -int n = 1; n < arr.length; n += 2 
 
 23.What will be the result of compiling and executing Test class?
         public class Test {
@@ -337,11 +337,11 @@ And below options:
         }
         }
         }
-        Compilation error
-        An exception is thrown at runtime
-        B E C D
-        E E C D
-        A E C D
+        -Compilation error
+        -An exception is thrown at runtime
+        -B E C D
+        -E E C D
+        -A E C D
 24.Consider below code of Test.java file:
     public class Test {
     public static void main(String[] args) {
@@ -361,12 +361,12 @@ And below options:
 
     What will be the result of compiling and executing Test class?
 
-    Line n1 causes compilation error
-    Line n2 causes compilation error
-    Line n3 causes compilation error
-    It executes successfully and prints AB on to the console
-    It executes successfully and prints BA on to the console
-    It executes successfully and prints A on to the console
+    -Line n1 causes compilation error
+    -Line n2 causes compilation error
+    -Line n3 causes compilation error
+    -It executes successfully and prints AB on to the console
+    -It executes successfully and prints BA on to the console
+    -It executes successfully and prints A on to the console
 
 25.public class Test {
     public static void main(String[] args) {
@@ -380,12 +380,12 @@ And below options:
 
     What will be the result of compiling and executing Test class?
 
-    Compilation error at Line n2
-    An exception is thrown by Line n2
-    10 20 30
-    10 40 30
-    40 40 30
-    40 20 40
+    -Compilation error at Line n2
+    -An exception is thrown by Line n2
+    -10 20 30
+    -10 40 30
+    -40 40 30
+    -40 20 40
 
 26.public class Test {
     public static void main(String[] args) {
@@ -403,11 +403,11 @@ And below options:
     }
 
     What will be the result of compiling and executing Test class?
-    It causes compilation error at single statement
-    It causes compilation error at multiple statements
-    It throws an exception at runtime
-    It prints XY on to the console and program terminates successfully
-    It prints XY on to the console and program terminates abruptly
+    -It causes compilation error at single statement
+    -It causes compilation error at multiple statements
+    -It throws an exception at runtime
+    -It prints XY on to the console and program terminates successfully
+    -It prints XY on to the console and program terminates abruptly
 
 27.public class Test {
 public static void main(String[] args) {
@@ -445,10 +445,10 @@ How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java
     }
     }
 
-    Program compiles and executes successfully but produces no output
-    Compilation error
-    Infinite loop
-    It will print "Good Morning!" once
+    -Program compiles and executes successfully but produces no output
+    -Compilation error
+    -Infinite loop
+    -It will print "Good Morning!" once
 
 29.Which of the following statement is correct for below code?
     public class Test {
@@ -488,20 +488,20 @@ continue;
 sum += start;
 } while(++start <= 10); System.out.println(sum); } }
 
- 25
- 55
- Compilation error
- 24
+ -25
+ -55
+ -Compilation error
+ -24
 
  32. public class Test {
 public static void main(String[] args) {
 int i;
 for(i=0; i<=2; i++){} System.out.println(i); } }
 
- 0
- 2
- 3
- Compilation error
+- 0
+- 2
+- 3
+- Compilation error
 
  32.public class Test {
 public static void main(String[] args) {
@@ -520,10 +520,10 @@ break outer;
 }
 }
 
- Prints 5 in an infinite loop.
- Prints 5 once.
- Compilation error.
- 5 3 2 1
+ -Prints 5 in an infinite loop.
+ -Prints 5 once.
+ -Compilation error.
+ -5 3 2 1
 
  33.public class Test {
 public static void main(String[] args) {
@@ -534,10 +534,10 @@ String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
 For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
 Select ALL that apply.
 
- for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
- for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
+ -for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ -for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+ -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
 
  34. public class Test {
 public static void main(String[] args) {
@@ -548,44 +548,174 @@ System.out.println(arr[i]);
 }
 }
 
- 2 1 0
- 0 1 2
- Compilation error
- ArrayIndexOutOfBoundsException is thrown at runtime
+ -2 1 0
+ -0 1 2
+ -Compilation error
+ -ArrayIndexOutOfBoundsException is thrown at runtime
 
 ----------------
 
 
-1.ans: x is equal to 2
-2.ans: 120
-3.ans: byte range is from -128 to 127. But in case expression [case 200], 200 is outside byte range and hence compilation error.
-4.ans: ডিফল্টে কোনো ব্রেক স্টেটমেন্ট না থাকায়, নিয়ন্ত্রণ ফল-থ্রুতে প্রবেশ করে এবং ব্রেক; না পাওয়া পর্যন্ত অথবা সুইচ ব্লক শেষ না হওয়া পর্যন্ত বাকি ব্লকগুলি কার্যকর করে।
-        সুতরাং, এই ক্ষেত্রে, এটি একে একে APPLE, MANGO, BANANA প্রিন্ট করে এবং ব্রেক; স্টেটমেন্ট সুইচ ব্লক থেকে নিয়ন্ত্রণ বাইরে নিয়ে যায়। এরপর মেইন মেথড শেষ হয় এবং প্রোগ্রাম সফলভাবে বন্ধ হয়।
-5.ans: MANGO BANANA
-6.ans: byte var = 10;Short var = 10; Integer var = 10; char var = 10; ***char uses 16 bits (2 Bytes) and its range is 0 to 65535 (no signed bit reserved) so it can easily store value 10. 
-7.ans: C. int var = '7';
-        -এখানে var একটি int টাইপের ভেরিয়েবল। যখন একটি ক্যারেক্টার লিটারেল ('7') একটি int ভেরিয়েবলে অ্যাসাইন করা হয়, তখন এর ASCII/Unicode মান অ্যাসাইন হয়। '7' এর ASCII মান হলো ৫৫।
-        -সুতরাং, var এর মান হবে ৫৫। switch(var) মানে switch(55)। case '7' মানে case 55। এক্ষেত্রে ৫৫ এবং ৫৫ মিলে যাবে এবং "Lucky no. 7" প্রিন্ট হবে।
-8.ans: কম্পাইল এবং এক্সিকিউশন সফল হবে, এবং কনসোলে AM প্রিন্ট হবে।
-9.ans: এখন, বিয়োগ চিহ্ন (-) অপারেটরটি a থেকে নেওয়া 100 মানটির উপর প্রয়োগ করা হবে। ফলে, এক্সপ্রেশনটির চূড়ান্ত মান হবে -100।
-10.ans: b.3
-11.ans:    a.TRUE
-12.ans:
-13.ans:
-14.ans:
-15.ans:
-16.ans:
-17.ans:
-18.ans:
-19.ans:
-20.ans:
-21.ans:
-22.ans:
-23.ans:
-24.ans:
-25.ans:
-26.ans:
-27.ans:
-28.ans:
-29.ans:
-30.ans:
+
+### Question 1  
+Output: x is equal to 2
+Explanation: `x = 2` matches `case 2`, so it prints `"x is equal to 2"` and breaks.
+
+### Question 2  
+Output: 120
+Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 30` (no `break`).  
+- `a` becomes `5  2  3  4 = 120`.
+
+### Question 3  
+Output: var is 100
+Explanation: `var = 100` matches `case 100` and prints `"var is 100"`, then breaks.
+
+### Question 4  
+Output: ANY FRUIT WILL DO  
+APPLE  
+MANGO  
+BANANA
+Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default` and falls through all cases until `break`.
+
+### Question 5  
+Output: MANGO  
+BANANA
+Explanation: `fruit = "Mango"` matches `case "Mango"`, prints `"MANGO"`, then falls through to `"BANANA"` and breaks.
+
+### Question 6  
+Correct Options (4):  
+- `int var = 10;`  
+- `short var = 10;`  
+- `byte var = 10;`  
+- `char var = 10;`  
+Explanation: Any of these will match `case 10` and print `"TEN"`.
+
+### Question 7  
+Correct Option:  
+C. `int var = '7';`  
+Explanation: `'7'` is a char (ASCII 55), but `case '7'` matches the char literal.
+
+### Question 8  
+Output: Compilation Error  
+Explanation: Ternary operator is incomplete (`?` without `:` for the second condition).
+
+### Question 9  
+Output: -100
+Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
+
+### Question 10  
+Output: 3
+Explanation: `a++ == 2` is `true`, so `res = true` (short-circuiting). `a` becomes `3`.
+
+### Question 11  
+Output: TRUE
+Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluates to `true`.
+
+### Question 12  
+Output: 5
+Explanation: `m(++a, a++)` passes `4` and `4` (post-increment), but `a` becomes `5` after the increments.
+
+### Question 13  
+Output: Compilation Error  
+Explanation: `status = false || status = true` is invalid (assignment in expression).
+
+### Question 14  
+Output: true
+Explanation: `i > 3` is `true`, and `true != false` is `true`.
+
+### Question 15  
+Output: false  
+true
+Explanation: Line n1: `(!flag1 == flag2 != flag3 == !flag4)` evaluates to `false`.  
+- Line n2: `flag1 = (flag2 != flag3 == !flag4)` assigns `true` to `flag1`.
+
+### Question 16  
+Output: Compilation Error  
+Explanation: Invalid syntax: `50 <= score < 60` is not allowed in Java.
+
+### Question 17  
+Output: BBB EEE HHH
+Explanation: The loop prints `arr[i][1]` (second column) for each row.
+
+### Question 18  
+Output: 4
+Explanation: `arr1 = arr2` makes both arrays point to the same object (`length = 2`). Total: `2 + 2 = 4`.
+
+### Question 19  
+Output: Compilation Error  
+Explanation: `int[]` cannot be assigned to `char[]`.
+
+### Question 20  
+Output: NullPointerException  
+Explanation: `arr[0]` is `null`, so `isEmpty()` throws an exception.
+
+### Question 21  
+Correct Options:  
+Only two options (1 and 3)  
+Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.length; n += 2`) print `NET` (indices 1, 3, 5).
+
+### Question 22  
+Correct Options (3):  
+- `int n = 0; n < arr.length; n += 2` (sums 1 + 3 + 5 = 9)  
+- `int n = 1; n < arr.length - 1; n++` (sums 2 + 3 + 4 = 9)  
+- `int n = 1; n < arr.length; n += 2` (sums 2 + 4 = 6, but not 9)  
+Correction: Only 2 options actually sum to 9 (first and second).
+
+### Question 23  
+Output: B E C D
+Explanation: `arr[0] = arr[1]` sets `arr[0] = "B"`, then `arr[1] = "E"`.
+
+### Question 24  
+Output: AB
+Explanation: `arr2` and `arr3` point to `arr1`, which holds `["A", "B"]`.
+
+### Question 25  
+Output: 40 40 30
+Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
+
+### Question 26  
+Output: ArrayIndexOutOfBoundsException  
+Explanation: `arr` is `2x2` (after `--var` and `var++`), so `arr[1][2]` is invalid.
+
+### Question 27  
+Correct Pairs:  
+4 pairs (3, 4, 5, 7)  
+Explanation: Valid pairs must accommodate `arr[6][6]` (min size `7x7`). Pairs 3, 4, 5, and 7 work (but 7 is invalid due to negative size).
+
+### Question 28  
+Output: No output (loop never executes)  
+Explanation: `flag = false`, so `while(flag)` is skipped.
+
+### Question 29  
+Output: No output (same as Q28)  
+Explanation: `flag` is `final` and `false`, so the loop is skipped.
+
+### Question 30  
+Output: Unreachable code error  
+Explanation: `while(true)` makes `System.out.println("Bye");` unreachable.
+
+### Question 31  
+Output: Infinite Loop  
+Explanation: `continue` skips `sum += start`, but `start` never increments, causing an infinite loop.
+
+### Question 32  
+Output: 3
+Explanation: Loop runs for `i = 0, 1, 2`, then exits when `i = 3`.
+
+### Question 33  
+Correct Options:  
+- `for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length; j++) System.out.print(fruits[i][j] + " ");`  
+- `for(String[] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");`  
+Explanation: These options correctly iterate and print all elements.
+
+### Question 34  
+Output: 0 1 2
+Explanation: `arr[i]` for `i = 2, 1, 0` prints `arr[2] = 0`, `arr[1] = 1`, `arr[0] = 2`.
+
+### Summary of Key Concepts:  
+- Switch Statements: Fall-through behavior, `default` case, and `break`.  
+- Loops: `for`, `while`, `do-while`, and infinite loops.  
+- Arrays: Indexing, assignment, and multi-dimensional arrays.  
+- Operators: Post-increment (`a++`), pre-increment (`++a`), ternary operator, and logical operators.  
+- Compilation Errors: Invalid syntax, unreachable code, and type mismatches.  
+
