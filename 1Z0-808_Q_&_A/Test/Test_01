@@ -270,7 +270,7 @@ What is the result?
     }
     On executing Counter class, how many Counter objects are created in the memory?
 
-18.public class Test {
+18. public class Test {
     public static void main(String[] args) {
     Boolean b1 = new Boolean(“tRuE”);
     Boolean b2 = new Boolean(“fAlSe”);
@@ -280,21 +280,17 @@ What is the result?
     }
     }
 
-19.What will be the result of compiling and executing Test class?
-
+19. What will be the result of compiling and executing Test class?
     public class Test {
-    private static void add(double d1, double d2) {
-    System.out.println(“double version: ” + (d1 + d2));
-    }
-
-    private static void add(Double d1, Double d2) {
-    System.out.println(“Double version: ” + (d1 + d2));
-    }
-
-    public static void main(String[] args) {
-    add(10.0, null);
-    }
-
+	    private static void add(double d1, double d2) {
+	    	System.out.println(“double version: ” + (d1 + d2));
+	    }	
+	    private static void add(Double d1, Double d2) {
+	    	System.out.println(“Double version: ” + (d1 + d2));
+	    }	
+	    public static void main(String[] args) {
+	    	add(10.0, null);
+	    }
     }
 20. What will be the result of compiling and executing Test class?
 
@@ -475,9 +471,9 @@ What is the result?
         then boolean value stored in Boolean object is true otherwise false.
         b1 stores true, b2 stores false, b3 stores false and as b4 is of reference type, hence it can store null as well.
         Output is: true:false:false:null
-19.Ans: throws NullPointerException.
-	add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type. So to match the method call, 10.0 is 	converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
-	But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); .
+19.Ans: add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type.
+        So to match the method call, 10.0 is converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
+	But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); throws NullPointerException..
 20.Ans: output null:null is printed
 	Array elements are initialized to their default values.
 	arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null.
