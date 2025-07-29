@@ -174,7 +174,7 @@
     System.out.println(i > 3 != false);
     What is the result?
 
-15.Consider below code of Test.java file:
+**15.Consider below code of Test.java file:
     public class Test {
     public static void main(String [] args) {
     boolean flag1 = true;
