@@ -125,7 +125,7 @@
      c.1
      d.Compilation error
 
-11.What will be the result of compiling and executing Test class? 
+11. What will be the result of compiling and executing Test class? 
     public class Test {
     public static void main(String [] args) {
     int a = 3;
@@ -135,6 +135,7 @@
     a.TRUE
     b.FALSE
     c. Compilation error
+
 12. What will be the result of compiling and executing Test class? 
     public class Test {
     public static void main(String [] args) {
@@ -142,12 +143,10 @@
     m(++a, a++);
     System.out.println(a);
     }
-
     private static void m(int i, int j) {
     i++;
     j–;
-    }
-    }
+    }}
 
     a.4
     b.5
@@ -164,12 +163,12 @@
         }
 
         What will be the result of compiling and executing Test class?
-
         a.TRUE FALSE
         b.FALSE TRUE
         c.TRUE TRUE
         d.FALSE FALSE
         e.Compilation error
+
 14.Consider below code snippet:
     int i = 10;
     System.out.println(i > 3 != false);
@@ -590,7 +589,10 @@ Explanation: `m(++a, a++)` passes `4` and `4` (post-increment), but `a` becomes 
 
 ### Question 13  
 Output: Compilation Error  
-Explanation: `status = false || status = true` is invalid (assignment in expression).
+Explanation: || এবং | অপারেটরগুলো বাম পাশে একটি বুলিয়ান মান (যেমন false) এবং ডান পাশে আরেকটি বুলিয়ান এক্সপ্রেশন আশা করে। 
+            কিন্তু status = true বা status = false অ্যাসাইনমেন্টগুলো একটি বুলিয়ান মান তৈরি করে, যা সরাসরি লজিক্যাল অপারেটরের অপারেন্ড হিসেবে ব্যবহার করা সম্ভব হয় না যেভাবে এখানে লেখার চেষ্টা করা হয়েছে।
+            - if I use (backet) like this, will work fine: System.out.println((status = false) || (status = true) | (status = false));
+
 
 ### Question 14  
 Output: true
