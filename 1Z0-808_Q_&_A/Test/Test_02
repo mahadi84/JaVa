@@ -4,11 +4,11 @@
     public static void main(String[] args) {
     int x = 2;
     switch (x) {
-    default:
-    System.out.println(“Still no idea what x is”);
-    case 2:
-    System.out.println(“x is equal to 2”);
-    break;
+        default:  System.out.println(“Still no idea what x is”);
+        case 2:   System.out.println(“x is equal to 2”);
+        break;
+    }}}
+
 2.What will be the output of compiling and executing the Test class?
     public class Test {
     public static void main(String[] args) {
@@ -20,24 +20,20 @@
     case 30:  a *= 4;
     }
     System.out.println(a);
-    }
-    }
+    }}
+
 3.What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
     byte var = 100;
     switch(var) {
-    case 100:
-    System.out.println(“var is 100”);
-    break;
-    case 200:
-    System.out.println(“var is 200”);
-    break;
-    default:
-    System.out.println(“In default”);
-    }
-    }
-    }
+        case 100: System.out.println(“var is 100”);
+        break;
+        case 200: System.out.println(“var is 200”);
+        break;
+        default: System.out.println(“In default”);
+    }}}
+
 4. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -48,53 +44,51 @@
     case “Mango”:  System.out.println(“MANGO”);
     case “Banana”: System.out.println(“BANANA”);
     break;
-    }
-    }
-    }
+    }}}
+
 5. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
     String fruit = new String(new char[] {‘M’, ‘a’, ‘n’, ‘g’, ‘o’});
     switch (fruit) {
-    default:  System.out.println(“ANY FRUIT WILL DO”);
-    case “Apple”:  System.out.println(“APPLE”);
-    case “Mango”:  System.out.println(“MANGO”);
-    case “Banana”: System.out.println(“BANANA”);
-    break;
-    }
-    }
-    }
-6.For the class Test, which options, if used to replace /*INSERT*/, will print TEN on to the console? Select 4 options.
+        default:  System.out.println(“ANY FRUIT WILL DO”);
+        case “Apple”:  System.out.println(“APPLE”);
+        case “Mango”:  System.out.println(“MANGO”);
+        case “Banana”: System.out.println(“BANANA”);
+        break;
+    }}}
+
+6. For the class Test, which options, if used to replace /*INSERT*/, will print TEN on to the console? Select 4 options.
     public class Test {
     public static void main(String[] args) {
     /*INSERT*/
     switch(var) {
-    case 10:
-    System.out.println(“TEN”);
+    case 10: System.out.println(“TEN”);
     break;
-    default:
-    System.out.println(“DEFAULT”);
-    }
-    }
-    }
+    default: System.out.println(“DEFAULT”);
+    }}}
 
-7.For the class Test, which option, if used to replace /*INSERT*/, will print “Lucky no. 7” on to the console?
+     a.byte var = 10; 
+     b.long var = 10; 
+     c.Short var = 10; 
+     d.Integer var = 10; 
+     e.char var = 10; 
+     f.double var = 0; 
+
+7. For the class Test, which option, if used to replace /*INSERT*/, will print “Lucky no. 7” on to the console?
     public class Test {
         public static void main(String[] args) {
         /*INSERT*/
-    switch(var) {
-        case ‘7’:
-    System.out.println(“Lucky no. 7”);
-    break;
-    default:
-    System.out.println(“DEFAULT”);
-    }
-    }
-    }
+        switch(var) {
+            case ‘7’: System.out.println(“Lucky no. 7”);
+            break;
+            default: System.out.println(“DEFAULT”);
+    }}}
      A. int var = 7; 
      B. Integer var = 7; 
      C. int var = '7'; 
      D. None of the other options
+
 8. What will be the result of compiling and executing Test class?
     import java.time.LocalTime;
     public class Test {
@@ -102,9 +96,9 @@
     LocalTime time = LocalTime.of(16, 40);
     String amPm = time.getHour() >= 12 ? (time.getHour() == 12) ? “PM” : “AM”;
     System.out.println(amPm);
-    }
-    }
-9.What will be the result of compiling and executing Test class?
+    }}
+
+9. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String [] args) {
     int a = 100;
@@ -112,26 +106,24 @@
     }
     }
     
-    a.Compilation error
+    a. Compilation error
     b.-100
     c.-101
     d. 99
+
 10. What will be the result of compiling and executing Test class?
-package com.skillcertpro.oca;
-
-public class Test {
-public static void main(String [] args) {
-int a = 2;
-boolean res = false;
-res = a++ == 2 || –a == 2 && –a == 2;
-System.out.println(a);
-}
-}
-
- a.2
- b.3
- c.1
- d.Compilation error
+    public class Test {
+    public static void main(String [] args) {
+        int a = 2;
+        boolean res = false;
+        res = a++ == 2 || –a == 2 && –a == 2; //(-a==2)=(-3 == 2)
+        System.out.println(a);
+    }}
+    
+     a.2
+     b.3
+     c.1
+     d.Compilation error
 
 11.What will be the result of compiling and executing Test class? 
     public class Test {
@@ -557,7 +549,7 @@ Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 
 
 ### Question 3  
 Output: a compile-time error
-Explanation: case 200:: In the switch statement, one of the case labels is 200. Since 200 is outside the valid range for a byte variable, the Java compiler will flag this as an "incompatible types" error.
+Explanation: case 200:: সুইচ স্টেটমেন্টে, একটি case লেবেল হলো 200। যেহেতু 200 একটি byte ভ্যারিয়েবলের জন্য বৈধ সীমার(-128 to 127) বাইরে, তাই জাভা কম্পাইলার এটিকে "incompatible types" ত্রুটি হিসেবে চিহ্নিত করবে।
 
 ### Question 4  
 Output: ANY FRUIT WILL DO APPLE MANGO BANANA
@@ -568,19 +560,13 @@ Output: MANGO BANANA
 Explanation: যখন আপনি `new String(char[] value)` ব্যবহার করে একটি `String` তৈরি করেন, তখন এটি নির্দিষ্ট ক্যারেক্টার অ্যারে থেকে অক্ষরগুলি কপি করে একটি নতুন `String` তৈরি করে।
              -`String fruit = new String(new char[] {'M', 'a', 'n', 'g', 'o'});` এই লাইনটির ফলে `fruit` নামক ভ্যারিয়েবলটিতে "Mango" স্ট্রিং মান ধারণকারী একটি `String` অবজেক্ট তৈরি হবে।
 
-
 ### Question 6  
-Correct Options (4):  
-- `int var = 10;`  
-- `short var = 10;`  
-- `byte var = 10;`  
-- `char var = 10;`  
+Correct Options (4):  - `byte var = 10;`  - `short var = 10;`  - `Integer var = 10;`  - `char var = 10;`  
 Explanation: Any of these will match `case 10` and print `"TEN"`.
 
 ### Question 7  
-Correct Option:  
-C. `int var = '7';`  
-Explanation: `'7'` is a char (ASCII 55), but `case '7'` matches the char literal.
+Correct Option: C. int var = '7';  
+Explanation: char লিটারেলকে (যেমন '7') int ভ্যালুতে implicitly convert করা যায়, 
 
 ### Question 8  
 Output: Compilation Error  
@@ -592,7 +578,7 @@ Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
 
 ### Question 10  
 Output: 3
-Explanation: `a++ == 2` is `true`, so `res = true` (short-circuiting). `a` becomes `3`.
+Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2), || এর বাম পাশে true আছে, তাই ডান পাশের পুরো অংশটি (-a == 2 && -a == 2) কখনোই মূল্যায়ন করা হবে না।
 
 ### Question 11  
 Output: TRUE
