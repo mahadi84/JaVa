@@ -189,34 +189,38 @@
 
     What will be the result of compiling and executing Test class?
 
-16. Consider below code of Test.java file:
-    public class Test {
+16. public class Test {
     public static void main(String[] args) {
-    int score = 30; // Line n1
-    char grade = ‘F’; // Line n2
-    if (50 <= score < 60) // Line n3 grade = 'D'; else if (60 <= score < 70) // Line n4 grade = 'C'; else if (70 <= score < 80) // Line n5 grade = 'B'; else if (score >= 80)
-    grade = ‘A’;
-    System.out.println(grade);
-    }
-    }
+        int score = 30; // Line n1
+        char grade = 'F'; // Line n2
+        if (50 <= score < 60) // Line n3
+            grade = 'D';
+        else if (60 <= score < 70) // Line n4
+            grade = 'C';
+        else if (70 <= score < 80) // Line n5
+            grade = 'B';
+        else if (score >= 80)
+            grade = 'A';
+        System.out.println(grade);
+    }}
     a.Compilation error
     b.A
     c.B
     d.C
     e.D
-
     What is the result of compiling and executing Test class?
 
 17.What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
-    char [][] arr = {
-    {‘A’, ‘B’, ‘C’},
-    {‘D’, ‘E’, ‘F’},
-    {‘G’, ‘H’, ‘I’}
-    };
-
-    for(int i = 0; i < arr.length; i++) { for(int j = 0; j < arr[i].length; j++) { System.out.print(arr[i][1]); } System.out.println(); } } }
+    char [][] arr = { {‘A’, ‘B’, ‘C’}, {‘D’, ‘E’, ‘F’}, {‘G’, ‘H’, ‘I’} };
+      for(int i = 0; i < arr.length; i++) { 
+         for(int j = 0; j < arr[i].length; j++) { 
+              System.out.print(arr[i][1]); 
+          } 
+        System.out.println();
+      } 
+    } }
 
      -ABC DEF GHI
      -BBB EEE HHH
@@ -632,7 +636,8 @@ Explanation:
 
 ### Question 16  
 Output: Compilation Error  
-Explanation: Invalid syntax: `50 <= score < 60` is not allowed in Java.
+Explanation:জাভাতে, আপনি গাণিতিক অসমতা (mathematical inequalities) যেমন 50 <= score < 60 সরাসরি লিখতে পারবেন না। 
+            -এটি দুটি আলাদা শর্তের সম্মিলিত রূপ। জাভা কম্পাইলার এটিকে একটি একক বুলিয়ান এক্সপ্রেশন হিসেবে পার্স করবে না।
 
 ### Question 17  
 Output: BBB EEE HHH
