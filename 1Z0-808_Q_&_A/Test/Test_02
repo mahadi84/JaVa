@@ -285,12 +285,14 @@
     continue;
     }
     System.out.print(arr[n]); //Line n1
-    }
-    }
-    }
+    }}}
 
     And below options:
-    1. int n = 0; n < arr.length; n += 1 2. int n = 0; n <= arr.length; n += 1 3. int n = 1; n < arr.length; n += 2 4. int n = 1; n <= arr.length; n += 2 How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
+    1. int n = 0; n < arr.length; n +=1
+    2. int n = 0; n <= arr.length; n += 1
+    3. int n = 1; n < arr.length; n += 2
+    4. int n = 1; n <= arr.length; n += 2
+    How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
         -Only one option
         -Only two options
         -Only three options
@@ -666,8 +668,7 @@ Output: NullPointerException
 Explanation: `arr[0]` is `null`, so `isEmpty()` throws an exception.
 
 ### Question 21  
-Correct Options:  
-Only two options (1 and 3)  
+Correct Options: Only two options (1 and 3)  
 Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.length; n += 2`) print `NET` (indices 1, 3, 5).
 
 ### Question 22  
