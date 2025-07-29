@@ -15,12 +15,9 @@
     int a = 5;
     int x = 10;
     switch(x) {
-    case 10:
-    a *= 2;
-    case 20:
-    a *= 3;
-    case 30:
-    a *= 4;
+    case 10:  a *= 2;
+    case 20:  a *= 3;
+    case 30:  a *= 4;
     }
     System.out.println(a);
     }
@@ -46,14 +43,10 @@
     public static void main(String[] args) {
     String fruit = “mango”;
     switch (fruit) {
-    default:
-    System.out.println(“ANY FRUIT WILL DO”);
-    case “Apple”:
-    System.out.println(“APPLE”);
-    case “Mango”:
-    System.out.println(“MANGO”);
-    case “Banana”:
-    System.out.println(“BANANA”);
+    default:  System.out.println(“ANY FRUIT WILL DO”);
+    case “Apple”:  System.out.println(“APPLE”);
+    case “Mango”:  System.out.println(“MANGO”);
+    case “Banana”: System.out.println(“BANANA”);
     break;
     }
     }
@@ -63,14 +56,10 @@
     public static void main(String[] args) {
     String fruit = new String(new char[] {‘M’, ‘a’, ‘n’, ‘g’, ‘o’});
     switch (fruit) {
-    default:
-    System.out.println(“ANY FRUIT WILL DO”);
-    case “Apple”:
-    System.out.println(“APPLE”);
-    case “Mango”:
-    System.out.println(“MANGO”);
-    case “Banana”:
-    System.out.println(“BANANA”);
+    default:  System.out.println(“ANY FRUIT WILL DO”);
+    case “Apple”:  System.out.println(“APPLE”);
+    case “Mango”:  System.out.println(“MANGO”);
+    case “Banana”: System.out.println(“BANANA”);
     break;
     }
     }
@@ -567,20 +556,18 @@ Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 
 - `a` becomes `5  2  3  4 = 120`.
 
 ### Question 3  
-Output: var is 100
-Explanation: `var = 100` matches `case 100` and prints `"var is 100"`, then breaks.
+Output: a compile-time error
+Explanation: case 200:: In the switch statement, one of the case labels is 200. Since 200 is outside the valid range for a byte variable, the Java compiler will flag this as an "incompatible types" error.
 
 ### Question 4  
-Output: ANY FRUIT WILL DO  
-APPLE  
-MANGO  
-BANANA
+Output: ANY FRUIT WILL DO APPLE MANGO BANANA
 Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default` and falls through all cases until `break`.
 
 ### Question 5  
-Output: MANGO  
-BANANA
-Explanation: `fruit = "Mango"` matches `case "Mango"`, prints `"MANGO"`, then falls through to `"BANANA"` and breaks.
+Output: MANGO BANANA
+Explanation: যখন আপনি `new String(char[] value)` ব্যবহার করে একটি `String` তৈরি করেন, তখন এটি নির্দিষ্ট ক্যারেক্টার অ্যারে থেকে অক্ষরগুলি কপি করে একটি নতুন `String` তৈরি করে।
+             -`String fruit = new String(new char[] {'M', 'a', 'n', 'g', 'o'});` এই লাইনটির ফলে `fruit` নামক ভ্যারিয়েবলটিতে "Mango" স্ট্রিং মান ধারণকারী একটি `String` অবজেক্ট তৈরি হবে।
+
 
 ### Question 6  
 Correct Options (4):  
