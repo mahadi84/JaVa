@@ -1,53 +1,45 @@
 
-1.What will be the result of compiling and executing Test class?
-public class Test {
-public static void main(String[] args) {
-int [] arr = {3, 2, 1};
-for(int i : arr) {
-System.out.println(arr[i]);
-}
-}
-}
+1. What will be the result of compiling and executing Test class?
+   public class Test {
+   public static void main(String[] args) {
+   int [] arr = {3, 2, 1};
+   for(int i : arr) {
+   System.out.println(arr[i]);
+   }}}
 
-2.Consider below code of Test.java file:
-public class Test {
-public static void main(String[] args) {
-int elements = 0;
-Object [] arr = {“A”, “E”, “I”, new Object(), “O”, “U”}; //Line n1
-for(Object obj : arr) { //Line n2
-if(obj instanceof String) {
-continue;
-} else {
-break;
-}
-elements++; //Line n3
-}
-System.out.println(elements); //Line n4
-}
-}
-
-What will be the result of compiling and executing Test class?
-
-
- Compilation error at Line n1
- Compilation error at Line n2
- Compilation error at Line n3
- Compilation error at Line n4
+2. Consider below code of Test.java file:
+   public class Test {
+   public static void main(String[] args) {
+   int elements = 0;
+   Object [] arr = {“A”, “E”, “I”, new Object(), “O”, “U”}; //Line n1
+   for(Object obj : arr) { //Line n2
+      if(obj instanceof String) {
+      continue;
+      } else {
+      break;
+      }
+   elements++; //Line n3
+   }
+   System.out.println(elements); //Line n4
+   }}
+   What will be the result of compiling and executing Test class?
+    Compilation error at Line n1
+    Compilation error at Line n2
+    Compilation error at Line n3
+    Compilation error at Line n4
 
 3.Consider below code of Test.java file:
-public class Test {
-public static void main(String[] args) {
-String [][] arr = { {“%”, “$$”}, {“***”, “@@@@”, “#####”}};
-for(String [] str : arr) {
-for(String s : str) {
-System.out.println(s);
-if(s.length() == 4) //Line n1
-break; //Line n2
-}
-break; //Line n3
-}
-}
-}
+  public class Test {
+   public static void main(String[] args) {
+   String [][] arr = { {“%”, “$$”}, {“***”, “@@@@”, “#####”}};
+   for(String [] str : arr) {
+   for(String s : str) {
+   System.out.println(s);
+   if(s.length() == 4) //Line n1
+   break; //Line n2
+   }
+   break; //Line n3
+  }}}
 
 What will be the result of compiling and executing Test class?
 
@@ -699,8 +691,12 @@ What will be the result of compiling and executing above code?
                 তাই জাভা ভার্চুয়াল মেশিন (`JVM`) একটি `ArrayIndexOutOfBoundsException` নিক্ষেপ করবে এবং প্রোগ্রামটি বন্ধ হয়ে যাবে।
 
 
-2. Answer: 
-   Compilation error at Line n3(Unreachable statement due to `break`/`continue` before `elements++`.)
+2. Answer: যেহেতু elements++ লাইনটি কোনো অবস্থাতেই কার্যকর করা সম্ভব নয় (কারণ এর ঠিক উপরে continue অথবা break সর্বদা কার্যকর হবে), তাই জাভা কম্পাইলার এটিকে একটি "unreachable statement" ত্রুটি হিসেবে ধরবে।
+           অতএব, সঠিক উত্তরটি হলো: Line n3 তে একটি কম্পাইলেশন ত্রুটি হবে, কারণ elements++; লাইনটি Unreachable statement।
+            **চতুর্থ পুনরাবৃত্তি: obj এর মান new Object()।
+            new Object() একটি String নয়।
+            if(obj instanceof String) শর্তটি মিথ্যা হয়।
+            else ব্লক কার্যকর হয় এবং break স্টেটমেন্টটি লুপটিকে সম্পূর্ণরূপে বন্ধ করে দেয়।
 
 3. Output: 
    ```
