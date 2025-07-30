@@ -28,7 +28,7 @@
     Compilation error at Line n3
     Compilation error at Line n4
 
-3.Consider below code of Test.java file:
+3. Consider below code of Test.java file:
   public class Test {
    public static void main(String[] args) {
    String [][] arr = { {“%”, “$$”}, {“***”, “@@@@”, “#####”}};
@@ -40,51 +40,37 @@
          }
    break; //Line n3
   }}}
+   What will be the result of compiling and executing Test class?
+    %
+    % $$
+    % $$ ***
+    % $$ *** @@@@
+    % $$ *** @@@@ #####
 
-What will be the result of compiling and executing Test class?
 
- %
- % $$
- % $$ ***
- % $$ *** @@@@
- % $$ *** @@@@ #####
-Incorrect
-Variable ‘arr’ refers to a two-dimensional array. for-each loops are used to iterate the given array.
-In 1st iteration of outer loop, str 
+4. public class Test {
+   public static void main(String[] args) {
+   int i = 1;
+   int j = 5;
+   int k = 0;
+   A: while(true) { i++;
+   B: while(true) { j–;
+   C: while(true) {
+       k += i + j;
+       if(i == j) break A;
+       else if (i > j) continue A;
+       else continue B;
+      }}}
+       System.out.println(k);
+      }}   
+   What will be the result of compiling and executing Test class?   
+    Compilation error
+    Program never terminates as above code causes infinite loop
+    6
+    11
+    15
 
-4.public class Test {
-public static void main(String[] args) {
-int i = 1;
-int j = 5;
-int k = 0;
-A: while(true) {
-i++;
-B: while(true) {
-j–;
-C: while(true) {
-k += i + j;
-if(i == j)
-break A;
-else if (i > j)
-continue A;
-else
-continue B;
-}
-}
-}
-System.out.println(k);
-}
-}
-
-What will be the result of compiling and executing Test class?
-
- Compilation error
- Program never terminates as above code causes infinite loop
- 6
- 11
- 15
-
-5.public class Test {
+5. public class Test {
 public static void main(String[] args) {
 outer: for(int i = 0; i < 3; System.out.print(i)) { i++; inner: for(int j = 0; j < 3; System.out.print(j)) { if(i > ++j) {
 break outer;
@@ -698,13 +684,30 @@ What will be the result of compiling and executing above code?
             if(obj instanceof String) শর্তটি মিথ্যা হয়।
             else ব্লক কার্যকর হয় এবং break স্টেটমেন্টটি লুপটিকে সম্পূর্ণরূপে বন্ধ করে দেয়।
 
-3. Output: 
-   ```
-   %
-   $$
-   
-   @@@@
-    (Breaks outer loop when `s.length() == 4`.)
+3. Answer: 
+         Setp_1.অ্যারের ইনিশিয়ালাইজেশন (Array Initialization): `String [][] arr = { {"%", "$$"}, {"", "@@@@", "#####"}};`  এটি একটি দ্বি-মাত্রিক (two-dimensional) অ্যারে।
+                 arr[0] হলো {"%", "$$"};  
+                 arr[1] হলো {"", "@@@@", "#####"}
+
+         Setp_2.আউটার লুপ (Outer Loop): `for(String [] str : arr)`: এই লুপটি `arr` অ্যারের প্রতিটি ভেতরের অ্যারের উপর পুনরাবৃত্তি (iterate) করে।
+                প্রথম পুনরাবৃত্তি: `str` এর মান হবে `{"%", "$$"}`।  
+
+         Setp_3.ইনার লুপ (Inner Loop): `for(String s : str)`:  এই লুপটি `str` (বর্তমানে `{"%", "$$"}`) অ্যারের প্রতিটি স্ট্রিং উপাদানের উপর পুনরাবৃত্তি করে।
+                প্রথম পুনরাবৃত্তি (ইনার লুপ): `s` এর মান হবে `"%"`।
+                    `System.out.println(s);` আউটপুট করবে: `%`
+                    `if(s.length() == 4)`: `"%"` এর দৈর্ঘ্য 1, যা 4 এর সমান নয়। তাই `if` শর্তটি মিথ্যা হয়।         
+                দ্বিতীয় পুনরাবৃত্তি (ইনার লুপ): `s` এর মান হবে `"$$"`।
+                    `System.out.println(s);` আউটপুট করবে: `$$`
+                    `if(s.length() == 4)`: `"$$"` এর দৈর্ঘ্য $, যা 4 এর সমান নয়। তাই `if` শর্তটি মিথ্যা হয়।
+                    ইনার লুপের এই `str` অ্যারের আর কোনো উপাদান নেই, তাই ইনার লুপটি শেষ হয়।         
+         Setp_4.আউটার লুপের `break` (Line n3): ইনার লুপ শেষ হওয়ার পর, কন্ট্রোল `break;` (Line n3) স্টেটমেন্টে আসে। এই `break` স্টেটমেন্টটি আউটার লুপকে সম্পূর্ণরূপে বন্ধ করে দেয়।         
+         
+         ### ফলাফল (Result)
+         যেহেতু আউটার লুপটি প্রথম পুনরাবৃত্তির পরেই `break` হয়ে যাচ্ছে, দ্বিতীয় ভেতরের অ্যারে (`{"", "@@@@", "#####"}`) কখনোই প্রসেস হবে না।
+         অতএব, কোডটি কম্পাইল ও এক্সিকিউট করলে যে আউটপুট দেবে তা হলো:
+         %
+         $$
+
 
 4. Answer: 
    6 
