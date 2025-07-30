@@ -691,18 +691,13 @@ What will be the result of compiling and executing above code?
  Head First Java Kathy Sierra
 
 ------------------------- Answers --------------------------------------
-Here are the answers to all the questions, separated for study:
 
----
+1. Explanation: `int[] arr = {3, 2, 1};` উপাদানগুলি হলো 3, 2, 1। 
+                ** `arr[0]` হলো 3   * `arr[1]` হলো 2   * `arr[2]` হলো 1            
+                ** প্রথম পুনরাবৃত্তিতে, `i` এর মান হবে অ্যারের প্রথম উপাদান, যা 3। এরপর `System.out.println(arr[i]);` অর্থাৎ `System.out.println(arr[3]);` কার্যকর করার চেষ্টা করা হবে।
+                যেহেতু অ্যারের বৈধ ইনডেক্সগুলি 0, 1, 2 পর্যন্ত, এবং 3 একটি অবৈধ ইনডেক্স, 
+                তাই জাভা ভার্চুয়াল মেশিন (`JVM`) একটি `ArrayIndexOutOfBoundsException` নিক্ষেপ করবে এবং প্রোগ্রামটি বন্ধ হয়ে যাবে।
 
-### Answers:
-
-1. Output: 
-   ```
-   1
-   2
-   3
-    (Explanation: `arr[i]` accesses `arr[3]` → `ArrayIndexOutOfBoundsException` at runtime.)
 
 2. Answer: 
    Compilation error at Line n3(Unreachable statement due to `break`/`continue` before `elements++`.)
