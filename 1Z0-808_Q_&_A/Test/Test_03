@@ -280,7 +280,6 @@
 আপনি যদি এই Test ক্লাসটি কম্পাইল এবং এক্সিকিউট করেন, তাহলে আউটপুট হবে: 011
 
 -----------
-
 7. public class Test {
    public static void main(String[] args) {
       boolean flag = false;
@@ -317,28 +316,25 @@
             এটি `break` স্টেটমেন্টের থেকে ভিন্ন, কারণ `break` পুরো লুপটিকেই থামিয়ে দেয়, কিন্তু `continue` শুধু বর্তমান ইটারেশনকে থামিয়ে পরের ইটারেশনে যায়।
          * দ্বিতীয় লুপের ইটারেশন, do লুপে আবার প্রবেশ করে। এবার if ব্লক এড়িয়ে যাওয়া হয়(কারণ, এখন flag এর মান false(flag= !true)) ।
 
-
 ---
-
 8.public class Greetings {
    String msg = null;
-   public Greetings() {
-   this(“Good Morning!”);
-   }
-   public Greetings(String str) {
-   msg = str;
-   }
-   
-   public void display() {
-     System.out.println(msg);
-   }
+      public Greetings() {
+      this(“Good Morning!”);
+      }
+      public Greetings(String str) {
+      msg = str;
+      }   
+      public void display() {
+        System.out.println(msg);
+      }
 
-   public static void main(String [] args) {
-   Greetings g1 = new Greetings();
-   Greetings g2 = new Greetings(“Good Evening!”);
-   g1.display();
-   g2.display();
-   }}
+      public static void main(String [] args) {
+      Greetings g1 = new Greetings();
+      Greetings g2 = new Greetings(“Good Evening!”);
+      g1.display();
+      g2.display();
+      }}
    
     -null Good Evening!
     -Good Morning! Good Evening!
@@ -346,39 +342,51 @@
     -null null
 
 
-8. Output: 
-   Good Morning! Good Evening! 
+
+
+
+8. Output: Good Morning! Good Evening! 
    (Constructor chaining sets `msg` correctly.)
 
 -----
-9. class Message {
+9. Test.java
+  class Message {
    String msg = “Happy New Year!”;
    public void print() {
-   System.out.println(msg);
+      System.out.println(msg);
    }}
    
    public class Test {
    public static void change(Message m) {
-   m.msg = “Happy Holidays!”;
+      m.msg = “Happy Holidays!”;
    }
    
    public static void main(String[] args) {
-   Message obj = new Message();
-   obj.print();
-   change(obj);
-   obj.print();
+      Message obj = new Message();
+      obj.print();
+      change(obj);
+      obj.print();
    }}
    
-    null Happy Holidays!
-    Happy Holidays! Happy Holidays!
-    null null
-    Happy New Year! Happy Holidays!
+    -null Happy Holidays!
+    -Happy Holidays! Happy Holidays!
+    -null null
+    -Happy New Year! Happy Holidays!
 
-10.class Message {
+
+9. Output: 
+   Happy New Year! Happy Holidays! 
+   (Method `change` modifies the object’s `msg`.)
+
+
+
+
+10. Test.java 
+   class Message {
       String msg = “Happy New Year!”;   
       public void print() {
       System.out.println(msg);
-   }   }
+    }}
    
    public class Test {
       public static void change(Message m) {
@@ -398,6 +406,12 @@
     Happy New Year! Happy New Year!
     null Happy New Year!
 
+10. Output: 
+    Happy New Year! Happy New Year! 
+    (Method `change` creates a new object, original `obj` unchanged.)
+
+---------
+
 11.public class Test {
 public static void print() {
 System.out.println(“static method”);
@@ -409,29 +423,53 @@ obj.print();
 }
 }
 
-12.public class Wall {
-public static void main(String args[]) {
-double area = 5.7;
-String color;
-if (area < 7) color = "green"; System.out.println(color); } }
 
- green
- NullPointerException
- Compilation error
 
-13.public class Test {
-public static void main(String[] args) {
-double price = 90000;
-String model;
-if(price > 100000) {
-model = “Tesla Model X”;
-} else if(price <= 100000) { model = "Tesla Model S"; } System.out.println(model); } }
+11. Output: 
+    static method 
+    (Static method called even with `obj = null`.)
 
- Tesla Model X
- Tesla Model S
- Compilation Error
+-------
 
-14.Following statement in a Java program compiles successfully:
+12. public class Wall {
+      public static void main(String args[]) {
+      double area = 5.7;
+      String color;
+      if (area < 7) color = "green"; 
+         System.out.println(color); 
+     } }
+      
+       green
+       NullPointerException
+       Compilation error
+
+
+12. Answer:
+      if (area < 7) // এই শর্তটি (5.7 < 7) সত্য।
+       color = "green"; // তাই color এর মান "green" হবে।
+        System.out.println(color); // এখানে color ভ্যারিয়েবলটি ব্যবহার করার চেষ্টা করা হচ্ছে। কিন্তু জাভা কম্পাইলার নিশ্চিত নয় যে, সব পরিস্থিতিতে color এর একটি মান থাকবে।
+ ** যদি আপনি String color = null; ব্যবহার করেন, তাহলে আউটপুট হবে green। আর যদি String color; রেখেই কম্পাইল করতে চান, তাহলে Compilation error পাবেন।
+-------
+
+13. public class Test {
+      public static void main(String[] args) {
+      double price = 90000;
+      String model;
+         if(price > 100000) {  model = “Tesla Model X”;
+         }else if(price <= 100000) { model = "Tesla Model S"; } 
+      System.out.println(model); 
+      } }
+      
+       Tesla Model X
+       Tesla Model S
+       Compilation Error
+
+13. Output: 
+Tesla Model S 
+**যদি এমন পরিস্থিতি থাকে, যেখানে  if-else if চেইন সব সম্ভাব্য শর্তকে কভার করছে না। এই পরিস্থিতিতে, জাভা কম্পাইলার একটি কম্পাইল-টাইম এরর দেবে।
+
+-------------
+14. Following statement in a Java program compiles successfully:
 student.report(course); 
 What can you say for sure?
 
@@ -440,6 +478,13 @@ What can you say for sure?
  report is the method name
  course must be of String type
 
+
+
+14. Answer: 
+    `report` is the method name 
+    (Valid method call syntax.)
+
+-------
 15.public class Test {
 private static void m(int x) {
 System.out.println(“int version”);
@@ -461,6 +506,17 @@ m(‘5’);
  int version char version
  char version int version
  Compilation error
+
+
+
+15. Output: 
+    int version char version 
+    (`m(i)` calls `int` version, `m('5')` calls `char` version.)
+    int i = '5';: এখানে `'5'` একটি ক্যারেক্টার লিটারাল। জাভাতে, ক্যারেক্টারগুলো তাদের অ্যাসকি (ASCII) বা ইউনিকোড (Unicode) মান দ্বারাও প্রকাশ করা যেতে পারে। ক্যারেক্টার `'5'` এর অ্যাসকি মান হলো `53`।
+    * আপনি যখন একটি `char` টাইপের মানকে একটি `int` টাইপের ভ্যারিয়েবলে অ্যাসাইন করেন (`int i = '5';`), তখন সেই ক্যারেক্টারের অ্যাসকি মানটি `i` ভ্যারিয়েবলে সংরক্ষণ করা হয়। সুতরাং, `i` এর মান এখন `53`।
+--------
+
+
 
 16.public class Test {
 public static void main(String [] args) {
@@ -869,33 +925,6 @@ What will be the result of compiling and executing above code?
 
 
 
-9. Output: 
-   Happy New Year! Happy Holidays! 
-   (Method `change` modifies the object’s `msg`.)
-
-10. Output: 
-    Happy New Year! Happy New Year! 
-    (Method `change` creates a new object, original `obj` unchanged.)
-
-11. Output: 
-    static method 
-    (Static method called even with `obj = null`.)
-
-12. Answer: 
-    green 
-    (Condition `area < 7` sets `color` to "green".)
-
-13. Output: 
-    Tesla Model S 
-    (Condition `price <= 100000` assigns `model` correctly.)
-
-14. Answer: 
-    `report` is the method name 
-    (Valid method call syntax.)
-
-15. Output: 
-    int version char version 
-    (`m(i)` calls `int` version, `m('5')` calls `char` version.)
 
 16. Valid `process` methods: 
     - `private static int[] process(int[] arr, int start, int end)`  
