@@ -283,14 +283,14 @@
 
 7. public class Test {
    public static void main(String[] args) {
-   boolean flag = false;
-   do {
-      if(flag = !flag) { //Line n1
-      System.out.print(1); //Line n2
-      continue; //Line n3
-   }
-      System.out.print(2); //Line n4
-   } while(flag); //Line n5
+      boolean flag = false;
+      do {
+         if(flag = !flag) { //Line n1     *** do{ if(flag = !flag) } এর ভেতরে flag ভ্যারিয়েবলের মান পরিবর্তন কি শুধু ওই do{} ব্লকের মধ্যে সীমাবদ্ধ থাকবে নাকি পুরো ক্লাস/while লুপকে প্রভাবিত করবে?
+         System.out.print(1); //Line n2
+         continue; //Line n3
+         }
+         System.out.print(2); //Line n4
+      } while(flag); //Line n5
    }}   
    What will be the result of compiling and executing Test class?   
     1
@@ -299,6 +299,26 @@
     21
     212
     121
+
+7. Answer: Output:  12
+         -flag এর মান পরিবর্তন তার স্কোপের মধ্যে যেখানেই ঘটুক না কেন, সেটি সেই একই ভ্যারিয়েবলের মানকে আপডেট করে, যার ফলে এর উপর নির্ভরশীল যেকোনো অংশের (যেমন while লুপের শর্ত) আচরণ পরিবর্তিত হয়।
+         -continue এর মানে হলো "এই ইটারেশনের বাকিটা বাদ দাও এবং পরের ইটারেশনে যাও।"
+
+      -প্রথম ইটারেশনে:
+         * `if(flag = !flag)` শর্তটি `true` হয়।
+         * `System.out.print(1);` (Line n2) কার্যকর হয়।
+         * এরপর যখন `continue;` (Line n3) কার্যকর হয়, তখন এটি নির্দেশ দেয় যে এই ইটারেশনের আর কোনো কোড (অর্থাৎ `System.out.print(2);` - Line n4) চালানোর দরকার নেই।
+         * প্রোগ্রাম নিয়ন্ত্রণ সরাসরি `while(flag);` (Line n5) অংশে চলে যায় শর্ত পরীক্ষা করার জন্য, এবং পরের ইটারেশনের জন্য প্রস্তুতি নেয়।
+            যদি `continue` না থাকত:
+                  * যদি `continue` না থাকত, তাহলে প্রথম ইটারেশনে `System.out.print(1);` এর পর `System.out.print(2);` লাইনটিও কার্যকর হতো। 
+                    ফলে আউটপুট ভিন্ন হতো (`12` এর বদলে `122` আসত, যদি লুপ দ্বিতীয়বার চলত)।
+            
+            `continue` স্টেটমেন্টটি মূলত লুপের মধ্যে নির্দিষ্ট কিছু শর্তের উপর ভিত্তি করে কিছু কোড ব্লক এড়িয়ে যাওয়ার জন্য ব্যবহৃত হয়, যাতে লুপটি তার পরবর্তী ইটারেশনে যেতে পারে। 
+            এটি `break` স্টেটমেন্টের থেকে ভিন্ন, কারণ `break` পুরো লুপটিকেই থামিয়ে দেয়, কিন্তু `continue` শুধু বর্তমান ইটারেশনকে থামিয়ে পরের ইটারেশনে যায়।
+         * দ্বিতীয় লুপের ইটারেশন, do লুপে আবার প্রবেশ করে। এবার if ব্লক এড়িয়ে যাওয়া হয়(কারণ, এখন flag এর মান false(flag= !true)) ।
+
+
+---
 
 8.public class Greetings {
    String msg = null;
@@ -325,6 +345,12 @@
     -Good Morning! null
     -null null
 
+
+8. Output: 
+   Good Morning! Good Evening! 
+   (Constructor chaining sets `msg` correctly.)
+
+-----
 9. class Message {
    String msg = “Happy New Year!”;
    public void print() {
@@ -841,21 +867,7 @@ What will be the result of compiling and executing above code?
 
 
 
-5. Output: 
-   12 
-   (Prints `i` (1) and `j` (2) before breaking `outer` loop.)
 
-6. Output: 
-   0112 
-   (Initial `i=0`, prints `0`, then loops with `i=1` and `i=2`.)
-
-7. Output: 
-   21 
-   (Toggles `flag`, prints `2` first, then `1` before exiting loop.)
-
-8. Output: 
-   Good Morning! Good Evening! 
-   (Constructor chaining sets `msg` correctly.)
 
 9. Output: 
    Happy New Year! Happy Holidays! 
