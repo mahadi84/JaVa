@@ -379,7 +379,7 @@
    (Method `change` modifies the object’s `msg`.)
 
 
-
+---
 
 10. Test.java 
    class Message {
@@ -669,42 +669,56 @@ So, add(double, double); method is invoked( double version: 20.0).
 
 
 22.public class Test {
+   private static void add(double d1, double d2) {
+      System.out.println(“double version: ” + (d1 + d2));
+   }
+   
+   private static void add(Double d1, Double d2) {
+      System.out.println(“Double version: ” + (d1 + d2));
+   }
+   
+   public static void main(String[] args) {
+      add(10.0, new Double(10.0));
+   }   
+   }
+   
+    Compilation error
+    double version: 20.0
+    Double version: 20.0
+    An exception is thrown at runtime
 
-private static void add(double d1, double d2) {
-System.out.println(“double version: ” + (d1 + d2));
-}
 
-private static void add(Double d1, Double d2) {
-System.out.println(“Double version: ” + (d1 + d2));
-}
+Ans:
+কম্পাইলার সিদ্ধান্ত নিতে পারে না, whether   add(10.0, new Double(10.0)); to convert 1st argument to Double reference type or 2nd argument to double primitive type.
+তাই এটি একটি কম্পাইল-টাইম এরর দেয়।
 
-public static void main(String[] args) {
-add(10.0, new Double(10.0));
-}
+--
 
-}
+23. public class Test {
+   public static void main(String[] args) {
+   int x = 1;
+   while(checkAndIncrement(x)) {
+      System.out.println(x);
+   }}
+   
+   private static boolean checkAndIncrement(int x) {
+      if(x < 5) { x++; return true; } 
+      else { return false; } 
+   } }
+   
+    2 3 4 5
+    1 2 3 4
+    1 2 3 4 5
+    Infinite loop
 
- Compilation error
- double version: 20.0
- Double version: 20.0
- An exception is thrown at runtime
 
-23.public class Test {
-public static void main(String[] args) {
-int x = 1;
-while(checkAndIncrement(x)) {
-System.out.println(x);
-}
-}
 
-private static boolean checkAndIncrement(int x) {
-if(x < 5) { x++; return true; } else { return false; } } }
+Ans:
+এটি পাস-বাই-ভ্যালু (pass-by-value) পদ্ধতির একটি উদাহরণ। checkAndIncrement মেথডের x ভ্যারিয়েবলটি main মেথডে সংজ্ঞায়িত x ভ্যারিয়েবলের একটি কপি ধারণ করে।
+সুতরাং, checkAndIncrement মেথডে x এর যে পরিবর্তন করা হয়, তা main মেথডের x ভ্যারিয়েবলে প্রতিফলিত হয় না। main এর x এর মান 1-ই থাকে, কারণ main এর ভেতরের কোড এর মান পরিবর্তন করছে না।
+প্রতিবার checkAndIncrement মেথডটি 1 আর্গুমেন্ট মান দিয়ে কল করা হয়, তাই সর্বদা true ফেরত আসে এবং ফলস্বরূপ while লুপটি অনির্দিষ্টকালের জন্য কার্যকর হতে থাকে।
 
- 2 3 4 5
- 1 2 3 4
- 1 2 3 4 5
- Infinite loop
-
+--
 24.class Student {
 String name;
 int age;
