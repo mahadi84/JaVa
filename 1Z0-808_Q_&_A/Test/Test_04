@@ -1,0 +1,696 @@
+
+
+
+1.What will be the result of compiling and executing Circus class?
+    //Circus.java
+    package com.skillcertpro.oca;
+
+    class Animal {
+    protected void jump() {
+    System.out.println(“Animal”);
+    }
+    }
+
+    class Cat extends Animal {
+    public void jump(int a) {
+    System.out.println(“Cat”);
+    }
+    }
+
+    class Deer extends Animal {
+    public void jump() {
+    System.out.println(“Deer”);
+    }
+    }
+
+    public class Circus {
+    public static void main(String[] args) {
+    Animal cat = new Cat();
+    Animal deer = new Deer();
+    cat.jump();
+    deer.jump();
+    }
+    }
+
+    Animal Deer
+    Cat Deer
+    Animal Animal
+    Cat Animal
+
+
+ 2.What will be the result of compiling and executing TestBaseDerived class?
+    //TestBaseDerived.java
+    package com.skillcertpro.oca;
+
+    class Base {
+    protected void m1() {
+    System.out.println(“Base: m1()”);
+    }
+    }
+
+    class Derived extends Base {
+    void m1() {
+    System.out.println(“Derived: m1()”);
+    }
+    }
+
+    public class TestBaseDerived {
+    public static void main(String[] args) {
+    Base b = new Derived();
+    b.m1();
+    }
+    }
+
+3.Which one of these top level classes cannot be sub-classed?
+    class Dog {} 
+    abstract class Cat {} 
+    final class Electronics {} 
+    private class Car {}  //a top level class cannot be declared with private modifier.
+
+4. What will be the result of compiling and executing Test class?
+package com.skillcertpro.oca;
+
+class Vehicle {
+public int getRegistrationNumber() {
+return 1;
+}
+}
+
+class Car {
+public int getRegistrationNumber() {
+return 2;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Vehicle obj = new Car();
+System.out.println(obj.getRegistrationNumber());
+}
+}
+
+ 1
+ 2
+ An exception is thrown at runtime
+ Compilation error(Answer).
+
+5.For the given code:
+package com.skillcertpro.oca;
+
+interface I01 {
+void m1();
+}
+
+public class Implementer extends Object implements I01 {
+protected void m1() {
+
+}
+}
+Which of the statement is true?
+    interface I01 gives compilation error as method m1 is not public.
+    Implementer class declaration is not correct.
+    Method m1() in Implementer class is not implemented correctly.
+    None of the other options.
+
+
+Answer:
+হ্যাঁ, public class Implementer extends Object implements I01 { এটি জাভাতে একটি সঠিক সিনট্যাক্স।
+ব্যাখ্যা:
+public class Implementer: এটি একটি পাবলিক ক্লাস ঘোষণার জন্য স্ট্যান্ডার্ড সিনট্যাক্স।
+extends Object: জাভাতে, যদি একটি ক্লাস কোনো ক্লাসকে এক্সটেন্ড না করে, তবে এটি স্বয়ংক্রিয়ভাবে java.lang.Object ক্লাসকে এক্সটেন্ড করে। 
+তাই, extends Object explicitly লেখাটি অতিরিক্ত (redundant) হলেও, এটি কোনো সিনট্যাক্স এরর নয়। কম্পাইলার এটিতে কোনো সমস্যা ধরবে না।
+implements I01: এটি একটি ক্লাস ইন্টারফেস ইমপ্লিমেন্ট করার জন্য স্ট্যান্ডার্ড সিনট্যাক্স।
+
+
+6. Which of these access modifiers can be used for a top level interface?
+ private
+ protected
+ public
+ All of the other options
+
+
+7.What will be the result of compiling and executing Test class?
+//Test.java
+package com.skillcertpro.oca;
+
+abstract class Animal {
+private String name;
+
+Animal(String name) {
+this.name = name;
+}
+
+public String getName() {
+return name;
+}
+}
+
+class Dog extends Animal {
+private String breed;
+
+Dog(String breed) {
+this.breed = breed;
+}
+
+Dog(String name, String breed) {
+super(name);
+this.breed = breed;
+}
+
+public String getBreed() {
+return breed;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Dog dog1 = new Dog(“Beagle”);
+Dog dog2 = new Dog(“Bubbly”, “Poodle”);
+System.out.println(dog1.getName() + “:” + dog1.getBreed() + “:” +
+dog2.getName() + “:” + dog2.getBreed());
+}
+}
+
+ Compilation error for Animal Class
+ Compilation error for Animal(String) constructor
+ Compilation error for Dog(String) constructor
+ Compilation error for Dog(String, String) constructor
+ null:Beagle:Bubbly:Poodle
+ :Beagle:Bubbly:Poodle
+
+
+
+Answer:
+অ্যাবস্ট্রাক্ট ক্লাসে কনস্ট্রাক্টর থাকতে পারে এবং অ্যাবস্ট্রাক্ট মেথড ছাড়াও অ্যাবস্ট্রাক্ট ক্লাস থাকা সম্ভব। তাই, `Animal` ক্লাস নিয়ে কোনো সমস্যা নেই।
+যদি `this(...)` বা `super(...)` ব্যবহার করে অন্য কোনো কনস্ট্রাক্টরকে কল না করা হয়, তাহলে জাভা কম্পাইলার কনস্ট্রাক্টরের প্রথম স্টেটমেন্ট হিসেবে `super();` যোগ করে।
+`Animal` ক্লাসের কনস্ট্রাক্টরের ভেতরে, কম্পাইলার `super();` যোগ করে => `Animal(String name) { super(); this.name = name; }`। এই ক্ষেত্রে `super()` `Object` ক্লাসের নো-আর্গ কনস্ট্রাক্টরকে ইনভোক করে, 
+এবং তাই এখানে কোনো কম্পাইলেশন এরর নেই।
+
+কম্পাইলার `Dog(String)` কনস্ট্রাক্টরকে পরিবর্তন করে: `Dog(String breed) { super(); this.breed = breed; }`। `Animal` ক্লাসে কোনো নো-আর্গ কনস্ট্রাক্টর উপলব্ধ নেই এবং যেহেতু অন্য একটি কনস্ট্রাক্টর প্রদান করা হয়েছে,
+ জাভা কম্পাইলার ডিফল্ট কনস্ট্রাক্টর যোগ করে না। তাই `Dog(String)` কনস্ট্রাক্টর কম্পাইলেশন এরর দেয়।
+
+`Dog(String, String)` কনস্ট্রাক্টর নিয়ে কোনো সমস্যা নেই।
+
+08.What will be the result of compiling and executing Test class? 
+//Test.java
+package com.skillcertpro.oca;
+
+class Parent {
+int i = 10;
+Parent(int i) {
+super();
+this.i = i;
+}
+}
+
+class Child extends Parent {
+int j = 20;
+
+Child(int j) {
+super(0);
+this.j = j;
+}
+
+Child(int i, int j) {
+super(i);
+this(j);
+}
+
+}
+
+public class Test {
+public static void main(String[] args) {
+Child child = new Child(1000, 2000);
+System.out.println(child.i + “:” + child.j);
+}
+}
+
+ Compilation error for Parent(int) constructor
+ Compilation error for Child(int) constructor
+ Compilation error for Child(int, int) Constructor
+ Compilation error for Test class
+ 1033:20:00
+ 41.66666667
+
+
+Ans:
+Parent(int) কনস্ট্রাক্টরের ভেতরে থাকা super(); স্টেটমেন্টটি Object ক্লাসের নো-আর্গ কনস্ট্রাক্টরকে কল করে, তাই Parent(int) কনস্ট্রাক্টরের জন্য কোনো কম্পাইলেশন এরর হয় না।
+Child(int) কনস্ট্রাক্টরের ভেতরে থাকা super(0); স্টেটমেন্টটি Parent(int) কনস্ট্রাক্টরকে কল করে, যা উপলব্ধ আছে এবং তাই এতে কোনো সমস্যা নেই।
+Child(int, int) কনস্ট্রাক্টরের মধ্যে super(i) এবং this(j) উভয় স্টেটমেন্টই আছে। একটি কনস্ট্রাক্টরে super(...) অথবা this(...) এর মধ্যে যেকোনো একটি থাকতে পারে, কিন্তু উভয়ই একসাথে থাকতে পারে না। তাই Child(int, int) কনস্ট্রাক্টরের কারণে কম্পাইলেশন ফেইল হবে।
+যেহেতু সমস্ত ক্লাস com.skillcertpro.oca.test প্যাকেজের অধীনে Test.java ফাইলে সংজ্ঞায়িত করা হয়েছে, তাই child.i এবং child.j কোনো কম্পাইলেশন এরর দেবে না। i এবং j প্যাকেজ স্কোপ সহ ঘোষণা করা হয়েছে।
+
+
+
+9.Given code of LogHelper.java file:
+package com.skillcertpro.oca;
+
+abstract class Helper {
+int num = 100;
+String operation = null;
+
+protected abstract void help();
+
+void log() {
+System.out.println(“Helper-log”);
+}
+}
+
+public class LogHelper extends Helper {
+private int num = 200;
+protected String operation = “LOGGING”;
+
+void help() {
+System.out.println(“LogHelper-help”);
+}
+
+void log() {
+System.out.println(“LogHelper-log”);
+}
+
+public static void main(String [] args) {
+new LogHelper().help();
+}
+}
+
+Which of the following changes, done independently, allows the code to compile and on execution prints LogHelper-help?
+Select ALL that apply.
+
+ Remove the private modifier from the num variable of LogHelper class
+ Remove the protected modifier from the operation variable of LogHelper class
+ Remove the protected modifier from the help() method of Helper class
+ Add the protected modifier to the log() method of Helper class
+ Add the protected modifier to the help() method of LogHelper class
+ Add the public modifier to the help() method of LogHelper class
+
+
+
+ Ans: 
+ইনস্ট্যান্স ভ্যারিয়েবলগুলো সাবক্লাস দ্বারা **লুকানো (hidden)** হয়, **ওভাররাইড (overridden)** হয় না। তাই, ওভাররাইডিং নিয়মগুলো ইনস্ট্যান্স ভ্যারিয়েবলের জন্য প্রযোজ্য নয়। 'num' এবং 'operation' ভ্যারিয়েবল নিয়ে কোনো সমস্যা নেই।
+`log()` মেথডটি উভয় ক্লাসেই **ডিফল্ট মডিফায়ার** সহ ঘোষণা করা হয়েছে, তাই `log()` মেথড নিয়েও কোনো সমস্যা নেই।
+`Helper` ক্লাসে অ্যাবস্ট্রাক্ট মেথড `help()` **প্রোটেক্টেড মডিফায়ার** সহ ঘোষণা করা হয়েছে এবং `LogHelper` ক্লাসে এটি **ডিফল্ট মডিফায়ার** দ্বারা ওভাররাইড করা হয়েছে। এটি **কম্পাইলেশন এরর** সৃষ্টি করবে। এই সমস্যা সমাধানের জন্য নিচের সমাধানগুলো দেখতে পারেন:
+1.  `Helper` ক্লাসের `help()` মেথড থেকে **প্রোটেক্টেড মডিফায়ারটি সরিয়ে দিন**: এতে ওভাররিডেন এবং ওভাররাইডিং উভয় মেথডেরই একই ডিফল্ট মডিফায়ার থাকবে, যা অনুমোদিত।
+    অথবা
+2.  `LogHelper` ক্লাসের `help()` মেথডে **প্রোটেক্টেড মডিফায়ার যোগ করুন**: এতে ওভাররিডেন এবং ওভাররাইডিং উভয় মেথডেরই একই প্রোটেক্টেড মডিফায়ার থাকবে, যা অনুমোদিত।
+    অথবা
+3.  `LogHelper` ক্লাসের `help()` মেথডে **পাবলিক মডিফায়ার যোগ করুন**: এতে ওভাররিডেন মেথডের প্রোটেক্টেড মডিফায়ার থাকবে এবং ওভাররাইডিং মেথডের পাবলিক মডিফায়ার থাকবে, যা অনুমোদিত।
+
+
+
+ 10.interface Printable {
+public void setMargin();
+public void setOrientation();
+}
+
+abstract class Paper implements Printable { //Line 7
+public void setMargin() {}
+//Line 9
+}
+
+class NewsPaper extends Paper { //Line 12
+public void setMargin() {}
+//Line 14
+}
+Above code is currently giving compilation error. Which 2 modifications, done independently, enable the code to compile?
+
+ Replace the code at Line 7 with: class Paper implements Printable { 
+ Insert at Line 9: public abstract void setOrientation(); 
+ Replace the code at Line 12 with: abstract class NewsPaper extends Paper { 
+ Insert at Line 14: public void setOrientation() {} 
+
+
+ Ans: 
+`NewsPaper` ক্লাসটি একটি **কনক্রিট ক্লাস** এবং এটি `Paper` ক্লাসকে (যা একটি অ্যাবস্ট্রাক্ট ক্লাস) এক্সটেন্ড করে। তাই `NewsPaper` ক্লাসকে অবশ্যই `setOrientation()` মেথডটি **ওভাররাইড** করতে হবে, অথবা এটিকে **অ্যাবস্ট্রাক্ট** ঘোষণা করতে হবে।
+লাইন ৯-কে '`public abstract void setOrientation();`' দিয়ে প্রতিস্থাপন করা **অপ্রয়োজনীয়** এবং এটি `NewsPaper` ক্লাসের কম্পাইলেশন এরর সমাধান করবে না।
+লাইন ৭-কে '`class Paper implements Printable {`' দিয়ে প্রতিস্থাপন করলে `Paper` ক্লাসের **কম্পাইলেশন ফেইল** হবে, কারণ এটি অ্যাবস্ট্রাক্ট মেথড '`setOrientation`' কে ইনহেরিট করে কিন্তু ইমপ্লিমেন্ট করে না।
+
+11.class PenDrive {
+int capacity;
+PenDrive(int capacity) {
+this.capacity = capacity;
+}
+}
+
+class OTG extends PenDrive {
+String type;
+String make;
+OTG(int capacity, String type) {
+/*INSERT-1*/
+}
+OTG(String make) {
+/*INSERT-2*/
+this.make = make;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+OTG obj = new OTG(128, “TYPE-C”);
+System.out.println(obj.capacity + “:” + obj.type);
+}
+}
+Currently above code causes compilation error.
+Which of the options can successfully print 128:TYPE-C on to the console?
+
+ Replace /*INSERT-1*/ with: super(capacity); Replace /*INSERT-2*/ with: super(128);
+ Replace /*INSERT-1*/ with: super.capacity = capacity; this.type = type; Replace /*INSERT-2*/ with: super(128);
+ Replace /*INSERT-1*/ with: super(capacity); this.type = type; Replace /*INSERT-2*/ with: super(0);
+ Replace /*INSERT-1*/ with: this.type = type; super(capacity); Replace /*INSERT-2*/ with: super(128);
+ None of the other options
+
+ Ans:
+
+
+
+
+ 12.Consider codes below:
+//A.java
+package com.skillcertpro.oca;
+
+public class A {
+public int i1 = 1;
+protected int i2 = 2;
+}
+
+//B.java
+package com.skillcertpro.oca.test;
+import com.skillcertpro.oca.A;
+
+public class B extends A {
+public void print() {
+A obj = new A();
+System.out.println(obj.i1); //Line 8
+System.out.println(obj.i2); //Line 9
+System.out.println(this.i2); //Line 10
+System.out.println(super.i2); //Line 11
+}
+
+public static void main(String [] args) {
+new B().print();
+}
+}
+One of the statements inside print() method is causing compilation failure. 
+Which of the below solutions will help to resolve compilation error?
+
+ Comment the statement at Line 8
+ Comment the statement at Line 9
+ Comment the statement at Line 10
+ Comment the statement at Line 11
+
+
+
+Ans:
+`A` ক্লাসটি **পাবলিক** হিসেবে ঘোষণা করা হয়েছে এবং `com.skillcertpro.oca` প্যাকেজে সংজ্ঞায়িত। তাই `com.skillcertpro.oca` প্যাকেজের বাইরে থেকে `A` ক্লাস অ্যাক্সেস করতে কোনো সমস্যা নেই।
+`B` ক্লাসটি `com.skillcertpro.oca.test` প্যাকেজে সংজ্ঞায়িত। `A` ক্লাস থেকে এক্সটেন্ড করার জন্য হয় `import com.skillcertpro.oca.A;` স্টেটমেন্টটি ব্যবহার করতে হবে অথবা ক্লাসটির সম্পূর্ণ যোগ্য নাম `com.skillcertpro.oca.A` ব্যবহার করতে হবে। এই ক্লাস সংজ্ঞা নিয়েও কোনো সমস্যা নেই।
+ভ্যারিয়েবল `i1` ক্লাস `A`-তে **পাবলিক** হিসেবে ঘোষণা করা হয়েছে, তাই লাইন ৮ কোনো কম্পাইলেশন এরর সৃষ্টি করবে না। ভ্যারিয়েবল `i2` **প্রোটেক্টেড** হিসেবে ঘোষণা করা হয়েছে, তাই এটি শুধুমাত্র ইনহেরিটেন্স ব্যবহার করে সাবক্লাসের মাধ্যমে অ্যাক্সেস করা যেতে পারে, কিন্তু অবজেক্ট রেফারেন্স ভ্যারিয়েবল ব্যবহার করে নয়। `obj.i2` এর কারণে কম্পাইলেশন ফেইল হবে।
+`B` ক্লাস `A` ক্লাস থেকে ভ্যারিয়েবল `i2` ইনহেরিট করে, তাই `B` ক্লাসের ভেতরে এটিকে `this` অথবা `super` ব্যবহার করে অ্যাক্সেস করা যেতে পারে। লাইন ১০ এবং লাইন ১১ কোনো কম্পাইলেশন এরর সৃষ্টি করবে না।
+
+
+13.Consider codes below:
+//A.java
+package com.skillcertpro.oca;
+
+public class A {
+public void print() {
+System.out.println(“A”);
+}
+}
+
+//B.java
+package com.skillcertpro.oca;
+
+public class B extends A {
+public void print() {
+System.out.println(“B”);
+}
+}
+
+//C.java
+package com.skillcertpro.oca;
+
+public class C extends A {
+public void print() {
+System.out.println(“C”);
+}
+}
+
+//Test.java
+package com.skillcertpro.oca.test;
+
+import com.skillcertpro.oca.*;
+
+public class Test {
+public static void main(String[] args) {
+A obj1 = new C();
+A obj2 = new B();
+C obj3 = (C)obj1;
+C obj4 = (C)obj2;
+obj3.print();
+}
+}
+What will be the result of compiling and executing Test class?
+
+ A
+ B
+ C
+ Compilation error
+ ClassCastException is thrown at runtime
+
+
+Answer:
+Incorrect
+Class A, B and C are declared public and inside same package com.skillcertpro.oca. Method print() of class A has correctly been overridden by B and C.
+print() method is public so no issues in accessing it anywhere.
+
+Let’s check the code inside main method.
+A obj1 = new C(); => obj1 refers to an instance of C class, it is polymorphism. 
+A obj2 = new B(); => obj2 refers to an instance of B class, it is polymorphism. 
+C obj3 = (C)obj1; => obj1 actually refers to an instance of C class, so at runtime obj3 (C type) will refer to an instance of C class. As obj1 is of A type so explicit typecasting is necessary. 
+C obj4 = (C)obj2; => obj2 actually refers to an instance of B class, so at runtime obj4 (C type) will refer to an instance of B class. B and C are siblings and can’t refer to each other, so this statement will throw ClassCastException at runtime.
+
+14.Consider codes below:
+//A.java
+package com.skillcertpro.oca;
+
+public class A {
+public void print() {
+System.out.println(“A”);
+}
+}
+
+//B.java
+package com.skillcertpro.oca;
+
+public class B extends A {
+public void print() {
+System.out.println(“B”);
+}
+}
+
+//Test.java
+package com.skillcertpro.oca.test;
+
+import com.skillcertpro.oca.*;
+
+public class Test {
+public static void main(String[] args) {
+A obj1 = new A();
+B obj2 = (B)obj1;
+obj2.print();
+}
+}
+What will be the result of compiling and executing Test class?
+
+ A
+ B
+ Compilation error
+ ClassCastException is thrown at runtime
+
+ Answer:
+ A obj1 = new A(); => obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে।
+ B obj2 = (B)obj1; => obj1 হচ্ছে A টাইপের এবং এটিকে obj2 (যা B টাইপের) তে অ্যাসাইন করা হচ্ছে, তাই এক্সপ্লিসিট কাস্টিং (explicit casting) প্রয়োজন। obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে, তাই রানটাইমে obj2-ও ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করবে। সাবটাইপ সুপারটাইপের একটি অবজেক্টকে নির্দেশ করতে পারে না। অতএব, রানটাইমে B obj2 = (B)obj1; লাইনটি একটি ClassCastException থ্রো করবে।
+
+ 15. Consider below code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class Super {
+void Super() {
+System.out.print(“KEEP_”);
+}
+}
+
+class Base extends Super {
+Base() {
+Super();
+System.out.print(“GOING_”);
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+new Base();
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ Compilation Error in Super class
+ Compilation Error in Base class
+ Compilation Error in Test class
+ It prints KEEP_GOING_ on to the console
+ It prints GOING_KEEP_ on to the console
+
+ Answer:
+এই কোডটি সফলভাবে কম্পাইল হবে এবং রান করার পর কনসোলে KEEP_GOING_ প্রিন্ট করবে।
+
+
+ 16.Consider below codes of 3 java files:
+//Animal.java
+package a;
+
+public class Animal {
+Animal() {
+System.out.print(“ANIMAL-“);
+}
+}
+
+//Dog.java
+package d;
+
+import a.Animal;
+
+public class Dog extends Animal {
+public Dog() {
+System.out.print(“DOG”);
+}
+}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+import d.Dog;
+
+public class Test {
+public static void main(String[] args) {
+new Dog();
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error in Animal.java file
+ Compilation error in Dog.java file
+ Compilation error in Test.java file
+ It executes successfully and prints ANIMAL-DOG on to the console
+ It executes successfully and prints DOG on to the console
+ It executes successfully but nothing is printed on to the console
+
+
+ 17.Consider below code fragment:
+package com.skillcertprokhattry.oca;
+
+abstract class Food {
+protected abstract double getCalories();
+}
+
+class JunkFood extends Food {
+double getCalories() {
+return 200.0;
+}
+}
+
+Which 3 modifications, done independently, enable the code to compile?
+
+ Make the getCalories() method of Food class public
+ Remove the protected access modifier from the getCalories() method of Food class
+ Make the getCalories() method of Food class private
+ Make the getCalories() method of JunkFood class protected
+ Make the getCalories() method of JunkFood class public
+ Make the getCalories() method of JunkFood class private
+
+ Ans:
+ 2,4,5
+
+
+ 18.Consider below code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+P p = new R(); //Line n1
+System.out.println(p.compute(“Go”)); //Line n2
+}
+}
+
+class P {
+String compute(String str) {
+return str + str + str;
+}
+}
+
+class Q extends P {
+String compute(String str) {
+return super.compute(str.toLowerCase());
+}
+}
+
+class R extends Q {
+String compute(String str) {
+return super.compute(str.replace(‘o’, ‘O’)); //2nd argument is uppercase O
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ gOgOgO
+ gogogo
+ GoGoGo
+ GOGOGO
+ Go
+ GO
+
+
+ 19.Given code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class X {
+void A() {
+System.out.print(“A”);
+}
+}
+
+class Y extends X {
+void A() {
+System.out.print(“A-“);
+}
+
+void B() {
+System.out.print(“B-“);
+}
+
+void C() {
+System.out.print(“C-“);
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+X obj = new Y(); //Line n1
+obj.A(); //Line n2
+obj.B(); //Line n3
+obj.C(); //Line n4
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ A-B-C-
+ AB-C-
+ Compilation error in class Y
+ Compilation error in class Test
+
+
+Ans:
+Class Y correctly extends class X and it overrides method A() and provides two new methods B() and C().
+At Line n1, obj is of X type and therefore obj.B(); and obj.C(); cause compilation error as these methods are not defined in class X.
+
+
