@@ -1,4 +1,11 @@
 
+- Array Indexing: Beware of off-by-one errors (Q1).  
+- Loop Control: `break`/`continue` affects reachability (Q2, Q3).  
+- Variable Scope: Shadowing and initialization rules matter (Q19, Q25).  
+- Method Overloading: Primitive vs. wrapper precedence (Q15, Q20–22).  
+- Static vs. Instance: Shared vs. per-object data (Q17, Q30).  
+
+
 
 1. What will be the result of compiling and executing Test class?
    public class Test {
@@ -720,332 +727,329 @@ Ans:
 
 --
 24.class Student {
-String name;
-int age;
+   String name;
+   int age;
+   
+   Student() {
+   Student(“James”, 25);
+   }
+   
+   Student(String name, int age) {
+   this.name = name;
+   this.age = age;
+   }
+   }
+   
+   public class Test {
+   public static void main(String[] args) {
+   Student s = new Student();
+   System.out.println(s.name + “:” + s.age);
+   }
+   }
+   What will be the result of compiling and executing Test class?
+   
+    Compilation error
+    null:0
+    James:25
+    An exception is thrown at runtime
 
-Student() {
-Student(“James”, 25);
-}
 
-Student(String name, int age) {
-this.name = name;
-this.age = age;
-}
-}
 
-public class Test {
-public static void main(String[] args) {
-Student s = new Student();
-System.out.println(s.name + “:” + s.age);
-}
-}
-What will be the result of compiling and executing Test class?
 
- Compilation error
- null:0
- James:25
- An exception is thrown at runtime
+Ans:
+-একটি কনস্ট্রাক্টর থেকে অন্য কনস্ট্রাক্টরকে কল করার জন্য আপনাকে অবশ্যই this() কীওয়ার্ড ব্যবহার করতে হবে, যেমন: this("James", 25);।
+-এই কোডটি সফলভাবে কম্পাইল হবে না, তাই রানটাইমে কোনো আউটপুট বা ব্যতিক্রম (exception) দেখা যাবে না। এটি সরাসরি কম্পাইলেশন ধাপেই ব্যর্থ হবে।
 
+---
 25.public class Test {
-static String str = “KEEP IT “; //Line n1
-public static void main(String[] args) {
-String str = str + “SIMPLE”; //Line n2
-System.out.println(str);
-}
-}
+   static String str = “KEEP IT “; //Line n1
+      public static void main(String[] args) {
+         String str = str + “SIMPLE”; //Line n2
+         System.out.println(str);
+      }
+   }
+   
+   What will be the result of compiling and executing Test class?
+   
+    KEEP IT
+    KEEP IT SIMPLE
+    SIMPLE
+    Compilation error
 
-What will be the result of compiling and executing Test class?
+Ans:
+String str = str + “SIMPLE”; // Line n2: এখানে মূল সমস্যা|
+জাভা কম্পাইলার এখানে বিভ্রান্ত হয়ে যায়। যখন String str = str + "SIMPLE"; লাইনটি প্রসেস হয়, তখন ডান পাশের str (যেটি str + "SIMPLE" এর অংশ) আসলে কোন str কে নির্দেশ করছে তা নিয়ে অস্পষ্টতা দেখা দেয়। 
+কম্পাইলার মনে করে আপনি সেই লোকাল ভ্যারিয়েবল str কে রেফার করছেন যা আপনি একই লাইনে ডিক্লেয়ার করার চেষ্টা করছেন, কিন্তু সেটি তখনও সম্পূর্ণভাবে ইনিশিয়ালাইজড (initialized) হয়নি।
 
- KEEP IT
- KEEP IT SIMPLE
- SIMPLE
- Compilation error
+এই পরিস্থিতিকে নামের দ্বন্দ্ব (name conflict) বা শ্যাডোইং (shadowing) বলা যেতে পারে, যেখানে একটি লোকাল ভ্যারিয়েবল একটি স্ট্যাটিক ভ্যারিয়েবলকে "ঢেকে" দেয়। 
+কিন্তু জাভা এই নির্দিষ্ট সিনট্যাক্সকে একটি লোকাল ভ্যারিয়েবলের নিজেকে রেফার করে ইনিশিয়ালাইজ করার চেষ্টা হিসেবে দেখে, যা এরর দেয়। 
+কম্পাইলার এরর দেবে যে "variable str might not have been initialized" অথবা "cannot reference str before it is defined/initialized."
 
 26.class Square {
-int length;
-Square sq;
+   int length;
+   Square sq; //does it allow length for String, but what about sq?
+   
+   Square(int length) {
+   this.length = length;
+   }
+   
+   void setInner(Square sq) {
+   this.sq = sq;
+   }
+   
+   int getLength() {
+   return this.length;
+   }
+   }
+   
+   public class TestSquare {
+   public static void main(String[] args) {
+   Square sq1 = new Square(10); //Line n1
+   Square sq2 = new Square(5); //Line n2
+   sq1.setInner(sq2); //Line n3
+   System.out.println(sq1.sq.length); //Line n4
+   }
+   }
+   
+   What will be the result of compiling and executing TestSquare class?
+   
+    It prints 0 on to the console
+    It prints 5 on to the console
+    It prints 10 on to the console
+    It prints null on to the console
+    Compilation error
+    An exception is thrown at runtime
 
-Square(int length) {
-this.length = length;
-}
 
-void setInner(Square sq) {
-this.sq = sq;
-}
 
-int getLength() {
-return this.length;
-}
-}
-
-public class TestSquare {
-public static void main(String[] args) {
-Square sq1 = new Square(10); //Line n1
-Square sq2 = new Square(5); //Line n2
-sq1.setInner(sq2); //Line n3
-System.out.println(sq1.sq.length); //Line n4
-}
-}
-
-What will be the result of compiling and executing TestSquare class?
-
- It prints 0 on to the console
- It prints 5 on to the console
- It prints 10 on to the console
- It prints null on to the console
- Compilation error
- An exception is thrown at runtime
-
+Ans: 
+তা কম্পাইল করে চালালে আউটপুট হবে: 5
+----
 27. class Car {
-void speed(Byte val) { //Line n1
-System.out.println(“DARK”); //Line n2
-} //Line n3
+   void speed(Byte val) { //Line n1
+     System.out.println(“DARK”); //Line n2
+   } //Line n3
+   
+   void speed(byte… vals) {
+   System.out.println(“LIGHT”);
+   }
+   }
+   
+   public class Test {
+   public static void main(String[] args) {
+   byte b = 10; //Line n4
+   new Car().speed(b); //Line n5
+   }
+   }
+   
+   Which of the following needs to be done so that LIGHT is printed on to the console?
+   
+    No changes are required as given code prints LIGHT on execution
+    Delete Line n1, Line n2 and Line n3
+    Replace Line n4 with byte... b = 10;
+    Replace Line n5 with new Car().speed((byte...)b);
 
-void speed(byte… vals) {
-System.out.println(“LIGHT”);
-}
-}
 
-public class Test {
-public static void main(String[] args) {
-byte b = 10; //Line n4
-new Car().speed(b); //Line n5
-}
-}
 
-Which of the following needs to be done so that LIGHT is printed on to the console?
-
- No changes are required as given code prints LIGHT on execution
- Delete Line n1, Line n2 and Line n3
- Replace Line n4 with byte... b = 10;
- Replace Line n5 with new Car().speed((byte...)b);
-
+Ans:
+"LIGHT" প্রিন্ট করার জন্য void speed(Byte val) মেথডটি (Line n1, Line n2, Line n3) মুছে ফেলতে হবে।
+--
 28.Consider below code of AvoidThreats.java file:
-public class AvoidThreats {
-public static void evaluate(Threat t) { //Line n5
-t = new Threat(); //Line n6
-t.name = “PHISHING”; //Line n7
-}
-
-public static void main(String[] args) {
-Threat obj = new Threat(); //Line n1
-obj.print(); //Line n2
-evaluate(obj); //Line n3
-obj.print(); //Line n4
-}
-}
-
-class Threat {
-String name = “VIRUS”;
-
-public void print() {
-System.out.println(name);
-}
-}
+   public class AvoidThreats {
+   public static void evaluate(Threat t) { //Line n5
+   t = new Threat(); //Line n6
+   t.name = “PHISHING”; //Line n7
+   }
+   
+   public static void main(String[] args) {
+   Threat obj = new Threat(); //Line n1
+   obj.print(); //Line n2
+   evaluate(obj); //Line n3
+   obj.print(); //Line n4
+   }
+   }
+   
+   class Threat {
+   String name = “VIRUS”;
+   
+   public void print() {
+   System.out.println(name);
+   }
+   }
 
 What will be the result of compiling and executing AvoidThreats class?
-
  VIRUS PHISHING
  PHISHING PHISHING
  VIRUS VIRUS
  null VIRUS
  null null
  None of the other options
-Incorrect
-Threat class doesn’t specify any constructor, hence Java compiler adds below default constructor:
-Threat() {super();}
+
+
+
+
+
+Ans: 
+এই ফলাফলের কারণ হলো জাভাতে অবজেক্ট রেফারেন্সগুলো মেথডে কল করার সময় মান দ্বারা পাস হয় (pass-by-value)। যদিও আপনি একটি অবজেক্ট রেফারেন্স পাস করছেন, সেই রেফারেন্সের একটি কপি মেথডে যায়। 
+মেথডের ভেতরে রেফারেন্সটিকে নতুন অবজেক্টে পয়েন্ট করালে, মূল রেফারেন্সটি প্রভাবিত হয় না।
+আউটপুট হবে:
+VIRUS
+VIRUS
+
+
+----
 
 29.public class Test {
-int i1 = 10;
-static int i2 = 20;
+   int i1 = 10;
+   static int i2 = 20;
+   
+   private void change1(int val) {
+   i1 = ++val; //Line n1
+   i2 = val++; //Line n2
+   }
+   
+   private static void change2(int val) {
+   i1 = –val; //Line n3
+   i2 = val–; //Line n4
+   }
+   
+   public static void main(String[] args) {
+   change1(5); //Line n5
+   change2(5); //Line n6
+   System.out.println(i1 + i2); //Line n7
+   }
+   }
+   
+   Which of the following statements are correct regarding above code?
+   Select ALL that apply.
+   
+    Line n1 causes compilation error
+    Line n2 causes compilation error
+    Line n3 causes compilation error
+    Line n4 causes compilation error
+    Line n5 causes compilation error
+    Line n7 causes compilation error
 
-private void change1(int val) {
-i1 = ++val; //Line n1
-i2 = val++; //Line n2
-}
 
-private static void change2(int val) {
-i1 = –val; //Line n3
-i2 = val–; //Line n4
-}
 
-public static void main(String[] args) {
-change1(5); //Line n5
-change2(5); //Line n6
-System.out.println(i1 + i2); //Line n7
-}
-}
+Ans:
+Line n3 causes compilation error (কারণ static মেথড change2 থেকে ইনস্ট্যান্স ভ্যারিয়েবল i1 অ্যাক্সেস করা হচ্ছে)।
+Line n5 causes compilation error (কারণ static মেথড main থেকে নন-স্ট্যাটিক মেথড change1 কে সরাসরি কল করা হচ্ছে)।
+Line n7 causes compilation error (কারণ static মেথড main থেকে ইনস্ট্যান্স ভ্যারিয়েবল i1 অ্যাক্সেস করা হচ্ছে)।
 
-Which of the following statements are correct regarding above code?
-Select ALL that apply.
+--
+30. class Counter {
+   static int ctr = 0;
+   int count = 0;
+   }
+   
+   public class Test {
+   public static void main(String[] args) {
+   Counter ctr1 = new Counter();
+   Counter ctr2 = new Counter();
+   Counter ctr3 = new Counter();
+   
+   for(int i = 1; i <= 5; i++ ) { 
+   ctr1.ctr++; ctr1.count++; ctr2.ctr++; ctr2.count++; ctr3.ctr++; ctr3.count++; 
+   } 
+   System.out.println(ctr3.ctr + ":" + ctr3.count); } 
+   } 
+   What will be the result of compiling and executing Test class?
 
- Line n1 causes compilation error
- Line n2 causes compilation error
- Line n3 causes compilation error
- Line n4 causes compilation error
- Line n5 causes compilation error
- Line n7 causes compilation error
 
-30.class Counter {
-static int ctr = 0;
-int count = 0;
-}
+Ans:
+আপনার দেওয়া জাভা কোডটি কম্পাইল করে চালালে আউটপুট হবে:15:5
+কেন এমন হয়?
+এই ফলাফলটি বোঝার জন্য আপনাকে স্ট্যাটিক (static) এবং ইনস্ট্যান্স (instance) ভ্যারিয়েবলগুলোর পার্থক্য জানতে হবে।
+১.  static int ctr = 0;:
+* ctr একটি স্ট্যাটিক ভ্যারিয়েবল (Static Variable)। এর মানে হলো, Counter ক্লাসের যতগুলোই অবজেক্ট তৈরি হোক না কেন (ctr1, ctr2, ctr3), তাদের সবার জন্য ctr এর একটিই সাধারণ কপি থাকবে।
+* যখন ctr1.ctr++, ctr2.ctr++, বা ctr3.ctr++ এর মতো কোনো অবজেক্টের মাধ্যমে ctr এর মান পরিবর্তন করা হয়, তখন আসলে সেই একটি সাধারণ ctr ভ্যারিয়েবলের মানই পরিবর্তিত হয়।
+২.  int count = 0;:
+* count একটি ইনস্ট্যান্স ভ্যারিয়েবল (Instance Variable)। এর মানে হলো, Counter ক্লাসের প্রতিটি অবজেক্টের জন্য (ctr1, ctr2, ctr3) count এর আলাদা আলাদা কপি থাকবে।
+* যখন ctr1.count++ করা হয়, তখন শুধুমাত্র ctr1 অবজেক্টের count বাড়ে। ctr2 বা ctr3 এর count প্রভাবিত হয় না।
 
-public class Test {
-public static void main(String[] args) {
-Counter ctr1 = new Counter();
-Counter ctr2 = new Counter();
-Counter ctr3 = new Counter();
+System.out.println(ctr3.ctr + ":" + ctr3.count);:
+* ctr3.ctr: ctr3 অবজেক্টের মাধ্যমে স্ট্যাটিক ctr কে অ্যাক্সেস করা হচ্ছে। ctr এর সর্বশেষ মান 15।
+* ctr3.count: ctr3 অবজেক্টের নিজস্ব count ভ্যারিয়েবলের মান 5।
 
-for(int i = 1; i <= 5; i++ ) { ctr1.ctr++; ctr1.count++; ctr2.ctr++; ctr2.count++; ctr3.ctr++; ctr3.count++; } System.out.println(ctr3.ctr + ":" + ctr3.count); } } What will be the result of compiling and executing Test class?
+তাই, System.out.println() প্রিন্ট করবে 15:5।
 
+
+   
 31.public class Test {
-private static void m(int i) {
-System.out.print(1);
-}
+   private static void m(int i) {
+   System.out.print(1);
+   }
+   
+   private static void m(int i1, int i2) {
+   System.out.print(2);
+   }
+   
+   private static void m(char… args) {
+   System.out.print(3);
+   }
+   
+   public static void main(String… args) {
+   m(‘A’);
+   m(‘A’, ‘B’);
+   m(‘A’, ‘B’, ‘C’);
+   m(‘A’, ‘B’, ‘C’, ‘D’);
+   }
+   }
+   
+   What will be the result of compiling and executing Test class?
+   
+    Above code causes compilation error
+    It compiles successfully and on execution prints 3333 on to the console
+    It compiles successfully and on execution prints 1233 on to the console
+    It compiles successfully and on execution prints 1333 on to the console
 
-private static void m(int i1, int i2) {
-System.out.print(2);
-}
 
-private static void m(char… args) {
-System.out.print(3);
-}
-
-public static void main(String… args) {
-m(‘A’);
-m(‘A’, ‘B’);
-m(‘A’, ‘B’, ‘C’);
-m(‘A’, ‘B’, ‘C’, ‘D’);
-}
-}
-
-What will be the result of compiling and executing Test class?
-
- Above code causes compilation error
- It compiles successfully and on execution prints 3333 on to the console
- It compiles successfully and on execution prints 1233 on to the console
- It compiles successfully and on execution prints 1333 on to the console
-
+Ans:
+It compiles successfully and on execution prints 1233 on to the console
+   
 32.class Book {
-private String name;
-private String author;
-
-Book() {}
-
-Book(String name, String author) {
-name = name;
-author = author;
-}
-
-String getName() {
-return name;
-}
-
-String getAuthor() {
-return author;
-}
-}
-
-public class TestBook {
-public static void main(String[] args) {
-private Book book = new Book(“Head First Java”, “Kathy Sierra”);
-System.out.println(book.getName());
-System.out.println(book.getAuthor());
-}
-}
-
-What will be the result of compiling and executing above code?
-
- Compilation error in Book class
- Compilation error in TestBook class
- null null
- Head First Java Kathy Sierra
-
-------------------------- Answers --------------------------------------
+   private String name;
+   private String author;
+   
+   Book() {}
+   
+   Book(String name, String author) {
+   name = name;
+   author = author;
+   }
+   
+   String getName() {
+   return name;
+   }
+   
+   String getAuthor() {
+   return author;
+   }
+   }
+   
+   public class TestBook {
+   public static void main(String[] args) {
+   private Book book = new Book(“Head First Java”, “Kathy Sierra”);
+   System.out.println(book.getName());
+   System.out.println(book.getAuthor());
+   }
+   }
+   
+   What will be the result of compiling and executing above code?
+   
+    Compilation error in Book class
+    Compilation error in TestBook class
+    null null
+    Head First Java Kathy Sierra
 
 
+Ans: 
+  Compilation error in TestBook class 
+ (`private` modifier not allowed for local variable `book`.)
 
 
 
 
-16. Valid `process` methods: 
-    - `private static int[] process(int[] arr, int start, int end)`  
-    - `private static String process(int[] arr, int start, int end)`  
-    - `private static int process(int[] arr, int start, int end)`  
 
-17. Output: 
-    Point(19, 35, -1) Point(19, 40, 0) 
-    (Static `x` is shared; last update is `19`.)
-
-18. Output: 
-    [5, 10] 
-    (Array is modified after initialization.)
-
-19. Answer: 
-    Line 8 causes compilation failure 
-    (Local `msg` might not be initialized before `System.out.println`.)
-
-20. Modifications to print "Integer version": 
-    - Remove `add(int i, int j)` method.  
-    - Replace `add(10, 20);` with `add(new Integer(10), new Integer(20));`.  
-
-21. Output: 
-    double version: 20.0 
-    (Autoboxing prefers `double` over `Double` for `add(10.0, new Integer(10))`.)
-
-22. Output: 
-    Double version: 20.0 
-    (Exact match for `Double` parameters.)
-
-23. Output: 
-    Infinite loop 
-    (`x` is passed by value; `checkAndIncrement` always gets `x=1`.)
-
-24. Answer: 
-    Compilation error 
-    (Invalid constructor chaining: `Student("James", 25);` should be `this("James", 25);`.)
-
-25. Answer: 
-    Compilation error 
-    (Line n2: Local `str` shadows static `str` and is used before initialization.)
-
-26. Output: 
-    5 
-    (`sq1.sq` refers to `sq2`, so `sq1.sq.length` is `5`.)
-
-27. Answer: 
-    Delete Line n1, Line n2, and Line n3 
-    (Removing `speed(Byte)` forces `speed(byte...)` to be called.)
-
-28. Output: 
-    VIRUS VIRUS 
-    (Method `evaluate` modifies a new `Threat` object, not the original `obj`.)
-
-29. Compilation Errors: 
-    - Line n3: Cannot access non-static `i1` from static `change2`.  
-    - Line n5: Cannot call non-static `change1` from static `main`.  
-    - Line n7: Cannot access non-static `i1` from static `main`.  
-
-30. Output: 
-    15:5 
-    (Static `ctr` is shared (15), instance `count` is per-object (5).)
-
-31. Output: 
-    1333 
-    (First call matches `m(int)`, others match `m(char…)`.)
-
-32. Answer: 
-    Compilation error in TestBook class 
-    (`private` modifier not allowed for local variable `book`.)
-
----
-
-### Key Takeaways:
-- Array Indexing: Beware of off-by-one errors (Q1).  
-- Loop Control: `break`/`continue` affects reachability (Q2, Q3).  
-- Variable Scope: Shadowing and initialization rules matter (Q19, Q25).  
-- Method Overloading: Primitive vs. wrapper precedence (Q15, Q20–22).  
-- Static vs. Instance: Shared vs. per-object data (Q17, Q30).  
-
-Let me know if you need further clarification on any answer!
+-
