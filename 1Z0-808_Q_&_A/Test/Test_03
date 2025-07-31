@@ -523,121 +523,150 @@ public static void main(String [] args) {
 int [] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 System.out.println(process(arr, 3, 8)); //Line 5
 }
-
 /*INSERT*/
 }
 Line 5 causes compilation error as process method is not found. 
 Which of the following method definitions, if used to replace /*INSERT*/, will resolve the compilation error?
-Select ALL that apply.
 
+Select ALL that apply:-
  private static int[] process(int [] arr, int start, int end) { return null; }
  private static String process(int [] arr, int start, int end) { return null; }
  private static int process(int [] arr, int start, int end) { return null; }
  private static String[] process(int [] arr, int start, int end) { return null; }
 
+16.Answer:
+It is clear from Line 5 that- 
+method name should be process, it should be a STATIC method, it should accept 3 parameters (int[], int, int), and its RETURN TYPE must be String.
+
+------------
+
 17.class Point {
-static int x;
-int y, z;
+   static int x;
+   int y, z;
 
-public String toString() {
-return “Point(” + x + “, ” + y + “, ” + z + “)”;
-}
-}
+   public String toString() { return “Point(” + x + “, ” + y + “, ” + z + “)”; }
+   }
+   
+   public class Test {
+   public static void main(String[] args) {
+   Point p1 = new Point();
+   p1.x = 17;  p1.y = 35;  p1.z = -1;
+   
+   Point p2 = new Point();
+   p2.x = 19;  p2.y = 40;  p2.z = 0;
+   
+   System.out.println(p1); //Line n1
+   System.out.println(p2); //Line n2
+   }
+   }   
+    Point(17, 35, -1) Point(19, 40, 0)
+    Point(19, 35, -1) Point(19, 40, 0)
+    Point(17, 35, -1) Point(17, 40, 0)
+    Point(19, 40, 0) Point(19, 40, 0)
 
-public class Test {
-public static void main(String[] args) {
-Point p1 = new Point();
-p1.x = 17;
-p1.y = 35;
-p1.z = -1;
 
-Point p2 = new Point();
-p2.x = 19;
-p2.y = 40;
-p2.z = 0;
 
-System.out.println(p1); //Line n1
-System.out.println(p2); //Line n2
-}
-}
+Ans: Point(19, 35, -1) Point(19, 40, 0)
+**static value effect last assigned one.
 
- Point(17, 35, -1) Point(19, 40, 0)
- Point(19, 35, -1) Point(19, 40, 0)
- Point(17, 35, -1) Point(17, 40, 0)
- Point(19, 40, 0) Point(19, 40, 0)
 
+----
 18.public class Test {
-public static void main(String[] args) {
-short [] args = new short[]{50, 50};
-args[0] = 5;
-args[1] = 10;
-System.out.println(“[” + args[0] + “, ” + args[1] + “]”);
-}
-}
+   public static void main(String[] args) {
+   short [] args = new short[]{50, 50};
+   args[0] = 5;
+   args[1] = 10;
+   System.out.println(“[” + args[0] + “, ” + args[1] + “]”);
+   }
+   }
+   
+    Compilation error
+    An exception is thrown at runtime
+    [50, 50]
+    [5, 10]
 
- Compilation error
- An exception is thrown at runtime
- [50, 50]
- [5, 10]
 
+Ans: 
+Compilation error for duplicate args from psvm(argument)
+
+
+---
 19.public class Test {
-static String msg; //Line 2
-public static void main(String[] args) {
-String msg; //Line 4
-if(args.length > 0) {
-msg = args[0]; //Line 6
-}
-System.out.println(msg); //Line 8
-}
-}
+   static String msg; //Line 2
+   public static void main(String[] args) {
+   String msg; //Line 4
+   if(args.length > 0) {
+   msg = args[0]; //Line 6
+   }
+   System.out.println(msg); //Line 8
+   }
+   }
+   
+    Line 2 causes compilation failure
+    Line 4 causes compilation failure
+    An exception is thrown at runtime by Line 6
+    Line 8 causes compilation failure
 
- Line 2 causes compilation failure
- Line 4 causes compilation failure
- An exception is thrown at runtime by Line 6
- Line 8 causes compilation failure
 
-20.public class Test {
+Ans:
+    Line 4 causes compilation failur, LOCAL variable must initialize while declare.
 
-private static void add(int i, int j) {
-System.out.println(“int version”);
-}
+---
+20. public class Test {
+   private static void add(int i, int j) {
+   System.out.println(“int version”);
+   }
+   
+   private static void add(Integer i, Integer j) {
+   System.out.println(“Integer version”);
+   }
+   
+   public static void main(String[] args) {
+   add(10, 20);
+   }
+   
+   }
+   Which modifications, done independently, print “Integer version” on to the console? Select ALL that apply.   
+    Remove add(int i, int j)  method declaration and definition.
+    Replace add(10, 20);  by add(new Integer(10), new Integer(20)); 
+    Replace add(10, 20);  by add(10.0, 20.0); 
+    Replace add(10, 20);  by add(null, null); 
 
-private static void add(Integer i, Integer j) {
-System.out.println(“Integer version”);
-}
 
-public static void main(String[] args) {
-add(10, 20);
-}
 
-}
-Which modifications, done independently, print “Integer version” on to the console? Select ALL that apply.
 
- Remove add(int i, int j)  method declaration and definition.
- Replace add(10, 20);  by add(new Integer(10), new Integer(20)); 
- Replace add(10, 20);  by add(10.0, 20.0); 
- Replace add(10, 20);  by add(null, null); 
+Ans:
+যে পরিবর্তনগুলো "Integer version" প্রিন্ট করবে তা হলো:
+add(int i, int j) মেথড ডিক্লেয়ারেশন এবং ডেফিনিশন মুছে ফেলুন।
+add(10, 20); কে add(new Integer(10), new Integer(20)); দিয়ে প্রতিস্থাপন করুন।
+add(10, 20); কে add(null, null); দিয়ে প্রতিস্থাপন করুন।
 
-21.public class Test {
 
-private static void add(double d1, double d2) {
-System.out.println(“double version: ” + (d1 + d2));
-}
+----
+21. public class Test {
+   private static void add(double d1, double d2) {
+   System.out.println(“double version: ” + (d1 + d2));
+   }
+   
+   private static void add(Double d1, Double d2) {
+   System.out.println(“Double version: ” + (d1 + d2));
+   }
+   
+   public static void main(String[] args) {
+   add(10.0, new Integer(10));
+   }
+   
+   }
+   
+    Compilation error
+    double version: 20.0
+    Double version: 20.0
+    An exception is thrown at runtime
 
-private static void add(Double d1, Double d2) {
-System.out.println(“Double version: ” + (d1 + d2));
-}
+Ans:
+add(10.0, new Integer(10)); => 1st parameter is tagged to double primitive type and 2nd parameter is converted to int, is tagged to double primitive type as well. 
+So, add(double, double); method is invoked( double version: 20.0).
 
-public static void main(String[] args) {
-add(10.0, new Integer(10));
-}
-
-}
-
- Compilation error
- double version: 20.0
- Double version: 20.0
- An exception is thrown at runtime
 
 22.public class Test {
 
