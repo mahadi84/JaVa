@@ -694,3 +694,759 @@ Class Y correctly extends class X and it overrides method A() and provides two n
 At Line n1, obj is of X type and therefore obj.B(); and obj.C(); cause compilation error as these methods are not defined in class X.
 
 
+20. Consider below code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class Currency {
+String notation = “-“; //Line n1
+
+String getNotation() { //Line n2
+return notation;
+}
+}
+
+class USDollar extends Currency {
+String notation = “$”; //Line n3
+
+String getNotation() { //Line n4
+return notation;
+}
+}
+
+class Euro extends Currency {
+protected String notation = “€”; //Line n5
+
+protected String getNotation() { //Line n6
+return notation;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Currency c1 = new USDollar();
+System.out.println(c1.notation + “:” + c1.getNotation());
+
+Currency c2 = new Euro();
+System.out.println(c2.notation + “:” + c2.getNotation());
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ -:$ -:€
+ -:- -:-
+ $:$ €:€
+ Compilation error in USDollar class
+ Compilation error in Euro class
+
+
+ 21.Consider below code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class Super {
+public String num = “10”; //Line n1
+}
+
+class Sub extends Super {
+protected int num = 20; //Line n2
+}
+
+public class Test {
+public static void main(String[] args) {
+Super obj = new Sub();
+System.out.println(obj.num += 2); //Line n3
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ Compilation error at Line n2
+ Compilation error at Line n3
+ It executes successfully and prints 12 on to the console
+ It executes successfully and prints 22 on to the console
+ It executes successfully and prints 102 on to the console
+ It executes successfully and prints 202 on to the console
+
+
+
+ Ans:
+ obj’ is of Super type, hence obj.num refers to num variable at Line n1, which is of String type.
+Expression at Line n3:
+obj.num += 2
+=> obj.num = obj.num + 2
+=> obj.num = “10” + 2
+=> obj.num = “102”
+obj.num refers to “102” and same is printed on to the console.
+
+
+22.Given code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class Parent {
+int var = 1000; // Line n1
+
+int getVar() {
+return var;
+}
+}
+
+class Child extends Parent {
+private int var = 2000; // Line n2
+
+int getVar() {
+return super.var; //Line n3
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Child obj = new Child(); // Line n4
+System.out.println(obj.var); // Line n5
+}
+}
+
+There is a compilation error in the code.
+Which three modifications, done independently, print 1000 on to the console?
+
+ Change Line n1 to private int var = 1000;
+ Delete the Line n2
+ Change Line n3 to return var;
+ Change Line n4 to Parent obj = new Child();
+ Delete the method getVar() from the Child class
+ Change Line n5 to System.out.println(obj.getVar());
+
+
+
+
+
+ 23.class Base {
+String msg = “INHALE”; //Line n1
+}
+
+class Derived extends Base {
+Object msg = “EXHALE”; //Line n2
+}
+
+public class Test {
+public static void main(String[] args) {
+Base obj1 = new Base(); //Line n3
+Base obj2 = new Derived(); //Line n4
+Derived obj3 = (Derived) obj2; //Line n5
+String text = obj1.msg + “-” + obj2.msg + “-” + obj3.msg; //Line n6
+System.out.println(text); //Line n7
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ Line n2 causes compilation error
+ Line n5 throws Exception at runtime
+ Line n6 causes compilation error
+ It executes successfully and prints INHALE-EXHALE-EXHALE
+ It executes successfully and prints INHALE-INHALE-EXHALE
+ It executes successfully and prints INHALE-INHALE-INHALE
+
+
+
+
+ 24.class Base {
+static void print() { //Line n1
+System.out.println(“BASE”);
+}
+}
+
+class Derived extends Base {
+static void print() { //Line n2
+System.out.println(“DERIVED”);
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Base b = null;
+Derived d = (Derived) b; //Line n3
+d.print(); //Line n4
+}
+}
+
+Which of the following statements is true for above code?
+
+ Line n2 causes compilation error
+ Line n3 causes compilation error
+ Line n4 causes compilation error
+ Code compiles successfully and on execution Line n3 throws an exception
+ Code compiles successfully and on execution prints BASE on to the console
+ Code compiles successfully and on execution prints DERIVED on to the console
+
+
+
+
+ 25.lass Paper {
+static String getType() { //Line n1
+return “GENERIC”;
+}
+}
+
+class RuledPaper extends Paper {
+String getType() { //Line n2
+return “RULED”;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Paper paper = new RuledPaper(); //Line n3
+System.out.println(paper.getType()); //Line n4
+}
+}
+
+Which of the following statements is true for above code?
+
+ Compilation error in RuledPaper class
+ Compilation error in Test class
+ Code compiles successfully and on execution prints GENERIC on to the console
+ Code compiles successfully and on execution prints RULED on to the console
+
+
+ Ans:
+ Instance method of subclass cannot override the static method of superclass.
+Instance method at Line n2 tries to override the static method at Line n1 and hence Line n2 causes compilation error.
+
+
+ 26.class M {
+public void main(String[] args) { //Line n1
+System.out.println(“M”);
+}
+}
+
+class N extends M {
+public static void main(String[] args) { //Line n2
+new M().main(args); //Line n3
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+N.main(args); //Line n4
+}
+}
+
+Which of the following statements is true for above code?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ Line n3 causes compilation error
+ Line n4 causes compilation error
+ It executes successfully and prints M on to the console
+
+Ans:
+The static method of subclass cannot hide the instance method of superclass. static main(String []) method at Line n2 tries to hide the instance main(String []) method at Line n1 and hence Line n2 causes compilation error.
+
+ 27.class Parent {
+String quote = “MONEY DOESN’T GROW ON TREES”;
+}
+
+class Child extends Parent {
+String quote = “LIVE LIFE KING SIZE”;
+}
+
+class GrandChild extends Child {
+String quote = “PLAY PLAY PLAY”;
+}
+
+public class Test {
+public static void main(String[] args) {
+GrandChild gc = new GrandChild();
+System.out.println(/*INSERT*/);
+}
+}
+Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print MONEY DOESN’T GROW ON TREES on to the console?
+Select ALL that apply.
+
+ gc.quote
+ (Parent)gc.quote
+ ((Parent)gc).quote
+ ((Parent)(Child)gc).quote
+ (Parent)(Child)gc.quote
+
+ Ans:
+ (Parent)gc.quote => gc.quote will be evaluated first as dot (.) operator has higher precedence than cast. gc.quote refers to String, hence it cannot be casted to Parent type. This would cause compilation error.
+((Parent)gc).quote => Variable ‘gc’ is casted to Parent type, so this expression refers to “MONEY DOESN’T GROW ON TREES”. It is one of the correct options.
+((Parent)(Child)gc).quote => ‘gc’ is of GrandChild type, it is first casted to Child and then to Parent type and finally quote variable is accessed, so this expression refers to “MONEY DOESN’T GROW ON TREES”. It is also one of the correct options.
+(Parent)(Child)gc.quote => gc.quote will be evaluated first as dot (.) operator has higher precedence than cast. gc.quote refers to String, hence it cannot be casted to Child type. This would cause compilation error.
+
+ 28.class X {
+void greet() {
+System.out.println(“Good Morning!”);
+}
+}
+
+class Y extends X {
+void greet() {
+System.out.println(“Good Afternoon!”);
+}
+}
+
+class Z extends Y {
+void greet() {
+System.out.println(“Good Night!”);
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+X x = new Z();
+x.greet(); //Line n1
+((Y)x).greet(); //Line n2
+((Z)x).greet(); //Line n3
+}
+}
+
+What will be the result of compiling and executing above code?
+
+ Compilation error
+ An exception is thrown at runtime
+ It compiles successfully and on execution prints below: Good Night! Good Afternoon! Good Morning
+ It compiles successfully and on execution prints below: Good Night! Good Night! Good Night!
+ It compiles successfully and on execution prints below: Good Morning! Good Morning! Good Morning!
+
+ 29.Given code of Test.java file:
+package com.skillcertprokhattry.oca;
+
+class Lock {
+public void open() {
+System.out.println(“LOCK-OPEN”);
+}
+}
+
+class Padlock extends Lock {
+public void open() {
+System.out.println(“PADLOCK-OPEN”);
+}
+}
+
+class DigitalPadlock extends Padlock {
+public void open() {
+/*INSERT*/
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Lock lock = new DigitalPadlock();
+lock.open();
+}
+}
+
+Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print LOCK-OPEN on to the console?
+
+ super.open();
+ super.super.open();
+ ((Lock)super).open();
+ (Lock)super.open();
+ None of the other options
+
+
+
+Ans:
+super.open(); => Using super keyword, you can access methods and variables of immediate parent class, hence if you replace /*INSERT*/ with `super.open();`, then open() method of Padlock class will be invoked.
+super.super.open(); => super.super is not allowed in java, it causes compilation error.
+((Lock)super).open(); => Not possible to cast super keyword in java, it causes compilation error.
+(Lock)super.open(); => super.open(); will be evaluated first as dot (.) operator has higher precedence than cast. super.open(); returns void and hence it cannot be casted to Lock. It also causes compilation error.
+In fact, it is not possible to directly reach to 2 levels, super keyword allows to access methods and variables of immediate parent class only (just 1 level up). Hence, correct answer is: ‘None of the other options’
+
+ 30.
+//Chair.java
+package com.skillcertprokhattry.oca;
+
+public class Chair implements Sellable {
+public double getPrice() {
+return 35;
+}
+
+public String symbol() {
+return “£”;
+}
+}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+Sellable obj = new Chair(); //Line n1
+System.out.println(obj.symbol() + obj.getPrice()); //Line n2
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error in Chair class
+ Compilation error in Test class
+ It compiles successfully and on execution prints $35 on to the console
+ It compiles successfully and on execution prints $35.0 on to the console
+ It compiles successfully and on execution prints $35.00 on to the console
+ It compiles successfully and on execution prints £35.0 on to the console
+
+31.//I1.java
+package com.skillcertprokhattry.oca;
+
+public interface I1 {
+int i = 10;
+}
+
+//I2.java
+package com.skillcertprokhattry.oca;
+
+public interface I2 {
+int i = 20;
+}
+
+//I3.java
+package com.skillcertprokhattry.oca;
+
+public interface I3 extends I1, I2 { //Line n1
+
+}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+System.out.println(I1.i); //Line n2
+System.out.println(I2.i); //Line n3
+System.out.println(I3.i); //Line n4
+}
+}
+
+Which of the following statements is correct?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ Line n3 causes compilation error
+ Line n4 causes compilation error
+ There is no compilation error
+
+
+Ans:
+Variable ‘i’ declared inside interface I1 is implicitly public, static and final and similarly variable i declared inside interface I2 is implicitly public, static and final as well.
+In Java a class can extend from only one class but an interface can extend from multiple interfaces. static variables are not inherited and hence there is no issue with Line n1.
+
+I1.i points to variable ‘i’ of interface I1.
+I2.i points to variable ‘i’ of interface I2.
+I3.i is an ambiguous call as compiler is not sure whether to point to I1.i or I2.i and therefore, Line n4 causes compilation error.
+
+
+32.Consider below codes of 2 java files:
+//Counter.java
+package com.skillcertprokhattry.oca;
+
+public interface Counter {
+int count = 10; //Line n1
+}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+Counter [] arr = new Counter[2]; //Line n2
+for(Counter ctr : arr) {
+System.out.print(ctr.count); //Line n3
+}
+}
+}
+
+Which of the following statements is correct?
+
+ Only Line n1 causes compilation error
+ Only Line n2 causes compilation error
+ Line n1 and Line n2 cause compilation error
+ Only Line n3 causes compilation error
+ Line n3 throws an exception at runtime
+ Test class compiles successfully and on execution prints 1010 on to the console
+
+
+Ans:
+Line n2: Counter [] arr = new Counter[2]; - এটি Counter ইন্টারফেস টাইপের একটি অ্যারে তৈরি করছে। যদিও আপনি ইন্টারফেসের কোনো অবজেক্ট তৈরি করতে পারেন না, কিন্তু ইন্টারফেস টাইপের একটি অ্যারে তৈরি করা সম্ভব। এই অ্যারের প্রতিটি উপাদান ডিফল্টভাবে null দ্বারা ইনিশিয়্যালাইজড হবে। এটিও একটি বৈধ স্টেটমেন্ট।
+সুতরাং, কোডটি সফলভাবে কম্পাইল হবে এবং আউটপুট হবে 1010।
+
+33.Consider below codes of 3 java files:
+//Shrinkable.java
+package com.skillcertprokhattry.oca;
+
+public interface Shrinkable {
+public static void shrinkPercentage() {
+System.out.println(“80%”);
+}
+}
+
+//AntMan.java
+package com.skillcertprokhattry.oca;
+
+public class AntMan implements Shrinkable { }
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+AntMan.shrinkPercentage();
+}
+}
+
+Which of the following statements is correct?
+
+ There is a compilation error in Shrinkable.java file
+ There is a compilation error in AntMan.java file
+ There is a compilation error in Test.java file
+ There is no compilation error and on execution, Test class prints 80% on to the console
+Incorrect
+As per Java 8, default and static methods were added in the interface. There is no issue in Shrinkable.java file.
+class AntMan implements Shrinkable interface but as there is no abstract method in Shrinkable interface, hence AntMan class is not needed to implement any method. AntMan.java file compiles successfully.
+static method of Shrinkable interface can only be accessed by using Shrinkable.shrinkPercentage(). `AntMan.shrinkPercentage();` causes compilation error.
+
+
+34.//Buyable.java
+package com.skillcertprokhattry.oca;
+
+public interface Buyable {
+int salePercentage = 85;
+
+public static String salePercentage() {
+return salePercentage + “%”;
+}
+}
+
+//Book.java
+package com.skillcertprokhattry.oca;
+
+public class Book implements Buyable {}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+Buyable [] arr = new Buyable[2];
+for(Buyable b : arr) {
+System.out.println(b.salePercentage); //Line n1
+System.out.println(b.salePercentage()); //Line n2
+}
+
+Book [] books = new Book[2];
+for(Book b : books) {
+System.out.println(b.salePercentage); //Line n3
+System.out.println(b.salePercentage()); //Line n4
+}
+}
+}
+
+Which of the following statements are correct?
+Select ALL that apply.
+
+ There is a compilation error in Buyable.java file
+ There is a compilation error in Book.java file
+ There is a compilation error at Line n1
+ There is a compilation error at Line n2
+ There is a compilation error at Line n3
+ There is a compilation error at Line n4
+
+
+
+ 35.//Buyable.java
+package com.skillcertprokhattry.oca;
+
+public interface Buyable {
+int salePercentage = 85;
+
+public static String salePercentage() {
+return salePercentage + “%”;
+}
+}
+
+//Book.java
+package com.skillcertprokhattry.oca;
+
+public class Book implements Buyable {}
+
+//Test.java
+package com.skillcertprokhattry.oca;
+
+public class Test {
+public static void main(String[] args) {
+Buyable [] arr = new Buyable[2];
+for(Buyable b : arr) {
+System.out.println(b.salePercentage); //Line n1
+System.out.println(b.salePercentage()); //Line n2
+}
+
+Book [] books = new Book[2];
+for(Book b : books) {
+System.out.println(b.salePercentage); //Line n3
+System.out.println(b.salePercentage()); //Line n4
+}
+}
+}
+
+Which of the following statements are correct?
+Select ALL that apply.
+
+ There is a compilation error in Buyable.java file
+ There is a compilation error in Book.java file
+ There is a compilation error at Line n1
+ There is a compilation error at Line n2
+ There is a compilation error at Line n3
+ There is a compilation error at Line n4
+
+ Ans:
+ Super type reference variable can refer to an instance of Sub type, therefore the statement `I1 obj = new C1();` compiles successfully.
+obj is of I1 type, hence `obj.print(“Java”);` tries to tag the static method of I1 but static print(String) method of I1 can only be invoked by using I1.print(“Java”);.
+Therefore, `obj.print(“Java”);` causes compilation error.
+
+
+ 36.//Profitable1.java
+package com.skillcertprokhattry.oca;
+
+public interface Profitable1 {
+default double profit() {
+return 12.5;
+}
+}
+
+//Profitable2.java
+package com.skillcertprokhattry.oca;
+
+public interface Profitable2 {
+default double profit() {
+return 25.5;
+}
+}
+
+//Profit.java
+package com.skillcertprokhattry.oca;
+
+public abstract class Profit implements Profitable1, Profitable2 {
+/*INSERT*/
+}
+
+Which of the following needs to be done so that there is no compilation error?
+
+ No need for any modifications, code compiles as is
+ Replace /*INSERT*/ with below code: double profit() {     return 50.0; }
+ Replace /*INSERT*/ with below code: public default double profit() {     return 50.0; }
+ Replace /*INSERT*/ with below code: protected double profit() {     return 50.0; }
+ Replace /*INSERT*/ with below code: public double profit() {     return Profitable1.profit(); }
+ Replace /*INSERT*/ with below code: public double profit() {     return Profitable2.super.profit(); }
+
+ Ans:
+ Replace /*INSERT*/ with below code:
+public double profit() {
+    return Profitable2.super.profit();
+}
+
+ 37.interface Perishable1 {
+default int maxDays() {
+return 1;
+}
+}
+
+interface Perishable2 extends Perishable1 {
+default int maxDays() {
+return 2;
+}
+}
+
+class Milk implements Perishable2, Perishable1 {}
+
+public class Test {
+public static void main(String[] args) {
+Perishable1 obj = new Milk();
+System.out.println(obj.maxDays());
+}
+}
+
+Which of the following statements is correct?
+
+ Interface Perishable2 causes compilation error
+ Class Milk causes compilation error
+ Class Test causes compilation error
+ Given code compiles successfully and on execution Test class prints 1 on to the console
+ Given code compiles successfully and on execution Test class prints 2 on to the console
+ 
+ Ans:
+ Method maxDays() is implicitly public in Perishable1.
+interface Perishable2 extends Perishable1 and it overrides the default method maxDays() of Document, overriding method in Perishable2 is implicitly public. Interface Perishable2 compiles successfully.
+ 
+
+ 38.interface M {
+public static void log() {
+System.out.println(“M”);
+}
+}
+
+abstract class A {
+public static void log() {
+System.out.println(“N”);
+}
+}
+
+class MyClass extends A implements M {}
+
+public class Test {
+public static void main(String[] args) {
+M obj1 = new MyClass();
+obj1.log(); //Line n1
+
+A obj2 = new MyClass();
+obj2.log(); //Line n2
+
+MyClass obj3 = new MyClass();
+obj3.log(); //Line n3
+}
+}
+
+Which of the following statements is correct?
+
+ There is a compilation error in interface M
+ There is a compilation error in class A
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ Line n3 causes compilation error
+ Given code compiles successfully
+
+ Ans:
+ obj1 is of M type, hence `obj1.log();` tries to tag the static method of M but static log() method of M can only be invoked by using M.log();.
+Therefore, Line n1 causes compilation error.
+
+
+
+ 39.Consider below code snippet:
+interface ILog {
+default void log() {
+System.out.println(“ILog”);
+}
+}
+
+abstract class Log {
+public static void log() {
+System.out.println(“Log”);
+}
+}
+
+class MyLogger extends Log implements ILog {}
+
+Which of the following statements is correct?
+
+ There is no compilation error in the above code
+ There is a compilation error in interface ILog
+ There is a compilation error in abstract class Log
+
+
+Ans:
+MyLogger class has instance method log() [inherited from ILog interface] and static method log() [from Log class] and this causes conflict. Static and non-static methods with same signature are not allowed in one scope, therefore class MyLogger fails to compile.
+
+
+
+
