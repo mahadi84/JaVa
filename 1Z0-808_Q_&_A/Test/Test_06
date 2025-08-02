@@ -1,0 +1,295 @@
+Date: 2 Auguest 2025
+
+
+01.public class Test {
+public static void main(String[] args) {
+System.out.println(new RuntimeException()); //Line n1
+System.out.println(new RuntimeException(“HELLO”)); //Line n2
+System.out.println(new RuntimeException(new RuntimeException(“HELLO”))); //Line n3
+}
+}
+
+Does above code compile successfully?
+
+
+
+Ans:
+throw নেই, তাহলে এটি কম্পাইল হবে কেন?
+কোডটি কম্পাইল হওয়ার কারণ হলো throw কিওয়ার্ডটি তখনই ব্যবহার করা হয় যখন আপনি প্রোগ্রামটির স্বাভাবিক প্রবাহকে ব্যাহত করতে সক্রিয়ভাবে একটি exception ছুড়তে (throw করতে) চান।
+
+02.interface ILogger {
+void log();
+}
+
+public class Test {
+public static void main(String[] args) {
+ILogger [] loggers = new ILogger[2]; //Line n1
+for(ILogger logger : loggers)
+logger.log(); //Line n2
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ An exception is thrown at runtime
+ No output is displayed but program terminates successfully
+
+
+ Ans:
+ ১ম পুনরাবৃত্তি (iteration):
+logger → null, logger.log(); একটি NullPointerException ছুড়বে কারণ log() মেথডটি একটি null রেফারেন্সের উপর কল করা হচ্ছে।
+
+03.public class Test {
+public static void main(String[] args) {
+try {
+System.out.println(args[1].length());
+} catch (RuntimeException ex) {
+System.out.println(“ONE”);
+} catch (FileNotFoundException ex) {
+System.out.println(“TWO”);
+}
+System.out.println(“THREE”);
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ ONE THREE
+ TWO THREE
+ THREE
+ None of the System.out.println statements is executed
+ Compilation error
+
+
+
+
+ Ans:
+  কোডে, try ব্লকের মধ্যে FileNotFoundException ঘটার কোনো সম্ভাবনা নেই। এর ফলে, কম্পাইলার একটি ত্রুটি দেবে কারণ আপনি এমন একটি exception ধরার চেষ্টা করছেন যা কখনো ঘটবে না। 
+  কম্পাইলার আপনাকে তখনই একটি FileNotFoundException ধরতে দেবে যখন কোডের কোনো অংশ থেকে এই ধরনের exception তৈরি হতে পারে, যেমন কোনো ফাইল অপারেশন করার সময়।
+  সংক্ষেপে, FileNotFoundException কে এমন জায়গায় ধরা যাবে না যেখানে এর ঘটার কোনো সম্ভাবনা নেই।
+
+04.public class Test {
+private static void div() {
+System.out.println(1/0);
+}
+
+public static void main(String[] args) {
+try {
+div();
+} finally {
+System.out.println(“FINALLY”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ FINALLY is printed to the console and program ends normally
+ FINALLY is printed to the console, stack trace is printed and then program ends normally
+ FINALLY is printed to the console, stack trace is printed and then program ends abruptly
+ Compilation error
+
+
+ Ans:
+FINALLY is printed to the console, stack trace is printed and then program ends abruptly.
+ catch ব্লক না থাকার পরেও কম্পাইলেশন এরর না দেখানোর কারণ হলো, 1/0 এর ফলে যে exceptionটি তৈরি হচ্ছে, তা একটি unchecked exception, যা কম্পাইলারকে বাধ্য করে না সেটিকে হ্যান্ডেল করতে।
+
+05.public class Test {
+public static void main(String[] args) {
+/*INSERT*/
+}
+
+private static void save() throws IOException {}
+
+private static void log() throws SQLException {}
+}
+
+Which of the block of codes can be used to replace /*INSERT*/ such that there is no compilation error?
+Select ALL that apply.
+
+ try {     save();     log(); } catch(IOException | SQLException ex) {}
+ try {     save();     log(); } catch(SQLException | IOException ex) {}
+ try {     save();     log(); } catch(IOException | Exception ex) {}
+ try {     save();     log(); } catch(SQLException | Exception ex) {}
+ try {     save();     log(); } catch(Exception | RuntimeException ex) {}
+ try {     save();     log(); } catch(Exception ex) {}
+
+
+Ans:
+IOException এবং SQLException উভয়ই Checked Exception। Java-তে, Exception ক্লাসটি সকল Checked Exception এবং Unchecked Exception-এর মূল সুপারক্লাস।
+যেহেতু IOException এবং SQLException উভয়ই Exception ক্লাসের সাবক্লাস, তাই catch(Exception ex) ব্লকটি উভয় ধরনের exception-কেই ধরতে এবং পরিচালনা করতে সক্ষম।
+So, 1,2,6
+
+3. try { save(); log(); } catch(IOException | Exception ex) {}
+একটি multi-catch ব্লকে আপনি একটি সুপারক্লাস (Exception) এবং তার একটি সাবক্লাস (IOException) একই সাথে ধরতে পারেন না।  কম্পাইলার বলবে যে IOException ইতিমধ্যেই Exception দ্বারা ধরা হয়েছে।
+এটি ভুল। এটি একটি কম্পাইলেশন এরর তৈরি করবে। কারণ IOException হলো Exception ক্লাসের একটি সাবক্লাস। 
+4.try { save(); log(); } catch(SQLException | Exception ex) {}
+এটিও ভুল। একই কারণে, SQLException হলো Exception-এর সাবক্লাস। তাই একটি multi-catch ব্লকে এটি অনুমোদিত নয়।
+5.try { save(); log(); } catch(Exception | RuntimeException ex) {}
+এটি ভুল। RuntimeException হলো Exception ক্লাসের একটি সাবক্লাস। তাই এখানেও একই কম্পাইলেশন এরর দেখা যাবে।
+
+
+
+06.public class Test {
+public static void main(String[] args) {
+try { //outer
+try { //inner
+System.out.println(1/0);
+} catch(ArithmeticException e) {
+System.out.println(“INNER”);
+} finally {
+System.out.println(“FINALLY 1”);
+}
+} catch(ArithmeticException e) {
+System.out.println(“OUTER”);
+} finally {
+System.out.println(“FINALLY 2”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ INNER FINALLY 1
+ OUTER FINALLY 2
+ INNER FINALLY 2
+ INNER FINALLY 1 FINALLY 2
+
+
+ Ans:
+Output: INNER FINALLY 1 FINALLY 2
+ নিয়ম হল finally-ব্লক সবসময় এক্সিকিউট হয়, তাই বাইরের finally-ব্লকটি এক্সিকিউট হবে এবং কনসোলে "FINALLY 2" প্রিন্ট করবে।
+
+
+
+ 07. Given code of Test.java file:
+public class Test {
+public static void main(String[] args) {
+try {
+try {
+System.out.println(args[1]); //Line n1
+} catch(RuntimeException e) {
+System.out.print(“INHALE-“); //Line n2
+throw e; //Line n3
+} finally {
+System.out.print(“EXHALE-“); //Line n4
+}
+} catch(RuntimeException e) {
+System.out.print(“INHALE-“); //Line n5
+} finally {
+System.out.print(“EXHALE”); //Line n6
+}
+}
+}
+
+And the commands:
+javac Test.java
+java Test
+
+What is the result?
+
+ INHALE-EXHALE
+ INHALE-EXHALE-
+ INHALE-EXHALE-INHALE-
+ INHALE-EXHALE-EXHALE
+ INHALE-EXHALE-INHALE-EXHALE
+
+
+ Ans:
+System.out.print(“INHALE-“); (লাইন n2) কার্যকর হবে এবং "INHALE-" প্রিন্ট করবে।
+throw e; (লাইন n3) কার্যকর হবে। এটি ধরা exception-টিকে আবার ছুড়ে দেবে, যা বাইরের try ব্লকে যাবে।
+সব মিলিয়ে আউটপুট দাঁড়াবে: INHALE-EXHALE-INHALE-EXHALE।
+
+
+
+
+ 08.public class Test {
+private static void div(int i, int j) {
+try {
+System.out.println(i / j);
+} catch(ArithmeticException e) {
+Exception ex = new Exception(e);
+throw ex;
+}
+}
+public static void main(String[] args) {
+try {
+div(5, 0);
+} catch(Exception e) {
+System.out.println(“END”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error
+ END is printed and program terminates successfully
+ END is printed and program terminates abruptly
+ END is not printed and program terminates abruptly
+
+
+Answer:
+throw ex; একটি কম্পাইলেশন এরর তৈরি করবে, কারণ div মেথডটি Exception (যা একটি checked exception) ছুড়বে বলে ডিক্লেয়ার করা হয়নি।
+public class Test {
+    private static void div(int i, int j) { // সিগনেচার অপরিবর্তিত
+        try {
+            System.out.println(i / j);
+        } catch(ArithmeticException e) {
+            // throw new Exception(e); এর বদলে
+            throw new RuntimeException(e); // RuntimeException ব্যবহার করা হয়েছে
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            div(5, 0);
+        } catch(Exception e) {
+            System.out.println("END");
+        }
+    }
+}
+ফলাফল: এই পরিবর্তনের পরেও কোডটি সফলভাবে কম্পাইল হবে। main মেথডের catch(Exception e) ব্লকটি RuntimeException-কে ধরতে পারবে (কারণ RuntimeException হলো Exception-এর একটি সাবক্লাস), এবং আউটপুট হবে END।
+
+ 09.public class Test {
+private static void div(int i, int j) {
+try {
+System.out.println(i / j);
+} catch(ArithmeticException e) {
+throw (RuntimeException)e;
+}
+}
+
+public static void main(String[] args) {
+try {
+div(5, 0);
+} catch(ArithmeticException e) {
+System.out.println(“AE”);
+} catch(RuntimeException e) {
+System.out.println(“RE”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error
+ Program ends abruptly
+ AE is printed on to the console and program terminates successfully
+ RE is printed on to the console and program terminates successfully
+
+
+Ans:
+div মেথডের ভেতরে 5 / 0 এক্সিকিউট হওয়ার সময় একটি ArithmeticException তৈরি হবে।
+div মেথডের catch(ArithmeticException e) ব্লকটি সেই exception-কে ধরবে।
+
+তারপর throw (RuntimeException)e; লাইনটি এক্সিকিউট হবে। এখানে ArithmeticException অবজেক্টটি RuntimeException হিসেবে আবার থ্রো করা হবে।
+এই re-thrown exceptionটি main মেথডের try ব্লক থেকে বেরিয়ে আসবে এবং main-এর catch ব্লকগুলোর মধ্যে দিয়ে যাবে।
+main মেথডের প্রথম catch ব্লকটি হলো catch(ArithmeticException e)। এই ব্লকটি Thrown exception-এর সঙ্গে মিলে যাবে, কারণ Thrown exceptionটি একটি ArithmeticException।
+এই catch ব্লকটি এক্সিকিউট হবে এবং কনসোলে "AE" প্রিন্ট করবে।
+এরপর exceptionটি হ্যান্ডেল হয়ে যাওয়ায় প্রোগ্রামটি স্বাভাবিকভাবে শেষ হবে।
+সুতরাং, চূড়ান্ত ফলাফল হবে কনসোলে "AE" প্রিন্ট হওয়া এবং প্রোগ্রামটির সফল সমাপ্তি।
+
+ 10.
