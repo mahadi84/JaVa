@@ -128,7 +128,15 @@ Date: 2 Auguest,2025
 
         
 
-    Ans: 1,2,5
+Ans: 
+দুটি স্টেটমেন্ট ব্যবহার করা যায়:
+abstract class Work implements Workable: একটি অ্যাবস্ট্রাক্ট ক্লাস ইন্টারফেসের সব মেথড ইমপ্লিমেন্ট না করলেও চলে, কিন্তু এখানে work() মেথডটি ইমপ্লিমেন্ট করা হয়েছে, যা বৈধ।
+class Work implements Workable: একটি কংক্রিট ক্লাসকে ইন্টারফেসের সব মেথড ইমপ্লিমেন্ট করতে হয়।
+abstract class Work:
+
+
+অন্যান্য বিকল্পগুলো ভুল কারণ ইন্টারফেস মেথড ইমপ্লিমেন্ট করতে পারে না, এবং একটি ক্লাসের সাথে implements Workable না থাকলে work() মেথডটি বৈধ নয়।
+Output: 1,2,5
 
 04.import java.time.LocalDate;
 
@@ -149,10 +157,10 @@ Date: 2 Auguest,2025
     Compilation error
 
 
-    Ans:
-    isAfter and isBefore method can be interpreted as:
-    Does 1st Jan 2018 come after 25th Dec 2018? No, false. 
-    Does 1st Jan 2018 come before 25th Dec 2018? Yes, true.
+Ans:
+boolean flag1 = newYear.isAfter(christmas);: এখানে চেক করা হচ্ছে newYear কি christmas-এর পরের তারিখ? যেহেতু 1লা জানুয়ারি 25শে ডিসেম্বরের পরের তারিখ নয়, তাই এটি false রিটার্ন করে।
+boolean flag2 = newYear.isBefore(christmas);: এখানে চেক করা হচ্ছে newYear কি christmas-এর আগের তারিখ? যেহেতু 1লা জানুয়ারি 25শে ডিসেম্বরের আগের তারিখ, তাই এটি true রিটার্ন করে।
+
 
 
 05.import java.time.LocalDate;
@@ -173,13 +181,11 @@ Date: 2 Auguest,2025
 
 
     Explanation:
-    Both the methods “public boolean isEqual(ChronoLocalDate)” and “public boolean equals(Object)” return true if date objects are equal otherwise false. 
-    NOTE: LocalDate implements ChronoLocalDate.
+date1.equals(date2): LocalDate ক্লাসের equals() মেথডটি অবজেক্ট দুটির মান (value) তুলনা করে। যেহেতু date1 এবং date2 একই তারিখের প্রতিনিধিত্ব করে, তাই এই মেথডটি true রিটার্ন করবে।
+date1.isEqual(date2): isEqual() মেথডটিও দুটি তারিখ একই কিনা তা পরীক্ষা করে। equals() এর মতোই, যেহেতু দুটি অবজেক্টের তারিখ একই, এটিও true রিটার্ন করবে।
 
 
-06.import java.time.LocalDate;
-
-    class MyLocalDate extends LocalDate {
+06. class MyLocalDate extends LocalDate {
     @Override
     public String toString() {
     return super.getDayOfMonth() + “-”
@@ -202,13 +208,12 @@ Date: 2 Auguest,2025
     Compilation error
 
 
-    Ans:
-    LocalDate is a final class so cannot be extended.
+Ans:
+java.time.LocalDate ক্লাসটি একটি final ক্লাস। Java-তে, একটি final ক্লাসকে অন্য কোনো ক্লাস দ্বারা এক্সটেন্ড (extend) করা যায় না।
+আপনার কোডে, class MyLocalDate extends LocalDate লাইনটি একটি কম্পাইলেশন এরর তৈরি করবে, কারণ আপনি একটি final ক্লাসকে এক্সটেন্ড করার চেষ্টা করছেন। তাই, কোডটি কম্পাইলই হবে না।
 
 
-07.import java.time.LocalDate;
-
-    public class Test {
+07.public class Test {
     public static void main(String [] args) {
     LocalDate date = LocalDate.parse(“1980-03-16”);
     System.out.println(date.minusYears(-5));
@@ -223,8 +228,8 @@ Date: 2 Auguest,2025
 
 
     Ans:
-    LocalDate.parse("1980-03-16"): This line creates a LocalDate object representing March 16, 1980.
-    date.minusYears(-5): This line attempts to subtract -5 years from the date. Subtracting a negative number is equivalent to adding the positive number. So, it’s essentially adding 5 years to the date.
+minusYears(-5) একটি নেতিবাচক সংখ্যা বিয়োগ করে, যা একটি ধনাত্মক সংখ্যা যোগ করার সমান। তাই, 1980 সালের 16ই মার্চের সাথে 5 বছর যোগ করা হয়, যার ফলে তারিখটি হয় 1985 সালের 16ই মার্চ।
+date.minusYears(-5): This line attempts to subtract -5 years from the date. Subtracting a negative number is equivalent to adding the positive number. So, it’s essentially adding 5 years to the date.
 
 08.mport java.time.LocalTime;
 
@@ -243,13 +248,16 @@ Date: 2 Auguest,2025
     An exception is thrown at runtime
 
 
-    Ans:
-    LocalTime.of(int hour, int minute) creates an instance of LocalTime class. Valid value for hour is: 0 to 23 and valid value for minute/second is 0 to 59 for nano-second is: 0 to 999,999,999.
-    java.time.DateTimeException is thrown if invalid values are passed as arguments. 
-    NOTE:
-    LocalTime of(int hour, int minute, int second) and
-    LocalTime of(int hour, int minute, int second, int nanoOfSecond).
-
+Ans:
+   `LocalTime.of(int hour, int minute)` মেথডটি `LocalTime` ক্লাসের একটি ইনস্ট্যান্স তৈরি করে।
+    * `hour` এর জন্য বৈধ মান হলো 0 থেকে 23।
+    * `minute` বা `second`** এর জন্য বৈধ মান হলো 0 থেকে 59।
+    * `nanoOfSecond` এর জন্য বৈধ মান হলো 0 থেকে 999,999,999।
+        যদি এই মানগুলোর বাইরে কোনো অবৈধ মান আর্গুমেন্ট হিসেবে দেওয়া হয়, তাহলে `java.time.DateTimeException` নামের একটি ব্যতিক্রম (exception) তৈরি হয়।
+        **গুরুত্বপূর্ণ বিষয়:**
+        * `LocalTime.of(int hour, int minute, int second)`
+        * `LocalTime.of(int hour, int minute, int second, int nanoOfSecond)`
+        এই মেথডগুলোও `LocalTime` অবজেক্ট তৈরির জন্য ব্যবহার করা হয়।
 
 09.import java.time.Period;
 
@@ -366,9 +374,9 @@ Date: 2 Auguest,2025
     Runtime exception
 
 
-    Answar:
-    LocalDate object doesn’t contain time part but ISO_DATE_TIME looks for time portion and throws exception at runtime.
-    For the OCA exam, you can check following DateTimeFormatter types: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
+ Answar:
+LocalDate অবজেক্টে কোনো সময় (time part) থাকে না, কিন্তু ISO_DATE_TIME ফরম্যাটটি সময় খোঁজে। এই কারণে, এটি রানটাইমে একটি exception তৈরি করে।
+OCA পরীক্ষার জন্য আপনি যে DateTimeFormatter টাইপগুলো দেখে নিতে পারেন, সেগুলো হলো: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
 
 
 
@@ -394,17 +402,15 @@ Date: 2 Auguest,2025
 
 
     Answer:
-    ISO_LOCAL_DATE formatter formats the date without the offset, such as “1947-08-15”. 
-    ISO_DATE formatter formats the date with offset (if available), such as “1947-08-15” or “1947-08-15+05:30”, but remember LocalDate object doesn’t contain any offset information. 
-    In this case, all the three date instances are meaningfully equal. 
+1.  `ISO_LOCAL_DATE`: এই ফরম্যাটারটি অফসেট (সময় অঞ্চলের পার্থক্য) ছাড়াই তারিখ ফরম্যাট করে, যেমন `"1947-08-15"`। এটি শুধু তারিখের তথ্য দেখায়।
+2.  `ISO_DATE`: এই ফরম্যাটারটি তারিখকে অফসেট সহ ফরম্যাট করে (যদি অফসেট থাকে), যেমন `"1947-08-15"` অথবা `"1947-08-15+05:30"`।
+      তবে, মনে রাখতে হবে যে `LocalDate` অবজেক্টের মধ্যে কোনো অফসেট তথ্য থাকে না, তাই এটি কেবল `"1947-08-15"` প্রিন্ট করবে।
+3.  "In this case, all the three date instances are meaningfully equal.": যদি তিনটি ভিন্ন ডেট ইনস্ট্যান্সের (যেমন: `LocalDate`, `ZonedDateTime`, `OffsetDateTime`) তারিখ একই হয়, 
+     তবে তাদের মানগত দিক থেকে সমান ধরা যায়। এই ক্ষেত্রে, যদিও তাদের ফরম্যাটিং এবং অফসেটের তথ্য ভিন্ন হতে পারে, কিন্তু তারা একই ক্যালেন্ডার তারিখ নির্দেশ করে।
+  OCA পরীক্ষার জন্য আপনি যে DateTimeFormatter টাইপগুলো দেখে নিতে পারেন, সেগুলো হলো: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
 
-    For the OCA exam, you can check following DateTimeFormatter types: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
 
-
-14.import java.time.LocalDate;
-    import java.time.LocalTime;
-
-    public class Test {
+14. public class Test {
     public static void main(String [] args) {
     LocalDate date = LocalDate.parse(“1947-08-14”);
     LocalTime time = LocalTime.MAX;
@@ -419,6 +425,10 @@ Date: 2 Auguest,2025
     1947-08-14T23:59:59.0
 
     Answer:
+LocalTime time = LocalTime.MAX;: LocalTime.MAX একটি ধ্রুবক (constant) যা দিনের সর্বোচ্চ সম্ভাব্য সময় নির্দেশ করে। এর মান হলো: 23 ঘন্টা, 59 মিনিট, 59 সেকেন্ড এবং 999,999,999 ন্যানোসেকেন্ড।
+date.atTime(time): এই মেথডটি LocalDate এবং LocalTime অবজেক্ট দুটিকে একত্রিত করে একটি LocalDateTime অবজেক্ট তৈরি করে। ফলে তারিখ এবং সময় একসাথে যুক্ত হয়।
+System.out.println(...): যখন LocalDateTime অবজেক্টটি প্রিন্ট করা হয়, তখন এর ডিফল্ট toString() মেথডটি YYYY-MM-DDTHH:MM:SS.NNNNNNNNN ফরম্যাটে আউটপুট দেয়। যেহেতু LocalTime.MAX-এ ন্যানোসেকেন্ড রয়েছে, তাই তা আউটপুটে অন্তর্ভুক্ত হবে।
+সুতরাং, চূড়ান্ত আউটপুট হবে 1947-08-14T23:59:59.999999999।
     LocalTime.MIN –> {00:00},
     LocalTime.MAX –> {23:59:59.999999999},
     LocalTime.MIDNIGHT –> {00:00},
@@ -568,6 +578,12 @@ Date: 2 Auguest,2025
         A is printed to the console, stack trace is printed and then program ends abruptly.
         Compilation error.
 
+Ans:
+m1() মেথডটি একটি Exception ছুড়ে দেয়, যা একটি checked exception। Java-এর নিয়ম অনুযায়ী, কোনো মেথড যদি একটি checked exception ছোড়ে, 
+তাহলে যেখান থেকে সেই মেথডটি কল করা হচ্ছে, সেখানে হয় সেই exception-কে try-catch ব্লক দিয়ে হ্যান্ডেল করতে হবে, অথবা কল করা মেথডকেও throws কিওয়ার্ড দিয়ে সেই exception-কে ঘোষণা করতে হবে।
+আপনার main মেথডে m1() কল করা হয়েছে, কিন্তু সেখানে কোনো catch ব্লক নেই যা Exception কে ধরতে পারে। finally ব্লকটি এক্সিকিউট হলেও, এটি exception-কে হ্যান্ডেল করতে পারে না। 
+ফলে, কম্পাইলার একটি এরর দেখাবে এবং কোডটি রান হবে না।
+
 
 20.import java.io.*;
 
@@ -591,6 +607,22 @@ Date: 2 Auguest,2025
     Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(IOException e) { e.printStackTrace(); }
     Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(IOException | Exception e) { e.printStackTrace(); }
     Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(Exception e) { e.printStackTrace(); }
+
+
+
+সঠিক উত্তর দুটি হলো:
+1.  `Replace Line 4 with static void print() throws Exception {`
+2.  `Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(Exception e) { e.printStackTrace(); }`
+
+### কেন এই দুটি পরিবর্তন জরুরি?
+কোডটির মূল সমস্যা হলো `IOException`। এটি একটি **checked exception**, যার কারণে কম্পাইলার এটিকে সঠিকভাবে হ্যান্ডেল করার জন্য বাধ্য করে।
+* **প্রথম পরিবর্তন:** `static void print() throws Exception`
+    * আসল কোডে `print()` মেথডটি `IOException` ছুড়ে দিচ্ছিল, কিন্তু মেথডের সিগনেচারে তা ঘোষণা করা ছিল না। `IOException` হলো `Exception` ক্লাসের একটি সাবক্লাস। তাই `throws Exception` যুক্ত করে আমরা কম্পাইলারকে জানাচ্ছি যে এই মেথডটি একটি checked exception ছুড়তে পারে। এটি Line 5 এর কম্পাইলেশন এররটি ঠিক করে।
+* **দ্বিতীয় পরিবর্তন:** `try { ReadTheFile.print(); } catch(Exception e) { e.printStackTrace(); }`
+    * এখন `print()` মেথডটি একটি `Exception` ছুড়তে পারে। তাই যেখান থেকে এটিকে কল করা হয়েছে (main মেথড থেকে), সেখানেও এটিকে হ্যান্ডেল করতে হবে। এই `try-catch` ব্লকটি `print()` মেথড থেকে আসা যেকোনো `Exception` কে ধরতে এবং পরিচালনা করতে পারে। এটি Line 11 এর কম্পাইলেশন এররটি ঠিক করে।
+### কেন অন্য বিকল্পগুলো সঠিক নয়?
+* `try { ... } catch(IOException | Exception e) { ... }`: এই সিনট্যাক্সটি ভুল। একটি multi-catch ব্লকে একটি সুপারক্লাস (`Exception`) এবং তার একটি সাবক্লাস (`IOException`) একসাথে ব্যবহার করা যায় না।
+* অন্যান্য বিকল্পগুলো শুধুমাত্র একটি পরিবর্তন করে, যা পুরো কোডটিকে কম্পাইল করার জন্য যথেষ্ট নয়। কোডটি কম্পাইল হওয়ার জন্য `print()` মেথড এবং `main()` মেথড উভয়কেই তাদের নিজ নিজ ত্রুটি সংশোধন করতে হবে।
 
 
 
@@ -649,9 +681,10 @@ Date: 2 Auguest,2025
 
 
 
-    ফলাফলস্বরূপ, আউটপুট হবে:
-    1
-    THREE
+  আউটপুট হবে:
+FileNotFoundException হলো একটি checked exception। Java কম্পাইলার নিয়ম অনুযায়ী, একটি catch ব্লক কেবল তখনই লেখা যায় যখন সংশ্লিষ্ট try ব্লকের ভেতরে সেই ধরনের exception ঘটার সম্ভাবনা থাকে।
+আপনার কোডের try ব্লকের মধ্যে System.out.println(1); লাইনটি কোনোভাবেই FileNotFoundException তৈরি করতে পারে না।
+যেহেতু কম্পাইলার দেখেছে যে catch (FileNotFoundException ex) ব্লকটি কখনো এক্সিকিউট হবে না, তাই এটি একটি "unreachable catch block" হিসেবে চিহ্নিত করে এবং কম্পাইলেশন এরর তৈরি করে।
 
 
 23.public class Test {
