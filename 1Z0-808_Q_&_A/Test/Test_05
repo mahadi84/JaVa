@@ -1,0 +1,676 @@
+
+Date: 2 Auguest,2025
+
+
+
+
+
+01. interface Rideable {
+    void ride(String name);
+    }
+
+    class Animal {}
+
+    class Horse extends Animal implements Rideable {
+    public void ride(String name) {
+    System.out.println(name.toUpperCase() + ” IS RIDING THE HORSE”);
+    }
+    }
+
+    public class Test {
+    public static void main(String[] args) {
+    Animal horse = new Horse();
+    /*INSERT*/
+    }
+    }
+
+    Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print EMMA IS RIDING THE HORSE on to the console?
+    Select ALL that apply.
+
+    horse.ride("EMMA");
+    (Horse)horse.ride("EMMA");
+    ((Horse)horse).ride("Emma");
+    ((Rideable)(Horse)horse).ride("EMMA");
+    ((Rideable)horse).ride("emma");
+    ((Horse)(Rideable)horse).ride("emma");
+
+    Ans:
+    Animal ক্লাস এবং Rideable ইন্টারফেসের মধ্যে কোনো সরাসরি যোগসূত্র না থাকলেও, Horse ক্লাসটি উভয়কেই সংযুক্ত করে একটি পলিমরফিক (polymorphic) সম্পর্ক তৈরি করে। 
+    এই সম্পর্কের কারণেই main মেথডে Animal টাইপের একটি রেফারেন্স (horse) ব্যবহার করে Horse অবজেক্টের ride মেথডটি কল করার জন্য টাইপ কাস্টিং (type casting) করার প্রয়োজন হয়।
+    
+    Last 4 points
+
+
+
+
+02.interface X1 {
+    default void print() {
+    System.out.println(“X1”);
+    }
+    }
+
+    interface X2 extends X1 {
+    void print();
+    }
+
+    interface X3 extends X2 {
+    default void print() {
+    System.out.println(“X3”);
+    }
+    }
+
+    class X implements X3 {}
+
+    public class Test {
+    public static void main(String[] args) {
+    X1 obj = new X();
+    obj.print();
+    }
+    }
+
+    Which of the following statements is correct?
+
+    interface X1 fails to compile
+    interface X2 fails to compile
+    interface X3 fails to compile
+    class X fails to compile
+    class Test fails to compile
+    class Test compiles successfully and on execution prints X3 on to the console
+
+
+
+    Explanation_01:
+        একটি ইন্টারফেসের default মেথডকে অন্য একটি ইন্টারফেস, যা এটিকে এক্সটেন্ড করে, তাতে abstract মেথড হিসেবে ঘোষণা করা যেতে পারে?
+    Ans: 
+        যখন একটি ইন্টারফেস অন্য একটি ইন্টারফেসকে এক্সটেন্ড করে, তখন তার কাছে `default` মেথডটিকে হ্যান্ডেল করার জন্য তিনটি বিকল্প থাকে:
+        1.কিছুই না করা:** এই ক্ষেত্রে, এক্সটেন্ড করা ইন্টারফেসটি `default` মেথডটিকে উত্তরাধিকারসূত্রে পায় এবং এর বাস্তবায়ন (implementation) অপরিবর্তিত থাকে। 
+        যে ক্লাসটি এই এক্সটেন্ড করা ইন্টারফেসকে ইমপ্লিমেন্ট করবে, সেটির `default` মেথডটিকে ইমপ্লিমেন্ট করার প্রয়োজন নেই।
+        2.`default` মেথডটিকে পুনরায় ঘোষণা করা:** এই ক্ষেত্রে, এক্সটেন্ড করা ইন্টারফেসে `default` মেথডটিকে আবার `abstract` হিসেবে ঘোষণা করা যায়। 
+        এর ফলে, যে ক্লাসটি এই নতুন ইন্টারফেসকে ইমপ্লিমেন্ট করবে, সেটিকে অবশ্যই সেই মেথডটির বাস্তবায়ন প্রদান করতে হবে। এটি মূলত একটি `default` মেথডের ডিফল্ট আচরণকে বাতিল করে 
+        এবং এটিকে একটি বাধ্যতামূলক বাস্তবায়নে পরিণত করে।
+        3. `default` মেথডটিকে ওভাররাইড করা:** এক্সটেন্ড করা ইন্টারফেসটি `default` মেথডের নিজস্ব একটি নতুন `default` বাস্তবায়ন প্রদান করতে পারে, যা মূল ইন্টারফেসের বাস্তবায়নকে ওভাররাইড করে।
+
+    সুতরাং, আপনার প্রশ্ন অনুযায়ী, একটি `default` মেথডকে অন্য একটি এক্সটেন্ড করা ইন্টারফেসে `abstract` মেথড হিসেবে ঘোষণা করা সম্পূর্ণরূপে বৈধ। 
+    এর ফলে, যারা নতুন ইন্টারফেসটি ব্যবহার করবে তাদের জন্য সেই মেথডটির নিজস্ব বাস্তবায়ন তৈরি করা বাধ্যতামূলক হয়ে যায়।
+
+    Explanation_02:
+        class X implements X3 {} কেন কোনো এরর দেখাচ্ছে না, যদিও এটি X2 ইন্টারফেসের abstract print() মেথডটি বাধ্যতামূলক ইমপ্লিমেন্ট করছে না। এর কারণ?
+    Ans: 
+        X3 ইন্টারফেসটি X2-এর abstract মেথডটিকে একটি ডিফল্ট মেথড দিয়ে সমাধান করে দিয়েছে। তাই, X ক্লাসকে print() মেথড ইমপ্লিমেন্ট করতে হবে না।
+        জাভার নিয়ম অনুযায়ী, যখন কোনো ক্লাস একটি ইন্টারফেসকে ইমপ্লিমেন্ট করে এবং সেই ইন্টারফেসের কোনো মেথডের ডিফল্ট বাস্তবায়ন থাকে, তখন ক্লাসটিকে সেই মেথডটি ইমপ্লিমেন্ট করার প্রয়োজন হয় না।
+
+    Ans: class Test compiles successfully and on execution prints X3 on to the console
+
+
+03.interface Workable {
+        void work();
+        }
+
+        /*INSERT*/ {
+        public void work() {} //Line n1
+        }
+
+        And the statements:
+        1. abstract class Work implements Workable
+        2. class Work implements Workable
+        3. interface Work extends Workable
+        4. abstract interface Work extends Workable
+        5. abstract class Work
+
+        How many statements can replace /*INSERT*/ such that there is no compilation error?
+
+        One statement
+        Two statements
+        Three statements
+        Four statements
+        Five statements
+
+
+        
+
+    Ans: 1,2,5
+
+04.import java.time.LocalDate;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate newYear = LocalDate.of(2018, 1, 1);
+    LocalDate christmas = LocalDate.of(2018, 12, 25);
+    boolean flag1 = newYear.isAfter(christmas);
+    boolean flag2 = newYear.isBefore(christmas);
+    System.out.println(flag1 + “:” + flag2);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    false:true
+    true:false
+    An exception is thrown at runtime
+    Compilation error
+
+
+    Ans:
+    isAfter and isBefore method can be interpreted as:
+    Does 1st Jan 2018 come after 25th Dec 2018? No, false. 
+    Does 1st Jan 2018 come before 25th Dec 2018? Yes, true.
+
+
+05.import java.time.LocalDate;
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date1 = LocalDate.parse(“1980-03-16”);
+    LocalDate date2 = LocalDate.parse(“1980-03-16″);
+    System.out.println(date1.equals(date2) + ” : ” + date1.isEqual(date2));
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    true : false
+    true : true
+    false : true
+    false : false
+
+
+
+    Explanation:
+    Both the methods “public boolean isEqual(ChronoLocalDate)” and “public boolean equals(Object)” return true if date objects are equal otherwise false. 
+    NOTE: LocalDate implements ChronoLocalDate.
+
+
+06.import java.time.LocalDate;
+
+    class MyLocalDate extends LocalDate {
+    @Override
+    public String toString() {
+    return super.getDayOfMonth() + “-”
+                    + super.getMonthValue() + “-” + super.getYear();
+    }
+    }
+
+    public class Test {
+    public static void main(String [] args) {
+    MyLocalDate date = LocalDate.parse(“1980-03-16”);
+    System.out.println(date);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    29296
+    16-03-1980
+    16-03-1980
+    An exception is thrown at runtime
+    Compilation error
+
+
+    Ans:
+    LocalDate is a final class so cannot be extended.
+
+
+07.import java.time.LocalDate;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.parse(“1980-03-16”);
+    System.out.println(date.minusYears(-5));
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    27469
+    3/16/1985
+    Compilation error
+    Runtime exception
+
+
+    Ans:
+    LocalDate.parse("1980-03-16"): This line creates a LocalDate object representing March 16, 1980.
+    date.minusYears(-5): This line attempts to subtract -5 years from the date. Subtracting a negative number is equivalent to adding the positive number. So, it’s essentially adding 5 years to the date.
+
+08.mport java.time.LocalTime;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalTime time = LocalTime.of(23, 60);
+    System.out.println(time);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    1
+    0
+    0.000694444
+    Compilation error
+    An exception is thrown at runtime
+
+
+    Ans:
+    LocalTime.of(int hour, int minute) creates an instance of LocalTime class. Valid value for hour is: 0 to 23 and valid value for minute/second is 0 to 59 for nano-second is: 0 to 999,999,999.
+    java.time.DateTimeException is thrown if invalid values are passed as arguments. 
+    NOTE:
+    LocalTime of(int hour, int minute, int second) and
+    LocalTime of(int hour, int minute, int second, int nanoOfSecond).
+
+
+09.import java.time.Period;
+
+    public class Test {
+    public static void main(String [] args) {
+    Period period = Period.of(0, 1000, 0);
+    System.out.println(period);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    P0Y1000M0D
+    p0y1000m0d
+    P1000M
+    p1000m
+
+    Ans:
+    Period ক্লাসের `toString()` মেথডটি ****যখন একটি Period-এর সব component (বছর, মাস, দিন)/Period.of(0,0,0) শূন্য হয়, তখন toString() মেথডটি P0D স্ট্রিংটি রিটার্ন করে।।  
+    এটি ছাড়া, Period-এর যে component-গুলোর (বছর, মাস, দিন) মান শূন্য, সেগুলোকে উপেক্ষা করা হয়।
+    `toString()` এর ফলাফল P দিয়ে শুরু হয়। 
+    এর পরে, যে বছরের মান শূন্য নয়, তার জন্য Y যোগ করা হয়; যে মাসের মান শূন্য নয়, তার জন্য M যোগ করা হয়; এবং যে দিনের মান শূন্য নয়, তার জন্য D যোগ করা হয়। 
+    P, Y, M এবং D সব বড় হাতের অক্ষরে (upper case) থাকে।
+
+
+    এই ক্ষেত্রে, বছরের মান 0 এবং দিনের মান 0, তাই এগুলো উপেক্ষা করা হবে। মাসের মান 1000, যা অ-শূন্য।
+    সুতরাং, আউটপুটটি হবে:
+    -P দিয়ে শুরু হবে।
+    -1000M যোগ হবে (1000 মাস)। 
+    -ফলাফল হবে P1000M।
+
+    **দ্রষ্টব্য:** `Period.parse(CharSequence)` মেথডটি “PnYnMnD” ফরম্যাটে String প্যারামিটার গ্রহণ করে, যেখানে P, Y, M এবং D যেকোনো case-এর হতে পারে।
+
+10.import java.time.Period;
+
+    public class Test {
+    public static void main(String [] args) {
+    Period period = Period.of(2, 1, 0).ofYears(10).ofMonths(5).ofDays(2);
+    System.out.println(period);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    P12Y6M2D
+    P2Y1M0D
+    P2Y1M
+    P2D
+
+    Explanation:
+    জাভা `java.time.Period` ক্লাসের `ofYears()`, `ofMonths()`, এবং `ofDays()` মেথডগুলো স্ট্যাটিক নয়। 
+    এগুলো `Period` ক্লাসের ইনস্ট্যান্স মেথড (instance methods) এবং প্রতিটি মেথড একটি নতুন `Period` অবজেক্ট রিটার্ন করে।
+    এই মেথডগুলো চেইনেবল (chainable)।
+
+    এখানে কোডটি বাম থেকে ডানে এক্সিকিউট হবে:
+    1.  `Period.of(2, 1, 0)`: এটি একটি নতুন `Period` অবজেক্ট তৈরি করে যার মান `P2Y1M`।
+    2.  `.ofYears(10)`: এই মেথডটি পূর্ববর্তী `Period` অবজেক্টের উপর কল করা হয়। এটি একটি নতুন `Period` অবজেক্ট রিটার্ন করে যার মান শুধুমাত্র `10` বছর। এর আগের সব মান (2 বছর, 1 মাস) বাতিল হয়ে যায়।
+    3.  `.ofMonths(5)`: এই মেথডটি পূর্ববর্তী `Period` অবজেক্টের উপর কল করা হয় (যেটি `10` বছর)। এটি আবার একটি নতুন `Period` অবজেক্ট রিটার্ন করে যার মান শুধুমাত্র `5` মাস। `10` বছর বাতিল হয়ে যায়।
+    4.  `.ofDays(2)`: এই মেথডটি পূর্ববর্তী `Period` অবজেক্টের উপর কল করা হয় (যেটি `5` মাস)। এটি আবার একটি নতুন `Period` অবজেক্ট রিটার্ন করে যার মান শুধুমাত্র `2` দিন। `5` মাস বাতিল হয়ে যায়।
+
+    সুতরাং, `period` ভেরিয়েবলের চূড়ান্ত মান হবে এমন একটি `Period` অবজেক্ট যেখানে কেবল দিন ২ আছে এবং বছর ও মাসের মান শূন্য।
+    যখন `System.out.println(period)` কল করা হবে, তখন এটি `Period.ofDays(2)` এর ফলাফলকে প্রিন্ট করবে। `Period` এর `toString()` মেথডের নিয়ম অনুযায়ী:
+    * P দিয়ে শুরু হবে।
+    * শুধুমাত্র অ-শূন্য component গুলো দেখানো হবে। এখানে শুধুমাত্র দিন ২ আছে।
+    * তাই, আউটপুট হবে `P2D`।
+
+
+
+
+11.import java.time.LocalDate;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.parse(“2000-06-25”);
+    while(date.getDayOfMonth() >= 20) {
+    System.out.println(date);
+    date.plusDays(-1);
+    }
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    Compilation error
+    An exception is thrown at runtime
+    System.out.println(date);  is executed 6 times
+    System.out.println(date);  is executed more than 6 times
+
+    Answer: 
+    date.plusDays(-1) মেথডটি একটি নতুন LocalDate অবজেক্ট রিটার্ন করে যেখানে তারিখের মান একদিন কম। কিন্তু এই নতুন অবজেক্টটিকে বর্তমান date ভেরিয়েবলে অ্যাসাইন করা হয়নি।
+    date.plusDays(-1); // এটি একটি নতুন অবজেক্ট তৈরি করে, কিন্তু date ভেরিয়েবল অপরিবর্তিত থাকে।
+
+    সঠিকভাবে তারিখের মান পরিবর্তন করতে হলে কোডটি এমন হওয়া উচিত ছিল:
+    date = date.plusDays(-1); // নতুন অবজেক্টটিকে date ভেরিয়েবলে অ্যাসাইন করা হয়েছে।
+    যেহেতু date ভেরিয়েবলের মান 2000-06-25 অপরিবর্তিত থাকছে, তাই লুপের শর্ত date.getDayOfMonth() >= 20 (25 >= 20) সর্বদা সত্য হবে।
+
+    ফলস্বরূপ, লুপটি কখনোই শেষ হবে না।
+
+
+12.mport java.time.LocalDate;
+    import java.time.format.DateTimeFormatter;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.of(1987, 9, 1);
+    String str = date.format(DateTimeFormatter.ISO_DATE_TIME);
+    System.out.println(“Date is: ” + str);
+    }
+    }
+
+    What will be the result of compiling and executing Test class?
+
+    Date is: 1987-09-01
+    Date is: 1987-01-09
+    Date is: 01-09-1987
+    Given code executes successfully but output does not match with the given options
+    Runtime exception
+
+
+    Answar:
+    LocalDate object doesn’t contain time part but ISO_DATE_TIME looks for time portion and throws exception at runtime.
+    For the OCA exam, you can check following DateTimeFormatter types: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
+
+
+
+13.import java.time.LocalDate;
+    import java.time.format.DateTimeFormatter;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date1 = LocalDate.parse(“1947-08-15”, DateTimeFormatter.ISO_DATE);
+    LocalDate date2 = LocalDate.parse(“1947-08-15″, DateTimeFormatter.ISO_LOCAL_DATE);
+    LocalDate date3 = LocalDate.of(1947, 8, 15);
+
+    System.out.println(date1.equals(date2) + ” : ” + date2.equals(date3));
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    true : true
+    false : false
+    true : false
+    false : true
+    Runtime exception
+
+
+    Answer:
+    ISO_LOCAL_DATE formatter formats the date without the offset, such as “1947-08-15”. 
+    ISO_DATE formatter formats the date with offset (if available), such as “1947-08-15” or “1947-08-15+05:30”, but remember LocalDate object doesn’t contain any offset information. 
+    In this case, all the three date instances are meaningfully equal. 
+
+    For the OCA exam, you can check following DateTimeFormatter types: BASIC_ISO_DATE, ISO_DATE, ISO_LOCAL_DATE, ISO_TIME, ISO_LOCAL_TIME, ISO_DATE_TIME, ISO_LOCAL_DATE_TIME.
+
+
+14.import java.time.LocalDate;
+    import java.time.LocalTime;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.parse(“1947-08-14”);
+    LocalTime time = LocalTime.MAX;
+    System.out.println(date.atTime(time));
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    1947-08-14T23:59:59
+    1947-08-14T23:59:59.999
+    1947-08-14T23:59:59.999999999
+    1947-08-14T23:59:59.0
+
+    Answer:
+    LocalTime.MIN –> {00:00},
+    LocalTime.MAX –> {23:59:59.999999999},
+    LocalTime.MIDNIGHT –> {00:00},
+    LocalTime.NOON –> {12:00}. 
+    date.atTime(LocalTime) method creates a LocalDateTime instance by combining date and time parts.
+    toString() method of LocalDateTime class prints the date and time parts separated by T in upper case.
+
+15.Consider below code:
+    //Test.java
+    package com.skillcertpro.oca;
+
+    import java.time.LocalDate;
+    import java.time.Period;
+
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.parse(“2000-01-01”);
+    Period period = Period.ofYears(-3000);
+    System.out.println(date.plus(period));
+    }
+    }
+    What will be the result of compiling and executing Test class?
+
+    Answer:
+    2000 থেকে 3000 বছর বিয়োগ করলে যে বছরটি আসবে, সেটি হলো 2000 - 3000 = -1000। জাভার java.time লাইব্রেরি নেতিবাচক বছরকে সমর্থন করে না।
+    সুতরাং, date.plus(period) এই অপারেশনটি একটি java.time.DateTimeException থ্রো করবে।
+    অতএব, সঠিক উত্তর হলো:An exception is thrown at runtime
+
+    16.DateTimeFormatter is defined inside which package?
+
+    java.time
+    java.util
+    java.text
+    java.time.format
+
+
+    answer:
+    DateTimeFormatter is a part of “java.time.format” package, whereas LocalDate, LocalTime, LocalDateTime and Period are defined inside “java.time” package.
+
+16.import java.time.LocalDate;
+    public class Test {
+    public static void main(String [] args) {
+    LocalDate date = LocalDate.parse(“2020-08-31”);
+    System.out.println(date.plusMonths(-6));
+    }
+    }
+
+    What is the result?
+
+    2020-02-31
+    2020-02-30
+    2/29/2020
+    43889
+    An exception is thrown at runtime
+    Compilation error
+
+
+    Ans:
+    For the given code,
+    2020-08-31 plus -6 months would subtract 6 months from the given date and would reslut in the invalid date 2020-02-31. Instead of returning an invalid result, the last valid day of the month, 2020-02-29, is returned.
+    Please note, 2020 is leap year and hence last day of February is 29 and not 28.
+
+
+
+
+17. public class Test {
+    private static int [] arr;
+    public static void main(String [] args) {
+    if(arr.length > 0 && arr != null) {
+    System.out.println(arr[0]);
+    }
+    }
+    }
+    Predict Output, if the above code is run with given command?
+    java Test
+
+    Compilation error
+    No Output
+    NullPointerException is thrown at runtime
+    ArrayIndexOutOfBoundsException is thrown at runtime
+
+
+    Explanation:
+    1.  `private static int [] arr;`: এখানে `arr` নামে একটি স্ট্যাটিক অ্যারে ভেরিয়েবল ঘোষণা করা হয়েছে, কিন্তু এটিকে কোনো মান দিয়ে ইনিশিয়াল করা হয়নি। সুতরাং, `arr` এর মান `null`।
+    2.  `if(arr.length > 0 && arr != null)`: `if` স্টেটমেন্টের এই শর্তটি এক্সিকিউট করার সময়, জাভা বাম থেকে ডান দিকে মূল্যায়ন (evaluation) করে।
+        * প্রথমে `arr.length > 0` এক্সপ্রেশনটি মূল্যায়ন করা হবে।
+        * যেহেতু `arr` এর মান `null`, `arr.length` অ্যাক্সেস করার চেষ্টা করলে `NullPointerException` থ্রো হবে।
+        * জাভা `&&` (লজিক্যাল AND) অপারেটরের শর্ট-সার্কিট আচরণ (short-circuit behavior) অনুসরণ করে। এর মানে হলো, যদি বাম দিকের এক্সপ্রেশনটি `false` হয়, তবে ডান দিকের এক্সপ্রেশনটি মূল্যায়ন করা হয় না।
+        * কিন্তু এই ক্ষেত্রে, `arr.length` অ্যাক্সেস করার সময়ই একটি ব্যতিক্রম (exception) ঘটে, কারণ `null` রেফারেন্সের কোনো `length` নেই।
+
+    সুতরাং, কোডটি কম্পাইল হবে, কিন্তু রান করার সময় `NullPointerException` থ্রো করবে।
+
+
+18 package com.skillcertpro.oca;
+        public class Test {
+            private static void m1() {
+                System.out.println(1 / 0);
+            }
+
+            public static void main(String[] args) {
+                try {
+                    m1();
+                } finally {
+                    System.out.println("A");
+                }
+            }
+        }
+    ```
+
+    এই কোডটি কম্পাইল এবং এক্সিকিউট করার ফলাফল কী হবে?
+    A is printed to the console and program ends normally.
+    A is printed to the console, stack trace is printed and then program ends normally.
+    A is printed to the console, stack trace is printed and then program ends abruptly.
+    Compilation error.
+
+
+
+    Explanation:
+    1.  `m1()` মেথডে `1 / 0` এক্সপ্রেশনটি একটি `ArithmeticException` থ্রো করবে, কারণ শূন্য দিয়ে কোনো সংখ্যাকে ভাগ করা সম্ভব নয়।
+    2.  `main()` মেথডে `m1()` মেথডটি `try` ব্লকের মধ্যে কল করা হয়েছে।
+    3.  যখন `m1()` কল করা হয় এবং `ArithmeticException` থ্রো হয়, তখন `try` ব্লকের এক্সিকিউশন বন্ধ হয়ে যায়।
+    4.  জাভার নিয়ম অনুযায়ী, একটি `try` ব্লকের মধ্যে ব্যতিক্রম ঘটলেও, `finally` ব্লকটি সবসময় এক্সিকিউট হয়, যদি না প্রোগ্রামটি এর আগেই বন্ধ হয়ে যায়।
+    5.  তাই, `finally` ব্লকের মধ্যে থাকা `System.out.println("A");` স্টেটমেন্টটি এক্সিকিউট হবে এবং আউটপুটে `A` প্রিন্ট হবে।
+    6.  `finally` ব্লকটি এক্সিকিউট হওয়ার পর, যেহেতু `catch` ব্লক নেই, থ্রো হওয়া ব্যতিক্রমটি (exception) হ্যান্ডেল করা হবে না। ফলে, প্রোগ্রামটি ক্র্যাশ করবে এবং ব্যতিক্রমের একটি স্ট্যাক ট্রেস (stack trace) প্রিন্ট করবে।
+
+    সুতরাং, চূড়ান্ত ফলাফল হবে: প্রথমে "A" প্রিন্ট হবে, এবং তারপরে একটি `java.lang.ArithmeticException` এর স্ট্যাক ট্রেস দেখানো হবে।
+
+
+
+
+19. public class Test {
+        private static void m1() throws Exception {
+        throw new Exception();
+        }
+
+        public static void main(String[] args) {
+        try {
+        m1();
+        } finally {
+        System.out.println(“A”);
+        }
+        }
+        }
+
+        A is printed to the console and program ends normally.
+        A is printed to the console, stack trace is printed and then program ends normally.
+        A is printed to the console, stack trace is printed and then program ends abruptly.
+        Compilation error.
+
+
+20.import java.io.*;
+
+    class ReadTheFile {
+    static void print() { //Line 4
+    throw new IOException(); //Line 5
+    }
+    }
+
+    public class Test {
+    public static void main(String[] args) { //Line 10
+    ReadTheFile.print(); //Line 11
+    //Line 12
+    }
+    }
+    Which 2 changes are necessary so that code compiles successfully?
+
+    Replace Line 4 with static void print() throws Exception { 
+    Replace Line 4 with static void print() throws Throwable { 
+    Replace Line 10 with public static void main(String[] args) throws IOException { 
+    Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(IOException e) { e.printStackTrace(); }
+    Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(IOException | Exception e) { e.printStackTrace(); }
+    Surround Line 11 with below try-catch block: try { ReadTheFile.print(); } catch(Exception e) { e.printStackTrace(); }
+
+
+
+21.public class Test {
+    public static void main(String[] args) {
+    try {
+    main(args);
+    } catch (Exception ex) {
+    System.out.println(“CATCH-“);
+    }
+    System.out.println(“OUT”);
+    }
+    }
+
+    CATCH-OUT
+    OUT
+    None of the System.out.println statement is executed
+    Compilation error
+
+    Explanation:
+    এই কোডটি একটি রিকার্সিভ (recursive) কল তৈরি করছে, যেখানে `main` মেথডটি নিজেকেই বারবার কল করছে।
+    1.  `try` ব্লকের মধ্যে `main(args)` স্টেটমেন্টটি আবার `main` মেথডটিকে কল করে।
+    2.  এই প্রক্রিয়াটি বারবার চলতে থাকে। প্রতিটি নতুন `main` কল একটি নতুন স্ট্যাক ফ্রেম (stack frame) তৈরি করে।
+    3.  যেহেতু এই রিকার্সিভ কলটি কখনো শেষ হয় না এবং কোনো বেস কন্ডিশন (base condition) নেই, তাই স্ট্যাক ফ্রেমগুলো মেমোরি পূর্ণ করে ফেলে।
+    4.  এক সময়, জাভা ভার্চুয়াল মেশিন (JVM) স্ট্যাক মেমোরি শেষ করে ফেলবে এবং `StackOverflowError` থ্রো করবে।
+    `StackOverflowError` একটি `Error` ক্লাস, যা `Exception` ক্লাসের সাবক্লাস নয়। `catch (Exception ex)` ব্লকটি শুধুমাত্র `Exception` এবং তার সাবক্লাসগুলো ধরতে পারে, `Error` বা তার সাবক্লাসগুলো ধরতে পারে না।
+    সুতরাং, যখন `StackOverflowError` থ্রো হবে, তখন `catch` ব্লকটি এটিকে ধরবে না। ফলস্বরূপ, প্রোগ্রামটি `StackOverflowError` সহ ক্র্যাশ করবে এবং `CATCH-` বা `OUT` কোনো কিছুই প্রিন্ট হবে না।
+    অতএব, সঠিক উত্তর হলো: **None of the System.out.println statement is executed**
+
+22.What will be the result of compiling and executing Test class?
+    //Test.java
+    package com.skillcertpro.oca;
+
+    import java.io.FileNotFoundException;
+
+    public class Test {
+    public static void main(String[] args) {
+    try {
+    System.out.println(1);
+    } catch (NullPointerException ex) {
+    System.out.println(“ONE”);
+    } catch (FileNotFoundException ex) {
+    System.out.println(“TWO”);
+    }
+    System.out.println(“THREE”);
+    }
+    }
+
+    ONE THREE
+    TWO THREE
+    THREE
+    None of the System.out.println statements are executed
+    Compilation error
+
+
+
+
+
+    ফলাফলস্বরূপ, আউটপুট হবে:
+    1
+    THREE
+
+
+23.public class Test {
+    static Double d1;
+    static int x = d1.intValue();
+
+    public static void main(String[] args) {
+    System.out.println(“HELLO”);
+    }
+    }
+    On execution, does Test class print “HELLO” on to the console?
+
+    Yes, HELLO is printed on to the console
+    No, HELLO is not printed on the console
+
+
+    ANS:
+    d1.intValue() কল করার চেষ্টা করা হয়েছে। যেহেতু d1 এর মান null, একটি null রেফারেন্সের উপর মেথড কল করার চেষ্টা করলে NullPointerException থ্রো হয়।
+    এই ব্যতিক্রমটি ক্লাস লোডিংয়ের সময়ই ঘটে, main মেথডটি এক্সিকিউট হওয়ার আগেই।
+    ফলস্বরূপ, প্রোগ্রামটি main মেথডে পৌঁছানোর আগেই NullPointerException এর কারণে ক্র্যাশ করবে। তাই "HELLO" প্রিন্ট হবে না।
+
+-
