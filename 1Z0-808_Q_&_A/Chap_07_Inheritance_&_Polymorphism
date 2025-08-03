@@ -326,6 +326,10 @@ Inheritance Analysis:
          >Soln: use the public keyword where implemented in.
   - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
          > Number Class, Long Class as return type ex: public __ mname()
+   - Rule: An abstract class is NOT bound to implement abstract methods when it extends another abstract class or interface in Java.
+   - Rule: If an abstract class implements an interface, it is NOT required to implement all of the interface's abstract methods. It can choose to implement some, none, or all of them.
+   - Rule: -Concrete Class extends Abstract Class	MUST implement all inherited abstract methods.
+           -Concrete Class implements Interface	MUST implement all interface abstract methods.
  
 
 Polymorphism Scenarios:
@@ -381,10 +385,7 @@ Abstract/Interface Implementation:
    - Integer ক্লাস, Short ক্লাস-এর সাবটাইপ নয়। Short ক্লাস, Integer ক্লাস-এর সাবটাইপ নয়। যারা উভয়ই Number ক্লাসকে এক্সটেন্ড করে।
    - জাভা মেথডগুলিকে ওভাররাইড করার অনুমতি দেয়, তবে ভেরিয়েবলগুলিকে নয়|
    - Two casting is allowed ex: Interface_Name i= (A)(B)new D()
-   - Rule: An abstract class is NOT bound to implement abstract methods when it extends another abstract class or interface in Java.
-   - Rule: If an abstract class implements an interface, it is NOT required to implement all of the interface's abstract methods. It can choose to implement some, none, or all of them.
-   - Rule: -Concrete Class extends Abstract Class	MUST implement all inherited abstract methods.
-           -Concrete Class implements Interface	MUST implement all interface abstract methods.
+  
 
 
 
