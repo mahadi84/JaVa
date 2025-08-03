@@ -185,7 +185,25 @@ Handling Rules:
 
 -----
 
-System.out.println(new RuntimeException(new RuntimeException(“HELLO”))); //
+-System.out.println(new RuntimeException(new RuntimeException(“HELLO”))); // throw নেই, তাহলে এটি কম্পাইল হবে?
+-আপনি try-catch block-a এমন একটি exception ধরার চেষ্টা করছেন যা কখনো ঘটবে না।  যেমন কোনো ফাইল অপারেশন করার সময়। এর ফলে, কম্পাইলার একটি ত্রুটি দেবে।
+-try and finally ব্লক আছে, কিন্তু এর মধ্যে কোনো catch ব্লক না থাকার পরেও কম্পাইলেশন এরর না দেখানোর কারণ হলো, 1/0 এর ফলে যে exceptionটি তৈরি হচ্ছে, 
+  তা একটি unchecked exception, যা কম্পাইলারকে বাধ্য করে না সেটিকে হ্যান্ডেল করতে।
+- try {save();log();} catch(IOException | SQLException ex) {} **Does | support handle exception in java?
+-try { save(); log(); } catch(IOException | Exception ex) {}
+একটি multi-catch ব্লকে আপনি একটি সুপারক্লাস (Exception) এবং তার একটি সাবক্লাস (IOException) একই সাথে ধরতে পারেন না।  কম্পাইলার বলবে যে IOException ইতিমধ্যেই Exception দ্বারা ধরা হয়েছে।
+এটি ভুল। এটি একটি কম্পাইলেশন এরর তৈরি করবে। কারণ IOException হলো Exception ক্লাসের একটি সাবক্লাস। 
+-নিয়ম হল finally-ব্লক সবসময় এক্সিকিউট হয়, if two inner and outer finally exists both witll execute।
+-throw e; এটি ধরা exception-টিকে আবার ছুড়ে দেবে, যা বাইরের try ব্লকে যাবে।
+
+-try{
+    System.out.println(1 / 0);
+    } catch(ArithmeticException e) {
+    Exception ex = new Exception(e);
+    throw ex;
+    }
+-throw (RuntimeException)e;
+
    
 
 
