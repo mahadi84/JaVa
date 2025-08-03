@@ -313,6 +313,8 @@ Inheritance Analysis:
 - Reference type vs object type
 - A a = new B(); ex: A a = new B(); a.variable_name will call data from class A, a.method_name will call method from class B, 
       >this is overriding (must be A as Grand/parent and B as Child/Grand_Child, if NO-RELATION(between A and B) will show ERROR.)
+*** class C1{}, class C2{}. class C3 implements C1,C2{}.
+      >দুটি ক্লাস (C1 এবং C2) এর মধ্যে প্রাথমিকভাবে কোনো সম্পর্ক নেই, কিন্তু তৃতীয় একটি ক্লাস (C3) তাদের উভয়কে ইমপ্লিমেন্ট বা এক্সটেন্ড করে(C1,C2) একটি সম্পর্ক তৈরি করে। They can cast each other now.
 - METHOD OVERRIDING RULES:
   - Same method signature
   - Covariant return types allowed (A as return type in parent but return type in B(Child))
@@ -340,6 +342,8 @@ Polymorphism Scenarios:
 
 
 ### 3. Abstract Classes vs Interfaces
+      -ইন্টারফেসের উদ্দেশ্য: ইন্টারফেসগুলি "কন্ট্র্যাক্ট" বা "ব্লুপ্রিন্ট" সংজ্ঞায়িত করে যা ক্লাসগুলি বাস্তবায়ন (implement) করতে পারে। এগুলি মাল্টিপল ইনহেরিটেন্স (আচরণের) এর জন্য জাভার উপায়।
+      -অ্যাবস্ট্রাক্ট ক্লাসের প্রধান উদ্দেশ্য: হলো বিভিন্ন সাবক্লাসের জন্য একটি সাধারণ কাঠামো (template) বা ব্লুপ্রিন্ট তৈরি করা। এটি নিশ্চিত করে যে সমস্ত সাবক্লাস একটি নির্দিষ্ট আচরণ (methods) এবং বৈশিষ্ট্য (variables) মেনে চলবে।
       -Abstract method(method without body) by default 'public abstract'
       -default method only for Interfaces
       -Interface can have Abstract, Static, and Default methods with a variable with the  default "public final static" keyword
