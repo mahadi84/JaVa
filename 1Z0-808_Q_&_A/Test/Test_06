@@ -13,6 +13,9 @@ Does above code compile successfully?
 
 
 
+
+
+
 Ans:
 throw নেই, তাহলে এটি কম্পাইল হবে কেন?
 কোডটি কম্পাইল হওয়ার কারণ হলো throw কিওয়ার্ডটি তখনই ব্যবহার করা হয় যখন আপনি প্রোগ্রামটির স্বাভাবিক প্রবাহকে ব্যাহত করতে সক্রিয়ভাবে একটি exception ছুড়তে (throw করতে) চান।
@@ -35,6 +38,9 @@ What will be the result of compiling and executing Test class?
  Line n2 causes compilation error
  An exception is thrown at runtime
  No output is displayed but program terminates successfully
+
+
+
 
 
  Ans:
@@ -61,6 +67,10 @@ What will be the result of compiling and executing Test class?
  THREE
  None of the System.out.println statements is executed
  Compilation error
+
+
+
+
 
 
 
@@ -117,6 +127,9 @@ Select ALL that apply.
  try {     save();     log(); } catch(Exception ex) {}
 
 
+
+
+
 Ans:
 IOException এবং SQLException উভয়ই Checked Exception। Java-তে, Exception ক্লাসটি সকল Checked Exception এবং Unchecked Exception-এর মূল সুপারক্লাস।
 যেহেতু IOException এবং SQLException উভয়ই Exception ক্লাসের সাবক্লাস, তাই catch(Exception ex) ব্লকটি উভয় ধরনের exception-কেই ধরতে এবং পরিচালনা করতে সক্ষম।
@@ -158,6 +171,11 @@ What will be the result of compiling and executing Test class?
  INNER FINALLY 1 FINALLY 2
 
 
+
+
+
+
+
  Ans:
 Output: INNER FINALLY 1 FINALLY 2
  নিয়ম হল finally-ব্লক সবসময় এক্সিকিউট হয়, তাই বাইরের finally-ব্লকটি এক্সিকিউট হবে এবং কনসোলে "FINALLY 2" প্রিন্ট করবে।
@@ -197,6 +215,12 @@ What is the result?
  INHALE-EXHALE-INHALE-EXHALE
 
 
+
+
+
+
+
+
  Ans:
 System.out.print(“INHALE-“); (লাইন n2) কার্যকর হবে এবং "INHALE-" প্রিন্ট করবে।
 throw e; (লাইন n3) কার্যকর হবে। এটি ধরা exception-টিকে আবার ছুড়ে দেবে, যা বাইরের try ব্লকে যাবে।
@@ -229,6 +253,10 @@ What will be the result of compiling and executing Test class?
  END is printed and program terminates successfully
  END is printed and program terminates abruptly
  END is not printed and program terminates abruptly
+
+
+
+
 
 
 Answer:
@@ -281,6 +309,8 @@ What will be the result of compiling and executing Test class?
  RE is printed on to the console and program terminates successfully
 
 
+
+
 Ans:
 div মেথডের ভেতরে 5 / 0 এক্সিকিউট হওয়ার সময় একটি ArithmeticException তৈরি হবে।
 div মেথডের catch(ArithmeticException e) ব্লকটি সেই exception-কে ধরবে।
@@ -292,4 +322,4 @@ main মেথডের প্রথম catch ব্লকটি হলো catch
 এরপর exceptionটি হ্যান্ডেল হয়ে যাওয়ায় প্রোগ্রামটি স্বাভাবিকভাবে শেষ হবে।
 সুতরাং, চূড়ান্ত ফলাফল হবে কনসোলে "AE" প্রিন্ট হওয়া এবং প্রোগ্রামটির সফল সমাপ্তি।
 
- 10.
+
