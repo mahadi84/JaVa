@@ -182,7 +182,6 @@ Inheritance Analysis:
 
 
 
-
 ### 2. Polymorphism(Method overriding) & Scenarios:
 -ওভারলোডিং: একই নাম, ভিন্ন প্যারামিটার **more in last chapter
 -ওভাররাইডিং: উত্তরাধিকার সূত্রে প্রাপ্ত মেথডের প্রতিস্থাপন
@@ -192,16 +191,17 @@ Inheritance Analysis:
 *** class C1{}, interface C2{test(){}}. class C3 extends C1 implements C2{}.
       >দুটি ক্লাস (C1 এবং C2) এর মধ্যে প্রাথমিকভাবে কোনো সম্পর্ক নেই, কিন্তু তৃতীয় একটি ক্লাস (C3) তাদের উভয়কে ইমপ্লিমেন্ট বা এক্সটেন্ড করে(C1,C2) একটি সম্পর্ক তৈরি করে। They can cast each other now.
       > ((C1)(C2)C3).test();
+
 - METHOD OVERRIDING RULES:
   - Same method signature
   - Covariant return types allowed (A as return type in parent but return type in B(Child))
   - Access modifier must be the same or broader
   - Exception restrictions (narrower or same)
   - Final, Static(Method hiding (not polymorphism)), Private, Constructor মেথড: `final` হিসেবে ঘোষিত কোনো মেথডকে ওভাররাইড করা যায় না।
-  - Instant method name(in Parent) - same method with Static (in Child) and Vice-Versa will show compilation error. এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
+  - Instant method name(in Parent) and same method with Static (in Child) and Vice-Versa will show compilation error. এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
   - Variable (not polymorphism)
   - একটি ক্লাস যদি দুটি ইন্টারফেসকে এক্সটেন্ড করে এবং উভয় ইন্টারফেসেই একই ডিফল্ট মেথড সিগনেচার সংজ্ঞায়িত থাকে, তবে একটি কম্পাইলার এরর দেখা দেয়, যদি না ক্লাসটি মেথডটিকে ওভাররাইড করে। 
-  -      >Ex: default>abstract>default methode overrriding allowed 
+         >Ex: default>abstract>default methode overrriding allowed 
          >Soln: use the public keyword where implemented in.
   - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
          > Number Class, Long Class as return type ex: public __ mname()
