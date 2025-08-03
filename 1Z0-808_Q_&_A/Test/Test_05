@@ -6,23 +6,21 @@ Date: 2 Auguest,2025
 
 
 01. interface Rideable {
-    void ride(String name);
+      void ride(String name);
     }
 
     class Animal {}
 
     class Horse extends Animal implements Rideable {
-    public void ride(String name) {
-    System.out.println(name.toUpperCase() + ” IS RIDING THE HORSE”);
-    }
-    }
+     public void ride(String name) {
+      System.out.println(name.toUpperCase() + ” IS RIDING THE HORSE”);
+    }}
 
     public class Test {
     public static void main(String[] args) {
     Animal horse = new Horse();
     /*INSERT*/
-    }
-    }
+    }}
 
     Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print EMMA IS RIDING THE HORSE on to the console?
     Select ALL that apply.
@@ -33,6 +31,10 @@ Date: 2 Auguest,2025
     ((Rideable)(Horse)horse).ride("EMMA");
     ((Rideable)horse).ride("emma");
     ((Horse)(Rideable)horse).ride("emma");
+
+
+
+
 
     Ans:
     Animal ক্লাস এবং Rideable ইন্টারফেসের মধ্যে কোনো সরাসরি যোগসূত্র না থাকলেও, Horse ক্লাসটি উভয়কেই সংযুক্ত করে একটি পলিমরফিক (polymorphic) সম্পর্ক তৈরি করে। 
