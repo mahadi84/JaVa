@@ -201,8 +201,8 @@ Inheritance Analysis:
   - Final, Static, Private, Constructor মেথড: `final` হিসেবে ঘোষিত কোনো মেথডকে ওভাররাইড করা যায় না।
   - Instant method name(in Parent) - same method with Static (in Child) and Vice-Versa will show compilation error. এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
   - Variable and Method hiding (not polymorphism) 
-  - ইন্টারফেসে ডিফল্ট মেথড (যদি কোনো দ্বন্দ্ব থাকে তবে অবশ্যই ওভাররাইড করতে হবে)ex: default>abstract>default methode overrriding allowed 
   - একটি ক্লাস যদি দুটি ইন্টারফেসকে এক্সটেন্ড করে এবং উভয় ইন্টারফেসেই একই ডিফল্ট মেথড সিগনেচার সংজ্ঞায়িত থাকে, তবে একটি কম্পাইলার এরর দেখা দেয়, যদি না ক্লাসটি মেথডটিকে ওভাররাইড করে। 
+  -      >Ex: default>abstract>default methode overrriding allowed 
          >Soln: use the public keyword where implemented in.
   - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
          > Number Class, Long Class as return type ex: public __ mname()
