@@ -182,6 +182,10 @@ Handling Rules:
    - Does the code compile?
         -If a checked/unchecked exception occurs but is not handled properly
         -if a try (for checked exception) does not match any catch block
+
+-----
+
+System.out.println(new RuntimeException(new RuntimeException(“HELLO”))); //
    
 
 
