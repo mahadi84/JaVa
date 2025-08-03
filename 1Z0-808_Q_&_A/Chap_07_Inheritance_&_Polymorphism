@@ -191,8 +191,9 @@ Inheritance Analysis:
 - Reference type vs object type
 - A a = new B(); ex: A a = new B(); a.variable_name will call data from class A, a.method_name will call method from class B, 
       >this is overriding (must be A as Grand/parent and B as Child/Grand_Child, if NO-RELATION(between A and B) will show ERROR.)
-*** class C1{}, class C2{}. class C3 implements C1,C2{}.
+*** class C1{}, interface C2{test(){}}. class C3 extends C1 implements C2{}.
       >দুটি ক্লাস (C1 এবং C2) এর মধ্যে প্রাথমিকভাবে কোনো সম্পর্ক নেই, কিন্তু তৃতীয় একটি ক্লাস (C3) তাদের উভয়কে ইমপ্লিমেন্ট বা এক্সটেন্ড করে(C1,C2) একটি সম্পর্ক তৈরি করে। They can cast each other now.
+      > ((A)(B)C).test();
 - METHOD OVERRIDING RULES:
   - Same method signature
   - Covariant return types allowed (A as return type in parent but return type in B(Child))
