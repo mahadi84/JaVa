@@ -291,7 +291,7 @@ Declaration    | abstract class MyAbstractClass {}    | interface AnotherInterfa
 This chapter covers essential Java concepts including:
 1. - Class inheritance and polymorphism
 2. - Abstract classes and interfaces
-3. - Method overriding and overloading
+3. - Method overriding and overloading[*****]
 4. - Access modifiers in inheritance
 5. - Constructor chaining
 6. - Casting(class to interface and interface to class) and reference types
@@ -303,41 +303,59 @@ This chapter covers essential Java concepts including:
 - super/this keyword to access parent members
 - Constructor chaining rules (super() must be first line)
 Inheritance Analysis:
-   - Trace constructor execution order
+   - Trace the constructor execution order
    - Identify valid/invalid method overrides
    - Determine access to inherited members
 
 ### 2. Polymorphism(Method overriding) & Scenarios:
+-ওভারলোডিং: একই নাম, ভিন্ন প্যারামিটার **more in last chapter
+-ওভাররাইডিং: উত্তরাধিকার সূত্রে প্রাপ্ত মেথডের প্রতিস্থাপন
 - Reference type vs object type
-- Method overriding rules:
+- A a = new B(); ex: A a = new B(); a.variable_name will call data from class A, a.method_name will call method from class B, 
+      >this is overriding (must be A as Grand/parent and B as Child/Grand_Child, if NO-RELATION(between A and B) will show ERROR.)
+- METHOD OVERRIDING RULES:
   - Same method signature
-  - Covariant return types allowed
-  - Access modifier must be same or broader
+  - Covariant return types allowed (A as return type in parent but return type in B(Child))
+  - Access modifier must be the same or broader
   - Exception restrictions (narrower or same)
   - Final, Static, Private, Constructor মেথড: `final` হিসেবে ঘোষিত কোনো মেথডকে ওভাররাইড করা যায় না।
-  
-   - যদি সাবক্লাসে একই সিগনেচার সহ একটি `static` মেথড থাকে, তবে এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
-   - Variable and Method hiding (not polymorphism)
+  - Instant method name(in Parent) - same method with Static (in Child) and Vice-Versa will show compilation error. এটিকে মেথড হাইডিং (Method Hiding) বলা হয়, ওভাররাইডিং নয়।
+  - Variable and Method hiding (not polymorphism) 
+  - ইন্টারফেসে ডিফল্ট মেথড (যদি কোনো দ্বন্দ্ব থাকে তবে অবশ্যই ওভাররাইড করতে হবে)ex: default>abstract>default methode overrriding allowed 
+  - একটি ক্লাস যদি দুটি ইন্টারফেসকে এক্সটেন্ড করে এবং উভয় ইন্টারফেসেই একই ডিফল্ট মেথড সিগনেচার সংজ্ঞায়িত থাকে, তবে একটি কম্পাইলার এরর দেখা দেয়, যদি না ক্লাসটি মেথডটিকে ওভাররাইড করে। 
+         >Soln: use the public keyword where implemented in.
+  - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
+         > Number Class, Long Class as return type ex: public __ mname()
+ 
+
 Polymorphism Scenarios:
-   - Predict method binding at runtime
-   - Understand reference vs object types
    - Recognize invalid casting attempts
+   - Predict method binding at runtime
+      >এর অর্থ হলো জাভা ভার্চুয়াল মেশিন (JVM) যখন একটি মেথডকে কল করা হয়, তখন কোন নির্দিষ্ট মেথডের ইমপ্লিমেন্টেশনটি কার্যকর হবে তা নির্ধারণ করার প্রক্রিয়া। এটি পলিমরফিজম এবং ডাইনামিক ডিসপ্যাচের একটি মূল ধারণা।
+      >এটি প্রোগ্রাম চলার সময় (runtime) ঘটে। JVM রেফারেন্স ভেরিয়েবলের টাইপের উপর ভিত্তি করে নয়, বরং আসল অবজেক্টের টাইপের উপর ভিত্তি করে কোন মেথডটি কল করতে হবে তা নির্ধারণ করে। এটি জাভাতে পলিমরফিজমের মূল বিষয়।
+
 
 ### 3. Abstract Classes vs Interfaces
+      -Abstract method(method without body) by default 'public abstract'
+      -default method only for Interfaces
+      -Interface can have Abstract, Static, and Default methods with a variable with the  default "public final static" keyword
+      -An abstract class can have all variables and methods, including Abstract methods. 
+      -Both can not instantiate with new keyword (new interface(), new abstract_class()) BUT can be array(new interface[2], new abstract_class[2])
+
 Abstract/Interface Implementation:
    - Spot missing method implementations
    - Resolve default method conflicts
    - Validate interface method modifiers
 
-### 4. Method Design
--ওভারলোডিং: একই নাম, ভিন্ন প্যারামিটার **more in last chapter
--ওভাররাইডিং: উত্তরাধিকার সূত্রে প্রাপ্ত মেথডের প্রতিস্থাপন
--হাইডিং: একই সিগনেচারের স্ট্যাটিক মেথড
--ইন্টারফেসে ডিফল্ট মেথড (যদি কোনো দ্বন্দ্ব থাকে তবে অবশ্যই ওভাররাইড করতে হবে)
 
+
+### 4. Reference type vs object type
 -রেফারেন্স টাইপ (Reference Type): এটি ভেরিয়েবলটি ডিক্লেয়ার করার সময় নির্দিষ্ট করা হয়। 
           এটি নির্ধারণ করে যে রেফারেন্স ভেরিয়েবলের মাধ্যমে কোন মেথড এবং ফিল্ড অ্যাক্সেস করা যাবে। রেফারেন্স টাইপ হয় একটি ক্লাস, একটি ইন্টারফেস, অথবা একটি অ্যারে টাইপ হতে পারে।
--অবজেক্ট টাইপ (Object Type): এটি রানটাইমে তৈরি হওয়া অবজেক্টের প্রকৃত ক্লাস। new কীওয়ার্ড ব্যবহার করে যখন একটি অবজেক্ট তৈরি করা হয়, তখন তার একটি নির্দিষ্ট ক্লাস থাকে, সেটাই তার অবজেক্ট টাইপ।
+-অবজেক্ট টাইপ(Object Type): এটি রানটাইমে তৈরি হওয়া অবজেক্টের প্রকৃত ক্লাস। new কীওয়ার্ড ব্যবহার করে যখন একটি অবজেক্ট তৈরি করা হয়, তখন তার একটি নির্দিষ্ট ক্লাস থাকে, সেটাই তার অবজেক্ট টাইপ।
+
+
+
 
 ### 5. Variable Access & Overriding vs Hiding:
  - Variables are never overridden (only hidden)
@@ -354,13 +372,10 @@ Abstract/Interface Implementation:
       যখন কোন method (car.drive();) কল করা হয়, তখন জাভা রানটাইম এনভায়রনমেন্ট দেখে যে Car car (Reference varible) আসলে কোন ধরণের (new) অবজেক্টকে রেফার করছে parent/child class। 
       তার অবজেক্টের মেথড/propertise গুলো কল করা হয়|
    - Ignoring exception rules in overrides
-   - An overriding rule: 
-         - for an abstract method with the same name exists in two different interfaces
-         - একটি ক্লাস যদি দুটি ইন্টারফেসকে এক্সটেন্ড করে এবং উভয় ইন্টারফেসেই একই ডিফল্ট মেথড সিগনেচার সংজ্ঞায়িত থাকে, 
-           তবে একটি কম্পাইলার এরর দেখা দেয়, যদি না ক্লাসটি মেথডটিকে ওভাররাইড করে।
-         - covariant, super class as return type
-         - ওভাররাইড করা মেথডের রিটার্ন টাইপ মূল মেথডের রিটার্ন টাইপের সমান বা তার একটি সাবটাইপ (subtype) হতে পারে।
-         - Number Class, Long Class as return type ex: public __ mname()
+   - An overriding rule:          - 
+         ### 2. Polymorphism(Method overriding) & Scenarios:
+         
+       
    - double d= 1; /is ok?
    - Abstract method can not be private and package-private, how?
    - Integer ক্লাস, Short ক্লাস-এর সাবটাইপ নয়। Short ক্লাস, Integer ক্লাস-এর সাবটাইপ নয়। যারা উভয়ই Number ক্লাসকে এক্সটেন্ড করে।
