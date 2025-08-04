@@ -171,6 +171,7 @@ Explanation: যখন আপনি `new String(char[] value)` ব্যবহ�
 ### Question 6  
 Correct Options (4):  - `byte var = 10;`  - `short var = 10;`  - `Integer var = 10;`  - `char var = 10;`  
 Explanation: Any of these will match `case 10` and print `"TEN"`.
+char var = 10;: char একটি বৈধ টাইপ। 10 হলো ASCII কোড, যা \n (newline) নির্দেশ করে, কিন্তু এটি একটি পূর্ণসংখ্যা হিসেবে case 10: এর সাথে তুলনা করার জন্য বৈধ। তাই এটি সঠিক।
 
 
 
@@ -187,6 +188,9 @@ Explanation: Any of these will match `case 10` and print `"TEN"`.
      B. Integer var = 7; 
      C. int var = '7'; 
      D. None of the other options
+
+
+
 
 
 
@@ -213,9 +217,16 @@ Explanation: char লিটারেলকে (যেমন '7') int ভ্য�
 
 
 
+
+
+
 ### Question 8  
 Output: Compilation Error  
-Explanation: Ternary operator is incomplete (`?` without `:` for the second condition).
+Explanation: 
+Ternary operator is incomplete (`?` without `:` for the second condition).
+সঠিকভাবে কোডটি লিখতে হলে দুটি টারনারি অপারেটরের মাঝে একটি : দিতে হবে। যেমন:
+String amPm = time.getHour() >= 12 ? ((time.getHour() == 12) ? “PM” : “AM”) : “AM”;
+যেহেতু আপনার দেওয়া কোডে এই : চিহ্নটি নেই, তাই কম্পাইলার একটি সিনট্যাক্স এরর দেবে এবং কোডটি কম্পাইল হবে না।
 
 
 
