@@ -43,24 +43,29 @@ Date: 28 July ,2025
 01.
 Boolean/Double/String/Charecter [] arr = new Boolean/Double/String/Charecter[2];
 int/double/char[] arr = new int/double/char[]
-System.out.println(arr[0] + arr[1]); //what are the results and why?
+System.out.println(arr[0] + arr[1]); //what are the output and why?
 vs   
-System.out.println(arr[0] +":"+ arr[1]); //what are the results and why?
+System.out.println(arr[0] +":"+ arr[1]); //what are the output and why?
 
-02. 
-public static void main(String[] s){
+02.public static void main(String[] s){
    s[0] ="ABC";
    System.out.println(s[0]);
 }
 যদি আপনি কমান্ড লাইন থেকে এই কোডটি চালান, তাহলে আউটপুট নির্ভর করবে আপনি কীভাবে রান করছেন তার উপর।
 কমান্ড: java YourClassName আর্গুমেন্ট ছাড়া: ArrayIndexOutOfBoundsException
 কমান্ড: java YourClassName Hello আর্গুমেন্ট সহ: ABC
-
-03.public static void main(String[] s){
- s = new String[1]; // if this line  exist/not exist, what is the output.
+Creating object like below: এই কোডটি রান করলে কোনো ত্রুটি হবে না, কারণ s অ্যারের দৈর্ঘ্য এখন 1। আউটপুট হবে ABC।
+public static void main(String[] s){
+ s = new String[1]; // if this line exists/not, what is the output?
    s[0] ="ABC";
    System.out.println(s[0]);
 }
+
+
+***
+অ্যারেটির দৈর্ঘ্য কমপক্ষে ১ হতে হবে, যাতে ০-তম ইনডেক্সটি বিদ্যমান থাকে। যদি অ্যারের দৈর্ঘ্য ০ হয়, তাহলে ArrayIndexOutOfBoundsException ত্রুটি দেখা দেবে।
+উদাহরণস্বরূপ, যদি String[] s = new String[1]; এই অ্যারেটি তৈরি করা হয়, তাহলে s[0] = "ABC"; এই অপারেশনটি সফল হবে।
+
 
 ------------------------
 
@@ -563,13 +568,11 @@ Ans: hence both the array elements are initialized to null.
     public class Test {
     static Boolean[] arr = new Boolean[1];
     public static void main(String[] args) {
-    if(arr[0]) {
-    System.out.println(true);
+	    if(arr[0]) {
+	    System.out.println(true);
     } else {
-    System.out.println(false);
-    }
-    }
-    }
+    	System.out.println(false);
+    }}}
 
 
 
@@ -599,6 +602,14 @@ Ans:
 		    }
 	    }
     }
+
+
+
+
+
+
+
+
 
 24. public class Test {
     public static void main(String[] args) {
