@@ -25,7 +25,15 @@ Date: 29 July ,2025
 * লজিক্যাল অপারেটর (`&&`, `||`, `|`, `&`):
     * শর্ট-সার্কিটিং (`&&`, `||`): `&&` এর বাম পাশের এক্সপ্রেশনটি `false` হলে ডান পাশের অংশ আর মূল্যায়ন হয় না। `||` এর বাম পাশের এক্সপ্রেশনটি `true` হলে ডান পাশের অংশ আর মূল্যায়ন হয় না (প্রশ্ন ১০, ১১)।
     * নন-শর্ট-সার্কিটিং (`&`, `|`): এগুলো সবসময় উভয় পাশের এক্সপ্রেশন মূল্যায়ন করে।
-* অপারেটরের অগ্রাধিকার: `!` > `++`/`--` > `*`/`/` > `+`/`-` > `==`/`!=` > `&&`/`||` > `=`। একই অগ্রাধিকারের অপারেটর বাম থেকে ডানে মূল্যায়ন করা হয় (প্রশ্ন ১৫)।
+* অপারেটরের অগ্রাধিকার(precedence): NOT-I'M-A-ELA
+        1.  ! (Logical NOT)
+        2.  ++/-- (Increment/Decrement)
+        3.  */'/'/% (Multiplication/Division/Modulus)
+        4.  +/- (Addition/Subtraction)
+        5.  ==/!= (Equality/Inequality)
+        6.  &&/|| (Logical AND/OR)
+        7.  = (Assignment)
+    (1-7)এই অগ্রাধিকারের অপারেটর মূল্যায়ন করা হয় (প্রশ্ন ১৫)।
 
 
 ### অ্যারে এবং লুপ
@@ -41,15 +49,7 @@ Date: 29 July ,2025
 ------------------------------------
 
 
-1.What will be the output of compiling and executing the Test class?
-    public class Test {
-    public static void main(String[] args) {
-    int x = 2;
-    switch (x) {
-        default:  System.out.println(“Still no idea what x is”);
-        case 2:   System.out.println(“x is equal to 2”);
-        break;
-    }}}
+1.-
 
 2.What will be the output of compiling and executing the Test class?
     public class Test {
@@ -64,6 +64,17 @@ Date: 29 July ,2025
     System.out.println(a);
     }}
 
+
+
+
+
+
+### Question 2  
+Output: 120
+Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 30` (no `break`).  
+- `a` becomes `5  2  3  4 = 120`.
+
+
 3.What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -75,6 +86,18 @@ Date: 29 July ,2025
         break;
         default: System.out.println(“In default”);
     }}}
+
+
+
+
+
+
+### Question 3  
+Output: a compile-time error
+Explanation: case 200:: সুইচ স্টেটমেন্টে, একটি case লেবেল হলো 200। যেহেতু 200 একটি byte ভ্যারিয়েবলের জন্য বৈধ সীমার(-128 to 127) বাইরে, তাই জাভা কম্পাইলার এটিকে "incompatible types" ত্রুটি হিসেবে চিহ্নিত করবে।
+
+
+
 
 4. What will be the result of compiling and executing Test class?
     public class Test {
@@ -88,6 +111,17 @@ Date: 29 July ,2025
     break;
     }}}
 
+
+
+
+
+
+### Question 4  
+Output: ANY FRUIT WILL DO APPLE MANGO BANANA
+Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default` and falls through all cases until `break`.
+
+
+
 5. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -99,6 +133,16 @@ Date: 29 July ,2025
         case “Banana”: System.out.println(“BANANA”);
         break;
     }}}
+
+
+
+
+
+### Question 5  
+Output: MANGO BANANA
+Explanation: যখন আপনি `new String(char[] value)` ব্যবহার করে একটি `String` তৈরি করেন, তখন এটি নির্দিষ্ট ক্যারেক্টার অ্যারে থেকে অক্ষরগুলি কপি করে একটি নতুন `String` তৈরি করে।
+             -`String fruit = new String(new char[] {'M', 'a', 'n', 'g', 'o'});` এই লাইনটির ফলে `fruit` নামক ভ্যারিয়েবলটিতে "Mango" স্ট্রিং মান ধারণকারী একটি `String` অবজেক্ট তৈরি হবে।
+
 
 6. For the class Test, which options, if used to replace /*INSERT*/, will print TEN on to the console? Select 4 options.
     public class Test {
@@ -117,6 +161,19 @@ Date: 29 July ,2025
      e.char var = 10; 
      f.double var = 0; 
 
+
+
+
+
+
+
+
+### Question 6  
+Correct Options (4):  - `byte var = 10;`  - `short var = 10;`  - `Integer var = 10;`  - `char var = 10;`  
+Explanation: Any of these will match `case 10` and print `"TEN"`.
+
+
+
 7. For the class Test, which option, if used to replace /*INSERT*/, will print “Lucky no. 7” on to the console?
     public class Test {
         public static void main(String[] args) {
@@ -131,6 +188,17 @@ Date: 29 July ,2025
      C. int var = '7'; 
      D. None of the other options
 
+
+
+
+
+
+### Question 7  
+Correct Option: C. int var = '7';  
+Explanation: char লিটারেলকে (যেমন '7') int ভ্যালুতে implicitly convert করা যায়, 
+
+
+
 8. What will be the result of compiling and executing Test class?
     import java.time.LocalTime;
     public class Test {
@@ -139,6 +207,17 @@ Date: 29 July ,2025
     String amPm = time.getHour() >= 12 ? (time.getHour() == 12) ? “PM” : “AM”;
     System.out.println(amPm);
     }}
+
+
+
+
+
+
+### Question 8  
+Output: Compilation Error  
+Explanation: Ternary operator is incomplete (`?` without `:` for the second condition).
+
+
 
 9. What will be the result of compiling and executing Test class?
     public class Test {
@@ -152,6 +231,20 @@ Date: 29 July ,2025
     b.-100
     c.-101
     d. 99
+
+
+
+
+
+
+
+### Question 9  
+Output: -100
+Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
+
+
+
+
 
 10. What will be the result of compiling and executing Test class?
     public class Test {
@@ -167,6 +260,14 @@ Date: 29 July ,2025
      c.1
      d.Compilation error
 
+
+
+
+
+### Question 10  
+Output: 3
+Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2), || এর বাম পাশে true আছে, তাই ডান পাশের পুরো অংশটি (-a == 2 && -a == 2) কখনোই মূল্যায়ন করা হবে না।
+
 11. What will be the result of compiling and executing Test class? 
     public class Test {
     public static void main(String [] args) {
@@ -177,6 +278,16 @@ Date: 29 July ,2025
     a.TRUE
     b.FALSE
     c. Compilation error
+
+
+
+
+
+
+### Question 11  
+Output: TRUE
+Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluates to `true`.
+
 
 12. What will be the result of compiling and executing Test class? 
     public class Test {
@@ -195,6 +306,16 @@ Date: 29 July ,2025
     c.6
     d.3
 
+
+
+
+
+
+### Question 12  
+Output: 5
+Explanation: `m(++a, a++)` passes `4` and `4` (post-increment), but `a` becomes `5` after the increments.
+
+
 13.Consider below code of Test.java file:
         public class Test {
         public static void main(String [] args) {
@@ -211,10 +332,33 @@ Date: 29 July ,2025
         d.FALSE FALSE
         e.Compilation error
 
+
+
+
+
+
+
+### Question 13  
+Output: Compilation Error  
+Explanation: || এবং | অপারেটরগুলো বাম পাশে একটি বুলিয়ান মান (যেমন false) এবং ডান পাশে আরেকটি বুলিয়ান এক্সপ্রেশন আশা করে। 
+            কিন্তু status = true বা status = false অ্যাসাইনমেন্টগুলো একটি বুলিয়ান মান তৈরি করে, যা সরাসরি লজিক্যাল অপারেটরের অপারেন্ড হিসেবে ব্যবহার করা সম্ভব হয় না যেভাবে এখানে লেখার চেষ্টা করা হয়েছে।
+            - if I use (backet) like this, will work fine: System.out.println((status = false) || (status = true) | (status = false));
+
+
 14.Consider below code snippet:
     int i = 10;
     System.out.println(i > 3 != false);
     What is the result?
+
+
+
+
+
+
+### Question 14  
+Output: true
+Explanation: `i > 3` is `true`, and `true != false` is `true`.
+
 
 **15.Consider below code of Test.java file:
     public class Test {
@@ -231,425 +375,9 @@ Date: 29 July ,2025
 
     What will be the result of compiling and executing Test class?
 
-16. public class Test {
-    public static void main(String[] args) {
-        int score = 30; // Line n1
-        char grade = 'F'; // Line n2
-        if (50 <= score < 60) // Line n3
-            grade = 'D';
-        else if (60 <= score < 70) // Line n4
-            grade = 'C';
-        else if (70 <= score < 80) // Line n5
-            grade = 'B';
-        else if (score >= 80)
-            grade = 'A';
-        System.out.println(grade);
-    }}
-    a.Compilation error
-    b.A
-    c.B
-    d.C
-    e.D
-    What is the result of compiling and executing Test class?
-
-**17.What will be the result of compiling and executing Test class?
-    public class Test {
-    public static void main(String[] args) {
-    char [][] arr = { {‘A’, ‘B’, ‘C’}, {‘D’, ‘E’, ‘F’}, {‘G’, ‘H’, ‘I’} };
-      for(int i = 0; i < arr.length; i++) { 
-         for(int j = 0; j < arr[i].length; j++) { 
-              System.out.print(arr[i][1]); 
-          } 
-        System.out.println();
-      } 
-    } }
-
-     -ABC DEF GHI
-     -BBB EEE HHH
-     -AAA DDD GGG
-     -CCC FFF III
-
-18.What will be the result of compiling and executing Test class?
-    public class Test {
-    public static void main(String[] args) {
-    int [] arr1 = {5, 10, 15};
-    int [] arr2 = {‘A’, ‘B’}; 
-                **যখন আপনি {'A', 'B'} এর মতো ক্যারেক্টার লিটারাল ব্যবহার করেন, তখন জাভা এই ক্যারেক্টারগুলোকে তাদের সংশ্লিষ্ট ASCII বা Unicode মান হিসেবে দেখে।
-                 -যদি আপনি অক্ষরের ASCII/Unicode মানগুলো একটি int অ্যারেতে রাখতে চান, তাহলে আপনাকে এভাবে লিখতে হবে:
-                                int[] arr2 = {(int)'A', (int)'B'}; // এক্সপ্লিসিট টাইপ কাস্টিং                                
-                                int[] arr2 = {65, 66}; // অথবা, সরাসরি ASCII মান ব্যবহার করে:
-                                *int [] arr2 = {'A', 'B'}; // এটি ভুল **জাভা কম্পাইলার এটিকে "incompatible types" (অসামঞ্জস্যপূর্ণ প্রকার) ত্রুটি
-    arr1 = arr2;
-    System.out.println(arr1.length + arr2.length);
-    }
-    }
-
-    - Compilation error
-    - An exception is thrown at runtime
-    - 0
-    - 4
-    - 6
-    - 5
-
-19.What will be the result of compiling and executing Test class?
-        public class Test {
-        public static void main(String[] args) {
-        int [] arr1 = {1, 2, 3};
-        char [] arr2 = {‘A’, ‘B’}; //ASCII code of ‘A’ is 65, ‘B’ is 66
-        arr1 = arr2;
-        for(int i = 0; i < arr1.length; i++) { 
-            System.out.print(arr1[i] + " "); 
-         } } }
-
-        -1 2 2003
-        -A B
-        -65 66
-        -Compilation error
-20.What will be the result of compiling and executing Test class?
-    public class Test {
-    public static void main(String[] args) {
-    String [] arr = new String[1];
-    System.out.println(arr[0].isEmpty());
-    }
-    }
-
-     -TRUE
-     -FALSE
-     -NullPointerException is thrown at runtime
-     -ArrayIndexOutOfBoundsException is thrown at runtime
-
-21.Given code:
-    public class Test {
-    public static void main(String[] args) {
-    String [] arr = {“I”, “N”, “S”, “E”, “R”, “T”};
-    for(/*INSERT*/) {
-    if (n % 2 == 0) {
-    continue;
-    }
-    System.out.print(arr[n]); //Line n1
-    }}}
-
-    And below options:
-    1. int n = 0; n < arr.length; n +=1
-    2. int n = 0; n <= arr.length; n += 1
-    3. int n = 1; n < arr.length; n += 2
-    4. int n = 1; n <= arr.length; n += 2
-    How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
-        -Only one option
-        -Only two options
-        -Only three options
-        -All four options
-        -None of the other options
-
-22.public class Test {
-        public static void main(String[] args) {
-        int [] arr = {1, 2, 3, 4, 5};
-        int x = 0;
-        for(/*INSERT*/) {
-        x += arr[n];
-        }
-        System.out.println(x);
-        }
-        }
-        Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
-
-        -int n = 0; n < arr.length; n++ 
-        -int n = 0; n < arr.length; n += 2 
-        -int n = 3; n < arr.length; n++ 
-        -int n = 1; n < arr.length - 1; n++ 
-        -int n = 1; n < arr.length; n += 2 
-
-23.What will be the result of compiling and executing Test class?
-            public class Test {
-            public static void main(String[] args) {
-            String [] arr = {“A”, “B”, “C”, “D”};
-            arr[0] = arr[1];
-            arr[1] = “E”;
-            for(String s : arr) {
-            System.out.print(s + ” “);
-            }
-            }
-            }
-            -Compilation error
-            -An exception is thrown at runtime
-            -B E C D
-            -E E C D
-            -A E C D
-            der below code of Test.java file:
-        public class Test {
-        public static void main(String[] args) {
-        String arr1 [], arr2, arr3 = null; //Line n1
-        arr1 = new String[2];
-        arr1[0] = “A”;
-        arr1[1] = “B”;
-        arr2 = arr3 = arr1; //Line n2
-        log(arr2); //Line n3
-        }
-
-        private static void log(String… vals) {
-        for(String s : vals)
-        System.out.print(s);
-        }
-        }
-
-        What will be the result of compiling and executing Test class?
-
-        -Line n1 causes compilation error
-        -Line n2 causes compilation error
-        -Line n3 causes compilation error
-        -It executes successfully and prints AB on to the console
-        -It executes successfully and prints BA on to the console
-        -It executes successfully and prints A on to the console
-
-25.public class Test {
-        public static void main(String[] args) {
-        int [] arr = {10, 20, 30}; //Line n1
-        int i = 0;
-        arr[i++] = arr[++i] = 40; //Line n2
-        for(int x : arr)
-        System.out.println(x);
-        }
-        }
-
-        What will be the result of compiling and executing Test class?
-
-        -Compilation error at Line n2
-        -An exception is thrown by Line n2
-        -10 20 30
-        -10 40 30
-        -40 40 30
-        -40 20 40
-
-26.public class Test {
-        public static void main(String[] args) {
-        int var = 3;
-        String [][] arr = new String[–var][var++]; //Line n1
-        arr[1][1] = “X”; //Line n2
-        arr[1][2] = “Y”; //Line n3
-        for(String [] arr1 : arr) {
-        for(String s : arr1) {
-        if(s != null)
-        System.out.print(s);
-        }
-        }
-        }
-        }
-
-        What will be the result of compiling and executing Test class?
-        -It causes compilation error at single statement
-        -It causes compilation error at multiple statements
-        -It throws an exception at runtime
-        -It prints XY on to the console and program terminates successfully
-        -It prints XY on to the console and program terminates abruptly
-
-27.public class Test {
-    public static void main(String[] args) {
-    int[][] arr = new int[x][y]; //Line n1
-    arr[1][4] = 100;
-    arr[6][6] = 200;
-    arr[3][6] = 300;
-    }
-    }
-
-    And below combination of x and y values:
-    1. x = 6, y = 6
-    2. x = 2, y = 5
-    3. x = 4, y = 7
-    4. x = 7, y = 7
-    5. x = 8, y = 8
-    6. x = 0, y = 0
-    7. x = -1, y = -1
-
-    How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java file compiles successfully?
-
-     All 7 pairs
-     6 pairs
-     5 pairs
-     4 pairs
-     3 pairs
-     2 pairs
-
-28.public class Test {
-        public static void main(String[] args) {
-        final boolean flag = false;
-        while(flag) {
-        System.out.println(“Good Morning!”);
-        }
-        }
-        }
-
-        -Program compiles and executes successfully but produces no output
-        -Compilation error
-        -Infinite loop
-        -It will print "Good Morning!" once
-
-29.Which of the following statement is correct for below code?
-        public class Test {
-        public static void main(String[] args) {
-        final boolean flag;
-        flag = false;
-        while(flag) {
-        System.out.println(“Good Morning!”);
-        }
-        }
-        }
-
-30.public class Test {
-    public static void main(String[] args) {
-    do {
-    System.out.println(100);
-    } while (true);
-
-    System.out.println(“Bye”);
-    }
-    }
-
-     a.Compiles successfully and prints "Bye"
-     b.Compiles successfully and prints 100 in infinite loop
-     c.Unreachable code compilation error
-     d.100
-     e.Bye
-
-31.public class Test {
-    public static void main(String[] args) {
-    int start = 1;
-    int sum = 0;
-    do {
-    if(start % 2 == 0) {
-    continue;
-    }
-    sum += start;
-    } while(++start <= 10); System.out.println(sum); } }
-
-     -25
-     -55
-     -Compilation error
-     -24
-
-32. public class Test {
-    public static void main(String[] args) {
-    int i;
-    for(i=0; i<=2; i++){} System.out.println(i); } }
-
-    - 0
-    - 2
-    - 3
-    - Compilation error
-
-33.public class Test {
-    public static void main(String[] args) {
-    int i;
-    outer:
-    do {
-    i = 5;
-    inner:
-    while (true) {
-    System.out.println(i–);
-    if (i == 4) {
-    break outer;
-    }
-    }
-    } while (true);
-    }
-    }
-
-     -Prints 5 in an infinite loop.
-     -Prints 5 once.
-     -Compilation error.
-     -5 3 2 1
-
-34. public class Test {
-    public static void main(String[] args) {
-    String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
-    /*INSERT*/
-    }
-    }
-    For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
-    Select ALL that apply.
-
-     -for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
-     -for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
-     -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
-     -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
-
-35. public class Test {
-    public static void main(String[] args) {
-    int [] arr = {2, 1, 0};
-    for(int i : arr) {
-    System.out.println(arr[i]);
-    }
-    }
-    }
-
- -2 1 0
- -0 1 2
- -Compilation error
- -ArrayIndexOutOfBoundsException is thrown at runtime
-
-----------------
 
 
 
-### Question 1  
-Output: x is equal to 2
-Explanation: `x = 2` matches `case 2`, so it prints `"x is equal to 2"` and breaks.
-
-### Question 2  
-Output: 120
-Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 30` (no `break`).  
-- `a` becomes `5  2  3  4 = 120`.
-
-### Question 3  
-Output: a compile-time error
-Explanation: case 200:: সুইচ স্টেটমেন্টে, একটি case লেবেল হলো 200। যেহেতু 200 একটি byte ভ্যারিয়েবলের জন্য বৈধ সীমার(-128 to 127) বাইরে, তাই জাভা কম্পাইলার এটিকে "incompatible types" ত্রুটি হিসেবে চিহ্নিত করবে।
-
-### Question 4  
-Output: ANY FRUIT WILL DO APPLE MANGO BANANA
-Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default` and falls through all cases until `break`.
-
-### Question 5  
-Output: MANGO BANANA
-Explanation: যখন আপনি `new String(char[] value)` ব্যবহার করে একটি `String` তৈরি করেন, তখন এটি নির্দিষ্ট ক্যারেক্টার অ্যারে থেকে অক্ষরগুলি কপি করে একটি নতুন `String` তৈরি করে।
-             -`String fruit = new String(new char[] {'M', 'a', 'n', 'g', 'o'});` এই লাইনটির ফলে `fruit` নামক ভ্যারিয়েবলটিতে "Mango" স্ট্রিং মান ধারণকারী একটি `String` অবজেক্ট তৈরি হবে।
-
-### Question 6  
-Correct Options (4):  - `byte var = 10;`  - `short var = 10;`  - `Integer var = 10;`  - `char var = 10;`  
-Explanation: Any of these will match `case 10` and print `"TEN"`.
-
-### Question 7  
-Correct Option: C. int var = '7';  
-Explanation: char লিটারেলকে (যেমন '7') int ভ্যালুতে implicitly convert করা যায়, 
-
-### Question 8  
-Output: Compilation Error  
-Explanation: Ternary operator is incomplete (`?` without `:` for the second condition).
-
-### Question 9  
-Output: -100
-Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
-
-### Question 10  
-Output: 3
-Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2), || এর বাম পাশে true আছে, তাই ডান পাশের পুরো অংশটি (-a == 2 && -a == 2) কখনোই মূল্যায়ন করা হবে না।
-
-### Question 11  
-Output: TRUE
-Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluates to `true`.
-
-### Question 12  
-Output: 5
-Explanation: `m(++a, a++)` passes `4` and `4` (post-increment), but `a` becomes `5` after the increments.
-
-### Question 13  
-Output: Compilation Error  
-Explanation: || এবং | অপারেটরগুলো বাম পাশে একটি বুলিয়ান মান (যেমন false) এবং ডান পাশে আরেকটি বুলিয়ান এক্সপ্রেশন আশা করে। 
-            কিন্তু status = true বা status = false অ্যাসাইনমেন্টগুলো একটি বুলিয়ান মান তৈরি করে, যা সরাসরি লজিক্যাল অপারেটরের অপারেন্ড হিসেবে ব্যবহার করা সম্ভব হয় না যেভাবে এখানে লেখার চেষ্টা করা হয়েছে।
-            - if I use (backet) like this, will work fine: System.out.println((status = false) || (status = true) | (status = false));
-
-
-### Question 14  
-Output: true
-Explanation: `i > 3` is `true`, and `true != false` is `true`.
 
 ### Question 15  
 Output: false true
@@ -683,10 +411,61 @@ Explanation:
                                 সুতরাং, `Line n2` এর আউটপুট হবে: `true`।
 
 
+
+
+16. public class Test {
+    public static void main(String[] args) {
+        int score = 30; // Line n1
+        char grade = 'F'; // Line n2
+        if (50 <= score < 60) // Line n3
+            grade = 'D';
+        else if (60 <= score < 70) // Line n4
+            grade = 'C';
+        else if (70 <= score < 80) // Line n5
+            grade = 'B';
+        else if (score >= 80)
+            grade = 'A';
+        System.out.println(grade);
+    }}
+    a.Compilation error
+    b.A
+    c.B
+    d.C
+    e.D
+    What is the result of compiling and executing Test class?
+
+
+
+
+
+
 ### Question 16  
 Output: Compilation Error  
 Explanation:জাভাতে, আপনি গাণিতিক অসমতা (mathematical inequalities) যেমন 50 <= score < 60 সরাসরি লিখতে পারবেন না। 
             -এটি দুটি আলাদা শর্তের সম্মিলিত রূপ। জাভা কম্পাইলার এটিকে একটি একক বুলিয়ান এক্সপ্রেশন হিসেবে পার্স করবে না।
+
+
+**17.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    char [][] arr = { {‘A’, ‘B’, ‘C’}, {‘D’, ‘E’, ‘F’}, {‘G’, ‘H’, ‘I’} };
+      for(int i = 0; i < arr.length; i++) { 
+         for(int j = 0; j < arr[i].length; j++) { 
+              System.out.print(arr[i][1]); 
+          } 
+        System.out.println();
+      } 
+    } }
+
+     -ABC DEF GHI
+     -BBB EEE HHH
+     -AAA DDD GGG
+     -CCC FFF III
+
+
+
+
+
 
 ### Question 17  
 Output: BBB EEE HHH
@@ -696,22 +475,150 @@ Explanation: -আউটার লুপ: for(int i = 0; i < arr.length; i++) এ
               এখানেই মূল বিষয়টা ঘটে। লক্ষ্য করুন, arr[i][1] প্রিন্ট করা হচ্ছে, arr[i][j] নয়। এর মানে হলো, প্রতিটি সারির শুধুমাত্র দ্বিতীয় উপাদান (index 1) বারবার প্রিন্ট করা হবে।
               ইনার লুপটি j এর মান 0, 1, 2 এর জন্য তিনবার ঘুরবে, কিন্তু প্রতিবারই arr[i][1] (অর্থাৎ বর্তমান সারির দ্বিতীয় কলামের উপাদান) প্রিন্ট করবে।
 
+
+
+18.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    int [] arr1 = {5, 10, 15};
+    int [] arr2 = {‘A’, ‘B’}; 
+                **যখন আপনি {'A', 'B'} এর মতো ক্যারেক্টার লিটারাল ব্যবহার করেন, তখন জাভা এই ক্যারেক্টারগুলোকে তাদের সংশ্লিষ্ট ASCII বা Unicode মান হিসেবে দেখে।
+                 -যদি আপনি অক্ষরের ASCII/Unicode মানগুলো একটি int অ্যারেতে রাখতে চান, তাহলে আপনাকে এভাবে লিখতে হবে:
+                                int[] arr2 = {(int)'A', (int)'B'}; // এক্সপ্লিসিট টাইপ কাস্টিং                                
+                                int[] arr2 = {65, 66}; // অথবা, সরাসরি ASCII মান ব্যবহার করে:
+                                *int [] arr2 = {'A', 'B'}; // এটি ভুল **জাভা কম্পাইলার এটিকে "incompatible types" (অসামঞ্জস্যপূর্ণ প্রকার) ত্রুটি
+    arr1 = arr2;
+    System.out.println(arr1.length + arr2.length);
+    }
+    }
+
+    - Compilation error
+    - An exception is thrown at runtime
+    - 0
+    - 4
+    - 6
+    - 5
+
+
+
+
+
+
 ### Question 18  
 Output: 4
 Explanation: `arr1 = arr2` makes both arrays point to the same object (`length = 2`). Total: `2 + 2 = 4`.
+
+
+
+19.What will be the result of compiling and executing Test class?
+        public class Test {
+        public static void main(String[] args) {
+        int [] arr1 = {1, 2, 3};
+        char [] arr2 = {‘A’, ‘B’}; //ASCII code of ‘A’ is 65, ‘B’ is 66
+        arr1 = arr2;
+        for(int i = 0; i < arr1.length; i++) { 
+            System.out.print(arr1[i] + " "); 
+         } } }
+
+        -1 2 2003
+        -A B
+        -65 66
+        -Compilation error
+
+
+
+
+
+
+
 
 ### Question 19  
 Output: Compilation Error  
 Explanation: জাভাতে, যেভাবে প্রিমিটিভ টাইপগুলো (যেমন char থেকে int ইমপ্লিসিট কাস্টিং) করে,  অ্যারে টাইপগুলো ইনহেরিটেন্স hierarchy (পদানুক্রম) মেনে চলে না । 
              -int[] এবং char[] দুটি সম্পূর্ণ ভিন্ন এবং অসামঞ্জস্যপূর্ণ (incompatible) অ্যারে টাইপ। 
 
+
+
+20.What will be the result of compiling and executing Test class?
+    public class Test {
+    public static void main(String[] args) {
+    String [] arr = new String[1];
+    System.out.println(arr[0].isEmpty());
+    }
+    }
+
+     -TRUE
+     -FALSE
+     -NullPointerException is thrown at runtime
+     -ArrayIndexOutOfBoundsException is thrown at runtime
+
+
+
+
+
+
+
 ### Question 20  
 Output: NullPointerException  
 Explanation: `arr[0]` is `null`, so `isEmpty()` throws an exception.
 
+21.Given code:
+    public class Test {
+    public static void main(String[] args) {
+    String [] arr = {“I”, “N”, “S”, “E”, “R”, “T”};
+    for(/*INSERT*/) {
+    if (n % 2 == 0) {
+    continue;
+    }
+    System.out.print(arr[n]); //Line n1
+    }}}
+
+    And below options:
+    1. int n = 0; n < arr.length; n +=1
+    2. int n = 0; n <= arr.length; n += 1
+    3. int n = 1; n < arr.length; n += 2
+    4. int n = 1; n <= arr.length; n += 2
+    How many above options can be used to replace /*INSERT*/, such that on execution, code will print NET on to the console?
+        -Only one option
+        -Only two options
+        -Only three options
+        -All four options
+        -None of the other options
+
+
+
+
+
+
 ### Question 21  
 Correct Options: Only two options (1 and 3)  
 Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.length; n += 2`) print `NET` (indices 1, 3, 5).
+
+
+
+22.public class Test {
+        public static void main(String[] args) {
+        int [] arr = {1, 2, 3, 4, 5};
+        int x = 0;
+        for(/*INSERT*/) {
+        x += arr[n];
+        }
+        System.out.println(x);
+        }
+        }
+        Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
+
+        -int n = 0; n < arr.length; n++ 
+        -int n = 0; n < arr.length; n += 2 
+        -int n = 3; n < arr.length; n++ 
+        -int n = 1; n < arr.length - 1; n++ 
+        -int n = 1; n < arr.length; n += 2 
+
+
+
+
+
+
 
 ### Question 22  
 Correct Options (3):  
@@ -720,46 +627,321 @@ Correct Options (3):
 - `int n = 1; n < arr.length; n += 2` (sums 2 + 4 = 6, but not 9)  
 Correction: Only 2 options actually sum to 9 (first and second).
 
+
+
+23.What will be the result of compiling and executing Test class?
+            public class Test {
+            public static void main(String[] args) {
+            String [] arr = {“A”, “B”, “C”, “D”};
+            arr[0] = arr[1];
+            arr[1] = “E”;
+            for(String s : arr) {
+            System.out.print(s + ” “);
+            }
+            }
+            }
+            -Compilation error
+            -An exception is thrown at runtime
+            -B E C D
+            -E E C D
+            -A E C D
+            der below code of Test.java file:
+
+
+
+
+
+
 ### Question 23  
 Output: B E C D
 Explanation: `arr[0] = arr[1]` sets `arr[0] = "B"`, then `arr[1] = "E"`.
+
+24.public class Test {
+        public static void main(String[] args) {
+        String arr1 [], arr2, arr3 = null; //Line n1
+        arr1 = new String[2];
+        arr1[0] = “A”;
+        arr1[1] = “B”;
+        arr2 = arr3 = arr1; //Line n2
+        log(arr2); //Line n3
+        }
+
+        private static void log(String… vals) {
+        for(String s : vals)
+        System.out.print(s);
+        }
+        }
+
+        What will be the result of compiling and executing Test class?
+
+        -Line n1 causes compilation error
+        -Line n2 causes compilation error
+        -Line n3 causes compilation error
+        -It executes successfully and prints AB on to the console
+        -It executes successfully and prints BA on to the console
+        -It executes successfully and prints A on to the console
+
+
+
+
+
+
+
+
 
 ### Question 24  
 Output: AB
 Explanation: `arr2` and `arr3` point to `arr1`, which holds `["A", "B"]`.
 
+
+
+
+25.public class Test {
+        public static void main(String[] args) {
+        int [] arr = {10, 20, 30}; //Line n1
+        int i = 0;
+        arr[i++] = arr[++i] = 40; //Line n2
+        for(int x : arr)
+        System.out.println(x);
+        }
+        }
+
+        What will be the result of compiling and executing Test class?
+
+        -Compilation error at Line n2
+        -An exception is thrown by Line n2
+        -10 20 30
+        -10 40 30
+        -40 40 30
+        -40 20 40
+
+
+
+
+
+
+
 ### Question 25  
 Output: 40 40 30
 Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
 
+
+26.public class Test {
+        public static void main(String[] args) {
+        int var = 3;
+        String [][] arr = new String[–var][var++]; //Line n1
+        arr[1][1] = “X”; //Line n2
+        arr[1][2] = “Y”; //Line n3
+        for(String [] arr1 : arr) {
+        for(String s : arr1) {
+        if(s != null)
+        System.out.print(s);
+        }
+        }
+        }
+        }
+
+        What will be the result of compiling and executing Test class?
+        -It causes compilation error at single statement
+        -It causes compilation error at multiple statements
+        -It throws an exception at runtime
+        -It prints XY on to the console and program terminates successfully
+        -It prints XY on to the console and program terminates abruptly
+
+
+
+
+
+
 ### Question 26  
 Output: ArrayIndexOutOfBoundsException  
 Explanation: `arr` is `2x2` (after `--var` and `var++`), so `arr[1][2]` is invalid.
+
+
+
+
+27.public class Test {
+    public static void main(String[] args) {
+    int[][] arr = new int[x][y]; //Line n1
+    arr[1][4] = 100;
+    arr[6][6] = 200;
+    arr[3][6] = 300;
+    }
+    }
+
+    And below combination of x and y values:
+    1. x = 6, y = 6
+    2. x = 2, y = 5
+    3. x = 4, y = 7
+    4. x = 7, y = 7
+    5. x = 8, y = 8
+    6. x = 0, y = 0
+    7. x = -1, y = -1
+
+    How many of above x,y pair(s) can replace x and y at Line n1 such that Test.java file compiles successfully?
+
+     All 7 pairs
+     6 pairs
+     5 pairs
+     4 pairs
+     3 pairs
+     2 pairs
+
+
+
+
+
 
 ### Question 27  
 Correct Pairs:  
 4 pairs (3, 4, 5, 7)  
 Explanation: Valid pairs must accommodate `arr[6][6]` (min size `7x7`). Pairs 3, 4, 5, and 7 work (but 7 is invalid due to negative size).
 
+
+28.public class Test {
+        public static void main(String[] args) {
+        final boolean flag = false;
+        while(flag) {
+        System.out.println(“Good Morning!”);
+        }
+        }
+        }
+
+        -Program compiles and executes successfully but produces no output
+        -Compilation error
+        -Infinite loop
+        -It will print "Good Morning!" once
+
+
+
+
+
 ### Question 28  
 Output: No output (loop never executes)  
 Explanation: `flag = false`, so `while(flag)` is skipped.
+
+
+29.Which of the following statement is correct for below code?
+        public class Test {
+        public static void main(String[] args) {
+        final boolean flag;
+        flag = false;
+        while(flag) {
+        System.out.println(“Good Morning!”);
+        }
+        }
+        }
+
+
+
+
+
+
 
 ### Question 29  
 Output: No output (same as Q28)  
 Explanation: `flag` is `final` and `false`, so the loop is skipped.
 
+30.public class Test {
+    public static void main(String[] args) {
+    do {
+    System.out.println(100);
+    } while (true);
+
+    System.out.println(“Bye”);
+    }
+    }
+
+     a.Compiles successfully and prints "Bye"
+     b.Compiles successfully and prints 100 in infinite loop
+     c.Unreachable code compilation error
+     d.100
+     e.Bye
+
+
+
+
+
 ### Question 30  
 Output: Unreachable code error  
 Explanation: `while(true)` makes `System.out.println("Bye");` unreachable.
+
+
+
+
+31.public class Test {
+    public static void main(String[] args) {
+    int start = 1;
+    int sum = 0;
+    do {
+    if(start % 2 == 0) {
+    continue;
+    }
+    sum += start;
+    } while(++start <= 10); System.out.println(sum); } }
+
+     -25
+     -55
+     -Compilation error
+     -24
+
+
+
+
+
 
 ### Question 31  
 Output: Infinite Loop  
 Explanation: `continue` skips `sum += start`, but `start` never increments, causing an infinite loop.
 
+
+32. public class Test {
+    public static void main(String[] args) {
+    int i;
+    for(i=0; i<=2; i++){} System.out.println(i); } }
+
+    - 0
+    - 2
+    - 3
+    - Compilation error
+
+
+
+
+
+
+
+
 ### Question 32  
 Output: 3
 Explanation: Loop runs for `i = 0, 1, 2`, then exits when `i = 3`.
+
+
+
+33.public class Test {
+    public static void main(String[] args) {
+    int i;
+    outer:
+    do {
+    i = 5;
+    inner:
+    while (true) {
+    System.out.println(i–);
+    if (i == 4) {
+    break outer;
+    }
+    }
+    } while (true);
+    }
+    }
+
+     -Prints 5 in an infinite loop.
+     -Prints 5 once.
+     -Compilation error.
+     -5 3 2 1
+
+
+
 
 ### Question 33
 Output: 5 4
@@ -771,11 +953,33 @@ Explanation:
 3. Correction to options: None of the given options are correct. The actual output is `5 4`.
 
 
+
+
+34. public class Test {
+    public static void main(String[] args) {
+    String [][] fruits = {{“apple”, “mango”}, {“orange”, “grape”}};
+    /*INSERT*/
+    }
+    }
+    For the class Test, which options, if used to replace /*INSERT*/, will print “apple mango orange grape ” on to the console?
+    Select ALL that apply.
+
+     -for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(int i = 1; i <= fruits.length; i++) for(int j = 1; j <= fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(int i = 1; i < fruits.length; i++) for(int j = 1; j < fruits[i].length ; j++) System.out.print(fruits[i][j] + " ");
+     -for(String [] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");
+
+
+
+
+
+
+
+
 ### Question 34
 Correct Options:
 1. `for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length; j++) System.out.print(fruits[i][j] + " ");`
 4. `for(String[] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");`
-
 Explanation:
 - The array is `{{"apple","mango"}, {"orange","grape"}}`
 - Option 1: Correctly iterates through all indices (0,0 → 0,1 → 1,0 → 1,1)
@@ -783,6 +987,30 @@ Explanation:
 - Options 2-3: Incorrect because:
   - They start from index 1, missing "apple" and "orange"
   - Option 2 will throw `ArrayIndexOutOfBoundsException` (using `<=`)
+
+
+
+
+
+
+
+35. public class Test {
+    public static void main(String[] args) {
+    int [] arr = {2, 1, 0};
+    for(int i : arr) {
+    System.out.println(arr[i]);
+    }
+    }
+    }
+
+ -2 1 0
+ -0 1 2
+ -Compilation error
+ -ArrayIndexOutOfBoundsException is thrown at runtime
+
+
+
+
 
 
 ### Question 35
@@ -794,7 +1022,6 @@ Explanation:
    - `arr[1]` → `1`
    - `arr[0]` → `2`
 3. Correction to options: The correct output is `0 1 2` (second option).
-
 Key Notes:
 - No compilation error or exception occurs
 - The loop accesses valid indices because the array values themselves are valid indices
