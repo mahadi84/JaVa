@@ -40,11 +40,23 @@ Date: 28 July ,2025
 		-গাণিতিক অপারেশনে ছোট ডেটা টাইপগুলো স্বয়ংক্রিয়ভাবে বড় ডেটা টাইপে উন্নীত হয়। যেমন, `byte` এবং `short` টাইপগুলো `int` এ উন্নীত হয়। 
 * ফ্লোটিং-পয়েন্ট অ্যারিথমেটিক: একটি অ্যারিথমেটিক অপারেশনের ফলাফলের ডেটা টাইপ তার অপারেন্ডের ডেটা টাইপের উপর নির্ভর করে। যদি একটি `double` টাইপ অপারেন্ড হিসেবে থাকে, তবে ফলাফল `double` হবে (প্রশ্ন ২৯)।
 
-Double [] arr = new Double[2];
-Boolean [] arr = new Boolean[2];    
-System.out.println(arr[0] + arr[1]); 
+01.
+Boolean/Double/String/Charecter [] arr = new Boolean/Double/String/Charecter[2];
+int/double/char[] arr = new int/double/char[]
+System.out.println(arr[0] + arr[1]); //what are the results and why?
 vs   
-System.out.println(arr[0] +":"+ arr[1]);
+System.out.println(arr[0] +":"+ arr[1]); //what are the results and why?
+
+02. 
+public static void main(String[] s){
+ s = new String[1]; // if this line  exist/not exist
+   s[0] ="ABC";
+   System.out.println(s[0]);
+}
+যদি আপনি কমান্ড লাইন থেকে এই কোডটি চালান, তাহলে আউটপুট নির্ভর করবে আপনি কীভাবে রান করছেন তার উপর।
+কমান্ড: java YourClassName আর্গুমেন্ট ছাড়া: ArrayIndexOutOfBoundsException
+কমান্ড: java YourClassName Hello আর্গুমেন্ট সহ: ABC
+
 
 ------------------------
 
