@@ -40,6 +40,11 @@ Date: 28 July ,2025
 		-গাণিতিক অপারেশনে ছোট ডেটা টাইপগুলো স্বয়ংক্রিয়ভাবে বড় ডেটা টাইপে উন্নীত হয়। যেমন, `byte` এবং `short` টাইপগুলো `int` এ উন্নীত হয়। 
 * ফ্লোটিং-পয়েন্ট অ্যারিথমেটিক: একটি অ্যারিথমেটিক অপারেশনের ফলাফলের ডেটা টাইপ তার অপারেন্ডের ডেটা টাইপের উপর নির্ভর করে। যদি একটি `double` টাইপ অপারেন্ড হিসেবে থাকে, তবে ফলাফল `double` হবে (প্রশ্ন ২৯)।
 
+Double [] arr = new Double[2];
+Boolean [] arr = new Boolean[2];    
+System.out.println(arr[0] + arr[1]); 
+vs   
+System.out.println(arr[0] +":"+ arr[1]);
 
 ------------------------
 
@@ -519,6 +524,8 @@ Ans:
 Array elements are initialized to their default values.
 arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
 
+
+
 21. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -526,6 +533,15 @@ arr is referring to an array of Boolean type, which is reference type and hence 
     System.out.println(arr[0] + arr[1]);
     }
     }
+
+
+
+Ans: hence both the array elements are initialized to null.
+    -To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
+    -As arr[0] and arr[1] are null hence calling doubleValue(). The method throws NullPointerException.
+
+
+
 
 22. What will be the result of compiling and executing Test class?
     public class Test {
@@ -538,6 +554,20 @@ arr is referring to an array of Boolean type, which is reference type and hence 
     }
     }
     }
+
+
+
+
+
+
+Ans: 
+"অ্যারের সমস্ত উপাদান তাদের ডিফল্ট মান দিয়ে শুরু হয়। `arr` বুলিয়ান ধরনের (রেফারেন্স টাইপ), তাই `arr[0]` এর মান `null` দিয়ে শুরু হয়।
+* `if` এক্সপ্রেশন বুলিয়ান ধরনের ভেরিয়েবলের সাথে কাজ করে, তাই `if(arr[0])` কম্পাইলেশন এরর তৈরি করে না। 
+   কিন্তু জাভা রানটাইম `arr[0]`-এ থাকা বুলিয়ান মানটি বের করে আনার চেষ্টা করে এবং এর জন্য `booleanValue()` মেথডটি ব্যবহার করে।
+* `arr[0].booleanValue()` এর অর্থ হলো `null` রেফারেন্সের উপর `booleanValue()` মেথডটি কল করা হচ্ছে। এর ফলস্বরূপ, রানটাইমে `NullPointerException` তৈরি হয়।"
+
+
+
 
 23. What will be the result of compiling and executing Test class?
     public class Test {
@@ -646,12 +676,7 @@ arr is referring to an array of Boolean type, which is reference type and hence 
 
 
 
-21.Ans: hence both the array elements are initialized to null.
-	-To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
-	-As arr[0] and arr[1] are null hence calling doubleValue(). The method throws NullPointerException.
-22.Ans: All the array elements are initialized to their default values. arr is of Boolean type (reference type), so arr[0] is initialized to null.
-       -if expression works with Boolean type variable, so “if(arr[0])” doesn’t cause compilation error but java runtime extracts the boolean value stored in arr[0] and it uses booleanValue() method.
-	arr[0].booleanValue() means booleanValue() method is invoked on null reference and hence NullPointerException is thrown at runtime.
+
 23.Ans: switch does not accept Boolean, long, float, double
 24.Ans: যখন আপনি বিভিন্ন নিউমেরিক টাইপের ভেরিয়েবল একসাথে কোনো গাণিতিক অপারেশনে (যেমন গুণ) ব্যবহার করেন, 
        তখন জাভা স্বয়ংক্রিয়ভাবে ছোট টাইপের ডেটাকে বড় টাইপের ডেটাতে রূপান্তর (type promotion) করে যাতে কোনো ডেটা লস না হয়। 
