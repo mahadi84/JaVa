@@ -497,6 +497,16 @@ Output is: true:false:false:null
 	    }
     }
 
+
+
+
+Ans: 
+add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type.
+So to match the method call, 10.0 is converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
+But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); throws NullPointerException..
+
+
+
 20. What will be the result of compiling and executing Test class?
     public class Test {
     public static void main(String[] args) {
@@ -504,6 +514,10 @@ Output is: true:false:false:null
     System.out.println(arr[0] + “:” + arr[1]);
     }
     }
+
+Ans: 
+Array elements are initialized to their default values.
+arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
 
 21. What will be the result of compiling and executing Test class?
     public class Test {
@@ -629,11 +643,7 @@ Output is: true:false:false:null
 ------------------------------------------------- Answers ---------------------------------------------------------
 
 
-19.Ans: add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type.
-        So to match the method call, 10.0 is converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
-	But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); throws NullPointerException..
-20.Ans: Array elements are initialized to their default values.
-	arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
+
 
 
 21.Ans: hence both the array elements are initialized to null.
