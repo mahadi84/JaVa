@@ -11,7 +11,8 @@ Date: 1 Auguest,2025
 মনে রাখতে হবে:  
 - অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  
 - `arr[arr.length]` বা `arr[-1]` এক্সেস করলে `ArrayIndexOutOfBoundsException` আসবে।  
-- পরীক্ষার টিপ: লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন (`i <= arr.length` নয়)।  
+- পরীক্ষার টিপ: লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন (`i <= arr.length` নয়)। 
+             :for(int i : arr) লুপে i অ্যারের মান নির্দেশ করে, ইনডেক্স নয়। যদি আপনি arr[i] ব্যবহার করেন, তাহলে ArrayIndexOutOfBoundsException ঘটার সম্ভাবনা থাকে।
 
 উদাহরণ (Q1):  
 int[] arr = {3, 2, 1};
