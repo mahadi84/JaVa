@@ -320,3 +320,944 @@ main মেথডের প্রথম catch ব্লকটি হলো catch
 সুতরাং, চূড়ান্ত ফলাফল হবে কনসোলে "AE" প্রিন্ট হওয়া এবং প্রোগ্রামটির সফল সমাপ্তি।
 
 
+10.import java.sql.SQLException;
+
+public class Test {
+private static void m() throws SQLException {
+try {
+throw new SQLException();
+} catch (Exception e) {
+throw e;
+}
+}
+
+public static void main(String[] args) {
+try {
+m();
+} catch(SQLException e) {
+System.out.println(“CAUGHT SUCCESSFULLY”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Method m() causes compilation error
+ Method main(String []) causes compilation error
+ CAUGHT SUCCESSFULLY is printed on to the console and program terminates successfully
+ Program ends abruptly
+
+
+
+Ans:
+
+m() মেথডের ব্যতিক্রম হ্যান্ডলিং: m() মেথডের catch (Exception e) ব্লকটি ওই SQLExceptionটিকে ধরে ফেলে (কারণ SQLException হলো Exception এর একটি সাবক্লাস)। 
+এরপর throw e; স্টেটমেন্টের মাধ্যমে SQLException exception-টি আবার থ্রো করা হয়। এটি সম্ভব কারণ m() মেথডের সিগনেচারে throws SQLException ঘোষণা করা আছে।
+ফলাফল: catch ব্লকের ভিতরের কোডটি এক্সিকিউট হয়, যা কনসোলে "CAUGHT SUCCESSFULLY" প্রিন্ট করে। catch ব্লকের কাজ শেষ হওয়ার পর, প্রোগ্রামটি স্বাভাবিকভাবে সমাপ্ত হয়।
+
+
+11.public class Test {
+private static void getData() throws SQLException {
+try {
+throw new SQLException();
+} catch (Exception e) {
+e = new SQLException();
+throw e;
+}
+}
+
+public static void main(String[] args) {
+try {
+getData();
+} catch(SQLException e) {
+System.out.println(“SQL”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Method getData() causes compilation error
+ Method main(String []) causes compilation error
+ SQL is printed on to the console and program terminates successfully
+ Program ends abruptly
+
+
+
+Ans:
+catch (Exception e) ব্লকটি সেই SQLExceptionটিকে ধরে ফেলে। এরপর e = new SQLException(); 
+স্টেটমেন্টটি একটি নতুন SQLException অবজেক্ট তৈরি করে এবং e রেফারেন্সটিকে সেটির দিকে নির্দেশ করে। throw e; স্টেটমেন্টটি তখন এই নতুন SQLExceptionটি থ্রো করে।
+চূড়ান্ত ফলাফল: catch ব্লকের ভিতরের কোডটি এক্সিকিউট হয়, যা কনসোলে "SQL" প্রিন্ট করে। catch ব্লকের কাজ শেষ হওয়ার পর, প্রোগ্রামটি স্বাভাবিকভাবে সমাপ্ত হয়।
+
+
+
+12. How about this with above code?
+    try {
+    throw new SQLException();
+    } catch (Exception e) {
+    e = null; //Line 10
+    throw e; //Line 11  Or//throw null;
+    }
+
+    NOT AVAILABLE is printed on to the console and program terminates successfully
+    Program ends abruptly
+    Line 10 causes compilation failure
+    Line 11 causes compilation failure
+    Line 17 causes compilation failure
+
+Ans:
+কারণ: Java তে আপনি null throw করতে পারবেন না, এবং কম্পাইলার এটি ধরতে পারে যখন এটি দেখে যে আপনি একটি null ভেরিয়েবল throw করার চেষ্টা করছেন।
+বাংলায়: লাইন ১১-এ কম্পাইলেশন ব্যর্থ হবে কারণ এখানে null throw করার চেষ্টা করা হচ্ছে যা Java তে অনুমোদিত নয়।
+সঠিক উত্তর হল: Line 11 causes compilation failure
+
+13.public class Test {
+private static void availableSeats() throws SQLException {
+throw null; //Line 7
+}
+
+public static void main(String[] args) {
+try {
+availableSeats(); //Line 12
+} catch(SQLException e) {
+System.out.println(“SEATS NOT AVAILABLE”);
+}
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ SEATS NOT AVAILABLE is printed on to the console and program terminates successfully
+ Program ends abruptly
+ Line 7 causes compilation failure
+ Line 12 causes compilation failure
+
+
+
+Ans:
+throw null সমস্যা: null কোনো অবজেক্ট নয়, এটি কেবল একটি বিশেষ ভ্যালু। কম্পাইলার throw null; স্টেটমেন্টটি দেখে নির্ধারণ করতে পারে না যে এটি কোন ধরনের ব্যতিক্রম অবজেক্ট থ্রো করতে চাইছে।
+
+
+14.public class Test {
+public static void main(String[] args) {
+try {
+play();
+return;
+} catch(Exception ex) {
+System.out.println(ex.getMessage());
+return;
+} finally {
+System.out.println(“MATCH ABANDONED”);
+}
+System.out.println(“DONE”);
+}
+
+static void play() throws Exception {
+throw new Exception(“INJURED”);
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ INJURED MATCH ABANDONED
+ INJURED MATCH ABANDONED DONE
+ MATCH ABANDONED
+ INJURED
+ INJURED DONE
+ Compilation error
+
+
+
+
+
+Ans:
+main মেথডের try...catch...finally ব্লকের পরে System.out.println(“DONE”); লাইনটি আছে। কিন্তু try ব্লক এবং catch ব্লক উভয়ের মধ্যেই একটি return স্টেটমেন্ট রয়েছে। 
+এর অর্থ হলো, প্রোগ্রামের এক্সিকিউশন যেই পথেই যাক না কেন, main মেথডটি finally ব্লকের কাজ শেষ হওয়ার পর return স্টেটমেন্টের মাধ্যমে শেষ হয়ে যাবে।
+তাই System.out.println(“DONE”); লাইনটি কখনোই এক্সিকিউট হবে না। জাভা কম্পাইলার এটিকে unreachable code হিসাবে চিহ্নিত করবে এবং কম্পাইল করার সময়ই একটি এরর দেবে।
+
+
+
+
+15.public class Test {
+static String [] names = {“Williamson.pdf”, “Finch.pdf”, “Kohli.pdf”, “Morgan.pdf”};
+public static void main(String[] args) {
+try {
+if (search(“virat.pdf”))
+System.out.println(“FOUND”);
+
+} catch(FileNotFoundException ex) {
+System.out.println(“NOT FOUND”);
+}
+}
+
+private static boolean search(String name) throws FileNotFoundException {
+for(int i = 0; i <= 4; i++) { 
+    if (names[i].equalsIgnoreCase(name)) { 
+        return true; } 
+    } 
+    throw new FileNotFoundException(); } 
+}
+
+What will be the result of compiling and executing Test class?
+
+
+Ans:
+যখন i এর মান 4 হবে, তখন i <= 4 শর্তটি এখনো সত্য। তাই কোডটি names[4] অ্যাক্সেস করার চেষ্টা করবে।
+সমস্যা এখানেই: names অ্যারেতে মাত্র ৪টি উপাদান আছে, যার ইন্ডেক্সগুলো হলো 0, 1, 2, এবং 3। তাই names[4] ইন্ডেক্সটি অ্যারের সীমার বাইরে।
+এই কারণে প্রোগ্রামটি রানটাইমে একটি java.lang.ArrayIndexOutOfBoundsException থ্রো করবে।
+
+ 
+ 
+16.interface Multiplier {
+void multiply(int… x) throws SQLException;
+}
+
+class Calculator implements Multiplier {
+public void multiply(int… x) throws /*INSERT*/ {
+
+}
+}
+public class Test {
+public static void main(String[] args) {
+try {
+Multiplier obj = new Calculator(); //Line n1
+obj.multiply(1, 2, 3);
+} catch(SQLException e) {
+System.out.println(e);
+}
+}
+}
+
+Which of the options can be used to replace /*INSERT*/ such that there is no compilation error?
+Select ALL that apply.
+
+ java.io.IOException
+ SQLException
+ SQLWarning
+ NullPointerException
+ RuntimeException
+ Error
+
+
+
+Ans:
+java.io.IOException: অগ্রহণযোগ্য। এটি একটি চেকড এক্সেপশন যা SQLException এর সাথে সম্পর্কিত নয়। একটি ওভাররাইডিং মেথড নতুন, সম্পর্কহীন চেকড এক্সেপশন যুক্ত করতে পারে না।
+SQLException: গ্রহণযোগ্য। এটি ইন্টারফেস মেথডে ঘোষিত ঠিক একই চেকড এক্সেপশন, যা অনুমোদিত।
+SQLWarning: গ্রহণযোগ্য। SQLWarning হলো SQLException এর একটি সাবক্লাস। একটি ওভাররাইডিং মেথড আরও সুনির্দিষ্ট বা সাবক্লাস চেকড এক্সেপশন থ্রো করতে পারে।
+NullPointerException: গ্রহণযোগ্য। NullPointerException হলো RuntimeException এর একটি সাবক্লাস, যা একটি আনচেকড এক্সেপশন। একটি ওভাররাইডিং মেথড যেকোনো আনচেকড এক্সেপশন থ্রো করতে পারে।
+RuntimeException: গ্রহণযোগ্য। RuntimeException একটি আনচেকড এক্সেপশন। একটি ওভাররাইডিং মেথড যেকোনো আনচেকড এক্সেপশন থ্রো করতে পারে।
+Error: গ্রহণযোগ্য। Error এবং তার সাবক্লাসগুলোও আনচেকড এক্সেপশন। একটি ওভাররাইডিং মেথড যেকোনো Error থ্রো করতে পারে।
+
+17.abstract class Animal {
+abstract void jump() throws RuntimeException;
+}
+
+class Deer extends Animal {
+void jump() { //Line n1
+System.out.println(“DEER JUMPS”);
+}
+
+void jump(int i) {
+System.out.println(“DEER JUMPS TO ” + i + ” FEET”);
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Animal animal = new Deer();
+((Deer)animal).jump(); //Line n2
+((Deer)animal).jump(5); //Line n3
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ Line n3 causes compilation error
+ An exception is thrown at runtime
+ Test class executes successfully and prints: DEER JUMPS DEER JUMPS TO 5 FEET
+
+
+
+Explanation:
+Java-তে ইন্টারফেসে abstract method-এর default access modifier সর্বদা public হয়। 
+but in Abstract Class, একটি অ্যাবস্ট্র্যাক্ট মেথডের ডিফল্ট অ্যাক্সেস মডিফায়ার হলো ডিফল্ট বা প্যাকেজ-প্রাইভেট।
+Ans:Test class executes successfully and prints: DEER JUMPS DEER JUMPS TO 5 FEET
+
+
+
+18.abstract class Traveller {
+void travel(String place){}
+}
+
+abstract class BeachTraveller extends Traveller {
+/*INSERT*/
+}
+
+Which of the following declarations/definitions can replace /*INSERT*/ such that there is no compilation error?
+Select ALL that apply.
+
+ abstract void travel();
+ abstract void travel(String beach);
+ public abstract void travel();
+ public void travel() throws RuntimeException {}
+ public void travel(String beach) throws Exception {}
+ public void travel(Object obj) {}
+
+
+
+
+ Explanation:
+ Can a simple method be Abstract method while Overload and overidding?
+ Yes, it can.
+
+
+
+19.class Base {
+Base() throws IOException {
+System.out.print(1);
+}
+}
+
+class Derived extends Base {
+Derived() throws FileNotFoundException {
+System.out.print(2);
+}
+}
+
+public class Test {
+public static void main(String[] args) throws Exception {
+new Derived();
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error in both Base and Derived classes
+ Compilation error only in Base class
+ Compilation error only in Derived class
+ Test class executes successfully and prints 12 on to the console
+ Test class executes successfully and prints 21 on to the console
+
+
+
+
+Explanation:
+Is it legal for the constructors to have throws clause?
+Yes.
+কেন কম্পাইলেশন এরর হবে না?
+FileNotFoundException হল IOException-এর সাবক্লাস
+ডেরাইভড ক্লাসের কন্সট্রাক্টর বেস ক্লাসের কন্সট্রাক্টরের চেয়ে বেশি স্পেসিফিক এক্সেপশন throw করতে পারে
+main() মেথডে Exception ডিক্লেয়ার করা আছে যা সব চেকড এক্সেপশন কভার করে
+ফলাফল:
+সম্পূর্ণ কোডটি কোনো কম্পাইলেশন বা রানটাইম ত্রুটি ছাড়া সফলভাবে এক্সিকিউট হবে। 
+এক্সিকিউশন ফ্লো অনুযায়ী, প্রথমে প্যারেন্ট ক্লাসের কনস্ট্রাক্টর এবং পরে চাইল্ড ক্লাসের কনস্ট্রাক্টর এক্সিকিউট হওয়ায় আউটপুট হবে 12।
+
+20.class Parent {
+Parent() throws IOException {
+System.out.print(“HAKUNA”);
+}
+}
+
+class Child extends Parent {
+Child() throws Exception {
+System.out.println(“MATATA”);
+}
+}
+
+public class Test {
+public static void main(String[] args) throws Exception {
+new Child();
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error in both Parent and Child classes
+ Compilation error only in Parent class
+ Compilation error only in Child class
+ Test class executes successfully and prints HAKUNAMATATA on to the console
+ Test class executes successfully and prints MATATAHAKUNA on to the console
+
+
+
+
+ Explanation:
+ super(); প্যারেন্ট ক্লাসের কনস্ট্রাক্টরকে কল করে (যেটি IOException থ্রো করার কথা ঘোষণা করে), 
+ কিন্তু যেহেতু চাইল্ড ক্লাসের নো-আর্গুমেন্ট কনস্ট্রাক্টরটি Exception (যা IOException-এর সুপারক্লাস) থ্রো করার কথা ঘোষণা করে, 
+ তাই IOException-ও হ্যান্ডেল করা হয়। এখানে কোনো কম্পাইলেশন এরর নেই এবং আউটপুট হবে: HAKUNAMATATA।
+
+
+21.class Super {
+Super() throws RuntimeException {
+System.out.print(“CARPE “);
+}
+}
+
+class Sub extends Super {
+Sub() throws IOException {
+System.out.print(“DIEM “);
+}
+}
+
+public class Test {
+public static void main(String[] args) throws Exception {
+new Sub();
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Compilation error in both Super and Sub classes
+ Compilation error only in Super class
+ Compilation error only in Sub class
+ Test class executes successfully and prints CARPE DIEM  on to the console
+ Test class executes successfully and prints DIEM CARPE  on to the console
+
+
+
+
+ Explanation:
+ super(); সুপার ক্লাসের কনস্ট্রাক্টরকে কল করে (যেটি RuntimeException থ্রো করার কথা ঘোষণা করে), যেহেতু RuntimeException একটি আনচেকড এক্সসেপশন (unchecked exception), 
+ তাই সাব ক্লাসের কনস্ট্রাক্টরে এর জন্য কোনো হ্যান্ডলিং এর প্রয়োজন নেই।
+সাব ক্লাসের কনস্ট্রাক্টরটি IOException থ্রো করার কথা ঘোষণা করে, কিন্তু main(String []) মেথডটি তা হ্যান্ডেল করে।
+এখানে কোনো কম্পাইলেশন এরর নেই এবং আউটপুট হবে: CARPE DIEM।
+
+
+22.public class Test {
+public static void main(String[] args) {
+String str = “Java Rocks!”;
+System.out.println(str.length() + ” : ” + str.charAt(10));
+}
+}
+
+ 11 : !
+ An exception is thrown at runtime.
+ 11 : s
+ Compilation error.
+
+
+23.public class Test extends String {
+@Override
+public String toString() {
+return “TEST”;
+}
+
+public static void main(String[] args) {
+Test obj = new Test();
+System.out.println(obj);
+}
+}
+
+ TEST
+ Output string contains @ symbol
+ Exception is thrown at runtime
+ Compilation error
+
+
+
+ Correct
+String is a final class so it cannot be extended.
+
+
+24.public class Test {
+public static void main(String[] args) {
+String s1 = “OCAJP”;
+String s2 = “OCAJP” + “”; //Is it valid String?
+System.out.println(s1 == s2);
+}
+}
+What will be the result of compiling and executing Test class?
+
+25.public class Test {
+public static void main(String[] args) {
+final String fName = “James”;
+String lName = “Gosling”;
+String name1 = fName + lName;
+String name2 = fName + “Gosling”;
+String name3 = “James” + “Gosling”;
+System.out.println(name1 == name2);
+System.out.println(name2 == name3);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ TRUE TRUE
+ TRUE FALSE
+ FALSE FALSE
+ FALSE TRUE
+
+ আউটপুট ব্যাখ্যা:
+System.out.println(name1 == name2);
+name1 একটি রান-টাইম ক্যাটিনেশনের মাধ্যমে তৈরি হয়েছে, তাই এটি স্ট্রিং পুলে নেই, বরং হিপ মেমরি (heap memory)-তে একটি নতুন অবজেক্ট।
+name2 একটি কম্পাইল-টাইম ক্যাটিনেশন, তাই এটি স্ট্রিং পুলের "JamesGosling" লিটারালের রেফারেন্স।
+যেহেতু name1 এবং name2 দুটি ভিন্ন মেমরি লোকেশনকে নির্দেশ করছে, তাই == অপারেটরটি FALSE রিটার্ন করবে।
+
+System.out.println(name2 == name3);
+name2 এবং name3 উভয়ই কম্পাইল-টাইম ক্যাটিনেশন থেকে তৈরি হয়েছে।
+জাভা স্ট্রিং পুলে একই মানের স্ট্রিং লিটারালের জন্য শুধুমাত্র একটি অবজেক্ট রাখে।
+তাই name2 এবং name3 উভয়ই স্ট্রিং পুলের একই অবজেক্ট "JamesGosling" এর রেফারেন্সকে নির্দেশ করছে।
+ফলে, == অপারেটরটি TRUE রিটার্ন করবে।
+এ কারণে সম্পূর্ণ আউটপুট হবে FALSE TRUE।
+
+26.public class Test {
+public static void main(String[] args) {
+final int i1 = 1;
+final Integer i2 = 1;
+final String s1 = “:ONE”;
+
+String str1 = i1 + s1;
+String str2 = i2 + s1;
+
+System.out.println(str1 == “1:ONE”);
+System.out.println(str2 == “1:ONE”);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ TRUE TRUE
+ TRUE FALSE
+ FALSE FALSE
+ FALSE TRUE
+
+
+
+
+ আউটপুট ব্যাখ্যা:
+System.out.println(str1 == “1:ONE”);
+str1 একটি কম্পাইল-টাইম কনস্ট্যান্ট স্ট্রিং (“1:ONE”) এর রেফারেন্স।
+“1:ONE” স্ট্রিংটিও একটি লিটারাল।
+যেহেতু উভয়ই স্ট্রিং পুলের একই অবজেক্টকে নির্দেশ করছে, তাই == অপারেটরটি TRUE রিটার্ন করবে।
+
+System.out.println(str2 == “1:ONE”);
+str2 একটি কম্পাইল-টাইম কনস্ট্যান্ট স্ট্রিং (“1:ONE”) এর রেফারেন্স।
+“1:ONE” স্ট্রিংটিও একটি লিটারাল।
+উভয়ই স্ট্রিং পুলের একই অবজেক্টকে নির্দেশ করছে, তাই == অপারেটরটি TRUE রিটার্ন করবে।
+এ কারণে, উভয় স্টেটমেন্টই TRUE রিটার্ন করবে এবং সম্পূর্ণ আউটপুট হবে TRUE TRUE।
+
+
+27. public class Test {
+public static void main(String[] args) {
+StringBuilder sb = new StringBuilder(100);
+System.out.println(sb.length() + “:” + sb.toString().length());
+}
+}
+What will be the result of compiling and executing Test class?
+
+ 101:40:00
+ 4.166666667
+ 0.677777778
+ 0.666666667
+ 0:0
+
+
+
+
+ 28.public class Test {
+public static void main(String[] args) {
+StringBuilder sb = new StringBuilder(5);
+sb.append(“0123456789”);
+sb.delete(8, 1000);
+System.out.println(sb);
+}
+}
+
+ Compilation error
+ An exception is thrown at runtime
+ 01234567
+ 123456789
+
+
+
+Exception:
+১.  StringBuilder sb = new StringBuilder(5);
+* এটি একটি StringBuilder অবজেক্ট তৈরি করে যার প্রাথমিক ক্যাপাসিটি (capacity) 5। এর মানে হলো, এটি প্রাথমিকভাবে 5টি অক্ষর ধারণ করতে পারে, তবে এর বর্তমান দৈর্ঘ্য (length) 0।
+
+২.  sb.append(“0123456789”);
+* এই লাইনটি StringBuilder এ "0123456789" স্ট্রিংটি যুক্ত করে। এই স্ট্রিংটির দৈর্ঘ্য 10।
+* যেহেতু StringBuilder-এর বর্তমান ক্যাপাসিটি (5) এর চেয়ে বেশি অক্ষরের প্রয়োজন (10), তাই StringBuilder স্বয়ংক্রিয়ভাবে তার ক্যাপাসিটি বাড়িয়ে নেবে (সাধারণত বর্তমান ক্যাপাসিটির দ্বিগুণ + 2)।
+* এই লাইনের পর sb এর মধ্যে "0123456789" স্ট্রিংটি থাকবে এবং এর দৈর্ঘ্য হবে 10।
+
+৩.  sb.delete(8, 1000);
+* delete(int start, int end) মেথডটি start ইনডেক্স থেকে শুরু করে end ইনডেক্সের আগের অক্ষর পর্যন্ত ডিলিট করে।
+* এখানে start ইনডেক্স হলো 8 এবং end ইনডেক্স হলো 1000।
+* জাভাতে, যদি delete মেথডের end ইনডেক্স StringBuilder-এর বর্তমান দৈর্ঘ্যের চেয়ে বেশি হয়, তাহলে end ইনডেক্সটি স্বয়ংক্রিয়ভাবে StringBuilder-এর বর্তমান দৈর্ঘ্যের সমান ধরা হয়।
+* sb এর বর্তমান দৈর্ঘ্য 10। তাই, sb.delete(8, 1000) আসলে sb.delete(8, 10) হিসেবে কাজ করবে।
+* স্ট্রিং "0123456789" এর ইনডেক্সগুলো হলো:
+* 0: '0'
+* 1: '1'
+* 2: '2'
+* 3: '3'
+* 4: '4'
+* 5: '5'
+* 6: '6'
+* 7: '7'
+* 8: '8' (এটি ডিলিট হবে)
+* 9: '9' (এটি ডিলিট হবে)
+* ইনডেক্স 8 থেকে ইনডেক্স 10-এর আগের অক্ষর (অর্থাৎ ইনডেক্স 9) পর্যন্ত ডিলিট হয়ে যাবে। ফলে '8' এবং '9' অক্ষর দুটি ডিলিট হয়ে যাবে।
+* StringBuilder এর বিষয়বস্তু হবে "01234567"।
+
+৪.  System.out.println(sb);
+* এটি StringBuilder অবজেক্টের বর্তমান বিষয়বস্তু প্রিন্ট করবে, যা হলো "01234567"।
+
+সুতরাং, কোডটি সফলভাবে এক্সিকিউট হবে এবং আউটপুট হবে 01234567।
+
+
+
+ 29.public class Test {
+public static void main(String[] args) {
+StringBuilder sb = new StringBuilder(“SpaceStation”);
+sb.delete(5, 6).insert(5, ” S”).toString().toUpperCase();
+System.out.println(sb);
+}
+}
+
+ SPACE SATION
+ SPACE STATION
+ Space Station
+ Space Sation
+
+ Explanation:
+ এই কোডটি কম্পাইল এবং এক্সিকিউট করলে যে ফলাফল পাওয়া যাবে তা হলো:
+
+Space Station
+
+কারণ বিশ্লেষণ:
+চলুন, কোডটি লাইন বাই লাইন বিশ্লেষণ করা যাক:
+
+১.  StringBuilder sb = new StringBuilder(“SpaceStation”);
+* এটি একটি StringBuilder অবজেক্ট তৈরি করে যার মধ্যে "SpaceStation" স্ট্রিংটি থাকে।
+
+২.  sb.delete(5, 6)
+* delete(int start, int end) মেথডটি start ইনডেক্স থেকে শুরু করে end ইনডেক্সের আগের অক্ষর পর্যন্ত ডিলিট করে।
+* "SpaceStation" স্ট্রিংটিতে, ইনডেক্স 5-এ আছে দ্বিতীয় 'S' অক্ষরটি।
+* sb.delete(5, 6) কল করার পর, ইনডেক্স 5-এর 'S' অক্ষরটি ডিলিট হয়ে যাবে।
+* sb এর বর্তমান অবস্থা হবে: "Spacetation"।
+
+৩.  .insert(5, ” S”)
+* insert(int offset, String str) মেথডটি offset ইনডেক্সে নির্দিষ্ট স্ট্রিংটি যুক্ত করে।
+* sb এর বর্তমান অবস্থা "Spacetation"। ইনডেক্স 5-এ " S" (একটি স্পেস এবং একটি 'S') যুক্ত করা হচ্ছে।
+* sb এর নতুন অবস্থা হবে: "Space Station"।
+
+৪.  .toString().toUpperCase()
+* এখানে একটি গুরুত্বপূর্ণ বিষয় রয়েছে। toString() মেথড StringBuilder এর বর্তমান বিষয়বস্তু থেকে একটি নতুন String অবজেক্ট তৈরি করে।
+* এরপর toUpperCase() মেথডটি সেই নতুন String অবজেক্টটিকে আপারকেসে রূপান্তর করে আরেকটি নতুন String অবজেক্ট তৈরি করে।
+* তবে, এই অপারেশনগুলো মূল sb (StringBuilder) অবজেক্টটিকে পরিবর্তন করে না। StringBuilder অবজেক্টটি এখনও তার পূর্বের অবস্থায়ই থাকে।
+
+৫.  System.out.println(sb);
+* এই লাইনটি StringBuilder অবজেক্ট sb-এর বর্তমান বিষয়বস্তু প্রিন্ট করে।
+* যেহেতু toString().toUpperCase() অপারেশনগুলো sb কে পরিবর্তন করেনি, তাই sb এর মধ্যে "Space Station" স্ট্রিংটিই থাকবে।
+
+সুতরাং, কোডটি সফলভাবে এক্সিকিউট হবে এবং আউটপুট হবে Space Station।
+
+ 30.How many String objects are there in the HEAP memory, when control is at Line 9?
+package com.skillcertpro.oca;
+
+public class Test {
+public static void main(String[] args) {
+String s1 = new String(“Java”); //Line 3
+String s2 = “JaVa”; //Line 4
+String s3 = “JaVa”; //Line 5
+String s4 = “Java”; //Line 6
+String s5 = “Java”; //Line 7
+
+int i = 1; //Line 9
+
+}
+}
+
+ 2
+ 3
+ 4
+ 5
+
+ Explanation:
+ আপনার দেওয়া কোডটি কম্পাইল এবং এক্সিকিউট করার পর, যখন কন্ট্রোল `Line 9`-এ থাকবে, তখন **হিপ মেমরিতে (HEAP memory) মোট ৩টি `String` অবজেক্ট** থাকবে।
+
+---
+
+### কারণ বিশ্লেষণ:
+
+চলুন, প্রতিটি লাইন ধরে বিশ্লেষণ করা যাক:
+
+* **`String s1 = new String(“Java”); //Line 3`**
+    * যখন `new String(“Java”)` ব্যবহার করা হয়, তখন হিপ মেমরিতে একটি **নতুন `String` অবজেক্ট** তৈরি হয়, যার মান `"Java"`।
+    * একই সাথে, যদি `"Java"` স্ট্রিং লিটারালটি স্ট্রিং পুলে (String Pool) আগে থেকে না থাকে (যা এই ক্ষেত্রে নেই), তাহলে এটি স্ট্রিং পুলে রাখা হয়। স্ট্রিং পুল হিপ মেমরিরই একটি অংশ।
+    * সুতরাং, `Line 3` এক্সিকিউশনের পর হিপ মেমরিতে মোট **২টি `String` অবজেক্ট** থাকে: `new String()` দ্বারা তৈরি একটি এবং স্ট্রিং পুলের মধ্যে `"Java"` লিটারালটি।
+
+* **`String s2 = “JaVa”; //Line 4`**
+    * `"JaVa"` একটি নতুন স্ট্রিং লিটারাল। যেহেতু এটি কেস-সেনসিটিভ, তাই `"Java"` থেকে ভিন্ন।
+    * এই লিটারালটি স্ট্রিং পুলে আগে থেকে নেই, তাই এটি স্ট্রিং পুলে যুক্ত হয়।
+    * এখন হিপ মেমরিতে মোট অবজেক্ট: `new String("Java")` (হিপে) + `"Java"` (স্ট্রিং পুলে) + `"JaVa"` (স্ট্রিং পুলে) = **৩টি `String` অবজেক্ট**।
+
+* **`String s3 = “JaVa”; //Line 5`**
+    * `"JaVa"` লিটারালটি আবার ব্যবহৃত হয়েছে।
+    * জাভার স্ট্রিং পুলের নিয়ম অনুযায়ী, যদি একই মানের লিটারাল আগে থেকেই পুলে থাকে, তাহলে নতুন কোনো অবজেক্ট তৈরি হয় না, বরং বিদ্যমান অবজেক্টের রেফারেন্স ব্যবহার করা হয়।
+    * যেহেতু `"JaVa"` ইতিমধ্যেই স্ট্রিং পুলে আছে (Line 4 থেকে), তাই কোনো নতুন `String` অবজেক্ট তৈরি হবে না।
+    * হিপ মেমরিতে অবজেক্টের সংখ্যা এখনও **৩টি**।
+
+* **`String s4 = “Java”; //Line 6`**
+    * `"Java"` লিটারালটি ব্যবহৃত হয়েছে।
+    * এটিও স্ট্রিং পুলে আগে থেকেই আছে (Line 3 থেকে)।
+    * কোনো নতুন `String` অবজেক্ট তৈরি হবে না।
+    * হিপ মেমরিতে অবজেক্টের সংখ্যা এখনও **৩টি**।
+
+* **`String s5 = “Java”; //Line 7`**
+    * `"Java"` লিটারালটি আবার ব্যবহৃত হয়েছে।
+    * এটিও স্ট্রিং পুলে আগে থেকেই আছে।
+    * কোনো নতুন `String` অবজেক্ট তৈরি হবে না।
+    * হিপ মেমরিতে অবজেক্টের সংখ্যা এখনও **৩টি**।
+
+* **`int i = 1; //Line 9`**
+    * এই লাইনটি একটি প্রিমিটিভ `int` ভেরিয়েবল ঘোষণা করে, যা কোনো `String` অবজেক্ট তৈরি করে না।
+
+সুতরাং, `Line 9`-এ কন্ট্রোল আসার পর হিপ মেমরিতে মোট **৩টি `String` অবজেক্ট** থাকবে।
+
+
+31.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(“X”);
+list.add(“Y”);
+list.add(“X”);
+list.add(“Y”);
+list.add(“Z”);
+list.remove(new String(“Y”));
+System.out.println(list);
+}
+}
+
+ [X, X, Y, Z]
+ [X, X, Z]
+ [X, Z]
+ [X, Y, Z]
+ Compilation error
+ Exception is thrown at runtime
+
+
+ Ans:  [X, X, Y, Z]
+
+
+
+
+ 32.public class Test {
+public static void main(String[] args) {
+String str = “java”;
+StringBuilder sb = new StringBuilder(“java”);
+
+System.out.println(str.equals(sb) + “:” + sb.equals(str));
+}
+}
+
+Explanation:
+জাভাতে String এবং StringBuilder দুটি ভিন্ন ধরনের ক্লাস। যদিও তাদের মধ্যে একই টেক্সট থাকতে পারে।
+String এবং StringBuilder ক্লাসের equals() মেথডের আচরণ তাদের টাইপ এবং রেফারেন্সের পার্থক্যের কারণে তাদের সমান হিসেবে বিবেচনা করে না।
+ব্যাখ্যা:
+
+String ক্লাসের equals() মেথড:
+String ক্লাস, Object ক্লাসের public boolean equals(Object anObject) মেথডকে ওভাররাইড করে। এটি প্রথমে পরীক্ষা করে যে ইনপুট অবজেক্টটি একটি String কিনা। 
+যদি তা না হয় (যেমন StringBuilder এর ক্ষেত্রে), তাহলে এটি সরাসরি false রিটার্ন করে।
+যেহেতু sb একটি StringBuilder অবজেক্ট, তাই str.equals(sb) এর ফলাফল false হবে।
+
+StringBuilder ক্লাসের equals() মেথড:
+StringBuilder ক্লাস equals() মেথডকে ওভাররাইড করে না। 
+এর ফলে, এটি Object ক্লাসের ডিফল্ট equals() মেথড ব্যবহার করে। এই ডিফল্ট মেথডটি == অপারেটরের মতো কাজ করে,
+অর্থাৎ এটি দুটি অবজেক্টের মেমরি রেফারেন্স তুলনা করে। 
+যেহেতু sb এবং str দুটি ভিন্ন মেমরি লোকেশনে থাকা ভিন্ন অবজেক্ট, তাই sb.equals(str) এর ফলাফলও false হবে।
+
+এই কারণেই false:false আউটপুটটি আসে। আপনার ব্যাখ্যাটি খুবই স্পষ্ট এবং সঠিক।
+
+ 33. public class Test {
+public static void main(String[] args) {
+String str1 = ” “;
+boolean b1 = str1.isEmpty();
+System.out.println(b1);
+str1.trim();
+b1 = str1.isEmpty();
+System.out.println(b1);
+}
+}
+
+ FALSE TRUE
+ FALSE FALSE
+ TRUE FALSE
+ TRUE TRUE
+
+
+
+
+ Ans:
+  FALSE FALSE
+
+
+ 34.class SpecialString {
+String str;
+SpecialString(String str) {
+this.str = str;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+Object [] arr = new Object[4];
+for(int i = 1; i <=3; i++) { 
+    switch(i) { 
+        case 1: arr[i] = new String("Java");
+            break; 
+        case 2: arr[i] = new StringBuilder("Java");
+            break; 
+        case 3: arr[i] = new SpecialString("Java"); 
+            break; 
+} } 
+for(Object obj : arr) { 
+        System.out.println(obj); 
+     } } } 
+     
+    What will be the result of compiling and executing Test class?
+
+ Java Java Java
+ Java Java
+ Java
+ null Java Java Java
+ null Java Java
+ null Java
+
+
+
+ Explanation:
+ ভেরিয়েবল arr একটি ৪ আকারের অবজেক্ট অ্যারে নির্দেশ করে এবং এই অ্যারের ৪টি উপাদানকেই null হিসেবে নির্ধারণ করা হয়েছে।
+for লুপটি i = 1 থেকে শুরু হয়, যার মানে হলো:
+১ম ইনডেক্সে একটি String ইনস্ট্যান্স সংরক্ষণ করা হয়।
+২য় ইনডেক্সে একটি StringBuilder ইনস্ট্যান্স সংরক্ষণ করা হয়।
+৩য় ইনডেক্সে একটি SpecialString ইনস্ট্যান্স সংরক্ষণ করা হয়।
+শুধুমাত্র ০তম ইনডেক্সে null থেকে যায়।
+
+সুতরাং, কনসোলে প্রথমে null প্রিন্ট করা হবে।"
+
+
+ স্ট্রিং এবং স্ট্রিংবিল্ডার ক্লাস দুটিই toString() মেথডকে ওভাররাইড (override) করে, যা এই ক্লাসগুলোর মধ্যে সংরক্ষিত টেক্সট প্রিন্ট করে। 
+ কিন্তু SpecialString ক্লাসটি toString() মেথড ওভাররাইড করে না। 
+ তাই যখন SpecialString এর ইনস্ট্যান্স কনসোলে প্রিন্ট করা হয়, তখন আপনি পাবেন @।
+
+সুতরাং, আউটপুট হবে:
+null
+Java
+Java"
+
+ 35.public class Test {
+public static void main(String[] args) {
+String s1 = “OCP”;
+String s2 = “ocp”;
+System.out.println(/*INSERT*/);
+}
+}
+
+Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print true on to the console?
+Select ALL that apply.
+
+ s1.equals(s2)
+ s1.equals(s2.toUpper())
+ s2.equals(s1.toLower())
+ s1.length() == s2.length()
+ s1.equalsIgnoreCase(s2)
+ s1.contentEquals(s2)
+
+
+
+
+ Ans: 
+ 2,3,4,5
+
+ 36.public class Test {
+public static void main(String [] args) {
+String text = “ONE “;
+System.out.println(text.concat(text.concat(“ELEVEN “)).trim());
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ ONE ELEVEN
+ ONE ONE ELEVEN
+ ONE ELEVEN ONE ELEVEN
+ ONE ELEVEN ONE
+
+
+ Ans:
+  ONE ONE ELEVEN
+
+
+
+ 37.public class Test {
+public static void main(String[] args) {
+String str = “PANIC”;
+StringBuilder sb = new StringBuilder(“THET”);
+System.out.println(str.replace(“N”, sb)); //Line n1
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ PANIC
+ PATHETIC
+ Line n1 causes compilation error
+ Line n1 throws error at runtime
+
+
+
+
+
+ Ans:
+ B
+
+ 38.public class Test {
+public static void main(String[] args) {
+boolean flag1 = “Java” == “Java”.replace(‘J’, ‘J’); //Line n1
+boolean flag2 = “Java” == “Java”.replace(“J”, “J”); //Line n2
+System.out.println(flag1 && flag2);
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ TRUE
+ FALSE
+
+
+
+
+Explanation:
+String এর replace() মেথডের আচরণ
+"Java".replace('J', 'J') (Line n1): যখন replace() মেথডের মধ্যে অক্ষরের (character) প্যারামিটার ব্যবহার করা হয়, তখন জাভা প্রথমে পরীক্ষা করে দেখে যে কোনো প্রতিস্থাপনের প্রয়োজন আছে কিনা। 
+যেহেতু এখানে মূল অক্ষর 'J' এবং প্রতিস্থাপিত অক্ষর 'J' একই, তাই জাভা কোনো নতুন স্ট্রিং অবজেক্ট তৈরি করে না। 
+এটি স্ট্রিং পুল থেকে বিদ্যমান "Java" অবজেক্টের রেফারেন্সই ফিরিয়ে দেয়। তাই, "Java" == "Java".replace('J', 'J') এই তুলনাটি দুটি একই অবজেক্ট রেফারেন্সের মধ্যে হওয়ায় ফলাফল হয় true।
+
+"Java".replace("J", "J") (Line n2): যখন replace() মেথডের মধ্যে স্ট্রিং (String) প্যারামিটার ব্যবহার করা হয়, তখন জাভা প্রায় সবসময়ই একটি নতুন স্ট্রিং অবজেক্ট তৈরি করে, এমনকি যদি প্রতিস্থাপনের কোনো প্রয়োজন না-ও থাকে। 
+এই নতুন তৈরি হওয়া অবজেক্টটি স্ট্রিং পুলে থাকা "Java" অবজেক্টের থেকে ভিন্ন একটি মেমরি লোকেশনে থাকে। তাই, "Java" == "Java".replace("J", "J") এই তুলনাটি দুটি ভিন্ন অবজেক্ট রেফারেন্সের মধ্যে হওয়ায় ফলাফল হয় false।
+
+চূড়ান্ত ফলাফল
+যেহেতু flag1 এর মান true এবং flag2 এর মান false, তাই flag1 && flag2 এর ফলাফল হবে:
+
+true && false  => false
+সুতরাং, কোডটি কম্পাইল ও এক্সিকিউট করলে আউটপুট হবে false।
+
+
+
+
+39. Consider below code fragment:
+String place = “MISSS”;
+System.out.println(place.replace(“SS”, “T”));
+
+What is the output?
+
+ MIST
+ MITS
+ MISSS
+ MIT
+
+
+
+
+
