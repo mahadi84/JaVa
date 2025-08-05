@@ -1,4 +1,112 @@
-Date: 2 Auguest 2025
+Date: 2-5 Auguest 2025
+
+
+Could you summarize these for my study and review the answer in a short time for the exam?
+
+#### এক্সেপশন হ্যান্ডলিং  
+1. RuntimeException:  
+   - `throw` ছাড়াই প্রিন্ট বা ক্রিয়েট করা যায় → কম্পাইল হবে।  
+   - উদাহরণ: `System.out.println(new RuntimeException());`  
+
+2. NullPointerException:  
+   - `null` রেফারেন্সে মেথড কল করলে → `NullPointerException`।  
+   - যেমন: `ILogger[] loggers = new ILogger[2]; loggers[0].log();`  
+
+3. মাল্টি-ক্যাচ (Multi-catch):  
+   - বৈধ: `catch (IOException | SQLException e)`  
+   - অবৈধ: `catch (IOException | Exception e)` (সুপার-সাবক্লাস একসাথে ব্যবহার করা যাবে না)।  
+
+4. ফাইনালি ব্লক (Finally Block):  
+   - এক্সেপশন থ্রো হলেও সর্বদা এক্সিকিউট হয়।  
+   - উদাহরণ:  
+     try { ... } 
+     finally { System.out.println("FINALLY"); } // সর্বদা প্রিন্ট হবে।
+    
+
+5. এক্সেপশন রি-থ্রো (Re-throwing):  
+   - `throw e;` → একই এক্সেপশন আবার থ্রো করে।  
+   - `throw null;` → কম্পাইলেশন এরর।  
+
+6. চেকড vs আনচেকড এক্সেপশন:  
+   - চেকড (Checked): `IOException`, `SQLException` → `throws` ডিক্লেয়ার করতে হয়।  
+   - আনচেকড (Unchecked): `RuntimeException`, `NullPointerException` → ডিক্লেয়ার করার দরকার নেই।  
+
+---
+
+#### স্ট্রিং এবং স্ট্রিংবিল্ডার  
+1. স্ট্রিং পুল (String Pool):  
+   - `String s1 = "Java";` → পুলে স্টোর হয়।  
+   - `String s2 = new String("Java");` → হিপে নতুন অবজেক্ট তৈরি করে।  
+   - `==` রেফারেন্স চেক করে, `equals()` কন্টেন্ট চেক করে।  
+
+2. ইমিউটেবিলিটি (Immutability):  
+   - `str.trim()` → নতুন স্ট্রিং রিটার্ন করে, অরিজিনাল অপরিবর্তিত থাকে।  
+   - `str.isEmpty()` → `" "` (স্পেস) এর জন্য `false` রিটার্ন করে।  
+
+3. স্ট্রিংবিল্ডার (StringBuilder):  
+   - `sb.delete(8, 1000);` → `end > length` হলে `length` পর্যন্ত ডিলিট করে।  
+   - `sb.equals()` → রেফারেন্স চেক করে (কন্টেন্ট না)।  
+
+---
+
+#### ইনহেরিটেন্স এবং কনস্ট্রাক্টর  
+1. কনস্ট্রাক্টরে এক্সেপশন:  
+   - চাইল্ড কনস্ট্রাক্টর প্যারেন্টের এক্সেপশন হ্যান্ডেল/ডিক্লেয়ার করতে হবে।  
+   - উদাহরণ:  
+
+     class Parent {
+         Parent() throws IOException {}  
+     }
+     class Child extends Parent {
+         Child() throws Exception {} // OK (Exception, IOException এর সুপারক্লাস)
+     }
+    
+
+2. ফাইনাল ক্লাস (Final Class):  
+   - `String` ক্লাস `final` → এক্সটেন্ড করা যায় না।  
+
+---
+
+#### কালেকশন (List) অপারেশন  
+1. লিস্ট থেকে রিমুভ:  
+   - `list.remove(new String("Y"))` → প্রথম ম্যাচিং "Y" রিমুভ করে।  
+   - `equals()` ব্যবহার করে কম্পেয়ার করে।  
+
+---
+
+### গুরুত্বপূর্ণ আউটপুট  
+1. নেস্টেড ট্রাই-ক্যাচ-ফাইনালি:  
+   try { 
+       try { throw ...; } 
+       catch(...) { "INNER"; } 
+       finally { "FINALLY 1"; }
+   } finally { "FINALLY 2"; }
+
+   আউটপুট: `INNER FINALLY 1 FINALLY 2`  
+
+2. স্ট্রিং vs স্ট্রিংবিল্ডার ইকুয়ালস:  
+   String str = "java";
+   StringBuilder sb = new StringBuilder("java");
+   System.out.println(str.equals(sb) + ":" + sb.equals(str));
+
+   আউটপুট: `false:false` (টাইপ আলাদা + রেফারেন্স চেক)।  
+
+---
+
+### মনে রাখার টিপস  
+- `throw null` → কম্পাইলেশন এরর।  
+- ফাইনালি ব্লক → সর্বদা রান করে।  
+- `StringBuilder` → মিউটেবল; `delete()` এন্ড ইনডেক্স অ্যাডজাস্ট করে।  
+- `List.remove()` → শুধু প্রথম ম্যাচিং এলিমেন্ট রিমুভ করে।  
+- `Unreachable Code` → কম্পাইলেশন এরর (যেমন `return` এর পরের কোড)।  
+
+
+
+
+---------
+
+
+
 
 
 01.public class Test {
