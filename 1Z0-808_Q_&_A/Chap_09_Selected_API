@@ -159,6 +159,22 @@ This chapter covers essential Java concepts, including:
 ####String vs StringBuilder:
    - String: Immutable, thread-safe, better for constants
    - StringBuilder: Mutable, better for modifications
+   - String equals() Vs StringBuilder equals()
+
+জাভাতে String এবং StringBuilder দুটি ভিন্ন ধরনের ক্লাস। যদিও তাদের মধ্যে একই টেক্সট থাকতে পারে।
+String এবং StringBuilder ক্লাসের equals() মেথডের আচরণ তাদের টাইপ এবং রেফারেন্সের পার্থক্যের কারণে তাদের সমান হিসেবে বিবেচনা করে না।
+ব্যাখ্যা:
+
+String ক্লাসের equals() মেথড:
+String ক্লাস, Object ক্লাসের public boolean equals(Object anObject) মেথডকে ওভাররাইড করে। এটি প্রথমে পরীক্ষা করে যে ইনপুট অবজেক্টটি একটি String কিনা। 
+যদি তা না হয় (যেমন StringBuilder এর ক্ষেত্রে), তাহলে এটি সরাসরি false রিটার্ন করে।
+যেহেতু sb একটি StringBuilder অবজেক্ট, তাই str.equals(sb) এর ফলাফল false হবে।
+
+StringBuilder ক্লাসের equals() মেথড:
+StringBuilder ক্লাস equals() মেথডকে ওভাররাইড করে না। 
+এর ফলে, এটি Object ক্লাসের ডিফল্ট equals() মেথড ব্যবহার করে। এই ডিফল্ট মেথডটি == অপারেটরের মতো কাজ করে,
+অর্থাৎ এটি দুটি অবজেক্টের মেমরি রেফারেন্স তুলনা করে। 
+যেহেতু sb এবং str দুটি ভিন্ন মেমরি লোকেশনে থাকা ভিন্ন অবজেক্ট, তাই sb.equals(str) এর ফলাফলও false হবে।
 
 ### 3. Collections Framework (Like:ArrayList )
 Collection Usage:
