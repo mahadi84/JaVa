@@ -38,6 +38,7 @@ Could you summarize these for my study and review the answer in a short time for
    - `String s1 = "Java";` → পুলে স্টোর হয়।  
    - `String s2 = new String("Java");` → হিপে নতুন অবজেক্ট তৈরি করে।  
    - `==` রেফারেন্স চেক করে, `equals()` কন্টেন্ট চেক করে।  
+   - String.equals() and StringBuilder.equals() returens different results.
 
 2. ইমিউটেবিলিটি (Immutability):  
    - `str.trim()` → নতুন স্ট্রিং রিটার্ন করে, অরিজিনাল অপরিবর্তিত থাকে।  
