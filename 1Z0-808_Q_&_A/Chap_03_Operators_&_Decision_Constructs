@@ -80,11 +80,14 @@ This chapter covers essential Java concepts related to:
 - String literals vs new String() behavior
 
 #### 5. Operator Precedence ####
-- Arithmetic: +, -, *, /, % (modulus)
-Highest to lowest:
-   1. Postfix (x++, x--)     2. Unary (++x, --x, !, ~)      3. Multiplicative (, /, %)    4. Additive (+, -)      5. Relational (<, >, <=, >=, instanceof) 
-   6. Equality (==, !=)      7. Logical AND (&&)            8. Logical OR (||)            9. Ternary (? :)        10. Assignment (=, +=, etc.)
-
+Highest to lowest:  NOT-I'M-A-ELA
+           1.  ! (Logical NOT)
+           2.  ++/-- (Increment/Decrement)
+           3.  */'/'/% (Multiplication/Division/Modulus)
+           4.  +/- (Addition/Subtraction)
+           5.  ==/!= (Equality/Inequality)
+           6.  &&/|| (Logical AND/OR)
+           7.  = (Assignment)
 
 ## Common Pitfalls to Avoid
 
