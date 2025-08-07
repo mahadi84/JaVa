@@ -1,0 +1,71 @@
+
+ এটি একটি সিস্টেমের পেমেন্ট পদ্ধতিকে রানটাইমে পরিবর্তন করার একটি নমনীয় এবং কার্যকর উপায়। Ex: Bkash, Nagad, Paypal, Credit Card Payment.
+এই কোডটি স্ট্র্যাটেজি প্যাটার্ন (Strategy Pattern) নামক একটি ডিজাইন প্যাটার্ন ব্যবহার করে।
+১. স্ট্র্যাটেজি ইন্টারফেস: PaymentStrategy: PaymentStrategy হলো একটি ইন্টারফেস। এটি একটি চুক্তি বা ব্লুপ্রিন্ট হিসেবে কাজ করে যা বলে যে, যেকোনো পেমেন্ট পদ্ধতির একটি pay() মেথড থাকতে হবে।
+২. কংক্রিট স্ট্র্যাটেজি ক্লাস: CreditCardPayment এবং PaypalPayment: এই ক্লাসগুলো হলো আসল পেমেন্ট পদ্ধতি। তারা PaymentStrategy ইন্টারফেসটি বাস্তবায়ন করে।
+৩. কনটেক্সট ক্লাস: PaymentProcessor:PaymentProcessor ক্লাসটি হলো সিস্টেমের মূল অংশ। এটি একটি PaymentStrategy অবজেক্ট রাখে।
+৪. মূল ব্যবহার: Main ক্লাস:Main ক্লাসে পুরো সিস্টেমটি চালু করা হয়।
+
+কেন এই প্যাটার্নটি ব্যবহার করা হয়?
+এই প্যাটার্ন ব্যবহার করার প্রধান সুবিধা হলো:
+নমনীয়তা: আপনি খুব সহজে নতুন পেমেন্ট পদ্ধতি (যেমন বিকাশ, নগদ) যোগ করতে পারেন শুধুমাত্র একটি নতুন ক্লাস তৈরি করে, PaymentProcessor ক্লাসের কোনো কোড পরিবর্তন না করেই।
+পরিচ্ছন্নতা: এটি দীর্ঘ if/else বা switch স্টেটমেন্ট ব্যবহার করার ঝামেলা এড়িয়ে চলে, যা কোডকে আরও পরিষ্কার এবং সহজবোধ্য করে তোলে।
+রক্ষণাবেক্ষণ: যখন কোনো পেমেন্ট পদ্ধতির লজিক পরিবর্তন করার প্রয়োজন হয়, তখন শুধু সেই নির্দিষ্ট ক্লাসটি পরিবর্তন করলেই চলে, যা পুরো কোডবেসের ওপর প্রভাব ফেলে না।
+
+
+// PaymentStrategy.java
+interface PaymentStrategy {
+    void pay(int amount); //এটি একটি চুক্তি বা ব্লুপ্রিন্ট হিসেবে কাজ করে যা বলে যে, যেকোনো পেমেন্ট পদ্ধতির একটি pay() মেথড থাকতে হবে।
+}
+
+// CreditCardPayment.java
+class CreditCardPayment implements PaymentStrategy {
+    private String name;
+    private String cardNumber;
+
+    public CreditCardPayment(String name, String cardNumber) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+    }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println(amount + " paid through Credit: Card number is: " + cardNumber);
+    }
+}
+
+
+// PaymentProcessor.java
+class PaymentProcessor {
+    private PaymentStrategy paymentStrategy;
+
+    public PaymentProcessor(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void processOrder(int amount) {
+        paymentStrategy.pay(amount);
+    }
+
+    // রানটাইমে স্ট্র্যাটেজি পরিবর্তন করার জন্য একটি মেথড
+    public void setPaymentStrategy(PaymentStrategy newStrategy) {
+        this.paymentStrategy = newStrategy;
+    }
+}
+
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+
+        // ক্রেডিট কার্ড দিয়ে পেমেন্ট প্রসেস করা
+        PaymentProcessor processor = new PaymentProcessor(new CreditCardPayment("Rakib Hasan", "1234-5678-9012-3456"));
+        processor.processOrder(1000);
+
+        System.out.println("-------------------------");
+
+        // রানটাইমে পেমেন্ট স্ট্র্যাটেজি পরিবর্তন করে পেপ্যাল ব্যবহার করা
+        processor.setPaymentStrategy(new PaypalPayment("rakib.hasan@example.com"));
+        processor.processOrder(500);
+    }
+}
