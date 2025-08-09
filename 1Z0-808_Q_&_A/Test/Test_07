@@ -1,0 +1,804 @@
+Date: 9 August 2025
+
+
+এই প্রশ্নগুলো থেকে আমরা যে গুরুত্বপূর্ণ বিষয়গুলো শিখতে পারি:
+
+## 1. স্ট্রিং ও স্ট্রিংবিল্ডার সম্পর্কিত ভুল
+- `StringBuilder`-এ `contentEquals()` মেথড নেই, শুধু `String`-এ আছে
+- `StringBuilder.reverse()` সঠিক, কিন্তু `replace("O","A")` ভুল - কারণ `StringBuilder`-এ এমন মেথড নেই
+- `String` immutable, `StringBuilder` mutable
+- `String`-এর `equals()` কন্টেন্ট চেক করে, `StringBuilder`-এর `equals()` রেফারেন্স চেক করে
+
+## 2. লিস্ট অপারেশনসনে সাধারণ ভুল
+- `remove()` মেথডের দুটি ভার্সন:
+  - `remove(int index)` → ইনডেক্স দিয়ে মুছে
+  - `remove(Object o)` → অবজেক্ট দিয়ে মুছে
+- `ArrayList`-এ ডাইরেক্টলি বড় ইনডেক্সে (`list.add(3,"X")`) অ্যাড করলে `IndexOutOfBoundsException`
+- `subList()` মূল লিস্টের ভিউ রিটার্ন করে - এতে পরিবর্তন মূল লিস্টকে প্রভাবিত করে
+- `ConcurrentModificationException`: ইটারেশন চলাকালীন লিস্ট মডিফাই করলে
+
+## 3. অটোবক্সিং ও ইকুয়ালিটি চেক
+- `Integer` ক্যাশে (-128 থেকে 127) এর জন্য `==` true দিতে পারে
+- `new Integer(27) == new Integer(27)` → false (নতুন অবজেক্ট)
+- `remove(100)` vs `remove(new Integer(100))` - প্রথমটি ইনডেক্স হিসেবে নেয়
+
+## 4. ডেট টাইপ কনভার্শন
+- `LocalDate.parse()` স্ট্রিং ফরম্যাট সঠিক হতে হবে ("YYYY-MM-DD")
+- `removeIf()` ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে শর্ত অনুযায়ী মুছে
+
+## 5. প্রেডিকেট ও ল্যাম্বডা
+- `Predicate` সবসময় boolean রিটার্ন করে
+- `p -> true` সব এলিমেন্ট পাস করবে
+- `p -> p.length() >= 1` সব স্ট্রিং যার লেনথ ১ বা বেশি
+
+
+
+
+01.String [] arr = {“1st”, “2nd”, “3rd”, “4th”, “5th”};
+String place = “faraway”;
+System.out.println(arr[place.indexOf(“a”, 3)]); //Line n1
+
+
+Ans:
+place.indexOf("a", 3) → ৩য় ইনডেক্স থেকে প্রথম 'a' হলো ইনডেক্স ৩ (কারণ 'a' ইতিমধ্যে ৩ নম্বর ইনডেক্সে আছে)।
+Output: 4th
+
+
+02.
+String word = “REBUS”;
+/* INSERT */
+System.out.println(word);
+
+
+Following options are available to replace /*INSERT*/:
+1. word = word.substring(2);
+2. word = word.substring(2, 4);
+3. word = word.substring(2, 5);
+4. word = word.replace(“RE”, “”);
+5. word = word.substring(2, 6);
+6. word = word.delete(0, 2);
+
+How many of the above options can be used to replace /*INSERT*/ (separately and not together) such that given command prints BUS on to the console?
+
+
+
+Ans:
+১. word = word.substring(2);: এই কোডটি স্ট্রিংয়ের ২(Start) নম্বর সূচক থেকে শুরু করে বাকি অংশটিকে কেটে নেয়, যা "BUS" দেয়।
+৩. word = word.substring(2, 5);: এই কোডটি স্ট্রিংয়ের ২(Start) নম্বর সূচক থেকে শুরু করে ৪(end) পর্যন্ত অংশটিকে কেটে নেয়, যা "BUS" দেয়।
+৪. word = word.replace("RE", "");: এই কোডটি স্ট্রিংয়ের "RE" অংশটিকে একটি খালি স্ট্রিং দিয়ে প্রতিস্থাপন করে, যা "BUS" দেয়।
+Output:Three options only
+
+
+
+
+
+
+03.public class Test {
+public static void main(String[] args) {
+String str = “Game on”; //Line n1
+StringBuilder sb = new StringBuilder(str); //Line n2
+
+System.out.println(str.contentEquals(sb)); //Line n3
+System.out.println(sb.contentEquals(str)); //Line n4
+System.out.println(sb.equals(str)); //Line n5
+System.out.println(str.equals(sb)); //Line n6
+}
+}
+
+Which of the following statements is correct?
+
+ Only one statement causes compilation error
+ Two statements cause compilation error
+ Three statements cause compilation error
+ Four statements cause compilation error
+ No compilation error
+
+
+ Explanation:
+ * Line n3: `str.contentEquals(sb)`
+    `String` ক্লাসের `contentEquals()` মেথডটি `CharSequence` টাইপের আর্গুমেন্ট গ্রহণ করে। 
+        যেহেতু `StringBuilder` ক্লাসটি `CharSequence` ইন্টারফেসটি ইমপ্লিমেন্ট করে, তাই এই লাইনটি কোনো ত্রুটি ছাড়াই কম্পাইল হবে।
+
+* Line n4: `sb.contentEquals(str)`
+    `StringBuilder` ক্লাসে `contentEquals()` নামে কোনো মেথড নেই। 
+        এই মেথডটি শুধুমাত্র `String` এবং `StringBuffer` ক্লাসে বিদ্যমান। তাই এই লাইনটি কম্পাইলেশন ত্রুটি ঘটাবে।
+
+* Line n5: `sb.equals(str)`
+    `StringBuilder` ক্লাসের `equals()` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে। তাই এই লাইনটি কম্পাইল হবে। 
+        তবে, এটি অবজেক্ট রেফারেন্স তুলনা করে, কন্টেন্ট নয়, তাই রানটাইমে `false` রিটার্ন করবে।
+
+* Line n6: `str.equals(sb)`
+    `String` ক্লাসের `equals()` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে। তাই এই লাইনটিও কম্পাইল হবে। 
+        তবে, এটি `StringBuilder` অবজেক্টকে `String` এর সাথে তুলনা করার কারণে `false` রিটার্ন করবে।
+
+### সঠিক উত্তর:  
+Only one statement causes compilation error (শুধুমাত্র Line n4-এ কম্পাইলেশন এরর হবে)।  
+
+
+
+
+04.public class Test {
+public static void main(String[] args) {
+StringBuilder sb = new StringBuilder(“TOMATO”);
+System.out.println(sb.reverse().replace(“O”, “A”)); //Line n1
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+
+
+Explanation:
+1.  `sb.reverse()`: এটি একটি সঠিক মেথড কল। `StringBuilder` অবজেক্ট `sb`-এর মধ্যে থাকা "TOMATO" স্ট্রিংটিকে এটি "OTAMOT" এ রূপান্তরিত করবে এবং পরিবর্তিত `StringBuilder` অবজেক্টটিকেই ফেরত দেবে।
+2.  `.replace("O", "A")`: মূল সমস্যাটি এখানেই। `StringBuilder` ক্লাসে এমন কোনো `replace()` মেথড নেই যা দুটি `String` আর্গুমেন্ট গ্রহণ করে। 
+     `StringBuilder`-এর একমাত্র `replace()` মেথডটি হলো `replace(int start, int end, String str)`, যা একটি নির্দিষ্ট ইনডেক্স সীমার মধ্যে থাকা সাবস্ট্রিংকে প্রতিস্থাপন করে।
+
+যেহেতু `sb.reverse()` একটি `StringBuilder` অবজেক্ট রিটার্ন করে, কম্পাইলার তখন `StringBuilder` ক্লাসের মধ্যে `replace(String, String)` মেথডটি খোঁজে।
+ কিন্তু, এই ধরনের কোনো মেথড না থাকায়, এটি একটি কম্পাইলেশন ত্রুটি হিসেবে চিহ্নিত হয়।
+
+
+
+ 05.StringBuilder sb = new StringBuilder(“B”); //Line n1
+sb.append(sb.append(“A”)); //Line n2
+System.out.println(sb); //Line n3
+
+
+What will be the result of compiling and executing Test class?
+
+
+ BAB
+ ABA
+ BABA
+
+
+ Ans: 
+ Last one
+
+
+ 06.String text = “RISE “;
+text = text + (text = “ABOVE “);
+System.out.println(text);
+
+
+What will be the result of compiling and executing Test class?
+
+ RISE RISE ABOVE
+ RISE ABOVE
+ ABOVE ABOVE
+ RISE ABOVE RISE
+
+
+ Explanation:
+ This execute left to right.
+ Output: Rise above
+
+
+
+
+ 07.class Student {
+private String name;
+private int age;
+
+Student(String name, int age) {
+this.name = name;
+this.age = age;
+}
+
+public String toString() {
+return “Student[” + name + “, ” + age + “]”;
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+List students = new ArrayList<>();
+students.add(new Student(“James”, 25));
+students.add(new Student(“James”, 27));
+students.add(new Student(“James”, 25));
+students.add(new Student(“James”, 25));
+
+students.remove(new Student(“James”, 25));
+
+for(Student stud : students) {
+System.out.println(stud);
+}
+}
+}
+What will be the result of compiling and executing Test class?
+
+ Student[James, 27] Student[James, 25] Student[James, 25]
+ Student[James, 25] Student[James, 27] Student[James, 25]
+ Student[James, 27]
+ Student[James, 25] Student[James, 27] Student[James, 25] Student[James, 25]
+
+
+
+
+
+
+### ব্যাখ্যা
+
+1.  `students.remove(new Student("James", 25));` এই লাইনে `ArrayList` থেকে একটি অবজেক্ট সরানোর চেষ্টা করা হচ্ছে।
+2.  `ArrayList` কোনো অবজেক্টকে সরানোর জন্য সেটি লিস্টের অন্য অবজেক্টগুলোর সাথে `equals()` মেথড ব্যবহার করে তুলনা করে।
+3.  যেহেতু `Student` ক্লাসে `equals()` মেথডটি ওভাররাইড করা হয়নি, তাই জাভা ডিফল্ট `Object.equals()` মেথডটি ব্যবহার করে। এই ডিফল্ট মেথডটি শুধুমাত্র তখনই `true` রিটার্ন করে যখন দুটি অবজেক্ট মেমরির একই রেফারেন্সকে নির্দেশ করে।
+4.  `new Student("James", 25)` একটি নতুন অবজেক্ট তৈরি করে, যা লিস্টে থাকা অন্য কোনো `Student` অবজেক্টের সাথে মেমরি অ্যাড্রেসের দিক থেকে এক নয়।
+5.  ফলস্বরূপ, `remove()` মেথডটি কোনো মিল খুঁজে পায় না এবং কোনো অবজেক্টকে সরাতে ব্যর্থ হয়।
+6.  লিস্টটি অপরিবর্তিত থাকে এবং লুপের মাধ্যমে চারটি `Student` অবজেক্টই প্রিন্ট হয়।
+
+
+08.public class Test {
+public static void main(String[] args) {
+List dryFruits = new ArrayList<>();
+dryFruits.add(“Walnut”);
+dryFruits.add(“Apricot”);
+dryFruits.add(“Almond”);
+dryFruits.add(“Date”);
+
+for(String dryFruit : dryFruits) {
+if(dryFruit.startsWith(“A”)) {
+dryFruits.remove(dryFruit);
+}
+}
+
+System.out.println(dryFruits);
+}
+}
+What will be the result of compiling and executing Test class?
+
+
+
+
+
+
+### ব্যাখ্যা
+  * কম্পাইলেশন: কোডটি সিনট্যাক্সগতভাবে সঠিক, তাই এটি কম্পাইল করতে কোনো সমস্যা হবে না।
+  * Runtime Exception: সমস্যাটি ঘটে যখন কোডটি রান হয়। একটি `for-each` লুপের মাধ্যমে কোনো কালেকশনের (collection) উপর পুনরাবৃত্তি করার সময়, 
+      যদি আপনি সেই কালেকশন থেকে কোনো উপাদান যুক্ত (add) বা অপসারণ (remove) করার চেষ্টা করেন, তাহলে `java.util.ConcurrentModificationException` থ্রো (throw) হয়।
+
+
+
+09. public class Test {
+public static void main(String[] args) {
+List dryFruits = new ArrayList<>();
+dryFruits.add(new StringBuilder(“Walnut”));
+dryFruits.add(new StringBuilder(“Apricot”));
+dryFruits.add(new StringBuilder(“Almond”));
+dryFruits.add(new StringBuilder(“Date”));
+
+for(int i = 0; i < dryFruits.size(); i++) {
+     if(i == 0) { dryFruits.remove(new StringBuilder("Almond")); } 
+     } 
+     System.out.println(dryFruits); } 
+} 
+
+What will be the result of compiling and executing Test class?
+
+ [Walnut, Apricot, Almond, Date]
+ [Walnut, Date]
+ An exception is thrown at runtime
+ [Walnut, Apricot, Date]
+
+
+
+Explanation:
+In this example, code is trying to remove an item from the list while iterating using traditional for loop 
+so one can think that this code would throw java.util.ConcurrentModificationException.
+
+
+10.public class Test {
+public static void main(String[] args) {
+StringBuilder sb = new StringBuilder(“Hello”);
+List list = new ArrayList<>();
+list.add(sb);
+list.add(new StringBuilder(“Hello”));
+list.add(sb);
+sb.append(“World!”);
+
+System.out.println(list);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ [Hello, Hello, Hello]
+ [HelloWorld!, Hello, Hello]
+ [HelloWorld!, Hello, HelloWorld!]
+ [HelloWorld!, HelloWorld!, HelloWorld!]
+
+
+
+
+Explanation:
+অ্যারে লিস্টের ১ম এবং ৩য় উপাদান একই `StringBuilder` ইনস্ট্যান্সকে নির্দেশ করছে, যা `sb` দ্বারা নির্দেশিত। `[sb -> {Hello}]`। ২য় উপাদানটি `StringBuilder`-এর আরেকটি ইনস্ট্যান্সকে নির্দেশ করছে।
+`sb.append(“World!”);` মানে হলো `sb -> {HelloWorld!}`, যার অর্থ অ্যারে লিস্টের ১ম এবং ৩য় উপাদান এখন `HelloWorld!` ধারণ করা `StringBuilder` ইনস্ট্যান্সকে নির্দেশ করছে।
+আউটপুটে, `[HelloWorld!, Hello, HelloWorld!]` প্রিন্ট হবে।
+
+
+11.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(“ONE”);
+list.add(“TWO”);
+list.add(“THREE”);
+list.add(“THREE”);
+
+if(list.remove(2)) {
+list.remove(“THREE”);
+}
+
+System.out.println(list);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ [ONE, TWO, THREE, THREE]
+ [ONE, TWO, THREE]
+ [ONE, TWO]
+ Compilation error
+ An exception is thrown at runtime
+
+
+
+
+ 
+### ব্যাখ্যা
+ত্রুটিটি `if(list.remove(2))` এই লাইনে ঘটে।
+* `list.remove(2)` মেথডটি লিস্টের ২ নম্বর ইনডেক্সের উপাদানটিকে অপসারণ করে এবং অপসারণ করা উপাদানটি রিটার্ন করে, যা এই ক্ষেত্রে একটি `String` অবজেক্ট (অর্থাৎ, `"THREE"`)।
+* জাভাতে, একটি `if` স্টেটমেন্টের শর্ত হিসেবে অবশ্যই একটি `boolean` এক্সপ্রেশন থাকতে হবে।
+* যেহেতু `String` টাইপটি `boolean` টাইপের সাথে সামঞ্জস্যপূর্ণ নয় এবং কোনো স্বয়ংক্রিয় রূপান্তরও (implicit conversion) নেই, তাই কম্পাইলার একটি ত্রুটি দেখাবে।
+
+
+
+
+12.public class Test {
+public static void main(String[] args) {
+List list1 = new ArrayList<>();
+list1.add(“A”);
+list1.add(“D”);
+
+List list2 = new ArrayList<>();
+list2.add(“B”);
+list2.add(“C”);
+
+list1.addAll(1, list2);
+
+System.out.println(list1);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ [A, B, C, D]
+ [A, D, B, C]
+ [A, D]
+ [A, B, C]
+
+
+
+
+Explanation:
+list1 –> [A, D], 
+list2 –> [B, C], 
+list1.addAll(1, list2); is almost equal to list1.add(1, [B, C]); => Inserts B at index 1, C takes index 2 and D is moved to index 3.
+list1 –> [A, B, C, D]
+
+
+13.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>(4);
+list.add(0, “Array”);
+list.add(2, “List”);
+
+System.out.println(list);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ [Array, List]
+ [Array, null, List, null]
+ An exception is thrown at runtime
+ Compilation error
+
+
+
+
+
+### ব্যাখ্যা
+1.  `List list = new ArrayList<>(4);`: এই লাইনে একটি `ArrayList` তৈরি করা হয় যার প্রাথমিক ধারণক্ষমতা (capacity) ৪। তবে, এই মুহূর্তে লিস্টটি সম্পূর্ণ খালি। এর সাইজ বা আকার হলো `0`।
+2.  `list.add(0, “Array”);`: এই লাইনটি বৈধ, কারণ খালি লিস্টে `0` ইনডেক্সে উপাদান যুক্ত করা যায়। এর পর লিস্টের সাইজ হবে `1`।
+3.  `list.add(2, “List”);`: সমস্যাটি এই লাইনে ঘটে। `ArrayList`-এর `add(index, element)` মেথড ব্যবহার করে কোনো উপাদান যুক্ত করতে হলে, ইনডেক্সটি অবশ্যই `0` থেকে বর্তমান সাইজ পর্যন্ত হতে হবে। 
+যেহেতু লিস্টের বর্তমান সাইজ `1`, তাই শুধুমাত্র `0` এবং `1` ইনডেক্সগুলো বৈধ। `2` ইনডেক্সটি অবৈধ হওয়ায় জাভা একটি `IndexOutOfBoundsException` থ্রো করবে।
+
+
+
+
+
+
+14.public class Test {
+public static void main(String[] args) {
+List trafficLight = new ArrayList<>();
+trafficLight.add(1, “RED”);
+trafficLight.add(2, “ORANGE”);
+trafficLight.add(3, “GREEN”);
+
+trafficLight.remove(new Integer(2));
+
+System.out.println(trafficLight);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ Compilation error
+ An exception is thrown at runtime
+ [RED, GREEN]
+ [RED, ORANGE]
+ [RED, ORANGE, GREEN]
+
+
+
+
+
+### ব্যাখ্যা
+* `trafficLight.add(1, “RED”);` এই লাইনেই সমস্যাটি ঘটে।
+* `ArrayList` খালি অবস্থায় ছিল, যার সাইজ (size) ছিল `0`।
+* `add(index, element)` মেথডটি কেবল তখনই কাজ করে যখন ইনডেক্সের মান `0` থেকে বর্তমান সাইজের মধ্যে থাকে (`0 <= index <= size()`)।
+* যেহেতু এখানে `index` এর মান `1`, যা বর্তমান সাইজ `0` এর থেকে বড়, তাই জাভা একটি `IndexOutOfBoundsException` থ্রো করবে।
+* এর ফলে, কোডের পরবর্তী লাইনগুলো এক্সিকিউট হবে না।
+
+  
+
+  15.public class Test {
+public static void main(String[] args) {
+List days = new ArrayList<>();
+days.add(new StringBuilder(“Sunday”));
+days.add(new StringBuilder(“Monday”));
+days.add(new StringBuilder(“Tuesday”));
+
+if(days.contains(new StringBuilder(“Sunday”))) {
+days.add(new StringBuilder(“Wednesday”));
+}
+
+System.out.println(days.size());
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ 4
+ 3
+ Compilation error
+ Runtime exception
+
+
+
+
+### ব্যাখ্যা
+
+এই কোডের মূল বিষয় হলো `StringBuilder` ক্লাসের `equals()` মেথড ওভাররাইড করা নেই।
+1.  প্রথমে, একটি `ArrayList` তৈরি করা হয় এবং তাতে "Sunday", "Monday", এবং "Tuesday" এই তিনটি ভিন্ন `StringBuilder` অবজেক্ট যোগ করা হয়। ফলে, লিস্টের সাইজ হয় ৩।
+2.  `if(days.contains(new StringBuilder("Sunday")))` এই লাইনটি একটি গুরুত্বপূর্ণ শর্ত। `contains()` মেথডটি যখন একটি কালেকশনে কোনো অবজেক্ট আছে কি না তা পরীক্ষা করে, তখন এটি সেই অবজেক্টের `equals()` মেথড ব্যবহার করে তুলনা করে।
+3.  যেহেতু `StringBuilder` ক্লাসটি তার প্যারেন্ট ক্লাস `Object` থেকে `equals()` মেথডটি ওভাররাইড করে না, তাই ডিফল্ট `Object.equals()` মেথডটি ব্যবহৃত হয়। এই মেথডটি দুটি অবজেক্টের কন্টেন্ট নয়, বরং তাদের মেমরি রেফারেন্স তুলনা করে।
+4.  `new StringBuilder("Sunday")` একটি সম্পূর্ণ নতুন অবজেক্ট তৈরি করে, যার মেমরি অ্যাড্রেস লিস্টে থাকা "Sunday" অবজেক্টের মেমরি অ্যাড্রেসের সাথে মেলে না। তাই, `contains()` মেথড `false` রিটার্ন করে।
+5.  শর্তটি `false` হওয়ায় `if` ব্লকের ভেতরের কোডটি (`days.add(...)`) এক্সিকিউট হয় না।
+6.  ফলে, লিস্টের সাইজ ৩-ই থাকে এবং `System.out.println(days.size());` এই লাইনটি `3` প্রিন্ট করে।
+
+
+
+16.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(0, ‘V’);
+list.add(‘T’);
+list.add(1, ‘E’);
+list.add(3, ‘O’);
+
+if(list.contains(‘O’)) {
+list.remove(‘O’);
+}
+
+for(char ch : list) {
+System.out.print(ch);
+}
+}
+}
+What will be the result of compiling and executing Test class?
+
+ Compilation error
+ Runtime exception
+ VET
+ VTE
+ VTEO
+ VETO
+
+### ব্যাখ্যা
+
+* কোডটি ধাপে ধাপে একটি `ArrayList` তৈরি করে এবং তাতে অক্ষরগুলো যুক্ত করে।
+    * `list.add(0, 'V');` এর পর লিস্ট হবে: `['V']`
+    * `list.add('T');` এর পর লিস্ট হবে: `['V', 'T']`
+    * `list.add(1, 'E');` এর পর লিস্ট হবে: `['V', 'E', 'T']`
+    * `list.add(3, 'O');` এর পর লিস্ট হবে: `['V', 'E', 'T', 'O']`
+* `if(list.contains('O'))` এই শর্তটি সত্য, কারণ লিস্টে 'O' অক্ষরটি আছে।
+* শর্তটি সত্য হওয়ায়, `list.remove('O');` লাইনটি এক্সিকিউট হবে। জাভার অটোবক্সিং (autoboxing) ফিচারের কারণে, `char` লিটারাল `'O'` স্বয়ংক্রিয়ভাবে একটি `Character` অবজেক্টে রূপান্তরিত হয়। 
+এরপর `remove(Object o)` মেথডটি সেই `Character` অবজেক্টের প্রথম উপস্থিতিটি লিস্ট থেকে সরিয়ে ফেলে।
+* `remove` করার পর লিস্টটি হবে: `['V', 'E', 'T']`।
+* সবশেষে, `for` লুপটি লিস্টের অবশিষ্ট উপাদানগুলো এক এক করে প্রিন্ট করবে, যা একসাথে VET হিসেবে প্রদর্শিত হবে।
+
+
+17.public class Test {
+public static void main(String [] args) {
+List list = new ArrayList();
+list.add(new Integer(2));
+list.add(new Integer(1));
+list.add(new Integer(0));
+
+list.remove(list.indexOf(0));
+
+System.out.println(list);
+}
+}
+What will be the result of compiling and executing Test class?
+
+ Compilation error
+ An exception is thrown at runtime
+ [1, 0]
+ [2, 1]
+
+
+
+
+Explanation:
+ 1.  `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।    
+ 2.  `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
+`indexOf` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে, এই ক্ষেত্রে `list.indexOf(0)`-এ `0` স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয় (auto-boxed), তাই `indexOf` কোডে কোনো সমস্যা হয় না। `list.indexOf(0)` মেথডটি `2` রিটার্ন করে (যে ইনডেক্সে `0` লিস্টে সংরক্ষিত আছে)। সুতরাং, `list.remove(list.indexOf(0));` কোডটি `list.remove(2);` তে রূপান্তরিত হয়।
+এখানে `remove(int)` ভার্সনটি মিলে যায়। এটি একটি সরাসরি মিল, তাই কম্পাইলার এই ক্ষেত্রে অটো-বক্সিং করে না। `list.remove(2)` কোডটি ২ নম্বর ইনডেক্সে থাকা উপাদানটিকে সরিয়ে দেয়, যা হলো `0`।
+সুতরাং, আউটপুটে আপনি `[2, 1]` পাবেন।
+
+
+18.public class Test {
+public static void main(String [] args) {
+List list = new ArrayList();
+
+list.add(27);
+list.add(27);
+
+list.add(new Integer(27));
+list.add(new Integer(27));
+
+System.out.println(list.get(0) == list.get(1));
+System.out.println(list.get(2) == list.get(3));
+}
+}
+What will be the result of compiling and executing Test class?
+
+ FALSE FALSE
+ FALSE TRUE
+ TRUE TRUE
+ TRUE FALSE
+
+
+Explanation:
+এখানে কিছুটা কৌশল আছে, শুধু এইটা মনে রাখবেন:
+অটো-বক্সিংয়ের মাধ্যমে তৈরি করা নিচের র‍্যাপার অবজেক্টগুলির দুটি ইনস্ট্যান্স সর্বদা একই হবে, যদি তাদের প্রিমিটিভ মান একই হয়:
+* `Boolean`
+* `Byte`
+* `Character` (\\u0000 থেকে \\u007f পর্যন্ত, অর্থাৎ ০ থেকে ১২৭ পর্যন্ত)
+* `Short` এবং `Integer` (-১২৮ থেকে ১২৭ পর্যন্ত)
+
+প্রথম স্টেটমেন্ট, `list.add(27);` => অটো-বক্সিং `27` এর জন্য একটি ইন্টিজার অবজেক্ট তৈরি করে।
+দ্বিতীয় স্টেটমেন্ট, `list.add(27);` => জাভা কম্পাইলার দেখতে পায় যে মেমরিতে `27` মানের একটি `Integer` অবজেক্ট ইতিমধ্যেই আছে, তাই এটি একই অবজেক্ট ব্যবহার করে।
+এই কারণেই `System.out.println(list.get(0) == list.get(1));` এর মান `true` আসে।
+`new Integer(27)` মেমরিতে একটি নতুন অবজেক্ট তৈরি করে, তাই `System.out.println(list.get(2) == list.get(3));` এর মান `false` আসে।
+
+19.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(100);
+list.add(200);
+list.add(100);
+list.add(200);
+list.remove(100);
+
+System.out.println(list);
+}
+}
+
+ [200, 100, 200]
+ [100, 200, 200]
+ [200, 200]
+ [200]
+ Compilation error
+ Exception is thrown at runtime
+
+
+
+ 
+### ব্যাখ্যা
+* লিস্টে উপাদান যুক্ত করা: প্রথমে, `int` ভ্যালুগুলো (`100`, `200`, `100`, `200`) স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয়ে লিস্টে যুক্ত হয়। ফলে, লিস্টটি দাঁড়ায় `[100, 200, 100, 200]`।
+* ব্যতিক্রমের কারণ: সমস্যাটি হয় `list.remove(100);` এই লাইনে। `ArrayList`-এর `remove` মেথডের দুটি ওভারলোড আছে:
+    1.  `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।
+    2.  `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
+এখানে, `100` একটি `int` প্রিমিটিভ টাইপ হওয়ায় কম্পাইলার `remove(int index)` মেথডটিকে নির্বাচন করে। অর্থাৎ, প্রোগ্রামটি লিস্টের 100 নম্বর ইনডেক্স থেকে একটি উপাদান সরানোর চেষ্টা করে। কিন্তু, লিস্টে মাত্র ৪টি উপাদান আছে (০ থেকে ৩ নম্বর ইনডেক্স পর্যন্ত)। তাই, `100` নম্বর ইনডেক্সটি বৈধ সীমার বাইরে হওয়ায় এটি `java.lang.IndexOutOfBoundsException` থ্রো করে।
+এই কারণে, প্রোগ্রামটি `System.out.println` লাইনটি পর্যন্ত পৌঁছানোর আগেই থেমে যাবে।
+
+
+20.public class Test {
+public static void main(String[] args) {
+List fruits = new ArrayList<>();
+fruits.add(“apple”);
+fruits.add(“orange”);
+fruits.add(“grape”);
+fruits.add(“mango”);
+fruits.add(“banana”);
+fruits.add(“grape”);
+
+if(fruits.remove(“grape”))
+fruits.remove(“papaya”);
+
+System.out.println(fruits);
+}
+}
+
+ An exception is thrown at runtime
+ Compilation error
+ [apple, orange, mango, banana]
+ [apple, orange, mango, banana, grape]
+
+
+ 
+### ব্যাখ্যা
+* প্রথমে, `fruits` লিস্টে ৬টি ফলের নাম যুক্ত করা হয়। ফলে, লিস্টটি দাঁড়ায়: `[apple, orange, grape, mango, banana, grape]`।
+* এরপর `if(fruits.remove("grape"))` এই লাইনটি এক্সিকিউট হয়। `remove(Object o)` মেথডটি লিস্টে `"grape"` এর প্রথম উপস্থিতিটি (`index 2`-এ) খুঁজে পেয়ে সরিয়ে দেয়। এই মেথডটি সফল হওয়ায় `true` রিটার্ন করে।
+* যেহেতু `if` এর শর্তটি সত্য, তাই এর ভেতরের কোড `fruits.remove("papaya");` এক্সিকিউট হয়।
+* কিন্তু লিস্টে `"papaya"` নামের কোনো উপাদান নেই। তাই এই `remove()` মেথডটি সফল হয় না এবং লিস্টে কোনো পরিবর্তন ঘটে না।
+* ফলস্বরূপ, লিস্টের একটি `"grape"` উপাদান অবশিষ্ট থেকে যায়।
+* সবশেষে, পরিবর্তিত লিস্টটি প্রিন্ট করা হয়, যা হলো `[apple, orange, mango, banana, grape]`।
+
+
+
+21.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(null);
+list.add(null);
+list.add(null);
+System.out.println(list.remove(0) + “:” + list.remove(null));
+}
+}
+
+ true:true
+ true:false
+ null:true
+ null:null
+ NullPointerException is thrown at runtime
+
+
+
+Explanation:
+অ্যারে লিস্টের একটি ইনস্ট্যান্সে `null` যোগ করা সম্ভব।
+প্রথমে লিস্টে ৩টি উপাদান ছিল: `[null, null, null]`।
+`remove(int)` মেথডটি লিস্ট থেকে মুছে ফেলা সদস্যকে ফিরিয়ে দেয়। এই ক্ষেত্রে, `list.remove(0);` শূন্যতম ইনডেক্স থেকে `null` মুছে ফেলায়, `null` ফিরিয়ে দেবে। ফলে, লিস্টে ২টি উপাদান থাকবে: `[null, null]`।
+`remove(Object)` মেথডটি সফলভাবে মুছে ফেললে `true` এবং ব্যর্থ হলে `false` ফিরিয়ে দেয়।
+এই ক্ষেত্রে, `list.remove(null)` লিস্ট থেকে প্রথম `null` সদস্যকে সরিয়ে দেয় এবং `true` ফিরিয়ে দেয়। ফলে, লিস্টে কেবল একটি উপাদান থাকবে: `[null]`।
+সুতরাং, আউটপুট হবে: ‘`null:true`’।
+
+
+22.public class Test {
+public static void main(String[] args) {
+List list;
+list = new ArrayList<>(); //Line n1
+list.add(“A”);
+list.add(“E”);
+list.add(“I”);
+list.add(“O”);
+list.add(“U”);
+list.addAll(list.subList(0, 4)); //Line n2
+System.out.println(list);
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ Line n1 causes compilation error
+ Line n2 causes compilation error
+ An exception is thrown at runtime by Line n2
+ [A, E, I, O, U]
+ [A, E, I, O, U, A, E, I, O, U]
+ [A, E, I, O, U, A, E, I, O]
+
+
+
+
+
+
+### ব্যাখ্যা
+* প্রথমে, `list` এ পাঁচটি অক্ষর ("A", "E", "I", "O", "U") যুক্ত করা হয়। ফলে লিস্টটি হয়: `[A, E, I, O, U]`।
+* এরপর `list.addAll(list.subList(0, 4));` এই লাইনটি এক্সিকিউট হয়।
+    * `list.subList(0, 4)` মেথডটি `list`-এর ০ নম্বর ইনডেক্স থেকে শুরু করে ৪ নম্বর ইনডেক্সের আগ পর্যন্ত (অর্থাৎ ইনডেক্স ০, ১, ২, এবং ৩) উপাদানগুলো নিয়ে একটি নতুন সাবলিস্ট তৈরি করে। এই সাবলিস্টটি হলো `[A, E, I, O]`।
+    * `list.addAll()` মেথডটি এই নতুন সাবলিস্টের সমস্ত উপাদান মূল `list`-এর শেষে যুক্ত করে।
+* ফলে, মূল লিস্টটির শেষে `[A, E, I, O]` যোগ হয়।
+* সবশেষে, সম্পূর্ণ লিস্টটি প্রিন্ট করা হয়, যা হলো `[A, E, I, O, U, A, E, I, O]`।
+
+
+23.List list = new ArrayList<>();
+list.add(“P”);
+list.add(“O”);
+list.add(“T”);
+
+List subList = list.subList(1, 2); //Line n1
+subList.set(0, “E”); //Line n2
+System.out.println(list);
+
+
+What will be the result of compiling and executing Test class?
+
+ [P, E, T]
+ [P, O, T]
+ Compilation error
+ An exception is thrown by Line n2
+
+
+
+
+### ব্যাখ্যা
+
+* প্রথমে, `list` এ "P", "O", এবং "T" এই তিনটি স্ট্রিং যোগ করা হয়।
+* `List subList = list.subList(1, 2);` এই লাইনটি মূল লিস্টের ১ নম্বর ইনডেক্স থেকে শুরু করে ২ নম্বর ইনডেক্সের আগ পর্যন্ত উপাদানগুলো নিয়ে একটি ভিউ (view) তৈরি করে। এই ভিউটি মূল লিস্টের সাথে সরাসরি সংযুক্ত থাকে। এই `subList`-এর মধ্যে শুধুমাত্র "O" উপাদানটি থাকে।
+* `subList.set(0, “E”);` এই লাইনটি `subList`-এর ০ নম্বর ইনডেক্সের উপাদানটি "E" দিয়ে পরিবর্তন করে। যেহেতু `subList` মূল লিস্টের সাথে সংযুক্ত একটি ভিউ, তাই এই পরিবর্তনটি মূল লিস্টের ১ নম্বর ইনডেক্সের উপাদানকেও প্রভাবিত করে। ফলে, মূল লিস্টের "O" পরিবর্তিত হয়ে "E" হয়ে যায়।
+* সবশেষে, পরিবর্তিত মূল লিস্ট `[P, E, T]` প্রিন্ট করা হয়।
+
+
+ 24.String [] arr = {“*”, “”, “*”, “”, “*”, “”};
+Predicate pr1 = s -> s.length() < 4; 
+print(arr, pr1); } 
+
+private static void print(String [] arr, Predicate predicate) {
+for(String str : arr) {
+if(predicate.test(str)) {
+System.out.println(str);
+
+ 25.public class Test {
+public static void main(String[] args) {
+String [] arr = {“A”, “ab”, “bab”, “Aa”, “bb”, “baba”, “aba”, “Abab”};
+
+processStringArray(arr, /*INSERT*/);
+}
+
+private static void processStringArray(String [] arr, Predicate predicate) {
+for(String str : arr) {
+if(predicate.test(str)) {
+System.out.println(str);
+}
+}
+}
+}
+
+Which of the following options can replace /*INSERT*/ such that on executing Test class all the array elements are displayed in the output?
+Select ALL that apply.
+
+ p -> true 
+ p -> !false 
+ p -> p.length() >= 1 
+ p -> p.length() < 10 
+
+
+ 26.List dates = new ArrayList<>();
+dates.add(LocalDate.parse(“2018-7-11”));
+dates.add(LocalDate.parse(“1919-10-25”));
+dates.add(LocalDate.of(2020, 4, 8));
+dates.add(LocalDate.of(1980, Month.DECEMBER, 31));
+
+dates.removeIf(x -> x.getYear() < 2000); System.out.println(dates); } }
+
+ [2018-07-11, 1919-02-25, 2020-04-08, 1980-12-31]
+ [1919-02-25, 1980-12-31]
+ [2018-07-11, 2020-04-08]
+ Runtime exception
+
+
+
+
+### ব্যাখ্যা
+* প্রথমে, চারটি `LocalDate` অবজেক্ট `dates` লিস্টে যুক্ত করা হয়। তারিখগুলো হলো: `2018-07-11`, `1919-10-25`, `2020-04-08`, এবং `1980-12-31`।
+* `dates.removeIf(x -> x.getYear() < 2000);` এই লাইনটি একটি ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে। এটি `List` থেকে সেই সব উপাদান সরিয়ে ফেলে, যা শর্তটি পূরণ করে।
+* শর্তটি হলো `x.getYear() < 2000`, অর্থাৎ যে তারিখগুলোর সাল ২০০০-এর কম।
+* `1919-10-25` এবং `1980-12-31` এই দুটি তারিখের সাল ২০০০-এর কম হওয়ায়, সেগুলোকে লিস্ট থেকে সরিয়ে ফেলা হয়।
+* `2018-07-11` এবং `2020-04-08` এই দুটি তারিখের সাল ২০০০ বা তার বেশি হওয়ায়, সেগুলো লিস্টে থেকে যায়।
+* সবশেষে, অবশিষ্ট তারিখগুলো প্রিন্ট করা হয়।
