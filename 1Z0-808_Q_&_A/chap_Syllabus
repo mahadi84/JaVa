@@ -15,7 +15,7 @@ Oracle Certified Associate, Java SE 8 Programmer I (1Z0-808) পরীক্ষ�
       * Working with Inheritance: ইনহেরিটেন্স, পলিমরফিজম, মেথড ওভাররাইডিং, `super`,super() এবং `this`,this() কী-ওয়ার্ডের ব্যবহার, Casting(Primtive vs Object), এবং অ্যাবস্ট্রাক্ট ক্লাস ও ইন্টারফেসের ধারণা। 
                                    Why Casting? Parent-A wants to access Child's method that is not inherited from A,how?
       * Handling Exceptions: বিভিন্ন ধরনের এক্সেপশন, throw vs throws vs ট্রাই-ক্যাচ ব্লক, এবং `finally` ব্লকের ব্যবহার। How to re-throw an Excepton. A constructor can throw a exception? if yes, what is the rule in polimorphism of it?
-      * Working with Selected classes from the Java API: `String(CL_SISTER_C)`, `StringBuilder`(CL_SIR_AID2_R), `java.time` প্যাকেজ, এবং `ArrayList`(GRASS_ICC) ক্লাসের ব্যবহার। 
+      * Working with Selected classes from the Java API: `String(CL_SISTER_C)`, `StringBuilder`(CL_SIR_AID2_R), `java.time(N,3_O,+,_,)` প্যাকেজ, এবং `ArrayList`(GRASS_ICC) ক্লাসের ব্যবহার। 
 
 ### পরীক্ষার তথ্য
 * পরীক্ষার কোড: 1Z0-808
