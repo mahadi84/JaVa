@@ -37,7 +37,7 @@ Date: 9 August 2025
 01.String [] arr = {“1st”, “2nd”, “3rd”, “4th”, “5th”};
 String place = “faraway”;
 System.out.println(arr[place.indexOf(“a”, 3)]); //Line n1
-
+Output: ?
 
 Ans:
 place.indexOf("a", 3) → ৩য় ইনডেক্স থেকে প্রথম 'a' হলো ইনডেক্স ৩ (কারণ 'a' ইতিমধ্যে ৩ নম্বর ইনডেক্সে আছে)।
@@ -73,10 +73,8 @@ Output:Three options only
 
 
 
-03.public class Test {
-public static void main(String[] args) {
-String str = “Game on”; //Line n1
-StringBuilder sb = new StringBuilder(str); //Line n2
+03. String str = “Game on”; //Line n1
+    StringBuilder sb = new StringBuilder(str); //Line n2
 
 System.out.println(str.contentEquals(sb)); //Line n3
 System.out.println(sb.contentEquals(str)); //Line n4
@@ -170,7 +168,7 @@ What will be the result of compiling and executing Test class?
 
  Explanation:
  This execute left to right.
- Output: Rise above
+ Output:  RISE ABOVE
 
 
 
@@ -237,12 +235,9 @@ dryFruits.add(“Date”);
 for(String dryFruit : dryFruits) {
 if(dryFruit.startsWith(“A”)) {
 dryFruits.remove(dryFruit);
-}
-}
-
+}}
 System.out.println(dryFruits);
-}
-}
+}}
 What will be the result of compiling and executing Test class?
 
 
@@ -277,6 +272,7 @@ What will be the result of compiling and executing Test class?
  [Walnut, Date]
  An exception is thrown at runtime
  [Walnut, Apricot, Date]
+
 
 
 
