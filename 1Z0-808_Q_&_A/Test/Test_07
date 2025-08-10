@@ -8,6 +8,7 @@ Date: 9 August 2025
 - `StringBuilder.reverse()` সঠিক, কিন্তু `replace("O","A")` ভুল - কারণ `StringBuilder`-এ এমন মেথড নেই
 - `String` immutable, `StringBuilder` mutable
 - `String`-এর `equals()` কন্টেন্ট চেক করে, `StringBuilder`-এর `equals()` রেফারেন্স চেক করে
+-StringBuilder supports Method Chainning.
 
 ## 2. লিস্ট অপারেশনসনে সাধারণ ভুল
 - `remove()` মেথডের দুটি ভার্সন:
