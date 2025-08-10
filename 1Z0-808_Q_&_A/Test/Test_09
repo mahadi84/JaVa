@@ -1,5 +1,34 @@
+ 10 August 2025
 
 
+পরীক্ষায় এই ধরনের প্রশ্নগুলোর উত্তর দেওয়ার সময় কিছু গুরুত্বপূর্ণ বিষয় মাথায় রাখা জরুরি:
+
+1.  **কোডটি কম্পাইল হবে কি না তা প্রথমে দেখুন:** প্রশ্নগুলোর একটি বড় অংশ থাকে কম্পাইলেশন এরর (compilation error) নিয়ে। তাই, কোডটি লাইন বাই লাইন পড়ে জাভার সিনট্যাক্স (syntax) বা নিয়ম অনুযায়ী কোনো ভুল আছে কি না তা প্রথমে যাচাই করুন।
+    * `static`, `final`, `private` ইত্যাদি মডিফায়ারগুলো কোথায় এবং কীভাবে ব্যবহৃত হয়েছে তা দেখুন।
+    * ভেরিয়েবল স্কোপ (variable scope) এবং ইনহেরিট্যান্সের নিয়ম (যেমন: কনস্ট্রাক্টর ইনহেরিট হয় না) ভালোভাবে মনে রাখুন।
+    * অপারেটরদের অগ্রাধিকার (precedence) এবং অ্যাসোসিয়েটিভিটি (associativity) সম্পর্কে স্পষ্ট ধারণা রাখুন (যেমন: `30/2*5%4` এর মতো সমস্যা সমাধানের জন্য)।
+    * কোন অপারেটর কীভাবে কাজ করে তা বুঝুন (যেমন: `==` রেফারেন্স তুলনা করে, আর `equals()` কন্টেন্ট তুলনা করে)।
+
+2.  **লজিক বা যুক্তি অনুসরণ করুন:** যদি কোডটি কম্পাইল হয়, তবে লুপ, কন্ডিশনাল স্টেটমেন্ট (if-else), এবং ভেরিয়েবলের মান কীভাবে পরিবর্তিত হচ্ছে তার একটি মানসিক বা কাগজে-কলমে ট্রেসিং (tracing) করুন।
+    * লুপের শর্ত (`while`, `for`) কখন সত্য বা মিথ্যা হচ্ছে তা খেয়াল করুন।
+    * কোন মেথড কখন কল হচ্ছে এবং প্যারামিটারগুলো কীভাবে পাস হচ্ছে তা বুঝুন।
+    * লজিক্যাল অপারেটর (`&&`, `||`) কীভাবে কাজ করে তা জানুন। `&&` শর্ট-সার্কিট (short-circuit) করে, আর `||` ও একই কাজ করে।
+
+3.  **ব্যতিক্রম (Exceptions) সম্পর্কে সচেতন থাকুন:** কখন একটি কোড রানটাইম ব্যতিক্রম (runtime exception) তৈরি করতে পারে তা ভালোভাবে বুঝুন।
+    * `ArrayIndexOutOfBoundsException`: অ্যারের সীমার বাইরে কোনো ইনডেক্স অ্যাক্সেস করার চেষ্টা করলে এটি ঘটে।
+    * `NullPointerException`: কোনো `null` অবজেক্টের ওপর মেথড কল করার চেষ্টা করলে এটি ঘটে।
+    * ইনহেরিট্যান্সের ক্ষেত্রে `catch` ব্লকের ক্রম (order) খুবই গুরুত্বপূর্ণ। সাবক্লাসের ব্যতিক্রমকে সুপারক্লাসের ব্যতিক্রমের `catch` ব্লকের আগে থাকতে হবে।
+
+---
+
+### উত্তর দেওয়ার কৌশল (Answering Strategy) 🎯
+
+* **ধাপ 1: কম্পাইলেশন এরর চেক করুন:** প্রথমে প্রতিটি লাইন দেখুন এবং জাভার কম্পাইলারের দৃষ্টিকোণ থেকে কোনো ভুল আছে কি না তা চিহ্নিত করুন। যেমন: `2:00` বা `OR` এর ব্যবহার। যদি কম্পাইলেশন এরর থাকে, তবে অন্য কোনো অপশন দেখার দরকার নেই, সেটিই উত্তর।
+* **ধাপ 2: লজিক্যাল ফ্লো ট্রেস করুন:** যদি কোনো কম্পাইলেশন এরর না থাকে, তবে কোডটি কীভাবে কাজ করে তা ধাপে ধাপে অনুসরণ করুন। ভেরিয়েবলের মান পরিবর্তন, লুপের পুনরাবৃত্তি, এবং কোন কোড ব্লক কার্যকর হচ্ছে তা মনোযোগ দিয়ে দেখুন।
+* **ধাপ 3: আউটপুট বা ফলাফল নির্ধারণ করুন:** কোডের এক্সিকিউশন শেষ হওয়ার পর কী প্রিন্ট হবে বা কী ফলাফল আসবে তা নিশ্চিত করুন। `System.out.println` বা `System.out.print` স্টেটমেন্টগুলো কী ফলাফল দেবে তা বুঝুন।
+* **ধাপ 4: বিকল্পগুলো যাচাই করুন:** আপনার বিশ্লেষণ করা ফলাফলের সাথে দেওয়া বিকল্পগুলো মিলিয়ে দেখুন। প্রায়শই, একটি বিকল্প আপনার সঠিক ফলাফলের সাথে মিলে যাবে। তবে, যদি আপনার বিশ্লেষণ কোনো বিকল্পের সাথে না মেলে, তবে প্রশ্নটি এবং আপনার বিশ্লেষণটি আবার পরীক্ষা করুন।
+
+এই কৌশলগুলো অনুসরণ করলে আপনি জাভা পরীক্ষার প্রশ্নগুলোর উত্তর সঠিকভাবে এবং দ্রুত দিতে পারবেন।
 
 
 
@@ -105,7 +134,220 @@ loop একটি জাভা কীওয়ার্ড (keyword) নয়�
 
 
 
-3.
+3.What statements are true about compiling a Java class file? (Choose two.)
+
+ If the file does not contain a package statement, then the compiler considers the class part of the java.lang package.
+ The compiler assumes every class implicitly imports the java.lang.* package.
+ The compiler assumes every class implicitly imports the java.util.* package.
+ Java requires every file to declare a package statement.
+ Java requires every file to declare at least one import statement.
+ If the class declaration does not extend another class, then it implicitly extends the java.lang.Object class.
+
+
+
+
+
+
+Explanation:
+2,4
+
+
+
+
+4.What is the output of the following application?
+package woods;
+interface Plant {
+default String grow() { return “Grow!”; }
+}
+interface Living {
+public default String grow() { return “Growing!”; }
+}
+public class Tree implements Plant, Living { // m1
+public String grow(int height) { return “Super Growing!”; }
+public static void main(String[] leaves) {
+Plant p = new Tree(); // m2
+System.out.print(((Living)p).grow()); // m3
+}
+}
+
+ Grow!
+ Growing!
+ Super Growing!
+ It does not compile because of line m1.
+ It does not compile because of line m2.
+ It does not compile because of line m3.
+
+
+
+
+
+
+Explanation:
+
+A class cannot inherit two interfaces that declare the same default method, unless the class overrides them. 
+In this case, the version of grow() in the Tree class is an overloaded method, not an overridden one. 
+Therefore, the code does not compile due to the declaration of Tree on line m1, and Option D is the correct answer.
+
+
+5.Which statements best describe the result of this code? (Choose two.)
+package nyc;
+public class TouristBus {
+public static void main(String… args) {
+String[] nycTourLoops = new String[] { “Downtown”, “Uptown”, “Brooklyn” };
+String[] times = new String[] { “Day”, “Night” };
+for (int i = 0, j = 0; i < nycTourLoops.length; i++, j++) 
+System.out.println(nycTourLoops[i] + " " + times[j]); } }
+
+ The println causes one line of output.
+ The println causes two lines of output.
+ The println causes three lines of output.
+ The code terminates successfully.
+ The code throws an exception at runtime.
+
+
+
+
+
+
+Explanation:
+ গুরুত্বপূর্ণ: লুপের শর্তটি nycTourLoops অ্যারের দৈর্ঘ্যের উপর নির্ভর করে, কিন্তু ভিতরে times অ্যারেটি j index ব্যবহার করে। যেহেতু times অ্যারের দৈর্ঘ্য nycTourLoops অ্যারের চেয়ে কম, 
+ তাই লুপের তৃতীয় পুনরাবৃত্তিতে j এর মান 2 হলে times[j] অ্যাক্সেস করার সময় একটি ArrayIndexOutOfBoundsException হয়। তাই, কোডটি সফলভাবে শেষ হয় না, বরং একটি ব্যতিক্রম (exception) তৈরি করে।
+
+অতএব, সঠিক বিবৃতি দুটি হলো:
+The println causes two lines of output. (println দুটি লাইনে আউটপুট তৈরি করে।)
+The code throws an exception at runtime. (কোডটি রানটাইমে একটি ব্যতিক্রম তৈরি করে।)
+
+
+6.What is the result of the following?
+package calendar;
+public class Seasons {
+public static void seasons(String… names) {
+int l = names[1].length(); // s1
+System.out.println(names[l]); // s2
+}
+public static void main(String[] args) {
+seasons(“Summer”, “Fall”, “Winter”, “Spring”);
+}
+}
+
+
+
+
+
+
+Explanation:
+কোডটি কম্পাইল হয়। লাইন s1 কিছুটা ট্রিকি কারণ অ্যারের জন্য length ব্যবহৃত হয় এবং স্ট্রিংয়ের জন্য length() ব্যবহৃত হয়। লাইন s1-এ Fall-এর দৈর্ঘ্য একটি ভেরিয়েবলে সংরক্ষণ করা হয়, যা 4।
+ লাইন s2-এ ArrayIndexOutOfBoundsException থ্রো করা হয় কারণ 4 হল একটি চারটি এলিমেন্ট বিশিষ্ট অ্যারের জন্য অবৈধ ইনডেক্স। 
+ মনে রাখবেন, ইনডেক্স গণনা শূন্য থেকে শুরু হয়। তাই, অপশন E সঠিক।"
+
+
+
+7.How many lines of the following application contain compilation errors?
+1: package percussion;
+2:00
+3: interface MakesNoise {}
+4: abstract class Instrument implements MakesNoise {
+5: public Instrument(int beats) {}
+6: public void play() {}
+7: }
+
+8: public class Drum extends Instrument {
+9: public void play(int count) {}
+10: public void concert() {
+11: super.play(5);
+12: }
+13: public static void main(String[] beats) {
+14: MakesNoise mn = new Drum();
+15: mn.concert();
+16: }
+17: }
+
+ None. The code compiles and runs without issue.
+ One
+ Two
+ Three
+ Four
+
+
+
+
+
+
+Explanation:
+* লাইন ২: `2:00` কোনো বৈধ জাভা সিনট্যাক্স নয়।
+* লাইন ৫: `Instrument` ক্লাসের কোনো ডিফল্ট কনস্ট্রাক্টর নেই। তাই, `Drum` ক্লাসকে তার নিজের কনস্ট্রাক্টর থেকে `super(int)` কল করতে হবে, যা এখানে অনুপস্থিত।
+* লাইন ১১: `Instrument` ক্লাসের `play()` মেথডটি কোনো আর্গুমেন্ট গ্রহণ করে না, কিন্তু এখানে `super.play(5)` কল করে একটি ইন্টিজার আর্গুমেন্ট পাঠানো হচ্ছে।
+* লাইন ১৫: `mn` ভেরিয়েবলটি `MakesNoise` টাইপের, যেটিতে `concert()` নামে কোনো মেথড নেই। তাই, কম্পাইলার এই কলটি খুঁজে পাবে না।
+
+
+8.What is the output of the following when run as java EchoFirst seed flower plant?
+package unix;
+import java.util.*;
+public class EchoFirst {
+public static void main(String[] args) {
+Arrays.sort(args);
+int result = Arrays.binarySearch(args, args[0]);
+System.out.println(result);
+}
+}
+
+ 0
+ 1
+ 2
+ The code does not compile.
+ The code compiles but throws an exception at runtime.
+ The output is not guaranteed.
+
+
+
+
+
+
+Explanation:
+1.  প্রথমে, `Arrays.sort(args)` কমান্ডের কারণে `args` অ্যারেটি অ্যালফাবেটিক্যালি সাজানো হয়, যা দাঁড়ায় `["flower", "plant", "seed"]`।
+2.  এরপর, `args[0]` এর মান হয় `"flower"`।
+3.  `Arrays.binarySearch(args, args[0])` কমান্ডটি সাজানো অ্যারেতে `"flower"` এর অবস্থান খোঁজে।
+4.  যেহেতু `"flower"` অ্যারের প্রথম উপাদান, তাই এর ইনডেক্স `0` হয়।
+
+এজন্য, আউটপুট `0` প্রিন্ট করা হয়।
+
+
+9.What is the output of the following?
+14: int count = 0;
+15: LocalDate date = LocalDate.of(2017, Month.JANUARY, 1);
+16: while (date.getMonth() != Month.APRIL)
+17: date = date.minusMonths(1);
+18: count++;
+19: System.out.println(count);
+
+ 0
+ 1
+ 3
+ 9
+ This is an infinite loop.
+ The code does not compile.
+
+
+
+
+
+
+Explanation:
+
+1.  অ্যারে সাজানো: `Arrays.sort(args)` কমান্ডটি `args` অ্যারেটিকে বর্ণানুক্রমিকভাবে সাজায়। `["seed", "flower", "plant"]` হয়ে যায় `["flower", "plant", "seed"]`।
+2.  মূল্য নির্ধারণ: `args[0]` এখন `"flower"`।
+3.  সন্ধান করা: `binarySearch` মেথডটি সাজানো অ্যারেতে `"flower"` খোঁজে।
+4.  ফলাফল: যেহেতু `"flower"` অ্যারের প্রথম উপাদান, তাই মেথডটি এর ইনডেক্স `0` রিটার্ন করে।
+
+
+
+
+10.Which code will print the numbers up to 1000 (included) starting from user input, assume that user input is less than 1000? 
+
+ int x = sc.nextInt(); do { System.out.println(x); x--; } while (x < 1000); System.out.println(x);
+ int x = sc.nextInt(); do { System.out.println(x); x++; } while (x < 1000); System.out.println(x);
+ int x = sc.nextInt(); do { System.out.println(x); x+=1; } while (x <= 1000); System.out.println(x);
+ None of the above
 
 
 
@@ -117,7 +359,170 @@ Explanation:
 
 
 
-4.
+11.There is an error in the following code. How to fix that error?
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+int num = sc.nextInt();
+
+if (num == 7) {
+boolean seven = true;
+} else {
+boolean seven = false;
+}
+System.out.println(seven);
+}
+
+ "else" statement needs a boolean condition
+ boolean variable "seven" has to be changed with another name
+ boolean variable "seven" is a local variable. It needs to declared outside of if statement
+ if statement conditions has to be like num.equals(7)
+
+
+
+
+
+
+Explanation:
+এখানে প্রধান ত্রুটিটি হলো boolean variable "seven" is a local variable. It needs to declared outside of if statement।
+ব্যাখ্যা
+seven ভেরিয়েবলটি if এবং else ব্লকের মধ্যে ঘোষণা করা হয়েছে। তাই এর স্কোপ বা কার্যকারিতার পরিধি শুধুমাত্র সেই ব্লকগুলোর মধ্যে সীমাবদ্ধ। 
+System.out.println(seven) লাইনটি সেই ব্লকগুলোর বাইরে থাকায়, কম্পাইলার seven ভেরিয়েবলটিকে খুঁজে পায় না, ফলে একটি কম্পাইলেশন ত্রুটি হয়।
+এই ত্রুটি ঠিক করার জন্য, seven ভেরিয়েবলটিকে if স্টেটমেন্টের আগে ঘোষণা করতে হবে।
+
+
+
+12.For the given Circle class, which of the following method defines area of the circle? 
+public class Circle{
+double radius = 10.0;
+double x = 100.0;
+double y = 100.0;
+
+// area method goes here
+}
+
+ double getArea(int radius) {         return Math.PI * radius * radius;     }
+ double getArea() { return PI * radius * radius; }
+ double getArea() { return Math.PI * radius * radius; }
+ None of the above
+
+
+
+Explanation:
+Are of circle = pi * radius*radius, pi=3.142. Pi is a built-in math function that’s part of the overall Math class?. So for getting pi value you have to use Math.PI.
+ For getArea(int radius) would not work because local variable radius and instance variable radius has an conflict.
+
+
+
+
+
+
+
+
+
+
+
+13.How many lines contain a compile error?
+1: import java.time.*;
+2: import java.time.format.*;
+3:00
+4: public class HowLong {
+5: public void main(String h) {
+6: LocalDate newYears = new LocalDate(2017, 1, 1);
+7: Period period = Period.ofYears(1).ofDays(1);
+8: DateTimeFormat format = DateTimeFormat.ofPattern(“MM-dd-yyyy”);
+9: System.out.print(format.format(newYears.minus(period)));
+10: }
+11: }
+
+ None
+ One
+ Two
+ Three
+ Four
+ Five
+
+
+
+
+14.Which is the correct statement about static variable? 
+
+ There may be any number of copies of static variable that can be shared among all the instances of the class
+ There is always exactly one copy of a static variable is created and shared among all the instances of the class
+ Static variables are primitive type 
+ None of the above
+
+
+
+
+
+Explanation:
+A static variable is common to all the instances (or objects) of the class because it is a class level variable
+
+
+
+
+
+
+
+
+
+
+15.What is printed by the following code snippet?
+int fish = 1 + 2 * 5>=2 ? 4 : 2;
+int mammals = 3 < 3 ? 1 : 5>=5 ? 9 : 7;
+System.out.print(fish+mammals+””);
+
+ 49
+ 13
+ 18
+ 99
+ It does not compile.
+
+
+
+
+
+
+Explanation:
+B.13
+
+
+16.What is the output for this code line? 
+System.out.println(30/2*5%4);  
+
+ 1
+ 15
+ 0
+ 3
+
+
+
+
+
+
+
+Explanation:
+জাভাতে, `*`, `/`, এবং `%` অপারেটরগুলোর অগ্রাধিকার একই, তাই বাম দিক থেকে ডান দিকে গণনা করা হয়।
+1.  প্রথমে, `30/2` গণনা করা হয়, যার ফলাফল `15`।
+2.  এরপর, `15*5` গণনা করা হয়, যার ফলাফল `75`।
+3.  সবশেষে, `75%4` গণনা করা হয়, যার ফলাফল `3` (কারণ 75 কে 4 দিয়ে ভাগ করলে ভাগশেষ 3 থাকে)।
+
+
+
+
+17.What is the output of the following code?
+public static void main(String[] args) {
+final String cell = “a”;
+String foo = new String(“a”);
+final String bell = new String(foo);
+System.out.print((cell==bell)
++” “+cell.equals(bell));
+}
+
+ false true
+ false false
+ true true
+ Code will not compile due to error
 
 
 
@@ -129,7 +534,11 @@ Explanation:
 
 
 
-5.
+18.Given that SC is an scanner object. Which of the following code stores users value into an array? 
+ int[] d = new int[10]; for (int i = 0; i < d.length; i++) { d[i].nextInt(); }
+ int[] d = new Int[10]; for (int i = 0; i < d.length; i++) { d[i] = SC.nextInt(); }
+ int[] d = new int[10]; d[i] = SC.nextInt();
+ int[] d = new int[10]; for (int i = 0; i < d.length; i++) { d[i] = SC.nextInt(); }
 
 
 
@@ -137,11 +546,51 @@ Explanation:
 
 
 Explanation:
+* এই কোডটি একটি `for` লুপ ব্যবহার করে।
+* লুপটি অ্যারের প্রতিটি ইনডেক্স (`i=0` থেকে `9` পর্যন্ত) দিয়ে চলে।
+* `SC.nextInt()` ব্যবহারকারীর কাছ থেকে একটি পূর্ণসংখ্যা ইনপুট নেয়।
+* প্রতিটি ইনপুটকে `d[i]` এর মাধ্যমে অ্যারের সঠিক স্থানে সংরক্ষণ করে।
+`int[] d = new int[10]; for (int i = 0; i < d.length; i++) { d[i] = SC.nextInt(); }`
 
 
 
 
-6.
+
+19.Suppose you have a variable named passengers which stores an array of objects of type Passenger. What is a single line of code that will print the output of the getName() method for the first Passenger object in the passengers array?
+
+ System.out.println(passengers.getName()); 
+ System.out.println(passengers[0].getName()); 
+ System.out.println(passengers.getName([0])); 
+ System.out.println(getName(0));
+
+
+
+Explanation:
+passengers[0] gives the first element of the given array.
+
+
+
+
+
+
+
+
+
+
+
+20.What does this code output? 
+public void foo(int[] x) {
+x[0] = x[0] + 1;
+}
+int[] a = new int[10];
+int[] b = a;
+foo(a);
+System.out.println(a[0]+” “+b[0]);
+
+ 0 0
+ 1 1
+ 1 0
+ null null
 
 
 
@@ -149,47 +598,37 @@ Explanation:
 
 
 Explanation:
+2
 
 
 
+21.Given the application below, which lines do not compile? (Choose three.)
+package furryfriends;
+interface Friend {
+protected String getName(); // h1
+}
+class Cat implements Friend {
+String getName() { // h2
+return “Kitty”;
+}
+}
+public class Dog implements Friend {
+String getName() throws RuntimeException { // h3
+return “Doggy”;
+}
+public static void main(String[] adoption) {
+Friend friend = new Dog(); // h4
+System.out.print(((Cat)friend).getName()); // h5
+System.out.print(((Dog)null).getName()); // h6
+}
+}
 
-7.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-8.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-9.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-10.
+ Line h1
+ Line h2
+ Line h3
+ Line h4
+ Line h5
+ Line h6
 
 
 
@@ -197,47 +636,39 @@ Explanation:
 
 
 Explanation:
+interface abstract method Can not be protected
+so output: 1,2,3
 
 
 
 
-11.
+22.What is the result of compiling and executing the following application?
+package ranch;
 
+public class Cowboy {
+private int space = 5;
+private double ship = space < 2 ? 1 : 10; // g1 
 
+public void printMessage() { 
+    if(ship>1) {
+        System.out.println(“Goodbye”);
+   } 
 
+if(ship<10 && space>=2) System.out.println(“Hello”); // g2
+else System.out.println(“See you again”);
+}
 
+public static final void main(String… stars) {
+new Cowboy().printMessage();
+}
+}
 
-
-Explanation:
-
-
-
-
-12.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-13.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-14.
+ It only prints Hello.
+ It only prints Goodbye.
+ It only prints See you again.
+ It does not compile because of line g1.
+ It does not compile because of line g2.
+ None of the above
 
 
 
@@ -245,23 +676,17 @@ Explanation:
 
 
 Explanation:
+Goodbye
+See you again
+Ans is :None of the above
 
 
 
-
-15.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-16.
+23.Why do we use the super keyword in the case of inheritance?
+ To force a call to a method from a subclass
+ To force a call to a method from a superclass
+ To force a call to a local variable outside of the method
+ None of the above
 
 
 
@@ -269,23 +694,16 @@ Explanation:
 
 
 Explanation:
+B
 
 
 
+24.What is true about constructor inheritance? (Select two)
 
-17.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-18.
+ Constructors are not inherited
+ Constructors are inherited
+ Java calls the constructor you asked for, and then the no-argument constructor for every superclass
+ You may call constructor again and again
 
 
 
@@ -293,23 +711,18 @@ Explanation:
 
 
 Explanation:
+কনস্ট্রাক্টরগুলো ইনহেরিট হয় না |
+জাভা আপনি যে কনস্ট্রাক্টরের জন্য অনুরোধ করেছেন, এবং তারপরে প্রতিটি সুপারক্লাসের জন্য নো-আর্গুমেন্ট কনস্ট্রাক্টরকে কল করে।
+a,c
 
 
 
 
-19.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-20.
+25.Which code validate the user input between 1 and 10?
+ int number = sc.nextInt(); while (number < 1 OR number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }
+ int number = sc.nextInt(); while (number > 1 || number < 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }
+ int number = sc.nextInt(); while (number < 1 && number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }
+ int number = sc.nextInt(); while (number < 1 || number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }
 
 
 
@@ -317,35 +730,24 @@ Explanation:
 
 
 Explanation:
+* এই কোডটি `||` (OR) অপারেটর ব্যবহার করে নিশ্চিত করে যে ব্যবহারকারীর ইনপুট 1 এর চেয়ে কম অথবা 10 এর চেয়ে বেশি হলে লুপটি চলবে।
+* যদি ইনপুটটি 1 থেকে 10 এর মধ্যে না হয়, তবে এটি লুপের শর্তকে সত্য করে এবং একটি নতুন ইনপুট গ্রহণের জন্য অনুরোধ করে।
+* অন্যান্য বিকল্পগুলোতে ভুল লজিক্যাল অপারেটর (`OR`, `&&`) বা ভুল শর্ত ব্যবহার করা হয়েছে।
+`int number = sc.nextInt(); while (number < 1 || number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }`
 
 
+26.he following method compiles and executes but does not work as you
+might hope. What is wrong with it?
+public static int[] copyArray(int[] anArray){
+int[] temp = new int[anArray.length];
+temp = anArray;
+return temp;
+}
 
-
-21.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-22.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-23.
+ The method does not return an array distinct from the given argument array. 
+ The temp array declaration is not valid
+ The method cannot have a return type
+ Nothing is wrong with the code
 
 
 
@@ -353,23 +755,16 @@ Explanation:
 
 
 Explanation:
+a
 
 
 
+27.What is a line of Java code to sort only the portion of the array named anArray beginning with the index 5 and ending with the index 10?
 
-24.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-25.
+ Arrays.sort(anArray[5:10]); 
+ Arrays.sort(anArray[5], anArray[10]); 
+ Arrays.sort(anArray, 5, 10); 
+ Arrays.sort(anArray([5] : [10])); 
 
 
 
@@ -377,56 +772,7 @@ Explanation:
 
 
 Explanation:
+c
 
 
 
-
-26.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-27.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-28.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-29.
-
-
-
-
-
-
-Explanation:
-
-
-
-
-30
