@@ -12,9 +12,10 @@ Date: 9 August 2025
 
 ## 2. লিস্ট অপারেশনসনে সাধারণ ভুল
 - `remove()` মেথডের দুটি ভার্সন:
-  - `remove(int index)` → ইনডেক্স দিয়ে মুছে
-  - `remove(Object o)` → অবজেক্ট দিয়ে মুছে
-- `ArrayList`-এ ডাইরেক্টলি বড় ইনডেক্সে (`list.add(3,"X")`) অ্যাড করলে `IndexOutOfBoundsException`
+  - `remove(int index)` → ইনডেক্স দিয়ে মুছে, উদাহরণ: fruits.remove(0);
+  - `remove(Object o)` → অবজেক্ট দিয়ে মুছে, উদাহরণ: fruits.remove("Banana");
+  - `ArrayList`-এ ডাইরেক্টলি বড় ইনডেক্সে (`list.add(3,"X")`) অ্যাড করলে `IndexOutOfBoundsException`
+- addAll(int index, Collection c) যা শুধু তালিকার শেষে উপাদানগুলো যোগ করে।
 - `subList()` মূল লিস্টের ভিউ রিটার্ন করে - এতে পরিবর্তন মূল লিস্টকে প্রভাবিত করে
 - `ConcurrentModificationException`: ইটারেশন চলাকালীন লিস্ট মডিফাই করলে
 
