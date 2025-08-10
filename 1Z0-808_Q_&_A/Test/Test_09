@@ -1,0 +1,432 @@
+
+
+
+
+
+1.class OpenDoorException extends Exception {}
+class CableSnapException extends OpenDoorException {}
+
+public class Palace {
+public void openDrawbridge() throws Exception {
+try {
+throw new Exception(“Problem”);
+} catch (OpenDoorException e) {
+throw new OpenDoorException();
+} catch (CableSnapException ex) {
+        try {
+        throw new OpenDoorException();
+        } catch (Exception ex) {
+        } finally {
+        System.out.println(“Almost done”);
+        }
+} finally {
+throw new RuntimeException(“Unending problem”);
+}
+}
+
+public static void main(String[] moat) throws IllegalArgumentException {
+new Palace().openDrawbridge();
+}
+}
+
+
+a.None. The code compiles and produces a stack trace at runtime.
+b. One
+c. Two
+d. Three
+e. Four
+f. Five
+
+
+
+
+
+
+Explanation:
+এখানে পাঁচটি কম্পাইলেশন এরর (Compilation Error) আছে।
+
+### এররগুলো হলো:
+1.  Duplicate catch block: `catch (OpenDoorException e)` ব্লকটি `catch (CableSnapException ex)` ব্লকের আগে লেখা হয়েছে। 
+    যেহেতু `CableSnapException` হলো `OpenDoorException`-এর সাবক্লাস, তাই সাবক্লাসের `catch` ব্লকটি সুপারক্লাসের `catch` ব্লকের আগে থাকতে হবে। 
+    কম্পাইলার এটি একটি অপ্রাপ্য (unreachable) কোড হিসেবে দেখবে এবং এরর দেবে।
+2.  Duplicate local variable: `catch (CableSnapException ex)` ব্লকের ভেতরে একটি নেস্টেড `catch` ব্লক আছে, যার প্যারামিটার হিসেবে `Exception ex` লেখা হয়েছে। 
+    এখানে `ex` নামের ভেরিয়েবলটি বাইরের `catch` ব্লকের `ex` ভেরিয়েবলের সাথে সংঘর্ষ (clash) করছে।
+3.  Duplicate local variable: একই কারণে, `try...catch...finally` ব্লকের ভেতরেও `Exception ex` এর ভেরিয়েবল নেমটি পুনরায় ব্যবহার করা হয়েছে, যা অনুমোদিত নয়।
+4.  `main` method declaration: `main` মেথডটি `IllegalArgumentException` থ্রো করছে, কিন্তু `new Palace().openDrawbridge()` এররটি `RuntimeException` থ্রো করে, 
+    যা `IllegalArgumentException` এর সুপারক্লাস। কম্পাইলার এটি ধরতে পারবে না।
+5.  Unreachable statement: `catch (OpenDoorException e)` ব্লকের ভেতরে `throw new OpenDoorException();` 
+   এর পরে কোনো কোড লিখলে তা অপ্রাপ্য হবে, কারণ `throw` স্টেটমেন্টটি মেথডের স্বাভাবিক প্রবাহ বন্ধ করে দেয়। 
+   এই লাইনের পর `catch (CableSnapException ex)` ব্লকটি অপ্রাপ্য হয়ে যায়, কারণ এটি একটি সাবক্লাসের এক্সসেপশনকে হ্যান্ডেল করার কথা, যা এর সুপারক্লাস দ্বারা ইতিমধ্যেই হ্যান্ডেল করা হয়েছে।
+   এই পাঁচটি কারণে কোডটি কম্পাইল হবে না।
+
+
+
+
+2.What is the output of the following?
+12: int result = 8;
+13: loop: while (result > 7) {
+14: result++;
+15: do {
+16: result–;
+17: } while (result > 5);
+18: break loop;
+19: }
+20: System.out.println(result);
+
+ 5
+ 7
+ 8
+ The code does not compile.
+ The code compiles but throws an exception at runtime.
+
+
+
+
+
+
+Explanation:
+loop একটি জাভা কীওয়ার্ড (keyword) নয়। তবে, এটি একটি লেবেল (label) হিসেবে ব্যবহার করা যায়, যা জাভাতে একটি লুপকে চিহ্নিত করার জন্য ব্যবহৃত হয়।
+
+
+1.  লাইন 12: প্রথমে `result` ভেরিয়েবলটির মান `8` নির্ধারণ করা হয়।
+2.  লাইন 13: `while` লুপ শুরু হয়। শর্তটি হলো `result > 7`, যা সত্য (কারণ `8` `7` এর থেকে বড়)। প্রোগ্রাম লুপের ভেতরে প্রবেশ করে।
+3.  লাইন 14: `result` এর মান এক বাড়ানো হয়, ফলে নতুন মান হয় `9`।
+4.  লাইন 15: একটি `do-while` লুপ শুরু হয়। এই লুপের বৈশিষ্ট্য হলো, শর্ত যাচাই করার আগেই এর ভেতরের কোড অন্তত একবার এক্সিকিউট হয়।
+5.  লাইন 16: `do-while` লুপের ভেতরে `result` এর মান এক কমানো হয়, ফলে মান হয় `8`।
+6.  লাইন 17: `do-while` লুপের শর্ত (`result > 5`) যাচাই করা হয়। শর্তটি সত্য (`8 > 5`), তাই লুপটি আবার চলে। as ; (comma) end of while (result > 5);
+7.  লাইন 16: `result` এর মান আবার এক কমানো হয়, ফলে মান হয় `7`।
+8.  লাইন 17: শর্তটি আবার যাচাই করা হয়, যা এখনো সত্য (`7 > 5`), তাই লুপটি তৃতীয়বারের মতো চলে।
+9.  লাইন 16: `result` এর মান আবার এক কমানো হয়, ফলে মান হয় `6`।
+10. লাইন 17: শর্তটি আবার যাচাই করা হয়, যা এখনো সত্য (`6 > 5`), তাই লুপটি চতুর্থবারের মতো চলে।
+11. লাইন 16: `result` এর মান শেষবারের মতো এক কমানো হয়, ফলে মান হয় `5`।
+12. লাইন 17: শর্তটি যাচাই করা হয়। এবার এটি মিথ্যা (কারণ `5` `5` এর থেকে বড় নয়)। `do-while` লুপ শেষ হয়।
+13. লাইন 18: `break loop;` স্টেটমেন্টটি এক্সিকিউট হয়। এটি লেবেলযুক্ত (`loop`) বাইরের `while` লুপ থেকে প্রোগ্রামকে সরাসরি বের করে নিয়ে আসে।
+14. লাইন 20: সবশেষে, `result` এর চূড়ান্ত মান, যা `5`, তা কনসোলে প্রিন্ট করা হয়।
+
+
+
+3.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+4.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+5.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+6.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+7.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+8.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+9.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+10.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+11.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+12.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+13.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+14.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+15.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+16.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+17.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+18.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+19.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+20.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+21.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+22.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+23.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+24.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+25.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+26.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+27.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+28.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+29.
+
+
+
+
+
+
+Explanation:
+
+
+
+
+30
