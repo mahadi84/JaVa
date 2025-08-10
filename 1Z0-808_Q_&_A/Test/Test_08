@@ -1,0 +1,389 @@
+
+
+
+
+1.Integer i = 10;
+List list = new ArrayList<>();
+list.add(i);
+list.add(new Integer(i));
+list.add(i);
+list.removeIf(i -> i == 10);
+System.out.println(list);
+
+
+ [10, 10, 10]
+ [10, 10]
+ [10]
+ []
+ Compilation Error
+
+
+
+
+Explanation:
+Variable “i” used in lambda expression clashes with another local variable “i” and hence causes compilation error.
+
+2.public static void main(String[] args) {
+String [] arr = {“*”, “**”, “***”, “****”, “*****”};
+Predicate pr1 = s -> s.length() < 4; 
+print(arr, pr1); } 
+
+private static void print(String [] arr, Predicate predicate) {
+for(String str : arr) {
+if(predicate.test(str)) {
+System.out.println(str);
+}
+}
+
+
+
+Explanation:
+-Predicate কে Predicate<String> হিসেবে ডিক্লেয়ার করতে হবে, কারণ আপনি স্ট্রিং অ্যারের ওপর এই প্রেডিকেটটি ব্যবহার করছেন। Right Syntext: Predicate<String> pr1 = s -> s.length() < 4;
+-এই জাভা কোডটিতে একটি কম্পাইলেশন এরর (Compilation Error) আছে। এর কারণ হলো Predicate ইন্টারফেসটি একটি জেনেরিক টাইপ (Predicate<T>) হিসেবে ব্যবহৃত হয়। 
+আপনি যদি কোনো টাইপ নির্দিষ্ট না করে শুধু Predicate ব্যবহার করেন, তাহলে কম্পাইলার এরর দেবে।
+
+
+3.public class Test {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(new StringBuilder(“AAA”)); //Line n1
+list.add(new StringBuilder(“BBB”)); //Line n2
+list.add(new StringBuilder(“AAA”)); //Line n3
+
+list.removeIf(sb -> sb.equals(new StringBuilder(“AAA”))); //Line n4
+System.out.println(list);
+}
+}
+
+What will be the result of compiling and executing Test class?
+
+ [AAA, BBB, AAA]
+ [BBB, AAA]
+ [BBB]
+ []
+ None of the other options
+
+
+
+Explanation:
+list.removeIf(sb -> sb.equals(new StringBuilder("AAA")));।
+এখানে StringBuilder ক্লাসের equals() মেথড ব্যবহার করা হয়েছে। StringBuilder ক্লাসের equals() মেথড দুটি ভিন্ন অবজেক্টের বিষয়বস্তু (content) তুলনা করে না, 
+বরং এটি শুধুমাত্র দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে।
+sb ভেরিয়েবলটি লিস্টের প্রতিটি StringBuilder অবজেক্টের একটি করে রেফারেন্স ধরে রাখে।
+new StringBuilder("AAA") প্রতিবার একটি নতুন StringBuilder অবজেক্ট তৈরি করে।
+যেহেতু sb এবং new StringBuilder("AAA") কখনোই একই অবজেক্টের রেফারেন্স হবে না, তাই sb.equals(new StringBuilder("AAA")) এই শর্তটি সবসময় false রিটার্ন করবে। ফলে, কোনো উপাদানই লিস্ট থেকে রিমুভ হবে না।
+তাই, প্রিন্ট করার সময় লিস্টে থাকা তিনটি উপাদানই: AAA, BBB, এবং AAA দেখা যাবে।
+
+
+4.Select the correct statements from the following options. 
+
+ To encapsulate means to make some instance variables and methods inaccessible permanently from program
+ To encapsulate means to make some instance variables and methods inaccessible from outside a class
+ While encapsulating, we usually make all instance variables private, and most instance methods public
+ While encapsulating, we usually make all instance variables public, and most instance methods private
+
+
+
+Explanation:
+2,3
+
+5.Which statements are true about a Constructor in Java?
+
+ It can be created with different name as the class
+ A Constructor is a special method that has no return type
+ Instance variables can not be initialized in the Constructor
+ It is called once and once only, when the object is created
+
+
+
+Explanation:
+2,4
+
+6.How many syntax error the switch statement has?
+String s = sc.nextLine();
+switch (s) {
+case “Hello”:
+System.out.println(“Hi”);
+break;
+case Goodbye:
+System.out.println(“bye”);
+break;
+default:
+System.out.println(“?”);
+
+}
+
+ a.Code has no error
+ b.3
+ c.1
+ d.2
+
+
+
+Explanation:
+c
+
+7.Which of the following statements is correct? 
+
+ There may be any number of copies of an instance variable: one for each instance of the class
+ There is exactly one copy of an instance variable among all the instances of the class
+ Instance variables are never primitive type
+ None of the above
+
+
+
+
+Explanation:
+There may be any number of copies of an instance variable: one for each instance of the class
+
+
+8.Which of the following is an overloading method? 
+
+ public class A { public void foo(int a) { } } public class B extends A {public void foo(int a) { } }
+ public class A { public void foo(int a) { } public void foo(int a, int b) { } }
+ public class A { public void foo(int a) { } public void Foo(int a, int b) { } }
+ None of the above
+
+
+
+Explanation:
+2
+
+9.How many times does the following code print true?
+1: public class Giggles {
+2: public static void main(String[] args) {
+3: String lol = “lol”;
+4: System.out.println(lol.toUpperCase() == lol);
+5: System.out.println(lol.toUpperCase() == lol.toUpperCase());
+6: System.out.println(lol.toUpperCase().equals(lol));
+7: System.out.println(lol.toUpperCase().equals(lol.toUpperCase()));
+8: System.out.println(lol.toUpperCase().equalsIgnoreCase(lol));
+9: System.out.println(lol.toUpperCase()
+10: .equalsIgnoreCase(lol.toUpperCase()));
+11: } }
+
+ One
+ Two
+ Three
+ Four
+ Five
+ None. The code does not compile.
+
+
+
+Explanation:
+Three
+
+10.Let the passengers array that contains person’s name, and setName() is a method to set a name. what is an enhanced for loop to set the name of every
+Passenger object in the array to “Sally”?
+
+ for (Passenger p: passengers) { p.setName(“Sally”); }
+ for (Passenger p: passengers) { setName(“Sally”); }
+ for (Passenger p: passengers) { p.equals.setName(“Sally”); }
+ None of the above
+
+
+
+Explanation:
+1
+
+11.What is the output of this code?
+public class LivingThing {
+public void animalMethod() {
+System.out.println(“A living thing.”);}
+}
+public class Animal extends LivingThing {
+public void animalMethod() {
+System.out.print (“An animal. “);
+super.animalMethod();
+}
+public class Bird extends Animal {
+public void animalMethod() {
+System.out.print(“A Bird. “);
+super.animalMethod();}
+}
+public static void main(String[] args) {
+Bird b = new Bird();
+b.animalMethod();
+}
+
+ A living thing.
+ A Bird. An animal. 
+ A Bird. 
+ A Bird. An animal. A living thing.
+
+
+
+Explanation:
+
+
+
+
+12.In Java Object Oriented Programming, which one is correct? (Select two)
+
+ Parameters and local variables need not be declared using types
+ Main method is not needed to execute the program
+ Return values send back information from the object
+ Methods implement a specific behavior of an object.
+
+
+
+Explanation:
+3,4
+
+
+13.What is the code to sort the array named sArray in descending order? 
+
+ Arrays.sort(sArray.reverseOrder()); 
+ Arrays.sort(sArray, Collections.reverseOrder()); 
+ Arrays.sort(sArray); 
+ Arrays.reverseOrder(sArray); 
+
+
+
+Explanation:
+2
+
+
+
+14.What exception does this code throw?
+String s = “Hello, There”;
+Integer num = Integer.parseInt(s);
+
+ NumberFormatException
+ NullPointException
+ IllegalArgumentException
+ InvalidCastException
+
+
+
+Explanation:
+1
+
+15.What is the output of this programming code?
+public class Tom {
+int ted = 20;
+
+public Tom() {
+ted = 40;
+}
+}
+
+public class TomTest{
+public static void main(String args[]) {
+Tom t = new Tom();
+System.out.println(t.ted);
+}
+}
+
+ Runtime error
+ Compiling error
+ 0
+ 40
+
+
+
+Explanation:
+last one
+
+16.Which of the following are true? (Choose two.)
+ int[] crossword [] = new int[10][20];
+21: for (int i = 0; i < crossword.length; i++) 
+22: for (int j = 0; j < crossword.length; j++) 
+23: crossword[i][j] = 'x'; 
+24: System.out.println(crossword.size());
+
+ One line needs to be changed for this code to compile
+ Two lines need to be changed for this code to compile.
+ Three lines need to be changed for this code to compile.
+ If the code is fixed to compile, none of the cells in the 2D array have a value of 0.
+ If the code is fixed to compile, half of the cells in the 2D array have a value of 0.
+ If the code is fixed to compile, all of the cells in the 2D array have a value of 0.
+
+
+
+Explanation:
+এই কোডে তিনটি কম্পাইলেশন এরর আছে:
+
+লাইন 22: for (int j = 0; j < crossword.length; j++)
+এখানে লুপটি crossword.length (যা row-এর সংখ্যা, 10) পর্যন্ত চলছে। কিন্তু দ্বিতীয় ডাইমেনশনের (column) জন্য লুপটি crossword[i].length পর্যন্ত চলতে হবে।
+
+লাইন 23: crossword[i][j] = 'x';
+crossword একটি int টাইপের অ্যারে। কিন্তু আপনি একটি char ('x') অ্যাসাইন করার চেষ্টা করছেন। এটি একটি কম্পাইলেশন এরর দেবে। 
+একটি char ভ্যালু int অ্যারেতে রাখা সম্ভব হলেও, এখানে 'x' কে একটি সংখ্যা হিসেবে ট্রিট করা হবে (ASCII মান 120)। 
+তবে, এই কোডে এই লাইনে পরিবর্তন প্রয়োজন, কারণ এটি লজিক্যালি ভুল। একটি char কে int এ রূপান্তর করলে তার ASCII মান অ্যাসাইন হবে।
+
+লাইন 24: System.out.println(crossword.size());
+জাভাতে অ্যারের সাইজ জানতে size() মেথড নেই। অ্যারের সাইজ জানতে length অ্যাট্রিবিউট ব্যবহার করতে হয়।
+
+17.Which lines can be removed together without stopping the code from compiling and while printing the same output? (Choose three.)
+14: String race = “”;
+15: outer:
+16: do {
+17:     inner:
+18:     do {
+19:     race += “x”;
+20:     } while (race.length() <= 4); 
+21: } while (race.length() < 4); 
+22: System.out.println(race);
+
+Lines 15 and 17
+ Lines 15, 16, and 21
+ Line 17
+ Lines 17, 18, and 20
+
+
+Explanation:
+1,2,3
+
+
+18.What is the result of running the following program?
+1: package fun;
+2: public class Sudoku {
+3: static int[][] game;
+4:00
+5: public static void main(String args[]) {
+6: game[3][3] = 6;
+7: Object[] obj = game;
+8: obj[3] = ‘X’;
+9: System.out.println(game[3][3]);
+10: }
+11: }
+
+ 6
+ X
+ The code does not compile.
+ The code compiles but throws a NullPointerException at runtime
+ The code compiles but throws a different exception at runtime.
+ The output is not guaranteed.
+
+
+Explanation:
+This question appears to ask you about involved array logic. Instead, it is checking to see if you remember that instance and class variables are initialized to null. 
+Line 6 throws a NullPointerException. 
+If the array was declared, the answer would be E because the code would throw an ArrayStoreException on line 8.
+
+
+19.Which of the following are true right before the main() method ends? (Choose two.)
+public static void main(String[] args) {
+String shoe1 = new String(“sandal”);
+String shoe2 = new String(“flip flop”);
+String shoe3 = new String(“croc”);
+shoe1 = shoe2;
+shoe2 = shoe3;
+shoe3 = shoe1;
+}
+
+ No objects are eligible for garbage collection.
+ One object is eligible for garbage collection.
+ Two objects are eligible for garbage collection.
+ No objects are guaranteed to be garbage collected.
+ One object is guaranteed to be garbage collected.
+ Two objects are guaranteed to be garbage collected.
+
+
+
+
+
+ Ex:
+ 2,4
