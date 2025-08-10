@@ -7,7 +7,7 @@ Date: 9 August 2025
 - `StringBuilder`-এ `contentEquals()` মেথড নেই, শুধু `String`-এ আছে
 - `StringBuilder.reverse()` সঠিক, কিন্তু `replace("O","A")` ভুল - কারণ `StringBuilder`-এ এমন মেথড নেই
 - `String` immutable, `StringBuilder` mutable
-- `String`-এর `equals()` কন্টেন্ট চেক করে, `StringBuilder`-এর `equals()` রেফারেন্স চেক করে
+- `String`-এর `equals()` কন্টেন্ট চেক করে, `StringBuilder`-এর `equals()` দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে
 -StringBuilder supports Method Chainning.
 
 ## 2. List and ArrayList() অপারেশনসনে সাধারণ ভুল
