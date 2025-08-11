@@ -1,0 +1,262 @@
+
+
+1.Which of the following options defines the correct structure of a Java class that compiles successfully? 
+
+ class MyClass { int abc; String course = //this is a comment "eJava"; }
+ class MyClass { import com.ejava.guru.*; }
+ package com.ejava.guru; package com.ejava.oracle; class MyClass { int age = /* 25 */ 74; }
+ All of the above
+
+
+Explanation:
+a
+
+2.Which one of the following is true for NullPointerException?
+
+ This represents any exception which occurs during runtime
+ This exception occurs if you initialize a null value to the variable
+ When a method could not convert a string into a numeric format
+ This exception is raised when referring to the members of a null object. 
+
+
+Explanation:
+d
+
+3.Why is the lambda expression important?
+
+ It allows you to write code that has the execution put off for later time
+ It allows you to convert a primitive to a reference type
+ It allows you to inherit from multiple classes when necessary
+ It allows to associate within classes
+
+
+
+Explanation:
+Lambdas use deferred execution and can be run elsewhere in the codebase.
+
+4.What is the output of the following code? 
+public class EString {
+
+public static void main(String args[]) {
+String eVal = “123456789”;
+System.out.println(eVal.substring(eVal.indexOf(“2”), eVal.indexOf(“0”)).concat(“0”));
+}
+}
+
+ 23456789
+ 12345678
+ 310
+ 31
+ Runtime error
+
+
+Explanation:
+একই কোড স্টেটমেন্টে একাধিক মেথড চেইন করা হলে-, 
+মেথডগুলো বাম থেকে ডানে কার্যকর হয়, ডান থেকে বামে নয়। `eVal.indexOf("0")` একটি নেগেটিভ মান প্রদান করে, 
+কারণ আপনি দেখতে পাচ্ছেন, `eVal` স্ট্রিংটিতে `0` ডিজিটটি নেই। ফলে, `eVal.substring` একটি নেগেটিভ শেষ মান পায়, যা একটি রানটাইম এক্সেপশনের জন্ম দেয়।
+
+
+5.What is the result of the following?
+import java.util.*;
+public class Museums {
+public static void main(String[] args) {
+String[] array = {“Natural History”, “Science”, “Art”};
+List museums = Arrays.asList(array);
+museums.remove(2);
+System.out.println(museums);
+}
+}
+
+ [Natural History, Science]
+ [Natural History, Science, Art]
+ The code does not compile.
+ The code compiles but throws an exception at runtime.
+
+
+Explanation:
+* কোডটি কোনো কম্পাইলেশন ত্রুটি ছাড়াই সফলভাবে কম্পাইল হবে।
+* তবে, `Arrays.asList(array)` মেথডটি একটি **নির্দিষ্ট আকারের লিস্ট (fixed-size list)** তৈরি করে, যা মূল অ্যারে দ্বারা ব্যাকড।
+* এই ধরনের লিস্টে উপাদান যোগ বা অপসারণ (add or remove) করা যায় না। যখন `museums.remove(2)` লাইনটি চালানো হয়, তখন এটি একটি **`UnsupportedOperationException`** থ্রো করে।
+এই কারণে, কোডটি রান করার সময় একটি এক্সেপশন দেখাবে এবং স্বাভাবিকভাবে কাজ করবে না।
+
+
+
+6.What is the meaning of this Java Lambda expression?
+n -> n % 2 != 0;
+
+ Given number n returns a boolean indicating if it is even
+ Given number n returns a boolean indicating if it is odd
+ Given number n returns an even number
+ None of the above
+
+
+Explanation:
+ n%2 !=0 means n is odd.
+
+7.Assume that appropriate packages have been imported. What is the output of this code? 
+public static void main(String[] args) {
+LocalDate t = LocalDate.of(2018, 3, 30);
+
+LocalDateTime d = t.atStartOfDay();
+System.out.println(d);
+}
+
+ 2018-03-30T00:00
+ 43189
+ 2018-03-30 T12:00
+ Code will not compile 
+
+
+Explanation:
+a
+
+8.Given the following definitions of the class Book. Which one of the following statements is correct?
+import java.util.ArrayList;
+class Book {
+public void read() { } //METHOD1
+public String read() { return null; } //METHOD2
+ArrayList read(int a) { return null; } //METHOD3
+}
+
+ METHOD1 and METHOD2 are correctly overloaded methods
+ METHOD2 and METHOD3 are correctly overloaded methods
+ METHOD1, METHOD2 and METHOD3 are correctly overloaded methods
+ None of the above is correct
+
+
+Explanation:
+ArrayList as return type is ok.
+So,2
+
+9.How many of the following lines of code compile?
+char one = Integer.parseInt(“1”);
+Character two = Integer.parseInt(“2”);
+int three = Integer.parseInt(“3”);
+Integer four = Integer.parseInt(“4”);
+short five = Integer.parseInt(“5”);
+Short six = Integer.parseInt(“6”);
+
+ None
+ One
+ Two
+ Three
+ Four
+ Five
+
+
+Explanation:
+c
+
+
+
+10.Identify a correct statement about the following code? 
+class Shoe { }
+class Boot extends Shoe { }
+class ShoeFactory {
+ShoeFactory(Boot val) { System.out.println(“boot”);
+}
+ShoeFactory(Shoe val) { System.out.println(“shoe”);
+}
+}
+
+ The class ShoeFactory will fail to compile
+ The class ShoeFactory has a total of three overloaded constructors
+ The class ShoeFactory has a total of two overloaded constructors
+ None of the above is correct 
+
+
+Explanation:
+All classes defined in this example compile successfully. 
+Java doesn’t generate a default constructor for a class that has already defined a constructor. So there are exactly two constructors in the example.
+
+11.Which of the following statements is true? 
+
+ Java object is a package of instance variables or fields (attributes) and instance methods.
+ Java object is a method of instance variables or fields
+ An attribute is not a property of the object
+ length() is an example of Java object
+
+
+Explanation:
+a
+
+12.Which of the answer choices results in a different value being output than the other three choices?
+StringBuilder sb = new StringBuilder(“radical “);
+sb = _______________________;
+System.out.print(sb);
+
+ new StringBuilder("radical ") .append("robots")
+ new StringBuilder("radical ") .delete(1, 100) .append("obots") .insert(1, "adical r")
+ new StringBuilder("radical ") .insert(7, "robots")
+ new StringBuilder("radical ") .insert(sb.length(), "robots")
+
+
+Explanation:
+অপশন A সহজবোধ্য এবং এর আউটপুট হলো `radical robots`। অপশন B একই কাজ একটু জটিল উপায়ে করে। 
+প্রথমে, অপশন B প্রথম অক্ষরের পর বাকি সব অক্ষর মুছে ফেলে। এখানে 100টি অক্ষর মুছে ফেলার জন্য নেই, তাতে কিছু যায় আসে না। এরপর, এটি `obots` স্ট্রিংটিকে শেষে যুক্ত করে, যার ফলে বিল্ডারে `robots` স্ট্রিংটি তৈরি হয়। সবশেষে, এটি মূল স্ট্রিংয়ের বাকি অংশটি প্রথম ইনডেক্সের ঠিক পরে প্রবেশ করায়। 
+যদি এটি কল্পনা করা কঠিন হয়, তাহলে প্রবাহটি এঁকে চেষ্টা করে দেখতে পারেন। 
+অপশন D-ও একই মান তৈরি করে, যেখানে `StringBuilder`-এর শেষের ঠিক পরে `robots` যুক্ত করা হয়। 
+অপশন C প্রায় সঠিক, কিন্তু এখানে একটি অফ-বাই-ওয়ান ত্রুটি আছে। এটি `robots` স্ট্রিংটিকে `l` অক্ষরের পরে প্রবেশ করায়, স্পেসের পরে নয়। 
+এর ফলে `radicalrobots` এর পরে একটি স্পেস যুক্ত হয়। অপশন C অন্যগুলোর চেয়ে ভিন্ন এবং এটিই সঠিক উত্তর।
+
+
+
+13.Fill in the blank: Which one will produce the output 30 for the following code?
+    public class Loop2 {
+    public static void main(String[] args) {
+        int i = 10;
+        do {
+           while (i < 15) i = i + 20; 
+        } 
+        while ( __________ ); 
+        System.out.println(i); 
+    } }
+
+ i > 20
+ i < 2
+ i > 5
+ i == 30
+
+
+Explanation:
+
+
+14.Which of the following statements are true about Java operators and statements? (Choose two.)
+
+ Both right-hand sides of the ternary expression will be evaluated at runtime.
+ A switch statement may contain at most one default statement.
+ A single if-then statement can have multiple else statements.
+ The | and || operator are interchangeable, always producing the same results at runtime.
+ The ! operator may not be applied to numeric expressions.
+
+
+Explanation:
+2,5
+
+15.What is the output of the following code?
+public static void main(String[] args) {
+String hdd, laptop = “Acer”;
+hdd = hdd + laptop;
+System.out.println(hdd);
+}
+
+ Acer
+ hddAcer
+ hdd 
+ Code will have an error
+
+
+Explanation:
+ইনিশিয়ালাইজেশন প্রতিটি ভেরিয়েবলের জন্য আলাদাভাবে করতে হয়, একটি একক ডিক্লেয়ারেশনে সব ভেরিয়েবলের জন্য নয়।
+String hdd, laptop = “Acer”;
+
+16.For a java class with name Circle, which code will have an output? (Select two)
+
+ Circle c = new Circle(); System.out.println(c.Circle);
+ Circle c = new Circle(); System.out.println(Circle);
+ Circle c = new Circle(); System.out.println(c);
+ Circle circle = new Circle(); System.out.println(circle);
+
+
+Explanation:
+c,d
