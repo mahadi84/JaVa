@@ -1,0 +1,366 @@
+
+
+
+1.Which of the options are correct for the following code? (Select three)
+public class Prime { // line 1
+public static void main(String[] args) { // line 2
+char a = ‘a’; // line 3
+char b = -1; // line 4
+char c = ‘2’; // line 5
+integer d = 1000; // line 6
+System.out.println(++a + b++ * c – d); // line 7
+}
+}
+
+ Line 5 fails to compile
+ Line 6 fails to compile
+ Line 3 fails to compile
+ Line 4 fails to compile
+ Line 7 fails to compile
+
+Explanation:
+b,d,e
+
+
+2.Which one of the following cannot be used in place of the dashed ( _________ ) line to compile the code? 
+interface Foo {
+}
+
+public class FooBar implements Foo {
+public _________ getX() {
+return this;
+}
+}
+
+ Class
+ Foo
+ FooBar
+ Object
+
+
+Explanation:
+a
+
+
+3.Which code will compile without any error?
+
+ Predicate string = (StringBuilder ba) ->  true;
+ Predicate string = (StringBuilder ba)  {return -> true };
+ Predicate string = (StringBuilder ba) ->  {return true; };
+ None of the above
+
+
+Explanation:
+a
+
+
+4.What is the correct statement about  throw and throws keyworda? 
+
+  throw is used to throw an exception & throws is used to declare an exception
+ throw is used in method implementation & throws is used in method signature
+ using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
+ All are correct answers 
+
+
+Explanation:
+d
+
+5.What is the result of the following code?
+6: int count = 0;
+7: do {
+8: do {
+9: count++;
+10: } while (count < 2); 11: break; 12: } while (true); 13: System.out.println(count);
+
+ 2
+ 3
+ The code does not compile
+ This is an infinite loop
+
+
+Explanation:
+a
+
+6.What is the result of compiling and running the following application?
+package castles;
+class DragonException extends Exception {}
+public class Lair {
+public void openDrawbridge() throws Exception { // r1
+try {
+throw new Exception(“This Exception”);
+} catch (RuntimeException e) {
+throw new DragonException(); // r2
+} finally {
+throw new RuntimeException(“Or maybe this one”);
+}
+}
+
+public static void main(String[] moat) throws Exception {
+new Lair().openDrawbridge(); // r3
+}
+}
+
+ The code does not compile because of line r1.
+ The code does not compile because of line r2.
+ The code does not compile because of line r3.
+
+
+Explanation:
+last one
+
+
+7.
+What is the result of this code?
+public static void main(String args[]) {
+int a[] = new int[] {10, 2, 12, 3, 4, 16, 8, 9, 15};
+int n = 6;
+n = a[a[n] / 2];
+System.out.println(a[n]/2);
+}
+
+ 4
+ 2
+ 12
+ Code will run with an exception
+
+
+Explanation:
+b
+
+
+8.Suppose setX() is method of GeometricObject clas and setRadius() is a method of Circle class. What is the output for this code?
+GeometricObject c = new Circle();
+c.setX(1);
+System.out.println( c.setRadius(10) );
+
+ 10
+ 1
+ Code will not complie
+
+
+
+Explanation:
+This is a Polymorphism question. Here c (the variable) is of type GeometricObject but the object it references is of the subtype Circle. 
+You can only directly access the fields and methods of an object’s declared type. So c.setRadius() has an error and code will not compile.
+
+
+
+
+
+9.What is the result of the following code?
+class Phone {
+static void call() {
+System.out.println(“Call-Phone”);
+}
+}
+class SmartPhone extends Phone{
+static void call() {
+System.out.println(“Call-SmartPhone”);
+}
+}
+class TestPhones {
+public static void main(String… args) {
+Phone phone = new Phone();
+Phone smartPhone = new SmartPhone();
+phone.call();
+smartPhone.call();
+}
+}
+
+ Call-Phone Call-SmartPhone
+ Call-Phone null
+ Call-Phone Call-Phone
+ Code throws an exception
+
+
+
+Explanation:
+Code has no error. The static method belongs to a class, not to its objects. call() is a static method, smartPhone.call() calls the method call() defined in the class Phone.
+
+
+
+
+
+10.What does the following code output? 
+public class Bee{
+public static void main(String a[]){
+boolean b = true;
+Boolean booleanObj1 = new Boolean(b);
+Boolean booleanObj2 = new Boolean(“false”);
+System.out.println(booleanObj1.booleanValue());
+}
+}
+
+ FALSE
+ TRUE
+ Compiling error
+ Compile, but throws an exception at runtime
+
+
+Explanation:
+b
+
+11.Which is the correct statement about unchecked exceptions? (Select three)
+
+ Unchecked exceptions are not checked at compile time
+ They are checked at compile time
+ Program will not execute if it throws an unchecked exception 
+ All Unchecked exceptions are direct sub classes of RuntimeException class
+  If your program is throwing an unchecked exception, even if you didn’t handle/declare that exception, the program won’t give a compilation error
+
+
+Explanation:
+first and last two.
+
+
+12.What is the output of the following code?
+public class GuruArray2 {
+public static void main(String args[]) {
+int[] arr1;
+int[] arr2 = new int[3];
+char[] arr3 = {‘a’, ‘b’};
+arr1 = arr2;
+arr1 = arr3;
+System.out.println(arr1[0] + ” : ” + arr1[1]);
+}
+}
+
+ a : 0
+ 0
+ a : b
+ Compilation error
+
+
+Explanation:
+last
+
+
+13.Which of the following statements about java.lang.Error are most accurate? (Choose two.)
+
+ An Error should be thrown if a file system resource becomes temporarily unavailable.
+ An application should never catch an Error.
+ Error is a subclass of Exception, making it a checked exception.
+ It is possible to catch and handle an Error thrown in an application.
+ An Error should be thrown if a user enters invalid input.
+
+
+Explanation:
+2,4
+
+
+14.What is the output of the following?
+1: public class Legos {
+2: public static void main(String[] args) {
+3: StringBuilder sb = new StringBuilder();
+4: sb.append(“red”);
+5: sb.deleteCharAt(0);
+6: sb.delete(1, 1);
+7: System.out.println(sb);
+8: }
+9: }
+
+ r
+ e
+ ed
+ red
+ The code does not compile.
+ The code compiles but throws an exception at runtime.
+
+
+Explanation:
+sb.delete(1, 1);
+এই পদ্ধতিটি শুরুর ইনডেক্স (অন্তর্ভুক্ত) থেকে শেষের ইনডেক্স (বহির্ভূত) পর্যন্ত অক্ষরগুলো মুছে ফেলে। যেহেতু এখানে শুরু এবং শেষ ইনডেক্স একই (1, 1), তাই কোনো অক্ষর মুছে ফেলা হয় না। 
+sb-এর মান "ed"-ই থাকে।
+System.out.println(sb);
+এটি sb-এর বর্তমান মান, যা "ed", তা কনসোলে প্রিন্ট করে।
+
+
+15.What is a possible output of the following application?
+package wrap;
+public class Gift {
+private final Object contents;
+protected Object getContents() {
+return contents;
+}
+protected void setContents(Object contents) {
+this.contents = contents;
+}
+public void showPresent() {
+System.out.print(“Your gift: “+contents);
+}
+public static void main(String[] treats) {
+Gift gift = new Gift();
+gift.setContents(gift);
+gift.showPresent();
+}
+}
+
+ Your gift: wrap.Gift@29ca2745
+ Your gift: Your gift:
+ It does not compile.
+ It compiles but throws an exception at runtime.
+
+
+Explanation:
+c
+
+
+16.What is the output of the following code?
+public static void main(String[] args) {
+
+int []x = {0, 1, 2, 3, 4};
+int i = x.length – 1;
+
+while(i >=0 ){
+System.out.print(x[i]);
+i -= 1;
+}
+}
+
+ 1234
+ 43210
+ Code will not run due to compilation error
+ 4
+
+
+Explanation:
+b
+
+
+17.What does this code output?
+public static void main(String[] args) {
+System.out.println(“x\tx^2\t\n1\t2”);
+}
+
+ xx^2
+ 12
+ x x^2 
+ 1 2
+ x x^2 1 2
+ None of the above
+
+
+
+Explanation:
+x    x^2
+1    2
+
+\t: এটি একটি ট্যাব স্পেস তৈরি করে।
+\n: এটি একটি নতুন লাইন তৈরি করে, অর্থাৎ কার্সারকে পরের লাইনে নিয়ে যায়।
+
+
+18.Which one of the following statements is correct? (Select two)
+
+ A primitive type variable holds multiple values 
+ String is a primitive type variable
+ String is a reference type variable
+ long number = 22514554;  is a primitive type variable declaration 
+ There are hundreds of primitive variables in Java
+ boolean is a reference type variable
+
+
+Explanation:
+c,d
+
+
+
