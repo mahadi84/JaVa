@@ -1,5 +1,75 @@
 12 August 2025
 
+::TO REMEMBER::
+
+double c = (int) Math.pow(5, 2);   //Math.pow(5, 2)= 5^2 ** result always as double 
+System.out.printf("%d %.3f", x, y);  
+  **পূর্ণসংখ্যার (integer) আউটপুটের জন্য "%d" এবং ফ্লোট (float) বা ডাবল (double) টাইপের জন্য "%f" ব্যবহার করা হয়। 
+     এখানে ".3" বলতে বোঝানো হয়েছে যে, দশমিকের পর তিনটি ঘর পর্যন্ত দেখানো হবে।
+
+int[] numArray; 
+numArray = {1,2,3,4,5}; //does not compile
+
+ int[] numArray; 
+ numArray = new int[100];
+ numArray = {1,2,3,4,5}; //will compile
+
+User ইনপুট থেকে শুরু করে ১০০ পর্যন্ত সংখ্যাগুলো প্রিন্ট করুন, ধরে নিন User  ইনপুট ১০০-এর কম?
+  int x = sc.nextInt(); while (x <= 100) { System.out.println(x); x++; }
+
+public void setDimension(int width) {
+this.width = width; // 'this' indicate instance variable = local varible
+}
+
+instanceof
+string.equalsIgnoreCase("Hello")
+
+class Bottle {
+void Bottle() {} //not a constructor
+}
+
+::সাবধানে::
+01.
+int enrollments;
+c1.enrollments = 100;
+c2.enrollments = 200;
+result: if enrollments static what is the result of c1+c2
+
+02. 
+"private" প্রোপার্টিজ (properties) বা মেথডগুলি প্যারেন্ট ক্লাস থেকে সরাসরি কল করা।
+
+03. 
+Compiaring Data type mismatch
+for (String num : list)
+if (p.test(num)) // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1. Which one is a valid statement? (Select two)
 
