@@ -2,16 +2,70 @@
 
 
 
-1.Which of the following options defines the correct structure of a Java class that compiles successfully? 
+int age = /* 25 */ 74; //Right syntex
 
- class MyClass { int abc; String course = //this is a comment "eJava"; }
+NullPointerException: 
+একটি রানটাইম এক্সেপশন যা তখন ঘটে যখন আপনি এমন একটি ভ্যারিয়েবল ব্যবহার করার চেষ্টা করেন-
+যা ঘোষণা করা হয়েছে কিন্তু ইনিশিয়ালাইজ (initialize) করা হয়নি। 
+এর ফলে, ভ্যারিয়েবলটি কোনো অবজেক্টের দিকে নির্দেশ করে না এবং তার মান থাকে null, যার অর্থ "কোনো অবজেক্ট নেই"।
+String myString = null;
+int length = myString.length(); // এর ফলে NullPointerException ঘটবে
+সহজভাবে বলতে গেলে, আপনি এমন কিছুর উপর একটি অ্যাকশন করতে চাইছেন যার অস্তিত্বই নেই।
+
+List l= Arrays.asList('a','b','c') মেথডটি একটি নির্দিষ্ট আকারের লিস্ট (fixed-size list) তৈরি করে। 
+এই লিস্টটির আকার পরিবর্তন (add()/remove())করা যায় না।
+
+মনে রাখবেন:
+n % 2 == 0         =জোড় সংখ্যা (Even)
+n % 2 != 0         =বিজোড় সংখ্যা (Odd): 
+
+LocalDateTime বা ZonedDateTime অবজেক্ট থেকে 
+atStartOfDay() মধ্যরাত (00:00) কে নির্দেশ করে, দিনের শুরু হিসেবে।
+T হলো ISO ফরম্যাটে তারিখ ও সময়ের বিভাজক।
+ex: 2025-12-8T00:00
+
+ArrayList as Return type is OK
+
+int three = Integer.parseInt("3"); Integer.parseInt() একটি int রিটার্ন করে, যা সরাসরি int ভেরিয়েবলে স্টোর করা যায়।
+Integer four = Integer.parseInt("4"); Integer.parseInt() এর রিটার্ন করা int অটো-বক্সিং এর মাধ্যমে Integer-এ কনভার্ট হয়।
+
+Constructor Overloading:
+ShoeFactory(Boot val) { System.out.println(“boot”);}
+ShoeFactory(Shoe val) { System.out.println(“shoe”);}
+
+জাভা অবজেক্ট কী?
+-এটি ইন্সট্যান্স ভেরিয়েবল/ফিল্ড (অ্যাট্রিবিউট) এবং ইন্সট্যান্স মেথড এর সমন্বয়ে গঠিত।
+-একটি জাভা অবজেক্ট হলো একটি ক্লাসের (new keyword) ইন্সট্যান্স (বা উদাহরণ)।
+
+Are these same?:
+ new StringBuilder("radical ") .insert(7, "robots")
+ new StringBuilder("radical ") .insert(sb.length(), "robots")
+ No, Why?
+
+ String hdd, laptop = “Acer”;   // Allowed but not good practice:
+
+
+
+
+------------------------------------
+
+
+
+1.Which of the following options defines the correct structure of a Java class that compiles successfully? 
+ 
+class MyClass { int abc; String course = //this is a comment "eJava"; }
  class MyClass { import com.ejava.guru.*; }
  package com.ejava.guru; package com.ejava.oracle; class MyClass { int age = /* 25 */ 74; }
  All of the above
 
 
+
+
+
+
+
 Explanation:
-a
+all are wrong
 
 2.Which one of the following is true for NullPointerException?
 
@@ -19,6 +73,11 @@ a
  This exception occurs if you initialize a null value to the variable
  When a method could not convert a string into a numeric format
  This exception is raised when referring to the members of a null object. 
+
+
+
+
+
 
 
 Explanation:
@@ -30,6 +89,11 @@ d
  It allows you to convert a primitive to a reference type
  It allows you to inherit from multiple classes when necessary
  It allows to associate within classes
+
+
+
+
+
 
 
 
@@ -50,6 +114,11 @@ System.out.println(eVal.substring(eVal.indexOf(“2”), eVal.indexOf(“0”)).
  310
  31
  Runtime error
+
+
+
+
+
 
 
 Explanation:
@@ -75,6 +144,11 @@ System.out.println(museums);
  The code compiles but throws an exception at runtime.
 
 
+
+
+
+
+
 Explanation:
 * কোডটি কোনো কম্পাইলেশন ত্রুটি ছাড়াই সফলভাবে কম্পাইল হবে।
 * তবে, `Arrays.asList(array)` মেথডটি একটি **নির্দিষ্ট আকারের লিস্ট (fixed-size list)** তৈরি করে, যা মূল অ্যারে দ্বারা ব্যাকড।
@@ -90,6 +164,11 @@ n -> n % 2 != 0;
  Given number n returns a boolean indicating if it is odd
  Given number n returns an even number
  None of the above
+
+
+
+
+
 
 
 Explanation:
@@ -109,6 +188,11 @@ System.out.println(d);
  Code will not compile 
 
 
+
+
+
+
+
 Explanation:
 a
 
@@ -124,6 +208,11 @@ ArrayList read(int a) { return null; } //METHOD3
  METHOD2 and METHOD3 are correctly overloaded methods
  METHOD1, METHOD2 and METHOD3 are correctly overloaded methods
  None of the above is correct
+
+
+
+
+
 
 
 Explanation:
@@ -146,8 +235,14 @@ Short six = Integer.parseInt(“6”);
  Five
 
 
+
+
+
+
+
 Explanation:
-c
+int three = Integer.parseInt("3"); Integer.parseInt() একটি int রিটার্ন করে, যা সরাসরি int ভেরিয়েবলে স্টোর করা যায়।
+Integer four = Integer.parseInt("4"); Integer.parseInt() এর রিটার্ন করা int অটো-বক্সিং এর মাধ্যমে Integer-এ কনভার্ট হয়।
 
 
 
@@ -167,9 +262,13 @@ ShoeFactory(Shoe val) { System.out.println(“shoe”);
  None of the above is correct 
 
 
+
+
+
+
+
 Explanation:
-All classes defined in this example compile successfully. 
-Java doesn’t generate a default constructor for a class that has already defined a constructor. So there are exactly two constructors in the example.
+The class ShoeFactory has a total of two overloaded constructors
 
 11.Which of the following statements is true? 
 
@@ -177,6 +276,11 @@ Java doesn’t generate a default constructor for a class that has already defin
  Java object is a method of instance variables or fields
  An attribute is not a property of the object
  length() is an example of Java object
+
+
+
+
+
 
 
 Explanation:
@@ -191,6 +295,11 @@ System.out.print(sb);
  new StringBuilder("radical ") .delete(1, 100) .append("obots") .insert(1, "adical r")
  new StringBuilder("radical ") .insert(7, "robots")
  new StringBuilder("radical ") .insert(sb.length(), "robots")
+
+
+
+
+
 
 
 Explanation:
@@ -220,6 +329,11 @@ Explanation:
  i == 30
 
 
+
+
+
+
+
 Explanation:
 
 
@@ -230,6 +344,11 @@ Explanation:
  A single if-then statement can have multiple else statements.
  The | and || operator are interchangeable, always producing the same results at runtime.
  The ! operator may not be applied to numeric expressions.
+
+
+
+
+
 
 
 Explanation:
@@ -248,16 +367,26 @@ System.out.println(hdd);
  Code will have an error
 
 
+
+
+
+
+
 Explanation:
 ইনিশিয়ালাইজেশন প্রতিটি ভেরিয়েবলের জন্য আলাদাভাবে করতে হয়, একটি একক ডিক্লেয়ারেশনে সব ভেরিয়েবলের জন্য নয়।
 String hdd, laptop = “Acer”;
 
-16.For a java class with name Circle, which code will have an output? (Select two)
+16. For a java class with name Circle, which code will have an output? (Select two)
 
  Circle c = new Circle(); System.out.println(c.Circle);
  Circle c = new Circle(); System.out.println(Circle);
  Circle c = new Circle(); System.out.println(c);
  Circle circle = new Circle(); System.out.println(circle);
+
+
+
+
+
 
 
 Explanation:
