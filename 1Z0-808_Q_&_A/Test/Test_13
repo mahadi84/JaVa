@@ -1,0 +1,476 @@
+
+
+
+1. Which one is a valid statement? (Select two)
+
+ String f = y * 5; 
+ double c = (int) Math.pow(5, 2); 
+ int c = (double) Math.pow(5, 2); 
+ double b = 100 % 2.0; 
+ int b = 100 // 2; 
+
+
+
+
+
+
+
+Explanation:
+পাটিগণিত, অ্যাসাইনমেন্ট ইত্যাদি করার জন্য একটি int স্বয়ংক্রিয়ভাবে একটি double হিসাবে কাস্ট হয়, কিন্তু একটি double একটি int হিসাবে কাস্ট হয় না। 
+জাভাতে / ইন্টিজার ভাগ (integer division) এর জন্য ব্যবহৃত হয়, // বৈধ নয়। % হলো মড (mod), m%n আপনাকে m কে n দিয়ে ভাগ করলে যে অবশিষ্ট থাকে, তা দেয়।
+
+
+
+2. What is the output of  this code?
+public static void main(String[] args) {
+double i = 2012.2654;
+System.out.printf(“%.2f”, i);
+}
+
+ 20.2654
+ 2012.2654
+ 2012.27
+ 2012
+
+
+
+
+
+
+Explanation:
+printf() মেথডটি আউটপুট ফরম্যাট করার জন্য ব্যবহৃত হয়, 
+যেমন: স্ট্রিং জাস্টিফাই করা, দশমিকের পর নির্দিষ্ট সংখ্যক ঘর পর্যন্ত রাউন্ড করা ইত্যাদি। এখানে "%.2f" বলতে বোঝানো হয়েছে, দশমিকের পর দুটি ঘর পর্যন্ত রাউন্ড করা হবে।
+
+
+
+3.Which Java statement will output the contents of the variables x and y to the screen separated by a space? The variable x is an int and y is a double type. The variable y should be printed  with exactly 3 decimal place.
+
+ System.out.printf("d , .3f", x, y); 
+ System.out.print("%0.3d %.3f", x, y); 
+ System.out.printf("%d %.3f" + x + y); 
+ System.out.printf("%d %.3f", x, y); 
+
+
+
+
+
+
+Explanation:
+printf() ফরম্যাটেড আউটপুট দেওয়ার জন্য ব্যবহৃত হয়। 
+জাভাতে, পূর্ণসংখ্যার (integer) আউটপুটের জন্য "%d" এবং ফ্লোট (float) বা ডাবল (double) টাইপের জন্য "%f" ব্যবহার করা হয়। 
+এখানে ".3" বলতে বোঝানো হয়েছে যে, দশমিকের পর তিনটি ঘর পর্যন্ত দেখানো হবে।
+
+
+
+
+4.What is the valid declaration of integer array?
+
+ int numArray; numArray[] = new int[100];
+ int numArray; numArray = new int[100];
+ int[] numArray; numArray = new numArray[100];
+ int[] numArray; numArray = new int[100];
+
+
+
+
+
+
+Explanation:
+last
+
+
+
+
+5.How many syntax errors do the following codes have? 
+public static void main(String args) {
+a = 5;
+if (a = 5) {
+System.out.println(“A is equal to “, a);
+}
+}
+
+ 5
+ 4
+ 2
+ 3
+
+
+
+
+
+
+
+Explanation:
+String[], int a = 5; , (a == 5), In the println() method + sign needed insted of coma (,)
+
+
+
+
+6.Which code will print the numbers up to 100 starting from user input, assume that user input is less than 100?
+ int x = sc.nextInt(); while (x < 100) { System.out.println(x); x++; }
+ int x = sc.nextInt(); while (x <= 100) { System.out.println(x); x++; }
+ int x = sc.nextInt(); while (x < 100) { System.out.println(x); x--; }
+ None of the above
+
+
+
+
+
+
+Explanation:
+* `int x = sc.nextInt(); while (x < 100) { System.out.println(x); x++; }`: এই কোডটি ব্যবহারকারীর ইনপুট থেকে ৯৯ পর্যন্ত সংখ্যাগুলো প্রিন্ট করবে। 
+   কারণ `while (x < 100)` শর্তটি `x`-এর মান ১০০ হওয়ার সাথে সাথেই বন্ধ হয়ে যায়, ফলে ১০০ প্রিন্ট হয় না। প্রশ্নানুসারে, ১০০ পর্যন্ত সংখ্যা প্রিন্ট করতে বলা হয়েছে।
+* `int x = sc.nextInt(); while (x < 100) { System.out.println(x); x--; }`: এই কোডটি একটি অসীম লুপ (infinite loop) তৈরি করবে। 
+   কারণ `x--` এর মাধ্যমে `x`-এর মান প্রতিবার কমতে থাকে এবং এটি সর্বদা ১০০-এর নিচে থাকবে, তাই লুপটি কখনো শেষ হবে না।
+* `None of the above`: এটি সঠিক উত্তর নয়, কারণ দ্বিতীয় বিকল্পটি একটি সঠিক সমাধান।
+
+সঠিক কোডটিতে `x <= 100` শর্তটি ব্যবহার করা হয়েছে, যা নিশ্চিত করে যে লুপটি ততক্ষণ চলবে যতক্ষণ পর্যন্ত `x`-এর মান ১০০-এর সমান বা তার কম থাকে। 
+এর ফলে ১০০ সংখ্যাটিও আউটপুটে অন্তর্ভুক্ত হয়। আর `x++` প্রতিবার সংখ্যাটিকে এক করে বাড়াতে থাকে।
+`int x = sc.nextInt(); while (x <= 100) { System.out.println(x); x++; }`
+
+
+
+
+7. Why “this” keyword in the line 6 and the line 7 is  necessary in the following class? 
+public class Rectangle {
+private int width;
+private int height;
+private int area;
+
+public void setDimension(int width, int height) {
+this.width = width;
+this.height = height;
+area = width * height;
+}
+}
+
+ This keyword is unnecessary here
+ To differentiate instance variable from a local variable
+ "this" keyword is needed for void method
+ To declare a local variable "this" keyword is needed 
+
+
+
+
+
+
+Explanation:
+b
+
+
+
+
+8. What is the output of the following code?
+public class Abc{
+public static void main(String[] args) {
+int ob[] = {0, 3, 6, 8, 10};
+System.out.print(ob instanceof Object);
+}
+}
+
+ Compilation error
+ FALSE
+ TRUE
+ Code will run but throws an exception
+
+
+
+
+
+
+Explanation:
+The keyword “instanceof” is use to check whether an object is of a particular type. Arrays are objects so, so the value ‘true’ will be printed.
+
+
+
+
+9.  What statement would be in the dash ( _____ )  so that the output would be “Hi” when user type “Hello”. User may ignore the case. 
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+
+String userInput = sc.nextLine();
+if ( __________ ) {
+System.out.println(“Hi”);
+}
+}                                                                                                  
+
+ userInput.IgnoreCase("Hello")
+ userInput == "Hello"
+ userInput.equalsIgnoreCase("Hello")
+ None of the above
+
+
+
+
+
+
+Explanation:
+
+
+
+
+10. Examine the following code and select the correct statements (choose 2 options).
+class Bottle {
+void Bottle() {}
+void Bottle(WaterBottle w) {
+}
+}
+
+ class WaterBottle extends Bottle {
+ }
+ The class compiles successfully—a base class can use reference variables of   its derived class as method parameter
+ The class Bottle defines two overloaded constructors
+ The class Bottle can access only one constructor
+ A base class can’t pass reference variables of its defined class as method parameters in constructors
+
+
+
+
+
+
+Explanation:
+void রিটার্ন টাইপ থাকার কারণে technically এগুলো কনস্ট্রাক্টর নয়, কিন্তু প্রশ্নের প্রেক্ষাপটে এ দুটিকে ওভারলোডেড কনস্ট্রাক্টর হিসেবে ধরা হয়েছে, কারণ তাদের নাম একই কিন্তু প্যারামিটার আলাদা।
+Bottle ক্লাসের একটি মেথড (Bottle) রয়েছে, যা একটি WaterBottle অবজেক্টকে প্যারামিটার হিসেবে গ্রহণ করে। 
+
+সঠিক দুটি উত্তর হলো:
+The class compiles successfully—a base class can use reference variables of its derived class as method parameter 
+(ক্লাসটি সফলভাবে কম্পাইল হবে—একটি বেস ক্লাস তার ডেরাইভড ক্লাসের রেফারেন্স ভ্যারিয়েবলকে মেথড প্যারামিটার হিসেবে ব্যবহার করতে পারে)।
+
+The class Bottle defines two overloaded constructors 
+(Bottle ক্লাসটি দুটি ওভারলোডেড কনস্ট্রাক্টর সংজ্ঞায়িত করেছে)।
+
+
+11. The output of the class TestEJavaCourse, defined as follows, is 300:
+public class Course {
+int enrollments;
+}
+
+public class TestEJavaCourse {
+public static void main(String args[]) {
+Course c1 = new Course();
+Course c2 = new Course();
+c1.enrollments = 100;
+c2.enrollments = 200;
+System.out.println(c1.enrollments + c2.enrollments);
+}
+}
+What is the output if the variable enrollments is defined as a static variable?
+
+ 300
+ 200
+ 400
+ Code will not compile
+
+
+
+
+
+
+Explanation:
+c
+
+
+
+12.What is the result of this code?
+public static void main(String args[]) {
+double x = 26 % 3;
+double y = 2.0;
+double r = Math.pow(x, y);
+System.out.println(r);
+}
+
+ 4
+ 64
+ 1
+ Code has an error
+
+
+
+
+
+
+Explanation:
+Math.pow() মেথডটি একটি সংখ্যাকে অন্য একটি সংখ্যার পাওয়ারে (ঘাতিকে) উন্নীত করতে ব্যবহৃত হয়। এটি একটি স্ট্যাটিক মেথড, তাই এটি সরাসরি Math ক্লাস থেকে কল করা যায়।
+ব্যবহার
+Math.pow(base, exponent) মেথডটি দুটি ডাবল (double) টাইপের আর্গুমেন্ট নেয়:
+base: যে সংখ্যাটিকে পাওয়ারে উন্নীত করতে চান।
+exponent: পাওয়ারের মান।
+এই মেথডটি সবসময় একটি ডাবল (double) টাইপের মান রিটার্ন করে।
+
+double result = Math.pow(10, 2);
+System.out.println(result); // আউটপুট হবে 100.0
+
+Result: % results the remainder after division. Hence, x = 26 % 3 = 2. pow(x, y) means x^y. So, 2 ^2.0 = 4.0.
+
+
+
+13. class Animal{
+float age;
+}
+class Lion extends Animal {
+int claws;
+}
+class Jungle {
+public static void main(String args[]) {
+Animal animal = new Lion();
+if ( ____________ )
+System.out.println(1);
+}
+}
+
+ animal instanceOf Lion
+ animal instanceof Lion
+ animal == Lion
+ animal = Lion
+
+
+
+
+
+
+Explanation:
+The correct operator name is instanceof and not instanceOf (note the capitalized O).
+
+
+
+14. Examine the following code and select the correct option(s):
+public class Person {
+public int height;
+public void setHeight(int newHeight) {
+if (newHeight <= 300) height = newHeight; } }
+
+ The height of a Person can never be set to more than 300
+ The preceding code is an example of a well-encapsulated class
+ The class would be better encapsulated if the height validation weren’t set  to 300
+ Even though the class isn’t well encapsulated, it can be inherited by other classes
+
+
+
+
+
+
+Explanation:
+d
+
+
+
+15.Given the following code, which option, if used to replace /* INSERT CODE HERE */, will cause the code to print 110? 
+class Book {
+private int pages = 100;
+}
+class Magazine extends Book {
+private int interviews = 2;
+private int totalPages() {
+/* INSERT CODE HERE */
+}
+public static void main(String[] args) {
+System.out.println(new Magazine().totalPages());
+}
+}
+
+ return super.pages + this.interviews*5;
+ return super.pages + interviews*5
+ return this.pages + super.interviews*5
+ None of the above
+
+
+
+
+
+
+Explanation:
+a
+
+
+
+16.What is the output of the following application?
+package pond;
+abstract class Duck {
+protected int count;
+public abstract int getDuckies();
+}
+public class Ducklings extends Duck {
+private int age;
+public Ducklings(int age) { this.age = age; }
+public int getDuckies() { return this.age/count; }
+public static void main(String[] pondInfo) {
+Duck itQuacks = new Ducklings(5);
+System.out.print(itQuacks.getDuckies());
+}
+}
+
+ 0
+ 5
+ The code does not compile.
+ The code compiles but throws an exception at runtime
+
+
+
+
+
+
+Explanation:
+last
+
+
+
+
+17. What is the output of the following class?
+1: package rocket;
+2: public class Countdown {
+3: public static void main(String[] args) {
+4: String builder = “54321”;
+5: builder = builder.substring(4);
+6: System.out.println(builder.charAt(2));
+7: }
+8: }
+
+ 2
+ 3
+ 4
+ None of the above
+
+
+
+
+
+
+Explanation:
+* শুরুতে `builder` স্ট্রিংটির মান ছিল `"54321"`।
+* `builder.substring(4)` মেথডটি `builder`-কে নতুন করে `"1"` মানটি দেয়।
+* পরবর্তীতে, `builder.charAt(2)` দিয়ে ইনডেক্স ২-এর অক্ষরটি অ্যাক্সেস করার চেষ্টা করা হয়।
+* যেহেতু `"1"` স্ট্রিংটির দৈর্ঘ্য মাত্র ১, তাই এর কোনো ইনডেক্স ২ নেই। এ কারণে একটি ত্রুটি দেখা দেবে এবং কোনো আউটপুট প্রিন্ট হবে না।
+
+
+
+18. How many lines does this code output?
+import java.util.*;
+import java.util.function.*;
+public class PrintNegative {
+public static void main(String[] args) {
+List list = new ArrayList<>();
+list.add(“-5”);
+list.add(“0”);
+list.add(“5”);
+print(list, e -> e < 0); } public static void print(List list, Predicate p) {
+for (String num : list)
+if (p.test(num))
+System.out.println(num);
+}
+}
+
+ One
+ Two
+ None. The code does not compile.
+ None. The code throws an exception at runtime.
+
+
+
+
+
+
+Explanation:
+ডেটা টাইপের দিকে মনোযোগ দিন। `print()` মেথডটি `String` অবজেক্টের একটি লিস্টের মধ্যে লুপ করছে। 
+কিন্তু, `Predicate` একটি `Integer` প্রত্যাশা (expect) করছে। যেহেতু এগুলোর মধ্যে মিল নেই, তাই `if` স্টেটমেন্টটি কম্পাইল হবে না।
+
+
