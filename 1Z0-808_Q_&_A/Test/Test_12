@@ -2,21 +2,24 @@
 
 
 
-char a = 'a'; System.out.println(++a); //output= b
+-char a = 'a'; System.out.println(++a); //output= b
 
+-return type as "object" is Ok.
 
-return type as "object" is Ok.
+-Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> true;
+ Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> {return true;};
 
-Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> true;
-Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> {return true;};
-
-Exception:
+-Exception:
 throw ব্যবহার করা হয় একটি exception থ্রো করার জন্য, আর throws ব্যবহার করা হয় একটি exception ডিক্লেয়ার করার জন্য।
 throw একটি মেথডের বডিতে (implementation) ব্যবহার করা হয়, আর throws মেথডের সিগনেচারে (signature) ব্যবহার করা হয়।
 throw কিওয়ার্ড ব্যবহার করে একবারে শুধুমাত্র একটি exception থ্রো করা যায়, কিন্তু throws ব্যবহার করে একবারে একাধিক exception ডিক্লেয়ার করা যায়।
 
-while (true);
-break; //if there is multiple loop 'break' statement will break all loops 
+-while (true);
+-break; //break স্টেটমেন্টটি শুধুমাত্র সেই লুপটি থেকে বের করে দেয় যার ভেতরে এটি আছে। যদি একাধিক nested (একটি লুপের ভেতরে অন্য লুপ) লুপ থাকে, তাহলে break স্টেটমেন্ট শুধুমাত্র ভেতরের লুপটি ভাঙবে, বাইরের লুপগুলো চলতে থাকবে।
+
+class A {static void call(){ System.out.println("Call-Phone"); }}
+class B extends A {static void call(){System.out.println("Call-SmartPhone"); }}  // এটিও একটি static মেথড, যার নাম call()। এটি Phone ক্লাসের call() মেথডকে হাইড (hide) করছে।
+**code will compile without any issue. 
 
 method_01: public void M01() throws Exception {  System.out.println("Hello")}
 main_method: public static void main(String[] moat) throws Exception {new Lair().M01();}
@@ -29,15 +32,37 @@ n = a[a[n] / 2]; a[6/2];a[3]=15;
 What is Polymorphism?
 মনে করুন, GeometricObject ক্লাসের একটি মেথড হলো setX() এবং Circle ক্লাসের একটি মেথড হলো setRadius()। এই কোডটির আউটপুট কী হবে?
 GeometricObject c = new Circle(); //This is Polymorphism
-c.setRadius(1); 
+c.setRadius(1); The 
 code will not compile. why?
 
+boolean b = true;
+Boolean booleanObj1 = new Boolean(b);
+Boolean booleanObj2 = booleanObj1.booleanValue();  compile without any issue.
+
+-All Unchecked exceptions are direct sub classes of RuntimeException class
+-An application should never catch an Error.
+-It is possible to catch and handle an Error thrown in an application.
+
+sb.append(“red”);
+sb.delete(1, 1); //delete nothing
+
+Gift gift = new Gift();
+System.out.println(gift); //Printing Reference variable
+output: Gift@659e0bfd
+
+int []x = {0, 1, 2, 3, 4};
+int i = x.length – 1;
+i=4;
+
+System.out.println(“x\tx^2\t\n1\t2”);
+\t: এটি একটি ট্যাব স্পেস তৈরি করে।
+\n: এটি একটি নতুন লাইন তৈরি করে, অর্থাৎ কার্সারকে পরের লাইনে নিয়ে যায়।
 
 
 
 
 
-
+================================================== ==================================================
 
 
 
@@ -148,7 +173,9 @@ d
 
 
 Explanation:
-a
+ভেতরের লুপের শর্ত (while (count < 2)) এখন মিথ্যা (2 < 2) হওয়ায় লুপটি বন্ধ হয়ে যায়।
+এরপর প্রোগ্রামটি break স্টেটমেন্টে পৌঁছায়। এই break স্টেটমেন্টটি ভেতরের লুপকে নয়, বরং বাইরের do-while লুপটিকে ভেঙে দেয়।
+সবশেষে, প্রোগ্রামটি লুপের বাইরে চলে আসে এবং System.out.println(count) লাইনটি এক্সিকিউট করে, যা 2 প্রিন্ট করে।
 
 6.What is the result of compiling and running the following application?
 package castles;
@@ -263,7 +290,17 @@ smartPhone.call();
 
 
 Explanation:
-Code has no error. The static method belongs to a class, not to its objects. call() is a static method, smartPhone.call() calls the method call() defined in the class Phone.
+     // Line 2: Phone টাইপের আরেকটি ভেরিয়েবল তৈরি করা হয়েছে।
+     // এতে SmartPhone ক্লাসের একটি নতুন অবজেক্ট রাখা হয়েছে।
+     // এখানে পলিফর্মফিজমের ব্যবহার দেখা যায়, যেখানে একটি চাইল্ড ক্লাসের অবজেক্টকে তার প্যারেন্ট ক্লাসের রেফারেন্স দিয়ে রাখা হয়েছে।
+     Phone smartPhone = new SmartPhone();
+
+     // Line 4: smartPhone.call() কল করা হয়েছে।
+     // এটিও একটি static মেথড হওয়ায় এটিও রেফারেন্স টাইপ (Phone) অনুযায়ী কাজ করবে।
+     // অবজেক্টের আসল টাইপ SmartPhone হওয়া সত্ত্বেও, static মেথডটি কম্পাইল-টাইমে বাইন্ড হয় রেফারেন্স টাইপের সাথে।
+     // ফলে এটিও Phone ক্লাসের call() মেথডকে কল করবে এবং "Call-Phone" প্রিন্ট করবে।
+     smartPhone.call();
+
 
 
 
@@ -294,7 +331,6 @@ Explanation:
 b
 
 11.Which is the correct statement about unchecked exceptions? (Select three)
-
  Unchecked exceptions are not checked at compile time
  They are checked at compile time
  Program will not execute if it throws an unchecked exception 
@@ -452,7 +488,7 @@ b
 
 17.What does this code output?
 public static void main(String[] args) {
-System.out.println(“x\tx^2\t\n1\t2”);
+
 }
 
  xx^2
