@@ -3,14 +3,17 @@
 
 
 char a = 'a'; System.out.println(++a); //output= b
+
+
 return type as "object" is Ok.
+
 Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> true;
 Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> {return true;};
 
 Exception:
-throw is used to throw an exception & throws is used to declare an exception
-throw is used in method implementation & throws is used in method signature
-using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
+throw ব্যবহার করা হয় একটি exception থ্রো করার জন্য, আর throws ব্যবহার করা হয় একটি exception ডিক্লেয়ার করার জন্য।
+throw একটি মেথডের বডিতে (implementation) ব্যবহার করা হয়, আর throws মেথডের সিগনেচারে (signature) ব্যবহার করা হয়।
+throw কিওয়ার্ড ব্যবহার করে একবারে শুধুমাত্র একটি exception থ্রো করা যায়, কিন্তু throws ব্যবহার করে একবারে একাধিক exception ডিক্লেয়ার করা যায়।
 
 while (true);
 break; //if there is multiple loop 'break' statement will break all loops 
@@ -24,9 +27,17 @@ int n = 6;
 n = a[a[n] / 2]; a[6/2];a[3]=15;
 
 What is Polymorphism?
-Suppose setX() is method of GeometricObject clas and setRadius() is a method of Circle class. What is the output for this code?
-GeometricObject c = new Circle(); c.setRadius(1); 
-code will not compile.
+মনে করুন, GeometricObject ক্লাসের একটি মেথড হলো setX() এবং Circle ক্লাসের একটি মেথড হলো setRadius()। এই কোডটির আউটপুট কী হবে?
+GeometricObject c = new Circle(); //This is Polymorphism
+c.setRadius(1); 
+code will not compile. why?
+
+
+
+
+
+
+
 
 
 
