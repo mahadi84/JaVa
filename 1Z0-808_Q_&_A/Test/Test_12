@@ -1,6 +1,8 @@
 11 August 2025
 
 
+
+
 1.Which of the options are correct for the following code? (Select three)
 public class Prime { // line 1
 public static void main(String[] args) { // line 2
@@ -17,6 +19,11 @@ System.out.println(++a + b++ * c – d); // line 7
  Line 3 fails to compile
  Line 4 fails to compile
  Line 7 fails to compile
+
+
+
+
+
 
 Explanation:
 b,d,e
@@ -38,6 +45,11 @@ return this;
  Object
 
 
+
+
+
+
+
 Explanation:
 a
 
@@ -50,6 +62,11 @@ a
  None of the above
 
 
+
+
+
+
+
 Explanation:
 a
 
@@ -60,6 +77,11 @@ a
  throw is used in method implementation & throws is used in method signature
  using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
  All are correct answers 
+
+
+
+
+
 
 
 Explanation:
@@ -76,6 +98,11 @@ d
  3
  The code does not compile
  This is an infinite loop
+
+
+
+
+
 
 
 Explanation:
@@ -105,6 +132,11 @@ new Lair().openDrawbridge(); // r3
  The code does not compile because of line r3.
 
 
+
+
+
+
+
 Explanation:
 last one
 
@@ -124,6 +156,11 @@ System.out.println(a[n]/2);
  Code will run with an exception
 
 
+
+
+
+
+
 Explanation:
 b
 
@@ -136,6 +173,11 @@ System.out.println( c.setRadius(10) );
  10
  1
  Code will not complie
+
+
+
+
+
 
 
 
@@ -174,6 +216,11 @@ smartPhone.call();
 
 
 
+
+
+
+
+
 Explanation:
 Code has no error. The static method belongs to a class, not to its objects. call() is a static method, smartPhone.call() calls the method call() defined in the class Phone.
 
@@ -197,6 +244,11 @@ System.out.println(booleanObj1.booleanValue());
  Compile, but throws an exception at runtime
 
 
+
+
+
+
+
 Explanation:
 b
 
@@ -207,6 +259,11 @@ b
  Program will not execute if it throws an unchecked exception 
  All Unchecked exceptions are direct sub classes of RuntimeException class
   If your program is throwing an unchecked exception, even if you didn’t handle/declare that exception, the program won’t give a compilation error
+
+
+
+
+
 
 
 Explanation:
@@ -231,6 +288,11 @@ System.out.println(arr1[0] + ” : ” + arr1[1]);
  Compilation error
 
 
+
+
+
+
+
 Explanation:
 last
 
@@ -242,6 +304,11 @@ last
  Error is a subclass of Exception, making it a checked exception.
  It is possible to catch and handle an Error thrown in an application.
  An Error should be thrown if a user enters invalid input.
+
+
+
+
+
 
 
 Explanation:
@@ -265,6 +332,11 @@ Explanation:
  red
  The code does not compile.
  The code compiles but throws an exception at runtime.
+
+
+
+
+
 
 
 Explanation:
@@ -301,6 +373,11 @@ gift.showPresent();
  It compiles but throws an exception at runtime.
 
 
+
+
+
+
+
 Explanation:
 c
 
@@ -323,6 +400,11 @@ i -= 1;
  4
 
 
+
+
+
+
+
 Explanation:
 b
 
@@ -338,6 +420,11 @@ System.out.println(“x\tx^2\t\n1\t2”);
  1 2
  x x^2 1 2
  None of the above
+
+
+
+
+
 
 
 
@@ -359,8 +446,12 @@ x    x^2
  boolean is a reference type variable
 
 
+
+
+
+
+
 Explanation:
 c,d
-
 
 
