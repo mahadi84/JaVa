@@ -2,6 +2,35 @@
 
 
 
+char a = 'a'; System.out.println(++a); //output= b
+return type as "object" is Ok.
+Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> true;
+Predicate<StringBuilder> stringPredicate = (StringBuilder ba) -> {return true;};
+
+Exception:
+throw is used to throw an exception & throws is used to declare an exception
+throw is used in method implementation & throws is used in method signature
+using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
+
+while (true);
+break; //if there is multiple loop 'break' statement will break all loops 
+
+method_01: public void M01() throws Exception {  System.out.println("Hello")}
+main_method: public static void main(String[] moat) throws Exception {new Lair().M01();}
+উভয় মেথডেই throws Exception লেখা থাকলেও, কোডের মধ্যে কোনো ব্যতিক্রম (exception) থ্রো করা হয়নি। এটি বৈধ একটি ঘোষণা।
+
+int a[] = new int[] {10, 2, 12, 15, 4, 16, 8, 9, 15};
+int n = 6; 
+n = a[a[n] / 2]; a[6/2];a[3]=15;
+
+What is Polymorphism?
+Suppose setX() is method of GeometricObject clas and setRadius() is a method of Circle class. What is the output for this code?
+GeometricObject c = new Circle(); c.setRadius(1); 
+code will not compile.
+
+
+
+
 
 1.Which of the options are correct for the following code? (Select three)
 public class Prime { // line 1
@@ -72,11 +101,10 @@ a
 
 
 4.What is the correct statement about  throw and throws keyworda? 
-
   throw is used to throw an exception & throws is used to declare an exception
- throw is used in method implementation & throws is used in method signature
- using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
- All are correct answers 
+  throw is used in method implementation & throws is used in method signature
+  using throw keyword one can throw only 1 exception at a time & throws can declare multiple exception at a time
+  All are correct answers 
 
 
 
@@ -92,7 +120,10 @@ d
 7: do {
 8: do {
 9: count++;
-10: } while (count < 2); 11: break; 12: } while (true); 13: System.out.println(count);
+10: } while (count < 2);
+11: break; 
+12: }while (true); 
+13: System.out.println(count);
 
  2
  3
@@ -141,8 +172,7 @@ Explanation:
 last one
 
 
-7.
-What is the result of this code?
+7. What is the result of this code?
 public static void main(String args[]) {
 int a[] = new int[] {10, 2, 12, 3, 4, 16, 8, 9, 15};
 int n = 6;
