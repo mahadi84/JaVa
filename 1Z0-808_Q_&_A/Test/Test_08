@@ -67,12 +67,9 @@ What will be the result of compiling and executing Test class?
 
 Explanation:
 list.removeIf(sb -> sb.equals(new StringBuilder("AAA")));।
-এখানে StringBuilder ক্লাসের equals() মেথড ব্যবহার করা হয়েছে। StringBuilder ক্লাসের equals() মেথড দুটি ভিন্ন অবজেক্টের বিষয়বস্তু (content) তুলনা করে না, 
-বরং এটি শুধুমাত্র দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে।
-sb ভেরিয়েবলটি লিস্টের প্রতিটি StringBuilder অবজেক্টের একটি করে রেফারেন্স ধরে রাখে।
-new StringBuilder("AAA") প্রতিবার একটি নতুন StringBuilder অবজেক্ট তৈরি করে।
-যেহেতু sb এবং new StringBuilder("AAA") কখনোই একই অবজেক্টের রেফারেন্স হবে না, তাই sb.equals(new StringBuilder("AAA")) এই শর্তটি সবসময় false রিটার্ন করবে। ফলে, কোনো উপাদানই লিস্ট থেকে রিমুভ হবে না।
-তাই, প্রিন্ট করার সময় লিস্টে থাকা তিনটি উপাদানই: AAA, BBB, এবং AAA দেখা যাবে।
+এখানে StringBuilder ক্লাসের equals() মেথড ব্যবহার করা হয়েছে। StringBuilder ক্লাসের equals() মেথড, এটি শুধুমাত্র দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে।
+যেহেতু sb এবং new StringBuilder("AAA") কখনোই একই অবজেক্টের রেফারেন্স হবে না, তাই sb.equals(new StringBuilder("AAA")) এই শর্তটি সবসময় false রিটার্ন করবে। 
+ফলে, কোনো উপাদানই লিস্ট থেকে রিমুভ হবে না। তাই, প্রিন্ট করার সময় লিস্টে থাকা তিনটি উপাদানই: AAA, BBB, এবং AAA দেখা যাবে।
 
 
 4.Select the correct statements from the following options. 
@@ -93,6 +90,11 @@ Explanation:
  A Constructor is a special method that has no return type
  Instance variables can not be initialized in the Constructor
  It is called once and once only, when the object is created
+
+
+
+
+
 
 
 
@@ -120,6 +122,10 @@ System.out.println(“?”);
 
 
 
+
+
+
+
 Explanation:
 c
 
@@ -133,8 +139,14 @@ c
 
 
 
+
+
+
+
+
+
 Explanation:
-There may be any number of copies of an instance variable: one for each instance of the class
+ক্লাসের সকল ইনস্ট্যান্সের মধ্যে একটি ইনস্ট্যান্স ভেরিয়েবলের ঠিক একটিই কপি থাকে। এটি স্ট্যাটিক ভেরিয়েবল (static variable)-এর বৈশিষ্ট্য বোঝায়।
 
 
 8.Which of the following is an overloading method? 
@@ -143,6 +155,17 @@ There may be any number of copies of an instance variable: one for each instance
  public class A { public void foo(int a) { } public void foo(int a, int b) { } }
  public class A { public void foo(int a) { } public void Foo(int a, int b) { } }
  None of the above
+
+
+
+
+
+
+
+
+
+
+
 
 
 
