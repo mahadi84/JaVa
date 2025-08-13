@@ -2,6 +2,47 @@
 
 
 
+list.removeIf(*i -> i == 10);// compile error. *i this argument must be unique
+
+String [] arr = {“*”, “**”, “***”, “****”, “*****”};
+Predicate pr1 = s -> s.length() < 4; // wrong
+Predicate <String> pr1 = s -> s.length() < 4; // Predicate pr1 এমন String নির্বাচন করে যার দৈর্ঘ্য ৪-এর কম (অর্থাৎ ৩ বা কম)।
+print(arr, pr1);  
+
+StringBuilder ক্লাসের equals() মেথড, এটি শুধুমাত্র দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে।
+
+-এনক্যাপসুলেট (Encapsulate) করার অর্থ হলো একটি ক্লাসের কিছু ইনস্ট্যান্স ভেরিয়েবল এবং মেথডকে ক্লাসের বাইরে থেকে অপ্রাপ্য (inaccessible) করে দেওয়া।
+-এনক্যাপসুলেশনের সময়, আমরা সাধারণত সব ইনস্ট্যান্স ভেরিয়েবলকে প্রাইভেট (private) এবং বেশিরভাগ ইনস্ট্যান্স মেথডকে পাবলিক (public) করে থাকি।
+
+কনস্ট্রাক্টর (Constructor): এটি একবার এবং শুধুমাত্র একবারই কল করা হয়, যখন অবজেক্টটি তৈরি করা হয়
+
+ক্লাসের সকল ইনস্ট্যান্সের মধ্যে একটি ইনস্ট্যান্স ভেরিয়েবলের ঠিক একটিই কপি থাকে। এটি স্ট্যাটিক ভেরিয়েবল (static variable)-এর বৈশিষ্ট্য বোঝায়।
+
+lol.toUpperCase() == lol.toUpperCase():  প্রতিটি toUpperCase() কল নতুন String অবজেক্ট তৈরি করে, যাদের লোকেশন ভিন্ন। আউটপুট: false
+lol.toUpperCase().equalsIgnoreCase(lol):"LOL".equalsIgnoreCase("lol") → কেস উপেক্ষা করে তুলনা, একই। আউটপুট: true 
+
+ for (Passenger p: passengers) { p.setName(“Sally”); } to set a name to Encapsulate
+
+রিটার্ন ভ্যালুগুলি অবজেক্ট থেকে তথ্য ফেরত পাঠায়। যখন কোনো মেথড কোনো মান ফেরত দেয় (return করে), তখন তা অবজেক্টের অভ্যন্তরীণ স্টেট বা প্রক্রিয়াকৃত ডেটা বাইরে পাঠায়।
+মেথডগুলি একটি অবজেক্টের নির্দিষ্ট আচরণ বাস্তবায়ন করে। মেথড হলো অবজেক্টের আচরণ বা কার্যক্রম নির্ধারণ করে।
+
+
+Arrays.sort(sArray, Collections.reverseOrder());": "sArray অ্যারেটিকে Collections.reverseOrder() ব্যবহার করে উল্টো ক্রমে সর্ট করুন।"
+উদাহরণ: যদি sArray = {"A", "B", "C"} হয়, তাহলে সর্ট করার পর হবে {"C", "B", "A"}।
+
+What exception does this code throw?
+String s = “Hello, There”;
+Integer num = Integer.parseInt(s);
+
+
+static int[][] game;
+game[3][3] = 6; //runtime error as game does not create any obj with new keyword
+
+
+-------------------------------
+
+
+
 1.Integer i = 10;
 List list = new ArrayList<>();
 list.add(i);
@@ -146,7 +187,7 @@ c
 
 
 Explanation:
-ক্লাসের সকল ইনস্ট্যান্সের মধ্যে একটি ইনস্ট্যান্স ভেরিয়েবলের ঠিক একটিই কপি থাকে। এটি স্ট্যাটিক ভেরিয়েবল (static variable)-এর বৈশিষ্ট্য বোঝায়।
+a.একটি ইন্সট্যান্স ভেরিয়েবলের যেকোনো সংখ্যক কপি থাকতে পারে: ক্লাসের প্রতিটি ইন্সট্যান্সের জন্য একটি করে কপি।
 
 
 8.Which of the following is an overloading method? 
@@ -181,8 +222,7 @@ Explanation:
 6: System.out.println(lol.toUpperCase().equals(lol));
 7: System.out.println(lol.toUpperCase().equals(lol.toUpperCase()));
 8: System.out.println(lol.toUpperCase().equalsIgnoreCase(lol));
-9: System.out.println(lol.toUpperCase()
-10: .equalsIgnoreCase(lol.toUpperCase()));
+9: System.out.println(lol.toUpperCase().equalsIgnoreCase(lol.toUpperCase()));
 11: } }
 
  One
@@ -194,8 +234,18 @@ Explanation:
 
 
 
+
+
+
+
 Explanation:
-Three
+লাইন 7: lol.toUpperCase().equals(lol.toUpperCase())
+"LOL".equals("LOL") → কন্টেন্ট ও কেস একই।আউটপুট: true 
+লাইন 8: lol.toUpperCase().equalsIgnoreCase(lol)
+"LOL".equalsIgnoreCase("lol") → কেস উপেক্ষা করে তুলনা, একই।আউটপুট: true 
+লাইন 9: lol.toUpperCase().equalsIgnoreCase(lol.toUpperCase())
+"LOL".equalsIgnoreCase("LOL") → উভয়ই একই। আউটপুট: true 
+মোট true প্রিন্ট হয়: ৩ বার (লাইন ৭, ৮, ৯) 
 
 10.Let the passengers array that contains person’s name, and setName() is a method to set a name. what is an enhanced for loop to set the name of every
 Passenger object in the array to “Sally”?
@@ -204,6 +254,11 @@ Passenger object in the array to “Sally”?
  for (Passenger p: passengers) { setName(“Sally”); }
  for (Passenger p: passengers) { p.equals.setName(“Sally”); }
  None of the above
+
+
+
+
+
 
 
 
@@ -237,8 +292,13 @@ b.animalMethod();
 
 
 
-Explanation:
 
+
+
+
+
+Explanation:
+last one
 
 
 
@@ -248,6 +308,13 @@ Explanation:
  Main method is not needed to execute the program
  Return values send back information from the object
  Methods implement a specific behavior of an object.
+
+
+
+
+
+
+
 
 
 
@@ -264,9 +331,15 @@ Explanation:
 
 
 
-Explanation:
-2
 
+
+
+
+
+
+Explanation:
+Arrays.sort(sArray, Collections.reverseOrder());": "sArray অ্যারেটিকে Collections.reverseOrder() ব্যবহার করে উল্টো ক্রমে সর্ট করুন।"
+উদাহরণ: যদি sArray = {"A", "B", "C"} হয়, তাহলে সর্ট করার পর হবে {"C", "B", "A"}।
 
 
 14.What exception does this code throw?
@@ -277,6 +350,12 @@ Integer num = Integer.parseInt(s);
  NullPointException
  IllegalArgumentException
  InvalidCastException
+
+
+
+
+
+
 
 
 
@@ -306,6 +385,11 @@ System.out.println(t.ted);
 
 
 
+
+
+
+
+
 Explanation:
 last one
 
@@ -325,17 +409,22 @@ last one
 
 
 
+
+
+
+
+
+
+
+
 Explanation:
 এই কোডে তিনটি কম্পাইলেশন এরর আছে:
-
 লাইন 22: for (int j = 0; j < crossword.length; j++)
 এখানে লুপটি crossword.length (যা row-এর সংখ্যা, 10) পর্যন্ত চলছে। কিন্তু দ্বিতীয় ডাইমেনশনের (column) জন্য লুপটি crossword[i].length পর্যন্ত চলতে হবে।
-
 লাইন 23: crossword[i][j] = 'x';
 crossword একটি int টাইপের অ্যারে। কিন্তু আপনি একটি char ('x') অ্যাসাইন করার চেষ্টা করছেন। এটি একটি কম্পাইলেশন এরর দেবে। 
 একটি char ভ্যালু int অ্যারেতে রাখা সম্ভব হলেও, এখানে 'x' কে একটি সংখ্যা হিসেবে ট্রিট করা হবে (ASCII মান 120)। 
 তবে, এই কোডে এই লাইনে পরিবর্তন প্রয়োজন, কারণ এটি লজিক্যালি ভুল। একটি char কে int এ রূপান্তর করলে তার ASCII মান অ্যাসাইন হবে।
-
 লাইন 24: System.out.println(crossword.size());
 জাভাতে অ্যারের সাইজ জানতে size() মেথড নেই। অ্যারের সাইজ জানতে length অ্যাট্রিবিউট ব্যবহার করতে হয়।
 
@@ -356,15 +445,24 @@ Lines 15 and 17
  Lines 17, 18, and 20
 
 
+
+
+
+
 Explanation:
 1,2,3
+
+লাইন ১৫ (outer:) - এই লেবেল অপ্রয়োজনীয় (কোনও break বা continue এ ব্যবহার হয়নি)
+লাইন ১৭ (inner:) - এই লেবেলও অপ্রয়োজনীয়
+-
+line 16+ লাইন ২১ (} while (race.length() < 4);) - বাইরের লুপটি冗余 (অপ্রয়োজনীয়), কারণ ভিতরের লুপই "xxxxx" তৈরি করতে যথেষ্ট
 
 
 18.What is the result of running the following program?
 1: package fun;
 2: public class Sudoku {
 3: static int[][] game;
-4:00
+4:
 5: public static void main(String args[]) {
 6: game[3][3] = 6;
 7: Object[] obj = game;
@@ -381,10 +479,23 @@ Explanation:
  The output is not guaranteed.
 
 
+
+
+
+
+
+
+
+
+
 Explanation:
-This question appears to ask you about involved array logic. Instead, it is checking to see if you remember that instance and class variables are initialized to null. 
-Line 6 throws a NullPointerException. 
-If the array was declared, the answer would be E because the code would throw an ArrayStoreException on line 8.
+এই কোডটি রান করলে NullPointerException দেবে।
+কারণ
+কোডের ৫ নম্বর লাইনে main মেথড শুরু হওয়ার পর, ৬ নম্বর লাইনে game[3][3] = 6; স্টেটমেন্টটি একটি অ্যারেতে মান বসানোর চেষ্টা করছে। 
+কিন্তু game নামক স্ট্যাটিক অ্যারেটি (৩ নম্বর লাইনে ডিক্লেয়ার করা) কোথাও শুরু (initialize) করা হয়নি। জাভাতে, যেকোনো অবজেক্ট বা অ্যারে ব্যবহার করার আগে তাকে অবশ্যই new কী-ওয়ার্ড ব্যবহার করে শুরু করতে হয়।
+
+যেহেতু game অ্যারেটি null অবস্থায় আছে, তাই এর কোনো ইনডেক্সে অ্যাক্সেস করার চেষ্টা করলে NullPointerException থ্রো করবে। এটি কম্পাইলার ধরতে পারে না,
+কারণ সিনট্যাক্সগতভাবে কোডটি ঠিক আছে। এই ধরনের ত্রুটি শুধুমাত্র প্রোগ্রাম রান করার সময় দেখা যায়।
 
 
 19.Which of the following are true right before the main() method ends? (Choose two.)
@@ -403,6 +514,10 @@ shoe3 = shoe1;
  No objects are guaranteed to be garbage collected.
  One object is guaranteed to be garbage collected.
  Two objects are guaranteed to be garbage collected.
+
+
+
+
 
 
 
