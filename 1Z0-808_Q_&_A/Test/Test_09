@@ -419,24 +419,18 @@ double y = 100.0;
 
 
 
+
+
+
 Explanation:
-Are of circle = pi * radius*radius, pi=3.142. Pi is a built-in math function that’s part of the overall Math class?. So for getting pi value you have to use Math.PI.
- For getArea(int radius) would not work because local variable radius and instance variable radius has an conflict.
-
-
-
-
-
-
-
-
-
+সঠিক উত্তর হলো: 
+double getArea() { return Math.PI * radius * radius; }
 
 
 13.How many lines contain a compile error?
 1: import java.time.*;
 2: import java.time.format.*;
-3:00
+3:
 4: public class HowLong {
 5: public void main(String h) {
 6: LocalDate newYears = new LocalDate(2017, 1, 1);
@@ -456,27 +450,34 @@ Are of circle = pi * radius*radius, pi=3.142. Pi is a built-in math function tha
 
 
 
-14.Which is the correct statement about static variable? 
 
- There may be any number of copies of static variable that can be shared among all the instances of the class
- There is always exactly one copy of a static variable is created and shared among all the instances of the class
- Static variables are primitive type 
- None of the above
+
+
+
+Explanation:
+1.  লাইন ৫: `main` মেথডের সঠিক সিগনেচার `public static void main(String[] args)` নয়।
+2.  লাইন ৬: `LocalDate` ক্লাসের কোনো পাবলিক কনস্ট্রাক্টর নেই, এর বদলে `LocalDate.of()` ব্যবহার করতে হয়।
+3.  লাইন ৭: `Period` এর মেথডগুলো `ofYears().ofDays()` এভাবে চেইন করা যায় না।
+4.  লাইন ৮: সঠিক ক্লাসটির নাম `DateTimeFormat` নয়, এটি হবে `DateTimeFormatter`।
+প্রদত্ত কোডে মোট 4 লাইনে কম্পাইল এরর (compile error) আছে।
+
+
+14.Which is the correct statement about static variable? 
+ -There may be any number of copies of static variable that can be shared among all the instances of the class
+ -There is always exactly one copy of a static variable is created and shared among all the instances of the class
+ -Static variables are primitive type 
+ -None of the above
+
 
 
 
 
 
 Explanation:
-A static variable is common to all the instances (or objects) of the class because it is a class level variable
-
-
-
-
-
-
-
-
+একটি স্ট্যাটিক ভেরিয়েবল ক্লাসের সাথে সম্পর্কিত, কোনো নির্দিষ্ট অবজেক্টের (instance) সাথে নয়।
+আপনি যতগুলোই অবজেক্ট তৈরি করুন না কেন, স্ট্যাটিক ভেরিয়েবলের শুধুমাত্র একটিই কপি মেমরিতে তৈরি হয়।
+এই একটি কপিই ক্লাসের সমস্ত অবজেক্টের মধ্যে শেয়ার করা হয়। যখন একটি অবজেক্ট এই ভেরিয়েবলের মান পরিবর্তন করে, তখন সেই পরিবর্তনটি অন্য সব অবজেক্টের জন্যও দৃশ্যমান হয়।
+সঠিক উত্তর হলো: "There is always exactly one copy of a static variable is created and shared among all the instances of the class" (একটি স্ট্যাটিক ভেরিয়েবলের সবসময় ঠিক একটি কপি তৈরি হয় যা ক্লাসের সমস্ত ইনস্ট্যান্সের মধ্যে শেয়ার করা হয়)।
 
 
 15.What is printed by the following code snippet?
@@ -527,8 +528,7 @@ public static void main(String[] args) {
 final String cell = “a”;
 String foo = new String(“a”);
 final String bell = new String(foo);
-System.out.print((cell==bell)
-+” “+cell.equals(bell));
+System.out.print((cell==bell)+” “+cell.equals(bell));
 }
 
  false true
@@ -541,12 +541,14 @@ System.out.print((cell==bell)
 
 
 
+
+
 Explanation:
-
-
+check carefully: false true
 
 
 18.Given that SC is an scanner object. Which of the following code stores users value into an array? 
+
  int[] d = new int[10]; for (int i = 0; i < d.length; i++) { d[i].nextInt(); }
  int[] d = new Int[10]; for (int i = 0; i < d.length; i++) { d[i] = SC.nextInt(); }
  int[] d = new int[10]; d[i] = SC.nextInt();
@@ -562,13 +564,14 @@ Explanation:
 * লুপটি অ্যারের প্রতিটি ইনডেক্স (`i=0` থেকে `9` পর্যন্ত) দিয়ে চলে।
 * `SC.nextInt()` ব্যবহারকারীর কাছ থেকে একটি পূর্ণসংখ্যা ইনপুট নেয়।
 * প্রতিটি ইনপুটকে `d[i]` এর মাধ্যমে অ্যারের সঠিক স্থানে সংরক্ষণ করে।
-`int[] d = new int[10]; for (int i = 0; i < d.length; i++) { d[i] = SC.nextInt(); }`
+-last one
 
 
 
 
 
-19.Suppose you have a variable named passengers which stores an array of objects of type Passenger. What is a single line of code that will print the output of the getName() method for the first Passenger object in the passengers array?
+19.Suppose you have a variable named passengers which stores an array of objects of type Passenger.
+ What is a single line of code that will print the output of the getName() method for the first Passenger object in the passengers array?
 
  System.out.println(passengers.getName()); 
  System.out.println(passengers[0].getName()); 
@@ -577,8 +580,12 @@ Explanation:
 
 
 
+
+
+
+
 Explanation:
-passengers[0] gives the first element of the given array.
+ System.out.println(passengers[0].getName()); gives the first element of the given array.
 
 
 
@@ -655,7 +662,6 @@ so output: 1,2,3
 
 
 22.What is the result of compiling and executing the following application?
-package ranch;
 
 public class Cowboy {
 private int space = 5;
@@ -688,6 +694,7 @@ new Cowboy().printMessage();
 
 
 Explanation:
+ভালো করে খেয়াল করুন: Varible: ship, space
 Goodbye
 See you again
 Ans is :None of the above
@@ -723,10 +730,15 @@ B
 
 
 Explanation:
-কনস্ট্রাক্টরগুলো ইনহেরিট হয় না |
-জাভা আপনি যে কনস্ট্রাক্টরের জন্য অনুরোধ করেছেন, এবং তারপরে প্রতিটি সুপারক্লাসের জন্য নো-আর্গুমেন্ট কনস্ট্রাক্টরকে কল করে।
-a,c
-
+a.কনস্ট্রাক্টরগুলো ইনহেরিট হয় না |
+c.জাভা আপনি যে কনস্ট্রাক্টরের জন্য অনুরোধ করেছেন, এবং তারপরে প্রতিটি সুপারক্লাসের জন্য নো-আর্গুমেন্ট কনস্ট্রাক্টরকে কল করে।
+উদাহরণস্বরূপ, 
+যদি `Child` ক্লাসটি `Parent` ক্লাসকে এক্সটেন্ড করে, এবং `Parent` ক্লাসটি `Grandparent` ক্লাসকে এক্সটেন্ড করে, তাহলে `new Child()` কল করলে কনস্ট্রাক্টরগুলো এই ক্রমে এক্সিকিউট হবে:
+1.  `Grandparent()` কনস্ট্রাক্টর
+2.  `Parent()` কনস্ট্রাক্টর
+3.  `Child()` কনস্ট্রাক্টর
+একটি অবজেক্ট তৈরির সময় কনস্ট্রাক্টরগুলো ওপর থেকে নিচে (অর্থাৎ সুপারক্লাস থেকে সাবক্লাস) পর্যন্ত এক্সিকিউট হয়।
+এই প্রক্রিয়াটি চলতে থাকে যতক্ষণ না এটি সব ক্লাসের মূল ক্লাস `java.lang.Object` পর্যন্ত পৌঁছায়।
 
 
 
@@ -742,14 +754,17 @@ a,c
 
 
 Explanation:
-* এই কোডটি `||` (OR) অপারেটর ব্যবহার করে নিশ্চিত করে যে ব্যবহারকারীর ইনপুট 1 এর চেয়ে কম অথবা 10 এর চেয়ে বেশি হলে লুপটি চলবে।
-* যদি ইনপুটটি 1 থেকে 10 এর মধ্যে না হয়, তবে এটি লুপের শর্তকে সত্য করে এবং একটি নতুন ইনপুট গ্রহণের জন্য অনুরোধ করে।
-* অন্যান্য বিকল্পগুলোতে ভুল লজিক্যাল অপারেটর (`OR`, `&&`) বা ভুল শর্ত ব্যবহার করা হয়েছে।
-`int number = sc.nextInt(); while (number < 1 || number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }`
+
+a. `int number = sc.nextInt(); while (number < 1 || number > 10) { System.err.println("Invalid range, Enter a number from 1 to 10"); number = sc.nextInt(); }`
+*লুপের কার্যকারিতা: যতক্ষণ পর্যন্ত ব্যবহারকারী 1 থেকে 10 এর বাইরের কোনো সংখ্যা ইনপুট দেবে, লুপটি ততক্ষণ চলতে থাকবে এবং বারবার ইনপুট চাইবে। যখন একটি বৈধ সংখ্যা ইনপুট দেওয়া হবে, তখন লুপের শর্তটি মিথ্যা হবে এবং লুপটি বন্ধ হয়ে যাবে।
+
+অন্যান্য অপশনগুলো ভুল কারণ:
+* `number < 1 OR number > 10`**: এটি সঠিক লজিক হলেও, জাভাতে `OR` এর বদলে `||` ব্যবহার করতে হয়।
+* `number > 1 || number < 10`**: এই লজিকটি ভুল। প্রায় যেকোনো সংখ্যাই হয় 1-এর চেয়ে বড় অথবা 10-এর চেয়ে ছোট হবে। তাই লুপটি একটি অবিরাম লুপ (infinite loop) তৈরি করবে।
+* `number < 1 && number > 10`**: এই লজিকটি ভুল। একটি সংখ্যা একই সাথে 1-এর চেয়ে ছোট এবং 10-এর চেয়ে বড় হতে পারে না। তাই লুপটি একবারও চলবে না।
 
 
-26.he following method compiles and executes but does not work as you
-might hope. What is wrong with it?
+26.The following method compiles and executes but does not work as you might hope. What is wrong with it?
 public static int[] copyArray(int[] anArray){
 int[] temp = new int[anArray.length];
 temp = anArray;
