@@ -322,7 +322,7 @@ Explanation:
 এজন্য, আউটপুট `0` প্রিন্ট করা হয়।
 
 
-9.What is the output of the following?
+9. What is the output of the following?
 14: int count = 0;
 15: LocalDate date = LocalDate.of(2017, Month.JANUARY, 1);
 16: while (date.getMonth() != Month.APRIL)
@@ -343,11 +343,16 @@ Explanation:
 
 
 Explanation:
+ while (date.getMonth() != Month.APRIL) { // একটি লুপ যা তারিখের মাস এপ্রিল না হওয়া পর্যন্ত চলবে             
+        date = date.minusMonths(1);// তারিখ থেকে এক মাস কমিয়ে আপডেট করা হয়
+date প্রতিবার এক মাস করে পেছনের দিকে যেতে থাকবে, লুপের শর্তটিও date এখন জানুয়ারি,ডিসেম্বর ....মোট ৯ বার লুপ চলার পর, date এর মাস এপ্রিল হয়। তখন লুপের শর্তটি মিথ্যা হয়ে যায় এবং লুপটি বন্ধ হয়ে যায়।
 
-1.  অ্যারে সাজানো: `Arrays.sort(args)` কমান্ডটি `args` অ্যারেটিকে বর্ণানুক্রমিকভাবে সাজায়। `["seed", "flower", "plant"]` হয়ে যায় `["flower", "plant", "seed"]`।
-2.  মূল্য নির্ধারণ: `args[0]` এখন `"flower"`।
-3.  সন্ধান করা: `binarySearch` মেথডটি সাজানো অ্যারেতে `"flower"` খোঁজে।
-4.  ফলাফল: যেহেতু `"flower"` অ্যারের প্রথম উপাদান, তাই মেথডটি এর ইনডেক্স `0` রিটার্ন করে।
+লুপ শেষ হওয়ার পর প্রোগ্রামটি তার পরের লাইনে চলে আসে, যা হলো count++;(count এর মান ০ থেকে বাড়িয়ে ১ করে)।
+সবশেষে, System.out.println(count) লাইনটি count এর চূড়ান্ত মান, অর্থাৎ 1 প্রিন্ট করে।
+সুতরাং, লুপটি শেষ হয় ঠিকই, কিন্তু count ভেরিয়েবলটি লুপের বাইরে থাকার কারণে শুধুমাত্র একবারই বাড়ে।
+
+
+
 
 
 
@@ -394,10 +399,7 @@ System.out.println(seven);
 
 Explanation:
 এখানে প্রধান ত্রুটিটি হলো boolean variable "seven" is a local variable. It needs to declared outside of if statement।
-ব্যাখ্যা
-seven ভেরিয়েবলটি if এবং else ব্লকের মধ্যে ঘোষণা করা হয়েছে। তাই এর স্কোপ বা কার্যকারিতার পরিধি শুধুমাত্র সেই ব্লকগুলোর মধ্যে সীমাবদ্ধ। 
-System.out.println(seven) লাইনটি সেই ব্লকগুলোর বাইরে থাকায়, কম্পাইলার seven ভেরিয়েবলটিকে খুঁজে পায় না, ফলে একটি কম্পাইলেশন ত্রুটি হয়।
-এই ত্রুটি ঠিক করার জন্য, seven ভেরিয়েবলটিকে if স্টেটমেন্টের আগে ঘোষণা করতে হবে।
+
 
 
 
