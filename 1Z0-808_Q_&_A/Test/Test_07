@@ -34,12 +34,22 @@ Date: 9 August 2025
 - `p -> p.length() >= 1` সব স্ট্রিং যার লেনথ ১ বা বেশি
 
 
-
+-----------------------
 
 01.String [] arr = {“1st”, “2nd”, “3rd”, “4th”, “5th”};
 String place = “faraway”;
 System.out.println(arr[place.indexOf(“a”, 3)]); //Line n1
 Output: ?
+
+
+
+
+
+
+
+
+
+
 
 Ans:
 place.indexOf("a", 3) → ৩য় ইনডেক্স থেকে প্রথম 'a' হলো ইনডেক্স ৩ (কারণ 'a' ইতিমধ্যে ৩ নম্বর ইনডেক্সে আছে)।
@@ -61,6 +71,16 @@ Following options are available to replace /*INSERT*/:
 6. word = word.delete(0, 2);
 
 How many of the above options can be used to replace /*INSERT*/ (separately and not together) such that given command prints BUS on to the console?
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,6 +112,22 @@ Which of the following statements is correct?
  Three statements cause compilation error
  Four statements cause compilation error
  No compilation error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  Explanation:
@@ -128,6 +164,22 @@ What will be the result of compiling and executing Test class?
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Explanation:
 1.  `sb.reverse()`: এটি একটি সঠিক মেথড কল। `StringBuilder` অবজেক্ট `sb`-এর মধ্যে থাকা "TOMATO" স্ট্রিংটিকে এটি "OTAMOT" এ রূপান্তরিত করবে এবং পরিবর্তিত `StringBuilder` অবজেক্টটিকেই ফেরত দেবে।
 2.  `.replace("O", "A")`: মূল সমস্যাটি এখানেই। `StringBuilder` ক্লাসে এমন কোনো `replace()` মেথড নেই যা দুটি `String` আর্গুমেন্ট গ্রহণ করে। 
@@ -151,6 +203,16 @@ What will be the result of compiling and executing Test class?
  BABA
 
 
+
+
+
+
+
+
+
+
+
+
  Ans: 
  Last one
 
@@ -166,6 +228,22 @@ What will be the result of compiling and executing Test class?
  RISE ABOVE
  ABOVE ABOVE
  RISE ABOVE RISE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  Explanation:
@@ -278,6 +356,22 @@ What will be the result of compiling and executing Test class?
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Explanation:
 In this example, code is trying to remove an item from the list while iterating using traditional for loop 
 so one can think that this code would throw java.util.ConcurrentModificationException.
@@ -301,6 +395,22 @@ What will be the result of compiling and executing Test class?
  [HelloWorld!, Hello, Hello]
  [HelloWorld!, Hello, HelloWorld!]
  [HelloWorld!, HelloWorld!, HelloWorld!]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -368,6 +478,22 @@ What will be the result of compiling and executing Test class?
  [A, D, B, C]
  [A, D]
  [A, B, C]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -542,6 +668,22 @@ What will be the result of compiling and executing Test class?
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Explanation:
  1.  `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।    
  2.  `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
@@ -570,6 +712,22 @@ What will be the result of compiling and executing Test class?
  FALSE TRUE
  TRUE TRUE
  TRUE FALSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Explanation:
@@ -666,6 +824,22 @@ System.out.println(list.remove(0) + “:” + list.remove(null));
  null:true
  null:null
  NullPointerException is thrown at runtime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
