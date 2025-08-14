@@ -374,8 +374,10 @@ What will be the result of compiling and executing Test class?
 
 
 Explanation:
-In this example, code is trying to remove an item from the list while iterating using traditional for loop 
-so one can think that this code would throw java.util.ConcurrentModificationException.
+dryFruits.remove(new StringBuilder("Almond"));: এই লাইনটি আরেকটি নতুন StringBuilder অবজেক্ট তৈরি করে, যার কনটেন্ট "Almond"। 
+এই নতুন অবজেক্টটি ArrayList-এর মধ্যে থাকা আগের "Almond" অবজেক্টটির মতো দেখতে হলেও, এটি ভিন্ন মেমরি অ্যাড্রেসে আছে।
+remove() মেথডটি এই নতুন অবজেক্টের রেফারেন্স দিয়ে লিস্টের মধ্যে খোঁজে। যেহেতু কোনো রেফারেন্স মিলবে না, তাই কোনো এলিমেন্ট রিমুভ হবে না।
+শেষ পর্যন্ত, System.out.println(dryFruits); লাইনটি সম্পূর্ণ লিস্টটি প্রিন্ট করবে, যার মধ্যে "Almond" অবজেক্টটি এখনো আছে। তাই আউটপুট হবে [Walnut, Apricot, Almond, Date]।
 
 
 10.public class Test {
@@ -422,28 +424,28 @@ Explanation:
 আউটপুটে, `[HelloWorld!, Hello, HelloWorld!]` প্রিন্ট হবে।
 
 
-11.public class Test {
-public static void main(String[] args) {
-List list = new ArrayList<>();
-list.add(“ONE”);
-list.add(“TWO”);
-list.add(“THREE”);
-list.add(“THREE”);
-
-if(list.remove(2)) {
-list.remove(“THREE”);
-}
-
-System.out.println(list);
-}
-}
-What will be the result of compiling and executing Test class?
-
- [ONE, TWO, THREE, THREE]
- [ONE, TWO, THREE]
- [ONE, TWO]
- Compilation error
- An exception is thrown at runtime
+11. public class Test {
+    public static void main(String[] args) {
+    List list = new ArrayList<>();
+    list.add(“ONE”);
+    list.add(“TWO”);
+    list.add(“THREE”);
+    list.add(“THREE”);
+    
+    if(list.remove(2)) {
+    list.remove(“THREE”);
+    }
+    
+    System.out.println(list);
+    }
+    }
+    What will be the result of compiling and executing Test class?
+    
+     [ONE, TWO, THREE, THREE]
+     [ONE, TWO, THREE]
+     [ONE, TWO]
+     Compilation error
+     An exception is thrown at runtime
 
 
 
@@ -527,8 +529,7 @@ What will be the result of compiling and executing Test class?
 
 
 ### ব্যাখ্যা
-1.  `List list = new ArrayList<>(4);`: এই লাইনে একটি `ArrayList` তৈরি করা হয় যার প্রাথমিক ধারণক্ষমতা (capacity) ৪। তবে, এই মুহূর্তে লিস্টটি সম্পূর্ণ খালি। এর সাইজ বা আকার হলো `0`।
-2.  `list.add(0, “Array”);`: এই লাইনটি বৈধ, কারণ খালি লিস্টে `0` ইনডেক্সে উপাদান যুক্ত করা যায়। এর পর লিস্টের সাইজ হবে `1`।
+1.  `list.add(0, “Array”);`: এই লাইনটি বৈধ, কারণ খালি লিস্টে `0` ইনডেক্সে উপাদান যুক্ত করা যায়। এর পর লিস্টের সাইজ হবে `1`।
 3.  `list.add(2, “List”);`: সমস্যাটি এই লাইনে ঘটে। `ArrayList`-এর `add(index, element)` মেথড ব্যবহার করে কোনো উপাদান যুক্ত করতে হলে, ইনডেক্সটি অবশ্যই `0` থেকে বর্তমান সাইজ পর্যন্ত হতে হবে। 
 যেহেতু লিস্টের বর্তমান সাইজ `1`, তাই শুধুমাত্র `0` এবং `1` ইনডেক্সগুলো বৈধ। `2` ইনডেক্সটি অবৈধ হওয়ায় জাভা একটি `IndexOutOfBoundsException` থ্রো করবে।
 
@@ -556,6 +557,9 @@ What will be the result of compiling and executing Test class?
  [RED, GREEN]
  [RED, ORANGE]
  [RED, ORANGE, GREEN]
+
+
+
 
 
 
@@ -595,15 +599,17 @@ What will be the result of compiling and executing Test class?
 
 
 
-### ব্যাখ্যা
 
-এই কোডের মূল বিষয় হলো `StringBuilder` ক্লাসের `equals()` মেথড ওভাররাইড করা নেই।
-1.  প্রথমে, একটি `ArrayList` তৈরি করা হয় এবং তাতে "Sunday", "Monday", এবং "Tuesday" এই তিনটি ভিন্ন `StringBuilder` অবজেক্ট যোগ করা হয়। ফলে, লিস্টের সাইজ হয় ৩।
-2.  `if(days.contains(new StringBuilder("Sunday")))` এই লাইনটি একটি গুরুত্বপূর্ণ শর্ত। `contains()` মেথডটি যখন একটি কালেকশনে কোনো অবজেক্ট আছে কি না তা পরীক্ষা করে, তখন এটি সেই অবজেক্টের `equals()` মেথড ব্যবহার করে তুলনা করে।
-3.  যেহেতু `StringBuilder` ক্লাসটি তার প্যারেন্ট ক্লাস `Object` থেকে `equals()` মেথডটি ওভাররাইড করে না, তাই ডিফল্ট `Object.equals()` মেথডটি ব্যবহৃত হয়। এই মেথডটি দুটি অবজেক্টের কন্টেন্ট নয়, বরং তাদের মেমরি রেফারেন্স তুলনা করে।
-4.  `new StringBuilder("Sunday")` একটি সম্পূর্ণ নতুন অবজেক্ট তৈরি করে, যার মেমরি অ্যাড্রেস লিস্টে থাকা "Sunday" অবজেক্টের মেমরি অ্যাড্রেসের সাথে মেলে না। তাই, `contains()` মেথড `false` রিটার্ন করে।
-5.  শর্তটি `false` হওয়ায় `if` ব্লকের ভেতরের কোডটি (`days.add(...)`) এক্সিকিউট হয় না।
-6.  ফলে, লিস্টের সাইজ ৩-ই থাকে এবং `System.out.println(days.size());` এই লাইনটি `3` প্রিন্ট করে।
+
+
+
+
+
+
+### ব্যাখ্যা
+1.  `new StringBuilder("Sunday")` একটি সম্পূর্ণ নতুন অবজেক্ট তৈরি করে, যার মেমরি অ্যাড্রেস লিস্টে থাকা "Sunday" অবজেক্টের মেমরি অ্যাড্রেসের সাথে মেলে না। তাই, `contains()` মেথড `false` রিটার্ন করে।
+2.  শর্তটি `false` হওয়ায় `if` ব্লকের ভেতরের কোডটি (`days.add(...)`) এক্সিকিউট হয় না।
+3.  ফলে, লিস্টের সাইজ ৩-ই থাকে এবং `System.out.println(days.size());` এই লাইনটি `3` প্রিন্ট করে।
 
 
 
@@ -632,6 +638,19 @@ What will be the result of compiling and executing Test class?
  VTE
  VTEO
  VETO
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### ব্যাখ্যা
 
