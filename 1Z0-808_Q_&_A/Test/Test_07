@@ -613,9 +613,9 @@ What will be the result of compiling and executing Test class?
 
 
 
-16.public class Test {
+16. public class Test {
 public static void main(String[] args) {
-List list = new ArrayList<>();
+List<Charecter> list = new ArrayList<>();
 list.add(0, ‘V’);
 list.add(‘T’);
 list.add(1, ‘E’);
@@ -705,33 +705,34 @@ What will be the result of compiling and executing Test class?
 
 
 Explanation:
- 1.  `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।    
- 2.  `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
-`indexOf` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে, এই ক্ষেত্রে `list.indexOf(0)`-এ `0` স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয় (auto-boxed), তাই `indexOf` কোডে কোনো সমস্যা হয় না। `list.indexOf(0)` মেথডটি `2` রিটার্ন করে (যে ইনডেক্সে `0` লিস্টে সংরক্ষিত আছে)। সুতরাং, `list.remove(list.indexOf(0));` কোডটি `list.remove(2);` তে রূপান্তরিত হয়।
+ 1. `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।    
+ 2. `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
+`indexOf` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে, এই ক্ষেত্রে `list.indexOf(0)`-এ `0` স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয় (auto-boxed), তাই `indexOf` কোডে কোনো সমস্যা হয় না। 
+`list.indexOf(0)` মেথডটি `2` রিটার্ন করে (যে ইনডেক্সে `0` লিস্টে সংরক্ষিত আছে)। সুতরাং, `list.remove(list.indexOf(0));` কোডটি `list.remove(2);` তে রূপান্তরিত হয়।
 এখানে `remove(int)` ভার্সনটি মিলে যায়। এটি একটি সরাসরি মিল, তাই কম্পাইলার এই ক্ষেত্রে অটো-বক্সিং করে না। `list.remove(2)` কোডটি ২ নম্বর ইনডেক্সে থাকা উপাদানটিকে সরিয়ে দেয়, যা হলো `0`।
 সুতরাং, আউটপুটে আপনি `[2, 1]` পাবেন।
 
 
 18.public class Test {
-public static void main(String [] args) {
-List list = new ArrayList();
+  public static void main(String [] args) {
+  List list = new ArrayList();
+  
+  list.add(27);
+  list.add(27);
+  
+  list.add(new Integer(27));
+  list.add(new Integer(27));
+  
+  System.out.println(list.get(0) == list.get(1));
+  System.out.println(list.get(2) == list.get(3));
+  }
+  }
+  What will be the result of compiling and executing Test class?
 
-list.add(27);
-list.add(27);
-
-list.add(new Integer(27));
-list.add(new Integer(27));
-
-System.out.println(list.get(0) == list.get(1));
-System.out.println(list.get(2) == list.get(3));
-}
-}
-What will be the result of compiling and executing Test class?
-
- FALSE FALSE
- FALSE TRUE
- TRUE TRUE
- TRUE FALSE
+   FALSE FALSE
+   FALSE TRUE
+   TRUE TRUE
+   TRUE FALSE
 
 
 
@@ -763,35 +764,36 @@ Explanation:
 এই কারণেই `System.out.println(list.get(0) == list.get(1));` এর মান `true` আসে।
 `new Integer(27)` মেমরিতে একটি নতুন অবজেক্ট তৈরি করে, তাই `System.out.println(list.get(2) == list.get(3));` এর মান `false` আসে।
 
-19.public class Test {
-public static void main(String[] args) {
-List list = new ArrayList<>();
-list.add(100);
-list.add(200);
-list.add(100);
-list.add(200);
-list.remove(100);
+19. public class Test {
+    public static void main(String[] args) {
+    List list = new ArrayList<>();
+    list.add(100);
+    list.add(200);
+    list.add(100);
+    list.add(200);
+    
+    list.remove(100);
+    
+    System.out.println(list);
+    }
+    }
+    
+     [200, 100, 200]
+     [100, 200, 200]
+     [200, 200]
+     [200]
+     Compilation error
+     Exception is thrown at runtime
 
-System.out.println(list);
-}
-}
-
- [200, 100, 200]
- [100, 200, 200]
- [200, 200]
- [200]
- Compilation error
- Exception is thrown at runtime
 
 
 
- 
+
+
+
 ### ব্যাখ্যা
-* লিস্টে উপাদান যুক্ত করা: প্রথমে, `int` ভ্যালুগুলো (`100`, `200`, `100`, `200`) স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয়ে লিস্টে যুক্ত হয়। ফলে, লিস্টটি দাঁড়ায় `[100, 200, 100, 200]`।
-* ব্যতিক্রমের কারণ: সমস্যাটি হয় `list.remove(100);` এই লাইনে। `ArrayList`-এর `remove` মেথডের দুটি ওভারলোড আছে:
-    1.  `remove(int index)`: যা ইনডেক্স নম্বর অনুযায়ী উপাদান সরায়।
-    2.  `remove(Object o)`: যা অবজেক্টের মান অনুযায়ী প্রথম উপাদানটি সরায়।
-এখানে, `100` একটি `int` প্রিমিটিভ টাইপ হওয়ায় কম্পাইলার `remove(int index)` মেথডটিকে নির্বাচন করে। অর্থাৎ, প্রোগ্রামটি লিস্টের 100 নম্বর ইনডেক্স থেকে একটি উপাদান সরানোর চেষ্টা করে। কিন্তু, লিস্টে মাত্র ৪টি উপাদান আছে (০ থেকে ৩ নম্বর ইনডেক্স পর্যন্ত)। তাই, `100` নম্বর ইনডেক্সটি বৈধ সীমার বাইরে হওয়ায় এটি `java.lang.IndexOutOfBoundsException` থ্রো করে।
+এখানে, `100` একটি `int` প্রিমিটিভ টাইপ হওয়ায় কম্পাইলার `remove(int index)` মেথডটিকে নির্বাচন করে। অর্থাৎ, প্রোগ্রামটি লিস্টের 100 নম্বর ইনডেক্স থেকে একটি উপাদান সরানোর চেষ্টা করে।
+কিন্তু, লিস্টে মাত্র ৪টি উপাদান আছে (০ থেকে ৩ নম্বর ইনডেক্স পর্যন্ত)। তাই, `100` নম্বর ইনডেক্সটি বৈধ সীমার বাইরে হওয়ায় এটি `java.lang.IndexOutOfBoundsException` থ্রো করে।
 এই কারণে, প্রোগ্রামটি `System.out.println` লাইনটি পর্যন্ত পৌঁছানোর আগেই থেমে যাবে।
 
 
@@ -818,10 +820,16 @@ System.out.println(fruits);
  [apple, orange, mango, banana, grape]
 
 
- 
+
+
+
+
+
+
+
+
 ### ব্যাখ্যা
-* প্রথমে, `fruits` লিস্টে ৬টি ফলের নাম যুক্ত করা হয়। ফলে, লিস্টটি দাঁড়ায়: `[apple, orange, grape, mango, banana, grape]`।
-* এরপর `if(fruits.remove("grape"))` এই লাইনটি এক্সিকিউট হয়। `remove(Object o)` মেথডটি লিস্টে `"grape"` এর প্রথম উপস্থিতিটি (`index 2`-এ) খুঁজে পেয়ে সরিয়ে দেয়। এই মেথডটি সফল হওয়ায় `true` রিটার্ন করে।
+*  `if(fruits.remove("grape"))` এই লাইনটি এক্সিকিউট হয়। `remove(Object o)` মেথডটি লিস্টে `"grape"` এর প্রথম উপস্থিতিটি (`index 2`-এ) খুঁজে পেয়ে সরিয়ে দেয়। এই মেথডটি সফল হওয়ায় `true` রিটার্ন করে।
 * যেহেতু `if` এর শর্তটি সত্য, তাই এর ভেতরের কোড `fruits.remove("papaya");` এক্সিকিউট হয়।
 * কিন্তু লিস্টে `"papaya"` নামের কোনো উপাদান নেই। তাই এই `remove()` মেথডটি সফল হয় না এবং লিস্টে কোনো পরিবর্তন ঘটে না।
 * ফলস্বরূপ, লিস্টের একটি `"grape"` উপাদান অবশিষ্ট থেকে যায়।
@@ -873,27 +881,27 @@ Explanation:
 
 
 22.public class Test {
-public static void main(String[] args) {
-List list;
-list = new ArrayList<>(); //Line n1
-list.add(“A”);
-list.add(“E”);
-list.add(“I”);
-list.add(“O”);
-list.add(“U”);
-list.addAll(list.subList(0, 4)); //Line n2
-System.out.println(list);
-}
-}
-
-What will be the result of compiling and executing Test class?
-
- Line n1 causes compilation error
- Line n2 causes compilation error
- An exception is thrown at runtime by Line n2
- [A, E, I, O, U]
- [A, E, I, O, U, A, E, I, O, U]
- [A, E, I, O, U, A, E, I, O]
+  public static void main(String[] args) {
+  List list;
+  list = new ArrayList<>(); //Line n1
+  list.add(“A”);
+  list.add(“E”);
+  list.add(“I”);
+  list.add(“O”);
+  list.add(“U”);
+  list.addAll(list.subList(0, 4)); //Line n2
+  System.out.println(list);
+  }
+  }
+  
+  What will be the result of compiling and executing Test class?
+  
+   Line n1 causes compilation error
+   Line n2 causes compilation error
+   An exception is thrown at runtime by Line n2
+   [A, E, I, O, U]
+   [A, E, I, O, U, A, E, I, O, U]
+   [A, E, I, O, U, A, E, I, O]
 
 
 
