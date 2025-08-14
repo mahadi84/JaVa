@@ -1,37 +1,96 @@
 Date: 9 August 2025
 
 
-এই প্রশ্নগুলো থেকে আমরা যে গুরুত্বপূর্ণ বিষয়গুলো শিখতে পারি:
+add(index, element):মেথডটি কেবল তখনই কাজ করে যখন ইনডেক্সের মান `0` থেকে বর্তমান সাইজের মধ্যে থাকে (`0 <= index <= size()`)।
+list.add(0, “Array”); //Legal
+list.add(2, “List”); //Legal but index sequence (0...) must be  maintained while inserting data
 
-## 1. স্ট্রিং ও স্ট্রিংবিল্ডার সম্পর্কিত ভুল
-- `StringBuilder`-এ `contentEquals()` মেথড নেই, শুধু `String`-এ আছে
-- `StringBuilder.reverse()` সঠিক, কিন্তু `replace("O","A")` ভুল - কারণ `StringBuilder`-এ এমন মেথড নেই
-- `String` immutable, `StringBuilder` mutable
-- `String`-এর `equals()` কন্টেন্ট চেক করে, `StringBuilder`-এর `equals()` দুটি অবজেক্ট একই রেফারেন্স কিনা তা পরীক্ষা করে
--StringBuilder supports Method Chainning.
+--
+//These are legal
+list.add(0, 'V');
+list.add('T');
+list.add(1, 'E');
+list.add(3, 'O');
+--
 
-## 2. List and ArrayList() অপারেশনসনে সাধারণ ভুল
-- `remove()` মেথডের দুটি ভার্সন:
-  - `remove(int index)` → ইনডেক্স দিয়ে মুছে, উদাহরণ: fruits.remove(0);
-  - `remove(Object o)` → অবজেক্ট দিয়ে মুছে, উদাহরণ: fruits.remove("Banana");
-  - `ArrayList`-এ ডাইরেক্টলি বড় ইনডেক্সে (`list.add(3,"X")`) অ্যাড করলে `IndexOutOfBoundsException`
-- addAll(int index, Collection c) পদ্ধতিটি শুধুমাত্র তালিকার শেষে উপাদান যোগ করে না, বরং আপনি যে কোনো নির্দিষ্ট ইনডেক্স থেকে একটি Collection-এর সমস্ত উপাদান যোগ করতে পারেন।
-- `subList()` মূল লিস্টের ভিউ রিটার্ন করে - এতে পরিবর্তন মূল লিস্টকে প্রভাবিত করে
-- `ConcurrentModificationException`: ইটারেশন চলাকালীন লিস্ট মডিফাই করলে
+word.substring(2, 5); //put data, start from 2 index and end it to 4
 
-## 3. অটোবক্সিং ও ইকুয়ালিটি চেক
-- `Integer` ক্যাশে (-128 থেকে 127) এর জন্য `==` true দিতে পারে
-- `new Integer(27) == new Integer(27)` → false (নতুন অবজেক্ট)
-- `remove(100)` vs `remove(new Integer(100))` - প্রথমটি ইনডেক্স হিসেবে নেয়
+list1.addAll(1, list2); মেথডটি এই নতুন সাবলিস্টের সমস্ত উপাদান মূল `list`-এর শেষে যুক্ত করে।
+list.subList(start index, end index)` উপাদানগুলো নিয়ে একটি নতুন সাবলিস্ট তৈরি করে। 
+ Example: 
+        -list.subList(0, 4); মেথডটি `list`-এর ০ নম্বর ইনডেক্স থেকে শুরু করে ৪ নম্বর ইনডেক্সের আগ পর্যন্ত (অর্থাৎ ইনডেক্স ০, ১, ২, এবং ৩) উপাদানগুলো নিয়ে একটি নতুন সাবলিস্ট তৈরি করে। 
+        -list.addAll(list.subList(0, 4)); মেথডটি এই নতুন সাবলিস্টের সমস্ত উপাদান মূল `list`-এর শেষে যুক্ত করে।
 
-## 4. ডেট টাইপ কনভার্শন
-- `LocalDate.parse()` স্ট্রিং ফরম্যাট সঠিক হতে হবে ("YYYY-MM-DD")
-- `removeIf()` ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে শর্ত অনুযায়ী মুছে
 
-## 5. প্রেডিকেট ও ল্যাম্বডা
-- `Predicate` সবসময় boolean রিটার্ন করে
-- `p -> true` সব এলিমেন্ট পাস করবে
-- `p -> p.length() >= 1` সব স্ট্রিং যার লেনথ ১ বা বেশি
+
+place.indexOf("a", 3): 
+place স্ট্রিং-এর মধ্যে 3 নাম্বার ইন্ডেক্স (index) থেকে শুরু করে "a" অক্ষরটি খোঁজা। 
+যদি "a" খুঁজে পাওয়া যায়, তাহলে এটি প্রথম "a" অক্ষরের ইন্ডেক্স নাম্বারটি ফেরত দেবে। যদি না পাওয়া যায়, তাহলে এটি -1 ফেরত দেবে।
+
+
+
+string.contentEquals("abc"):
+মেথডটি equals() মেথডের মতোই String এর অক্ষরের সাথে তুলনা করে। 
+তবে এর একটি বিশেষ সুবিধা হলো এটি একটি String কে অন্য যেকোনো CharSequence (যেমন StringBuilder বা StringBuffer ) 
+এর কেবল অক্ষরের ক্রম এবং বিষয়বস্তু (content) তুলনা করে, অবজেক্ট রেফারেন্স (object reference) নয়।
+        String myString = "hello";
+        StringBuilder myStringBuilder = new StringBuilder("hello");
+
+        boolean result1 = myString.contentEquals("hello");     // true
+        boolean result2 = myString.contentEquals(myStringBuilder); // true
+        boolean result3 = myString.contentEquals("world");     // false
+
+**  `StringBuilder` ক্লাসে `contentEquals()` নামে কোনো মেথড নেই। 
+
+
+string.equals(sb): 
+এটি `StringBuilder` অবজেক্টকে `String` এর সাথে তুলনা করার কারণে `false` রিটার্ন করবে।
+
+sb.equals(string):
+    `StringBuilder` ক্লাসের `equals()` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে। তাই এই লাইনটি কম্পাইল হবে। 
+    তবে, এটি অবজেক্ট রেফারেন্স তুলনা করে, কন্টেন্ট নয়, তাই রানটাইমে `false` রিটার্ন করবে।
+
+
+sb.reverse().replace("O","M");  //will not compile
+sb.reverse().replace(1,2,"O");  //Ok
+  -StringBuilder`-এর `replace()` মেথডটি হলো `replace(int start, int end, String str)`, যা একটি নির্দিষ্ট ইনডেক্স সীমার মধ্যে থাকা সাবস্ট্রিংকে প্রতিস্থাপন করে।
+  -method chainning OK with StringBuilder
+
+
+list.remove() মেথডটি দুটি ভিন্ন উপায়ে ব্যবহার করা যায়:
+1. list.remove(int index): এটি একটি নির্দিষ্ট ইন্ডেক্স (যেমন 0, 1, 2) এর ডেটা মুছে ফেলে। এটি লিস্টের যে  এলিমেন্টটি (text/null) মুছে ফেলবে এবং সেই এলিমেন্টটি(String/null) রিটার্ন করবে। 
+2. list.remove(Object o): এটি একটি নির্দিষ্ট অবজেক্ট (যেমন "abc", null) খুঁজে বের করে এবং প্রথমটি মুছে ফেলে এবং true অথবা false রিটার্ন করবে।
+    Example: list.add(null); System.out.println(list.remove(0) + “:” + list.remove(null)); Output: null:true
+
+3. list.remove(list.indexOf(0)): `indexOf` মেথডটি `Object` টাইপের আর্গুমেন্ট গ্রহণ করে, এই ক্ষেত্রে `list.indexOf(0)`-এ `0` স্বয়ংক্রিয়ভাবে `Integer` অবজেক্টে পরিণত হয় (auto-boxed), 
+    তাই `indexOf` কোডে কোনো সমস্যা হয় না। `list.indexOf(0)` মেথডটি `2` রিটার্ন করে (যে ইনডেক্সে `0` লিস্টে সংরক্ষিত আছে, list.add(new Integer(2))। 
+    সুতরাং, `list.remove(list.indexOf(0));` কোডটি `list.remove(2);` তে রূপান্তরিত হয়।
+4. students.remove(new Student("James", 25)): new Student("James", 25) একটি নতুন অবজেক্ট তৈরি করে, যা লিস্টে থাকা অন্য কোনো `Student` অবজেক্টের সাথে মেমরি অ্যাড্রেসের দিক থেকে এক নয়।
+    ফলস্বরূপ, `remove()` মেথডটি কোনো মিল খুঁজে পায় না এবং কোনো অবজেক্টকে সরাতে ব্যর্থ হয়।
+5. list.add(100);  list.remove(100); //লিস্টে মাত্র 1টি উপাদান আছে (০ ইনডেক্স)। তাই, `100` নম্বর ইনডেক্সটি বৈধ সীমার বাইরে হওয়ায় এটি `java.lang.IndexOutOfBoundsException` থ্রো করে।
+
+
+
+StringBuilder sb = new StringBuilder(“Hello”);
+List list = new ArrayList<>();
+list.add(sb);
+sb.append(“ World!”);
+Output: Hello World   
+...Why?
+
+ 
+
+if(days.contains(new StringBuilder(“Sunday”))) 
+**`new StringBuilder("Sunday")` একটি সম্পূর্ণ নতুন অবজেক্ট তৈরি করে, যার মেমরি অ্যাড্রেস লিস্টে থাকা "Sunday" অবজেক্টের মেমরি অ্যাড্রেসের সাথে মেলে না। 
+তাই, `contains()` মেথড `false` রিটার্ন করে।
+
+
+list.add("A"); list.add("B");list.add("C");
+List subList = list.subList(1, 2);// একটি ভিউ (view) তৈরি করে। এই ভিউটি মূল লিস্টের সাথে সরাসরি সংযুক্ত থাকে। এই `subList`-এর মধ্যে শুধুমাত্র "B" উপাদানটি থাকে।
+subList.set(0, "E"); //যেহেতু `subList` মূল লিস্টের সাথে সংযুক্ত একটি ভিউ, তাই এই পরিবর্তনটি মূল লিস্টের ১ নম্বর ইনডেক্সের উপাদানকেও প্রভাবিত করে।  ফলে, মূল লিস্টের "O" পরিবর্তিত হয়ে "E" হয়ে যায়।
+Output: AEC
+
+
 
 
 -----------------------
@@ -909,7 +968,6 @@ Explanation:
 
 
 ### ব্যাখ্যা
-* প্রথমে, `list` এ পাঁচটি অক্ষর ("A", "E", "I", "O", "U") যুক্ত করা হয়। ফলে লিস্টটি হয়: `[A, E, I, O, U]`।
 * এরপর `list.addAll(list.subList(0, 4));` এই লাইনটি এক্সিকিউট হয়।
     * `list.subList(0, 4)` মেথডটি `list`-এর ০ নম্বর ইনডেক্স থেকে শুরু করে ৪ নম্বর ইনডেক্সের আগ পর্যন্ত (অর্থাৎ ইনডেক্স ০, ১, ২, এবং ৩) উপাদানগুলো নিয়ে একটি নতুন সাবলিস্ট তৈরি করে। এই সাবলিস্টটি হলো `[A, E, I, O]`।
     * `list.addAll()` মেথডটি এই নতুন সাবলিস্টের সমস্ত উপাদান মূল `list`-এর শেষে যুক্ত করে।
@@ -937,8 +995,16 @@ What will be the result of compiling and executing Test class?
 
 
 
-### ব্যাখ্যা
 
+
+
+
+
+
+
+
+
+### ব্যাখ্যা
 * প্রথমে, `list` এ "P", "O", এবং "T" এই তিনটি স্ট্রিং যোগ করা হয়।
 * `List subList = list.subList(1, 2);` এই লাইনটি মূল লিস্টের ১ নম্বর ইনডেক্স থেকে শুরু করে ২ নম্বর ইনডেক্সের আগ পর্যন্ত উপাদানগুলো নিয়ে একটি ভিউ (view) তৈরি করে। এই ভিউটি মূল লিস্টের সাথে সরাসরি সংযুক্ত থাকে। এই `subList`-এর মধ্যে শুধুমাত্র "O" উপাদানটি থাকে।
 * `subList.set(0, “E”);` এই লাইনটি `subList`-এর ০ নম্বর ইনডেক্সের উপাদানটি "E" দিয়ে পরিবর্তন করে। যেহেতু `subList` মূল লিস্টের সাথে সংযুক্ত একটি ভিউ, তাই এই পরিবর্তনটি মূল লিস্টের ১ নম্বর ইনডেক্সের উপাদানকেও প্রভাবিত করে। ফলে, মূল লিস্টের "O" পরিবর্তিত হয়ে "E" হয়ে যায়।
@@ -946,32 +1012,43 @@ What will be the result of compiling and executing Test class?
 
 
  24.String [] arr = {“*”, “”, “*”, “”, “*”, “”};
-Predicate pr1 = s -> s.length() < 4; 
-print(arr, pr1); } 
+    Predicate pr1 = s -> s.length() < 4; 
+    print(arr, pr1); } 
+    
+    private static void print(String [] arr, Predicate predicate) {
+    for(String str : arr) {
+    if(predicate.test(str)) {
+    System.out.println(str);
 
-private static void print(String [] arr, Predicate predicate) {
-for(String str : arr) {
-if(predicate.test(str)) {
-System.out.println(str);
+
+
+
+
+
+
+
+Explanation:
+তিনটি * এবং তিনটি খালি লাইন
+
 
  25.public class Test {
-public static void main(String[] args) {
-String [] arr = {“A”, “ab”, “bab”, “Aa”, “bb”, “baba”, “aba”, “Abab”};
-
-processStringArray(arr, /*INSERT*/);
-}
-
-private static void processStringArray(String [] arr, Predicate predicate) {
-for(String str : arr) {
-if(predicate.test(str)) {
-System.out.println(str);
-}
-}
-}
-}
-
-Which of the following options can replace /*INSERT*/ such that on executing Test class all the array elements are displayed in the output?
-Select ALL that apply.
+    public static void main(String[] args) {
+    String [] arr = {“A”, “ab”, “bab”, “Aa”, “bb”, “baba”, “aba”, “Abab”};
+    
+    processStringArray(arr, /*INSERT*/);
+    }
+    
+    private static void processStringArray(String [] arr, Predicate predicate) {
+    for(String str : arr) {
+    if(predicate.test(str)) {
+    System.out.println(str);
+    }
+    }
+    }
+    }
+    
+    Which of the following options can replace /*INSERT*/ such that on executing Test class all the array elements are displayed in the output?
+    Select ALL that apply.
 
  p -> true 
  p -> !false 
@@ -979,26 +1056,46 @@ Select ALL that apply.
  p -> p.length() < 10 
 
 
- 26.List dates = new ArrayList<>();
-dates.add(LocalDate.parse(“2018-7-11”));
-dates.add(LocalDate.parse(“1919-10-25”));
-dates.add(LocalDate.of(2020, 4, 8));
-dates.add(LocalDate.of(1980, Month.DECEMBER, 31));
 
-dates.removeIf(x -> x.getYear() < 2000); System.out.println(dates); } }
 
- [2018-07-11, 1919-02-25, 2020-04-08, 1980-12-31]
- [1919-02-25, 1980-12-31]
- [2018-07-11, 2020-04-08]
- Runtime exception
+
+
+
+
+
+
+Explanation:
+all can be applied as parameter.
+
+
+26.List dates = new ArrayList<>();
+    dates.add(LocalDate.parse(“2018-7-11”));
+    dates.add(LocalDate.parse(“1919-10-25”));
+    dates.add(LocalDate.of(2020, 4, 8));
+    dates.add(LocalDate.of(1980, Month.DECEMBER, 31));
+    
+    dates.removeIf(x -> x.getYear() < 2000); System.out.println(dates); } }
+    
+     [2018-07-11, 1919-02-25, 2020-04-08, 1980-12-31]
+     [1919-02-25, 1980-12-31]
+     [2018-07-11, 2020-04-08]
+     Runtime exception
+
+
+
+
+
+
 
 
 
 
 ### ব্যাখ্যা
-* প্রথমে, চারটি `LocalDate` অবজেক্ট `dates` লিস্টে যুক্ত করা হয়। তারিখগুলো হলো: `2018-07-11`, `1919-10-25`, `2020-04-08`, এবং `1980-12-31`।
-* `dates.removeIf(x -> x.getYear() < 2000);` এই লাইনটি একটি ল্যাম্বডা এক্সপ্রেশন ব্যবহার করে। এটি `List` থেকে সেই সব উপাদান সরিয়ে ফেলে, যা শর্তটি পূরণ করে।
-* শর্তটি হলো `x.getYear() < 2000`, অর্থাৎ যে তারিখগুলোর সাল ২০০০-এর কম।
-* `1919-10-25` এবং `1980-12-31` এই দুটি তারিখের সাল ২০০০-এর কম হওয়ায়, সেগুলোকে লিস্ট থেকে সরিয়ে ফেলা হয়।
-* `2018-07-11` এবং `2020-04-08` এই দুটি তারিখের সাল ২০০০ বা তার বেশি হওয়ায়, সেগুলো লিস্টে থেকে যায়।
-* সবশেষে, অবশিষ্ট তারিখগুলো প্রিন্ট করা হয়।
+x.getYear() < 2000, অর্থাৎ যদি কোনো ডেটের বছর ২০০০ সালের কম হয়, তবে সেই ডেটটি লিস্ট থেকে মুছে ফেলা হবে।
+
+ফিল্টারিং এবং আউটপুট:
+2018-07-11: বছর 2018, যা 2000-এর থেকে বড়। তাই এটি থেকে যাবে।
+1919-10-25: বছর 1919, যা 2000-এর থেকে ছোট। তাই এটি মুছে যাবে।
+2020-04-08: বছর 2020, যা 2000-এর থেকে বড়। তাই এটি থেকে যাবে।
+1980-12-31: বছর 1980, যা 2000-এর থেকে ছোট। তাই এটি মুছে যাবে।
+লিস্ট থেকে দুটি ডেট মুছে ফেলার পর, dates লিস্টে শুধুমাত্র [2018-07-11, 2020-04-08] থাকবে। 
