@@ -52,7 +52,9 @@ Output: ?
 
 
 Ans:
-place.indexOf("a", 3) → ৩য় ইনডেক্স থেকে প্রথম 'a' হলো ইনডেক্স ৩ (কারণ 'a' ইতিমধ্যে ৩ নম্বর ইনডেক্সে আছে)।
+place.indexOf("a", 3): 
+place স্ট্রিং-এর মধ্যে 3 নাম্বার ইন্ডেক্স (index) থেকে শুরু করে "a" অক্ষরটি খোঁজা। 
+যদি "a" খুঁজে পাওয়া যায়, তাহলে এটি প্রথম "a" অক্ষরের ইন্ডেক্স নাম্বারটি ফেরত দেবে। যদি না পাওয়া যায়, তাহলে এটি -1 ফেরত দেবে।
 Output: 4th
 
 
@@ -60,7 +62,6 @@ Output: 4th
 String word = “REBUS”;
 /* INSERT */
 System.out.println(word);
-
 
 Following options are available to replace /*INSERT*/:
 1. word = word.substring(2);
