@@ -191,7 +191,7 @@ Explanation:
 
 
 
- 05.StringBuilder sb = new StringBuilder(“B”); //Line n1
+05.StringBuilder sb = new StringBuilder(“B”); //Line n1
 sb.append(sb.append(“A”)); //Line n2
 System.out.println(sb); //Line n3
 
@@ -218,7 +218,7 @@ What will be the result of compiling and executing Test class?
  Last one
 
 
- 06.String text = “RISE “;
+06.String text = “RISE “;
 text = text + (text = “ABOVE “);
 System.out.println(text);
 
@@ -254,41 +254,41 @@ What will be the result of compiling and executing Test class?
 
 
 
- 07.class Student {
-private String name;
-private int age;
-
-Student(String name, int age) {
-this.name = name;
-this.age = age;
-}
-
-public String toString() {
-return “Student[” + name + “, ” + age + “]”;
-}
-}
-
-public class Test {
-public static void main(String[] args) {
-List students = new ArrayList<>();
-students.add(new Student(“James”, 25));
-students.add(new Student(“James”, 27));
-students.add(new Student(“James”, 25));
-students.add(new Student(“James”, 25));
-
-students.remove(new Student(“James”, 25));
-
-for(Student stud : students) {
-System.out.println(stud);
-}
-}
-}
-What will be the result of compiling and executing Test class?
-
- Student[James, 27] Student[James, 25] Student[James, 25]
- Student[James, 25] Student[James, 27] Student[James, 25]
- Student[James, 27]
- Student[James, 25] Student[James, 27] Student[James, 25] Student[James, 25]
+07.class Student {
+    private String name;
+    private int age;
+    
+    Student(String name, int age) {
+    this.name = name;
+    this.age = age;
+    }
+    
+    public String toString() {
+    return “Student[” + name + “, ” + age + “]”;
+    }
+    }
+    
+    public class Test {
+    public static void main(String[] args) {
+    List students = new ArrayList<>();
+    students.add(new Student(“James”, 25));
+    students.add(new Student(“James”, 27));
+    students.add(new Student(“James”, 25));
+    students.add(new Student(“James”, 25));
+    
+    students.remove(new Student(“James”, 25));
+    
+    for(Student stud : students) {
+    System.out.println(stud);
+    }
+    }
+    }
+    What will be the result of compiling and executing Test class?
+    
+     Student[James, 27] Student[James, 25] Student[James, 25]
+     Student[James, 25] Student[James, 27] Student[James, 25]
+     Student[James, 27]
+     Student[James, 25] Student[James, 27] Student[James, 25] Student[James, 25]
 
 
 
