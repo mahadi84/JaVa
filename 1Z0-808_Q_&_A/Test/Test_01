@@ -1,9 +1,22 @@
 Date: 28 July ,2025
 
 
+###0
+জাভাতে প্যাকেজ, ক্লাস (এবং কনস্ট্রাক্টর), ভেরিয়েবল এবং মেথডের একই নাম ব্যবহার করা সম্ভব? 
+Yes, main as name also compile
 
+কনসোল কল এবং ইনস্ট্যান্টিয়েট করার পরের কলের মধ্যে পার্থক্য ?
+-কনসোল কল (Console Call)
+যখন আপনি সরাসরি কনসোল থেকে কোনো প্রোগ্রাম চালান, তখন জাভা ভার্চুয়াল মেশিন (JVM) স্বয়ংক্রিয়ভাবে সেই ক্লাসের main() পদ্ধতিটি খুঁজে বের করে এবং কল করে। এই কলটি স্ট্যাটিক (static) হওয়ায় ক্লাসের কোনো অবজেক্ট তৈরি করার প্রয়োজন হয় না। এটি প্রোগ্রামের প্রবেশপথ (entry point) হিসেবে কাজ করে।
+ইনস্ট্যান্টিয়েট করার পরের কল (Call after Instantiation)
+ইনস্ট্যান্টিয়েট করার পরের কল হলো যখন আপনি একটি ক্লাসের অবজেক্ট তৈরি করেন এবং সেই অবজেক্টের মাধ্যমে ক্লাসের কোনো পদ্ধতিকে কল করেন। এই পদ্ধতিগুলো স্ট্যাটিক নয়। অবজেক্ট তৈরি করা মানে হলো ক্লাসের একটি ইনস্ট্যান্স তৈরি করা, যা ক্লাসের নন-স্ট্যাটিক পদ্ধতি এবং ভেরিয়েবল ব্যবহার করতে পারে।
 
-### 1. অ্যারে ইনিশিয়ালাইজেশন ও ডিফল্ট মান  
+### 1. multiple main method.
+একটি ফাইলে যদি তিনটি ক্লাস থাকে, তবে প্রতিটি ক্লাসে public static void main(String[] args) {} মেথড থাকতে পারে? main method ওভারলোড করা যায়?
+Yes, these can. জাভা কম্পাইল করার সময় প্রতিটি ক্লাসকে আলাদা .class ফাইলে রূপান্তরিত করে। 
+তাই প্রতিটি ক্লাস স্বতন্ত্রভাবে কার্যকর হতে পারে। তবে, আপনি যখন প্রোগ্রামটি চালাবেন, তখন আপনাকে সুনির্দিষ্টভাবে বলে দিতে হবে যে আপনি কোন ক্লাসের main মেথডটি চালাতে চান।
+
+-অন্যান্য Method মতোই, main method ওভারলোড করা যায়। তবে, JVM দ্বারা কল করা main Method সর্বদা String[] প্যারামিটার সহ থাকে। আউটপুট সবসময় একই হবে।
 
 ### 2. কমান্ড-লাইন আর্গুমেন্ট (Command-Line Args)  
 মনে রাখতে হবে:  
@@ -17,10 +30,14 @@ Date: 28 July ,2025
 
 ### 3. মেইন মেথডের সিনট্যাক্স  
 মনে রাখতে হবে:  
+স্ট্যাটিক (static) এবং পাবলিক (public)-এর অবস্থান পরিবর্তন করা যেতে পারে, তবে রিটার্ন টাইপ অবশ্যই মেথডের নামের ঠিক আগে বসবে।
+জেভিএম-এর জন্য মেইন মেথডকে স্ট্যাটিক হতে হয়, যাতে ক্লাসের কোনো ইনস্ট্যান্স ছাড়াই এটিকে কল করা যায়। 
+
 - `public static void main(String[] args)` → একমাত্র ভ্যালিড সিগনেচার।  
 - ভ্যারিয়েন্টস:  
   - `public static void main(String args[])` → ভ্যালিড সিগনেচার।  
-  - `static public void main(String[] a)` → ভ্যালিড (অর্ডার পরিবর্তন)।  
+  - `static public void main(String[] a)` → ভ্যালিড (অর্ডার পরিবর্তন)। 
+
  
 - সমাধান: `main` মেথডের রিটার্ন টাইপ ও প্যারামিটার টাইপ ঠিক আছে কিনা চেক করুন।  
 
@@ -116,7 +133,7 @@ What is the result?
 
 
 Ans:
-Welcome Guest! (Message (Message.main())| explain the reason?
+Welcome Guest! (Message (Message.main())| ?
 
 2. Does this compile? System.out.println(“Hello”);;;;;;;;;
 3. the correct package declaration to declare Test class in com.exam.oca package?
@@ -163,9 +180,8 @@ Ans:
 
 
 Ans: 
--Position of static and public can be changed but return type must come just before the method name. 
--The JVM requires the main method to be static so it can be called without an instance of the class. The results are A and B.
-
+স্ট্যাটিক (static) এবং পাবলিক (public)-এর অবস্থান পরিবর্তন করা যেতে পারে, তবে রিটার্ন টাইপ অবশ্যই মেথডের নামের ঠিক আগে বসবে।
+জেভিএম-এর জন্য মেইন মেথডকে স্ট্যাটিক হতে হয়, যাতে ক্লাসের কোনো ইনস্ট্যান্স ছাড়াই এটিকে কল করা যায়। এর ফলাফল হলো A এবং B।
 
 
 
@@ -195,7 +211,7 @@ Ans:
 
 
 Ans: 
-Like any other method, main method can also be overloaded. But main method called by JVM is always with String [] parameter.  Output will always be ONE.
+অন্যান্য Method মতোই, main পদ্ধতিও ওভারলোড করা যায়। তবে, JVM দ্বারা কল করা main পদ্ধতিটি সর্বদা String[] প্যারামিটার সহ থাকে। আউটপুট সবসময় একই হবে।
 
   
   6. Consider below code of main.java file:
@@ -235,8 +251,8 @@ Like any other method, main method can also be overloaded. But main method calle
 
 
 Ans:  
-Though given code looks strange but it is possible in java to provide same name to package, class (and constructor), variable and method.
-Above code compiles successfully and on execution prints ONE on to the console. Constructor is not invoked as ‘new’ keyword is not used and that is why TWO will not be printed to the console.
+যদিও দেওয়া কোডটি দেখতে অদ্ভুত, তবুও জাভাতে প্যাকেজ, ক্লাস (এবং কনস্ট্রাক্টর), ভেরিয়েবল এবং মেথডের একই নাম ব্যবহার করা সম্ভব।
+উপরের কোডটি সফলভাবে কম্পাইল করে এবং এক্সিকিউট হলে কনসোলে "ONE" প্রিন্ট করে। কনস্ট্রাক্টরটি কল করা হয় না কারণ new কীওয়ার্ড ব্যবহার করা হয়নি, এবং এই কারণেই "TWO" কনসোলে প্রিন্ট হবে না।
 
 
   7. Given code of Test.java file:
