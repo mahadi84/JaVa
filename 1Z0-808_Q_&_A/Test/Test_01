@@ -17,9 +17,9 @@ Yes, main as name also compile
 
 void assign(int x, int y) {
     x = this.x; 
-    this.y = y;  
+    this.y = y;  //Here this.y indicates an instance variable, and y is a local variable.
     }
-**Here, this.y indicates an instance variable, and y is a local variable.
+
 
 ### 1. Multiple main method.
 একটি ফাইলে যদি তিনটি ক্লাস থাকে, তবে প্রতিটি ক্লাসে public static void main(String[] args) {} মেথড থাকতে পারে? main method ওভারলোড করা যায়?
