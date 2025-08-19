@@ -7,9 +7,11 @@ Yes, main as name also compile
 
 কনসোল কল এবং ইনস্ট্যান্টিয়েট করার পরের কলের মধ্যে পার্থক্য ?
 -কনসোল কল (Console Call)
-যখন আপনি সরাসরি কনসোল থেকে কোনো প্রোগ্রাম চালান, তখন জাভা ভার্চুয়াল মেশিন (JVM) স্বয়ংক্রিয়ভাবে সেই ক্লাসের main() পদ্ধতিটি খুঁজে বের করে এবং কল করে। এই কলটি স্ট্যাটিক (static) হওয়ায় ক্লাসের কোনো অবজেক্ট তৈরি করার প্রয়োজন হয় না। এটি প্রোগ্রামের প্রবেশপথ (entry point) হিসেবে কাজ করে।
-ইনস্ট্যান্টিয়েট করার পরের কল (Call after Instantiation)
-ইনস্ট্যান্টিয়েট করার পরের কল হলো যখন আপনি একটি ক্লাসের অবজেক্ট তৈরি করেন এবং সেই অবজেক্টের মাধ্যমে ক্লাসের কোনো পদ্ধতিকে কল করেন। এই পদ্ধতিগুলো স্ট্যাটিক নয়। অবজেক্ট তৈরি করা মানে হলো ক্লাসের একটি ইনস্ট্যান্স তৈরি করা, যা ক্লাসের নন-স্ট্যাটিক পদ্ধতি এবং ভেরিয়েবল ব্যবহার করতে পারে।
+	যখন আপনি সরাসরি কনসোল থেকে কোনো প্রোগ্রাম চালান, তখন জাভা ভার্চুয়াল মেশিন (JVM) স্বয়ংক্রিয়ভাবে সেই ক্লাসের main() পদ্ধতিটি খুঁজে বের করে এবং কল করে। 
+	এই কলটি স্ট্যাটিক (static) হওয়ায় ক্লাসের কোনো অবজেক্ট তৈরি করার প্রয়োজন হয় না। এটি প্রোগ্রামের প্রবেশপথ (entry point) হিসেবে কাজ করে।
+-ইনস্ট্যান্টিয়েট করার পরের কল (Call after Instantiation)
+	ইনস্ট্যান্টিয়েট করার পরের কল হলো যখন আপনি একটি ক্লাসের অবজেক্ট তৈরি করেন এবং সেই অবজেক্টের মাধ্যমে ক্লাসের কোনো পদ্ধতিকে কল করেন। 
+	এই পদ্ধতিগুলো স্ট্যাটিক নয়। অবজেক্ট তৈরি করা মানে হলো ক্লাসের একটি ইনস্ট্যান্স তৈরি করা, যা ক্লাসের নন-স্ট্যাটিক পদ্ধতি এবং ভেরিয়েবল ব্যবহার করতে পারে।
 
 ### 1. multiple main method.
 একটি ফাইলে যদি তিনটি ক্লাস থাকে, তবে প্রতিটি ক্লাসে public static void main(String[] args) {} মেথড থাকতে পারে? main method ওভারলোড করা যায়?
@@ -296,7 +298,7 @@ Ans:
 
 
 Ans:
-Si
+C
 
 
 8. Given code of Test.java file:
@@ -433,22 +435,22 @@ Ans:
 11. What will be the result of compiling and executing the TestStudent class?
     //TestStudent.java
     class Student {
-	char var1;
+	    char var1;
     	double var2;
     	float var3;
-	    String name;
 	    int age;
+	    String name;
 	    boolean result;
-	    double height;
+
 
 
     public class TestStudent {
 	    public static void main(String[] args) {
 	    Student stud = new Student();
-		System.out.println(“>” + obj.var1);
-    		System.out.println(“>” + obj.var2);
-    		System.out.println(“>” + obj.var3);
-	    System.out.println(stud.name + stud.height + stud.result + stud.age);
+		System.out.println(“>” + stud.var1);
+    		System.out.println(“>” + stud.var2);
+    		System.out.println(“>” + stud.var3);
+	    System.out.println(stud.name + stud.result + stud.age);
     	    }
     }
 
@@ -697,10 +699,9 @@ Output is: true:false:false:null
 
 
 Ans: 
-add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type.
-So to match the method call, 10.0 is converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
-But at the time of execution, d2 is null so System.out.println(“Double version: ” + (d1 + d2)); throws NullPointerException..
-
+add(10.0, null); => কম্পাইলার null কে double প্রিমিটিভ টাইপে রূপান্তর করতে পারে না। তাই দ্বিতীয় আর্গুমেন্টটি Double রেফারেন্স টাইপ হিসেবে ট্যাগ করা হয়।
+ফলে, এই মেথড কলটিকে মেলানোর জন্য, 10.0 কে অটো-বক্সিংয়ের মাধ্যমে একটি Double অবজেক্টে রূপান্তরিত করা হয় এবং add(10.0, null); কে add(Double, Double); মেথড হিসেবে ট্যাগ করা হয়।
+কিন্তু এক্সিকিউশনের সময়, d2 এর মান null হওয়ায় System.out.println("Double version: " + (d1 + d2)); একটি NullPointerException থ্রো করে।
 
 
 20. What will be the result of compiling and executing Test class?
@@ -720,8 +721,8 @@ But at the time of execution, d2 is null so System.out.println(“Double version
 
 
 Ans: 
-Array elements are initialized to their default values.
-arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
+অ্যারের উপাদানগুলো তাদের ডিফল্ট মান দিয়ে ইনিশিয়ালাইজ করা হয়।
+arr একটি বুলিয়ান (Boolean) টাইপের অ্যারে নির্দেশ করছে, যা একটি রেফারেন্স টাইপ। তাই, অ্যারের উভয় উপাদান null দিয়ে ইনিশিয়ালাইজ করা হয়। আউটপুট হিসেবে null:null প্রিন্ট হবে।
 
 
 
@@ -743,9 +744,9 @@ arr is referring to an array of Boolean type, which is reference type and hence 
 
 
 
-Ans: hence both the array elements are initialized to null.
-    -To calculate arr[0] + arr[1], java runtime converts the expression to arr[0].doubleValue() + arr[1].doubleValue().
-    -As arr[0] and arr[1] are null hence calling doubleValue(). The method throws NullPointerException.
+Ans:
+যেহেতু অ্যারের উপাদানগুলোকে নাল (null) হিসেবে ইনিশিয়ালাইজ করা হয়েছে, তাই arr[0] + arr[1] গণনা করতে গেলে জাভা রানটাইম এই এক্সপ্রেশনটিকে arr[0].doubleValue() + arr[1].doubleValue()-তে রূপান্তর করে।
+যেহেতু arr[0] এবং arr[1] উভয়ই null, তাই doubleValue() পদ্ধতিটি কল করলে NullPointerException থ্রো করে।
 
 
 
