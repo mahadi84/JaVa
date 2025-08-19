@@ -107,11 +107,27 @@ What is the result?
 
 
 
+
+
+
+
+
+
+
+
 Ans:
 Welcome Guest! (Message (Message.main())| explain the reason?
 
 2. Does this compile? System.out.println(“Hello”);;;;;;;;;
 3. the correct package declaration to declare Test class in com.exam.oca package?
+
+
+
+
+
+
+
+
 
 
 
@@ -138,6 +154,14 @@ Ans:
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 -Position of static and public can be changed but return type must come just before the method name. 
 -The JVM requires the main method to be static so it can be called without an instance of the class. The results are A and B.
@@ -157,6 +181,14 @@ Ans:
           System.out.println(“THREE”);
           }
       }
+
+
+
+
+
+
+
+
 
 
 
@@ -190,6 +222,14 @@ Like any other method, main method can also be overloaded. But main method calle
   
   How many of the above statements is/are true?
   **console call vs call after instantiate 
+
+
+
+
+
+
+
+
 
 
 
@@ -231,6 +271,14 @@ Above code compiles successfully and on execution prints ONE on to the console. 
 
 
 
+
+
+
+
+
+
+
+
 Ans:
 Si
 
@@ -247,6 +295,14 @@ Si
     java Test Good
 
     Does it compile?  This is how, can we assign the value of an array? What is the result?
+
+
+
+
+
+
+
+
 
 
 
@@ -314,6 +370,14 @@ which is not available and hence an exception is thrown(java.lang.ArrayIndexOutO
 
 
 
+
+
+
+
+
+
+
+
 Ans:
 1 & 3 only
 
@@ -328,6 +392,14 @@ Ans:
 	    }
     }
     choose: 148 Or Compilation error  Or -108 Or -128?
+
+
+
+
+
+
+
+
 
 
 
@@ -369,6 +441,14 @@ Ans:
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 >  >0.0 >0.0
 null0.0false0
@@ -386,6 +466,14 @@ null0.0false0
     }
     }
     When is the Pen object, created at Line 1 eligible for Garbage Collection?
+
+
+
+
+
+
+
+
 
 
 
@@ -416,6 +504,14 @@ Ans:
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 লাইন ৪: System.out.println(“About to end.”);
 লাইন ১: এ তৈরি করা Pen অবজেক্টটি গার্বেজ কালেকশনের জন্য যোগ্য (এটি কখনই রেফারেন্স করা হয়নি)।
@@ -426,6 +522,14 @@ Ans:
 
 
 14. Wrapper classes are defined in which of the following package?
+
+
+
+
+
+
+
+
 
 
 
@@ -468,6 +572,14 @@ java.lang
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 Point(10, 20);Point(0, 20)  **x=this.x(default value of x 0)
 	public String toString() {
@@ -490,6 +602,14 @@ Point(10, 20);Point(0, 20)  **x=this.x(default value of x 0)
     }
     }
     On executing Counter class, how many Counter objects are created in the memory?
+
+
+
+
+
+
+
+
 
 
 
@@ -521,6 +641,14 @@ Ans:
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 Boolean class code uses equalsIgnoreCase method to validate the passed String, so if passed String is “true” (‘t’, ‘r’, ‘u’ and ‘e’ can be in any case), 
 then boolean value stored in Boolean object is true otherwise false.
@@ -544,6 +672,14 @@ Output is: true:false:false:null
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 add(10.0, null); => Compiler can’t convert null to double primitive type, so 2nd argument is tagged to Double reference type.
 So to match the method call, 10.0 is converted to Double object by auto-boxing and add(10.0, null); is tagged to add(Double, Double); method.
@@ -559,6 +695,14 @@ But at the time of execution, d2 is null so System.out.println(“Double version
     }
     }
 
+
+
+
+
+
+
+
+
 Ans: 
 Array elements are initialized to their default values.
 arr is referring to an array of Boolean type, which is reference type and hence both the array elements are initialized to null. output null:null is printed
@@ -572,6 +716,14 @@ arr is referring to an array of Boolean type, which is reference type and hence 
     System.out.println(arr[0] + arr[1]);
     }
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -591,6 +743,14 @@ Ans: hence both the array elements are initialized to null.
     } else {
     	System.out.println(false);
     }}}
+
+
+
+
+
+
+
+
 
 
 
@@ -624,6 +784,14 @@ Ans:
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 Compilation error. switch does not accept Boolean, long, float, double
 
@@ -647,6 +815,14 @@ Compilation error. switch does not accept Boolean, long, float, double
     }
     }
     Does above code compile successfully?
+
+
+
+
+
+
+
+
 
 
 
@@ -687,6 +863,14 @@ c * l: c (char, যার মান ৯০) কে long এ পরিণত ক�
 
 
 
+
+
+
+
+
+
+
+
 Ans:	চূড়ান্ত আউটপুট: F (abc) + T (TrUe) + F (false) + F (null) + F (FALSE) = FTFFF
 	গুরুত্বপূর্ণ নোট:
 	-Boolean.valueOf() মেথডটি কেস-ইনসেনসিটিভ, তাই "TrUe" বা "TRUE" সবই true হিসেবে বিবেচিত হয়।
@@ -710,6 +894,14 @@ Ans:	চূড়ান্ত আউটপুট: F (abc) + T (TrUe) + F (false) + 
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 97.( it prints char value and if int type value is passed, it prints int value.As i1 is of int type)
 
@@ -721,6 +913,14 @@ Ans:
     float f = 123.76_86f;
     double d = 1_2_3_4;
     How many statements are legal?
+
+
+
+
+
+
+
+
 
 
 
@@ -748,6 +948,14 @@ double d = 1_2_3_4;
 
 
 
+
+
+
+
+
+
+
+
 Ans: A,C,E
 
 29. What will be the result of compiling and executing DivModTest class?
@@ -757,6 +965,14 @@ Ans: A,C,E
     System.out.println( 23 % 2.0 );
     }
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -780,6 +996,14 @@ As floating point numbers are used in the expression, hence result should be in 
 
 
 
+
+
+
+
+
+
+
+
 Ans: 
 a = 9 res = true
 a++ এই অংশটি কখনোই এক্সিকিউট হয় না, তাই a এর মান 9 থেকে আর বাড়ে না।
@@ -796,6 +1020,14 @@ a++ এই অংশটি কখনোই এক্সিকিউট হয় �
     System.out.println(“You failed”);
     }
     }
+
+
+
+
+
+
+
+
 
 
 
