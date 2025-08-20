@@ -1,7 +1,8 @@
 
-
 Date: 29 July ,2025
 
+
+**This chapter is Very important for ARRAY and LOOP. check last part of the questions
 
 ### 1. Array Index Out of Bounds
 - অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  
@@ -83,8 +84,28 @@ int var = '7'; //compile
 System.out.println(status = false || status = true | status = false); //not compile as no ()bracket to separte
 int a = 3; m(++a, a++); //new value generate here, does  not effect any changes inside m()
 
+if (50 <= score < 60) //compile error, গাণিতিক অসমতা (mathematical inequalities) সরাসরি লিখতে পারবেন না।
+arr[0] এর মান null, আপনি একটি null অবজেক্টের উপর কোনো Method(arr[0].isEmpty()) কল করতে পারবেন না। NullPointerException থ্রো করে|
+
+String [] arr = {“A”, “B”, “C”, “D”};
+arr[0] = arr[1] OR 'E'; //Ok, Replace the data into String Array 
+
+String arr1 [], arr2, arr3 = null; //declare variable like this is ok
+int i = 0; arr[i++] = arr[++i] = 40; //ok i[0]=40; and i[1]=40; too
+
+ String [][] arr = new String[1][1];
+        arr[1][2] = “X”; //This is Runtime error-ArrayIndexOutOfBoundsException
+
+জাভাতে অ্যারের আকার নেগেটিভ হতে পারে না, মানগুলো অবশ্যই শূন্য বা তার বেশি হতে হবে। 
+নেগেটিভ কারণ এটি একটি java.lang.NegativeArraySizeException রানটাইম ত্রুটি সৃষ্টি করবে। তবে, এটি একটি কম্পাইলেশন এরর নয়, বরং একটি রানটাইম এরর। 
+
+ final boolean flag = true;  //একটি while লুপের কন্ডিশন যদি একটি স্থির true মান হয়, তাহলে কম্পাইলার বুঝতে পারে যে লুপটি কখনই শেষ হবে না। 
+  while(flag) {}  OR  while(true) {}    //কম্পাইলার একটি "unreachable code" ত্রুটি দেখায়। এটি কম্পাইল করার সময়ই ধরা পড়ে এবং কম্পাইলেশন ব্যর্থ হয়।
+
+
 
 ------------------------------------
+
 
 
 1.-
@@ -101,6 +122,15 @@ int a = 3; m(++a, a++); //new value generate here, does  not effect any changes 
     }
     System.out.println(a);
     }}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,6 +154,15 @@ Explanation: `x = 10` matches `case 10`, then falls through `case 20` and `case 
         break;
         default: System.out.println(“In default”);
     }}}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -154,6 +193,15 @@ Explanation: case 200:: সুইচ স্টেটমেন্টে, এক�
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 4  
 Output: ANY FRUIT WILL DO APPLE MANGO BANANA
 Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default` and falls through all cases until `break`.
@@ -171,6 +219,15 @@ Explanation: `fruit = "mango"` doesn’t match any case, so it executes `default
         case “Banana”: System.out.println(“BANANA”);
         break;
     }}}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -198,6 +255,15 @@ Explanation: যখন আপনি `new String(char[] value)` ব্যবহ�
      d.Integer var = 10; 
      e.char var = 10; 
      f.double var = 0; 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,6 +301,15 @@ char var = 10;: char একটি বৈধ টাইপ। 10 হলো ASCII �
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 7  
 Correct Option: C. int var = '7';  
 Explanation: char লিটারেলকে (যেমন '7') int ভ্যালুতে implicitly convert করা যায়, 
@@ -249,6 +324,15 @@ Explanation: char লিটারেলকে (যেমন '7') int ভ্য�
     String amPm = time.getHour() >= 12 ? (time.getHour() == 12) ? “PM” : “AM”;
     System.out.println(amPm);
     }}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -289,6 +373,15 @@ String amPm = time.getHour() >= 12 ? ((time.getHour() == 12) ? “PM” : “AM�
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 10  
 Output: 3
 Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2), || এর বাম পাশে true আছে, তাই ডান পাশের পুরো অংশটি (-a == 2 && -a == 2) কখনোই মূল্যায়ন করা হবে না।
@@ -313,6 +406,15 @@ Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2
     b.5
     c.6
     d.3
+
+
+
+
+
+
+
+
+
 
 
 
@@ -356,6 +458,15 @@ m(int i, int j) মেথডের ভেতরে i++ এবং j-- i এবং
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 13  
 Output: Compilation Error  
 Explanation: || এবং | অপারেটরগুলো বাম পাশে একটি বুলিয়ান মান (যেমন false) এবং ডান পাশে আরেকটি বুলিয়ান এক্সপ্রেশন আশা করে। 
@@ -367,6 +478,15 @@ Explanation: || এবং | অপারেটরগুলো বাম পা�
     int i = 10;
     System.out.println(i > 3 != false);
     What is the result?
+
+
+
+
+
+
+
+
+
 
 
 
@@ -392,6 +512,15 @@ Explanation: `i > 3` is `true`, and `true != false` is `true`.
     }
 
     What will be the result of compiling and executing Test class?
+
+
+
+
+
+
+
+
+
 
 
 
@@ -457,6 +586,15 @@ Explanation:
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 16  
 Output: Compilation Error  
 Explanation:জাভাতে, আপনি গাণিতিক অসমতা (mathematical inequalities) যেমন 50 <= score < 60 সরাসরি লিখতে পারবেন না। 
@@ -479,6 +617,15 @@ Explanation:জাভাতে, আপনি গাণিতিক অসমত�
      -BBB EEE HHH
      -AAA DDD GGG
      -CCC FFF III
+
+
+
+
+
+
+
+
+
 
 
 
@@ -523,6 +670,15 @@ OR
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 19  
 Output: Compilation Error  
 Explanation: জাভাতে, যেভাবে প্রিমিটিভ টাইপগুলো (যেমন char থেকে int ইমপ্লিসিট কাস্টিং) করে,  অ্যারে টাইপগুলো ইনহেরিটেন্স hierarchy (পদানুক্রম) মেনে চলে না । 
@@ -545,6 +701,15 @@ if  int [] arr2 = {'A', 'B'}; instead of char [] arr2 = {'A', 'B'};
      -FALSE
      -NullPointerException is thrown at runtime
      -ArrayIndexOutOfBoundsException is thrown at runtime
+
+
+
+
+
+
+
+
+
 
 
 
@@ -585,6 +750,15 @@ Output: NullPointerException
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 21  
 Correct Options: Only two options (1 and 3)  
 Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.length; n += 2`) print `NET` (indices 1, 3, 5).
@@ -608,6 +782,15 @@ Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.
         3-int n = 3; n < arr.length; n++ 
         4-int n = 1; n < arr.length - 1; n++ 
         5-int n = 1; n < arr.length; n += 2 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -640,6 +823,15 @@ int n = 1; n < arr.length - 1; n++: এই লুপটি দ্বিতীয
             -E E C D
             -A E C D
             der below code of Test.java file:
+
+
+
+
+
+
+
+
+
 
 
 
@@ -683,6 +875,15 @@ Explanation: `arr[0] = arr[1]` sets `arr[0] = "B"`, then `arr[1] = "E"`.
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 24  
 Output: AB
 Explanation: `arr2` and `arr3` point to `arr1`, which holds `["A", "B"]`.
@@ -708,6 +909,15 @@ Explanation: `arr2` and `arr3` point to `arr1`, which holds `["A", "B"]`.
         -10 40 30
         -40 40 30
         -40 20 40
+
+
+
+
+
+
+
+
+
 
 
 
@@ -741,6 +951,15 @@ Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
         -It throws an exception at runtime
         -It prints XY on to the console and program terminates successfully
         -It prints XY on to the console and program terminates abruptly
+
+
+
+
+
+
+
+
+
 
 
 
@@ -785,15 +1004,23 @@ Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 27  
-Correct Pairs:  
-4 pairs (3, 4, 5, 7)  
-Explanation: Valid pairs must accommodate `arr[6][6]` (min size `7x7`). Pairs 3, 4, 5, and 7 work (but 7 is invalid due to negative size).
+সুতরাং, আপনার দেওয়া ৭টি অপশনের মধ্যে ৭টিই সফলভাবে কম্পাইল হবে। রানটাইমে কিছু অপশনে ত্রুটি দেখা গেলেও, কম্পাইলেশনের দৃষ্টিকোণ থেকে সবগুলোই বৈধ।
+আপনার দেওয়া অপশনগুলোর মধ্যে x এবং y এর যে কোনো নেগেটিভ মান (-1) থাকা সত্ত্বেও কোডটি কম্পাইল হবে। কম্পাইল করার সময় জাভা শুধু সিনট্যাক্স এবং টাইপ পরীক্ষা করে।
 
 
 28.public class Test {
         public static void main(String[] args) {
-        final boolean flag = false;
+        final boolean flag = false; //what if flag = true;
         while(flag) {
         System.out.println(“Good Morning!”);
         }
@@ -809,9 +1036,25 @@ Explanation: Valid pairs must accommodate `arr[6][6]` (min size `7x7`). Pairs 3,
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 28  
 Output: No output (loop never executes)  
 Explanation: `flag = false`, so `while(flag)` is skipped.
+System.out.println(“Good Morning!”);//জাভা কম্পাইলার বুদ্ধিমান, তাই এটি এই ধরনের "অপ্রয়োজনীয়" বা "ডেড কোড" সনাক্ত করতে পারে। এই ধরনের ক্ষেত্রে, কম্পাইলার কোনো এরর দেবে না, কিন্তু লুপের ভেতরের কোডটি কার্যকর হবে না।
+//what if flag = true;
+এই কোডটি কম্পাইল করলে একটি Compilation error দেখা দেবে। কারণ
+জাভাতে, একটি while লুপের কন্ডিশন যদি একটি স্থির true মান হয়, তাহলে কম্পাইলার বুঝতে পারে যে লুপটি কখনই শেষ হবে না। 
+যেহেতু final boolean flag = true; লাইনটি flag ভেরিয়েবলকে একটি স্থির true মান দেয়, কম্পাইলার একটি "unreachable code" ত্রুটি দেখায়। 
+while(flag) লুপের পরে কোনো কোড থাকলে সেটি কখনো পৌঁছানো যাবে না। এটি কম্পাইল করার সময়ই ধরা পড়ে এবং কম্পাইলেশন ব্যর্থ হয়।
+তাই, প্রোগ্রামটি চলতেই পারবে না।
 
 
 29.Which of the following statement is correct for below code?
@@ -824,6 +1067,15 @@ Explanation: `flag = false`, so `while(flag)` is skipped.
         }
         }
         }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -855,9 +1107,20 @@ Explanation: `flag` is `final` and `false`, so the loop is skipped.
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 30  
 Output: Unreachable code error  
-Explanation: `while(true)` makes `System.out.println("Bye");` unreachable.
+Explanation: 
+একটি while লুপের কন্ডিশন যদি একটি স্থির true মান হয়, তাহলে কম্পাইলার বুঝতে পারে যে লুপটি কখনই শেষ হবে না। 
+কম্পাইলার একটি "unreachable code" ত্রুটি দেখায়। এটি কম্পাইল করার সময়ই ধরা পড়ে এবং কম্পাইলেশন ব্যর্থ হয়।
 
 
 
@@ -883,15 +1146,26 @@ Explanation: `while(true)` makes `System.out.println("Bye");` unreachable.
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 31  
-Output: Infinite Loop  
-Explanation: `continue` skips `sum += start`, but `start` never increments, causing an infinite loop.
+এখানে, শুধুমাত্র বিজোড় সংখ্যাগুলো (1, 3, 5, 7, 9) sum-এর সাথে যোগ হবে। জোড় সংখ্যাগুলো (2, 4, 6, 8, 10) continue স্টেটমেন্টের কারণে এড়িয়ে যাওয়া হবে।
+সুতরাং, চূড়ান্ত যোগফল হবে 1 + 3 + 5 + 7 + 9 = 25।
 
 
 32. public class Test {
     public static void main(String[] args) {
-    int i;
-    for(i=0; i<=2; i++){} System.out.println(i); } }
+      int i;
+      for(i=0; i<=2; i++){} 
+       System.out.println(i); 
+    }}
 
     - 0
     - 2
@@ -905,25 +1179,37 @@ Explanation: `continue` skips `sum += start`, but `start` never increments, caus
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 32  
 Output: 3
-Explanation: Loop runs for `i = 0, 1, 2`, then exits when `i = 3`.
+1.  `int i;`: একটি `i` ভেরিয়েবল ঘোষণা করা হয়েছে, কিন্তু কোনো মান দেওয়া হয়নি।
+2.  `for(i=0; i<=2; i++){}`: এই লুপটি `i` এর মান 0 থেকে শুরু করে 2 পর্যন্ত চলে।
+    * যখন `i=2`, শর্ত (`2 <= 2`) সত্য।
+    * লুপটি শেষ হওয়ার পর, `i` এর মান আরও একবার বৃদ্ধি পায় (`i++`)। তাই `i` এর মান 3 হয়। এরপর শর্ত (`3 <= 2`) মিথ্যা হয় এবং লুপ বন্ধ হয়ে যায়।
 
 
 
-33.public class Test {
+33. public class Test {
     public static void main(String[] args) {
     int i;
     outer:
     do {
-    i = 5;
-    inner:
-    while (true) {
-    System.out.println(i–);
-    if (i == 4) {
-    break outer;
-    }
-    }
+        i = 5;
+        inner:
+        while (true) {
+        System.out.println(i--);
+        if (i == 4) {
+        break outer;
+        }
+        }
     } while (true);
     }
     }
@@ -936,14 +1222,18 @@ Explanation: Loop runs for `i = 0, 1, 2`, then exits when `i = 3`.
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 33
-Output: 5 4
-Explanation:
-1. The outer `do-while` loop sets `i = 5`
-2. The inner `while` loop:
-   - Prints `i--` (prints 5, then decrements to 4)
-   - Checks `if (i == 4)` and executes `break outer`, terminating both loops
-3. Correction to options: None of the given options are correct. The actual output is `5 4`.
+একবার 5 প্রিন্ট করে।
+break outer; স্টেটমেন্টটি বহিরাগত do-while লুপটিকে লেবেল outer সহ ব্রেক করে দেয়, ফলে প্রোগ্রামটি লুপ থেকে বেরিয়ে যায় এবং শেষ হয়।
 
 
 
@@ -969,18 +1259,19 @@ Explanation:
 
 
 
+
+
+
+
+
+
+
+
+
 ### Question 34
 Correct Options:
 1. `for(int i = 0; i < fruits.length; i++) for(int j = 0; j < fruits[i].length; j++) System.out.print(fruits[i][j] + " ");`
 4. `for(String[] arr : fruits) for(String fruit : arr) System.out.print(fruit + " ");`
-Explanation:
-- The array is `{{"apple","mango"}, {"orange","grape"}}`
-- Option 1: Correctly iterates through all indices (0,0 → 0,1 → 1,0 → 1,1)
-- Option 4: Enhanced for-loop correctly accesses all elements
-- Options 2-3: Incorrect because:
-  - They start from index 1, missing "apple" and "orange"
-  - Option 2 will throw `ArrayIndexOutOfBoundsException` (using `<=`)
-
 
 
 
@@ -1000,6 +1291,15 @@ Explanation:
  -0 1 2
  -Compilation error
  -ArrayIndexOutOfBoundsException is thrown at runtime
+
+
+
+
+
+
+
+
+
 
 
 
