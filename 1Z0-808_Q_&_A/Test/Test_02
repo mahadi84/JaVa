@@ -723,7 +723,7 @@ Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
 26.public class Test {
         public static void main(String[] args) {
         int var = 3;
-        String [][] arr = new String[–var][var++]; //Line n1
+        String [][] arr = new String[--var][var++]; //Line n1
         arr[1][1] = “X”; //Line n2
         arr[1][2] = “Y”; //Line n3
         for(String [] arr1 : arr) {
@@ -748,8 +748,7 @@ Explanation: `arr[i++] = arr[++i] = 40` assigns `40` to `arr[0]` and `arr[2]`.
 
 
 ### Question 26  
-Output: ArrayIndexOutOfBoundsException  
-Explanation: `arr` is `2x2` (after `--var` and `var++`), so `arr[1][2]` is invalid.
+যখন আপনি arr[1][2] এ অ্যাক্সেস করার চেষ্টা করেন, তখন এটি অ্যারের সীমার বাইরে চলে যায়, যার ফলে ArrayIndexOutOfBoundsException ত্রুটি হয়।
 
 
 
