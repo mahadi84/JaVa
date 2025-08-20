@@ -4,10 +4,23 @@ Date: 29 July ,2025
 
 **This chapter is Very important for ARRAY and LOOP. check last part of the questions
 
-### 1. Array Index Out of Bounds
-- অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  
+
+### 1.  Array_Loop_Index Out of Bounds
+- অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন ( `i <= arr.length` নয়)।  
 - `arr[arr.length]` বা `arr[-1]` এক্সেস করলে `ArrayIndexOutOfBoundsException` আসবে।  
-- লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন ( `i <= arr.length` নয়)।  
+
+String [] arr = {“A”, “B”, “C”, “D”};
+  arr[0] = arr[1] OR 'E'; //Ok, Replace the data into String Array 
+
+String arr1 [], arr2, arr3 = null; //declare variable like this is ok
+  int i = 0; arr[i++] = arr[++i] = 40; //ok i[0]=40; and i[1]=40; too
+
+ String [][] arr = new String[1][1];
+  arr[1][2] = “X”; //This is Runtime error-ArrayIndexOutOfBoundsException
+
+জাভাতে অ্যারের আকার নেগেটিভ হতে পারে না, মানগুলো অবশ্যই শূন্য বা তার বেশি হতে হবে। 
+নেগেটিভ কারণ এটি একটি java.lang.NegativeArraySizeException রানটাইম ত্রুটি সৃষ্টি করবে। তবে, এটি একটি কম্পাইলেশন এরর নয়, বরং একটি রানটাইম এরর। 
+
 
 
 ### 2. Switch-Case Fall Through
@@ -17,9 +30,9 @@ Date: 29 July ,2025
 
 
 ### 3. Unreachable Code
-- `while(true)` বা `return` এর পরে কোড লিখলে কম্পাইলার এরর দেবে।  
   final boolean flag = true;  //একটি while লুপের কন্ডিশন যদি একটি স্থির true মান হয়, তাহলে কম্পাইলার বুঝতে পারে যে লুপটি কখনই শেষ হবে না। 
 -  while(flag) {}  OR  while(true) {}    //কম্পাইলার একটি "unreachable code" ত্রুটি দেখায়। এটি কম্পাইল করার সময়ই ধরা পড়ে এবং কম্পাইলেশন ব্যর্থ হয়।
+- `while(true)` বা `return` এর পরে কোড লিখলে কম্পাইলার এরর দেবে but it has exception as well।  
 -`break`, `continue`, বা `return` এর পরের কোড চেক করুন।  
 
 
@@ -36,7 +49,7 @@ Date: 29 July ,2025
 
 ### 6. Ternary Operator Mistakes
 - নেস্টেড টারনারি অপারেটরে `:` ভুলে গেলে কম্পাইলার এরর দেবে। 
--String amPm = time.getHour() >= 12 ? ((time.getHour() == 12) ? “PM” : “AM”) : “AM”;//compile 
+- String amPm = time.getHour() >= 12 ? ((time.getHour() == 12) ? “PM” : “AM”) : “AM”;//compile 
 
 
 ### 7. Loop Control (break, continue)  
@@ -80,24 +93,11 @@ Date: 29 July ,2025
     (1-7)এই অগ্রাধিকারের অপারেটর মূল্যায়ন করা হয়।
 
 
-### 15. Array and Loop
-String [] arr = {“A”, “B”, “C”, “D”};
-arr[0] = arr[1] OR 'E'; //Ok, Replace the data into String Array 
-
-String arr1 [], arr2, arr3 = null; //declare variable like this is ok
-int i = 0; arr[i++] = arr[++i] = 40; //ok i[0]=40; and i[1]=40; too
-
- String [][] arr = new String[1][1];
-        arr[1][2] = “X”; //This is Runtime error-ArrayIndexOutOfBoundsException
-
-জাভাতে অ্যারের আকার নেগেটিভ হতে পারে না, মানগুলো অবশ্যই শূন্য বা তার বেশি হতে হবে। 
-নেগেটিভ কারণ এটি একটি java.lang.NegativeArraySizeException রানটাইম ত্রুটি সৃষ্টি করবে। তবে, এটি একটি কম্পাইলেশন এরর নয়, বরং একটি রানটাইম এরর। 
-
 
 ### 14. Others
 int var = '7'; //compile
 System.out.println(status = false || status = true | status = false); //not compile as no ()bracket to separte
-int a = 3; m(++a, a++); //new value generate here, does  not effect any changes inside m()
+int a = 3; m(++a, a++); //new value generated here, does  not affect any changes inside m()
 
 if (50 <= score < 60) //compile error, গাণিতিক অসমতা (mathematical inequalities) সরাসরি লিখতে পারবেন না।
 arr[0] এর মান null, আপনি একটি null অবজেক্টের উপর কোনো Method(arr[0].isEmpty()) কল করতে পারবেন না। NullPointerException থ্রো করে|
