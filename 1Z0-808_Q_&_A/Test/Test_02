@@ -69,7 +69,6 @@ Date: 29 July ,2025
 - ইনডেক্স প্রয়োজন হলে সাধারণ `for` লুপ ব্যবহার করুন।  
 
 
-
 ### 13. অপারেটর এবং অপারেটরের অগ্রাধিকার(precedence): NOT-I'M-A-ELA
         1.  ! (Logical NOT)
         2.  ++/-- (Increment/Decrement)
@@ -81,14 +80,7 @@ Date: 29 July ,2025
     (1-7)এই অগ্রাধিকারের অপারেটর মূল্যায়ন করা হয়।
 
 
-### 14. Others
-int var = '7'; //compile
-System.out.println(status = false || status = true | status = false); //not compile as no ()bracket to separte
-int a = 3; m(++a, a++); //new value generate here, does  not effect any changes inside m()
-
-if (50 <= score < 60) //compile error, গাণিতিক অসমতা (mathematical inequalities) সরাসরি লিখতে পারবেন না।
-arr[0] এর মান null, আপনি একটি null অবজেক্টের উপর কোনো Method(arr[0].isEmpty()) কল করতে পারবেন না। NullPointerException থ্রো করে|
-
+### 15. Array and Loop
 String [] arr = {“A”, “B”, “C”, “D”};
 arr[0] = arr[1] OR 'E'; //Ok, Replace the data into String Array 
 
@@ -100,6 +92,16 @@ int i = 0; arr[i++] = arr[++i] = 40; //ok i[0]=40; and i[1]=40; too
 
 জাভাতে অ্যারের আকার নেগেটিভ হতে পারে না, মানগুলো অবশ্যই শূন্য বা তার বেশি হতে হবে। 
 নেগেটিভ কারণ এটি একটি java.lang.NegativeArraySizeException রানটাইম ত্রুটি সৃষ্টি করবে। তবে, এটি একটি কম্পাইলেশন এরর নয়, বরং একটি রানটাইম এরর। 
+
+
+### 14. Others
+int var = '7'; //compile
+System.out.println(status = false || status = true | status = false); //not compile as no ()bracket to separte
+int a = 3; m(++a, a++); //new value generate here, does  not effect any changes inside m()
+
+if (50 <= score < 60) //compile error, গাণিতিক অসমতা (mathematical inequalities) সরাসরি লিখতে পারবেন না।
+arr[0] এর মান null, আপনি একটি null অবজেক্টের উপর কোনো Method(arr[0].isEmpty()) কল করতে পারবেন না। NullPointerException থ্রো করে|
+
 
 
 
