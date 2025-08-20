@@ -355,31 +355,7 @@ String amPm = time.getHour() >= 12 ? ((time.getHour() == 12) ? “PM” : “AM�
 
 
 
-9. What will be the result of compiling and executing Test class?
-    public class Test {
-    public static void main(String [] args) {
-    int a = 100;
-    System.out.println(-a++);
-    }
-    }
-    
-    a. Compilation error
-    b.-100
-    c.-101
-    d. 99
-
-
-
-
-
-
-
-### Question 9  
-Output: -100
-Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
-
-
-
+9. --
 
 
 10. What will be the result of compiling and executing Test class?
@@ -387,7 +363,7 @@ Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
     public static void main(String [] args) {
         int a = 2;
         boolean res = false;
-        res = a++ == 2 || –a == 2 && –a == 2; //(-a==2)=(-3 == 2)
+        res = a++ == 2 || –a == 2 && –a == 2; // no any brackets No problem also works this condition fine with System.out.println()
         System.out.println(a);
     }}
     
@@ -404,25 +380,8 @@ Explanation: `-a++` evaluates to `-(100)` (post-increment happens after).
 Output: 3
 Explanation:  যেহেতু `a++ == 2` is `true`(true || -a == 2 && -a == 2), || এর বাম পাশে true আছে, তাই ডান পাশের পুরো অংশটি (-a == 2 && -a == 2) কখনোই মূল্যায়ন করা হবে না।
 
-11. What will be the result of compiling and executing Test class? 
-    public class Test {
-    public static void main(String [] args) {
-    int a = 3;
-    System.out.println(a++ == 3 || –a == 3 && –a == 3);
-    }
-    }
-    a.TRUE
-    b.FALSE
-    c. Compilation error
 
-
-
-
-
-
-### Question 11  
-Output: TRUE
-Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluates to `true`.
+11. ---
 
 
 12. What will be the result of compiling and executing Test class? 
@@ -434,7 +393,7 @@ Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluate
     }
     private static void m(int i, int j) {
     i++;
-    j–;
+    j--;
     }}
 
     a.4
@@ -448,8 +407,18 @@ Explanation: `a++ == 3` is `true` (short-circuiting), so the expression evaluate
 
 
 ### Question 12  
-Output: 5
-Explanation: `m(++a, a++)` passes `4` and `4` (post-increment), but `a` becomes `5` after the increments.
+কম্পাইল এবং এক্সিকিউট করলে ফলাফল হবে b. 5।
+
+int a = 3; দিয়ে a-এর মান 3 সেট করা হয়।
+m(++a, a++); লাইনে মেথড কল করার সময় আর্গুমেন্টগুলো বাম থেকে ডানে মূল্যায়ন করা হয়।
+
+++a (প্রি-ইনক্রিমেন্ট): প্রথমে a-এর মান ১ বেড়ে ৪ হয়, তারপর সেই মান m মেথডের প্রথম আর্গুমেন্ট (i)-এ পাস করা হয়। তাই, i = 4।
+a++ (পোস্ট-ইনক্রিমেন্ট): a-এর বর্তমান মান ৪, যা m মেথডের দ্বিতীয় আর্গুমেন্ট (j)-এ পাস করা হয়। তাই, j = 4। এরপর a-এর মান ১ বেড়ে ৫ হয়।
+
+m(int i, int j) মেথডের ভেতরে i++ এবং j-- i এবং j-এর মান পরিবর্তন করে (যথাক্রমে ৫ এবং ৩)। 
+কিন্তু, জাভাতে মেথডগুলো মান দ্বারা পাস (pass by value) হয়। এর মানে হলো, মেথডের ভেতরের পরিবর্তনগুলো মূল a ভেরিয়েবলের ওপর কোনো প্রভাব ফেলে না।
+মেথড থেকে ফিরে আসার পর, a-এর মান সেই ৫-ই থাকে।
+
 
 
 13.Consider below code of Test.java file:
