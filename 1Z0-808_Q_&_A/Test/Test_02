@@ -603,11 +603,11 @@ Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.
         }
         Which 3 options, if used to replace /*INSERT*/, on execution will print 9 on to the console?
 
-        -int n = 0; n < arr.length; n++ 
-        -int n = 0; n < arr.length; n += 2 
-        -int n = 3; n < arr.length; n++ 
-        -int n = 1; n < arr.length - 1; n++ 
-        -int n = 1; n < arr.length; n += 2 
+        1-int n = 0; n < arr.length; n++ 
+        2-int n = 0; n < arr.length; n += 2 
+        3-int n = 3; n < arr.length; n++ 
+        4-int n = 1; n < arr.length - 1; n++ 
+        5-int n = 1; n < arr.length; n += 2 
 
 
 
@@ -617,10 +617,9 @@ Explanation: Options 1 (`n = 0; n < arr.length; n += 1`) and 3 (`n = 1; n < arr.
 
 ### Question 22  
 Correct Options (3):  
-- `int n = 0; n < arr.length; n += 2` (sums 1 + 3 + 5 = 9)  
-- `int n = 1; n < arr.length - 1; n++` (sums 2 + 3 + 4 = 9)  
-- `int n = 1; n < arr.length; n += 2` (sums 2 + 4 = 6, but not 9)  
-Correction: Only 2 options actually sum to 9 (first and second).
+int n = 0; n < arr.length; n += 2: এই লুপটি অ্যারের প্রথম, তৃতীয় এবং পঞ্চম উপাদান (arr[0], arr[2], arr[4]) যোগ করবে। অর্থাৎ, 1 + 3 + 5 = 9।
+int n = 3; n < arr.length; n++: এই লুপটি চতুর্থ এবং পঞ্চম উপাদান (arr[3], arr[4]) যোগ করবে। অর্থাৎ, 4 + 5 = 9।
+int n = 1; n < arr.length - 1; n++: এই লুপটি দ্বিতীয়, তৃতীয় এবং চতুর্থ উপাদান (arr[1], arr[2], arr[3]) যোগ করবে। অর্থাৎ, 2 + 3 + 4 = 9।
 
 
 
