@@ -2,13 +2,11 @@
 Date: 1 Auguest,2025
 
 
-### 1. অ্যারে ইনডেক্স ম্যানেজমেন্ট (Array Index Management)
- 
+### 1. অ্যারে ইনডেক্স ম্যানেজমেন্ট (Array Index Management) 
 - অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  
 - `arr[arr.length]` বা `arr[-1]` এক্সেস করলে `ArrayIndexOutOfBoundsException` আসবে।  
 - লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন (`i <= arr.length` নয়)। 
 :for(int i : arr) লুপে i অ্যারের মান নির্দেশ করে, ইনডেক্স নয়। যদি আপনি arr[i] ব্যবহার করেন, তাহলে ArrayIndexOutOfBoundsException ঘটার সম্ভাবনা থাকে।
-
 
 
 ### 2. লুপ কন্ট্রোল (Loop Control)
@@ -20,7 +18,12 @@ Date: 1 Auguest,2025
 - পরীক্ষার টিপ: `break` বা `continue` এর পরের কোড চেক করুন (Unreachable হতে পারে)।  
 
 
-### 3. স্ট্যাটিক vs ইনস্ট্যান্স ভেরিয়েবল (Static vs Instance Variables) 
+### 3. ভ্যারিয়েবল এবং শ্যাডোইং ভেরিয়েবল (Variable Shadowing), স্ট্যাটিক vs ইনস্ট্যান্স ভেরিয়েবল (Static vs Instance Variables)  
+- লোকাল ভেরিয়েবল ক্লাস ভেরিয়েবলকে শ্যাডো করতে পারে।  
+- লোকাল ভ্যারিয়েবল (Local Variables): মেথড বা ব্লকের মধ্যে ঘোষিত ভ্যারিয়েবলগুলো লোকাল ভ্যারিয়েবল। এগুলো ব্যবহার করার আগে অবশ্যই ইনিশিয়ালাইজ করতে হয়, অন্যথায় কম্পাইলেশন ত্রুটি হয় ।
+- শ্যাডোইং (Shadowing): যখন একটি লোকাল ভ্যারিয়েবলের নাম কোনো ইনস্ট্যান্স বা স্ট্যাটিক ভ্যারিয়েবলের নামের সাথে মিলে যায়, তখন লোকাল ভ্যারিয়েবলটি প্রিফারেন্স পায়। 
+  এই ক্ষেত্রে, মেথডের ভেতরে লোকাল ভ্যারিয়েবলটি ব্যবহার করার আগে ইনিশিয়ালাইজ করতে হবে ।
+
 - স্ট্যাটিক ভেরিয়েবল: সব অবজেক্টে শেয়ার হয়।  
 - ইনস্ট্যান্স ভেরিয়েবল: প্রতিটি অবজেক্টের আলাদা কপি থাকে।  
 - পরীক্ষার টিপ: `static` ভেরিয়েবলের মান শেষ অ্যাসাইনমেন্ট অনুযায়ী পরিবর্তিত হয়।  
@@ -38,7 +41,6 @@ Date: 1 Auguest,2025
 - পরীক্ষার টিপ: `null` পাস করলে কম্পাইলার `Double` ভার্সন পছন্দ করে (যদি `int` ভার্সন না থাকে)।  
  
 
-
 ### 6. সুইচ-কেস ফল থ্রু (Switch-Case Fall Through) 
 - `break` না দিলে পরের সব `case` এক্সিকিউট হবে।  
 - পরীক্ষার টিপ: `default` যেকোনো জায়গায় থাকতে পারে।  
@@ -54,8 +56,6 @@ Date: 1 Auguest,2025
   যদি এর চেয়ে বেশি নির্দিষ্ট প্যারামিটার তালিকাযুক্ত মেথড থাকে (যেমন `(char)` বা `(char, char)`), তাহলে সেগুলিই আগে কল হবে।
 
  
-
-
 ### 8. ডেটা টাইপ এবং টাইপ কাস্টিং, Wrapper ক্লাস ও NullPointerException
 - প্রিমিটিভ টাইপ এবং রেপার ক্লাস (Primitive vs. Wrapper Classes): মেথড ওভারলোডিংয়ের ক্ষেত্রে, জাভা প্রথমে সঠিক ম্যাচ খোঁজে। যদি একটি প্রিমিটিভ টাইপ আর্গুমেন্ট দেওয়া হয়,
    তবে এটি `varargs` এর চেয়ে একটি উপযুক্ত প্রিমিটিভ টাইপ বা তার রেপার ক্লাসকে বেশি প্রাধান্য দেবে। যেমন, `byte` কে প্রথমে `Byte` বা `int` টাইপের প্যারামিটারে কনভার্ট করার চেষ্টা করা হবে ।
@@ -78,13 +78,9 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 
 
-### 10. ভ্যারিয়েবল এবং শ্যাডোইং ভেরিয়েবল (Variable Shadowing) 
-- লোকাল ভেরিয়েবল ক্লাস ভেরিয়েবলকে শ্যাডো করতে পারে।  
-- লোকাল ভ্যারিয়েবল (Local Variables): মেথড বা ব্লকের মধ্যে ঘোষিত ভ্যারিয়েবলগুলো লোকাল ভ্যারিয়েবল। এগুলো ব্যবহার করার আগে অবশ্যই ইনিশিয়ালাইজ করতে হয়, অন্যথায় কম্পাইলেশন ত্রুটি হয় ।
-- শ্যাডোইং (Shadowing): যখন একটি লোকাল ভ্যারিয়েবলের নাম কোনো ইনস্ট্যান্স বা স্ট্যাটিক ভ্যারিয়েবলের নামের সাথে মিলে যায়, তখন লোকাল ভ্যারিয়েবলটি প্রিফারেন্স পায়। 
-  এই ক্ষেত্রে, মেথডের ভেতরে লোকাল ভ্যারিয়েবলটি ব্যবহার করার আগে ইনিশিয়ালাইজ করতে হবে ।
 
 
+------------
 
 
 
@@ -123,7 +119,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
    public class Test {
    public static void main(String[] args) {
    int elements = 0;
-   Object [] arr = {“A”, “E”, “I”, new Object(), “O”, “U”}; //Line n1
+   Object [] arr = {"A", "E", "I", new Object(), "O", "U"}; //Line n1
    for(Object obj : arr) { //Line n2
       if(obj instanceof String) {
       continue;
@@ -134,6 +130,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
    }
    System.out.println(elements); //Line n4
    }}
+
    What will be the result of compiling and executing Test class?
     Compilation error at Line n1
     Compilation error at Line n2
@@ -151,8 +148,8 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 
 2.Answer: 
+   সঠিক উত্তর: Line n3 তে একটি কম্পাইলেশন ত্রুটি হবে, কারণ elements++; লাইনটি Unreachable statement।
    যেহেতু elements++ লাইনটি কোনো অবস্থাতেই কার্যকর করা সম্ভব নয় (কারণ এর ঠিক উপরে continue অথবা break সর্বদা কার্যকর হবে), তাই জাভা কম্পাইলার এটিকে একটি "unreachable statement" ত্রুটি হিসেবে ধরবে।
-   অতএব, সঠিক উত্তরটি হলো: Line n3 তে একটি কম্পাইলেশন ত্রুটি হবে, কারণ elements++; লাইনটি Unreachable statement।
    **চতুর্থ পুনরাবৃত্তি: obj এর মান new Object()।
    new Object() একটি String নয়।
    if(obj instanceof String) শর্তটি মিথ্যা হয়।
@@ -163,14 +160,14 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 3. Consider below code of Test.java file:
   public class Test {
    public static void main(String[] args) {
-   String [][] arr = { {“%”, “$$”}, {“***”, “@@@@”, “#####”}};
-   for(String [] str : arr) {
-         for(String s : str) {
-         System.out.println(s);
-         if(s.length() == 4) //Line n1
-         break; //Line n2
-         }
-   break; //Line n3
+   String [][] arr = { {"%", "$$"}, {"***", "@@@@", "#####"}};
+    for(String [] str : arr) {
+            for(String s : str) {
+                System.out.println(s);
+                if(s.length() == 4) //Line n1
+                break; //Line n2
+            }
+    break; //Line n3
   }}}
    What will be the result of compiling and executing Test class?
     %
@@ -189,32 +186,46 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 
 3. Answer: 
-      Setp_1.অ্যারের ইনিশিয়ালাইজেশন (Array Initialization): `String [][] arr = { {"%", "$$"}, {"", "@@@@", "#####"}};`  এটি একটি দ্বি-মাত্রিক (two-dimensional) অ্যারে।
-              arr[0] হলো {"%", "$$"};  
-              arr[1] হলো {"", "@@@@", "#####"}
+      ভিতরের লুপ(2 columns print) শেষ হওয়ার পরে, `Line n3` এ থাকা (আউটার লুপ)`break` স্টেটমেন্টটি কার্যকর হয়। এটি বাইরের লুপটিকে ভেঙে দেয় এবং প্রোগ্রামটি শেষ হয়ে যায়। 
+      এই কারণে, শুধুমাত্র `"%"` এবং `"$$"` প্রিন্ট হবে।     
 
-      Setp_2.আউটার লুপ (Outer Loop): `for(String [] str : arr)`: এই লুপটি `arr` অ্যারের প্রতিটি ভেতরের অ্যারের উপর পুনরাবৃত্তি (iterate) করে।
-             প্রথম পুনরাবৃত্তি: `str` এর মান হবে `{"%", "$$"}`।  
-
-      Setp_3.ইনার লুপ (Inner Loop): `for(String s : str)`:  এই লুপটি `str` (বর্তমানে `{"%", "$$"}`) অ্যারের প্রতিটি স্ট্রিং উপাদানের উপর পুনরাবৃত্তি করে।
-             প্রথম পুনরাবৃত্তি (ইনার লুপ): `s` এর মান হবে `"%"`।
-                 `System.out.println(s);` আউটপুট করবে: `%`
-                 `if(s.length() == 4)`: `"%"` এর দৈর্ঘ্য 1, যা 4 এর সমান নয়। তাই `if` শর্তটি মিথ্যা হয়।         
-             দ্বিতীয় পুনরাবৃত্তি (ইনার লুপ): `s` এর মান হবে `"$$"`।
-                 `System.out.println(s);` আউটপুট করবে: `$$`
-                 `if(s.length() == 4)`: `"$$"` এর দৈর্ঘ্য $, যা 4 এর সমান নয়। তাই `if` শর্তটি মিথ্যা হয়।
-                 ইনার লুপের এই `str` অ্যারের আর কোনো উপাদান নেই, তাই ইনার লুপটি শেষ হয়।         
-      Setp_4.আউটার লুপের `break` (Line n3): ইনার লুপ শেষ হওয়ার পর, কন্ট্রোল `break;` (Line n3) স্টেটমেন্টে আসে। এই `break` স্টেটমেন্টটি আউটার লুপকে সম্পূর্ণরূপে বন্ধ করে দেয়।         
-      
-      ### ফলাফল (Result)
-      যেহেতু আউটার লুপটি প্রথম পুনরাবৃত্তির পরেই `break` হয়ে যাচ্ছে, দ্বিতীয় ভেতরের অ্যারে (`{"", "@@@@", "#####"}`) কখনোই প্রসেস হবে না।
-      অতএব, কোডটি কম্পাইল ও এক্সিকিউট করলে যে আউটপুট দেবে তা হলো:
-      %
-      $$
 
 ----------
 
+
 4. public class Test {
+       public static void main(String[] args) {
+           String [][] arr = { {"%", ""}, {"", "@@@@", "#####"}};
+           for(String [] str : arr) { // Outer loop
+               for(String s : str) { // Inner loop
+                   System.out.println(s);
+                   if(s.length() == 4) { // Line n1
+                       break; // Line n2: Breaks out of the INNER loop
+                   }
+               }
+            break; // Line n3: Breaks out of the OUTER loop
+           }
+       }
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+4. Answer: 
+   আউটপুট হবে: %
+   যেহেতু আউটার লুপটি শুধুমাত্র প্রথম ভেতরের অ্যারে (`{"%", ""}`) প্রসেস করার পরেই `break` হয়ে যাচ্ছে, তাই দ্বিতীয় ভেতরের অ্যারে (`{"", "@@@@", "#####"}`) কখনোই প্রসেস হবে না।
+
+
+
+5. public class Test {
    public static void main(String[] args) {
    int i = 1;
    int j = 5;
@@ -228,7 +239,8 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
        else continue B;
       }}}
        System.out.println(k);
-      }}   
+      }}  
+
    What will be the result of compiling and executing Test class?   
     Compilation error
     Program never terminates as above code causes infinite loop
@@ -246,7 +258,8 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 
 
-4. Answer: 
+5. Answer: 
+### ফলাফল:  লুপ থেকে বেরিয়ে আসার পর, `System.out.println(k);` কার্যকর হয়। `k` এর চূড়ান্ত মান হলো 15।
  আমরা `i`, `j`, এবং `k` এর মানগুলো ট্র্যাক করব, এবং দেখব প্রোগ্রাম ফ্লো কিভাবে পরিবর্তিত হয়।
       প্রাথমিক মান:  * `i = 1`  * `j = 5`  * `k = 0`
       ১ম পুনরাবৃত্তি (আউটার লুপ A):
@@ -276,58 +289,6 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
             * `if(i == j)` (2 == 2)? হ্যাঁ, সত্য\!
             * `break A;` কার্যকর হয়।
             * এই `break` স্টেটমেন্টটি লেবেল `A` দ্বারা চিহ্নিত আউটার `while(true)` লুপ থেকে সম্পূর্ণভাবে প্রোগ্রামকে বের করে দেয়।      
-      -----      
-      ### ফলাফল:  লুপ থেকে বেরিয়ে আসার পর, `System.out.println(k);` কার্যকর হয়। `k` এর চূড়ান্ত মান হলো 15।
-
-
-----------
-
-5. public class Test {
-       public static void main(String[] args) {
-           String [][] arr = { {"%", ""}, {"", "@@@@", "#####"}};
-           for(String [] str : arr) { // Outer loop
-               for(String s : str) { // Inner loop
-                   System.out.println(s);
-                   if(s.length() == 4) { // Line n1
-                       break; // Line n2: Breaks out of the INNER loop
-                   }
-               }
-               break; // Line n3: Breaks out of the OUTER loop
-           }
-       }
-   }
-
-
-
-
-
-
-
-
-
-
-5. Answer: 
-    1.  অ্যারে ইনিশিয়ালাইজেশন:
-    `String [][] arr = { {"%", ""}, {"", "@@@@", "#####"}};`
-    এখানে একটি দ্বি-মাত্রিক অ্যারে (`2D array`) তৈরি করা হয়েছে:
-      * `arr[0]` হল `{"%", ""}`
-      * `arr[1]` হল `{"", "@@@@", "#####"}`
-   2. আউটার লুপ (`for(String [] str : arr)`): এই লুপটি `arr` অ্যারের প্রতিটি ভেতরের অ্যারের উপর পুনরাবৃত্তি করে।
-      * প্রথম পুনরাবৃত্তি: `str` এর মান হয় `{"%", ""}`।
-   3. ইনার লুপ (`for(String s : str)`): এই লুপটি বর্তমান `str` অ্যারের স্ট্রিং উপাদানগুলির উপর পুনরাবৃত্তি করে।
-      * ইনার লুপের প্রথম পুনরাবৃত্তি: `s` এর মান হয় ` "%"  `।
-          * `System.out.println(s);` আউটপুট করবে: `%`
-          * `if(s.length() == 4)`: `"%"` এর দৈর্ঘ্য 1। 1 == 4 মিথ্যা।
-      * ইনার লুপের দ্বিতীয় পুনরাবৃত্তি: `s` এর মান হয় `""` (একটি খালি স্ট্রিং)।
-          * `System.out.println(s);` আউটপুট করবে: (একটি খালি লাইন)
-          * `if(s.length() == 4)`: `""` এর দৈর্ঘ্য 0। 0 == 4 মিথ্যা।
-          * `{"%", ""}` অ্যারেতে আর কোনো উপাদান না থাকায়, এই ইনার লুপটি শেষ হয়।
-   4. আউটার লুপের `break` (Line n3):
-    ইনার লুপ শেষ হওয়ার পর, কন্ট্রোল `break;` (Line n3) স্টেটমেন্টে আসে। এই `break` স্টেটমেন্টটি আউটার লুপকে সম্পূর্ণরূপে বন্ধ করে দেয়।
-   ### ফলাফল
-   যেহেতু আউটার লুপটি শুধুমাত্র প্রথম ভেতরের অ্যারে (`{"%", ""}`) প্রসেস করার পরেই `break` হয়ে যাচ্ছে, তাই দ্বিতীয় ভেতরের অ্যারে (`{"", "@@@@", "#####"}`) কখনোই প্রসেস হবে না।
-   কম্পাইল এবং এক্সিকিউট করার পর, আউটপুট হবে: %
-
 
 -------------
 6.   int i = 0;
@@ -345,15 +306,17 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 
 
+
+
+
+
+
 6. Answer: 
-   int i = 0; // i এর প্রাথমিক মান 0
-      for(
-          System.out.print(i++); // ১. ইনিশিয়ালাইজেশন পার্ট: লুপ শুরু হওয়ার আগে এই অংশটি একবার চলে। প্রথমে i (0) প্রিন্ট করে, তারপর i কে 1 বাড়ায়।
-          i < 2;                   // ২. কন্ডিশন পার্ট: প্রতিবার লুপের বডি চলার আগে এই শর্তটি পরীক্ষা করা হয়। (যেমন: 1 < 2 বা 2 < 2)
-          System.out.print(i++)    // ৩. ইনক্রিমেন্ট/ডিক্রিমেন্ট পার্ট: লুপের বডি একবার চলার পর এই অংশটি চলে। প্রথমে i প্রিন্ট করে, তারপর i কে 1 বাড়ায়। এখানে i এর বর্তমান মান (1) প্রিন্ট হয় এবং তারপর i এর মান বেড়ে 2 হয়।
-      ){
-          System.out.print(i); // ৪. লুপের বডি: যদি কন্ডিশন সত্য হয়, তাহলে এই অংশটি চলে। এখানে i এর বর্তমান মান প্রিন্ট হয়।
-      }
+সব মিলিয়ে আউটপুট হবে `011`।
+    System.out.print(i++) // ইনিশিয়ালাইজেশন পার্ট: লুপ শুরু হওয়ার আগে এই অংশটি একবার চলে। প্রথমে i (0) প্রিন্ট করে, তারপর i কে 1 বাড়ায়।
+    System.out.print(i++) // ইনক্রিমেন্ট/ডিক্রিমেন্ট পার্ট: লুপের বডি একবার চলার পর এই অংশটি চলে। 
+                            প্রথমে i প্রিন্ট করে, তারপর i কে 1 বাড়ায়। এখানে i এর বর্তমান মান (1) প্রিন্ট হয় এবং তারপর i এর মান বেড়ে 2 হয়।
+
 
 ### এক্সিকিউশন ট্রেস
 ১. `for` লুপের ইনিশিয়ালাইজেশন পার্ট (`System.out.print(i++)`): প্রথমে `i` এর মান `0` প্রিন্ট হবে, তারপর `i` এর মান বেড়ে `1` হবে।
@@ -365,7 +328,6 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
   - কন্ডিশন `i < 2` (অর্থাৎ `2 < 2`) মিথ্যা।
   - লুপ শেষ হবে।
 
-সব মিলিয়ে আউটপুট হবে `011`।
 
 ####6.1 extension part of question no. 6  to clarify FOR-LOOP.
            int i = 5;
@@ -484,7 +446,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 8.public class Greetings {
    String msg = null;
       public Greetings() {
-      this(“Good Morning!”);
+      this("Good Morning!");
       }
       public Greetings(String str) {
       msg = str;
@@ -495,7 +457,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
       public static void main(String [] args) {
       Greetings g1 = new Greetings();
-      Greetings g2 = new Greetings(“Good Evening!”);
+      Greetings g2 = new Greetings("Good Evening!");
       g1.display();
       g2.display();
       }}
@@ -530,14 +492,14 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 -----
 9. Test.java
   class Message {
-   String msg = “Happy New Year!”;
+   String msg = "Happy New Year!";
    public void print() {
       System.out.println(msg);
    }}
    
    public class Test {
    public static void change(Message m) {
-      m.msg = “Happy Holidays!”;
+      m.msg = "Happy Holidays!";
    }
    
    public static void main(String[] args) {
@@ -577,7 +539,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 10. Test.java 
    class Message {
-      String msg = “Happy New Year!”;   
+      String msg = "Happy New Year!";   
       public void print() {
       System.out.println(msg);
     }}
@@ -585,7 +547,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
    public class Test {
       public static void change(Message m) {
       m = new Message();
-      m.msg = “Happy Holidays!”;
+      m.msg = "Happy Holidays!";
    }
    
    public static void main(String[] args) {
@@ -623,7 +585,7 @@ for(System.out.print(i++); i < 2; System.out.print(i++)) {
 
 11.public class Test {
 public static void print() {
-System.out.println(“static method”);
+System.out.println("static method");
 }
 
 public static void main(String[] args) {
@@ -687,7 +649,7 @@ obj.print();
       public static void main(String[] args) {
       double price = 90000;
       String model;
-         if(price > 100000) {  model = “Tesla Model X”;
+         if(price > 100000) {  model = "Tesla Model X";
          }else if(price <= 100000) { model = "Tesla Model S"; } 
       System.out.println(model); 
       } }
@@ -742,11 +704,11 @@ What can you say for sure?
 -------
 15.public class Test {
 private static void m(int x) {
-System.out.println(“int version”);
+System.out.println("int version");
 }
 
 private static void m(char x) {
-System.out.println(“char version”);
+System.out.println("char version");
 }
 
 public static void main(String [] args) {
@@ -822,7 +784,7 @@ method name should be process, it should be a STATIC method, it should accept 3 
    static int x;
    int y, z;
 
-   public String toString() { return “Point(” + x + “, ” + y + “, ” + z + “)”; }
+   public String toString() { return "Point(" + x + ", " + y + ", " + z + ")"; }
    }
    
    public class Test {
@@ -864,7 +826,7 @@ Ans: Point(19, 35, -1) Point(19, 40, 0)
    short [] args = new short[]{50, 50};
    args[0] = 5;
    args[1] = 10;
-   System.out.println(“[” + args[0] + “, ” + args[1] + “]”);
+   System.out.println("[" + args[0] + ", " + args[1] + "]");
    }
    }
    
@@ -922,11 +884,11 @@ Ans:
 ---
 20. public class Test {
    private static void add(int i, int j) {
-   System.out.println(“int version”);
+   System.out.println("int version");
    }
    
    private static void add(Integer i, Integer j) {
-   System.out.println(“Integer version”);
+   System.out.println("Integer version");
    }
    
    public static void main(String[] args) {
@@ -934,7 +896,7 @@ Ans:
    }
    
    }
-   Which modifications, done independently, print “Integer version” on to the console? Select ALL that apply.   
+   Which modifications, done independently, print "Integer version" on to the console? Select ALL that apply.   
     Remove add(int i, int j)  method declaration and definition.
     Replace add(10, 20);  by add(new Integer(10), new Integer(20)); 
     Replace add(10, 20);  by add(10.0, 20.0); 
@@ -963,11 +925,11 @@ add(10, 20); কে add(null, null); দিয়ে প্রতিস্থা
 ----
 21. public class Test {
    private static void add(double d1, double d2) {
-   System.out.println(“double version: ” + (d1 + d2));
+   System.out.println("double version: " + (d1 + d2));
    }
    
    private static void add(Double d1, Double d2) {
-   System.out.println(“Double version: ” + (d1 + d2));
+   System.out.println("Double version: " + (d1 + d2));
    }
    
    public static void main(String[] args) {
@@ -998,11 +960,11 @@ So, add(double, double); method is invoked( double version: 20.0).
 
 22.public class Test {
    private static void add(double d1, double d2) {
-      System.out.println(“double version: ” + (d1 + d2));
+      System.out.println("double version: " + (d1 + d2));
    }
    
    private static void add(Double d1, Double d2) {
-      System.out.println(“Double version: ” + (d1 + d2));
+      System.out.println("Double version: " + (d1 + d2));
    }
    
    public static void main(String[] args) {
@@ -1072,7 +1034,7 @@ Ans:
    int age;
    
    Student() {
-   Student(“James”, 25);
+   Student("James", 25);
    }
    
    Student(String name, int age) {
@@ -1084,7 +1046,7 @@ Ans:
    public class Test {
    public static void main(String[] args) {
    Student s = new Student();
-   System.out.println(s.name + “:” + s.age);
+   System.out.println(s.name + ":" + s.age);
    }
    }
    What will be the result of compiling and executing Test class?
@@ -1113,9 +1075,9 @@ Ans:
 
 ---
 25.public class Test {
-   static String str = “KEEP IT “; //Line n1
+   static String str = "KEEP IT "; //Line n1
       public static void main(String[] args) {
-         String str = str + “SIMPLE”; //Line n2
+         String str = str + "SIMPLE"; //Line n2
          System.out.println(str);
       }
    }
@@ -1138,7 +1100,7 @@ Ans:
 
 
 Ans:
-String str = str + “SIMPLE”; // Line n2: এখানে মূল সমস্যা|
+String str = str + "SIMPLE"; // Line n2: এখানে মূল সমস্যা|
 জাভা কম্পাইলার এখানে বিভ্রান্ত হয়ে যায়। যখন String str = str + "SIMPLE"; লাইনটি প্রসেস হয়, তখন ডান পাশের str (যেটি str + "SIMPLE" এর অংশ) আসলে কোন str কে নির্দেশ করছে তা নিয়ে অস্পষ্টতা দেখা দেয়। 
 কম্পাইলার মনে করে আপনি সেই লোকাল ভ্যারিয়েবল str কে রেফার করছেন যা আপনি একই লাইনে ডিক্লেয়ার করার চেষ্টা করছেন, কিন্তু সেটি তখনও সম্পূর্ণভাবে ইনিশিয়ালাইজড (initialized) হয়নি।
 
@@ -1198,11 +1160,11 @@ Ans:
 ----
 27. class Car {
    void speed(Byte val) { //Line n1
-     System.out.println(“DARK”); //Line n2
+     System.out.println("DARK"); //Line n2
    } //Line n3
    
    void speed(byte… vals) {
-   System.out.println(“LIGHT”);
+   System.out.println("LIGHT");
    }
    }
    
@@ -1239,7 +1201,7 @@ Ans:
    public class AvoidThreats {
    public static void evaluate(Threat t) { //Line n5
    t = new Threat(); //Line n6
-   t.name = “PHISHING”; //Line n7
+   t.name = "PHISHING"; //Line n7
    }
    
    public static void main(String[] args) {
@@ -1251,7 +1213,7 @@ Ans:
    }
    
    class Threat {
-   String name = “VIRUS”;
+   String name = "VIRUS";
    
    public void print() {
    System.out.println(name);
@@ -1451,7 +1413,7 @@ It compiles successfully and on execution prints 1233 on to the console
    
    public class TestBook {
    public static void main(String[] args) {
-   private Book book = new Book(“Head First Java”, “Kathy Sierra”);
+   private Book book = new Book("Head First Java", "Kathy Sierra");
    System.out.println(book.getName());
    System.out.println(book.getAuthor());
    }
