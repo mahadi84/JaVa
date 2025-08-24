@@ -1,12 +1,11 @@
 
-Date: 1 Auguest,2025
+Date: 1 August,2025
 
 
 ### 1. অ্যারে ইনডেক্স ম্যানেজমেন্ট (Array Index Management) 
-- অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  
-- `arr[arr.length]` বা `arr[-1]` এক্সেস করলে `ArrayIndexOutOfBoundsException` আসবে।  
-- লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন (`i <= arr.length` নয়)। 
-:for(int i : arr) লুপে i অ্যারের মান নির্দেশ করে, ইনডেক্স নয়। যদি আপনি arr[i] ব্যবহার করেন, তাহলে ArrayIndexOutOfBoundsException ঘটার সম্ভাবনা থাকে।
+- অ্যারের ইনডেক্স 0 থেকে (length - 1) পর্যন্ত হয়।  - লুপ চালানোর সময় `i < arr.length` ব্যবহার করুন (`i <= arr.length` নয়)। 
+- `arr[arr.length]/arr[+1]` বা `arr[-1]` এক্সেস করলে `ArrayIndexOutOfBoundsException` আসবে।
+- :for(int i : arr) লুপে i অ্যারের মান নির্দেশ করে, ইনডেক্স নয়। যদি আপনি arr[i] ব্যবহার করেন, তাহলে ArrayIndexOutOfBoundsException ঘটার সম্ভাবনা থাকে।
 
 
 ### 2. লুপ এবং  লুপ কন্ট্রোল (Loop Control)
