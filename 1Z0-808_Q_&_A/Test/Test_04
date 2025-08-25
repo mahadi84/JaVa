@@ -405,8 +405,9 @@ Line 9: System.out.println(obj.i2);
 `A` ক্লাসটি **পাবলিক** হিসেবে ঘোষণা করা হয়েছে এবং `com.skillcertpro.oca` প্যাকেজে সংজ্ঞায়িত। তাই `com.skillcertpro.oca` প্যাকেজের বাইরে থেকে `A` ক্লাস অ্যাক্সেস করতে কোনো সমস্যা নেই।
   i2 ভেরিয়েবলটি protected হিসেবে ঘোষিত। protected মেম্বার দুটি উপায়ে অ্যাক্সেস করা যায়:
   -একই প্যাকেজের মধ্যে।
-  -ভিন্ন প্যাকেজের সাবক্লাস দ্বারা, শুধুমাত্র উত্তরাধিকারসূত্রে প্রাপ্ত মেম্বারের ক্ষেত্রে (inherited members)।
-  এখানে B ক্লাসটি A ক্লাসের একটি অবজেক্ট (obj) তৈরি করছে। obj হলো A ক্লাসের একটি ইনস্ট্যান্স, B ক্লাসের নয়। B ক্লাসটি A ক্লাসের সাবক্লাস হলেও, এটি A ক্লাসের অবজেক্টের protected মেম্বারকে সরাসরি অ্যাক্সেস করতে পারে না, কারণ তারা ভিন্ন প্যাকেজে অবস্থিত।
+  -ভিন্ন প্যাকেজের সাবক্লাস(A a= new B()) দ্বারা, শুধুমাত্র উত্তরাধিকারসূত্রে প্রাপ্ত মেম্বারের ক্ষেত্রে (inherited members)।
+  এখানে B ক্লাসটি A ক্লাসের একটি অবজেক্ট (obj) তৈরি করছে। obj হলো A ক্লাসের একটি ইনস্ট্যান্স, B ক্লাসের নয়। 
+  B ক্লাসটি A ক্লাসের সাবক্লাস হলেও, এটি A ক্লাসের অবজেক্টের protected মেম্বারকে সরাসরি অ্যাক্সেস করতে পারে না, কারণ তারা ভিন্ন প্যাকেজে অবস্থিত।
 
 
 
@@ -440,7 +441,6 @@ System.out.println("C");
 
 //Test.java
 package com.skillcertpro.oca.test;
-
 import com.skillcertpro.oca.*;
 
 public class Test {
@@ -473,15 +473,12 @@ What will be the result of compiling and executing Test class?
 
 
 Answer:
-Incorrect
-Class A, B and C are declared public and inside same package com.skillcertpro.oca. Method print() of class A has correctly been overridden by B and C.
-print() method is public so no issues in accessing it anywhere.
+C obj4 = (C)obj2; এই লাইনে সমস্যা হবে।
+এখানে, obj2 রেফারেন্স ভেরিয়েবলটি একটি B ক্লাসের অবজেক্টকে নির্দেশ করছে।
+আপনি একটি B অবজেক্টকে একটি C টাইপে কাস্ট করার চেষ্টা করছেন।
+B এবং C উভয়ই A ক্লাসের সাবক্লাস হলেও, তারা একে অপরের সাথে সম্পর্কিত নয় (তারা সহোদর বা "sibling" ক্লাস)। জাভাতে, আপনি একটি ক্লাসকে তার সহোদর ক্লাসের টাইপে কাস্ট করতে পারেন না।
 
-Let’s check the code inside main method.
-A obj1 = new C(); => obj1 refers to an instance of C class, it is polymorphism. 
-A obj2 = new B(); => obj2 refers to an instance of B class, it is polymorphism. 
-C obj3 = (C)obj1; => obj1 actually refers to an instance of C class, so at runtime obj3 (C type) will refer to an instance of C class. As obj1 is of A type so explicit typecasting is necessary. 
-C obj4 = (C)obj2; => obj2 actually refers to an instance of B class, so at runtime obj4 (C type) will refer to an instance of B class. B and C are siblings and can’t refer to each other, so this statement will throw ClassCastException at runtime.
+JVM যখন এই লাইনটি এক্সিকিউট করার চেষ্টা করবে, তখন এটি বুঝতে পারবে যে B অবজেক্টকে C অবজেক্টে রূপান্তর করা সম্ভব নয়, এবং তাই একটি java.lang.ClassCastException থ্রো করবে।
 
 8.Consider codes below:
 //A.java
