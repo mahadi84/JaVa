@@ -10,9 +10,9 @@
      অথবা যে মেথডগুলো ইমপ্লিমেন্ট করা হয়নি সেগুলোকে abstract হিসেবে ঘোষণা করতে হবে। এই নিয়ম লঙ্ঘনের কারণে কম্পাইলার একটি এরর দেবে।
    - `final` ক্লাস সাবক্লাস করা যায় না। 
    - `private` টপ-লেভেল ক্লাস অ্যালাউড নয়।
-     - `abstract` ক্লাস ইনস্ট্যান্টিয়েট করা যায় না, কিন্তু কনস্ট্রাক্টর থাকতে পারে।
-     - `interface` ইনস্ট্যান্টিয়েট করা যায় না, কনস্ট্রাক্টর থাকতে পারে না।
-     - লেভেল Interface শুধুমাত্র `public` বা `default` (package-private) হতে পারে।
+     - `abstract` ক্লাস ইনস্ট্যান্টিয়েট (new) করা যায় না, কিন্তু কনস্ট্রাক্টর থাকতে পারে।
+     - `interface` ইনস্ট্যান্টিয়েট (new) করা যায় না, কনস্ট্রাক্টর থাকতে পারে না।
+     - লেভেল Interface শুধুমাত্র `public` বা `default` (package-private) হতে পারে। private or protected বৈধ নয়।
      - ইন্টারফেসের ভেরিয়েবল ডিফল্টভাবে `public static final`।
 
 #### 3. ইনহেরিটেন্স এবং কনস্ট্রাক্টর (Inheritance & Constructors)
@@ -54,7 +54,7 @@
 ---------------
 
 
-1.What will be the result of compiling and executing Circus class?
+1. What will be the result of compiling and executing the Circus class?
     //Circus.java
     package com.skillcertpro.oca;
 
