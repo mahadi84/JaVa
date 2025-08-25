@@ -54,57 +54,9 @@
 ---------------
 
 
-1. What will be the result of compiling and executing the Circus class?
-    //Circus.java
-    package com.skillcertpro.oca;
-
-    class Animal {
-    protected void jump() {
-    System.out.println("Animal");
-    }
-    }
-
-    class Cat extends Animal {
-    public void jump(int a) {
-    System.out.println("Cat");
-    }
-    }
-
-    class Deer extends Animal {
-    public void jump() {
-    System.out.println("Deer");
-    }
-    }
-
-    public class Circus {
-    public static void main(String[] args) {
-    Animal cat = new Cat();
-    Animal deer = new Deer();
-    cat.jump();
-    deer.jump();
-    }
-    }
-
-    Animal Deer
-    Cat Deer
-    Animal Animal
-    Cat Animal
-
-
-
-
-
-
-
-
-
-    
-    Answer:
-    সঠিক উত্তর হলো Animal Deer।
-
+1. --
 2. --
 3. --
-
 4. --
 
 5.For the given code:
