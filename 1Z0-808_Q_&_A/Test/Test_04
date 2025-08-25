@@ -3,16 +3,18 @@
 
 #### 1. পলিমরফিজম এবং মেথড ওভাররাইডিং (Polymorphism & Method Overriding)
   -Animal cat = new Cat();` এর মাধ্যমে পলিমরফিজম দেখানো হয়েছে।
-  -স্ট্যাটিক মেথড ওভাররাইড হয় না, হাইড হয় (প্রশ্ন 24, 25)।
+  -স্ট্যাটিক মেথড ওভাররাইড হয় না, হাইড হয় ।
+  -public class abc extends Object  {//Ok. every class we create extends Object
 
 #### 2. ক্লাস এবং ইন্টারফেসের মডিফায়ার (Class & Interface Modifiers)
 -একটি abstract ক্লাস যখন একটি ইন্টারফেস ইমপ্লিমেন্ট করে, তখন তাকে হয় ইন্টারফেসের সবগুলো মেথড ইমপ্লিমেন্ট করতে হবে, 
      অথবা যে মেথডগুলো ইমপ্লিমেন্ট করা হয়নি সেগুলোকে abstract হিসেবে ঘোষণা করতে হবে। এই নিয়ম লঙ্ঘনের কারণে কম্পাইলার একটি এরর দেবে।
    - `final` ক্লাস সাবক্লাস করা যায় না। 
-   - `private` টপ-লেভেল ক্লাস অ্যালাউড নয়।
-     - `abstract` ক্লাস ইনস্ট্যান্টিয়েট (new) করা যায় না, কিন্তু কনস্ট্রাক্টর থাকতে পারে।
+    - টপ-লেভেল Class/Interface-এ,  private এবং protected বৈধ নয়। শুধুমাত্র `public` বা `default` (package-private) হতে পারে।
+          **জাভাতে টপ-লেভেল Class/Interface হলো এমন একটি Class/Interface যা অন্য কোনো ক্লাস বা ইন্টারফেসের ভেতরে নেস্ট করা (nested) থাকে না। সহজভাবে বলতে গেলে, এটি একটি .java ফাইলে সরাসরি ঘোষিত একটি ইন্টারফেস।
+    
+    - `abstract` ক্লাস ইনস্ট্যান্টিয়েট (new) করা যায় না, কিন্তু কনস্ট্রাক্টর থাকতে পারে।
      - `interface` ইনস্ট্যান্টিয়েট (new) করা যায় না, কনস্ট্রাক্টর থাকতে পারে না।
-     - লেভেল Interface শুধুমাত্র `public` বা `default` (package-private) হতে পারে। private or protected বৈধ নয়।
      - ইন্টারফেসের ভেরিয়েবল ডিফল্টভাবে `public static final`।
 
 #### 3. ইনহেরিটেন্স এবং কনস্ট্রাক্টর (Inheritance & Constructors)
@@ -58,44 +60,8 @@
 2. --
 3. --
 4. --
+5. --
 
-5.For the given code:
-package com.skillcertpro.oca;
-
-interface I01 {
-void m1();
-}
-
-public class Implementer extends Object implements I01 {
-protected void m1() {
-
-}
-}
-Which of the statement is true?
-    interface I01 gives compilation error as method m1 is not public.
-    Implementer class declaration is not correct.
-    Method m1() in Implementer class is not implemented correctly.
-    None of the other options.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Answer:
-হ্যাঁ, public class Implementer extends Object implements I01 { এটি জাভাতে একটি সঠিক সিনট্যাক্স।
-ব্যাখ্যা:
-public class Implementer: এটি একটি পাবলিক ক্লাস ঘোষণার জন্য স্ট্যান্ডার্ড সিনট্যাক্স।
-extends Object: জাভাতে, যদি একটি ক্লাস কোনো ক্লাসকে এক্সটেন্ড না করে, তবে এটি স্বয়ংক্রিয়ভাবে java.lang.Object ক্লাসকে এক্সটেন্ড করে। 
-তাই, extends Object explicitly লেখাটি অতিরিক্ত (redundant) হলেও, এটি কোনো সিনট্যাক্স এরর নয়। কম্পাইলার এটিতে কোনো সমস্যা ধরবে না।
-implements I01: এটি একটি ক্লাস ইন্টারফেস ইমপ্লিমেন্ট করার জন্য স্ট্যান্ডার্ড সিনট্যাক্স।
 
 
 6. Which of these access modifiers can be used for a top level interface?
