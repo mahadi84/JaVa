@@ -12,7 +12,7 @@
   
     - `final` ক্লাস সাবক্লাস করা যায় না। 
     - টপ-লেভেল Class/Interface-এ,  private এবং protected বৈধ নয়। শুধুমাত্র `public` বা `default` (package-private) হতে পারে।
-          **জাভাতে টপ-লেভেল Class/Interface হলো এমন একটি Class/Interface যা অন্য কোনো ক্লাস বা ইন্টারফেসের ভেতরে নেস্ট করা (nested) থাকে না। সহজভাবে বলতে গেলে, এটি একটি .java ফাইলে সরাসরি ঘোষিত একটি ইন্টারফেস।
+          জাভাতে টপ-লেভেল Class/Interface হলো এমন একটি Class/Interface যা অন্য কোনো ক্লাস বা ইন্টারফেসের ভেতরে নেস্ট করা (nested) থাকে না। সহজভাবে বলতে গেলে, এটি একটি .java ফাইলে সরাসরি ঘোষিত একটি ইন্টারফেস।
     
     - `abstract` ক্লাস ইনস্ট্যান্টিয়েট (new) করা যায় না, কিন্তু কনস্ট্রাক্টর থাকতে পারে।
      - `interface` ইনস্ট্যান্টিয়েট (new) করা যায় না, কনস্ট্রাক্টর থাকতে পারে না।
@@ -303,10 +303,10 @@ class OTG extends PenDrive {
 String type;
 String make;
 OTG(int capacity, String type) {
-/*INSERT-1*/
+/INSERT-1/
 }
 OTG(String make) {
-/*INSERT-2*/
+/INSERT-2/
 this.make = make;
 }
 }
@@ -320,10 +320,10 @@ System.out.println(obj.capacity + ":" + obj.type);
 Currently above code causes compilation error.
 Which of the options can successfully print 128:TYPE-C on to the console?
 
- Replace /*INSERT-1*/ with: super(capacity); Replace /*INSERT-2*/ with: super(128);
- Replace /*INSERT-1*/ with: super.capacity = capacity; this.type = type; Replace /*INSERT-2*/ with: super(128);
- Replace /*INSERT-1*/ with: super(capacity); this.type = type; Replace /*INSERT-2*/ with: super(0);
- Replace /*INSERT-1*/ with: this.type = type; super(capacity); Replace /*INSERT-2*/ with: super(128);
+ Replace /INSERT-1/ with: super(capacity); Replace /INSERT-2/ with: super(128);
+ Replace /INSERT-1/ with: super.capacity = capacity; this.type = type; Replace /INSERT-2/ with: super(128);
+ Replace /INSERT-1/ with: super(capacity); this.type = type; Replace /INSERT-2/ with: super(0);
+ Replace /INSERT-1/ with: this.type = type; super(capacity); Replace /INSERT-2/ with: super(128);
  None of the other options
 
  
@@ -342,10 +342,10 @@ Which of the options can successfully print 128:TYPE-C on to the console?
 কেবল তৃতীয় বিকল্পটিই জাভার নিয়ম মেনে চলে এবং সঠিক ফলাফল দেয়।
 
 সঠিক বিকল্পের ব্যাখ্যা:
-Replace /*INSERT-1*/ with: super(capacity); this.type = type;: 
+Replace /INSERT-1/ with: super(capacity); this.type = type;: 
 এই লাইনটি PenDrive ক্লাসের কনস্ট্রাকটরকে কল করে capacity কে 128 দ্বারা ইনিশিয়ালাইজ করে এবং OTG ক্লাসের type ভ্যারিয়েবলকে "TYPE-C" দ্বারা ইনিশিয়ালাইজ করে। 
 এটিই একমাত্র বিকল্প যা main() মেথডের জন্য প্রয়োজনীয় ফলাফল দেবে।
-Replace /*INSERT-2*/ with: super(0);: এই পরিবর্তনটি OTG(String make) কনস্ট্রাকটরের জন্য একটি বৈধ প্যারেন্ট কনস্ট্রাক্টর কল নিশ্চিত করে, যা কোডকে কম্পাইল করতে সাহায্য করবে।
+Replace /INSERT-2/ with: super(0);: এই পরিবর্তনটি OTG(String make) কনস্ট্রাকটরের জন্য একটি বৈধ প্যারেন্ট কনস্ট্রাক্টর কল নিশ্চিত করে, যা কোডকে কম্পাইল করতে সাহায্য করবে।
 
 
 
@@ -402,7 +402,7 @@ Which of the below solutions will help to resolve compilation error?
 Ans:
 
 Line 9: System.out.println(obj.i2);
-`A` ক্লাসটি **পাবলিক** হিসেবে ঘোষণা করা হয়েছে এবং `com.skillcertpro.oca` প্যাকেজে সংজ্ঞায়িত। তাই `com.skillcertpro.oca` প্যাকেজের বাইরে থেকে `A` ক্লাস অ্যাক্সেস করতে কোনো সমস্যা নেই।
+`A` ক্লাসটি পাবলিক হিসেবে ঘোষণা করা হয়েছে এবং `com.skillcertpro.oca` প্যাকেজে সংজ্ঞায়িত। তাই `com.skillcertpro.oca` প্যাকেজের বাইরে থেকে `A` ক্লাস অ্যাক্সেস করতে কোনো সমস্যা নেই।
   i2 ভেরিয়েবলটি protected হিসেবে ঘোষিত। protected মেম্বার দুটি উপায়ে অ্যাক্সেস করা যায়:
   -একই প্যাকেজের মধ্যে।
   -ভিন্ন প্যাকেজের সাবক্লাস(A a= new B()) দ্বারা, শুধুমাত্র উত্তরাধিকারসূত্রে প্রাপ্ত মেম্বারের ক্ষেত্রে (inherited members)।
@@ -441,7 +441,7 @@ System.out.println("C");
 
 //Test.java
 package com.skillcertpro.oca.test;
-import com.skillcertpro.oca.*;
+import com.skillcertpro.oca.;
 
 public class Test {
 public static void main(String[] args) {
@@ -474,11 +474,9 @@ What will be the result of compiling and executing Test class?
 
 Answer:
 C obj4 = (C)obj2; এই লাইনে সমস্যা হবে।
-এখানে, obj2 রেফারেন্স ভেরিয়েবলটি একটি B ক্লাসের অবজেক্টকে নির্দেশ করছে।
-আপনি একটি B অবজেক্টকে একটি C টাইপে কাস্ট করার চেষ্টা করছেন।
+আপনি একটি B(obj2) অবজেক্টকে একটি C টাইপে কাস্ট করার চেষ্টা করছেন।
 B এবং C উভয়ই A ক্লাসের সাবক্লাস হলেও, তারা একে অপরের সাথে সম্পর্কিত নয় (তারা সহোদর বা "sibling" ক্লাস)। জাভাতে, আপনি একটি ক্লাসকে তার সহোদর ক্লাসের টাইপে কাস্ট করতে পারেন না।
-
-JVM যখন এই লাইনটি এক্সিকিউট করার চেষ্টা করবে, তখন এটি বুঝতে পারবে যে B অবজেক্টকে C অবজেক্টে রূপান্তর করা সম্ভব নয়, এবং তাই একটি java.lang.ClassCastException থ্রো করবে।
+তাই একটি java.lang.ClassCastException থ্রো করবে।
 
 8.Consider codes below:
 //A.java
@@ -501,8 +499,7 @@ System.out.println("B");
 
 //Test.java
 package com.skillcertpro.oca.test;
-
-import com.skillcertpro.oca.*;
+import com.skillcertpro.oca.;
 
 public class Test {
 public static void main(String[] args) {
@@ -529,9 +526,11 @@ What will be the result of compiling and executing Test class?
  
  
  
- Answer:
- A obj1 = new A(); => obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে।
- B obj2 = (B)obj1; => obj1 হচ্ছে A টাইপের এবং এটিকে obj2 (যা B টাইপের) তে অ্যাসাইন করা হচ্ছে, তাই এক্সপ্লিসিট কাস্টিং (explicit casting) প্রয়োজন। obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে, তাই রানটাইমে obj2-ও ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করবে। সাবটাইপ সুপারটাইপের একটি অবজেক্টকে নির্দেশ করতে পারে না। অতএব, রানটাইমে B obj2 = (B)obj1; লাইনটি একটি ClassCastException থ্রো করবে।
+Answer:
+একটি প্যারেন্ট (A) অবজেক্টকে তার চাইল্ড টাইপে(B) কাস্ট করা যায় না, কারণ একটি প্যারেন্ট অবজেক্টের চাইল্ড ক্লাসের মেথড বা বৈশিষ্ট্যগুলো থাকে না।
+JVM যখন এই লাইনটি এক্সিকিউট করার চেষ্টা করবে, তখন এটি একটি java.lang.ClassCastException থ্রো করবে।
+
+B obj2 = (B)obj1; এই লাইনটিতে কম্পাইলার কোনো এরর দেবে না, কারণ A এবং B ক্লাসের মধ্যে একটি ইনহেরিটেন্স রিলেশনশিপ আছে,
 
  9. Consider below code of Test.java file:
 package com.skillcertprokhattry.oca;
@@ -576,6 +575,7 @@ What will be the result of compiling and executing above code?
  
  Answer:
 এই কোডটি সফলভাবে কম্পাইল হবে এবং রান করার পর কনসোলে KEEP_GOING_ প্রিন্ট করবে।
+Look carefully case of the...  Super();= super();
 
 
  10.Consider below codes of 3 java files:
@@ -590,7 +590,6 @@ System.out.print("ANIMAL-");
 
 //Dog.java
 package d;
-
 import a.Animal;
 
 public class Dog extends Animal {
@@ -601,7 +600,6 @@ System.out.print("DOG");
 
 //Test.java
 package com.skillcertprokhattry.oca;
-
 import d.Dog;
 
 public class Test {
@@ -618,6 +616,24 @@ What will be the result of compiling and executing Test class?
  It executes successfully and prints ANIMAL-DOG on to the console
  It executes successfully and prints DOG on to the console
  It executes successfully but nothing is printed on to the console
+
+
+
+
+
+
+
+
+10. Answer: 
+### কারণ বিশ্লেষণ
+1.  `Animal` ক্লাসের কনস্ট্রাকটর: `Animal` ক্লাসের কনস্ট্রাকটরের কোনো অ্যাক্সেস মডিফায়ার নেই, তাই এটি ডিফল্ট (package-private) অ্যাক্সেস পায়। 
+এর মানে হলো, এই কনস্ট্রাকটরটি শুধুমাত্র একই প্যাকেজ (`a`) এর ভেতর থেকে অ্যাক্সেস করা যাবে।
+2.  `Dog` ক্লাসের সমস্যা:
+    -   `Dog` ক্লাসটি `a` প্যাকেজের বাইরে (`d` প্যাকেজে) অবস্থিত।
+    -   `Dog` ক্লাস `Animal` ক্লাসকে এক্সটেন্ড করে। যখন `Dog` অবজেক্ট তৈরি করা হয়,
+          তখন এর কনস্ট্রাকটর স্বয়ংক্রিয়ভাবে তার প্যারেন্ট ক্লাস `Animal`-এর নো-আর্গুমেন্ট কনস্ট্রাকটরকে কল করার চেষ্টা করে (`super()`)।
+    -   যেহেতু `Animal`-এর কনস্ট্রাকটরটি `default` অ্যাক্সেস মডিফায়ার দ্বারা সীমাবদ্ধ, তাই ভিন্ন প্যাকেজে অবস্থিত `Dog` ক্লাস এটি অ্যাক্সেস করতে পারে না।
+এই নিয়ম লঙ্ঘনের কারণে কম্পাইলার `Dog.java` ফাইলটি কম্পাইল করতে ব্যর্থ হবে।
 
 
  11.Consider below code fragment:
@@ -1052,10 +1068,10 @@ String quote = "PLAY PLAY PLAY";
 public class Test {
 public static void main(String[] args) {
 GrandChild gc = new GrandChild();
-System.out.println(/*INSERT*/);
+System.out.println(/INSERT/);
 }
 }
-Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print MONEY DOESN’T GROW ON TREES on to the console?
+Which of the following options, if used to replace /INSERT/, will compile successfully and on execution will print MONEY DOESN’T GROW ON TREES on to the console?
 Select ALL that apply.
 
  gc.quote
@@ -1134,7 +1150,7 @@ System.out.println("PADLOCK-OPEN");
 
 class DigitalPadlock extends Padlock {
 public void open() {
-/*INSERT*/
+/INSERT/
 }
 }
 
@@ -1145,7 +1161,7 @@ lock.open();
 }
 }
 
-Which of the following options, if used to replace /*INSERT*/, will compile successfully and on execution will print LOCK-OPEN on to the console?
+Which of the following options, if used to replace /INSERT/, will compile successfully and on execution will print LOCK-OPEN on to the console?
 
  super.open();
  super.super.open();
@@ -1168,7 +1184,7 @@ Which of the following options, if used to replace /*INSERT*/, will compile succ
 
 
 Ans:
-super.open(); => Using super keyword, you can access methods and variables of immediate parent class, hence if you replace /*INSERT*/ with `super.open();`, then open() method of Padlock class will be invoked.
+super.open(); => Using super keyword, you can access methods and variables of immediate parent class, hence if you replace /INSERT/ with `super.open();`, then open() method of Padlock class will be invoked.
 super.super.open(); => super.super is not allowed in java, it causes compilation error.
 ((Lock)super).open(); => Not possible to cast super keyword in java, it causes compilation error.
 (Lock)super.open(); => super.open(); will be evaluated first as dot (.) operator has higher precedence than cast. super.open(); returns void and hence it cannot be casted to Lock. It also causes compilation error.
@@ -1484,17 +1500,17 @@ return 25.5;
 package com.skillcertprokhattry.oca;
 
 public abstract class Profit implements Profitable1, Profitable2 {
-/*INSERT*/
+/INSERT/
 }
 
 Which of the following needs to be done so that there is no compilation error?
 
  No need for any modifications, code compiles as is
- Replace /*INSERT*/ with below code: double profit() {     return 50.0; }
- Replace /*INSERT*/ with below code: public default double profit() {     return 50.0; }
- Replace /*INSERT*/ with below code: protected double profit() {     return 50.0; }
- Replace /*INSERT*/ with below code: public double profit() {     return Profitable1.profit(); }
- Replace /*INSERT*/ with below code: public double profit() {     return Profitable2.super.profit(); }
+ Replace /INSERT/ with below code: double profit() {     return 50.0; }
+ Replace /INSERT/ with below code: public default double profit() {     return 50.0; }
+ Replace /INSERT/ with below code: protected double profit() {     return 50.0; }
+ Replace /INSERT/ with below code: public double profit() {     return Profitable1.profit(); }
+ Replace /INSERT/ with below code: public double profit() {     return Profitable2.super.profit(); }
 
  
  
@@ -1509,7 +1525,7 @@ Which of the following needs to be done so that there is no compilation error?
  
  
  Ans:
- Replace /*INSERT*/ with below code:
+ Replace /INSERT/ with below code:
 public double profit() {
     return Profitable2.super.profit();
 }
@@ -1653,6 +1669,5 @@ Ans:
 এর ফলে একটি কনফ্লিক্ট বা দ্বন্দ্ব তৈরি হচ্ছে।
 
 একই স্কোপের মধ্যে একই সিগনেচারযুক্ত স্ট্যাটিক এবং নন-স্ট্যাটিক মেথড একসাথে রাখা জাভাতে অনুমোদিত নয়। তাই MyLogger ক্লাসটি কম্পাইল করতে ব্যর্থ হবে।"
-
 
 
