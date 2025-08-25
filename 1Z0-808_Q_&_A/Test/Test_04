@@ -47,15 +47,7 @@
 ---------------
 
 
-1. --
-2. --
-3. --
-4. --
-5. --
-6. --
-
-
-7.What will be the result of compiling and executing Test class?
+1.What will be the result of compiling and executing Test class?
 Test.java
 com.skillcertpro.oca.test
 
@@ -131,7 +123,7 @@ Answer:
 
 
 
-08.What will be the result of compiling and executing Test class?
+2.What will be the result of compiling and executing Test class?
 Test.java
 com.skillcertpro.oca.test
 
@@ -189,7 +181,7 @@ Ans:
 প্রদত্ত কোডে Child(int i, int j) কনস্ট্রাকটরে super(i) এবং this(j) উভয়ই আছে, যা নিয়ম লঙ্ঘন করে। এটি একটি কম্পাইল টাইম এরর দেবে এবং প্রোগ্রামটি রান করা যাবে না।
 
 
-9.Given code of LogHelper.java file:
+3.Given code of LogHelper.java file:
 package com.skillcertpro.oca;
 
 abstract class Helper {
@@ -248,7 +240,7 @@ Add the protected modifier to the help() method of LogHelper class
 Add the public modifier to the help() method of LogHelper class
 
 
- 10.interface Printable {
+ 4.interface Printable {
       public void setMargin();
       public void setOrientation();
       }
@@ -300,7 +292,7 @@ Paper ক্লাসে শুধুমাত্র setMargin() মেথডট
 
 
 
-11.class PenDrive {
+4.class PenDrive {
 int capacity;
 PenDrive(int capacity) {
 this.capacity = capacity;
@@ -359,7 +351,7 @@ Replace /*INSERT-2*/ with: super(0);: এই পরিবর্তনটি OTG(
 
 
 
- 12.Consider codes below:
+ 6.Consider codes below:
 //A.java
 package com.skillcertpro.oca;
 
@@ -414,7 +406,7 @@ Ans:
 `B` ক্লাস `A` ক্লাস থেকে ভ্যারিয়েবল `i2` ইনহেরিট করে, তাই `B` ক্লাসের ভেতরে এটিকে `this` অথবা `super` ব্যবহার করে অ্যাক্সেস করা যেতে পারে। লাইন ১০ এবং লাইন ১১ কোনো কম্পাইলেশন এরর সৃষ্টি করবে না।
 
 
-13.Consider codes below:
+7.Consider codes below:
 //A.java
 package com.skillcertpro.oca;
 
@@ -487,7 +479,7 @@ A obj2 = new B(); => obj2 refers to an instance of B class, it is polymorphism.
 C obj3 = (C)obj1; => obj1 actually refers to an instance of C class, so at runtime obj3 (C type) will refer to an instance of C class. As obj1 is of A type so explicit typecasting is necessary. 
 C obj4 = (C)obj2; => obj2 actually refers to an instance of B class, so at runtime obj4 (C type) will refer to an instance of B class. B and C are siblings and can’t refer to each other, so this statement will throw ClassCastException at runtime.
 
-14.Consider codes below:
+8.Consider codes below:
 //A.java
 package com.skillcertpro.oca;
 
@@ -540,7 +532,7 @@ What will be the result of compiling and executing Test class?
  A obj1 = new A(); => obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে।
  B obj2 = (B)obj1; => obj1 হচ্ছে A টাইপের এবং এটিকে obj2 (যা B টাইপের) তে অ্যাসাইন করা হচ্ছে, তাই এক্সপ্লিসিট কাস্টিং (explicit casting) প্রয়োজন। obj1 ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করে, তাই রানটাইমে obj2-ও ক্লাস A-এর একটি ইনস্ট্যান্সকে নির্দেশ করবে। সাবটাইপ সুপারটাইপের একটি অবজেক্টকে নির্দেশ করতে পারে না। অতএব, রানটাইমে B obj2 = (B)obj1; লাইনটি একটি ClassCastException থ্রো করবে।
 
- 15. Consider below code of Test.java file:
+ 9. Consider below code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class Super {
@@ -585,7 +577,7 @@ What will be the result of compiling and executing above code?
 এই কোডটি সফলভাবে কম্পাইল হবে এবং রান করার পর কনসোলে KEEP_GOING_ প্রিন্ট করবে।
 
 
- 16.Consider below codes of 3 java files:
+ 10.Consider below codes of 3 java files:
 //Animal.java
 package a;
 
@@ -627,7 +619,7 @@ What will be the result of compiling and executing Test class?
  It executes successfully but nothing is printed on to the console
 
 
- 17.Consider below code fragment:
+ 11.Consider below code fragment:
 package com.skillcertprokhattry.oca;
 
 abstract class Food {
@@ -665,7 +657,7 @@ Which 3 modifications, done independently, enable the code to compile?
  2,4,5
 
 
- 18.Consider below code of Test.java file:
+ 12.Consider below code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 public class Test {
@@ -703,7 +695,7 @@ What will be the result of compiling and executing Test class?
  GO
 
 
- 19.Given code of Test.java file:
+ 13.Given code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class X {
@@ -760,7 +752,7 @@ Class Y correctly extends class X and it overrides method A() and provides two n
 At Line n1, obj is of X type and therefore obj.B(); and obj.C(); cause compilation error as these methods are not defined in class X.
 
 
-20. Consider below code of Test.java file:
+14. Consider below code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class Currency {
@@ -806,7 +798,7 @@ What will be the result of compiling and executing above code?
  Compilation error in Euro class
 
 
- 21.Consider below code of Test.java file:
+15.Consider below code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class Super {
@@ -857,7 +849,7 @@ obj.num += 2
 obj.num refers to "102" and same is printed on to the console.
 
 
-22.Given code of Test.java file:
+16.Given code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class Parent {
@@ -897,7 +889,7 @@ Which three modifications, done independently, print 1000 on to the console?
 
 
 
- 23.class Base {
+ 17.class Base {
 String msg = "INHALE"; //Line n1
 }
 
@@ -927,7 +919,7 @@ What will be the result of compiling and executing above code?
 
 
 
- 24.class Base {
+ 18.class Base {
 static void print() { //Line n1
 System.out.println("BASE");
 }
@@ -959,7 +951,7 @@ Which of the following statements is true for above code?
 
 
 
- 25.lass Paper {
+ 19.lass Paper {
 static String getType() { //Line n1
 return "GENERIC";
 }
@@ -1003,7 +995,7 @@ Which of the following statements is true for above code?
 Instance method at Line n2 tries to override the static method at Line n1 and hence Line n2 causes compilation error.
 
 
- 26.class M {
+ 20.class M {
 public void main(String[] args) { //Line n1
 System.out.println("M");
 }
@@ -1044,7 +1036,7 @@ Which of the following statements is true for above code?
 Ans:
 The static method of subclass cannot hide the instance method of superclass. static main(String []) method at Line n2 tries to hide the instance main(String []) method at Line n1 and hence Line n2 causes compilation error.
 
- 27.class Parent {
+ 21.class Parent {
 String quote = "MONEY DOESN’T GROW ON TREES";
 }
 
@@ -1089,7 +1081,7 @@ Select ALL that apply.
 ((Parent)(Child)gc).quote => ‘gc’ is of GrandChild type, it is first casted to Child and then to Parent type and finally quote variable is accessed, so this expression refers to "MONEY DOESN’T GROW ON TREES". It is also one of the correct options.
 (Parent)(Child)gc.quote => gc.quote will be evaluated first as dot (.) operator has higher precedence than cast. gc.quote refers to String, hence it cannot be casted to Child type. This would cause compilation error.
 
- 28.class X {
+ 22.class X {
 void greet() {
 System.out.println("Good Morning!");
 }
@@ -1124,7 +1116,7 @@ What will be the result of compiling and executing above code?
  It compiles successfully and on execution prints below: Good Night! Good Night! Good Night!
  It compiles successfully and on execution prints below: Good Morning! Good Morning! Good Morning!
 
- 29.Given code of Test.java file:
+ 23.Given code of Test.java file:
 package com.skillcertprokhattry.oca;
 
 class Lock {
@@ -1182,7 +1174,7 @@ super.super.open(); => super.super is not allowed in java, it causes compilation
 In fact, it is not possible to directly reach to 2 levels, super keyword allows to access methods and variables of immediate parent class only (just 1 level up). Hence, correct 
 answer is: ‘None of the other options’
 
- 30.
+ 24.
 //Chair.java
 package com.skillcertprokhattry.oca;
 
@@ -1215,7 +1207,7 @@ What will be the result of compiling and executing Test class?
  It compiles successfully and on execution prints $35.00 on to the console
  It compiles successfully and on execution prints £35.0 on to the console
 
-31.//I1.java
+25.//I1.java
 package com.skillcertprokhattry.oca;
 
 public interface I1 {
@@ -1277,7 +1269,7 @@ I2.i points to variable ‘i’ of interface I2.
 I3.i is an ambiguous call as compiler is not sure whether to point to I1.i or I2.i and therefore, Line n4 causes compilation error.
 
 
-32.Consider below codes of 2 java files:
+26.Consider below codes of 2 java files:
 //Counter.java
 package com.skillcertprokhattry.oca;
 
@@ -1323,7 +1315,7 @@ Ans:
 Line n2: Counter [] arr = new Counter[2]; - এটি Counter ইন্টারফেস টাইপের একটি অ্যারে তৈরি করছে। যদিও আপনি ইন্টারফেসের কোনো অবজেক্ট তৈরি করতে পারেন না, কিন্তু ইন্টারফেস টাইপের একটি অ্যারে তৈরি করা সম্ভব। এই অ্যারের প্রতিটি উপাদান ডিফল্টভাবে null দ্বারা ইনিশিয়্যালাইজড হবে। এটিও একটি বৈধ স্টেটমেন্ট।
 সুতরাং, কোডটি সফলভাবে কম্পাইল হবে এবং আউটপুট হবে 1010।
 
-33.Consider below codes of 3 java files:
+27.Consider below codes of 3 java files:
 //Shrinkable.java
 package com.skillcertprokhattry.oca;
 
@@ -1359,7 +1351,7 @@ class AntMan implements Shrinkable interface but as there is no abstract method 
 static method of Shrinkable interface can only be accessed by using Shrinkable.shrinkPercentage(). `AntMan.shrinkPercentage();` causes compilation error.
 
 
-34.//Buyable.java
+28.//Buyable.java
 package com.skillcertprokhattry.oca;
 
 public interface Buyable {
@@ -1406,7 +1398,7 @@ Select ALL that apply.
 
 
 
- 35.//Buyable.java
+ 29.//Buyable.java
 package com.skillcertprokhattry.oca;
 
 public interface Buyable {
@@ -1469,7 +1461,7 @@ obj is of I1 type, hence `obj.print("Java");` tries to tag the static method of 
 Therefore, `obj.print("Java");` causes compilation error.
 
 
- 36.//Profitable1.java
+ 30.//Profitable1.java
 package com.skillcertprokhattry.oca;
 
 public interface Profitable1 {
@@ -1521,7 +1513,7 @@ public double profit() {
     return Profitable2.super.profit();
 }
 
- 37.interface Perishable1 {
+ 31.interface Perishable1 {
 default int maxDays() {
 return 1;
 }
@@ -1567,7 +1559,7 @@ Which of the following statements is correct?
 interface Perishable2 extends Perishable1 and it overrides the default method maxDays() of Document, overriding method in Perishable2 is implicitly public. Interface Perishable2 compiles successfully.
  
 
- 38.interface M {
+ 32.interface M {
       public static void log() {
       System.out.println("M");
       }
@@ -1621,7 +1613,7 @@ Therefore, Line n1 causes compilation error.
 
 
 
- 39.Consider below code snippet:
+ 33.Consider below code snippet:
 interface ILog {
 default void log() {
 System.out.println("ILog");
