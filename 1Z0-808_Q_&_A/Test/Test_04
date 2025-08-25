@@ -61,30 +61,7 @@
 3. --
 4. --
 5. --
-
-
-
-6. Which of these access modifiers can be used for a top level interface?
- private
- protected
- public
- All of the other options
-
-
-
-
-
-
-
-
-
-
-
-
- 
- Answer:
- একটি টপ-লেভেল ইন্টারফেসের জন্য শুধুমাত্র public  এবং  package-private  (কোনো মডিফায়ার ছাড়া): অ্যাক্সেস মডিফায়ার  বৈধ। 
- অন্য কোনো অ্যাক্সেস মডিফায়ার যেমন private বা protected ব্যবহার করলে কম্পাইল টাইম এরর (compile-time error) হবে।
+6. --
 
 
 7.What will be the result of compiling and executing Test class?
